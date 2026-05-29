@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Bítacora del Vermut — Tres Cantos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --burgundy:    #6B1A28;
+      --amber:       #C8883A;
+      --cream:       #F5EFE0;
+      --dark:        #1A0F0A;
+      --mid:         #3A2215;
+      --gold:        #D4A847;
+      --muted:       #8A7060;
+      --paper:       #EDE5D0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--dark);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.35;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(107,26,40,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(200,136,58,0.2) 0%, transparent 60%),
+        var(--dark);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--dark));
+      pointer-events: none;
+    }
+
+    /* Decorative arc lines */
+    .hero-deco {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .hero-deco svg {
+      width: min(700px, 95vw);
+      opacity: 0.12;
+    }
+
+    .hero-tag {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      animation: fadeUp 1s 0.15s ease both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .hero-sub {
+      margin-top: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-style: italic;
+      color: var(--muted);
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      animation: fadeUp 1s 0.5s ease both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 2px;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.25s, color 0.25s, box-shadow 0.25s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--burgundy);
+      color: var(--cream);
+      border: 1px solid var(--burgundy);
+    }
+    .btn-primary:hover { background: #82202F; box-shadow: 0 6px 30px rgba(107,26,40,0.5); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+    .btn-outline:hover { background: rgba(212,168,71,0.1); box-shadow: 0 6px 20px rgba(212,168,71,0.2); }
+
+    .btn-whatsapp {
+      background: #1A5C36;
+      color: #fff;
+      border: 1px solid #1A5C36;
+    }
+    .btn-whatsapp:hover { background: #226B41; box-shadow: 0 6px 20px rgba(26,92,54,0.5); }
+
+    /* ── SECTION SHELL ── */
+    section {
+      position: relative;
+      padding: 6rem 2rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+    }
+
+    h2 em { color: var(--amber); font-style: italic; }
+
+    p {
+      color: rgba(245,239,224,0.82);
+      margin-bottom: 1rem;
+    }
+
+    strong { color: var(--cream); }
+
+    /* ── INTRO ── */
+    .intro {
+      background:
+        radial-gradient(ellipse 70% 50% at 100% 50%, rgba(200,136,58,0.08) 0%, transparent 60%),
+        var(--dark);
+    }
+
+    .intro blockquote {
+      border-left: 3px solid var(--burgundy);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+
+    /* ── SERVICIOS GRID ── */
+    .servicios { background: var(--mid); }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-top: 2.5rem;
+    }
+
+    .servicio-item {
+      background: var(--mid);
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      transition: background 0.2s;
+    }
+    .servicio-item:hover { background: rgba(107,26,40,0.3); }
+
+    .servicio-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .servicio-text {
+      font-size: 0.92rem;
+      color: rgba(245,239,224,0.85);
+      line-height: 1.4;
+    }
+
+    /* ── HORARIOS ── */
+    .horarios {
+      background: var(--dark);
+    }
+
+    .horario-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+    }
+
+    .horario-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: background 0.2s;
+    }
+    .horario-table tr:hover { background: rgba(107,26,40,0.15); }
+
+    .horario-table td {
+      padding: 0.85rem 0.5rem;
+      color: rgba(245,239,224,0.8);
+    }
+
+    .horario-table td:first-child {
+      font-weight: 700;
+      color: var(--cream);
+      width: 40%;
+    }
+
+    .cerrado { color: var(--muted) !important; font-style: italic; }
+
+    /* ── CONTACTO ── */
+    .contacto {
+      background:
+        radial-gradient(ellipse 60% 60% at 20% 80%, rgba(107,26,40,0.3) 0%, transparent 60%),
+        var(--mid);
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .contacto-item {
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 1.75rem 1.5rem;
+      background: rgba(26,15,10,0.5);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .contacto-item:hover { border-color: var(--amber); transform: translateY(-3px); }
+
+    .contacto-label {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .contacto-value {
+      font-size: 1.1rem;
+      color: var(--cream);
+      text-decoration: none;
+      display: block;
+    }
+    .contacto-value:hover { color: var(--amber); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      background: var(--dark);
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--amber);
+      letter-spacing: 0.02em;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .instagram-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      text-decoration: none;
+      color: var(--gold);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      border: 1px solid rgba(212,168,71,0.3);
+      padding: 0.5rem 1.2rem;
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .instagram-link:hover { background: rgba(212,168,71,0.1); border-color: var(--gold); }
+
+    /* ── DIVIDERS ── */
+    .ruled {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(212,168,71,0.3), transparent);
+      margin: 0;
+      border: none;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      section { padding: 4rem 1.25rem; }
+      .hero { padding: 3rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <header class="hero">
+    <div class="hero-deco" aria-hidden="true">
+      <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="300" cy="300" r="280" stroke="#D4A847" stroke-width="0.6"/>
+        <circle cx="300" cy="300" r="230" stroke="#D4A847" stroke-width="0.4"/>
+        <circle cx="300" cy="300" r="180" stroke="#D4A847" stroke-width="0.6"/>
+        <line x1="20" y1="300" x2="580" y2="300" stroke="#D4A847" stroke-width="0.4"/>
+        <line x1="300" y1="20" x2="300" y2="580" stroke="#D4A847" stroke-width="0.4"/>
+        <line x1="97" y1="97" x2="503" y2="503" stroke="#D4A847" stroke-width="0.3"/>
+        <line x1="503" y1="97" x2="97" y2="503" stroke="#D4A847" stroke-width="0.3"/>
+      </svg>
+    </div>
+
+    <span class="hero-tag">Tres Cantos, Madrid</span>
+    <h1>La <em>Bítacora</em><br>del Vermut</h1>
+    <p class="hero-sub">Vermutería · Bar de raciones y tapas</p>
+    <div class="hero-divider"></div>
+    <div class="hero-cta">
+      <a href="tel:685214670" class="btn btn-primary">📞 Llamar ahora</a>
+      <a href="https://wa.me/34685214670" class="btn btn-whatsapp" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="mailto:labitacoradelvermut@gmail.com" class="btn btn-outline">✉️ Email</a>
+    </div>
+  </header>
+
+  <hr class="ruled" />
+
+  <!-- ══ INTRO ══ -->
+  <section class="intro">
+    <div class="container reveal">
+      <span class="section-label">Quiénes somos</span>
+      <h2>Más allá del vermut <em>de siempre</em></h2>
+
+      <blockquote>
+        "Una propuesta orientada a quienes buscan ir más allá de las referencias clásicas y descubrir vermuts de pequeños productores y elaboraciones singulares."
+      </blockquote>
+
+      <p>La Bítacora del Vermut es una vermutería en Tres Cantos que ofrece más de <strong>30 variedades selectas y exclusivas de vermut</strong>, con marcas poco habituales y difíciles de encontrar incluso en tiendas especializadas.</p>
+
+      <p>El local tiene un <strong>ambiente informal</strong> y cuenta con <strong>terraza cubierta</strong>, lo que permite alargar la sobremesa o aprovechar el tardeo independientemente de la climatología. Es un sitio pensado para <strong>grupos pequeños de amigos</strong>, aperitivos, tardeos y cenas de picoteo, sin la rigidez de un restaurante al uso.</p>
+
+      <p>La cocina se centra en <strong>raciones clásicas de taberna</strong>, con bravas, calamares y otros platos para compartir. Destacan la <strong>selección de conservas</strong>, las <strong>tapas murcianas</strong> — como la ensaladilla coronada con boquerón, anchoa o sardina ahumada, especialidad de la casa — y una <strong>carta amplia de gildas variadas</strong>, uno de los maridajes más clásicos para un buen vermut.</p>
+    </div>
+  </section>
+
+  <hr class="ruled" />
+
+  <!-- ══ SERVICIOS ══ -->
+  <section class="servicios">
+    <div class="container reveal">
+      <span class="section-label">Lo que encontrarás</span>
+      <h2>Oferta &amp; <em>Servicios</em></h2>
+
+      <div class="servicios-grid">
+        <div class="servicio-item">
+          <span class="servicio-icon">🍷</span>
+          <span class="servicio-text">Más de <strong>30 variedades selectas</strong> de vermut</span>
+        </div>
+        <div class="servicio-item">
+          <span class="servicio-icon">✨</span>
+          <span class="servicio-text"><strong>Marcas exclusivas</strong> y poco habituales, difíciles de encontrar</span>
+        </div>
+        <div class="servicio-item">
+          <span class="servicio-icon">🥘</span>
+          <span class="servicio-text">Raciones clásicas de taberna: <strong>bravas, calamares…</strong></span>
+        </div>
+        <div class="servicio-item">
+          <span class="servicio-icon">🥫</span>
+          <span class="servicio-text"><strong>Selección de conservas</strong> de calidad</span>
+        </div>
+        <div class="servicio-item">
+          <span class="servicio-icon">🥗</span>
+          <span class="servicio-text"><strong>Tapas murcianas</strong> — ensaladilla con boquerón, anchoa o sardina ahumada (especialidad)</span>
+        </div>
+        <div class="servicio-item">
+          <span class="servicio-icon">🫒</span>
+          <span class="servicio-text"><strong>Carta amplia de gildas</strong> variadas</span>
+        </div>
+        <div class="servicio-item">
+          <span class="servicio-icon">☀️</span>
+          <span class="servicio-text"><strong>Terraza cubierta</strong> para cualquier climatología</span>
+        </div>
+        <div class="servicio-item">
+          <span class="servicio-icon">🍻</span>
+          <span class="servicio-text">Aperitivos, <strong>tardeos</strong> y cenas de picoteo</span>
+        </div>
+        <div class="servicio-item">
+          <span class="servicio-icon">👥</span>
+          <span class="servicio-text">Perfecto para <strong>grupos pequeños</strong> de amigos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ruled" />
+
+  <!-- ══ HORARIOS ══ -->
+  <section class="horarios">
+    <div class="container reveal">
+      <span class="section-label">Cuándo visitarnos</span>
+      <h2><em>Horario</em> de apertura</h2>
+
+      <table class="horario-table" aria-label="Horario de apertura">
+        <tbody>
+          <tr>
+            <td>Lunes</td>
+            <td class="cerrado">Cerrado</td>
+          </tr>
+          <tr>
+            <td>Martes</td>
+            <td>11:30 – 00:00</td>
+          </tr>
+          <tr>
+            <td>Miércoles</td>
+            <td>11:30 – 00:00</td>
+          </tr>
+          <tr>
+            <td>Jueves</td>
+            <td>11:30 – 00:00</td>
+          </tr>
+          <tr>
+            <td>Viernes</td>
+            <td>11:30 – 00:00</td>
+          </tr>
+          <tr>
+            <td>Sábado</td>
+            <td>11:30 – 00:00</td>
+          </tr>
+          <tr>
+            <td>Domingo</td>
+            <td>11:30 – 16:00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="ruled" />
+
+  <!-- ══ CONTACTO ══ -->
+  <section class="contacto">
+    <div class="container reveal">
+      <span class="section-label">Encuéntranos</span>
+      <h2>Contacto &amp; <em>Ubicación</em></h2>
+
+      <div class="contacto-grid">
+        <div class="contacto-item">
+          <span class="contacto-label">Dirección</span>
+          <span class="contacto-value">Calle Músicos 14, local 7<br>28760 Tres Cantos, Madrid</span>
+        </div>
+        <div class="contacto-item">
+          <span class="contacto-label">Teléfono</span>
+          <a href="tel:685214670" class="contacto-value">685 21 46 70</a>
+        </div>
+        <div class="contacto-item">
+          <span class="contacto-label">WhatsApp</span>
+          <a href="https://wa.me/34685214670" class="contacto-value" target="_blank" rel="noopener">685 21 46 70</a>
+        </div>
+        <div class="contacto-item">
+          <span class="contacto-label">Correo electrónico</span>
+          <a href="mailto:labitacoradelvermut@gmail.com" class="contacto-value">labitacoradelvermut@gmail.com</a>
+        </div>
+      </div>
+
+      <div style="margin-top:2.5rem; display:flex; flex-wrap:wrap; gap:1rem;">
+        <a href="tel:685214670" class="btn btn-primary">📞 Llamar ahora</a>
+        <a href="https://wa.me/34685214670" class="btn btn-whatsapp" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a href="mailto:labitacoradelvermut@gmail.com" class="btn btn-outline">✉️ Enviar email</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ruled" />
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <span class="footer-logo">La Bítacora del Vermut</span>
+    <p>Calle Músicos 14, local 7 · 28760 Tres Cantos, Madrid</p>
+    <br>
+    <a href="https://www.instagram.com/labitacoradelvermut/" target="_blank" rel="noopener" class="instagram-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      @labitacoradelvermut
+    </a>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
