@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Aldea – Ludoteca Bilingüe · Tres Cantos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:   #4caf50;
+      --green2:  #81c784;
+      --yellow:  #ffd54f;
+      --orange:  #ff8a65;
+      --pink:    #f48fb1;
+      --blue:    #64b5f6;
+      --purple:  #ba68c8;
+      --cream:   #fffde7;
+      --dark:    #2e3d28;
+      --mid:     #5a6e50;
+      --light:   #f1f8e9;
+      --white:   #ffffff;
+      --r:       18px;
+      --shadow:  0 6px 24px rgba(0,0,0,.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── DECORATIVE DOTS ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(76,175,80,.12) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .8rem 2rem;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--dark);
+      text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .nav-logo span { color: var(--green); }
+    .nav-logo .leaf { font-size: 1.6rem; }
+
+    .nav-links {
+      display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 700; font-size: .9rem;
+      color: var(--mid);
+      padding: .3rem .7rem;
+      border-radius: 99px;
+      transition: background .2s, color .2s;
+    }
+    .nav-links a:hover { background: var(--green2); color: var(--white); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: .45rem 1.1rem !important;
+    }
+    .nav-cta:hover { background: #e64a19 !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 92vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(160deg, #e8f5e9 0%, #fffde7 45%, #fce4ec 100%);
+    }
+
+    /* floating shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .35;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape1 { width:180px;height:180px;background:var(--green2);top:-40px;left:-50px;animation-delay:0s;}
+    .shape2 { width:120px;height:120px;background:var(--yellow);top:60px;right:80px;animation-delay:1.5s;}
+    .shape3 { width:90px;height:90px;background:var(--pink);bottom:120px;left:60px;animation-delay:3s;}
+    .shape4 { width:150px;height:150px;background:var(--blue);bottom:-30px;right:-30px;animation-delay:2s;}
+    .shape5 { width:70px;height:70px;background:var(--orange);top:200px;left:200px;animation-delay:4s;}
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-18px) rotate(6deg); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700; font-size: .85rem;
+      padding: .3rem 1rem;
+      border-radius: 99px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      animation: fadeDown .7s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--dark);
+      animation: fadeDown .8s .1s ease both;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--mid);
+      max-width: 560px;
+      margin: 1.2rem auto 0;
+      line-height: 1.6;
+      animation: fadeDown .9s .2s ease both;
+    }
+
+    .hero-flags {
+      font-size: 2.2rem;
+      margin-top: .7rem;
+      animation: fadeDown 1s .3s ease both;
+    }
+
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      margin-top: 2.2rem;
+      animation: fadeDown 1s .4s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .8rem 1.8rem;
+      border-radius: 99px;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+    .btn-primary   { background: var(--green);  color: var(--white); }
+    .btn-whatsapp  { background: #25d366;        color: var(--white); }
+    .btn-secondary { background: var(--white);   color: var(--dark);  }
+
+    @keyframes fadeDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    section { position: relative; z-index: 1; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .section-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: .4rem;
+    }
+    .section-title span { color: var(--green); }
+    .section-subtitle {
+      text-align: center;
+      color: var(--mid);
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+    .divider {
+      width: 60px; height: 5px;
+      background: var(--yellow);
+      border-radius: 99px;
+      margin: .6rem auto 1rem;
+    }
+
+    /* ─── ABOUT ─── */
+    .about {
+      background: var(--white);
+      padding: 5rem 1.5rem;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-text p {
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .about-text strong { color: var(--dark); }
+    .about-text .quote {
+      background: var(--light);
+      border-left: 5px solid var(--green);
+      padding: 1rem 1.4rem;
+      border-radius: 0 var(--r) var(--r) 0;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--dark);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .about-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .about-card {
+      background: var(--light);
+      border-radius: var(--r);
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: var(--shadow);
+    }
+    .about-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+    .about-card .icon { font-size: 2.2rem; margin-bottom: .5rem; }
+    .about-card h4 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1rem; font-weight: 700;
+      color: var(--dark);
+    }
+    .about-card p { font-size: .82rem; color: var(--mid); margin-top: .3rem; }
+    .about-card.c1 { background: #e8f5e9; }
+    .about-card.c2 { background: #fff9c4; }
+    .about-card.c3 { background: #fce4ec; }
+    .about-card.c4 { background: #e3f2fd; }
+
+    /* ─── SERVICES ─── */
+    .services {
+      padding: 5rem 1.5rem;
+      background: var(--light);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 2rem 1.8rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 6px;
+    }
+    .service-card:nth-child(1)::before { background: var(--green); }
+    .service-card:nth-child(2)::before { background: var(--orange); }
+    .service-card:nth-child(3)::before { background: var(--purple); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.13); }
+    .service-card .svc-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+    .service-card h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.25rem; font-weight: 800;
+      color: var(--dark);
+      margin-bottom: .6rem;
+    }
+    .service-card p { color: var(--mid); line-height: 1.7; font-size: .95rem; }
+
+    /* ─── HOURS ─── */
+    .hours {
+      background: var(--dark);
+      padding: 4.5rem 1.5rem;
+      color: var(--white);
+    }
+    .hours .section-title { color: var(--white); }
+    .hours .section-subtitle { color: var(--green2); }
+    .hours-cards {
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+    .hours-card {
+      background: rgba(255,255,255,.08);
+      border: 2px solid rgba(255,255,255,.12);
+      border-radius: var(--r);
+      padding: 2rem 3rem;
+      text-align: center;
+      min-width: 200px;
+      backdrop-filter: blur(8px);
+      transition: background .2s;
+    }
+    .hours-card:hover { background: rgba(255,255,255,.14); }
+    .hours-card .day {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--yellow);
+      margin-bottom: .5rem;
+    }
+    .hours-card .time {
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--white);
+    }
+    .hours-card .time-label { font-size: .8rem; color: var(--green2); margin-top: .3rem; }
+
+    /* ─── GALLERY ─── */
+    .gallery {
+      padding: 5rem 1.5rem;
+      background: var(--white);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .gallery-item {
+      border-radius: var(--r);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s, filter .4s;
+    }
+    .gallery-item:hover img { transform: scale(1.07); filter: brightness(.85); }
+    .gallery-item.big {
+      grid-column: span 2;
+      grid-row: span 2;
+      min-height: 320px;
+    }
+    .gallery-item.small { min-height: 150px; }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(transparent 50%, rgba(0,0,0,.45));
+      pointer-events: none;
+    }
+
+    /* ─── PHILOSOPHY ─── */
+    .philosophy {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(135deg, #e8f5e9, #fffde7);
+      text-align: center;
+    }
+    .philosophy-body {
+      max-width: 720px; margin: 0 auto;
+      font-size: 1.05rem; color: var(--mid);
+      line-height: 1.85;
+    }
+    .philosophy-body strong { color: var(--dark); }
+    .big-quote {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin: 2rem auto;
+      max-width: 680px;
+      position: relative;
+      padding: 0 2rem;
+    }
+    .big-quote::before, .big-quote::after {
+      content: '"';
+      font-size: 4rem;
+      color: var(--green);
+      position: absolute;
+      line-height: 1;
+    }
+    .big-quote::before { top: -10px; left: 0; }
+    .big-quote::after  { bottom: -30px; right: 0; content: '"'; }
+
+    /* ─── CONTACT ─── */
+    .contact {
+      padding: 5rem 1.5rem;
+      background: var(--white);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-info h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.6rem; font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+    .contact-row {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-row .ci-icon {
+      font-size: 1.6rem;
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-row .ci-text { font-size: .95rem; color: var(--mid); line-height: 1.5; }
+    .contact-row .ci-text strong { color: var(--dark); display: block; }
+    .contact-row a { color: var(--green); text-decoration: none; font-weight: 700; }
+    .contact-row a:hover { text-decoration: underline; }
+
+    .contact-ctas {
+      display: flex; flex-direction: column; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .contact-ctas .btn { justify-content: center; }
+
+    .instagram-box {
+      background: linear-gradient(135deg, #f48fb1, #ba68c8, #64b5f6);
+      border-radius: var(--r);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .instagram-box .ig-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .instagram-box h4 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.5rem; font-weight: 800;
+      margin-bottom: .5rem;
+    }
+    .instagram-box p { font-size: .95rem; opacity: .9; margin-bottom: 1.5rem; }
+    .instagram-box a {
+      display: inline-block;
+      background: var(--white);
+      color: var(--dark);
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800; font-size: .95rem;
+      padding: .7rem 2rem;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: transform .2s;
+    }
+    .instagram-box a:hover { transform: scale(1.05); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.7);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: .88rem;
+    }
+    footer .footer-logo {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--white);
+      margin-bottom: .4rem;
+    }
+    footer .footer-logo span { color: var(--green); }
+    footer p { margin-top: .3rem; }
+
+    /* ─── FLOATING WHATSAPP ─── */
+    .fab-wa {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      background: #25d366;
+      color: var(--white);
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(37,211,102,.5);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .fab-wa:hover { transform: scale(1.12); box-shadow: 0 10px 28px rgba(37,211,102,.6); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: .7rem 1rem; }
+      .nav-links { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.big { grid-column: span 2; min-height: 220px; }
+      .gallery-item.small { min-height: 120px; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.big { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#inicio" class="nav-logo">
+    <span class="leaf">🌿</span>La <span>Aldea</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="tel:671338463" class="nav-cta btn">📞 Llamar</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+  <div class="shape shape3"></div>
+  <div class="shape shape4"></div>
+  <div class="shape shape5"></div>
+
+  <div class="hero-badge">🌱 Tres Cantos, Madrid</div>
+  <h1>La <em>Aldea</em></h1>
+  <div class="hero-flags">🇪🇸 &nbsp; 🇬🇧</div>
+  <p class="hero-sub">Ludoteca bilingüe y espacio familiar donde los niños aprenden inglés jugando, en un ambiente cálido y lleno de vida.</p>
+
+  <div class="hero-btns">
+    <a href="tel:671338463" class="btn btn-primary">📞 Llamar ahora</a>
+    <a href="http://wa.me/+34671338463" class="btn btn-whatsapp">💬 WhatsApp</a>
+    <a href="#sobre-nosotros" class="btn btn-secondary">Descúbrenos ↓</a>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about" id="sobre-nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-title" style="text-align:left;margin-bottom:.3rem;">¿Qué es <span>La Aldea</span>?</p>
+        <div class="divider" style="margin:0 0 1.5rem;"></div>
+        <p><strong>La Aldea</strong> es una ludoteca y espacio familiar situada en Tres Cantos, concebida como un entorno multipropósito destinado a las familias y, especialmente, a los más pequeños.</p>
+        <p>El espacio está organizado para combinar distintas actividades y momentos del día: <strong>actividades lúdicas y creativas en grupos reducidos</strong>, orientadas al juego libre, la expresión artística y la estimulación temprana.</p>
+        <p>Junto a las zonas de juego interior, La Aldea dispone de una <strong>terraza convertida en cafetería al aire libre con barbacoa exterior</strong>, donde las familias pueden relajarse, teletrabajar o simplemente compartir un café.</p>
+        <div class="quote">
+          "Un lugar donde jugar, explorar y aprender en un ambiente cuidado, acogedor y bilingüe español-inglés."
+        </div>
+        <p>El proyecto nace de una iniciativa local impulsada por una <strong>pareja residente en Tres Cantos</strong>, inspirada en la filosofía de que hace falta toda una aldea para criar a un niño. Un espacio donde <strong>crianza, aprendizaje y comunidad</strong> se unen de forma natural.</p>
+      </div>
+      <div class="about-visual">
+        <div class="about-card c1">
+          <div class="icon">🌍</div>
+          <h4>Bilingüe</h4>
+          <p>Español &amp; inglés en cada actividad</p>
+        </div>
+        <div class="about-card c2">
+          <div class="icon">🎨</div>
+          <h4>Creativo</h4>
+          <p>Arte, juego libre y expresión</p>
+        </div>
+        <div class="about-card c3">
+          <div class="icon">👨‍👩‍👧</div>
+          <h4>Familiar</h4>
+          <p>Espacio para niños y adultos</p>
+        </div>
+        <div class="about-card c4">
+          <div class="icon">☕</div>
+          <h4>Relax</h4>
+          <p>Terraza, cafetería &amp; co-working</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section class="services" id="servicios">
+  <div class="container">
+    <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">Todo lo que La Aldea tiene para ti y tu familia</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon">🎭</div>
+        <h3>Ludoteca Bilingüe</h3>
+        <p>Los niños aprenden inglés mientras juegan en grupos reducidos. Actividades lúdicas y creativas que estimulan el desarrollo infantil en un entorno bilingüe español-inglés.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🏡</div>
+        <h3>Espacio Familiar</h3>
+        <p>Zona diferenciada para niños y adultos. Rincones tranquilos para leer, teletrabajar o descansar. Terraza con cafetería al aire libre y barbacoa exterior para toda la familia.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🎂</div>
+        <h3>Eventos y Cumpleaños</h3>
+        <p>Alquiler del espacio para celebraciones y fiestas privadas. Un entorno cálido y acogedor para que los más pequeños celebren sus momentos especiales rodeados de amigos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOURS ─── -->
+<section class="hours" id="horarios">
+  <div class="container">
+    <h2 class="section-title">Horario de <span style="color:var(--yellow)">Apertura</span></h2>
+    <div class="divider" style="background:var(--green2)"></div>
+    <p class="section-subtitle">Ven a visitarnos cuando más te convenga</p>
+    <div class="hours-cards">
+      <div class="hours-card">
+        <div class="day">🗓 Lunes a Viernes</div>
+        <div class="time">16:30 – 19:30</div>
+        <div class="time-label">tarde · evening</div>
+      </div>
+      <div class="hours-card">
+        <div class="day">🗓 Sábados</div>
+        <div class="time">10:00 – 13:00</div>
+        <div class="time-label">mañana · morning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<section class="gallery" id="galeria">
+  <div class="container">
+    <h2 class="section-title">Nuestra <span>Galería</span></h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">Descubre los espacios de La Aldea</p>
+    <div class="gallery-grid">
+      <div class="gallery-item big">
+        <img src="https://trescantosonline.com/wp-content/uploads/2025/11/la-aldea-3.jpg" alt="La Aldea espacio interior" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://trescantosonline.com/wp-content/uploads/2025/11/la-aldea-4.jpg" alt="La Aldea actividades" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://trescantosonline.com/wp-content/uploads/2025/11/la-aldea-6.jpg" alt="La Aldea juegos" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://trescantosonline.com/wp-content/uploads/2025/11/la-aldea-5.jpg" alt="La Aldea familias" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://trescantosonline.com/wp-content/uploads/2025/11/la-aldea-8.jpg" alt="La Aldea área exterior" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://trescantosonline.com/wp-content/uploads/2025/11/la-aldea-7.jpg" alt="La Aldea terraza" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://trescantosonline.com/wp-content/uploads/2025/11/la-aldea-2.jpg" alt="La Aldea celebración" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://trescantosonline.com/wp-content/uploads/2025/11/la-aldea-1.jpg" alt="La Aldea niños jugando" loading="lazy" />
+        <div class="gallery-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PHILOSOPHY ─── -->
+<section class="philosophy">
+  <div class="container">
+    <h2 class="section-title">Nuestra <span>Filosofía</span></h2>
+    <div class="divider"></div>
+    <div class="big-quote">
+      Hace falta una aldea para criar a un niño
+    </div>
+    <div class="philosophy-body" style="margin-top:3rem;">
+      <p>En La Aldea creemos que la crianza es una experiencia compartida. Por eso hemos creado un espacio donde <strong>familias de Tres Cantos</strong> pueden encontrarse, apoyarse y crecer juntas.</p>
+      <p style="margin-top:1rem;">Nuestro proyecto integra el <strong>ocio infantil</strong> con espacios que favorecen la conciliación y la interacción. Un punto de encuentro donde los niños disfrutan y se desarrollan mientras los adultos encuentran un entorno amable para compartir experiencias, trabajar o descansar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <h2 class="section-title">Cómo <span>Contactarnos</span></h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">Estamos aquí para responder todas tus preguntas</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Encuéntranos</h3>
+        <div class="contact-row">
+          <div class="ci-icon">📍</div>
+          <div class="ci-text">
+            <strong>Dirección</strong>
+            Av de la Luz 4, 28760 Tres Cantos, Madrid
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ci-icon">📞</div>
+          <div class="ci-text">
+            <strong>Teléfono</strong>
+            <a href="tel:671338463">671 33 84 63</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ci-icon">💬</div>
+          <div class="ci-text">
+            <strong>WhatsApp</strong>
+            <a href="http://wa.me/+34671338463">Escríbenos ahora</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ci-icon">⏰</div>
+          <div class="ci-text">
+            <strong>Horario</strong>
+            L-V: 16:30 – 19:30 · Sáb: 10:00 – 13:00
+          </div>
+        </div>
+        <div class="contact-ctas">
+          <a href="tel:671338463" class="btn btn-primary">📞 Llamar ahora</a>
+          <a href="http://wa.me/+34671338463" class="btn btn-whatsapp">💬 Consultar por WhatsApp</a>
+        </div>
+      </div>
+      <div class="instagram-box">
+        <div class="ig-icon">📸</div>
+        <h4>Síguenos en Instagram</h4>
+        <p>Descubre nuestras actividades, talleres y momentos especiales del día a día en La Aldea.</p>
+        <a href="https://www.instagram.com/laaldea.eu/" target="_blank" rel="noopener">@laaldea.eu →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">🌿 La <span>Aldea</span></div>
+  <p>Ludoteca bilingüe · Tres Cantos, Madrid</p>
+  <p style="margin-top:.8rem;font-size:.82rem;opacity:.5;">Av de la Luz 4, 28760 Tres Cantos · Tel: 671 33 84 63</p>
+</footer>
+
+<!-- ─── FAB WHATSAPP ─── -->
+<a href="http://wa.me/+34671338463" class="fab-wa" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener">💬</a>
+
+</body>
+</html>
