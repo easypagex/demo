@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamonería El Roceño – Tradición, Sabor, Confianza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo:    #C0392B;
+    --rojo-vivo: #E74C3C;
+    --ocre:    #D4A017;
+    --ocre-claro: #F0C040;
+    --crema:   #FDF6E3;
+    --marron:  #6B3A2A;
+    --marron-oscuro: #3D1F13;
+    --verde:   #2E7D32;
+    --blanco:  #FFFFFF;
+    --gris:    #F5F0E8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--crema);
+    color: var(--marron-oscuro);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: var(--marron-oscuro);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.4);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; color: var(--ocre); font-size: 1.3rem; letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+  .nav-links a { color: var(--crema); text-decoration: none; font-size: .9rem; letter-spacing: .5px; transition: color .2s; }
+  .nav-links a:hover { color: var(--ocre); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--marron-oscuro) 0%, #5a2010 50%, var(--rojo) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; padding-top: 60px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(212,160,23,.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(192,57,43,.3) 0%, transparent 50%);
+  }
+  /* decorative ham silhouette */
+  .hero-deco {
+    position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+    font-size: 28rem; line-height: 1; opacity: .06; pointer-events: none;
+    user-select: none; color: var(--ocre);
+  }
+  .hero-content { position: relative; text-align: center; padding: 2rem; max-width: 800px; }
+  .hero-badge {
+    display: inline-block;
+    border: 2px solid var(--ocre); color: var(--ocre);
+    font-size: .8rem; letter-spacing: 3px; text-transform: uppercase;
+    padding: .4rem 1.2rem; border-radius: 50px; margin-bottom: 1.5rem;
+    animation: fadeDown .8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--blanco); line-height: 1; margin-bottom: .5rem;
+    animation: fadeDown .9s .1s ease both;
+  }
+  .hero h1 span { color: var(--ocre); font-style: italic; }
+  .hero-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,.75);
+    margin-bottom: 2rem; letter-spacing: 1px;
+    animation: fadeDown 1s .2s ease both;
+  }
+  .hero-since {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    color: var(--ocre-claro); font-size: 1rem; margin-bottom: 2.5rem;
+    animation: fadeDown 1s .25s ease both;
+  }
+  .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeDown 1s .35s ease both; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .85rem 2rem; border-radius: 50px; font-weight: 700;
+    text-decoration: none; font-size: .95rem; letter-spacing: .5px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+  .btn-primary { background: var(--ocre); color: var(--marron-oscuro); }
+  .btn-outline { border: 2px solid var(--blanco); color: var(--blanco); }
+  .btn-whatsapp { background: #25D366; color: white; }
+
+  /* ── MARQUEE ── */
+  .marquee-bar {
+    background: var(--rojo); color: var(--blanco);
+    padding: .7rem 0; overflow: hidden; white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 22s linear infinite;
+    font-size: .9rem; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .marquee-inner span { margin: 0 2.5rem; }
+  .marquee-inner .sep { color: var(--ocre); font-size: 1.2rem; }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--marron-oscuro); margin-bottom: .5rem;
+  }
+  .section-sub { color: #7a5c4a; font-size: 1rem; margin-bottom: 2.5rem; }
+  .title-line {
+    width: 60px; height: 4px;
+    background: linear-gradient(90deg, var(--rojo), var(--ocre));
+    border-radius: 2px; margin: .5rem auto 1rem;
+  }
+  .center { text-align: center; }
+
+  /* ── PRODUCTOS ── */
+  .productos { padding: 5rem 2rem; background: var(--crema); }
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .prod-card {
+    background: var(--blanco);
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    transition: transform .3s, box-shadow .3s;
+    position: relative;
+  }
+  .prod-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
+  .prod-icon {
+    background: linear-gradient(135deg, var(--rojo), var(--marron));
+    padding: 2rem 1rem 1.5rem;
+    text-align: center; font-size: 3.5rem;
+  }
+  .prod-body { padding: 1.2rem 1.4rem 1.6rem; }
+  .prod-body h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: .4rem; color: var(--marron); }
+  .prod-body p { font-size: .88rem; line-height: 1.55; color: #6b5040; }
+  .prod-tag {
+    display: inline-block; margin-top: .8rem;
+    background: var(--gris); color: var(--rojo);
+    font-size: .75rem; font-weight: 700; letter-spacing: 1px;
+    padding: .25rem .75rem; border-radius: 50px;
+    text-transform: uppercase;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 5rem 2rem;
+    background: linear-gradient(160deg, var(--marron-oscuro) 0%, #5a2010 100%);
+    color: var(--blanco); position: relative; overflow: hidden;
+  }
+  .about::after {
+    content: '🐖'; position: absolute; right: -20px; bottom: -20px;
+    font-size: 18rem; opacity: .04; pointer-events: none;
+  }
+  .about-inner { max-width: 900px; margin: 0 auto; }
+  .about .section-title { color: var(--ocre-claro); }
+  .about .title-line { margin: .5rem 0 1rem; }
+  .about-text { font-size: 1.05rem; line-height: 1.8; color: rgba(255,255,255,.85); }
+  .about-text strong { color: var(--ocre); }
+  .stat-row { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; }
+  .stat-box {
+    flex: 1; min-width: 140px;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(212,160,23,.3);
+    border-radius: 12px; padding: 1.4rem 1rem; text-align: center;
+  }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: var(--ocre); line-height: 1; }
+  .stat-label { font-size: .8rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.6); margin-top: .3rem; }
+
+  /* ── SERVICIOS ── */
+  .servicios { padding: 5rem 2rem; background: var(--gris); }
+  .serv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .serv-card {
+    background: var(--blanco); border-radius: 12px;
+    padding: 1.8rem; display: flex; gap: 1rem; align-items: flex-start;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    border-left: 4px solid var(--rojo);
+    transition: transform .25s;
+  }
+  .serv-card:hover { transform: translateX(4px); }
+  .serv-icon { font-size: 2rem; flex-shrink: 0; }
+  .serv-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: .35rem; color: var(--marron); }
+  .serv-card p { font-size: .88rem; color: #7a5c4a; line-height: 1.5; }
+
+  /* ── HORARIO ── */
+  .horario-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--ocre) 0%, #b8860b 100%);
+    color: var(--marron-oscuro);
+  }
+  .horario-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .horario-section .section-title { color: var(--marron-oscuro); }
+  .horario-section .title-line { background: var(--marron-oscuro); margin: .5rem auto 1rem; }
+  .horario-table { margin: 2rem auto; max-width: 440px; }
+  .hor-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .8rem 1.4rem; margin-bottom: .5rem;
+    background: rgba(255,255,255,.35); border-radius: 8px;
+    font-size: .95rem; font-weight: 700;
+  }
+  .hor-row .dia { text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── CONTACTO ── */
+  .contacto {
+    padding: 5rem 2rem;
+    background: var(--crema);
+  }
+  .contacto-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+  }
+  .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--marron); margin-bottom: 1.5rem; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .contact-ico {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--rojo), var(--marron));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .contact-item h4 { font-size: .8rem; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: .2rem; }
+  .contact-item p, .contact-item a { font-size: .95rem; color: var(--marron-oscuro); text-decoration: none; font-weight: 600; }
+  .contact-item a:hover { color: var(--rojo); }
+
+  .social-section h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--marron); margin-bottom: 1.2rem; }
+  .social-links { display: flex; flex-direction: column; gap: .9rem; }
+  .social-btn {
+    display: flex; align-items: center; gap: .8rem;
+    padding: .9rem 1.4rem; border-radius: 12px;
+    text-decoration: none; color: white; font-weight: 700; font-size: .95rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .social-btn:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+  .social-btn.ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+  .social-btn.fb { background: #1877F2; }
+  .social-btn.tk { background: linear-gradient(135deg, #010101, #69C9D0); }
+  .social-btn.wa { background: #25D366; }
+  .social-btn.mail { background: linear-gradient(135deg, var(--rojo), var(--marron)); }
+
+  /* ── MAP ── */
+  .map-section { height: 360px; position: relative; }
+  .map-section iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--marron-oscuro); color: rgba(255,255,255,.65);
+    text-align: center; padding: 2rem 1rem; font-size: .85rem;
+  }
+  footer strong { color: var(--ocre); }
+
+  /* ── FLOATING WA ── */
+  .float-wa {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: #25D366; color: white; border-radius: 50%;
+    width: 58px; height: 58px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; text-decoration: none;
+    box-shadow: 0 4px 18px rgba(37,211,102,.55);
+    animation: pulse 2.5s infinite;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 18px rgba(37,211,102,.55); }
+    50%       { box-shadow: 0 4px 28px rgba(37,211,102,.85), 0 0 0 10px rgba(37,211,102,.12); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    .contacto-inner { grid-template-columns: 1fr; }
+    .hero-deco { font-size: 14rem; opacity: .04; right: -10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🍖 El Roceño</div>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#horario">Horario</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco">🐷</div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Galería El Zoco · Tres Cantos ✦</div>
+    <h1>Jamonería<br><span>El Roceño</span></h1>
+    <p class="hero-sub">Tradición · Sabor · Confianza</p>
+    <p class="hero-since">Sirviendo a Tres Cantos desde 2012</p>
+    <div class="btn-group">
+      <a href="tel:674093863" class="btn btn-primary">📞 Llámanos</a>
+      <a href="http://wa.me/+34674093863" class="btn btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      <a href="#productos" class="btn btn-outline">Ver productos ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>🐷 Jamón Ibérico de Bellota</span><span class="sep">◆</span>
+    <span>🧀 Quesos Nacionales e Internacionales</span><span class="sep">◆</span>
+    <span>🚚 Envíos a toda España</span><span class="sep">◆</span>
+    <span>🏠 Servicio a Domicilio</span><span class="sep">◆</span>
+    <span>⏱ Curaciones hasta 60 meses</span><span class="sep">◆</span>
+    <span>🌿 Dehesas Extremeñas y Los Pedroches</span><span class="sep">◆</span>
+    <span>🐷 Jamón Ibérico de Bellota</span><span class="sep">◆</span>
+    <span>🧀 Quesos Nacionales e Internacionales</span><span class="sep">◆</span>
+    <span>🚚 Envíos a toda España</span><span class="sep">◆</span>
+    <span>🏠 Servicio a Domicilio</span><span class="sep">◆</span>
+    <span>⏱ Curaciones hasta 60 meses</span><span class="sep">◆</span>
+    <span>🌿 Dehesas Extremeñas y Los Pedroches</span><span class="sep">◆</span>
+  </div>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="productos" id="productos">
+  <div class="center">
+    <h2 class="section-title">Nuestra Selección</h2>
+    <div class="title-line"></div>
+    <p class="section-sub">Productos ibéricos de la más alta calidad, seleccionados con pasión</p>
+  </div>
+  <div class="productos-grid">
+    <div class="prod-card">
+      <div class="prod-icon">🐷</div>
+      <div class="prod-body">
+        <h3>Jamón de Cebo</h3>
+        <p>Selección de jamones ibéricos de cebo, de sabor equilibrado y textura sedosa. Perfectos para el día a día.</p>
+        <span class="prod-tag">Ibérico</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon">🌿</div>
+      <div class="prod-body">
+        <h3>Cebo de Campo</h3>
+        <p>Jamones de cerdos criados en semilibertad, con alimentación complementada en montanera. Mayor sabor y finura.</p>
+        <span class="prod-tag">Dehesa</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon">⭐</div>
+      <div class="prod-body">
+        <h3>Bellota 100% Ibérico</h3>
+        <p>La joya de nuestra jamonería. Curaciones de 48 a 60 meses, procedente de dehesas extremeñas y de Los Pedroches.</p>
+        <span class="prod-tag">Premium</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon">🍖</div>
+      <div class="prod-body">
+        <h3>Paletilla de Bellota 100% Ibérica</h3>
+        <p>Sabor concentrado e intenso. Alternativa perfecta al jamón entero, con toda la calidad ibérica de bellota.</p>
+        <span class="prod-tag">100% Ibérico</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon">🧀</div>
+      <div class="prod-body">
+        <h3>Quesos Seleccionados</h3>
+        <p>Amplia variedad de quesos nacionales e internacionales, escogidos por su calidad y excelente relación calidad-precio.</p>
+        <span class="prod-tag">Artesanales</span>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-icon">🥩</div>
+      <div class="prod-body">
+        <h3>Embutidos &amp; Delicatessen</h3>
+        <p>Fiambres, embutidos, patés, conservas y productos gourmet. El rincón del buen gusto en Tres Cantos.</p>
+        <span class="prod-tag">Gourmet</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="nosotros">
+  <div class="about-inner">
+    <h2 class="section-title">Más de una Década<br>de Sabor Auténtico</h2>
+    <div class="title-line"></div>
+    <p class="about-text">
+      <strong>Jamonería El Roceño</strong> nació en 2012 en el corazón de <strong>Tres Cantos</strong>, dentro de la Galería Comercial El Zoco, con una misión clara: acercar los mejores productos ibéricos al vecindario con honestidad y conocimiento.
+    </p>
+    <br>
+    <p class="about-text">
+      Nuestro jamón procede de <strong>dehesas extremeñas</strong> y de la prestigiosa zona de <strong>Los Pedroches (Córdoba)</strong>, con curaciones que van de los <strong>48 a los 60 meses</strong>. Cada pieza que entra en nuestra tienda ha sido seleccionada personalmente porque creemos que la calidad no se improvisa.
+    </p>
+    <br>
+    <p class="about-text">
+      Contamos además con productos <strong>especiales para personas con intolerancias alimentarias</strong>, porque pensamos en todos nuestros clientes.
+    </p>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">+13</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">60</div>
+        <div class="stat-label">Meses de curación</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Ibérico de Bellota</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">ES</div>
+        <div class="stat-label">Envíos nacionales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="center">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="title-line"></div>
+    <p class="section-sub">Todo lo que necesitas para disfrutar del mejor ibérico</p>
+  </div>
+  <div class="serv-grid">
+    <div class="serv-card">
+      <div class="serv-icon">🏪</div>
+      <div>
+        <h3>Venta en Tienda</h3>
+        <p>Atención personalizada en nuestra jamonería. Te asesoramos para elegir el producto perfecto.</p>
+      </div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon">🚚</div>
+      <div>
+        <h3>Envíos a toda España</h3>
+        <p>Recibe nuestros productos en casa estés donde estés. Packaging especial para jamones enteros.</p>
+      </div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon">🏠</div>
+      <div>
+        <h3>Servicio a Domicilio</h3>
+        <p>Reparto local en Tres Cantos. Comodidad sin renunciar a la calidad de siempre.</p>
+      </div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon">🎁</div>
+      <div>
+        <h3>Cestas &amp; Regalos</h3>
+        <p>Lotes gourmet para empresas, navidades o cualquier ocasión especial. Consulta sin compromiso.</p>
+      </div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon">🌾</div>
+      <div>
+        <h3>Productos sin Gluten &amp; Intolerancias</h3>
+        <p>Selección especial para personas con intolerancias alimentarias. Disfruta sin preocupaciones.</p>
+      </div>
+    </div>
+    <div class="serv-card">
+      <div class="serv-icon">🤝</div>
+      <div>
+        <h3>Asesoría Ibérica</h3>
+        <p>¿No sabes qué jamón elegir? Nuestros expertos te guían según tu gusto y presupuesto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIO -->
+<section class="horario-section" id="horario">
+  <div class="horario-inner">
+    <h2 class="section-title">⏰ Horario</h2>
+    <div class="title-line"></div>
+    <p style="margin-bottom:1rem; font-size:1rem;">Estamos aquí para atenderte en estos horarios:</p>
+    <div class="horario-table">
+      <div class="hor-row">
+        <span class="dia">Lunes – Viernes</span>
+        <span>9:00–14:00 · 17:00–20:00</span>
+      </div>
+      <div class="hor-row">
+        <span class="dia">Sábados</span>
+        <span>9:00 – 14:00</span>
+      </div>
+      <div class="hor-row" style="background:rgba(0,0,0,.12); opacity:.65;">
+        <span class="dia">Domingos</span>
+        <span>Cerrado</span>
+      </div>
+    </div>
+    <a href="http://wa.me/+34674093863" class="btn btn-whatsapp" target="_blank" style="margin-top:1.5rem; display:inline-flex;">
+      💬 Escríbenos por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="center" style="margin-bottom:3rem;">
+    <h2 class="section-title">Encuéntranos</h2>
+    <div class="title-line"></div>
+  </div>
+  <div class="contacto-inner">
+    <div class="contact-info">
+      <h2>Datos de Contacto</h2>
+
+      <div class="contact-item">
+        <div class="contact-ico">📍</div>
+        <div>
+          <h4>Dirección</h4>
+          <p>Av. de Colmenar 1, Galería Comercial El Zoco<br>28760 Tres Cantos, Madrid</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-ico">📞</div>
+        <div>
+          <h4>Teléfono</h4>
+          <a href="tel:674093863">674 09 38 63</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-ico">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:jamoneríaelroceno@outlook.es">jamoneríaelroceno@outlook.es</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-ico">🌐</div>
+        <div>
+          <h4>Web</h4>
+          <a href="https://mercadoelzoco.com/comercios/jamoneriaelroceno/" target="_blank">mercadoelzoco.com</a>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="tel:674093863" class="btn btn-primary" style="font-size:.85rem;">📞 Llamar ahora</a>
+        <a href="http://wa.me/+34674093863" class="btn btn-whatsapp" target="_blank" style="font-size:.85rem;">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="social-section">
+      <h3>Síguenos en Redes Sociales</h3>
+      <p style="font-size:.88rem; color:#7a5c4a; margin-bottom:1.5rem;">
+        Sigue nuestras novedades, ofertas y los mejores ibéricos en redes:
+      </p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/el_roceno_jamoneria/" target="_blank" class="social-btn ig">
+          <span style="font-size:1.3rem;">📸</span> @el_roceno_jamoneria
+        </a>
+        <a href="https://www.facebook.com/jamoneria.elroceno" target="_blank" class="social-btn fb">
+          <span style="font-size:1.3rem;">👍</span> jamoneria.elroceno
+        </a>
+        <a href="https://www.tiktok.com/@jamoneria_trescantos" target="_blank" class="social-btn tk">
+          <span style="font-size:1.3rem;">🎵</span> @jamoneria_trescantos
+        </a>
+        <a href="http://wa.me/+34674093863" target="_blank" class="social-btn wa">
+          <span style="font-size:1.3rem;">💬</span> WhatsApp: 674 09 38 63
+        </a>
+        <a href="mailto:jamoneríaelroceno@outlook.es" class="social-btn mail">
+          <span style="font-size:1.3rem;">✉️</span> jamoneríaelroceno@outlook.es
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-section">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3030.9!2d-3.7!3d40.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sGaler%C3%ADa+Comercial+El+Zoco%2C+Av.+de+Colmenar+1%2C+28760+Tres+Cantos%2C+Madrid!5e0!3m2!1ses!2ses!4v1"
+    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+    title="Ubicación Jamonería El Roceño">
+  </iframe>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--ocre); margin-bottom:.5rem;">Jamonería El Roceño</p>
+  <p>Av. de Colmenar 1 · Galería El Zoco · 28760 Tres Cantos · <strong>674 09 38 63</strong></p>
+  <p style="margin-top:.8rem; font-size:.78rem;">© 2025 Jamonería El Roceño · Tradición, Sabor, Confianza</p>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="http://wa.me/+34674093863" class="float-wa" target="_blank" title="Escríbenos por WhatsApp">💬</a>
+
+</body>
+</html>
