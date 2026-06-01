@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Dental — Odontología Integrativa en Tres Cantos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ivory:   #f7f4ef;
+      --cream:   #ede9e1;
+      --sage:    #7a9e8e;
+      --sage-dk: #4d7a68;
+      --sand:    #c9b99a;
+      --charcoal:#2b2b2b;
+      --mid:     #5a5a5a;
+      --light:   #9a9a9a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ivory);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem 6rem;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(122,158,142,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(201,185,154,0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--sage-dk);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--mid);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-top: 1.8rem;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 1s 0.35s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--sage-dk);
+      color: #fff;
+      border: 2px solid var(--sage-dk);
+    }
+    .btn-primary:hover { background: var(--sage); border-color: var(--sage); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      border: 2px solid var(--sand);
+    }
+    .btn-outline:hover { border-color: var(--sage-dk); color: var(--sage-dk); transform: translateY(-2px); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--light);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+    .scroll-hint span { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--light), transparent); animation: scrollLine 1.8s ease-in-out infinite; }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.2rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--charcoal);
+    }
+
+    h2 em { font-style: italic; color: var(--sage-dk); }
+
+    /* ── ABOUT ── */
+    #sobre {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--mid);
+      margin-top: 1.6rem;
+    }
+
+    .about-accent {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .accent-card {
+      background: var(--ivory);
+      border-left: 3px solid var(--sage);
+      padding: 1.4rem 1.6rem;
+      border-radius: 0 8px 8px 0;
+    }
+    .accent-card strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.3rem;
+    }
+    .accent-card span { font-size: 0.88rem; color: var(--mid); line-height: 1.6; }
+
+    /* ── TREATMENTS ── */
+    #tratamientos { background: var(--ivory); }
+
+    .treatments-intro {
+      max-width: 600px;
+      margin-bottom: 3.5rem;
+    }
+    .treatments-intro p { margin-top: 1rem; color: var(--mid); line-height: 1.8; }
+
+    .treatments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .treatment-card {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .treatment-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sage), var(--sand));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .treatment-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+    .treatment-card:hover::after { transform: scaleX(1); }
+
+    .treatment-icon {
+      width: 44px; height: 44px;
+      background: var(--ivory);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .treatment-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .treatment-card p { font-size: 0.85rem; color: var(--mid); margin-top: 0.5rem; line-height: 1.6; }
+
+    /* ── CONTACT ── */
+    #contacto { background: var(--charcoal); color: var(--ivory); }
+    #contacto .label { color: var(--sage); }
+    #contacto h2 { color: var(--ivory); }
+    #contacto h2 em { color: var(--sage); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.8rem; }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .contact-item .ci-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+    }
+    .contact-item a, .contact-item span {
+      font-size: 1rem;
+      color: var(--cream);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+    .contact-item a:hover { color: var(--sage); }
+
+    .contact-ctas { display: flex; flex-direction: column; gap: 1rem; justify-content: center; }
+
+    .btn-wa {
+      background: #25d366;
+      color: #fff;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-wa:hover { background: #1fba59; transform: translateY(-2px); }
+
+    .btn-tel {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid rgba(255,255,255,0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-tel:hover { border-color: var(--sage); color: var(--sage); transform: translateY(-2px); }
+
+    .btn-mail {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid rgba(255,255,255,0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-mail:hover { border-color: var(--sand); color: var(--sand); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1e1e1e;
+      padding: 2rem;
+      text-align: center;
+    }
+    footer p { font-size: 0.78rem; color: var(--light); }
+
+    /* ── DIVIDER ── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+      opacity: 0.4;
+    }
+    .ornament span { font-size: 1.2rem; color: var(--sand); opacity: 0.6; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(1); opacity: 1; }
+      50%  { transform: scaleY(0.5); opacity: 0.4; }
+      100% { transform: scaleY(1); opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      section { padding: 4rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header>
+  <p class="hero-eyebrow">Tres Cantos · Madrid</p>
+  <h1>Studio<br /><em>Dental</em></h1>
+  <p class="hero-sub">Clínica de odontología integrativa. Cuidado personalizado, tecnología de última generación y un enfoque que respeta tu salud natural.</p>
+  <div class="hero-cta">
+    <a href="tel:625928729" class="btn btn-primary">📞 Llamar ahora</a>
+    <a href="https://wa.me/34625928729" class="btn btn-outline" target="_blank">💬 WhatsApp</a>
+  </div>
+  <div class="scroll-hint">
+    <span></span>
+    descubrir
+  </div>
+</header>
+
+<!-- ══ SOBRE ══ -->
+<section id="sobre">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p class="label">Quiénes somos</p>
+        <h2>Odontología que<br /><em>cuida el todo</em></h2>
+        <p>Studio Dental es una clínica dental en Tres Cantos especializada en odontología integrativa. Nuestro enfoque prioriza la preservación de la estructura dental natural y la salud general de cada paciente, con intervenciones mínimamente invasivas.</p>
+        <p>Trabajamos con tecnología clínica de última generación que permite diagnósticos más precisos y procedimientos más cómodos. Cada plan de tratamiento es diseñado a medida, integrando criterios de salud bucodental, funcionalidad y estética.</p>
+      </div>
+      <div class="about-accent">
+        <div class="accent-card">
+          <strong>Enfoque integrativo</strong>
+          <span>Tratamos la boca como parte de tu salud global, no de forma aislada.</span>
+        </div>
+        <div class="accent-card">
+          <strong>Mínima invasión</strong>
+          <span>Preservamos al máximo la estructura dental natural en cada intervención.</span>
+        </div>
+        <div class="accent-card">
+          <strong>Tecnología avanzada</strong>
+          <span>Aparatología clínica moderna para diagnósticos precisos y mayor confort.</span>
+        </div>
+        <div class="accent-card">
+          <strong>Cita previa</strong>
+          <span>Atención individualizada desde la primera visita hasta el alta.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRATAMIENTOS ══ -->
+<section id="tratamientos">
+  <div class="container">
+    <div class="treatments-intro reveal">
+      <p class="label">Especialidades</p>
+      <h2>Nuestros<br /><em>tratamientos</em></h2>
+      <p>Cada disciplina la atienden profesionales especializados, con seguimiento individualizado en todas las etapas del proceso.</p>
+    </div>
+    <div class="ornament reveal"><span>✦</span></div>
+    <div class="treatments-grid reveal">
+      <div class="treatment-card">
+        <div class="treatment-icon">🌿</div>
+        <h3>Odontología Integrativa</h3>
+        <p>Tratamiento dental que considera la salud global del paciente, con materiales y técnicas biocompatibles.</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">🦷</div>
+        <h3>Periodoncia</h3>
+        <p>Diagnóstico y tratamiento de enfermedades de encías y estructuras de soporte dental.</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">📐</div>
+        <h3>Ortodoncia Invisible</h3>
+        <p>Corrección dental discreta y efectiva mediante alineadores transparentes removibles.</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">🌬️</div>
+        <h3>Ortodoncia Miofuncional</h3>
+        <p>Tratamiento que trabaja la musculatura orofacial para una corrección natural y duradera.</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">⚙️</div>
+        <h3>Cirugía e Implantología</h3>
+        <p>Implantes dentales y cirugía oral con protocolos de mínima invasión y máxima precisión.</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">💎</div>
+        <h3>Prótesis Dentales</h3>
+        <p>Soluciones protésicas fijas y removibles adaptadas a cada caso y estética personal.</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">✨</div>
+        <h3>Estética Dental</h3>
+        <p>Carillas, blanqueamiento y tratamientos estéticos para una sonrisa natural y armoniosa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACTO ══ -->
+<section id="contacto">
+  <div class="container">
+    <p class="label reveal">Contacto</p>
+    <h2 class="reveal">Reserva tu<br /><em>cita</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <span class="ci-label">Dirección</span>
+          <span>Calle Calera 3, despacho 11<br />28760 Tres Cantos, Madrid</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Teléfono</span>
+          <a href="tel:625928729">625 92 87 29</a>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Email</span>
+          <a href="mailto:studiodentaltrescantos@gmail.com">studiodentaltrescantos@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Web oficial</span>
+          <a href="https://estudiodentaltrescantos.com" target="_blank">estudiodentaltrescantos.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Horario</span>
+          <span>Atención bajo cita previa</span>
+        </div>
+      </div>
+      <div class="contact-ctas reveal">
+        <a href="https://wa.me/34625928729" class="btn-wa" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Contactar por WhatsApp
+        </a>
+        <a href="tel:625928729" class="btn-tel">
+          📞 Llamar: 625 92 87 29
+        </a>
+        <a href="mailto:studiodentaltrescantos@gmail.com" class="btn-mail">
+          ✉️ Enviar email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p>© 2026 Studio Dental · Calle Calera 3, despacho 11, 28760 Tres Cantos · <a href="tel:625928729" style="color:var(--sage);text-decoration:none;">625 92 87 29</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
