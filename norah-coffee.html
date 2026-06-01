@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norah All Day Brunch & Coffee — Madrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF8F0;
+    --warm: #FDE8C8;
+    --sand: #E8C99A;
+    --gold: #C8963E;
+    --deep: #3D2010;
+    --espresso: #1A0A00;
+    --rose: #F2A07B;
+    --blush: #F7D4B5;
+    --sage: #7A8C6E;
+    --sky: #A8C4D4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--espresso);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(255,248,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,150,62,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--espresso); text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--espresso);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--espresso); color: var(--cream) !important;
+    padding: 10px 20px; border-radius: 50px !important;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--espresso) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #FFF8F0 0%, #FDE8C8 40%, #F7D4B5 70%, #F2A07B 100%);
+  }
+
+  /* floating blobs */
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(60px);
+    opacity: 0.5; animation: float 8s ease-in-out infinite;
+  }
+  .blob-1 { width: 400px; height: 400px; background: #F2A07B; top: -100px; right: -100px; animation-delay: 0s; }
+  .blob-2 { width: 300px; height: 300px; background: #C8963E; bottom: -50px; left: -80px; animation-delay: 3s; }
+  .blob-3 { width: 200px; height: 200px; background: #7A8C6E; top: 40%; right: 10%; animation-delay: 5s; opacity: 0.3; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200,150,62,0.15); border: 1px solid var(--gold);
+    color: var(--gold); padding: 6px 18px; border-radius: 50px;
+    font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 500; margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before { content: '☕'; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 900; line-height: 0.95;
+    color: var(--espresso);
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+    display: block;
+  }
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: var(--deep); max-width: 540px;
+    line-height: 1.7; margin: 1.5rem auto 2.5rem;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-sub strong { color: var(--gold); font-weight: 700; }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 1s 0.35s ease both;
+  }
+
+  .btn-primary {
+    background: var(--espresso); color: var(--cream);
+    padding: 16px 36px; border-radius: 50px; font-size: 0.95rem;
+    text-decoration: none; font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 8px 30px rgba(26,10,0,0.3);
+  }
+  .btn-primary:hover {
+    background: var(--gold); color: var(--espresso);
+    transform: translateY(-3px); box-shadow: 0 12px 40px rgba(200,150,62,0.4);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--espresso);
+    padding: 16px 36px; border-radius: 50px; font-size: 0.95rem;
+    text-decoration: none; font-weight: 600;
+    border: 2px solid var(--espresso);
+    transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover {
+    background: var(--espresso); color: var(--cream);
+    transform: translateY(-3px);
+  }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; color: var(--espresso);
+    display: block;
+  }
+  .stat-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--espresso);
+    padding: 14px 0; overflow: hidden; position: relative;
+  }
+  .marquee-track {
+    display: flex; gap: 3rem; white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    color: var(--sand); font-size: 0.8rem; letter-spacing: 3px;
+    text-transform: uppercase; flex-shrink: 0;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .marquee-item::after { content: '✦'; color: var(--gold); }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 100px 5%; }
+  .section-tag {
+    font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; display: flex;
+    align-items: center; gap: 10px; margin-bottom: 1rem;
+  }
+  .section-tag::before { content: ''; width: 30px; height: 2px; background: var(--gold); display: block; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--espresso);
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── FILOSOFIA ── */
+  .philosophy {
+    background: var(--espresso);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    border-radius: 32px;
+    margin: 0 3%;
+    padding: 80px;
+  }
+  .philosophy .section-tag { color: var(--sand); }
+  .philosophy .section-tag::before { background: var(--sand); }
+  .philosophy .section-title { color: var(--cream); }
+  .philosophy .section-title em { color: var(--rose); }
+  .philosophy p {
+    color: var(--blush); line-height: 1.9; font-size: 1.05rem;
+    margin-top: 1.5rem;
+  }
+  .philosophy-features {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .feat-card {
+    background: rgba(255,255,255,0.07); border-radius: 16px;
+    padding: 20px; border: 1px solid rgba(200,150,62,0.2);
+  }
+  .feat-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .feat-title { color: var(--cream); font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+  .feat-desc { color: var(--blush); font-size: 0.82rem; line-height: 1.6; }
+
+  .philosophy-visual {
+    position: relative;
+  }
+  .visual-stack {
+    position: relative; height: 520px;
+  }
+  .visual-card {
+    position: absolute; border-radius: 24px; overflow: hidden;
+    background: var(--sand);
+  }
+  .vc1 { width: 75%; height: 380px; top: 0; right: 0; background: linear-gradient(135deg, #C8963E, #F2A07B); }
+  .vc2 { width: 55%; height: 260px; bottom: 0; left: 0; background: linear-gradient(135deg, #7A8C6E, #A8C4D4); }
+  .vc-inner {
+    width: 100%; height: 100%; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 28px;
+    background: linear-gradient(to top, rgba(26,10,0,0.6) 0%, transparent 60%);
+  }
+  .vc-label {
+    color: var(--cream); font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700; font-style: italic;
+  }
+  .vc-sub { color: var(--blush); font-size: 0.8rem; margin-top: 4px; }
+
+  /* ── LOCALES ── */
+  .locales-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem; margin-top: 4rem;
+  }
+  .local-card {
+    border-radius: 28px; overflow: hidden;
+    position: relative; min-height: 480px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    text-decoration: none; transition: transform 0.4s;
+  }
+  .local-card:hover { transform: scale(1.02); }
+  .local-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+  }
+  .local-card.lista .local-bg {
+    background: linear-gradient(145deg, #C8963E 0%, #F2A07B 40%, #FDE8C8 100%);
+  }
+  .local-card.goya .local-bg {
+    background: linear-gradient(145deg, #3D2010 0%, #7A8C6E 60%, #A8C4D4 100%);
+  }
+  .local-pattern {
+    position: absolute; inset: 0; opacity: 0.15;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .local-content {
+    position: relative; padding: 40px;
+    background: linear-gradient(to top, rgba(26,10,0,0.85) 0%, transparent 70%);
+  }
+  .local-tag {
+    display: inline-block; background: var(--gold);
+    color: var(--espresso); font-size: 0.7rem; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 700; padding: 5px 14px;
+    border-radius: 50px; margin-bottom: 1rem;
+  }
+  .local-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--cream);
+    line-height: 1.1;
+  }
+  .local-addr { color: var(--blush); font-size: 0.88rem; margin: 8px 0 20px; }
+  .local-links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .local-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--cream); color: var(--espresso);
+    padding: 10px 20px; border-radius: 50px; font-size: 0.82rem;
+    text-decoration: none; font-weight: 600; transition: all 0.25s;
+  }
+  .local-btn:hover { background: var(--gold); }
+  .local-btn.outline {
+    background: transparent; color: var(--cream);
+    border: 1.5px solid rgba(255,255,255,0.5);
+  }
+  .local-btn.outline:hover { background: rgba(255,255,255,0.15); }
+
+  /* ── MENUS ── */
+  .menus-section { background: var(--warm); }
+  .menus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .menu-card {
+    border-radius: 24px; padding: 48px 40px; position: relative; overflow: hidden;
+    text-decoration: none; transition: transform 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .menu-card:hover { transform: translateY(-6px); }
+  .menu-card.lista-menu {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+    color: var(--espresso);
+  }
+  .menu-card.goya-menu {
+    background: linear-gradient(135deg, var(--espresso) 0%, #3D2010 100%);
+    color: var(--cream);
+  }
+  .menu-bg-text {
+    position: absolute; bottom: -20px; right: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem; font-weight: 900; opacity: 0.08;
+    line-height: 1; pointer-events: none; white-space: nowrap;
+  }
+  .menu-num {
+    font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 1.5rem; opacity: 0.7;
+  }
+  .menu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .menu-desc { font-size: 0.95rem; line-height: 1.7; opacity: 0.85; margin-bottom: 2rem; }
+  .menu-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 28px; border-radius: 50px; font-weight: 700;
+    font-size: 0.9rem; align-self: flex-start; transition: all 0.25s;
+    text-decoration: none;
+  }
+  .lista-menu .menu-cta {
+    background: var(--espresso); color: var(--cream);
+  }
+  .lista-menu .menu-cta:hover { background: rgba(26,10,0,0.8); transform: translateX(4px); }
+  .goya-menu .menu-cta {
+    background: var(--gold); color: var(--espresso);
+  }
+  .goya-menu .menu-cta:hover { background: var(--sand); transform: translateX(4px); }
+
+  /* ── REGALO ── */
+  .regalo-section {
+    background: linear-gradient(135deg, #FFF8F0, #FDE8C8);
+    text-align: center;
+  }
+  .regalo-card {
+    max-width: 700px; margin: 0 auto;
+    background: var(--espresso); border-radius: 32px; padding: 70px 60px;
+    position: relative; overflow: hidden;
+  }
+  .regalo-deco {
+    position: absolute; font-size: 12rem; opacity: 0.04;
+    font-family: 'Playfair Display', serif; pointer-events: none;
+  }
+  .regalo-deco.top { top: -20px; right: 20px; }
+  .regalo-deco.bot { bottom: -40px; left: 20px; }
+  .regalo-emoji { font-size: 3.5rem; margin-bottom: 1.5rem; display: block; }
+  .regalo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900;
+    color: var(--cream); margin-bottom: 1rem;
+  }
+  .regalo-title em { color: var(--gold); font-style: italic; }
+  .regalo-desc { color: var(--blush); font-size: 1.05rem; line-height: 1.8; max-width: 480px; margin: 0 auto 2.5rem; }
+  .btn-regalo {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--espresso);
+    padding: 18px 44px; border-radius: 50px; font-size: 1rem;
+    text-decoration: none; font-weight: 700;
+    box-shadow: 0 10px 40px rgba(200,150,62,0.5);
+    transition: all 0.3s;
+  }
+  .btn-regalo:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(200,150,62,0.6); }
+
+  /* ── TESTIMONIOS ── */
+  .reviews-section { background: var(--cream); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .review-card {
+    background: var(--warm); border-radius: 20px; padding: 32px;
+    border: 1px solid rgba(200,150,62,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .review-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(26,10,0,0.08); }
+  .stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .review-text { color: var(--deep); line-height: 1.7; font-size: 0.92rem; margin-bottom: 1.2rem; font-style: italic; }
+  .review-author { font-weight: 700; font-size: 0.85rem; color: var(--espresso); }
+  .review-date { color: var(--gold); font-size: 0.75rem; }
+
+  /* ── CONTACTO ── */
+  .contact-section { background: var(--espresso); }
+  .contact-section .section-tag { color: var(--sand); }
+  .contact-section .section-tag::before { background: var(--sand); }
+  .contact-section .section-title { color: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 4rem; align-items: start; }
+  .contact-info p { color: var(--blush); line-height: 1.8; font-size: 1rem; margin-bottom: 2rem; }
+  .contact-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(200,150,62,0.2); display: flex;
+    align-items: center; justify-content: center; font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-detail { color: var(--blush); font-size: 0.88rem; line-height: 1.6; }
+  .contact-detail strong { color: var(--cream); display: block; margin-bottom: 2px; font-size: 0.9rem; }
+  .contact-detail a { color: var(--sand); text-decoration: none; }
+  .contact-detail a:hover { color: var(--gold); }
+  .social-row { display: flex; gap: 12px; margin-top: 2rem; }
+  .social-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08); color: var(--cream);
+    padding: 10px 20px; border-radius: 50px; font-size: 0.83rem;
+    text-decoration: none; font-weight: 500; border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.25s;
+  }
+  .social-btn:hover { background: var(--gold); color: var(--espresso); border-color: var(--gold); }
+
+  .contact-ctas { display: flex; flex-direction: column; gap: 1rem; }
+  .cta-block {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(200,150,62,0.25);
+    border-radius: 20px; padding: 28px; transition: border-color 0.3s;
+  }
+  .cta-block:hover { border-color: var(--gold); }
+  .cta-block-title { color: var(--cream); font-weight: 700; margin-bottom: 6px; font-size: 1.05rem; }
+  .cta-block-desc { color: var(--blush); font-size: 0.85rem; line-height: 1.6; margin-bottom: 16px; }
+  .btn-outline-gold {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--gold); color: var(--gold);
+    padding: 10px 22px; border-radius: 50px; font-size: 0.85rem;
+    text-decoration: none; font-weight: 600; transition: all 0.25s;
+  }
+  .btn-outline-gold:hover { background: var(--gold); color: var(--espresso); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0D0500; padding: 40px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 900; color: var(--cream);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy { color: var(--sand); font-size: 0.8rem; opacity: 0.6; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--sand); text-decoration: none; font-size: 0.82rem; opacity: 0.7; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 14px 4%; }
+    .nav-links { display: none; }
+    .philosophy { grid-template-columns: 1fr; padding: 50px 30px; margin: 0 2%; gap: 3rem; }
+    .visual-stack { height: 280px; }
+    .locales-grid, .menus-grid, .reviews-grid, .contact-grid { grid-template-columns: 1fr; }
+    .philosophy-features { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+    .regalo-card { padding: 50px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Norah<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#locales">Nuestros Locales</a></li>
+    <li><a href="#menus">Carta</a></li>
+    <li><a href="#regalo">Tarjeta Regalo</a></li>
+    <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-badge">Madrid · Dos Locales · All Day Brunch</div>
+
+  <h1>
+    Norah
+    <em>Brunch & Coffee</em>
+  </h1>
+
+  <p class="hero-sub">
+    Donde cada mañana es un ritual de <strong>calma, belleza y disfrute</strong>.
+    Ingredientes frescos, café de especialidad y una estética que convierte el brunch en algo casi mágico.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#menus" class="btn-primary">✦ Ver la Carta</a>
+    <a href="#locales" class="btn-secondary">Nuestros Locales →</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Locales en Madrid</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">★ 4.9</span>
+      <span class="stat-label">Valoración Google</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">All Day</span>
+      <span class="stat-label">Brunch & Coffee</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Café de Especialidad</span>
+    <span class="marquee-item">Brunch Madrid</span>
+    <span class="marquee-item">Ingredientes Frescos</span>
+    <span class="marquee-item">Desayunos Especiales</span>
+    <span class="marquee-item">Tarjeta Regalo</span>
+    <span class="marquee-item">Norah Goya</span>
+    <span class="marquee-item">Norah Lista</span>
+    <span class="marquee-item">All Day Brunch</span>
+    <span class="marquee-item">Café de Especialidad</span>
+    <span class="marquee-item">Brunch Madrid</span>
+    <span class="marquee-item">Ingredientes Frescos</span>
+    <span class="marquee-item">Desayunos Especiales</span>
+    <span class="marquee-item">Tarjeta Regalo</span>
+    <span class="marquee-item">Norah Goya</span>
+    <span class="marquee-item">Norah Lista</span>
+    <span class="marquee-item">All Day Brunch</span>
+  </div>
+</div>
+
+<!-- FILOSOFIA -->
+<section style="padding: 100px 0;">
+  <div class="philosophy">
+    <div>
+      <div class="section-tag">Nuestra Filosofía</div>
+      <h2 class="section-title">No es solo brunch.<br><em>Es una pausa bien hecha.</em></h2>
+      <p>Nuestro café no es solo café: es textura, temperatura y momento. Creemos en el ritual: moler, extraer, servir y disfrutar. En Norah la comida emociona antes de probarla.</p>
+      <div class="philosophy-features">
+        <div class="feat-card">
+          <div class="feat-icon">☕</div>
+          <div class="feat-title">Café de Especialidad</div>
+          <div class="feat-desc">Selección premium con extracción perfecta en cada taza.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">🥑</div>
+          <div class="feat-title">Ingredientes Frescos</div>
+          <div class="feat-desc">Producción local y de temporada para cada plato.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">✨</div>
+          <div class="feat-title">Estética Cuidada</div>
+          <div class="feat-desc">Cada detalle diseñado para despertar los sentidos.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">🌿</div>
+          <div class="feat-title">Ambiente Relajado</div>
+          <div class="feat-desc">Un espacio para desconectar y disfrutar sin apuro.</div>
+        </div>
+      </div>
+    </div>
+    <div class="philosophy-visual">
+      <div class="visual-stack">
+        <div class="visual-card vc1">
+          <div class="vc-inner">
+            <div class="vc-label">"Sabores que emocionan"</div>
+            <div class="vc-sub">Cada plato, una experiencia sensorial</div>
+          </div>
+        </div>
+        <div class="visual-card vc2">
+          <div class="vc-inner">
+            <div class="vc-label">"El ritual del café"</div>
+            <div class="vc-sub">Textura, temperatura y momento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALES -->
+<section id="locales">
+  <div class="section-tag">Dónde Encontrarnos</div>
+  <h2 class="section-title">Dos locales,<br><em>una misma esencia.</em></h2>
+  <div class="locales-grid">
+    <!-- Lista -->
+    <a class="local-card lista" href="https://norahcoffee.com/brunch-lista/" target="_blank">
+      <div class="local-bg"></div>
+      <div class="local-pattern"></div>
+      <div class="local-content">
+        <span class="local-tag">Norah Lista</span>
+        <div class="local-name">Brunch & Coffee<br>Lista</div>
+        <div class="local-addr">📍 C. de Padilla, 88 · 28006 Madrid</div>
+        <div class="local-links">
+          <span class="local-btn">🗺 Cómo llegar</span>
+          <span class="local-btn outline">Ver local →</span>
+        </div>
+      </div>
+    </a>
+    <!-- Goya -->
+    <a class="local-card goya" href="https://norahcoffee.com/norah-goya/" target="_blank">
+      <div class="local-bg"></div>
+      <div class="local-pattern"></div>
+      <div class="local-content">
+        <span class="local-tag">Norah Goya</span>
+        <div class="local-name">Brunch & Coffee<br>Goya</div>
+        <div class="local-addr">📍 C. del Gral. Pardiñas, 15 · 28001 Madrid</div>
+        <div class="local-links">
+          <span class="local-btn">🗺 Cómo llegar</span>
+          <span class="local-btn outline">Ver local →</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- MENUS -->
+<section id="menus" class="menus-section">
+  <div class="section-tag">Gastronomía</div>
+  <h2 class="section-title">Descubre nuestra<br><em>carta.</em></h2>
+  <div class="menus-grid">
+    <a class="menu-card lista-menu" href="https://norahbrunchpadilla.square.site/?utm_source=GMB&utm_medium=gmb&utm_campaign=Carta+norah+Lista" target="_blank">
+      <div class="menu-bg-text">Lista</div>
+      <div class="menu-num">01 · Norah Lista · Padilla</div>
+      <div class="menu-title">Carta<br>Lista</div>
+      <div class="menu-desc">Todos nuestros platos de brunch, desayunos y bebidas para el local de la calle Padilla. Ingredientes frescos, recetas únicas.</div>
+      <span class="menu-cta">Ver Carta Lista →</span>
+    </a>
+    <a class="menu-card goya-menu" href="https://norahbrunchgoya.square.site/?utm_source=GMB&utm_medium=gmb&utm_campaign=Carta+norah+Goya" target="_blank">
+      <div class="menu-bg-text">Goya</div>
+      <div class="menu-num">02 · Norah Goya · Pardiñas</div>
+      <div class="menu-title">Carta<br>Goya</div>
+      <div class="menu-desc">La selección del local de General Pardiñas. Café de especialidad, brunches elaborados y propuestas que enamoran.</div>
+      <span class="menu-cta">Ver Carta Goya →</span>
+    </a>
+  </div>
+</section>
+
+<!-- REGALO -->
+<section id="regalo" class="regalo-section">
+  <div class="regalo-card">
+    <span class="regalo-deco top">🎁</span>
+    <span class="regalo-deco bot">☕</span>
+    <span class="regalo-emoji">🎁</span>
+    <h2 class="regalo-title">¡Regala <em>Brunch</em>!</h2>
+    <p class="regalo-desc">El mejor regalo para compartir con tu familia o amigos. Una experiencia que se saborea y se recuerda. Entregamos tarjeta física o digital al instante.</p>
+    <a href="https://app.squareup.com/gift/MLFSX1CCG0A84/order" target="_blank" class="btn-regalo">✦ Comprar Tarjeta Regalo</a>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="reviews-section">
+  <div class="section-tag">Opiniones</div>
+  <h2 class="section-title">Lo que dicen<br><em>nuestros clientes.</em></h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"El mejor brunch de Madrid sin duda. El café es extraordinario y el ambiente te invita a quedarte toda la mañana. Vuelvo siempre."</p>
+      <div class="review-author">María G. <span class="review-date">· Google Reviews</span></div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Una experiencia sensorial completa. La presentación de los platos es una obra de arte. El local de Goya es precioso, muy recomendable."</p>
+      <div class="review-author">Carlos M. <span class="review-date">· Google Reviews</span></div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Regalé una tarjeta regalo para el cumpleaños de mi madre y fue un acierto total. La atención es excelente y la comida, espectacular."</p>
+      <div class="review-author">Laura P. <span class="review-date">· Google Reviews</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contact-section">
+  <div class="section-tag">Contacto</div>
+  <h2 class="section-title">Ven a <em>visitarnos.</em></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>Dos locales en el corazón de Madrid para que cada mañana sea especial. All Day Brunch & Coffee, siempre listos para recibirte.</p>
+
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail">
+          <strong>Norah Lista</strong>
+          C. de Padilla, 88 · 28006 Madrid<br>
+          <a href="https://maps.app.goo.gl/NYVLoHFX3b68TCiA6" target="_blank">Abrir en Google Maps →</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail">
+          <strong>Norah Goya</strong>
+          C. del Gral. Pardiñas, 15 · 28001 Madrid<br>
+          <a href="https://share.google/gdure5nfKWzWUZZF9" target="_blank">Abrir en Google Maps →</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div class="contact-detail">
+          <strong>Web Oficial</strong>
+          <a href="https://norahcoffee.com" target="_blank">norahcoffee.com</a>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a href="https://www.instagram.com/norah_brunch/" target="_blank" class="social-btn">📷 Instagram</a>
+        <a href="https://www.tiktok.com/@norahbrunch" target="_blank" class="social-btn">🎵 TikTok</a>
+      </div>
+    </div>
+
+    <div class="contact-ctas">
+      <div class="cta-block">
+        <div class="cta-block-title">🍳 Carta Local Lista (Padilla)</div>
+        <div class="cta-block-desc">Consulta todos nuestros platos, brunches y bebidas del local de Padilla.</div>
+        <a href="https://norahbrunchpadilla.square.site/" target="_blank" class="btn-outline-gold">Ver Carta Lista →</a>
+      </div>
+      <div class="cta-block">
+        <div class="cta-block-title">☕ Carta Local Goya (Pardiñas)</div>
+        <div class="cta-block-desc">La selección del local de General Pardiñas. Café, brunch y mucho más.</div>
+        <a href="https://norahbrunchgoya.square.site/" target="_blank" class="btn-outline-gold">Ver Carta Goya →</a>
+      </div>
+      <div class="cta-block">
+        <div class="cta-block-title">🎁 Regala una Experiencia</div>
+        <div class="cta-block-desc">Tarjeta regalo para quien más quieres. El mejor plan de fin de semana.</div>
+        <a href="https://app.squareup.com/gift/MLFSX1CCG0A84/order" target="_blank" class="btn-outline-gold">Comprar Tarjeta Regalo →</a>
+      </div>
+      <div class="cta-block">
+        <div class="cta-block-title">📲 Síguenos en Redes</div>
+        <div class="cta-block-desc">Descubre las novedades, fotos del día y promociones especiales.</div>
+        <a href="https://www.instagram.com/norah_brunch/" target="_blank" class="btn-outline-gold">@norah_brunch →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://norahcoffee.com" class="footer-logo">Norah<span>.</span></a>
+  <span class="footer-copy">© 2026 Norah All Day Brunch & Coffee · Madrid</span>
+  <div class="footer-links">
+    <a href="https://norahcoffee.com" target="_blank">Web Oficial</a>
+    <a href="https://www.instagram.com/norah_brunch/" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@norahbrunch" target="_blank">TikTok</a>
+    <a href="https://norahcoffee.com/contact/" target="_blank">Contacto</a>
+  </div>
+</footer>
+
+</body>
+</html>
