@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antojos Gourmet – Cafetería & Tienda Delicatessen · Tres Cantos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:   #fdf6ec;
+    --warm:    #f5e6c8;
+    --gold:    #c9922a;
+    --deep:    #3b1f0a;
+    --rust:    #b84c1a;
+    --sage:    #6b8c5a;
+    --berry:   #8b2d52;
+    --sky:     #3a7ca5;
+    --matcha:  #5a7a3a;
+    --lotus:   #d4748c;
+    --pistachio:#7fa65a;
+    --oreo:    #2d2d2d;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201,146,42,.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(184,76,26,.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 60% 80%, rgba(107,140,90,.15) 0%, transparent 50%),
+      linear-gradient(160deg, #1a0a02 0%, #3b1f0a 45%, #5a2d0a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(201,146,42,.12) 1px, transparent 1px),
+      radial-gradient(circle at 85% 75%, rgba(201,146,42,.08) 1px, transparent 1px);
+    background-size: 60px 60px, 40px 40px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(201,146,42,.2);
+    border: 1px solid rgba(201,146,42,.5);
+    color: #e8bc6a;
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: .45rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 1.8rem;
+    animation: fadeDown .8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 9vw, 7.5rem);
+    font-weight: 900;
+    line-height: .95;
+    color: #fff;
+    animation: fadeDown .9s .1s ease both;
+  }
+
+  .hero h1 span {
+    display: block;
+    background: linear-gradient(135deg, #f0c060, #c9922a, #e8a040);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(.95rem, 2.5vw, 1.2rem);
+    color: rgba(255,255,255,.7);
+    max-width: 520px;
+    margin: 1.4rem auto 2.5rem;
+    line-height: 1.65;
+    font-weight: 300;
+    animation: fadeDown 1s .2s ease both;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeDown 1s .3s ease both;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .85rem 2rem;
+    border-radius: 3rem;
+    font-size: .9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+  .btn-gold {
+    background: linear-gradient(135deg, #e0a030, #c9922a);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(201,146,42,.4);
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,.35);
+    color: #fff;
+  }
+  .btn-green {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(37,211,102,.35);
+  }
+  .btn-mail {
+    background: linear-gradient(135deg, var(--rust), #8b2d0a);
+    color: #fff;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,.35); font-size: .75rem; letter-spacing: .1em;
+    text-transform: uppercase; animation: pulse 2s infinite;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 1.5rem; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: .72rem; font-weight: 500; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: .6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--deep);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--rust); }
+
+  /* ── ABOUT ── */
+  .about {
+    background: #fff;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .about-text p {
+    color: #5a3a1a;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--cream);
+    border-radius: 1.2rem;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(201,146,42,.15);
+    transition: transform .2s;
+  }
+  .stat-card:hover { transform: translateY(-4px); }
+  .stat-card:first-child { grid-column: 1 / -1; background: linear-gradient(135deg, var(--deep), #5a2d0a); color: #fff; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-card:first-child .stat-num { color: #f0c060; }
+  .stat-label { font-size: .8rem; font-weight: 500; letter-spacing: .05em; margin-top: .3rem; color: #8b6a3a; }
+  .stat-card:first-child .stat-label { color: rgba(255,255,255,.7); }
+
+  /* ── SERVICES ── */
+  .services { background: var(--cream); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid rgba(201,146,42,.12);
+    transition: transform .25s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 1.5rem 1.5rem 0 0;
+  }
+  .service-card:nth-child(1)::before { background: linear-gradient(90deg, var(--gold), #e8bc6a); }
+  .service-card:nth-child(2)::before { background: linear-gradient(90deg, var(--rust), #e05a20); }
+  .service-card:nth-child(3)::before { background: linear-gradient(90deg, var(--sage), #8aaf6a); }
+  .service-card:nth-child(4)::before { background: linear-gradient(90deg, var(--berry), #b04070); }
+
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(59,31,10,.1); }
+
+  .service-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: .6rem;
+  }
+  .service-desc { font-size: .9rem; color: #7a5a3a; line-height: 1.7; }
+
+  /* ── TARTAS ── */
+  .tartas { background: var(--deep); color: #fff; }
+
+  .tartas .section-title { color: #fff; }
+  .tartas .section-label { color: #f0c060; }
+  .tartas-intro { color: rgba(255,255,255,.75); max-width: 620px; line-height: 1.7; margin-bottom: 3rem; }
+
+  .tartas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .tarta-card {
+    border-radius: 1.2rem;
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+    transition: transform .25s;
+  }
+  .tarta-card:hover { transform: scale(1.04); }
+
+  .tarta-card.lotus   { background: linear-gradient(145deg, #4a1525, #8b3055); }
+  .tarta-card.pistachio { background: linear-gradient(145deg, #1a3010, #3a6025); }
+  .tarta-card.oreo    { background: linear-gradient(145deg, #111, #2d2d2d); border: 1px solid #555; }
+  .tarta-card.matcha  { background: linear-gradient(145deg, #1a2a10, #3a5020); }
+
+  .tarta-emoji { font-size: 2.8rem; margin-bottom: .8rem; }
+  .tarta-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: .4rem;
+  }
+  .tarta-note { font-size: .82rem; color: rgba(255,255,255,.65); line-height: 1.5; }
+
+  .tarta-exclusive {
+    margin-top: 2.5rem;
+    background: rgba(201,146,42,.15);
+    border: 1px solid rgba(201,146,42,.35);
+    border-radius: 1rem;
+    padding: 1.4rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    max-width: 600px;
+  }
+  .tarta-exclusive .star { font-size: 1.8rem; flex-shrink: 0; }
+  .tarta-exclusive p { font-size: .9rem; color: rgba(255,255,255,.8); line-height: 1.6; }
+  .tarta-exclusive strong { color: #f0c060; }
+
+  /* ── HORARIOS ── */
+  .horarios { background: #fff; }
+
+  .horarios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 680px) { .horarios-grid { grid-template-columns: 1fr; } }
+
+  .hours-list { list-style: none; margin-top: 2rem; }
+  .hours-list li {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .9rem 0;
+    border-bottom: 1px solid rgba(201,146,42,.1);
+    font-size: .95rem;
+  }
+  .hours-list li:last-child { border-bottom: none; }
+
+  .day { font-weight: 500; color: var(--deep); }
+  .time {
+    font-weight: 400;
+    color: var(--sage);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+  }
+  .closed { color: var(--rust) !important; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: .85rem; }
+
+  .terraza-block {
+    background: linear-gradient(135deg, var(--sage), #3a6040);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  .terraza-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: .8rem;
+  }
+  .terraza-block p { font-size: .92rem; line-height: 1.7; opacity: .9; }
+
+  /* ── CONTACTO ── */
+  .contacto { background: var(--cream); }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+  @media (max-width: 680px) { .contacto-grid { grid-template-columns: 1fr; } }
+
+  .contact-card {
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    border: 1px solid rgba(201,146,42,.12);
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .contact-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(59,31,10,.1); }
+
+  .contact-icon {
+    width: 52px; height: 52px; border-radius: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+
+  .ci-phone { background: linear-gradient(135deg, #e0a030, #c9922a); }
+  .ci-wa    { background: linear-gradient(135deg, #25d366, #128c7e); }
+  .ci-mail  { background: linear-gradient(135deg, var(--rust), #8b2d0a); }
+  .ci-ig    { background: linear-gradient(135deg, #e1306c, #833ab4, #fd1d1d); }
+
+  .contact-info h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--deep); margin-bottom: .3rem; }
+  .contact-info p  { font-size: .88rem; color: #7a5a3a; }
+
+  .address-full {
+    background: linear-gradient(135deg, var(--deep), #5a2d0a);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    color: #fff;
+    grid-column: 1 / -1;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .address-full .addr-icon { font-size: 2.2rem; }
+  .address-full h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: .3rem; color: #f0c060; }
+  .address-full p  { font-size: .92rem; opacity: .85; line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,.6);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    font-size: .83rem;
+    line-height: 1.7;
+  }
+  footer strong { color: #f0c060; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: .35; } 50% { opacity: .7; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="badge">☕ Cafetería &amp; Delicatessen · Tres Cantos</div>
+  <h1>Antojos<span>Gourmet</span></h1>
+  <p class="hero-sub">Un rincón con carácter en Tres Cantos donde el desayuno, el tapeo y los productos gourmet se encuentran en un mismo espacio.</p>
+  <div class="hero-ctas">
+    <a href="tel:669166761" class="btn btn-gold">📞 Llama ahora</a>
+    <a href="https://wa.me/34669166761" class="btn btn-green" target="_blank">💬 WhatsApp</a>
+    <a href="mailto:italianotrescantos@gmail.com" class="btn btn-outline">✉️ Email</a>
+  </div>
+  <div class="scroll-hint">↓ descubre más</div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="section-label">Sobre nosotros</p>
+        <h2 class="section-title">Dos mundos en<br><em>un solo local</em></h2>
+        <p>Antojos Gourmet es una <strong>cafetería y tienda de productos gourmet</strong> pensada tanto para empezar el día con un buen desayuno como para alargar la tarde tomando algo.</p>
+        <p>La propuesta combina dos experiencias: la <strong>cafetería</strong> con espacio para desayunos completos, cafés y un picoteo informal de cervezas, vinos y tapas; y la <strong>tienda gourmet</strong> con una selección de productos delicatessen, vinos y licores de calidad.</p>
+        <p>Un sitio versátil para quienes buscan un punto de encuentro tranquilo y bien situado en Tres Cantos.</p>
+      </div>
+      <div class="about-visual reveal">
+        <div class="stat-card">
+          <div class="stat-num">7:30</div>
+          <div class="stat-label">Apertura de martes a viernes · Lo esperamos desde temprano</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">🍷</div>
+          <div class="stat-label">Vinos &amp; Licores seleccionados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">🏅</div>
+          <div class="stat-label">Distribuidor exclusivo en Tres Cantos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Qué ofrecemos</p>
+      <h2 class="section-title">Nuestros <em>servicios</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">☕</div>
+        <h3 class="service-title">Cafetería de Desayunos</h3>
+        <p class="service-desc">Empieza el día como se merece. Desayunos completos con café de calidad, tostadas y mucho más, de martes a domingo desde primera hora.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🍺</div>
+        <h3 class="service-title">Tapas, Cervezas &amp; Vinos</h3>
+        <p class="service-desc">Alarga la tarde con un picoteo informal. Tapas sabrosas, cervezas frescas y una selección de vinos para cada momento.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🛍️</div>
+        <h3 class="service-title">Tienda Gourmet</h3>
+        <p class="service-desc">Una cuidada selección de productos delicatessen, vinos y licores para llevar a casa. Ingredientes especiales para ocasiones especiales.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🌿</div>
+        <h3 class="service-title">Amplia Terraza</h3>
+        <p class="service-desc">Una de las señas de identidad del local. Perfecta tanto para los desayunos de mañana como para el tardeo al aire libre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TARTAS ── -->
+<section class="tartas">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Especialidad de la casa</p>
+      <h2 class="section-title">Tartas de queso<br><em style="color:#f0c060">«Cachito a Cachito»</em></h2>
+      <p class="tartas-intro">Nuestras famosas tartas de queso artesanales están disponibles para tomar en el local, para llevar o para regalar. Cuatro variedades irresistibles.</p>
+    </div>
+    <div class="tartas-grid reveal">
+      <div class="tarta-card lotus">
+        <div class="tarta-emoji">🌸</div>
+        <div class="tarta-name">Lotus</div>
+        <p class="tarta-note">Sabor a galleta caramelizada con la suavidad del queso cremoso.</p>
+      </div>
+      <div class="tarta-card pistachio">
+        <div class="tarta-emoji">🟢</div>
+        <div class="tarta-name">Pistacho</div>
+        <p class="tarta-note">El equilibrio perfecto entre lo salado del pistacho y la dulzura del queso.</p>
+      </div>
+      <div class="tarta-card oreo">
+        <div class="tarta-emoji">⚫</div>
+        <div class="tarta-name">Oreo</div>
+        <p class="tarta-note">Irresistible combinación de crema de queso y la icónica galleta Oreo.</p>
+      </div>
+      <div class="tarta-card matcha">
+        <div class="tarta-emoji">🍵</div>
+        <div class="tarta-name">Té Matcha</div>
+        <p class="tarta-note">Elegante toque japonés con el matcha y la cremosidad del queso.</p>
+      </div>
+    </div>
+    <div class="tarta-exclusive reveal">
+      <div class="star">🏅</div>
+      <p><strong>Distribuidores exclusivos en Tres Cantos</strong> de las tartas «Cachito a Cachito». Una opción ideal para llevar, para regalar o para acompañar el café en el propio local.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── HORARIOS ── -->
+<section class="horarios">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Cuándo visitarnos</p>
+      <h2 class="section-title">Horario de <em>apertura</em></h2>
+    </div>
+    <div class="horarios-grid">
+      <div class="reveal">
+        <ul class="hours-list">
+          <li><span class="day">Lunes</span><span class="time closed">Cerrado</span></li>
+          <li><span class="day">Martes</span><span class="time">7:30 – 23:00</span></li>
+          <li><span class="day">Miércoles</span><span class="time">7:30 – 23:00</span></li>
+          <li><span class="day">Jueves</span><span class="time">7:30 – 23:00</span></li>
+          <li><span class="day">Viernes</span><span class="time">7:30 – 23:00</span></li>
+          <li><span class="day">Sábado</span><span class="time">9:30 – 24:00</span></li>
+          <li><span class="day">Domingo</span><span class="time">9:30 – 24:00</span></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="terraza-block">
+          <h3>☀️ Amplia Terraza</h3>
+          <p>Disfruta de nuestra terraza exterior, una de las grandes señas de identidad de Antojos Gourmet. Perfecta para los desayunos tranquilos de la mañana o para el tardeo con tapas, cervezas y vinos al aire libre.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section class="contacto">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Ponte en contacto</p>
+      <h2 class="section-title">¿Hablamos?</h2>
+    </div>
+    <div class="contacto-grid">
+      <div class="address-full reveal">
+        <div class="addr-icon">📍</div>
+        <div>
+          <h4>Dirección</h4>
+          <p>Av. del 21 de Marzo 12, local 6<br>28760 Tres Cantos, Madrid</p>
+        </div>
+      </div>
+      <a href="tel:669166761" class="contact-card reveal">
+        <div class="contact-icon ci-phone">📞</div>
+        <div class="contact-info">
+          <h4>Teléfono</h4>
+          <p>669 16 67 61</p>
+        </div>
+      </a>
+      <a href="https://wa.me/34669166761" class="contact-card reveal" target="_blank">
+        <div class="contact-icon ci-wa">💬</div>
+        <div class="contact-info">
+          <h4>WhatsApp</h4>
+          <p>669 16 67 61</p>
+        </div>
+      </a>
+      <a href="mailto:italianotrescantos@gmail.com" class="contact-card reveal">
+        <div class="contact-icon ci-mail">✉️</div>
+        <div class="contact-info">
+          <h4>Correo electrónico</h4>
+          <p>italianotrescantos@gmail.com</p>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/antojosgourmettrescantos/" class="contact-card reveal" target="_blank">
+        <div class="contact-icon ci-ig">📸</div>
+        <div class="contact-info">
+          <h4>Instagram</h4>
+          <p>@antojosgourmettrescantos</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p><strong>Antojos Gourmet</strong> · Cafetería &amp; Tienda Gourmet</p>
+  <p>Av. del 21 de Marzo 12, local 6 · 28760 Tres Cantos, Madrid</p>
+  <p style="margin-top:.5rem">📞 <a href="tel:669166761" style="color:inherit">669 16 67 61</a> &nbsp;·&nbsp; ✉️ <a href="mailto:italianotrescantos@gmail.com" style="color:inherit">italianotrescantos@gmail.com</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
