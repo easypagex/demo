@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Color – Consumibles de Impresión · Tres Cantos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --azul:       #1a3a6b;
+      --azul-claro: #2358a8;
+      --rosa:       #8b2252;
+      --rosa-claro: #b03070;
+      --amarillo:   #f5c542;
+      --amarillo-suave: #fde98e;
+      --blanco:     #fafaf8;
+      --gris-suave: #f2f0eb;
+      --gris-texto: #4a4540;
+      --negro:      #12100e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--blanco);
+      color: var(--negro);
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--azul);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.35);
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--amarillo);
+      letter-spacing: .02em;
+    }
+    .logo-text span { color: #fff; }
+
+    nav a {
+      color: rgba(255,255,255,.82);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 500;
+      margin-left: 1.8rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--amarillo); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--azul);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(43,88,168,.6) 0%, transparent 70%),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 18px,
+          rgba(255,255,255,.025) 18px,
+          rgba(255,255,255,.025) 19px
+        );
+      color: #fff;
+      padding: 6rem 2.5rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--rosa);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amarillo);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,.8);
+      max-width: 480px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--amarillo);
+      color: var(--azul);
+      font-weight: 700;
+      font-size: .9rem;
+      padding: .85rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: .03em;
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 18px rgba(245,197,66,.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,197,66,.45); }
+
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.4);
+      color: #fff;
+      font-weight: 500;
+      font-size: .9rem;
+      padding: .82rem 1.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: .03em;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+
+    /* hero right: stats */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      padding: 1.5rem 1.3rem;
+      backdrop-filter: blur(6px);
+    }
+    .stat-card .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--amarillo);
+      line-height: 1;
+    }
+    .stat-card .label {
+      font-size: .8rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.65);
+      margin-top: .4rem;
+      line-height: 1.4;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--rosa);
+      margin-bottom: .6rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      color: var(--azul);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: var(--gris-texto);
+      line-height: 1.8;
+      max-width: 620px;
+    }
+
+    /* ── SERVICIOS GRID ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+
+    .service-card.blue  { background: var(--azul); color: #fff; }
+    .service-card.pink  { background: var(--rosa); color: #fff; }
+    .service-card.yellow{ background: var(--amarillo); color: var(--azul); }
+    .service-card.light { background: var(--gris-suave); color: var(--negro); }
+
+    .service-card .icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: .75rem;
+    }
+    .service-card p {
+      font-size: .9rem;
+      line-height: 1.7;
+      opacity: .88;
+    }
+
+    /* ── MARCAS ── */
+    .brands-section {
+      background: var(--gris-suave);
+      padding: 4rem 2.5rem;
+    }
+    .brands-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .brands-inner h2 { margin-bottom: .5rem; }
+    .brands-inner .lead { margin: 0 auto 2.5rem; text-align: center; }
+
+    .brands-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      justify-content: center;
+    }
+    .brand-tag {
+      background: var(--azul);
+      color: #fff;
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      padding: .55rem 1.3rem;
+      border-radius: 30px;
+    }
+
+    /* ── LISTA DE SERVICIOS DETALLE ── */
+    .detail-section {
+      background: var(--azul);
+      color: #fff;
+      padding: 5rem 2.5rem;
+    }
+    .detail-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .detail-inner .section-label { color: var(--amarillo-suave); }
+    .detail-inner h2 { color: #fff; }
+    .detail-inner .lead { color: rgba(255,255,255,.75); }
+
+    .services-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    .services-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .9rem;
+      padding: .85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      font-size: .93rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,.85);
+    }
+    .services-list li:last-child { border-bottom: none; }
+    .services-list .dot {
+      width: 8px; height: 8px;
+      min-width: 8px;
+      background: var(--amarillo);
+      border-radius: 50%;
+      margin-top: .38rem;
+    }
+
+    /* horario card */
+    .horario-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .horario-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--amarillo);
+      margin-bottom: 1rem;
+    }
+    .horario-row {
+      display: flex;
+      justify-content: space-between;
+      padding: .55rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-size: .88rem;
+      color: rgba(255,255,255,.8);
+    }
+    .horario-row:last-child { border-bottom: none; }
+    .horario-row .day { font-weight: 600; color: #fff; }
+    .nota-cierre {
+      font-size: .78rem;
+      color: rgba(255,255,255,.5);
+      margin-top: .75rem;
+      font-style: italic;
+    }
+
+    /* ── CONTACTO ── */
+    .contact-section {
+      padding: 5rem 2.5rem;
+      background: var(--blanco);
+    }
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .contact-card {
+      border: 2px solid var(--gris-suave);
+      border-radius: 12px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .contact-card:hover { border-color: var(--azul-claro); box-shadow: 0 8px 28px rgba(26,58,107,.1); }
+    .contact-card .c-icon { font-size: 2.2rem; margin-bottom: .8rem; }
+    .contact-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: .4rem;
+    }
+    .contact-card a {
+      color: var(--rosa);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: .92rem;
+      display: block;
+      line-height: 1.6;
+    }
+    .contact-card a:hover { color: var(--rosa-claro); }
+    .contact-card p {
+      font-size: .88rem;
+      color: var(--gris-texto);
+      line-height: 1.6;
+    }
+
+    .cta-banner {
+      background: var(--rosa);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    .cta-banner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: #fff;
+    }
+    .cta-banner p { color: rgba(255,255,255,.8); font-size: .95rem; margin-top: .3rem; }
+    .cta-banner .btn-primary { flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--negro);
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: .82rem;
+      line-height: 1.8;
+    }
+    footer strong { color: var(--amarillo); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      header { padding: 0 1.2rem; }
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; }
+      .hero-stats { display: none; }
+      .detail-inner { grid-template-columns: 1fr; gap: 2rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .brands-section, .detail-section, .contact-section { padding: 3.5rem 1.5rem; }
+      .cta-banner { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-text">Real<span>Color</span></div>
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#marcas">Marcas</a>
+    <a href="#horario">Horario</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <span class="hero-badge">Tres Cantos · Madrid</span>
+    <h1>Tu centro <em>multiservicio</em> de impresión</h1>
+    <p>Con más de diecinueve años en Tres Cantos, Real Color es el punto de referencia para consumibles de impresión, librería y logística de paquetería, para particulares y empresas.</p>
+    <div class="hero-ctas">
+      <a href="tel:911167054" class="btn-primary">📞 Llama ahora</a>
+      <a href="mailto:trescantos@real-color.es" class="btn-outline">✉ Escribir email</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="num">+19</div>
+      <div class="label">Años de experiencia en Tres Cantos</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">7</div>
+      <div class="label">Marcas líderes de impresión</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">Multi</div>
+      <div class="label">Agencia de paquetería multimarca</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">360°</div>
+      <div class="label">Servicio doméstico y empresarial</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICIOS PRINCIPALES -->
+<section id="servicios">
+  <p class="section-label">Lo que ofrecemos</p>
+  <h2>Servicios principales</h2>
+  <p class="lead">Real Color combina tres grandes áreas de servicio en un único establecimiento, con atención personalizada y años de experiencia.</p>
+  <div class="services-grid">
+    <div class="service-card blue">
+      <span class="icon">🖨️</span>
+      <h3>Consumibles de Impresión</h3>
+      <p>Cartuchos originales, remanufacturados y compatibles para todo tipo de impresoras. Atención tanto al consumo doméstico como al suministro recurrente para oficinas y negocios.</p>
+    </div>
+    <div class="service-card pink">
+      <span class="icon">📚</span>
+      <h3>Librería</h3>
+      <p>Últimas novedades editoriales, literatura infantil y libros de vacaciones. También gestionamos encargos para localizar títulos específicos que necesites.</p>
+    </div>
+    <div class="service-card yellow">
+      <span class="icon">📦</span>
+      <h3>Paquetería Multimarca</h3>
+      <p>Punto de recogida y entrega de paquetería para múltiples agencias de transporte. Gestiona tus envíos y devoluciones en horario comercial estable, incluyendo Mondial Relay.</p>
+    </div>
+    <div class="service-card light">
+      <span class="icon">💻</span>
+      <h3>Informática y Móviles</h3>
+      <p>Venta y reparación de ordenadores portátiles, PCs, impresoras, teléfonos móviles y tablets. Además de accesorios, periféricos y recargas de saldo.</p>
+    </div>
+    <div class="service-card light">
+      <span class="icon">💸</span>
+      <h3>Envío de Dinero</h3>
+      <p>Agente oficial de RIA Envíos, MONEYTRANS, WESTERN UNION y SMALL WORLD para envío de dinero a cualquier parte del mundo.</p>
+    </div>
+    <div class="service-card light">
+      <span class="icon">📱</span>
+      <h3>Telefonía</h3>
+      <p>Distribuidor oficial de DIGIMOBIL y REPÚBLICA MÓVIL para la contratación de fibra óptica y telefonía móvil. Recargas prepago nacionales e internacionales.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<div class="brands-section" id="marcas">
+  <div class="brands-inner">
+    <p class="section-label">Catálogo de marcas</p>
+    <h2>Trabajamos con los mejores fabricantes</h2>
+    <p class="lead">Disponemos de cartuchos de tinta y tóner —originales, remanufacturados y compatibles— para todas las grandes marcas del mercado.</p>
+    <div class="brands-list">
+      <span class="brand-tag">HP</span>
+      <span class="brand-tag">Canon</span>
+      <span class="brand-tag">Brother</span>
+      <span class="brand-tag">Epson</span>
+      <span class="brand-tag">OKI</span>
+      <span class="brand-tag">Samsung</span>
+      <span class="brand-tag">Lexmark</span>
+    </div>
+  </div>
+</div>
+
+<!-- DETALLE SERVICIOS + HORARIO -->
+<div class="detail-section">
+  <div class="detail-inner" id="horario">
+    <div>
+      <p class="section-label">Todos los servicios</p>
+      <h2>Más de lo que imaginas en un solo lugar</h2>
+      <p class="lead">Además de la impresión y la librería, Real Color ofrece una amplia gama de servicios adicionales.</p>
+      <ul class="services-list">
+        <li><span class="dot"></span>Distribuidor oficial DIGIMOBIL y REPÚBLICA MÓVIL (fibra y telefonía móvil)</li>
+        <li><span class="dot"></span>Envío y recepción de paquetería Mondial Relay — <a href="http://www.puntopack.es" style="color:var(--amarillo-suave)">www.puntopack.es</a></li>
+        <li><span class="dot"></span>Agente oficial RIA Envíos, MONEYTRANS, WESTERN UNION y SMALL WORLD</li>
+        <li><span class="dot"></span>Venta y reparación de portátiles, PCs e impresoras</li>
+        <li><span class="dot"></span>Venta y reparación de teléfonos móviles y tablets</li>
+        <li><span class="dot"></span>Accesorios y periféricos informáticos y de telefonía</li>
+        <li><span class="dot"></span>Recargas de saldo prepago nacionales e internacionales</li>
+        <li><span class="dot"></span>Libros por encargo: localización de títulos específicos</li>
+      </ul>
+    </div>
+    <div>
+      <p class="section-label">Horario comercial</p>
+      <h2>Cuando nos necesites</h2>
+      <p class="lead">Abierto de lunes a sábado con horario partido para mayor comodidad.</p>
+      <div class="horario-card">
+        <h4>🕐 Horario de apertura</h4>
+        <div class="horario-row">
+          <span class="day">Lunes – Viernes</span>
+          <span>9:45 – 13:45 / 16:45 – 19:45</span>
+        </div>
+        <div class="horario-row">
+          <span class="day">Sábados</span>
+          <span>10:00 – 13:30</span>
+        </div>
+        <p class="nota-cierre">* El último sábado de cada mes, cerrado.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<div class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <p class="section-label">Dónde encontrarnos</p>
+    <h2>Contacto</h2>
+    <p class="lead">Estamos en Tres Cantos. Llámanos, escríbenos o pásate por la tienda.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="c-icon">📍</div>
+        <h4>Dirección</h4>
+        <p>Sector Descubridores 47, local 2 – 16<br/>28760 Tres Cantos, Madrid</p>
+      </div>
+      <div class="contact-card">
+        <div class="c-icon">📞</div>
+        <h4>Teléfonos</h4>
+        <a href="tel:911167054">911 167 054</a>
+        <a href="tel:659978624">659 978 624</a>
+      </div>
+      <div class="contact-card">
+        <div class="c-icon">✉️</div>
+        <h4>Correo electrónico</h4>
+        <a href="mailto:trescantos@real-color.es">trescantos@real-color.es</a>
+      </div>
+      <div class="contact-card">
+        <div class="c-icon">💬</div>
+        <h4>WhatsApp</h4>
+        <a href="https://wa.me/659978624/?text=Hola,%20tengo%20una%20duda">Enviar WhatsApp</a>
+        <p style="margin-top:.3rem">659 978 624</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <div>
+        <h3>¿Necesitas cartuchos o tienes un envío?</h3>
+        <p>Llámanos o escríbenos y te ayudamos enseguida.</p>
+      </div>
+      <a href="tel:911167054" class="btn-primary">📞 Llamar ahora</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Real Color</strong> · Sector Descubridores 47, local 2-16 · 28760 Tres Cantos, Madrid</p>
+  <p>Tlf: <a href="tel:911167054" style="color:var(--amarillo)">911 167 054</a> · <a href="tel:659978624" style="color:var(--amarillo)">659 978 624</a> · <a href="mailto:trescantos@real-color.es" style="color:var(--amarillo)">trescantos@real-color.es</a></p>
+  <p style="margin-top:.8rem;font-size:.75rem;opacity:.45;">Consumibles de impresión · Librería · Paquetería · Tres Cantos</p>
+</footer>
+
+</body>
+</html>
