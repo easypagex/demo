@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COCOMAD Bakery – Alfajores Argentinos en Madrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dulce: #c8633a;
+    --caramel: #e8954a;
+    --cream: #fdf5e8;
+    --choco: #3d1f0d;
+    --pink: #f4a8b8;
+    --mint: #7ecba1;
+    --sky: #a8d4f5;
+    --sun: #f5d76e;
+    --white: #fffef9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--choco);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; width: 100%; z-index: 999;
+    background: var(--choco);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 4px 20px rgba(61,31,13,.4);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--sun);
+    letter-spacing: .02em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--caramel); }
+  nav { display: flex; gap: 1.8rem; align-items: center; }
+  nav a {
+    color: var(--cream); text-decoration: none;
+    font-weight: 700; font-size: .9rem; letter-spacing: .05em;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+  nav a:hover { color: var(--sun); }
+  .cta-nav {
+    background: var(--dulce); color: var(--white) !important;
+    padding: .45rem 1.2rem; border-radius: 50px;
+    transition: background .2s, transform .15s !important;
+  }
+  .cta-nav:hover { background: var(--caramel) !important; transform: scale(1.05); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--choco) 0%, #6b2d0e 55%, var(--dulce) 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 7rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(245,215,110,.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(244,168,184,.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  /* floating circles decoration */
+  .blob {
+    position: absolute; border-radius: 50%;
+    opacity: .12; pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+  }
+  .blob1 { width: 320px; height: 320px; background: var(--sun); top: -60px; left: -80px; animation-delay: 0s; }
+  .blob2 { width: 200px; height: 200px; background: var(--pink); bottom: 40px; right: -50px; animation-delay: 2s; }
+  .blob3 { width: 140px; height: 140px; background: var(--mint); top: 40%; left: 5%; animation-delay: 4s; }
+  @keyframes float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-22px) scale(1.04); }
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--sun); color: var(--choco);
+    font-weight: 800; font-size: .8rem; letter-spacing: .12em;
+    text-transform: uppercase; padding: .35rem 1rem; border-radius: 50px;
+    margin-bottom: 1.4rem;
+    animation: fadeDown .7s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    animation: fadeDown .8s .1s ease both;
+  }
+  .hero h1 em { color: var(--caramel); font-style: italic; }
+  .hero p {
+    font-size: 1.15rem; color: rgba(255,254,249,.82);
+    max-width: 540px; margin: 0 auto 2.4rem;
+    line-height: 1.7;
+    animation: fadeDown .8s .2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeDown .8s .3s ease both;
+  }
+  .btn {
+    display: inline-block; text-decoration: none;
+    padding: .85rem 2rem; border-radius: 50px;
+    font-weight: 800; font-size: 1rem; letter-spacing: .03em;
+    transition: transform .18s, box-shadow .18s;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .btn-primary { background: var(--sun); color: var(--choco); }
+  .btn-secondary { background: transparent; color: var(--white); border: 2px solid rgba(255,254,249,.5); }
+  .btn-secondary:hover { background: rgba(255,254,249,.1); }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RIBBON ── */
+  .ribbon {
+    background: var(--dulce);
+    padding: .9rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ribbon-inner {
+    display: inline-block;
+    animation: marquee 18s linear infinite;
+    font-weight: 800; color: var(--white);
+    font-size: .95rem; letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .ribbon-inner span { margin: 0 2rem; }
+  .ribbon-inner .dot { color: var(--sun); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: .78rem; font-weight: 800; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--dulce);
+    margin-bottom: .5rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+
+  /* ── PRODUCTOS ── */
+  .productos { background: var(--white); }
+  .productos h2 { text-align: center; }
+  .productos .subtitle {
+    text-align: center; color: #7a5a47;
+    font-size: 1.05rem; margin-bottom: 3rem;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem;
+  }
+  .card {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 6px 28px rgba(61,31,13,.1);
+    transition: transform .22s, box-shadow .22s;
+    background: var(--white);
+    display: flex; flex-direction: column;
+  }
+  .card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(61,31,13,.18); }
+  .card-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4.5rem;
+    position: relative; overflow: hidden;
+  }
+  .card-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(61,31,13,.18));
+  }
+  .c1 { background: linear-gradient(135deg, #f9e4c8, #edc48a); }
+  .c2 { background: linear-gradient(135deg, #fce0e8, #f4a8c0); }
+  .c3 { background: linear-gradient(135deg, #d4edda, #7ecba1); }
+  .c4 { background: linear-gradient(135deg, #e8d5f5, #c8a0e8); }
+  .card-body { padding: 1.4rem 1.5rem 1.8rem; flex: 1; display: flex; flex-direction: column; }
+  .card-body h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: .5rem; }
+  .card-body p { color: #7a5a47; font-size: .93rem; line-height: 1.6; flex: 1; }
+  .card-price { margin-top: 1rem; font-weight: 800; font-size: 1.1rem; color: var(--dulce); }
+  .card-cta {
+    display: block; text-align: center; margin-top: 1rem;
+    background: var(--choco); color: var(--white);
+    text-decoration: none; border-radius: 50px;
+    padding: .6rem 1.2rem; font-weight: 700; font-size: .9rem;
+    transition: background .2s;
+  }
+  .card-cta:hover { background: var(--dulce); }
+
+  /* ── HISTORIA ── */
+  .historia {
+    background: linear-gradient(135deg, var(--choco) 0%, #5a2510 100%);
+    color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .historia::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(245,215,110,.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .historia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .historia .section-label { color: var(--sun); }
+  .historia h2 { color: var(--white); }
+  .historia p { color: rgba(255,254,249,.82); line-height: 1.8; margin-bottom: 1rem; font-size: 1rem; }
+  .historia-stats {
+    display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--sun); display: block; }
+  .stat-lbl { font-size: .8rem; font-weight: 700; color: rgba(255,254,249,.7); text-transform: uppercase; letter-spacing: .08em; }
+  .historia-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .hv-box {
+    border-radius: 20px; padding: 2rem 1.5rem;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: .6rem;
+  }
+  .hv-box .ico { font-size: 2.4rem; }
+  .hv-box h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--white); }
+  .hv-box p { font-size: .85rem; color: rgba(255,254,249,.7); line-height: 1.5; }
+  .hv1 { background: rgba(245,215,110,.12); }
+  .hv2 { background: rgba(244,168,184,.12); }
+  .hv3 { background: rgba(126,203,161,.12); }
+  .hv4 { background: rgba(168,212,245,.12); }
+  @media(max-width:720px){ .historia-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  /* ── PEDIDOS ── */
+  .pedidos { background: var(--cream); }
+  .pedidos h2 { text-align: center; margin-bottom: .5rem; }
+  .pedidos .subtitle { text-align: center; color: #7a5a47; margin-bottom: 3rem; font-size: 1.05rem; }
+  .steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;
+    counter-reset: step;
+  }
+  .step {
+    background: var(--white); border-radius: 20px; padding: 2rem 1.5rem;
+    text-align: center; box-shadow: 0 4px 20px rgba(61,31,13,.07);
+    position: relative;
+  }
+  .step-num {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--dulce); color: var(--white);
+    font-weight: 900; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .step h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: .5rem; }
+  .step p { color: #7a5a47; font-size: .9rem; line-height: 1.6; }
+  .pedidos-cta { text-align: center; margin-top: 3rem; }
+  .btn-tienda {
+    background: var(--dulce); color: var(--white);
+    font-size: 1.1rem; padding: 1rem 2.8rem;
+  }
+
+  /* ── REDES ── */
+  .redes { background: var(--white); }
+  .redes h2 { text-align: center; }
+  .redes .subtitle { text-align: center; color: #7a5a47; margin-bottom: 2.5rem; font-size: 1.05rem; }
+  .social-grid {
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+  }
+  .social-card {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.2rem 2rem; border-radius: 16px;
+    text-decoration: none; font-weight: 700;
+    font-size: 1rem; transition: transform .18s, box-shadow .18s;
+    box-shadow: 0 4px 16px rgba(61,31,13,.1);
+  }
+  .social-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(61,31,13,.18); }
+  .social-card .ico2 { font-size: 2rem; }
+  .sc-ig { background: linear-gradient(135deg, #f9e0c8, #f7c0a8); color: var(--choco); }
+  .sc-fb { background: linear-gradient(135deg, #c8d8f9, #a8bef5); color: var(--choco); }
+  .sc-shop { background: linear-gradient(135deg, var(--choco), #5a2510); color: var(--white); }
+  .sc-mail { background: linear-gradient(135deg, #d4edda, #b0dcbc); color: var(--choco); }
+
+  /* ── MAPA ── */
+  .mapa-section { background: var(--cream); padding: 5rem 2rem; }
+  .mapa-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; max-width: 600px; }
+  @media(max-width:720px){ .mapa-grid { grid-template-columns: 1fr; } }
+  .mapa-info .section-label { color: var(--dulce); }
+  .mapa-info h2 { margin-bottom: 1.5rem; }
+  .info-row {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.4rem;
+    background: var(--white); border-radius: 16px; padding: 1.2rem 1.4rem;
+    box-shadow: 0 3px 14px rgba(61,31,13,.07);
+  }
+  .info-ico { font-size: 1.6rem; flex-shrink: 0; }
+  .info-txt h4 { font-weight: 800; font-size: .95rem; margin-bottom: .25rem; }
+  .info-txt p, .info-txt a { color: #7a5a47; font-size: .9rem; text-decoration: none; }
+  .info-txt a:hover { color: var(--dulce); }
+  .map-frame { border-radius: 24px; overflow: hidden; box-shadow: 0 8px 32px rgba(61,31,13,.15); height: 380px; }
+  .map-frame iframe { width: 100%; height: 100%; border: none; }
+
+  /* ── CONTACTO ── */
+  .contacto {
+    background: linear-gradient(135deg, var(--dulce), var(--caramel));
+    color: var(--white); text-align: center;
+    padding: 5rem 2rem;
+  }
+  .contacto .section-label { color: var(--sun); }
+  .contacto h2 { color: var(--white); margin-bottom: 1rem; }
+  .contacto p { color: rgba(255,254,249,.88); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .contact-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-light { background: var(--white); color: var(--dulce); }
+  .btn-outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,254,249,.6); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--choco); color: rgba(255,254,249,.65);
+    text-align: center; padding: 2.5rem 2rem;
+    font-size: .88rem;
+  }
+  footer a { color: var(--sun); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  footer .heart { color: var(--pink); }
+
+  /* ── FLOATING WA BUTTON ── */
+  .wa-fab {
+    position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 888;
+    background: #25d366; color: var(--white);
+    width: 58px; height: 58px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; text-decoration: none;
+    box-shadow: 0 6px 24px rgba(37,211,102,.4);
+    transition: transform .2s, box-shadow .2s;
+    animation: pulse 2.5s ease infinite;
+  }
+  .wa-fab:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,.55); }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 6px 24px rgba(37,211,102,.4); }
+    50% { box-shadow: 0 6px 38px rgba(37,211,102,.7); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#inicio" class="logo">COCO<span>MAD</span> bakery</a>
+  <nav>
+    <a href="#productos">Productos</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#visita">Visítanos</a>
+    <a href="https://cocomadbakery.com/collections/all" target="_blank" class="cta-nav">🛒 Pedir Online</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div>
+    <div class="hero-tag">✨ De Tucumán a Madrid</div>
+    <h1>Alfajores argentinos<br><em>&amp; pastelería</em><br>hecha con amor</h1>
+    <p>Los sabores más auténticos de Argentina llegaron a Madrid. Alfajores, cheesecakes, Tarta Rogel y mucho más. ¡Pruébalos hoy!</p>
+    <div class="hero-btns">
+      <a href="https://cocomadbakery.com/collections/all" target="_blank" class="btn btn-primary">🍬 Ver Productos</a>
+      <a href="https://cdn.shopify.com/s/files/1/0705/0461/2154/files/menu_cocomad.pdf?v=1764951149" target="_blank" class="btn btn-secondary">📋 Ver Menú PDF</a>
+    </div>
+  </div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-inner">
+    <span>🍪 Alfajores de Maizena</span><span class="dot">✦</span>
+    <span>🍰 Cheesecakes Artesanales</span><span class="dot">✦</span>
+    <span>🎂 Tarta Rogel</span><span class="dot">✦</span>
+    <span>☕ Cafetería en Tienda</span><span class="dot">✦</span>
+    <span>📦 Pedidos Online</span><span class="dot">✦</span>
+    <span>💛 Hecho con Amor</span><span class="dot">✦</span>
+    <span>🍪 Alfajores de Maizena</span><span class="dot">✦</span>
+    <span>🍰 Cheesecakes Artesanales</span><span class="dot">✦</span>
+    <span>🎂 Tarta Rogel</span><span class="dot">✦</span>
+    <span>☕ Cafetería en Tienda</span><span class="dot">✦</span>
+    <span>📦 Pedidos Online</span><span class="dot">✦</span>
+    <span>💛 Hecho con Amor</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="productos" id="productos">
+  <div class="container">
+    <p class="section-label" style="text-align:center">Nuestros productos</p>
+    <h2>Lo mejor de la<br>pastelería argentina</h2>
+    <p class="subtitle">Todo elaborado artesanalmente con ingredientes de calidad 🤍</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-img c1">🍪</div>
+        <div class="card-body">
+          <h3>Alfajores COCOMAD</h3>
+          <p>Nuestra especialidad estrella. Alfajores de maizena cubiertos de coco rallado con dulce de leche, y muchos sabores más. El sabor que nos dio nombre.</p>
+          <a href="https://cocomadbakery.com/collections/alfajores-cocomad" target="_blank" class="card-cta">Ver Alfajores →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img c2">🍰</div>
+        <div class="card-body">
+          <h3>#cococheesecakes</h3>
+          <p>Cheesecakes artesanales con el toque especial de COCOMAD. Cremosas, suaves y disponibles en distintos sabores para cada ocasión.</p>
+          <a href="https://cocomadbakery.com/collections/cococheesecakes" target="_blank" class="card-cta">Ver Cheesecakes →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img c3">🎂</div>
+        <div class="card-body">
+          <h3>Tarta Rogel</h3>
+          <p>La icónica tarta argentina de hojaldre y dulce de leche. Ideal para celebraciones o simplemente para darte un capricho. Desde €32.</p>
+          <div class="card-price">Desde €32,00</div>
+          <a href="https://cocomadbakery.com/products/tarta-rogel" target="_blank" class="card-cta">Quiero una →</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img c4">☕</div>
+        <div class="card-body">
+          <h3>Cafetería &amp; más</h3>
+          <p>Visita nuestra tienda en Madrid y disfruta de café de especialidad, desayunos y meriendas junto a nuestros productos artesanales. ¡Te esperamos!</p>
+          <a href="#visita" class="card-cta">Ver Dónde Estamos →</a>
+        </div>
+      </div>
+    </div>
+    <div class="pedidos-cta" style="margin-top:3rem">
+      <a href="https://cocomadbakery.com/collections/all" target="_blank" class="btn btn-tienda btn">🛍️ Ver Todos los Productos</a>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section class="historia" id="nosotros">
+  <div class="container">
+    <div class="historia-grid">
+      <div>
+        <p class="section-label">Nuestra historia</p>
+        <h2>De Tucumán a las calles de Madrid</h2>
+        <p>Somos Lu y Coni, dos hermanas argentinas que convirtieron su amor por la pastelería en un sueño real. Luciana llegó a Madrid en 2017 y abrió COCOMAD el 30 de diciembre de 2019, con un objetivo claro: enamorar a Madrid con los sabores argentinos.</p>
+        <p>Durante la pandemia empezamos repartiendo alfajores por toda la ciudad. Así nació nuestra comunidad de <strong>#CocoFans</strong>. Hoy, Constanza se unió al equipo y juntas llevamos la pastelería argentina a nuevas alturas.</p>
+        <div class="historia-stats">
+          <div class="stat"><span class="stat-num">2019</span><span class="stat-lbl">Fundación</span></div>
+          <div class="stat"><span class="stat-num">5+</span><span class="stat-lbl">Años en Madrid</span></div>
+          <div class="stat"><span class="stat-num">❤️</span><span class="stat-lbl">#CocoFans</span></div>
+        </div>
+      </div>
+      <div class="historia-visual">
+        <div class="hv-box hv1">
+          <div class="ico">🇦🇷</div>
+          <h4>Raíces Tucumanas</h4>
+          <p>Recetas y sabores auténticos del norte argentino</p>
+        </div>
+        <div class="hv-box hv2">
+          <div class="ico">👩‍🍳</div>
+          <h4>Hecho a Mano</h4>
+          <p>Cada producto elaborado artesanalmente con amor</p>
+        </div>
+        <div class="hv-box hv3">
+          <div class="ico">🌟</div>
+          <h4>Comunidad</h4>
+          <p>Miles de #CocoFans que nos eligen cada semana</p>
+        </div>
+        <div class="hv-box hv4">
+          <div class="ico">🏪</div>
+          <h4>Tienda Propia</h4>
+          <p>Local en el corazón de Madrid con cafetería</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PEDIDOS ONLINE -->
+<section class="pedidos" id="pedidos">
+  <div class="container">
+    <p class="section-label" style="text-align:center">Fácil y rápido</p>
+    <h2>¿Cómo hacer tu pedido?</h2>
+    <p class="subtitle">En 3 simples pasos puedes tener nuestros productos en casa 📦</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Elige tus favoritos</h4>
+        <p>Navega nuestra tienda online y selecciona los productos que más te apetezcan.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Haz tu pedido</h4>
+        <p>Añade al carrito y completa tu pedido de forma segura en nuestra tienda Shopify.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>¡Disfruta!</h4>
+        <p>Recibe en casa o recoge en tienda. Los alfajores más ricos de Madrid, a tu manera.</p>
+      </div>
+    </div>
+    <div class="pedidos-cta">
+      <a href="https://cocomadbakery.com/collections/all" target="_blank" class="btn btn-tienda btn">🍪 ¡Hacer Mi Pedido Ahora!</a>
+    </div>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section class="redes">
+  <div class="container">
+    <p class="section-label" style="text-align:center">Síguenos y conéctate</p>
+    <h2>Únete a la familia<br>#CocoFans</h2>
+    <p class="subtitle">Entérate de novedades, horarios y sorpresas en nuestras redes 🎉</p>
+    <div class="social-grid">
+      <a href="https://www.instagram.com/cocomadbakery/" target="_blank" class="social-card sc-ig">
+        <span class="ico2">📸</span>
+        <div>
+          <div style="font-size:.75rem;opacity:.7;text-transform:uppercase;letter-spacing:.08em">Instagram</div>
+          <div>@cocomadbakery</div>
+        </div>
+      </a>
+      <a href="https://www.facebook.com/CocoMad-Bakery-825265017858105" target="_blank" class="social-card sc-fb">
+        <span class="ico2">👍</span>
+        <div>
+          <div style="font-size:.75rem;opacity:.7;text-transform:uppercase;letter-spacing:.08em">Facebook</div>
+          <div>CocoMad Bakery</div>
+        </div>
+      </a>
+      <a href="https://cocomadbakery.com/collections/all" target="_blank" class="social-card sc-shop">
+        <span class="ico2">🛒</span>
+        <div>
+          <div style="font-size:.75rem;opacity:.65;text-transform:uppercase;letter-spacing:.08em">Tienda Online</div>
+          <div>cocomadbakery.com</div>
+        </div>
+      </a>
+      <a href="https://cocomadbakery.com/pages/contact" target="_blank" class="social-card sc-mail">
+        <span class="ico2">✉️</span>
+        <div>
+          <div style="font-size:.75rem;opacity:.7;text-transform:uppercase;letter-spacing:.08em">Contacto</div>
+          <div>Escríbenos aquí</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA Y VISITA -->
+<section class="mapa-section" id="visita">
+  <div class="container">
+    <div class="mapa-grid">
+      <div class="mapa-info">
+        <p class="section-label">Dónde estamos</p>
+        <h2>Visítanos en<br>Madrid</h2>
+        <div class="info-row">
+          <div class="info-ico">📍</div>
+          <div class="info-txt">
+            <h4>Dirección</h4>
+            <p>Calle Evaristo San Miguel 9<br>Madrid 28008, España</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">🕐</div>
+          <div class="info-txt">
+            <h4>Horarios</h4>
+            <p>Síguenos en <a href="https://www.instagram.com/cocomadbakery/" target="_blank">@cocomadbakery</a> para actualizaciones de horarios en tiempo real.</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">📦</div>
+          <div class="info-txt">
+            <h4>Pedidos Online</h4>
+            <p>También puedes pedir desde casa en <a href="https://cocomadbakery.com/collections/all" target="_blank">cocomadbakery.com</a></p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">📋</div>
+          <div class="info-txt">
+            <h4>Menú Completo</h4>
+            <p><a href="https://cdn.shopify.com/s/files/1/0705/0461/2154/files/menu_cocomad.pdf?v=1764951149" target="_blank">Descargar Menú en PDF →</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO CTA -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <p class="section-label">¿Tienes dudas?</p>
+    <h2>¡Estamos aquí<br>para ti!</h2>
+    <p>¿Quieres un pedido especial, tienes preguntas sobre nuestros productos o simplemente quieres saludarnos? ¡Escríbenos!</p>
+    <div class="contact-btns">
+      <a href="https://cocomadbakery.com/pages/contact" target="_blank" class="btn btn-light btn">✉️ Formulario de Contacto</a>
+      <a href="https://www.instagram.com/cocomadbakery/" target="_blank" class="btn btn-outline-white btn">📸 Escribir en Instagram</a>
+      <a href="https://www.google.com/maps/place/Cocomad+Bakery/@40.4264354,-3.7156516,15z" target="_blank" class="btn btn-outline-white btn">📍 Ver en Mapa</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:.6rem">
+    <strong style="color:var(--sun);font-family:'Playfair Display',serif;font-size:1.1rem">COCOMAD bakery</strong>
+  </p>
+  <p>Calle Evaristo San Miguel 9, Madrid 28008 &nbsp;|&nbsp;
+    <a href="https://cocomadbakery.com" target="_blank">cocomadbakery.com</a> &nbsp;|&nbsp;
+    <a href="https://www.instagram.com/cocomadbakery/" target="_blank">Instagram</a> &nbsp;|&nbsp;
+    <a href="https://www.facebook.com/CocoMad-Bakery-825265017858105" target="_blank">Facebook</a>
+  </p>
+  <p style="margin-top:.8rem">Hecho con <span class="heart">♥</span> por Lu &amp; Coni · © 2026 COCOMAD Bakery</p>
+</footer>
+
+<!-- WhatsApp / Contacto flotante -->
+<a href="https://cocomadbakery.com/pages/contact" target="_blank" class="wa-fab" title="Contactar">💬</a>
+
+</body>
+</html>
