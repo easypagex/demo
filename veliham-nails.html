@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veliham Nails — Manicura & Pedicura en Tres Cantos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blush:     #f5e6e0;
+      --rose:      #d4a89a;
+      --deep-rose: #b07065;
+      --mauve:     #8a5c58;
+      --cream:     #fdf8f5;
+      --charcoal:  #2a1f1d;
+      --taupe:     #c4a99e;
+      --gold:      #c8a97e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(160deg, var(--blush) 0%, var(--cream) 55%, #ede0d9 100%);
+      padding: 4rem 2rem 6rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(212,168,154,.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 10% 85%, rgba(176,112,101,.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Decorative arcs */
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,168,154,.35);
+      top: -120px; right: -140px;
+    }
+
+    .hero-arc2 {
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(176,112,101,.2);
+      bottom: -80px; left: -80px;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: .75rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--deep-rose);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp .8s .2s ease forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: 1;
+      letter-spacing: -.01em;
+      color: var(--charcoal);
+      opacity: 0;
+      animation: fadeUp .9s .4s ease forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--mauve);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mauve);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-top: 1.2rem;
+      opacity: 0;
+      animation: fadeUp .9s .6s ease forwards;
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      margin: 2rem auto 0;
+      font-size: .95rem;
+      color: #6b4f4a;
+      opacity: 0;
+      animation: fadeUp .9s .8s ease forwards;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2.8rem;
+      opacity: 0;
+      animation: fadeUp .9s 1s ease forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 999px;
+      font-family: 'Jost', sans-serif;
+      font-size: .82rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+
+    .btn-primary {
+      background: var(--mauve);
+      color: var(--cream);
+      box-shadow: 0 4px 20px rgba(138,92,88,.3);
+    }
+    .btn-primary:hover {
+      background: var(--deep-rose);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(138,92,88,.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--mauve);
+      border: 1px solid var(--rose);
+    }
+    .btn-outline:hover {
+      background: var(--blush);
+      transform: translateY(-2px);
+    }
+
+    /* ── DIVIDER ────────────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .divider span { flex: 1; height: 1px; background: var(--taupe); opacity: .4; }
+    .divider i { font-style: normal; font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--rose); }
+
+    /* ── SECTIONS ───────────────────────────────────────── */
+    section { padding: 5rem 2rem; }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: .7rem;
+      font-weight: 400;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--deep-rose);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--mauve); }
+
+    /* ── ABOUT ──────────────────────────────────────────── */
+    .about { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-body p { color: #5a3f3c; margin-bottom: 1rem; font-size: .95rem; }
+
+    .perks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .perk {
+      background: var(--blush);
+      border-radius: 1rem;
+      padding: 1.4rem 1.2rem;
+      border: 1px solid rgba(212,168,154,.3);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .perk:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(176,112,101,.12); }
+
+    .perk-icon { font-size: 1.4rem; margin-bottom: .5rem; }
+    .perk-title { font-weight: 500; font-size: .82rem; letter-spacing: .06em; color: var(--mauve); margin-bottom: .25rem; }
+    .perk-text { font-size: .82rem; color: #6b4f4a; line-height: 1.5; }
+
+    /* ── SERVICES ───────────────────────────────────────── */
+    .services { background: linear-gradient(180deg, #f0e4df 0%, var(--cream) 100%); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--cream);
+      border: 1px solid rgba(212,168,154,.4);
+      border-radius: 1.2rem;
+      padding: 2rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose), var(--deep-rose));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(176,112,101,.15); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-card .number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: rgba(212,168,154,.35);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      margin-bottom: .4rem;
+    }
+
+    .service-card p { font-size: .82rem; color: #6b4f4a; line-height: 1.55; }
+
+    /* ── HORARIO ────────────────────────────────────────── */
+    .schedule { background: var(--charcoal); color: var(--cream); }
+
+    .schedule .section-label { color: var(--rose); }
+    .schedule .section-title { color: var(--blush); }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.4rem;
+      border-radius: .75rem;
+      border: 1px solid rgba(212,168,154,.15);
+      background: rgba(255,255,255,.04);
+      transition: background .2s;
+    }
+
+    .schedule-row:hover { background: rgba(212,168,154,.08); }
+
+    .schedule-row .day { font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; color: var(--taupe); }
+    .schedule-row .time { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--blush); }
+
+    .schedule-cta { margin-top: 3rem; text-align: center; }
+
+    /* ── CONTACT ────────────────────────────────────────── */
+    .contact { background: var(--cream); }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 2rem; }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .contact-item .ci-icon {
+      width: 40px; height: 40px;
+      flex-shrink: 0;
+      background: var(--blush);
+      border-radius: .6rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    .contact-item .ci-label { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--rose); margin-bottom: .2rem; }
+    .contact-item .ci-value { font-size: .92rem; color: var(--charcoal); }
+    .contact-item a { color: var(--mauve); text-decoration: none; }
+    .contact-item a:hover { color: var(--deep-rose); text-decoration: underline; }
+
+    .contact-social {
+      margin-top: 2.5rem;
+    }
+
+    .contact-social h4 {
+      font-size: .72rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1rem;
+    }
+
+    .social-links { display: flex; gap: .8rem; }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .6rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid var(--rose);
+      color: var(--mauve);
+      font-size: .8rem;
+      text-decoration: none;
+      letter-spacing: .08em;
+      transition: background .2s, transform .2s;
+    }
+
+    .social-link:hover { background: var(--blush); transform: translateY(-2px); }
+
+    .contact-reserve {
+      background: linear-gradient(135deg, var(--blush) 0%, #ede4e0 100%);
+      border-radius: 1.5rem;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      border: 1px solid rgba(212,168,154,.3);
+    }
+
+    .contact-reserve h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2rem;
+      color: var(--charcoal);
+      margin-bottom: .75rem;
+    }
+
+    .contact-reserve h3 em { font-style: italic; color: var(--mauve); }
+
+    .contact-reserve p { font-size: .88rem; color: #6b4f4a; margin-bottom: 2rem; line-height: 1.6; }
+
+    .reserve-btns { display: flex; flex-direction: column; gap: .8rem; }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(253,248,245,.55);
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: .78rem;
+      letter-spacing: .08em;
+    }
+
+    footer strong { color: var(--rose); }
+
+    /* ── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .about-grid,
+      .contact-wrap,
+      .schedule-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .perks { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .perks { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-arc2"></div>
+  <p class="hero-eyebrow">Tres Cantos, Madrid</p>
+  <h1 class="hero-title">Veliham<br><em>Nails</em></h1>
+  <p class="hero-sub">Manicura &amp; Pedicura</p>
+  <p class="hero-desc">Un espacio especializado en el cuidado de tus uñas. Atención al detalle, productos premium y un trato cercano que marca la diferencia.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-primary" href="tel:683114082">📞 Reservar ahora</a>
+    <a class="btn btn-outline" href="http://wa.me/+34683114082" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────────────── -->
+<section class="about">
+  <div class="section-inner">
+    <div class="about-grid reveal">
+
+      <div class="about-body">
+        <p class="section-label">Quiénes somos</p>
+        <h2 class="section-title">Arte en cada <em>detalle</em></h2>
+        <p>Veliham Nails está ubicado en la <strong>planta baja del Centro Comercial Ciudad de Tres Cantos</strong>. Somos un espacio pensado para quienes buscan un tratamiento de uñas práctico, bien ejecutado y con un toque personalizado.</p>
+        <p>Nuestro concepto se basa en la inmediatez sin sacrificar la calidad: cada sesión incluye una bebida de bienvenida, y al finalizar recibirás un pequeño obsequio como muestra de nuestro agradecimiento.</p>
+        <p>Trabajamos exclusivamente con <strong>esmaltes premium libres de TPO</strong>, una elección consciente para cuidar la salud de tus uñas.</p>
+      </div>
+
+      <div>
+        <div class="perks">
+          <div class="perk">
+            <div class="perk-icon">✨</div>
+            <div class="perk-title">Esmaltes premium</div>
+            <div class="perk-text">100 % libres de TPO para mayor cuidado de la uña natural.</div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">🥂</div>
+            <div class="perk-title">Bebida incluida</div>
+            <div class="perk-text">Relájate con una bebida mientras disfrutas de tu sesión.</div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">🎁</div>
+            <div class="perk-title">Obsequio de bienvenida</div>
+            <div class="perk-text">Pequeño regalo al terminar tu visita.</div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">🅿️</div>
+            <div class="perk-title">Fácil aparcamiento</div>
+            <div class="perk-text">Acceso cómodo con amplio parking en el centro comercial.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span></span><i>Nuestros servicios</i><span></span></div>
+
+<!-- ── SERVICES ───────────────────────────────────────────── -->
+<section class="services">
+  <div class="section-inner reveal">
+    <p class="section-label">Carta de servicios</p>
+    <h2 class="section-title">Todo lo que <em>necesitas</em></h2>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="number">01</div>
+        <h3>Manicura Infantil</h3>
+        <p>Servicio especialmente diseñado para las más pequeñas, con productos seguros y suaves.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="number">02</div>
+        <h3>Manicura Tradicional</h3>
+        <p>Cuidado clásico de cutículas, limado y aplicación de esmalte con acabado impecable.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="number">03</div>
+        <h3>Semipermanente</h3>
+        <p>Color de larga duración con esmalte semipermanente de alta calidad, libre de TPO.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="number">04</div>
+        <h3>Uñas de Gel</h3>
+        <p>Construcción o extensión con gel para un resultado natural y duradero.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="number">05</div>
+        <h3>Uñas Acrílicas</h3>
+        <p>Mayor dureza y resistencia con uñas acrílicas moldeadas a tu gusto.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="number">06</div>
+        <h3>Sesiones de Mantenimiento</h3>
+        <p>Retoque y cuidado periódico para mantener tus uñas siempre perfectas.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PEDICURA ───────────────────────────────────────────── -->
+<section class="about" style="padding-top:2rem; padding-bottom:4rem;">
+  <div class="section-inner reveal">
+    <div style="background:var(--blush); border:1px solid rgba(212,168,154,.4); border-radius:1.5rem; padding:2.5rem 2rem; display:flex; gap:2rem; align-items:center; flex-wrap:wrap;">
+      <div style="font-size:3rem; flex-shrink:0;">🦶</div>
+      <div>
+        <p class="section-label">Pedicura</p>
+        <h3 style="font-family:'Cormorant Garamond',serif; font-weight:400; font-size:1.6rem; color:var(--charcoal); margin-bottom:.6rem;">Manicura y <em style="color:var(--mauve); font-style:italic;">pedicura rápida</em></h3>
+        <p style="font-size:.9rem; color:#5a3f3c;">También realizamos <strong>pedicura completa</strong> con el mismo enfoque profesional y los mismos estándares de calidad. Deja tus pies en nuestras manos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCHEDULE ───────────────────────────────────────────── -->
+<section class="schedule">
+  <div class="section-inner reveal">
+    <p class="section-label">Horarios</p>
+    <h2 class="section-title">Estamos aquí <em>para ti</em></h2>
+    <div class="schedule-grid">
+      <div class="schedule-row">
+        <span class="day">Lunes</span>
+        <span class="time">10:00 — 21:00</span>
+      </div>
+      <div class="schedule-row">
+        <span class="day">Martes</span>
+        <span class="time">10:00 — 21:00</span>
+      </div>
+      <div class="schedule-row">
+        <span class="day">Miércoles</span>
+        <span class="time">10:00 — 21:00</span>
+      </div>
+      <div class="schedule-row">
+        <span class="day">Jueves</span>
+        <span class="time">10:00 — 21:00</span>
+      </div>
+      <div class="schedule-row">
+        <span class="day">Viernes</span>
+        <span class="time">10:00 — 21:00</span>
+      </div>
+      <div class="schedule-row">
+        <span class="day">Sábado</span>
+        <span class="time">10:00 — 21:00</span>
+      </div>
+      <div class="schedule-row" style="border-color:rgba(212,168,154,.35); background:rgba(212,168,154,.07);">
+        <span class="day">Domingo</span>
+        <span class="time">11:00 — 17:00</span>
+      </div>
+    </div>
+    <div class="schedule-cta">
+      <a class="btn btn-outline" href="http://wa.me/+34683114082" target="_blank" rel="noopener" style="color:var(--blush); border-color:rgba(212,168,154,.4);">Reservar por WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────────── -->
+<section class="contact">
+  <div class="section-inner">
+    <div class="contact-wrap">
+
+      <div class="reveal">
+        <p class="section-label">Contacto</p>
+        <h2 class="section-title">Ven a <em>visitarnos</em></h2>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Dirección</div>
+              <div class="ci-value">CC Ciudad de Tres Cantos, planta baja<br>28760, Tres Cantos, Madrid</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📞</div>
+            <div>
+              <div class="ci-label">Teléfono</div>
+              <div class="ci-value"><a href="tel:683114082">683 114 082</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">✉️</div>
+            <div>
+              <div class="ci-label">Correo electrónico</div>
+              <div class="ci-value"><a href="mailto:velihamstudio@gmail.com">velihamstudio@gmail.com</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-social">
+          <h4>Síguenos</h4>
+          <div class="social-links">
+            <a class="social-link" href="https://www.instagram.com/velihamnails/" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              @velihamnails
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-reserve reveal">
+        <h3>Reserva tu <em>cita</em></h3>
+        <p>Llámanos directamente o escríbenos por WhatsApp para reservar tu próxima sesión. Estamos encantadas de atenderte.</p>
+        <div class="reserve-btns">
+          <a class="btn btn-primary" href="tel:683114082" style="justify-content:center;">📞 Llamar — 683 114 082</a>
+          <a class="btn btn-outline" href="http://wa.me/+34683114082" target="_blank" rel="noopener" style="justify-content:center;">💬 Reservar por WhatsApp</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <p>© 2025 <strong>Veliham Nails</strong> · CC Ciudad de Tres Cantos, planta baja, Madrid · <a href="tel:683114082" style="color:var(--rose);">683 114 082</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
