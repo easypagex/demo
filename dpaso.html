@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D-Paso · Vending 24h · Tres Cantos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --neon-blue:    #00f0ff;
+      --neon-green:   #39ff14;
+      --neon-orange:  #ff6a00;
+      --bg-dark:      #060810;
+      --bg-card:      #0b0f1a;
+      --bg-card2:     #0d1420;
+      --text:         #e8eaf0;
+      --text-dim:     #8899aa;
+      --glow-blue:    0 0 8px #00f0ff, 0 0 24px #00f0ff55, 0 0 60px #00f0ff22;
+      --glow-green:   0 0 8px #39ff14, 0 0 24px #39ff1455, 0 0 60px #39ff1422;
+      --glow-orange:  0 0 8px #ff6a00, 0 0 24px #ff6a0055, 0 0 60px #ff6a0022;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GRID LINES ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,240,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,240,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      overflow: hidden;
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(57,255,20,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 80% 20%, rgba(0,240,255,0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,106,0,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge-24h {
+      display: inline-block;
+      background: var(--neon-orange);
+      color: #000;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 4px;
+      padding: 5px 18px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+      box-shadow: var(--glow-orange);
+      animation: pulse-orange 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-orange {
+      0%, 100% { box-shadow: var(--glow-orange); }
+      50% { box-shadow: 0 0 16px #ff6a00, 0 0 48px #ff6a0088, 0 0 100px #ff6a0033; }
+    }
+
+    .logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(7rem, 20vw, 14rem);
+      line-height: 0.9;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: var(--glow-blue);
+      animation: flicker 8s infinite;
+      position: relative;
+    }
+
+    .logo-text span { color: var(--neon-blue); }
+
+    @keyframes flicker {
+      0%, 94%, 96%, 98%, 100% { opacity: 1; }
+      95%, 97% { opacity: 0.85; }
+    }
+
+    .tagline {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      letter-spacing: 6px;
+      color: var(--neon-green);
+      text-shadow: var(--glow-green);
+      text-transform: uppercase;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+
+    .location-tag {
+      font-size: 1rem;
+      color: var(--text-dim);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+    .location-tag strong { color: var(--neon-orange); }
+
+    /* ── CTA BUTTONS ── */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover::before { opacity: 1; }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-call {
+      background: var(--neon-blue);
+      color: #000;
+      box-shadow: var(--glow-blue);
+    }
+    .btn-call::before { background: #00c8d4; }
+    .btn-call:hover { box-shadow: 0 0 20px #00f0ff, 0 0 60px #00f0ffaa; }
+
+    .btn-wa {
+      background: var(--neon-green);
+      color: #000;
+      box-shadow: var(--glow-green);
+    }
+    .btn-wa::before { background: #2ecc10; }
+    .btn-wa:hover { box-shadow: 0 0 20px #39ff14, 0 0 60px #39ff14aa; }
+
+    .btn-web {
+      background: transparent;
+      color: var(--neon-orange);
+      border: 2px solid var(--neon-orange);
+      box-shadow: var(--glow-orange);
+    }
+    .btn-web:hover {
+      background: var(--neon-orange);
+      color: #000;
+      box-shadow: 0 0 20px #ff6a00, 0 0 60px #ff6a00aa;
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-hint svg { width: 20px; height: 20px; fill: none; stroke: var(--neon-blue); stroke-width: 2; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 6px;
+      color: var(--neon-green);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-left: 2px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 2px;
+      margin-bottom: 32px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-green), var(--neon-orange), transparent);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 12px rgba(0,240,255,0.4);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .about-text {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #c4cfe0;
+    }
+
+    .about-text p + p { margin-top: 18px; }
+
+    .highlight-blue { color: var(--neon-blue); font-weight: 700; }
+    .highlight-green { color: var(--neon-green); font-weight: 700; }
+    .highlight-orange { color: var(--neon-orange); font-weight: 700; }
+
+    /* ── VENDING CARDS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .vcard {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,240,255,0.12);
+      border-radius: 4px;
+      padding: 28px 22px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vcard::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      transition: opacity 0.25s;
+    }
+
+    .vcard.blue::before  { background: var(--neon-blue);   box-shadow: var(--glow-blue); }
+    .vcard.green::before { background: var(--neon-green);  box-shadow: var(--glow-green); }
+    .vcard.orange::before{ background: var(--neon-orange); box-shadow: var(--glow-orange); }
+
+    .vcard:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,240,255,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .vcard-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .vcard h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .vcard.blue  h3 { color: var(--neon-blue); }
+    .vcard.green h3 { color: var(--neon-green); }
+    .vcard.orange h3 { color: var(--neon-orange); }
+
+    .vcard p {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* ── HORARIO BLOCK ── */
+    .horario-block {
+      background: var(--bg-card2);
+      border: 1px solid rgba(57,255,20,0.2);
+      border-radius: 4px;
+      padding: 48px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(57,255,20,0.06);
+    }
+
+    .big-hours {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 14vw, 9rem);
+      line-height: 1;
+      color: var(--neon-green);
+      text-shadow: var(--glow-green);
+      letter-spacing: 4px;
+      animation: pulse-green 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { text-shadow: var(--glow-green); }
+      50% { text-shadow: 0 0 20px #39ff14, 0 0 60px #39ff1499, 0 0 120px #39ff1444; }
+    }
+
+    .horario-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      letter-spacing: 6px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-top: 12px;
+      margin-bottom: 24px;
+    }
+
+    .pago-chips {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      padding: 8px 20px;
+      border-radius: 40px;
+      text-transform: uppercase;
+    }
+
+    .chip-blue   { border: 1px solid var(--neon-blue);   color: var(--neon-blue);   box-shadow: 0 0 6px rgba(0,240,255,0.3); }
+    .chip-orange { border: 1px solid var(--neon-orange); color: var(--neon-orange); box-shadow: 0 0 6px rgba(255,106,0,0.3); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .horario-block { padding: 32px 20px; }
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .ci-blue   { background: rgba(0,240,255,0.1);   border: 1px solid var(--neon-blue);   box-shadow: var(--glow-blue); }
+    .ci-green  { background: rgba(57,255,20,0.08);  border: 1px solid var(--neon-green);  box-shadow: var(--glow-green); }
+    .ci-orange { background: rgba(255,106,0,0.08);  border: 1px solid var(--neon-orange); box-shadow: var(--glow-orange); }
+
+    .contact-detail h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .contact-detail p, .contact-detail a {
+      font-size: 1.05rem;
+      color: var(--text);
+      text-decoration: none;
+      line-height: 1.5;
+      transition: color 0.2s;
+    }
+
+    .contact-detail a:hover { color: var(--neon-blue); }
+
+    .social-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 3px;
+      text-decoration: none;
+      border-radius: 2px;
+      border: 1px solid rgba(255,106,0,0.5);
+      color: var(--neon-orange);
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      background: var(--neon-orange);
+      color: #000;
+      box-shadow: var(--glow-orange);
+    }
+
+    /* ── CONTACT CTA column ── */
+    .cta-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cta-col .btn {
+      justify-content: center;
+      font-size: 1.15rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px 48px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      border-top: 1px solid rgba(0,240,255,0.08);
+    }
+
+    footer a {
+      color: var(--neon-blue);
+      text-decoration: none;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════  HERO  ══════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="badge-24h">● ABIERTO 24H · 365 DÍAS</div>
+    <div class="logo-text"><span>D-</span>PASO</div>
+    <p class="tagline">Máquinas de vending · Tres Cantos</p>
+    <p class="location-tag">Sector Pueblos 2 · <strong>Tres Cantos 28760</strong></p>
+    <div class="btn-group">
+      <a class="btn btn-call" href="tel:686913314">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.09 5.18 2 2 0 015.07 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Llamar ahora
+      </a>
+      <a class="btn btn-wa" href="http://wa.me/+34686913314" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a class="btn btn-web" href="https://d-paso.es" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        d-paso.es
+      </a>
+    </div>
+    <div class="scroll-hint">
+      <span>Descubrir</span>
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════  ABOUT  ══════════════════════ -->
+  <section class="fade-up">
+    <span class="section-label">// Quiénes somos</span>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">Tu tienda <span style="color:var(--neon-blue)">sin horarios</span></h2>
+        <div class="about-text">
+          <p>D-Paso es un local de <span class="highlight-blue">máquinas de vending abierto las 24 horas, los 365 días del año</span>, en pleno centro de Tres Cantos. Pensado para cubrir antojos y necesidades urgentes a cualquier hora del día o de la noche.</p>
+          <p>Un lugar cómodo donde simplemente comprar un café, un snack o una bebida, o para <span class="highlight-orange">evitar un viaje a la gasolinera en plena noche</span> ante cualquier urgencia.</p>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>En sus máquinas de vending autoservicio encontrarás desde bebidas y energéticas, snacks dulces y salados, patatas fritas, golosinas, chocolates y galletas hasta barritas energéticas.</p>
+        <p>También cuenta con una sección de <span class="highlight-green">higiene femenina</span> —tampones, compresas y toallitas— y otra para <span class="highlight-orange">urgencias más íntimas</span>: preservativos, lubricantes y pequeños juguetes sexuales.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════  PRODUCTOS  ══════════════════════ -->
+  <section class="fade-up">
+    <span class="section-label">// Lo que encontrarás</span>
+    <h2 class="section-title">Nuestras <span style="color:var(--neon-green)">máquinas</span></h2>
+    <div class="cards-grid">
+
+      <div class="vcard blue">
+        <span class="vcard-icon">☕</span>
+        <h3>Café &amp; Caliente</h3>
+        <p>Máquina de café y bebidas calientes para cualquier momento del día o la madrugada.</p>
+      </div>
+
+      <div class="vcard green">
+        <span class="vcard-icon">🥤</span>
+        <h3>Bebidas</h3>
+        <p>Bebidas frías, refrescos, agua y bebidas energéticas. Siempre a temperatura perfecta.</p>
+      </div>
+
+      <div class="vcard orange">
+        <span class="vcard-icon">🍫</span>
+        <h3>Snacks &amp; Dulces</h3>
+        <p>Patatas fritas, snacks salados, golosinas, chocolates, galletas y barritas energéticas.</p>
+      </div>
+
+      <div class="vcard blue">
+        <span class="vcard-icon">🌸</span>
+        <h3>Higiene Femenina</h3>
+        <p>Tampones, compresas y toallitas desechables. Siempre disponibles cuando más lo necesitas.</p>
+      </div>
+
+      <div class="vcard orange">
+        <span class="vcard-icon">💊</span>
+        <h3>Urgencias Íntimas</h3>
+        <p>Preservativos, lubricantes y pequeños juguetes sexuales para imprevistos de la vida.</p>
+      </div>
+
+      <div class="vcard green">
+        <span class="vcard-icon">🏙️</span>
+        <h3>Centro de Tres Cantos</h3>
+        <p>Ubicado en Sector Pueblos 2. Accesible en cualquier momento sin desplazarte lejos.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════  HORARIO  ══════════════════════ -->
+  <section class="fade-up">
+    <span class="section-label">// Horario</span>
+    <div class="horario-block">
+      <div class="big-hours">24 / 7</div>
+      <p class="horario-sub">365 días al año · Siempre abierto</p>
+      <p style="font-size:1.05rem; color:#c4cfe0; max-width:500px; margin:0 auto;">
+        No cerramos nunca. Da igual si es medianoche, un festivo o Nochebuena — D-Paso está ahí.
+      </p>
+      <div class="pago-chips">
+        <span class="chip chip-blue">💳 Pago con tarjeta</span>
+        <span class="chip chip-orange">💵 Pago con efectivo</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════  CONTACTO  ══════════════════════ -->
+  <section class="fade-up">
+    <span class="section-label">// Contacto</span>
+    <h2 class="section-title">Encuéntranos <span style="color:var(--neon-orange)">aquí</span></h2>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon ci-blue">📍</div>
+          <div class="contact-detail">
+            <h4>Dirección</h4>
+            <p>Sector Pueblos 2<br>Tres Cantos, 28760 — Madrid</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon ci-blue">📞</div>
+          <div class="contact-detail">
+            <h4>Teléfono</h4>
+            <a href="tel:686913314">686 913 314</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon ci-green">💬</div>
+          <div class="contact-detail">
+            <h4>WhatsApp</h4>
+            <a href="http://wa.me/+34686913314" target="_blank" rel="noopener">+34 686 913 314</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon ci-orange">🌐</div>
+          <div class="contact-detail">
+            <h4>Web oficial</h4>
+            <a href="https://d-paso.es" target="_blank" rel="noopener">d-paso.es</a>
+          </div>
+        </div>
+
+        <div class="social-row">
+          <a class="social-btn" href="https://www.instagram.com/dpaso.es/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @dpaso.es
+          </a>
+        </div>
+      </div>
+
+      <div class="cta-col">
+        <a class="btn btn-call" href="tel:686913314">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.09 5.18 2 2 0 015.07 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Llamar: 686 913 314
+        </a>
+        <a class="btn btn-wa" href="http://wa.me/+34686913314" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar WhatsApp
+        </a>
+        <a class="btn btn-web" href="https://d-paso.es" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          Visitar d-paso.es
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════  FOOTER  ══════════════════════ -->
+  <footer>
+    <p style="margin-bottom:8px; font-size:0.85rem; letter-spacing:6px; color:var(--neon-blue); font-family:'Bebas Neue',sans-serif;">D-PASO</p>
+    Máquinas de Vending 24h · Sector Pueblos 2 · Tres Cantos 28760 ·
+    <a href="https://d-paso.es" target="_blank">d-paso.es</a> ·
+    <a href="tel:686913314">686 913 314</a>
+  </footer>
+
+  <script>
+    // Fade-up on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
