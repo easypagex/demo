@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurante Eunoia · Tres Cantos, Madrid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:      #F5F0E8;
+      --warm-white: #FAF7F2;
+      --charcoal:   #2A2520;
+      --ember:      #C4622D;
+      --ember-dark: #9E4B1F;
+      --gold:       #B8936A;
+      --sage:       #7A8C72;
+      --stone:      #9E9488;
+      --divider:    rgba(184,147,106,0.30);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--charcoal);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 3rem 2rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 110%, rgba(196,98,45,0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 20%, rgba(184,147,106,0.08) 0%, transparent 60%);
+    }
+
+    /* decorative ember particles */
+    .sparks { position: absolute; inset: 0; pointer-events: none; }
+    .spark {
+      position: absolute;
+      width: 2px; height: 2px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      animation: float-spark var(--dur) ease-in infinite;
+      animation-delay: var(--delay);
+      left: var(--x);
+      bottom: 0;
+    }
+    @keyframes float-spark {
+      0%   { opacity: 0; transform: translateY(0) scale(1); }
+      20%  { opacity: 0.8; }
+      80%  { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-55vh) scale(0.3) translateX(calc(var(--drift) * 1px)); }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      position: relative;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(4rem, 12vw, 9rem);
+      line-height: 0.95;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+      position: relative;
+      animation: fadeUp 1s 0.15s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--ember);
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--stone);
+      margin-top: 1.2rem;
+      letter-spacing: 0.04em;
+      position: relative;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--ember);
+      margin: 2rem auto;
+      position: relative;
+      animation: scaleIn 0.8s 0.5s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { transform: scaleX(0); opacity: 0; }
+      to   { transform: scaleX(1); opacity: 1; }
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--ember);
+      color: var(--cream);
+      border-color: var(--ember);
+    }
+    .btn-primary:hover {
+      background: var(--ember-dark);
+      border-color: var(--ember-dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border-color: rgba(250,247,242,0.35);
+    }
+    .btn-outline:hover {
+      background: rgba(250,247,242,0.08);
+      border-color: var(--cream);
+    }
+
+    .btn-dark {
+      background: var(--charcoal);
+      color: var(--cream);
+      border-color: var(--charcoal);
+    }
+    .btn-dark:hover {
+      background: #1a1510;
+    }
+
+    .btn-ember-outline {
+      background: transparent;
+      color: var(--ember);
+      border-color: var(--ember);
+    }
+    .btn-ember-outline:hover {
+      background: var(--ember);
+      color: var(--cream);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(42,37,32,0.97);
+      backdrop-filter: blur(12px);
+      padding: 0.8rem 3rem;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta { display: flex; gap: 0.8rem; }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 2rem; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      color: var(--charcoal);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--ember);
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--cream);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #4a423a;
+      margin-top: 1.5rem;
+    }
+
+    .about-text p strong {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card {
+      background: var(--charcoal);
+      padding: 3rem;
+      color: var(--cream);
+      position: relative;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: -10px; right: -10px;
+      bottom: 10px; left: 10px;
+      border: 1px solid var(--divider);
+      pointer-events: none;
+    }
+
+    .about-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(184,147,106,0.15);
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: rgba(245,240,232,0.8);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .feature-list li::before {
+      content: '—';
+      color: var(--ember);
+      font-size: 0.7rem;
+    }
+
+    /* ── SPACES ── */
+    .spaces {
+      background: var(--warm-white);
+    }
+
+    .spaces-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .spaces-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .space-card {
+      background: var(--charcoal);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s ease;
+    }
+
+    .space-card:hover { transform: translateY(-4px); }
+
+    .space-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--ember);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .space-card:hover::after { transform: scaleX(1); }
+
+    .space-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .space-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+    }
+
+    .space-desc {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--stone);
+    }
+
+    /* ── MENU ── */
+    .menu-section {
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(196,98,45,0.12) 0%, transparent 70%);
+    }
+
+    .menu-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .menu-header .section-title {
+      color: var(--cream);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+
+    .menu-block {
+      border-top: 1px solid var(--divider);
+      padding-top: 2rem;
+    }
+
+    .menu-block-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .menu-block p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.7);
+    }
+
+    .menu-highlight {
+      background: rgba(196,98,45,0.12);
+      border: 1px solid rgba(196,98,45,0.3);
+      padding: 1.5rem 2rem;
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .menu-highlight-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--cream);
+    }
+
+    .menu-highlight-text span {
+      color: var(--ember);
+      font-weight: 600;
+    }
+
+    .menu-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── HOURS ── */
+    .hours {
+      background: var(--cream);
+    }
+
+    .hours-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .schedule {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .schedule li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--divider);
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    .schedule li .day {
+      letter-spacing: 0.05em;
+      color: var(--charcoal);
+    }
+
+    .schedule li .time {
+      color: var(--stone);
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+    }
+
+    .schedule li.closed .time {
+      color: var(--ember);
+      font-style: normal;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .events-card {
+      background: var(--charcoal);
+      padding: 3rem;
+      color: var(--cream);
+    }
+
+    .events-card .section-label { margin-bottom: 0.8rem; }
+
+    .events-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .events-card p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--stone);
+      margin-bottom: 2rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 50% at 80% 50%, rgba(196,98,45,0.08) 0%, transparent 60%);
+    }
+
+    .contact-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    .contact-title em { color: var(--ember); font-style: italic; }
+
+    .contact-info { list-style: none; }
+
+    .contact-info li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(184,147,106,0.15);
+    }
+
+    .contact-info-icon {
+      width: 36px; height: 36px;
+      background: rgba(196,98,45,0.15);
+      border: 1px solid rgba(196,98,45,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .contact-info-content { flex: 1; }
+
+    .contact-info-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--cream);
+    }
+
+    .contact-info-value a {
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-info-value a:hover { color: var(--gold); }
+
+    .contact-actions {
+      margin-top: 3rem;
+    }
+
+    .contact-actions-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.5rem;
+      background: rgba(245,240,232,0.04);
+      border: 1px solid rgba(184,147,106,0.2);
+      color: var(--cream);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+    }
+
+    .action-btn:hover {
+      background: rgba(196,98,45,0.12);
+      border-color: rgba(196,98,45,0.4);
+      color: var(--gold);
+    }
+
+    .action-btn-icon { font-size: 1.1rem; }
+    .action-btn-label { flex: 1; }
+    .action-btn-arrow { color: var(--stone); font-size: 0.7rem; }
+
+    /* ── INSTAGRAM ── */
+    .instagram-bar {
+      background: var(--ember);
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .instagram-bar span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,240,232,0.9);
+    }
+
+    .instagram-bar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1.8rem;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(245,240,232,0.3);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.3s;
+    }
+    .instagram-bar a:hover { background: rgba(0,0,0,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1510;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 2rem;
+    }
+
+    .footer-bottom {
+      font-size: 0.75rem;
+      color: rgba(158,148,136,0.5);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+
+      .about-inner,
+      .hours-inner,
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+      .spaces-grid { grid-template-columns: 1fr; }
+
+      .menu-grid { grid-template-columns: 1fr; }
+
+      section { padding: 5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Eunoia</a>
+    <ul class="nav-links">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#espacios">Espacios</a></li>
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#horarios">Horarios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:910663450" class="btn btn-outline" style="padding:0.55rem 1.4rem; font-size:0.68rem;">☎ 910 663 450</a>
+      <a href="https://widget.thefork.com/es/1182d83f-1855-4c07-ae1a-0e0bca10d7ca?step=date" target="_blank" class="btn btn-primary" style="padding:0.55rem 1.4rem; font-size:0.68rem;">Reservar</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="sparks" id="sparks"></div>
+
+    <div class="hero-eyebrow">Tres Cantos · Madrid · Cocina mediterránea</div>
+    <h1 class="hero-title">Eun<em>oia</em></h1>
+    <p class="hero-sub">Parrilla de carbón · Producto fresco y de temporada</p>
+    <div class="hero-divider"></div>
+    <div class="hero-ctas">
+      <a href="https://widget.thefork.com/es/1182d83f-1855-4c07-ae1a-0e0bca10d7ca?step=date" target="_blank" class="btn btn-primary">Reservar mesa</a>
+      <a href="tel:910663450" class="btn btn-outline">Llamar ahora</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="nosotros">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-text">
+          <div class="section-label">Quiénes somos</div>
+          <h2 class="section-title">Cocina <em>mediterránea</em> y de mercado</h2>
+          <p>Restaurante ubicado en el sector Embarcaciones de Tres Cantos, junto a las piscinas municipales, en el local del antiguo Rincón de Enrique.</p>
+          <p>La especialidad de la casa son las <strong>carnes, pescados y verduras a la parrilla de carbón</strong>, elaboradas con producto fresco y de temporada seleccionado con mimo.</p>
+          <p>Desde el desayuno hasta la cena, pasando por nuestro <strong>menú del día a 16€</strong>, cada servicio es una invitación a disfrutar de la cocina honesta y llena de sabor.</p>
+        </div>
+        <div class="about-visual">
+          <div class="about-card">
+            <div class="about-card-title">Especialidades de la casa</div>
+            <ul class="feature-list">
+              <li>Carnes a la parrilla de carbón</li>
+              <li>Pescados frescos a la brasa</li>
+              <li>Verduras de temporada a la parrilla</li>
+              <li>Cocina mediterránea y de mercado</li>
+              <li>Desayunos cada mañana</li>
+              <li>Menú del día por 16€</li>
+              <li>Eventos privados y grupos</li>
+              <li>Comidas y cenas de empresa</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPACES -->
+  <section class="spaces" id="espacios">
+    <div class="container">
+      <div class="spaces-header">
+        <div class="section-label">Nuestros espacios</div>
+        <h2 class="section-title">Tres ambientes, <em>una experiencia</em></h2>
+      </div>
+      <div class="spaces-grid">
+        <div class="space-card">
+          <span class="space-icon">🕯</span>
+          <div class="space-name">Salón Interior</div>
+          <p class="space-desc">Ambiente acogedor e íntimo para comidas y cenas tranquilas. El espacio perfecto para disfrutar de la gastronomía en compañía.</p>
+        </div>
+        <div class="space-card">
+          <span class="space-icon">🌿</span>
+          <div class="space-name">Pérgola Cubierta</div>
+          <p class="space-desc">Salón exterior con pérgola cubierta que combina lo mejor del interior y el exterior. Disfruta del aire libre con protección en cualquier época del año.</p>
+        </div>
+        <div class="space-card">
+          <span class="space-icon">☀️</span>
+          <div class="space-name">Terraza Ajardinada</div>
+          <p class="space-desc">Amplia terraza con jardín y puesto de bebidas independiente. El rincón ideal para tomar algo, comer o cenar al aire libre durante los meses de buen tiempo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-section" id="carta">
+    <div class="container menu-inner">
+      <div class="menu-header">
+        <div class="section-label">Nuestra oferta</div>
+        <h2 class="section-title">La carta</h2>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-block">
+          <div class="menu-block-title">Por las mañanas</div>
+          <p>Comenzamos el día con nuestros desayunos, disponibles desde primera hora para los madrugadores y para quienes buscan el mejor comienzo del día en Tres Cantos.</p>
+        </div>
+        <div class="menu-block">
+          <div class="menu-block-title">Parrilla de carbón</div>
+          <p>Carnes, pescados y verduras seleccionadas con el mejor producto fresco de temporada, cocinadas lentamente sobre las brasas de carbón para conseguir ese sabor único e inconfundible.</p>
+        </div>
+        <div class="menu-block">
+          <div class="menu-block-title">Cocina mediterránea</div>
+          <p>Una carta completa basada en los principios de la cocina mediterránea: ingredientes frescos, técnica depurada y respeto por el producto de cada temporada.</p>
+        </div>
+        <div class="menu-block">
+          <div class="menu-block-title">Eventos y grupos</div>
+          <p>Gracias a la capacidad y versatilidad del local, somos la opción ideal para celebrar eventos privados, comidas y cenas de empresa o reuniones con grupos amplios.</p>
+        </div>
+      </div>
+
+      <div class="menu-highlight">
+        <div class="menu-highlight-text">Menú del día <span>16€</span> · De martes a domingo al mediodía</div>
+        <a href="https://quecomere.com/restaurant/eunoia" target="_blank" class="btn btn-primary">Ver menú del día</a>
+      </div>
+
+      <div class="menu-ctas">
+        <a href="https://widget.thefork.com/es/1182d83f-1855-4c07-ae1a-0e0bca10d7ca?step=date" target="_blank" class="btn btn-primary">Reservar mesa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS -->
+  <section class="hours" id="horarios">
+    <div class="container">
+      <div class="hours-inner">
+        <div>
+          <div class="section-label">Cuando estamos</div>
+          <h2 class="section-title">Horario<br><em>de apertura</em></h2>
+          <ul class="schedule">
+            <li class="closed">
+              <span class="day">Lunes</span>
+              <span class="time">Cerrado</span>
+            </li>
+            <li>
+              <span class="day">Martes – Jueves</span>
+              <span class="time">9:30 – 20:00</span>
+            </li>
+            <li>
+              <span class="day">Viernes</span>
+              <span class="time">9:30 – 02:00</span>
+            </li>
+            <li>
+              <span class="day">Sábado</span>
+              <span class="time">12:00 – 02:00</span>
+            </li>
+            <li>
+              <span class="day">Domingo</span>
+              <span class="time">12:00 – 18:00</span>
+            </li>
+          </ul>
+        </div>
+        <div class="events-card">
+          <div class="section-label">Para ocasiones especiales</div>
+          <div class="events-card-title">Celebra con nosotros</div>
+          <p>Gracias a la versatilidad de nuestros tres espacios, Eunoia es el lugar perfecto para celebrar eventos privados, comidas y cenas de empresa, o cualquier reunión con grupos amplios.</p>
+          <p>Contacta con nosotros para diseñar juntos el menú y la disposición ideal para tu evento.</p>
+          <a href="tel:910663450" class="btn btn-primary">Consultar disponibilidad</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="contact-inner">
+        <div>
+          <h2 class="contact-title">Ven a <em>visitarnos</em></h2>
+          <ul class="contact-info">
+            <li>
+              <div class="contact-info-icon">📍</div>
+              <div class="contact-info-content">
+                <div class="contact-info-label">Dirección</div>
+                <div class="contact-info-value">Sector Embarcaciones, 35<br>28760 Tres Cantos, Madrid</div>
+              </div>
+            </li>
+            <li>
+              <div class="contact-info-icon">📞</div>
+              <div class="contact-info-content">
+                <div class="contact-info-label">Teléfono</div>
+                <div class="contact-info-value"><a href="tel:910663450">910 66 34 50</a></div>
+              </div>
+            </li>
+            <li>
+              <div class="contact-info-icon">✉</div>
+              <div class="contact-info-content">
+                <div class="contact-info-label">Correo electrónico</div>
+                <div class="contact-info-value"><a href="mailto:info@eunoiamadrid.com">info@eunoiamadrid.com</a></div>
+              </div>
+            </li>
+            <li>
+              <div class="contact-info-icon">🌐</div>
+              <div class="contact-info-content">
+                <div class="contact-info-label">Web oficial</div>
+                <div class="contact-info-value"><a href="https://eunoiamadrid.com" target="_blank">eunoiamadrid.com</a></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="contact-actions">
+          <div class="contact-actions-title">¿Listo para reservar?</div>
+          <div class="action-buttons">
+            <a href="https://widget.thefork.com/es/1182d83f-1855-4c07-ae1a-0e0bca10d7ca?step=date" target="_blank" class="action-btn">
+              <span class="action-btn-icon">🍽</span>
+              <span class="action-btn-label">Reservar mesa en The Fork</span>
+              <span class="action-btn-arrow">→</span>
+            </a>
+            <a href="tel:910663450" class="action-btn">
+              <span class="action-btn-icon">📞</span>
+              <span class="action-btn-label">Llamar al 910 66 34 50</span>
+              <span class="action-btn-arrow">→</span>
+            </a>
+            <a href="https://quecomere.com/restaurant/eunoia" target="_blank" class="action-btn">
+              <span class="action-btn-icon">🥗</span>
+              <span class="action-btn-label">Consultar menú del día</span>
+              <span class="action-btn-arrow">→</span>
+            </a>
+            <a href="mailto:info@eunoiamadrid.com" class="action-btn">
+              <span class="action-btn-icon">✉</span>
+              <span class="action-btn-label">Escribir un correo</span>
+              <span class="action-btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <div class="instagram-bar">
+    <span>Síguenos en Instagram</span>
+    <a href="https://www.instagram.com/eunoiamadrid_/" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @eunoiamadrid_
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Eunoia</div>
+    <div class="footer-tagline">Cocina mediterránea · Parrilla de carbón · Tres Cantos</div>
+    <div class="footer-bottom">Sector Embarcaciones, 35 · 28760 Tres Cantos, Madrid · <a href="tel:910663450" style="color:inherit;">910 66 34 50</a></div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Ember sparks
+    const sparksEl = document.getElementById('sparks');
+    for (let i = 0; i < 22; i++) {
+      const s = document.createElement('div');
+      s.className = 'spark';
+      s.style.setProperty('--x', Math.random() * 100 + '%');
+      s.style.setProperty('--dur', (4 + Math.random() * 6) + 's');
+      s.style.setProperty('--delay', (Math.random() * 8) + 's');
+      s.style.setProperty('--drift', (Math.random() * 80 - 40));
+      sparksEl.appendChild(s);
+    }
+  </script>
+</body>
+</html>
