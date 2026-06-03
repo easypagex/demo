@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Rural Melones — Patones, Sierra de Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFD23F;
+    --tomato: #EF4444;
+    --forest: #16A34A;
+    --sky: #0EA5E9;
+    --earth: #92400E;
+    --lavender: #7C3AED;
+    --coral: #F97316;
+    --pink: #EC4899;
+    --cream: #FFFBEB;
+    --dark: #1C1917;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FFD23F 0%, #F97316 35%, #EF4444 65%, #7C3AED 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-badge {
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.05;
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    margin-bottom: 1rem;
+    animation: fadeDown 0.8s 0.1s ease both;
+  }
+
+  .hero h1 span { color: var(--sun); }
+
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    color: rgba(255,255,255,0.92);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    animation: fadeDown 0.8s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeDown 0.8s 0.3s ease both;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800; font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer; border: none;
+  }
+
+  .btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+
+  .btn-primary { background: white; color: var(--tomato); }
+  .btn-secondary { background: rgba(255,255,255,0.2); color: white; border: 2px solid white; backdrop-filter: blur(4px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem;
+    color: white; font-size: 0.85rem; font-weight: 600;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    animation: bounce 2s infinite;
+  }
+
+  /* ── FACTS STRIP ── */
+  .facts-strip {
+    background: var(--dark);
+    padding: 1.5rem 2rem;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem;
+  }
+
+  .fact-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    color: white; font-size: 0.95rem; font-weight: 600;
+  }
+
+  .fact-item .icon { font-size: 1.4rem; }
+  .fact-item strong { color: var(--sun); }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-block;
+    font-weight: 800; font-size: 0.8rem; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.3rem 1rem;
+    border-radius: 999px; margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  /* ── SECRETOS ── */
+  .secretos { background: #FFF7ED; }
+
+  .secretos .section-tag { background: var(--coral); color: white; }
+
+  .secrets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .secret-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    border-top: 6px solid var(--sun);
+    box-shadow: 6px 6px 0 var(--coral);
+    transition: transform 0.2s;
+  }
+
+  .secret-card:nth-child(2) { border-top-color: var(--forest); box-shadow-color: var(--forest); box-shadow: 6px 6px 0 var(--forest); }
+  .secret-card:nth-child(3) { border-top-color: var(--sky); box-shadow: 6px 6px 0 var(--sky); }
+  .secret-card:nth-child(4) { border-top-color: var(--lavender); box-shadow: 6px 6px 0 var(--lavender); }
+  .secret-card:nth-child(5) { border-top-color: var(--pink); box-shadow: 6px 6px 0 var(--pink); }
+  .secret-card:nth-child(6) { border-top-color: var(--earth); box-shadow: 6px 6px 0 var(--earth); }
+
+  .secret-card:hover { transform: translateY(-5px) rotate(-1deg); }
+
+  .secret-card .emoji { font-size: 2.5rem; margin-bottom: 0.8rem; }
+  .secret-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .secret-card p { font-size: 0.95rem; line-height: 1.6; color: #57534e; }
+
+  /* ── HABITACIONES ── */
+  .habitaciones { background: linear-gradient(160deg, #0EA5E9 0%, #7C3AED 100%); }
+
+  .habitaciones h2 { color: white; }
+  .habitaciones .section-tag { background: rgba(255,255,255,0.25); color: white; }
+  .habitaciones .lead { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem; }
+
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .room-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 1.8rem;
+    color: white;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .room-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.25); }
+
+  .room-card .room-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .room-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .room-card p { font-size: 0.9rem; opacity: 0.85; line-height: 1.6; }
+  .room-card .room-tag {
+    display: inline-block; margin-top: 0.75rem;
+    background: rgba(255,255,255,0.25); font-size: 0.78rem; font-weight: 700;
+    padding: 0.25rem 0.75rem; border-radius: 999px;
+  }
+
+  /* ── ACTIVIDADES ── */
+  .actividades { background: #F0FDF4; }
+  .actividades .section-tag { background: var(--forest); color: white; }
+
+  .act-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem; margin-top: 3rem;
+  }
+
+  .act-item {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 3px solid transparent;
+    transition: all 0.2s;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+  }
+
+  .act-item:hover { border-color: var(--forest); transform: scale(1.04); }
+  .act-item .act-emoji { font-size: 2.8rem; margin-bottom: 0.6rem; }
+  .act-item h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.3rem; }
+  .act-item p { font-size: 0.85rem; color: #6b7280; }
+
+  /* ── PATONES CURIOSIDADES ── */
+  .pueblo { background: linear-gradient(135deg, #FFD23F 0%, #F97316 100%); }
+  .pueblo h2 { color: var(--dark); }
+  .pueblo .section-tag { background: var(--dark); color: var(--sun); }
+
+  .curiosidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .curio {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+  }
+
+  .curio:hover { transform: rotate(1deg) translateY(-3px); }
+  .curio .num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--coral); line-height: 1; flex-shrink: 0; }
+  .curio h3 { font-weight: 800; margin-bottom: 0.4rem; }
+  .curio p { font-size: 0.9rem; color: #57534e; line-height: 1.6; }
+
+  /* ── CTA RESERVA ── */
+  .cta-section {
+    background: var(--dark);
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+
+  .cta-section h2 { font-family: 'Playfair Display', serif; color: white; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.75rem; }
+  .cta-section p { color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: 2.5rem; }
+
+  .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+  .btn-reserva { background: var(--sun); color: var(--dark); }
+  .btn-whatsapp { background: #25D366; color: white; }
+  .btn-llamar { background: var(--sky); color: white; }
+  .btn-email { background: var(--lavender); color: white; }
+
+  /* ── CONTACTO ── */
+  .contacto { background: #FDF2F8; }
+  .contacto .section-tag { background: var(--pink); color: white; }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .contact-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
+  }
+
+  .contact-card:hover { transform: translateY(-4px); }
+  .contact-card .cc-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .contact-card h3 { font-weight: 800; margin-bottom: 0.4rem; }
+  .contact-card a {
+    display: block; margin-top: 0.75rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+
+  .contact-card a:hover { opacity: 0.85; }
+  .cc-web a { background: var(--tomato); color: white; }
+  .cc-wa a { background: #25D366; color: white; }
+  .cc-tel a { background: var(--sky); color: white; }
+  .cc-mail a { background: var(--lavender); color: white; }
+  .cc-maps a { background: var(--coral); color: white; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0c0a09;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+  }
+
+  footer a { color: var(--sun); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(8px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero-btns { flex-direction: column; align-items: center; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .facts-strip { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <span class="hero-badge">🌿 Sierra de Madrid · Patones</span>
+  <h1>Casa Rural<br><span>Melones</span></h1>
+  <p>Un rincón secreto a 55 km de Madrid donde el tiempo se detiene. Patones de Arriba, el pueblo medieval que sobrevivió a los Borbones.</p>
+  <div class="hero-btns">
+    <a href="https://casaruralmelones.com/habitaciones/?reservas" target="_blank" class="btn btn-primary">🛏 Ver habitaciones y reservar</a>
+    <a href="https://wa.me/34659545084" target="_blank" class="btn btn-secondary">💬 WhatsApp directo</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Descubre más</span>
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- ══ FACTS STRIP ══ -->
+<div class="facts-strip">
+  <div class="fact-item"><span class="icon">📍</span><span>Solo <strong>55 km</strong> de Madrid</span></div>
+  <div class="fact-item"><span class="icon">🏡</span><span><strong>6 habitaciones</strong> únicas</span></div>
+  <div class="fact-item"><span class="icon">🌵</span><span>Invernadero de <strong>cactus</strong></span></div>
+  <div class="fact-item"><span class="icon">🏺</span><span>Taller de <strong>cerámica</strong> propio</span></div>
+  <div class="fact-item"><span class="icon">📞</span><span><strong>+34 659 54 50 84</strong></span></div>
+</div>
+
+<!-- ══ SECRETOS ══ -->
+<section class="secretos">
+  <div class="container">
+    <span class="section-tag">Lo que no sabías</span>
+    <h2>6 datos que hacen especial<br>a Casa Rural Melones</h2>
+    <div class="secrets-grid">
+      <div class="secret-card">
+        <div class="emoji">🏰</div>
+        <h3>El pueblo que ignoró a los Borbones</h3>
+        <p>Patones de Arriba fue el único municipio español que mantuvo su independencia durante la reconquista borbónica del siglo XVIII. Un "reino" de 500 vecinos con sus propias leyes.</p>
+      </div>
+      <div class="secret-card">
+        <div class="emoji">🌿</div>
+        <h3>Alojamiento ecológico de verdad</h3>
+        <p>La casa sigue criterios de construcción ecológica y slow life. No es marketing: desde los desayunos con productos locales hasta los materiales de las habitaciones.</p>
+      </div>
+      <div class="secret-card">
+        <div class="emoji">🌵</div>
+        <h3>Invernadero de cactus rarísimos</h3>
+        <p>Alberga una colección única de Chamaecereus, Asclepiadáceas y suculentas. Puedes visitar el invernadero y llevarte plantas a casa.</p>
+      </div>
+      <div class="secret-card">
+        <div class="emoji">🏺</div>
+        <h3>Taller de cerámica activo</h3>
+        <p>Taller propio en la finca. Puedes reservar una sesión y crear tu propia pieza. Una experiencia sensorial que conecta con lo artesanal.</p>
+      </div>
+      <div class="secret-card">
+        <div class="emoji">💧</div>
+        <h3>Canal histórico del siglo XVIII</h3>
+        <p>El Canal de Cabarrús, a pocos minutos, es una obra de ingeniería del 1785 prácticamente desconocida por el turismo de masas. Tu vecino secreto.</p>
+      </div>
+      <div class="secret-card">
+        <div class="emoji">🎬</div>
+        <h3>Escenario de cine y eventos</h3>
+        <p>La finca se alquila para rodajes, sesiones de fotos y reuniones de empresa. Sus piedras de pizarra y luz natural son difíciles de igualar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HABITACIONES ══ -->
+<section class="habitaciones">
+  <div class="container">
+    <span class="section-tag">Dónde dormir</span>
+    <h2>6 habitaciones,<br>cada una un mundo</h2>
+    <p class="lead">Ninguna habitación es igual. Cada una tiene nombre, alma y carácter propio.</p>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-icon">♿</div>
+        <h3>El Pesebre</h3>
+        <p>Habitación adaptada, accesible y cómoda. Pensada para que todos puedan disfrutar del entorno rural.</p>
+        <span class="room-tag">Accesible</span>
+      </div>
+      <div class="room-card">
+        <div class="room-icon">🌱</div>
+        <h3>El Desván</h3>
+        <p>La más ecológica. Materiales naturales, luz suave y sensación de refugio bajo los tejados.</p>
+        <span class="room-tag">Ecológica</span>
+      </div>
+      <div class="room-card">
+        <div class="room-icon">🏘</div>
+        <h3>La Troje</h3>
+        <p>La esencia de Patones. Ambiente auténtico con las piedras originales de la Sierra Norte.</p>
+        <span class="room-tag">Auténtica</span>
+      </div>
+      <div class="room-card">
+        <div class="room-icon">👨‍👩‍👧</div>
+        <h3>La Cámara</h3>
+        <p>Familiar y espaciosa. Perfecta para venir con niños y disfrutar del corral y el jardín.</p>
+        <span class="room-tag">Familiar</span>
+      </div>
+      <div class="room-card">
+        <div class="room-icon">🐄</div>
+        <h3>El Pajar</h3>
+        <p>Pensada para el descanso profundo. El concepto slow life llevado al dormitorio.</p>
+        <span class="room-tag">Slow Life</span>
+      </div>
+      <div class="room-card">
+        <div class="room-icon">👑</div>
+        <h3>Suite Alcobas</h3>
+        <p>La más especial. Suite con alcobas diferenciadas, ideal para parejas o una escapada con todo.</p>
+        <span class="room-tag">Premium</span>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="https://casaruralmelones.com/habitaciones/?reservas" target="_blank" class="btn btn-primary" style="color:var(--lavender);">🛏 Ver disponibilidad y precios</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACTIVIDADES ══ -->
+<section class="actividades">
+  <div class="container">
+    <span class="section-tag">Qué hacer</span>
+    <h2>Actividades que no<br>encontrarás en otro sitio</h2>
+    <div class="act-grid">
+      <div class="act-item">
+        <div class="act-emoji">🏺</div>
+        <h3>Taller de Cerámica</h3>
+        <p>Crea tu propia pieza de barro</p>
+      </div>
+      <div class="act-item">
+        <div class="act-emoji">🌵</div>
+        <h3>Visita al Invernadero</h3>
+        <p>Cactus y suculentas únicos</p>
+      </div>
+      <div class="act-item">
+        <div class="act-emoji">🐓</div>
+        <h3>Corral y Jardín</h3>
+        <p>Vida rural auténtica</p>
+      </div>
+      <div class="act-item">
+        <div class="act-emoji">🥐</div>
+        <h3>Desayuno Rural</h3>
+        <p>Productos locales y caseros</p>
+      </div>
+      <div class="act-item">
+        <div class="act-emoji">🚶</div>
+        <h3>Rutas por Patones</h3>
+        <p>Ponton de la Oliva, Dehesa...</p>
+      </div>
+      <div class="act-item">
+        <div class="act-emoji">💼</div>
+        <h3>Reuniones de Empresa</h3>
+        <p>Espacio rural para equipos</p>
+      </div>
+      <div class="act-item">
+        <div class="act-emoji">🎬</div>
+        <h3>Localizaciones</h3>
+        <p>Rodajes y sesiones de foto</p>
+      </div>
+      <div class="act-item">
+        <div class="act-emoji">🌿</div>
+        <h3>Experiencias Rurales</h3>
+        <p>Vivencias únicas en la Sierra</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CURIOSIDADES PATONES ══ -->
+<section class="pueblo">
+  <div class="container">
+    <span class="section-tag">El pueblo</span>
+    <h2>Patones de Arriba:<br>el secreto mejor guardado de Madrid</h2>
+    <div class="curiosidades">
+      <div class="curio">
+        <span class="num">01</span>
+        <div>
+          <h3>Sin carretera hasta 1967</h3>
+          <p>Patones de Arriba fue accesible solo por camino de herradura hasta bien entrado el siglo XX. Eso lo preservó intacto durante siglos.</p>
+        </div>
+      </div>
+      <div class="curio">
+        <span class="num">02</span>
+        <div>
+          <h3>Construido en pizarra negra</h3>
+          <p>Toda la arquitectura del pueblo es de pizarra local. En días de lluvia la piedra brilla como un espejo. Único en la Sierra de Madrid.</p>
+        </div>
+      </div>
+      <div class="curio">
+        <span class="num">03</span>
+        <div>
+          <h3>El Pontón de la Oliva</h3>
+          <p>A 10 minutos hay una presa romana del siglo I y restos de un acueducto que abastecía Madrid. Casi nadie lo conoce.</p>
+        </div>
+      </div>
+      <div class="curio">
+        <span class="num">04</span>
+        <div>
+          <h3>Solo 55 km de Madrid capital</h3>
+          <p>En menos de una hora sales del ruido urbano para llegar a un lugar donde el cielo nocturno muestra la Vía Láctea a simple vista.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA RESERVA ══ -->
+<section class="cta-section">
+  <div class="container">
+    <h2>¿A qué esperas?</h2>
+    <p>Las habitaciones se agotan los fines de semana. Reserva ahora y escapa este fin de semana.</p>
+    <div class="cta-buttons">
+      <a href="https://casaruralmelones.com/habitaciones/?reservas" target="_blank" class="btn btn-reserva">🛏 Reservar habitación</a>
+      <a href="https://wa.me/34659545084?text=Hola!%20Me%20interesa%20reservar%20en%20Casa%20Rural%20Melones" target="_blank" class="btn btn-whatsapp">💬 WhatsApp</a>
+      <a href="tel:+34659545084" class="btn btn-llamar">📞 Llamar ahora</a>
+      <a href="mailto:info@casaruralmelones.com" class="btn btn-email">✉️ Email</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACTO ══ -->
+<section class="contacto">
+  <div class="container">
+    <span class="section-tag">Contacto</span>
+    <h2>Estamos en Patones,<br>Madrid — y muy cerca de ti</h2>
+    <p style="color:#6b7280; margin-top:0.5rem;">Av. de Madrid, 109 · 28189 Patones, Madrid</p>
+    <div class="contact-cards">
+      <div class="contact-card cc-web">
+        <div class="cc-icon">🌐</div>
+        <h3>Web oficial</h3>
+        <p style="font-size:0.85rem;color:#6b7280;">Galería, precios y más info</p>
+        <a href="https://casaruralmelones.com" target="_blank">casaruralmelones.com</a>
+      </div>
+      <div class="contact-card cc-wa">
+        <div class="cc-icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p style="font-size:0.85rem;color:#6b7280;">Respuesta rápida garantizada</p>
+        <a href="https://wa.me/34659545084?text=Hola!%20Me%20interesa%20reservar" target="_blank">+34 659 54 50 84</a>
+      </div>
+      <div class="contact-card cc-tel">
+        <div class="cc-icon">📞</div>
+        <h3>Teléfono</h3>
+        <p style="font-size:0.85rem;color:#6b7280;">Habla directamente con nosotros</p>
+        <a href="tel:+34659545084">+34 659 54 50 84</a>
+      </div>
+      <div class="contact-card cc-mail">
+        <div class="cc-icon">✉️</div>
+        <h3>Email</h3>
+        <p style="font-size:0.85rem;color:#6b7280;">Consultas y grupos</p>
+        <a href="mailto:info@casaruralmelones.com">info@casaruralmelones.com</a>
+      </div>
+      <div class="contact-card cc-maps">
+        <div class="cc-icon">📍</div>
+        <h3>Cómo llegar</h3>
+        <p style="font-size:0.85rem;color:#6b7280;">55 km desde Madrid capital</p>
+        <a href="https://maps.google.com/?q=40.856096,-3.484012" target="_blank">Ver en Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p>🌿 <strong style="color:white;">Casa Rural Melones</strong> · Patones, Madrid · <a href="https://casaruralmelones.com" target="_blank">casaruralmelones.com</a></p>
+  <p style="margin-top:0.4rem;">Página creada para facilitar reservas · Todos los datos oficiales en la web original</p>
+</footer>
+
+</body>
+</html>
