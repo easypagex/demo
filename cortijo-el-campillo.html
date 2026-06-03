@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cortijo El Campillo · Casa Rural Ecológica · Cabo de Gata</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sol: #F5A623;
+    --tierra: #C0392B;
+    --mar: #1A7AB3;
+    --pino: #2E7D32;
+    --arena: #F4E4C1;
+    --cielo: #87CEEB;
+    --lila: #7B3FA0;
+    --blanco: #FFFDF7;
+    --oscuro: #1A1008;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanco);
+    color: var(--oscuro);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(245,166,35,0.55) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(26,122,179,0.45) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 90%, rgba(192,57,43,0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 10% 90%, rgba(46,125,50,0.35) 0%, transparent 45%),
+      linear-gradient(135deg, #2C1810 0%, #5C3317 40%, #8B4513 70%, #C0392B 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-badge {
+    background: var(--pino);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: var(--blanco);
+    line-height: 1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    animation: fadeDown 0.9s ease 0.1s both;
+  }
+
+  .hero h1 span { color: var(--sol); font-style: italic; }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    color: rgba(255,255,255,0.85);
+    max-width: 620px;
+    margin: 1.5rem auto 2.5rem;
+    line-height: 1.6;
+    font-weight: 300;
+    animation: fadeDown 1s ease 0.2s both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeDown 1s ease 0.3s both;
+  }
+
+  .btn-reserva {
+    background: var(--sol);
+    color: var(--oscuro);
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 1rem 2.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(245,166,35,0.5);
+  }
+
+  .btn-reserva:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(245,166,35,0.6); }
+
+  .btn-wa {
+    background: #25D366;
+    color: white;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 1rem 2.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .btn-wa:hover { transform: translateY(-3px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  /* ── STATS BAND ── */
+  .stats-band {
+    background: var(--oscuro);
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+  }
+
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: rgba(255,255,255,0.04); }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* ── SECTION GENERIC ── */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── DATOS SORPRENDENTES ── */
+  .facts { background: linear-gradient(135deg, #FF6B35 0%, #F7C59F 30%, #EFEFD0 60%, #004E89 100%); }
+
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .fact-card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    border-top: 5px solid;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .fact-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+  .fact-card:nth-child(1) { border-color: var(--tierra); }
+  .fact-card:nth-child(2) { border-color: var(--mar); }
+  .fact-card:nth-child(3) { border-color: var(--pino); }
+  .fact-card:nth-child(4) { border-color: var(--sol); }
+  .fact-card:nth-child(5) { border-color: var(--lila); }
+  .fact-card:nth-child(6) { border-color: #E91E63; }
+
+  .fact-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .fact-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .fact-card p { font-size: 0.9rem; line-height: 1.6; color: #444; }
+
+  /* ── HABITACIONES ── */
+  .rooms-section { background: var(--blanco); }
+
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .room-card {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+
+  .room-card:hover { transform: scale(1.03); }
+
+  .room-bg {
+    width: 100%; height: 100%;
+    display: flex; align-items: flex-end;
+    padding: 1.5rem 1rem;
+    position: relative;
+  }
+
+  .room-card:nth-child(1) .room-bg { background: linear-gradient(180deg, #F5A623 0%, #E67E22 40%, #7D3C00 100%); }
+  .room-card:nth-child(2) .room-bg { background: linear-gradient(180deg, #3498DB 0%, #1A5276 100%); }
+  .room-card:nth-child(3) .room-bg { background: linear-gradient(180deg, #D4A574 0%, #8B6347 100%); }
+  .room-card:nth-child(4) .room-bg { background: linear-gradient(180deg, #27AE60 0%, #1E5631 100%); }
+  .room-card:nth-child(5) .room-bg { background: linear-gradient(180deg, #E74C3C 0%, #7B241C 100%); }
+  .room-card:nth-child(6) .room-bg { background: linear-gradient(180deg, #8E44AD 0%, #4A235A 100%); }
+
+  .room-name {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+
+  .room-emoji { font-size: 3rem; position: absolute; top: 1.2rem; right: 1.2rem; }
+
+  /* ── ECO SECTION ── */
+  .eco-section {
+    background: linear-gradient(160deg, #0B3D0B 0%, #1B5E20 35%, #2E7D32 60%, #1A5276 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .eco-section::after {
+    content: '🌿';
+    position: absolute; right: -2rem; top: 50%;
+    transform: translateY(-50%) rotate(-15deg);
+    font-size: 20rem;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .eco-pills {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .eco-pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    backdrop-filter: blur(6px);
+    transition: background 0.25s;
+  }
+
+  .eco-pill:hover { background: rgba(255,255,255,0.22); }
+
+  .eco-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: #A5D6A7;
+    margin: 2rem 0;
+    font-style: italic;
+    line-height: 1.3;
+  }
+
+  /* ── ACTIVIDADES ── */
+  .actividades { background: linear-gradient(135deg, #FFF9C4 0%, #FFE082 50%, #FFCC02 100%); }
+
+  .act-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .act-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .act-card:hover { transform: translateY(-5px); box-shadow: 0 10px 35px rgba(0,0,0,0.13); }
+  .act-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+  .act-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .act-card p { font-size: 0.85rem; color: #555; line-height: 1.5; }
+
+  /* ── GRUPOS ── */
+  .grupos-section {
+    background: linear-gradient(135deg, #E91E63 0%, #9C27B0 50%, #3F51B5 100%);
+    color: white;
+  }
+
+  .grupos-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .grupo-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(8px);
+    transition: background 0.25s;
+  }
+
+  .grupo-card:hover { background: rgba(255,255,255,0.18); }
+  .grupo-card h3 { font-size: 1.1rem; margin: 0.75rem 0 0.5rem; font-weight: 600; }
+  .grupo-card p { font-size: 0.87rem; opacity: 0.85; line-height: 1.5; }
+  .grupo-icon { font-size: 2.5rem; }
+
+  /* ── TESTIMONIOS ── */
+  .testimonios {
+    background: linear-gradient(135deg, #FCE4EC 0%, #F3E5F5 50%, #E8EAF6 100%);
+  }
+
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .test-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    position: relative;
+  }
+
+  .test-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--sol);
+    position: absolute;
+    top: -1rem; left: 1rem;
+    line-height: 1;
+    opacity: 0.3;
+  }
+
+  .test-card p { font-size: 0.92rem; line-height: 1.7; color: #444; font-style: italic; }
+  .test-author { margin-top: 1rem; font-weight: 600; font-size: 0.85rem; color: var(--tierra); }
+
+  /* ── CONTACTO / RESERVA ── */
+  .cta-section {
+    background: var(--oscuro);
+    text-align: center;
+    color: white;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(245,166,35,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(192,57,43,0.2) 0%, transparent 60%);
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .cta-section p { color: rgba(255,255,255,0.65); max-width: 500px; margin: 0 auto 3rem; font-size: 1.05rem; position: relative; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .contact-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: white;
+    transition: background 0.25s, transform 0.25s;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  }
+
+  .contact-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-3px); }
+  .contact-card.highlight { background: var(--sol); color: var(--oscuro); border-color: var(--sol); }
+  .contact-card.highlight:hover { background: #e6951e; }
+  .contact-card.wa { background: #25D366; border-color: #25D366; }
+  .contact-card.wa:hover { background: #1ba84e; }
+  .cc-icon { font-size: 2rem; }
+  .cc-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+  .cc-value { font-size: 1rem; font-weight: 600; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0D0A06;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.82rem;
+  }
+
+  footer a { color: var(--sol); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+
+  /* ── STICKY WA ── */
+  .sticky-wa {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: #25D366;
+    color: white;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.7rem;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.5);
+    text-decoration: none;
+    z-index: 1000;
+    transition: transform 0.25s, box-shadow 0.25s;
+    animation: pulse-wa 2s infinite;
+  }
+
+  .sticky-wa:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37,211,102,0.7); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 6px 30px rgba(37,211,102,0.8); }
+  }
+
+  /* ── RIBBON ── */
+  .ribbon {
+    background: linear-gradient(90deg, var(--tierra), var(--sol), var(--pino), var(--mar), var(--lila));
+    background-size: 400%;
+    height: 6px;
+    animation: rainbow 4s linear infinite;
+  }
+
+  @keyframes rainbow { 0% { background-position: 0% } 100% { background-position: 400% } }
+</style>
+</head>
+<body>
+
+<div class="ribbon"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">🌿 Casa Rural Ecológica · Registro CR/AL 00084</span>
+  <h1>Cortijo<br><span>El Campillo</span></h1>
+  <p class="hero-sub">Un cortijo centenario en el corazón del Parque Natural de Cabo de Gata-Níjar · Almería · La región más soleada de Europa</p>
+  <div class="hero-btns">
+    <a href="https://elcampillo.info/reserva-online-y-calendario-de-disponibilidad/" target="_blank" class="btn-reserva">📅 Reservar ahora</a>
+    <a href="https://api.whatsapp.com/send?phone=34650370416" target="_blank" class="btn-wa">💬 WhatsApp</a>
+  </div>
+  <div class="hero-scroll">↓ descubrir</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-item">
+    <span class="stat-num" style="color: var(--sol)">+100</span>
+    <span class="stat-label" style="color:rgba(255,255,255,0.5)">Años de historia</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" style="color:#6DE196">6</span>
+    <span class="stat-label" style="color:rgba(255,255,255,0.5)">Alojamientos únicos</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" style="color:#79C8FF">14</span>
+    <span class="stat-label" style="color:rgba(255,255,255,0.5)">Personas máx. grupos</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" style="color:#FFB347">320</span>
+    <span class="stat-label" style="color:rgba(255,255,255,0.5)">Días de sol al año</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" style="color:#FF8FA3">100%</span>
+    <span class="stat-label" style="color:rgba(255,255,255,0.5)">Energía solar</span>
+  </div>
+</div>
+
+<!-- DATOS SORPRENDENTES -->
+<section class="facts">
+  <div class="section-inner">
+    <div class="tag" style="color: var(--tierra)">🔥 Lo que no sabías</div>
+    <h2 class="section-title">Datos que te<br>van a sorprender</h2>
+    <div class="facts-grid">
+
+      <div class="fact-card">
+        <div class="fact-emoji">🎬</div>
+        <h3>Escenario de cine</h3>
+        <p>El Cortijo está junto al <strong>Cortijo del Fraile</strong>, escenario del crimen real que inspiró <em>Bodas de Sangre</em> de Federico García Lorca, y escenario de numerosas películas del Spaghetti Western.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-emoji">🌵</div>
+        <h3>El único semi-desierto de Europa</h3>
+        <p>Cabo de Gata alberga el único ecosistema semiárido auténtico de la Unión Europea. Una naturaleza volcánica e irrepetible que no existe en ningún otro punto del continente.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-emoji">☀️</div>
+        <h3>3.000 horas de sol anuales</h3>
+        <p>Almería es la provincia con <strong>más horas de sol de España</strong> y de toda Europa, con una media de 3.000 horas de sol al año. El cortijo funciona 100% con energía solar.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-emoji">🌊</div>
+        <h3>Reserva de la Biosfera UNESCO</h3>
+        <p>El Parque Natural de Cabo de Gata-Níjar es <strong>Reserva de la Biosfera</strong>, Geoparque Mundial UNESCO y Zona de Especial Protección para las Aves (ZEPA). Un patrimonio natural único.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-emoji">🏚️</div>
+        <h3>Arquitectura bioclimática tradicional</h3>
+        <p>El cortijo tiene más de <strong>100 años</strong> y conserva su arquitectura andaluza original con muros de piedra que mantienen el frescor en verano y el calor en invierno, sin necesidad de aire acondicionado.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-emoji">🦎</div>
+        <h3>Biodiversidad única</h3>
+        <p>El parque alberga más de <strong>1.000 especies de plantas</strong>, muchas endémicas, y es uno de los principales refugios del <em>camaleón europeo</em>, ave flamenca y águila perdicera en Andalucía.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HABITACIONES -->
+<section class="rooms-section">
+  <div class="section-inner">
+    <div class="tag" style="color: var(--mar)">🛏️ Dónde dormir</div>
+    <h2 class="section-title">5 habitaciones únicas<br>+ casa independiente</h2>
+    <p style="color:#555; max-width:600px; line-height:1.6; margin-bottom: 0.5rem;">Cada habitación tiene baño privado y terraza individual con vistas al jardín y al paisaje volcánico. <em>El Campillico</em> es una casa rural para 2–4 personas con chimenea, cocina y jardín propio.</p>
+    <a href="https://elcampillo.info/alquiler-habitaciones-y-casa-parque-natural-cabo-de-gata-nijar/" target="_blank" style="color: var(--tierra); font-weight:600; text-decoration:none; font-size:0.9rem;">Ver fotos de todas las habitaciones →</a>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-bg">
+          <span class="room-emoji">🌻</span>
+          <span class="room-name">Hab. Amarilla</span>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-bg">
+          <span class="room-emoji">🌊</span>
+          <span class="room-name">Hab. Azul</span>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-bg">
+          <span class="room-emoji">🏜️</span>
+          <span class="room-name">Hab. Beige</span>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-bg">
+          <span class="room-emoji">🌿</span>
+          <span class="room-name">Hab. Verde</span>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-bg">
+          <span class="room-emoji">🌹</span>
+          <span class="room-name">Hab. Roja</span>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-bg">
+          <span class="room-emoji">🏡</span>
+          <span class="room-name">El Campillico</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOLOGÍA -->
+<section class="eco-section">
+  <div class="section-inner">
+    <div class="tag" style="color: #A5D6A7">🌱 Sostenibilidad</div>
+    <h2 class="section-title" style="color:white">Ecología de verdad,<br>no de marketing</h2>
+    <p class="eco-big">"Construimos con criterios bioclimáticos. Funcionamos con energía solar. Vivimos en armonía con el parque natural."</p>
+    <div class="eco-pills">
+      <span class="eco-pill">☀️ Energía 100% solar</span>
+      <span class="eco-pill">🌡️ Calefacción por suelo radiante solar</span>
+      <span class="eco-pill">🏗️ Construcción bioclimática</span>
+      <span class="eco-pill">💧 Gestión eficiente del agua</span>
+      <span class="eco-pill">🌿 Jardín ecológico</span>
+      <span class="eco-pill">♻️ Residuos separados</span>
+      <span class="eco-pill">🚲 Alquiler de mountain-bikes</span>
+      <span class="eco-pill">🦅 Zona ZEPA para aves</span>
+    </div>
+    <br><br>
+    <a href="https://elcampillo.info/casa-rural-energias-renovables-cabo-de-gata-almeria/" target="_blank" style="color: #A5D6A7; font-weight: 600; font-size: 0.95rem; text-decoration: none;">Leer más sobre nuestra ecología →</a>
+  </div>
+</section>
+
+<!-- ACTIVIDADES -->
+<section class="actividades">
+  <div class="section-inner">
+    <div class="tag" style="color: #5D4037">🏔️ Aventura</div>
+    <h2 class="section-title">Actividades a la carta</h2>
+    <p style="color:#5D4037; max-width:600px; line-height:1.6;">Con CaboActivo, disfruta del parque natural en toda su dimensión. El alquiler de bicicletas está disponible en el propio cortijo.</p>
+    <div class="act-grid">
+      <div class="act-card">
+        <div class="act-icon">🚴</div>
+        <h3>Mountain Bike</h3>
+        <p>Rutas de ciclismo por senderos volcánicos con vistas al mar. Alquiler de bikes en el cortijo.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">🥾</div>
+        <h3>Senderismo</h3>
+        <p>Rutas guiadas por el parque natural entre ramblas, acantilados y playas vírgenes.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">🪂</div>
+        <h3>Parapente</h3>
+        <p>Vuela sobre el único semiárido europeo. Vistas únicas desde el aire sobre volcanes y mar.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">🌅</div>
+        <h3>Observación nocturna</h3>
+        <p>Cielo sin contaminación lumínica. Terraza en el tejado para contemplar las estrellas del desierto.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">🏖️</div>
+        <h3>Playas vírgenes</h3>
+        <p>Las playas más salvajes y cristalinas de España, a pocos minutos del cortijo.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">🧘</div>
+        <h3>Yoga & Tai-Chi</h3>
+        <p>La gran era circular del cortijo es perfecta para retiros, sesiones de yoga y bienestar.</p>
+      </div>
+    </div>
+    <br>
+    <a href="https://elcampillo.info/cisclismo-senderismo-parapente-cabo-de-gata-nijar-almeria/" target="_blank" style="color: var(--tierra); font-weight: 700; font-size: 0.95rem; text-decoration: none;">Ver todas las actividades →</a>
+  </div>
+</section>
+
+<!-- GRUPOS Y TALLERES -->
+<section class="grupos-section">
+  <div class="section-inner">
+    <div class="tag" style="color: rgba(255,255,255,0.65)">👥 Grupos & Eventos</div>
+    <h2 class="section-title" style="color:white">Ideal para grupos<br>y talleres</h2>
+    <p style="color:rgba(255,255,255,0.75); max-width:600px; line-height:1.6;">El cortijo puede acoger hasta <strong style="color:white">14 personas</strong>. Su amplio salón, terrazas y jardín lo hacen perfecto para retiros, talleres y eventos privados.</p>
+    <div class="grupos-cards">
+      <div class="grupo-card">
+        <div class="grupo-icon">🎨</div>
+        <h3>Talleres creativos</h3>
+        <p>Pintura, fotografía, escritura. El paisaje semi-desértico inspira como ningún otro.</p>
+      </div>
+      <div class="grupo-card">
+        <div class="grupo-icon">🧘</div>
+        <h3>Retiros de bienestar</h3>
+        <p>Yoga, meditación, mindfulness. La era circular y el silencio del campo son únicos.</p>
+      </div>
+      <div class="grupo-card">
+        <div class="grupo-icon">🎓</div>
+        <h3>Seminarios & Reuniones</h3>
+        <p>Salón grande con capacidad para el grupo completo. Desayuno incluido.</p>
+      </div>
+      <div class="grupo-card">
+        <div class="grupo-icon">🎉</div>
+        <h3>Eventos familiares</h3>
+        <p>Escapadas de familia o amigos con hasta 14 personas. Cocina-comedor disponible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios">
+  <div class="section-inner">
+    <div class="tag" style="color: var(--lila)">⭐ Opiniones</div>
+    <h2 class="section-title">Lo que dicen<br>nuestros huéspedes</h2>
+    <div class="test-grid">
+      <div class="test-card">
+        <p>Un lugar mágico donde el tiempo se detiene. Annika y Martín te hacen sentir en casa desde el primer momento. El silencio, las estrellas y el paisaje son absolutamente únicos.</p>
+        <div class="test-author">— Visitante verificado</div>
+      </div>
+      <div class="test-card">
+        <p>Llevábamos mucho tiempo queriendo conocer Cabo de Gata y este cortijo superó todas nuestras expectativas. La habitación con terraza al jardín era increíble. Volvemos seguro.</p>
+        <div class="test-author">— Pareja desde Barcelona</div>
+      </div>
+      <div class="test-card">
+        <p>Organizamos un retiro de yoga para 10 personas y el espacio fue perfecto. La era circular para las sesiones matinales y el desayuno preparado por los anfitriones eran un lujo.</p>
+        <div class="test-author">— Instructora de yoga</div>
+      </div>
+    </div>
+    <br><br>
+    <a href="https://elcampillo.info/opiniones-testimonios-huespedes-casa-rural-cabo-de-gata/" target="_blank" style="color: var(--lila); font-weight:700; text-decoration:none; font-size:0.95rem;">Leer todas las opiniones →</a>
+  </div>
+</section>
+
+<!-- RESERVA / CONTACTO -->
+<section class="cta-section">
+  <h2>¿Listo para tu escapada?</h2>
+  <p>Annika y Martín te esperan en El Campillo. Consulta disponibilidad y reserva directamente — sin intermediarios.</p>
+  <div class="contact-grid">
+    <a href="https://elcampillo.info/reserva-online-y-calendario-de-disponibilidad/" target="_blank" class="contact-card highlight">
+      <span class="cc-icon">📅</span>
+      <span class="cc-label">Reserva online</span>
+      <span class="cc-value">Ver disponibilidad</span>
+    </a>
+    <a href="https://api.whatsapp.com/send?phone=34650370416" target="_blank" class="contact-card wa">
+      <span class="cc-icon">💬</span>
+      <span class="cc-label">WhatsApp</span>
+      <span class="cc-value">+34 650 37 04 16</span>
+    </a>
+    <a href="tel:+34950525779" class="contact-card">
+      <span class="cc-icon">📞</span>
+      <span class="cc-label">Teléfono fijo</span>
+      <span class="cc-value">+34 950 52 57 79</span>
+    </a>
+    <a href="tel:+34650370416" class="contact-card">
+      <span class="cc-icon">📱</span>
+      <span class="cc-label">Móvil</span>
+      <span class="cc-value">+34 650 37 04 16</span>
+    </a>
+    <a href="mailto:annika@elcampillo.info" class="contact-card">
+      <span class="cc-icon">✉️</span>
+      <span class="cc-label">Email</span>
+      <span class="cc-value">annika@elcampillo.info</span>
+    </a>
+    <a href="https://elcampillo.info/contacto-calendario-disponibilidad/" target="_blank" class="contact-card">
+      <span class="cc-icon">📋</span>
+      <span class="cc-label">Formulario</span>
+      <span class="cc-value">Formulario web</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://elcampillo.info/" target="_blank">Web oficial</a>
+    <a href="https://elcampillo.info/precios-y-condiciones-casa-rural-cabo-de-gata/" target="_blank">Precios</a>
+    <a href="https://elcampillo.info/mapa-como-llegar-casa-rural/" target="_blank">Cómo llegar</a>
+    <a href="https://elcampillo.info/video-casa-rural-cabo-de-gata/" target="_blank">Visita en vídeo</a>
+    <a href="https://www.facebook.com/cortijoelcampillo" target="_blank">Facebook</a>
+    <a href="https://www.instagram.com/cortijoelcampillo/" target="_blank">Instagram</a>
+    <a href="http://cortijoelcampillo.blogspot.com/" target="_blank">Blog</a>
+  </div>
+  <p>Cortijo El Campillo · Parque Natural Cabo de Gata-Níjar · Almería, Andalucía · España</p>
+  <p style="margin-top:0.5rem">Registro: CR/AL 00084 · <a href="https://elcampillo.info/politica-de-privacidad/" target="_blank">Política de privacidad</a> · <a href="https://elcampillo.info/aviso-legal/" target="_blank">Aviso legal</a></p>
+  <p style="margin-top:0.5rem; opacity:0.3">Página promocional no oficial · Contenido basado en elcampillo.info</p>
+</footer>
+
+<!-- Sticky WhatsApp -->
+<a href="https://api.whatsapp.com/send?phone=34650370416" target="_blank" class="sticky-wa" title="WhatsApp">💬</a>
+
+</body>
+</html>
