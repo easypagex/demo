@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cortijo La Tenada · Casa Rural Ecológica · Cabo de Gata</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sun: #F5A623;
+    --coral: #E8523A;
+    --turq: #00B5AD;
+    --sage: #5A8A5E;
+    --cream: #FAF3E7;
+    --sand: #E8D5B0;
+    --deep: #1A2B1F;
+    --violet: #7C3AED;
+    --pink: #EC4899;
+    --sky: #0EA5E9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* ── FLOATING CTA BAR ── */
+  .float-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 24px;
+    background: rgba(26,43,31,.92);
+    backdrop-filter: blur(8px);
+  }
+  .float-bar .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--sun); font-size: 1.35rem; letter-spacing: 2px;
+  }
+  .float-bar .bar-links {
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  }
+  .float-bar a {
+    text-decoration: none; font-size: .82rem; font-weight: 500;
+    padding: 6px 14px; border-radius: 50px;
+    transition: all .2s;
+  }
+  .btn-reserve {
+    background: var(--coral); color: #fff;
+  }
+  .btn-reserve:hover { background: #c73d26; }
+  .btn-wa {
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn-wa:hover { background: #1eba57; }
+  .btn-call {
+    background: var(--sun); color: var(--deep);
+  }
+  .btn-call:hover { background: #d9911a; }
+  .btn-ghost {
+    color: #fff; border: 1px solid rgba(255,255,255,.3);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.1); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A2B1F 0%, #2D5A3E 35%, #4A7C59 60%, #1A2B1F 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 24px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(245,166,35,.18) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,181,173,.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 60% 80%, rgba(232,82,58,.12) 0%, transparent 50%);
+  }
+  .hero-badge {
+    background: var(--sun); color: var(--deep);
+    font-size: .78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 50px; margin-bottom: 24px;
+    display: inline-block; position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    color: #fff; line-height: 1.1;
+    position: relative; margin-bottom: 16px;
+  }
+  .hero h1 em {
+    color: var(--sun); font-style: italic;
+  }
+  .hero-sub {
+    color: rgba(255,255,255,.75); font-size: 1.1rem; max-width: 540px;
+    line-height: 1.7; margin-bottom: 40px; position: relative;
+  }
+  .hero-cta-group {
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    position: relative;
+  }
+  .cta-big {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 16px 34px; border-radius: 50px; font-size: 1rem; font-weight: 600;
+    text-decoration: none; transition: all .25s; border: none; cursor: pointer;
+  }
+  .cta-primary { background: var(--coral); color: #fff; }
+  .cta-primary:hover { background: #c73d26; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,82,58,.45); }
+  .cta-wa { background: #25D366; color: #fff; }
+  .cta-wa:hover { background: #1eba57; transform: translateY(-2px); }
+
+  .hero-scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); }
+  .hero-scroll span { display: block; width: 2px; height: 40px; background: rgba(255,255,255,.3); margin: 0 auto; position: relative; overflow: hidden; border-radius: 2px; }
+  .hero-scroll span::after { content: ''; position: absolute; top: -100%; left: 0; right: 0; height: 100%; background: var(--sun); animation: scroll-down 1.6s infinite; border-radius: 2px; }
+  @keyframes scroll-down { to { top: 200%; } }
+
+  /* ── SECTIONS GENERAL ── */
+  section { position: relative; overflow: hidden; }
+
+  .section-label {
+    font-size: .72rem; letter-spacing: 4px; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 12px; display: block;
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--coral);
+    padding: 28px 40px;
+    display: flex; flex-wrap: wrap; gap: 0; justify-content: center;
+  }
+  .stat-item {
+    flex: 1 1 160px; text-align: center;
+    padding: 16px 24px; border-right: 1px solid rgba(255,255,255,.2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: #fff;
+    line-height: 1;
+  }
+  .stat-label { color: rgba(255,255,255,.85); font-size: .8rem; margin-top: 4px; }
+
+  /* ── FACTS SECTION ── */
+  .facts-section {
+    background: var(--deep);
+    padding: 90px 40px;
+  }
+  .facts-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; margin-top: 50px;
+  }
+  .fact-card {
+    border-radius: 20px; padding: 32px 28px;
+    position: relative; overflow: hidden;
+    transition: transform .3s;
+  }
+  .fact-card:hover { transform: translateY(-6px); }
+  .fact-card.c1 { background: linear-gradient(135deg, var(--turq), #007B7A); }
+  .fact-card.c2 { background: linear-gradient(135deg, var(--violet), #5B21B6); }
+  .fact-card.c3 { background: linear-gradient(135deg, var(--coral), #C43318); }
+  .fact-card.c4 { background: linear-gradient(135deg, var(--sage), #3A5F3D); }
+  .fact-card.c5 { background: linear-gradient(135deg, var(--sun), #C47A10); }
+  .fact-card.c6 { background: linear-gradient(135deg, var(--pink), #BE185D); }
+  .fact-icon { font-size: 2.4rem; margin-bottom: 14px; }
+  .fact-card h3 { color: #fff; font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+  .fact-card p { color: rgba(255,255,255,.85); font-size: .9rem; line-height: 1.6; }
+  .fact-tag {
+    display: inline-block; background: rgba(255,255,255,.2);
+    color: #fff; font-size: .68rem; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 50px; margin-bottom: 12px;
+  }
+
+  /* ── ALOJAMIENTOS ── */
+  .alojamientos-section {
+    padding: 90px 40px;
+    background: linear-gradient(160deg, #FFF8EE 0%, #E8F5E9 100%);
+  }
+  .alo-grid {
+    max-width: 1100px; margin: 50px auto 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+  }
+  .alo-card {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 12px 50px rgba(0,0,0,.12);
+    background: #fff; transition: transform .3s, box-shadow .3s;
+  }
+  .alo-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,.18); }
+  .alo-img {
+    height: 220px; display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; position: relative;
+  }
+  .alo-img.olivo { background: linear-gradient(135deg, #A7C957, #386641); }
+  .alo-img.lentisco { background: linear-gradient(135deg, #F4A261, #E76F51); }
+  .alo-body { padding: 28px 26px 32px; }
+  .alo-badge {
+    background: var(--sun); color: var(--deep);
+    font-size: .7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 50px; display: inline-block; margin-bottom: 14px;
+  }
+  .alo-body h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.6rem;
+    color: var(--deep); margin-bottom: 10px;
+  }
+  .alo-body p { color: #555; font-size: .93rem; line-height: 1.65; margin-bottom: 20px; }
+  .alo-features {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+  }
+  .feat-pill {
+    background: var(--sand); color: var(--deep);
+    font-size: .75rem; padding: 5px 12px; border-radius: 50px;
+  }
+  .btn-alo {
+    display: inline-block; background: var(--deep); color: #fff;
+    padding: 12px 26px; border-radius: 50px; text-decoration: none;
+    font-size: .88rem; font-weight: 600; transition: all .2s;
+  }
+  .btn-alo:hover { background: var(--sage); transform: translateX(4px); }
+
+  /* ── ECO SECTION ── */
+  .eco-section {
+    background: var(--sage);
+    padding: 90px 40px;
+    text-align: center;
+  }
+  .eco-section .section-label { color: rgba(255,255,255,.7); }
+  .eco-section h2 { color: #fff; }
+  .eco-section .eco-desc { color: rgba(255,255,255,.85); max-width: 680px; margin: 0 auto 50px; font-size: 1.05rem; line-height: 1.7; }
+  .eco-pillars {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+  }
+  .eco-pillar {
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+    border-radius: 18px; padding: 28px 20px; text-align: center;
+    backdrop-filter: blur(6px); transition: all .3s;
+  }
+  .eco-pillar:hover { background: rgba(255,255,255,.25); transform: scale(1.04); }
+  .eco-pillar-icon { font-size: 2.4rem; margin-bottom: 12px; display: block; }
+  .eco-pillar h4 { color: #fff; font-size: .95rem; font-weight: 700; }
+
+  /* ── ZONA / ENTORNO ── */
+  .entorno-section {
+    padding: 90px 40px;
+    background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 40%, #075985 100%);
+  }
+  .entorno-section .section-label { color: rgba(255,255,255,.7); }
+  .entorno-section h2 { color: #fff; max-width: 700px; }
+  .entorno-grid {
+    max-width: 1100px; margin: 50px auto 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .entorno-card {
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 18px; padding: 26px 22px;
+    backdrop-filter: blur(8px); transition: all .3s;
+  }
+  .entorno-card:hover { background: rgba(255,255,255,.2); transform: translateY(-4px); }
+  .entorno-card .e-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+  .entorno-card h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .entorno-card p { color: rgba(255,255,255,.8); font-size: .85rem; line-height: 1.55; }
+
+  /* ── LORCA / CURIOSIDAD ── */
+  .lorca-section {
+    background: linear-gradient(135deg, #7C3AED 0%, #BE185D 100%);
+    padding: 90px 40px;
+    text-align: center;
+  }
+  .lorca-inner { max-width: 800px; margin: 0 auto; }
+  .lorca-section blockquote {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(1.3rem, 3vw, 2rem); color: #fff;
+    line-height: 1.6; margin-bottom: 24px; position: relative;
+  }
+  .lorca-section blockquote::before {
+    content: '"'; font-size: 8rem; color: rgba(255,255,255,.1);
+    position: absolute; top: -40px; left: -20px; font-family: serif;
+    line-height: 1;
+  }
+  .lorca-attr { color: rgba(255,255,255,.7); font-size: .9rem; margin-bottom: 30px; }
+  .lorca-tag {
+    display: inline-block; background: rgba(255,255,255,.2);
+    color: #fff; padding: 8px 20px; border-radius: 50px; font-size: .85rem;
+    border: 1px solid rgba(255,255,255,.35);
+  }
+
+  /* ── CONTACTO / CTA FINAL ── */
+  .contact-section {
+    padding: 90px 40px;
+    background: var(--deep);
+    text-align: center;
+  }
+  .contact-section .section-label { color: var(--sun); }
+  .contact-section h2 { color: #fff; margin-bottom: 14px; }
+  .contact-section .contact-desc { color: rgba(255,255,255,.7); max-width: 560px; margin: 0 auto 50px; font-size: 1rem; line-height: 1.7; }
+  .contact-buttons {
+    display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+    margin-bottom: 50px;
+  }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 30px; border-radius: 50px; text-decoration: none;
+    font-size: 1rem; font-weight: 600; transition: all .25s;
+  }
+  .cb-reserve { background: var(--coral); color: #fff; }
+  .cb-reserve:hover { background: #c73d26; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(232,82,58,.5); }
+  .cb-wa { background: #25D366; color: #fff; }
+  .cb-wa:hover { background: #1eba57; transform: translateY(-3px); }
+  .cb-phone { background: var(--sun); color: var(--deep); }
+  .cb-phone:hover { background: #d9911a; transform: translateY(-3px); }
+  .cb-web { border: 2px solid rgba(255,255,255,.3); color: #fff; }
+  .cb-web:hover { background: rgba(255,255,255,.1); }
+
+  .contact-info-grid {
+    display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;
+    max-width: 700px; margin: 0 auto 40px;
+  }
+  .ci-box {
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px; padding: 18px 26px; text-align: left;
+  }
+  .ci-box .ci-label { color: rgba(255,255,255,.5); font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .ci-box .ci-val { color: #fff; font-size: 1rem; font-weight: 600; }
+  .ci-box a { color: var(--sun); text-decoration: none; }
+  .ci-box a:hover { text-decoration: underline; }
+
+  .social-links { display: flex; gap: 14px; justify-content: center; }
+  .social-link {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    text-decoration: none; font-size: 1.2rem; transition: all .25s;
+  }
+  .social-link:hover { background: var(--sun); transform: scale(1.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0D1810; padding: 24px 40px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 12px;
+  }
+  footer p { color: rgba(255,255,255,.4); font-size: .78rem; }
+  footer a { color: var(--sun); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .floating { animation: float 4s ease-in-out infinite; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .float-bar { flex-direction: column; gap: 8px; padding: 10px; }
+    .float-bar .bar-links { justify-content: center; }
+    .stats-strip { padding: 20px; }
+    .facts-section, .alojamientos-section, .eco-section,
+    .entorno-section, .lorca-section, .contact-section { padding: 60px 20px; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.2); }
+    .stat-item:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING NAV -->
+<nav class="float-bar">
+  <span class="logo-text">🌿 La Tenada</span>
+  <div class="bar-links">
+    <a href="https://latenada.es/reservas/" class="btn-reserve" target="_blank">📅 Reservar</a>
+    <a href="https://wa.me/34670607728" class="btn-wa" target="_blank">💬 WhatsApp</a>
+    <a href="tel:+34670607728" class="btn-call" target="_blank">📞 Llamar</a>
+    <a href="https://latenada.es/" class="btn-ghost" target="_blank">Web oficial</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">✨ Parque Natural Cabo de Gata-Níjar · Almería</span>
+  <h1>La escapada que<br><em>siempre soñaste</em></h1>
+  <p class="hero-sub">Una casa rural ecológica única en el corazón de la España más salvaje y auténtica. Naturaleza, silencio y confort con alma.</p>
+  <div class="hero-cta-group">
+    <a href="https://latenada.es/reservas/" class="cta-big cta-primary" target="_blank">📅 Reservar ahora</a>
+    <a href="https://wa.me/34670607728" class="cta-big cta-wa" target="_blank">💬 Preguntar por WhatsApp</a>
+  </div>
+  <div class="hero-scroll"><span></span></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">300+</div>
+    <div class="stat-label">días de sol al año</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">15'</div>
+    <div class="stat-label">a las playas vírgenes</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">energías renovables</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2</div>
+    <div class="stat-label">casas exclusivas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">+10</div>
+    <div class="stat-label">años de experiencia</div>
+  </div>
+</div>
+
+<!-- FACTS CURIOSOS -->
+<section class="facts-section">
+  <div style="max-width:1100px; margin:0 auto; text-align:center;">
+    <span class="section-label" style="color:var(--sun);">🔍 Lo que no sabías</span>
+    <h2 class="section-title" style="color:#fff;">Datos que te sorprenderán</h2>
+    <p style="color:rgba(255,255,255,.65); max-width:600px; margin:0 auto; font-size:1rem; line-height:1.7;">La Tenada es mucho más que una casa rural. Descubre los hechos únicos que la hacen irrepetible.</p>
+  </div>
+  <div class="facts-grid">
+    <div class="fact-card c1">
+      <span class="fact-tag">🎭 Historia</span>
+      <div class="fact-icon">🏚️</div>
+      <h3>Bodas de Sangre de Lorca, a tu lado</h3>
+      <p>El Cortijo del Fraile, escenario real de la tragedia que inspiró a Federico García Lorca, está a solo unos minutos a pie del cortijo.</p>
+    </div>
+    <div class="fact-card c2">
+      <span class="fact-tag">🌍 Único en España</span>
+      <div class="fact-icon">🌵</div>
+      <h3>El único desierto semiárido de Europa</h3>
+      <p>Cabo de Gata alberga el único ecosistema semiárido de Europa. Un paisaje volcánico de otro planeta que rodea la finca.</p>
+    </div>
+    <div class="fact-card c3">
+      <span class="fact-tag">🏗️ Arquitectura</span>
+      <div class="fact-icon">🌿</div>
+      <h3>Construida con cáñamo</h3>
+      <p>La rehabilitación usó materiales naturales como el cáñamo (hempcrete), cal y tierra. Fue portada de la revista EcoHabitar y objeto de un documental.</p>
+    </div>
+    <div class="fact-card c4">
+      <span class="fact-tag">☀️ Autosuficiencia</span>
+      <div class="fact-icon">🔋</div>
+      <h3>100% autoabastecida energéticamente</h3>
+      <p>Paneles solares, diseño bioclimático y climatización natural hacen que el cortijo funcione de manera completamente autónoma.</p>
+    </div>
+    <div class="fact-card c5">
+      <span class="fact-tag">🛡️ Protegido</span>
+      <div class="fact-icon">🦅</div>
+      <h3>Reserva de la Biosfera UNESCO</h3>
+      <p>El Parque Natural Cabo de Gata-Níjar es Reserva de la Biosfera, Zona de Especial Protección de Aves y ZEPA. Biodiversidad inigualable.</p>
+    </div>
+    <div class="fact-card c6">
+      <span class="fact-tag">💧 Gestión del agua</span>
+      <div class="fact-icon">🌊</div>
+      <h3>Agua gestionada al milímetro</h3>
+      <p>Sistema propio de captación y gestión del agua de lluvia. En la zona más árida de Europa, el agua es oro y se cuida con respeto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ALOJAMIENTOS -->
+<section class="alojamientos-section">
+  <div style="max-width:1100px; margin:0 auto; text-align:center;">
+    <span class="section-label" style="color:var(--sage);">🏡 Nuestras casas</span>
+    <h2 class="section-title">Dos alojamientos,<br>un paraíso</h2>
+    <p style="color:#555; max-width:580px; margin:0 auto; font-size:1rem; line-height:1.7;">Completamente equipados, totalmente privados, rodeados de naturaleza. Elige la tuya.</p>
+  </div>
+  <div class="alo-grid">
+    <div class="alo-card">
+      <div class="alo-img olivo">🫒</div>
+      <div class="alo-body">
+        <span class="alo-badge">Para 2 personas</span>
+        <h3>Casa Rural Olivo</h3>
+        <p>Íntima y acogedora, perfecta para parejas que buscan descanso y privacidad total en plena naturaleza virgen del Parque Natural.</p>
+        <div class="alo-features">
+          <span class="feat-pill">🛏️ 1 habitación</span>
+          <span class="feat-pill">🚿 Baño propio</span>
+          <span class="feat-pill">🍳 Cocina equipada</span>
+          <span class="feat-pill">🌿 Terraza privada</span>
+          <span class="feat-pill">🏊 Piscina compartida</span>
+        </div>
+        <a href="https://latenada.es/alojamientos/casa-rural-en-cabo-de-gata-almeria-para-2-personas/" class="btn-alo" target="_blank">Ver Casa Olivo →</a>
+      </div>
+    </div>
+    <div class="alo-card">
+      <div class="alo-img lentisco">🌳</div>
+      <div class="alo-body">
+        <span class="alo-badge">Para 4–6 personas</span>
+        <h3>Casa Rural Lentisco</h3>
+        <p>Amplia y familiar, con dos habitaciones y dos baños. Ideal para grupos de amigos o familias que quieren el espacio de un hogar con el alma de la naturaleza.</p>
+        <div class="alo-features">
+          <span class="feat-pill">🛏️ 2 habitaciones</span>
+          <span class="feat-pill">🚿 2 baños</span>
+          <span class="feat-pill">🍳 Cocina completa</span>
+          <span class="feat-pill">🌿 Terraza amplia</span>
+          <span class="feat-pill">🏊 Piscina compartida</span>
+        </div>
+        <a href="https://latenada.es/alojamientos/casa-rural-en-cabo-de-gata-almeria-para-4-personas/" class="btn-alo" target="_blank">Ver Casa Lentisco →</a>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:40px;">
+    <a href="https://latenada.es/precios/" class="cta-big cta-primary" target="_blank" style="display:inline-flex;">💶 Ver precios y disponibilidad</a>
+  </div>
+</section>
+
+<!-- ECO SECTION -->
+<section class="eco-section">
+  <span class="section-label">♻️ Sostenibilidad real</span>
+  <h2 class="section-title" style="color:#fff;">Una casa con<br>conciencia</h2>
+  <p class="eco-desc">No es greenwashing. Cada decisión constructiva, cada material, cada sistema del cortijo responde a criterios ecológicos verificables. Alojarte aquí es una elección coherente con el planeta.</p>
+  <div class="eco-pillars">
+    <div class="eco-pillar">
+      <span class="eco-pillar-icon">🌞</span>
+      <h4>Diseño bioclimático</h4>
+    </div>
+    <div class="eco-pillar">
+      <span class="eco-pillar-icon">🪨</span>
+      <h4>Materiales naturales</h4>
+    </div>
+    <div class="eco-pillar">
+      <span class="eco-pillar-icon">⚡</span>
+      <h4>Energías renovables</h4>
+    </div>
+    <div class="eco-pillar">
+      <span class="eco-pillar-icon">💧</span>
+      <h4>Gestión del agua</h4>
+    </div>
+    <div class="eco-pillar">
+      <span class="eco-pillar-icon">🌬️</span>
+      <h4>Climatización natural</h4>
+    </div>
+  </div>
+  <div style="margin-top:40px;">
+    <a href="https://latenada.es/casa-ecologica/" class="cta-big" style="background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.4);" target="_blank">🌱 Leer más sobre la casa ecológica</a>
+  </div>
+</section>
+
+<!-- ENTORNO -->
+<section class="entorno-section">
+  <div style="max-width:1100px; margin:0 auto;">
+    <span class="section-label">🗺️ Tu entorno</span>
+    <h2 class="section-title">Todo lo que te rodea<br style="display:block">es extraordinario</h2>
+    <div class="entorno-grid">
+      <div class="entorno-card">
+        <span class="e-icon">🏖️</span>
+        <h4>Playas vírgenes a 15 min</h4>
+        <p>Las Negras, Rodalquilar, El Playazo… Calas sin turistas masivos, con aguas cristalinas y arena negra volcánica.</p>
+      </div>
+      <div class="entorno-card">
+        <span class="e-icon">🥾</span>
+        <h4>Senderismo espectacular</h4>
+        <p>Rutas entre acantilados volcánicos, campos de esparto y hábitats únicos. El Valle de los Cortijos es un museo al aire libre.</p>
+      </div>
+      <div class="entorno-card">
+        <span class="e-icon">🔭</span>
+        <h4>Cielos sin contaminación lumínica</h4>
+        <p>Una de las zonas con menor contaminación lumínica de España. Las noches estrelladas son un espectáculo irrepetible.</p>
+      </div>
+      <div class="entorno-card">
+        <span class="e-icon">🐦</span>
+        <h4>Avifauna protegida</h4>
+        <p>Zona ZEPA con más de 200 especies de aves. Flamencos, águilas reales y especies únicas a pocos metros del cortijo.</p>
+      </div>
+      <div class="entorno-card">
+        <span class="e-icon">🎬</span>
+        <h4>Escenario de cine</h4>
+        <p>El paisaje de Cabo de Gata ha sido set de rodaje de múltiples películas y series. Una naturaleza cinéfila y épica.</p>
+      </div>
+      <div class="entorno-card">
+        <span class="e-icon">👨‍👩‍👧</span>
+        <h4>Perfecto para familias</h4>
+        <p>Equipación para bebés disponible. Entorno seguro, tranquilo y lleno de actividades para todas las edades.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="https://latenada.es/parque-natural-cabo-de-gata-nijar/" class="cta-big" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.35);" target="_blank">🗺️ Explorar el entorno</a>
+    </div>
+  </div>
+</section>
+
+<!-- LORCA -->
+<section class="lorca-section">
+  <div class="lorca-inner">
+    <blockquote>
+      "El Cortijo del Fraile, escenario real del crimen que inspiró a Lorca, está a pasos del cortijo. Aquí la historia la puedes tocar con las manos."
+    </blockquote>
+    <p class="lorca-attr">— A pocos minutos a pie de La Tenada</p>
+    <span class="lorca-tag">🎭 Escenario de «Bodas de Sangre» · Federico García Lorca</span>
+    <div style="margin-top:30px;">
+      <a href="https://latenada.es/valle-cortijos/1-cortijo-del-fraile/" class="cta-big" style="background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.4);" target="_blank">🏚️ Saber más sobre el Cortijo del Fraile</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO FINAL -->
+<section class="contact-section">
+  <span class="section-label">📞 Contacto directo</span>
+  <h2 class="section-title" style="color:#fff;">¿Listo para reservar?</h2>
+  <p class="contact-desc">Respuesta rápida garantizada. Escríbenos por WhatsApp, llámanos o reserva directamente en la web oficial. ¡Las fechas se agotan!</p>
+
+  <div class="contact-buttons">
+    <a href="https://latenada.es/reservas/" class="contact-btn cb-reserve" target="_blank">📅 Pre-Reservar online</a>
+    <a href="https://wa.me/34670607728" class="contact-btn cb-wa" target="_blank">💬 WhatsApp ahora</a>
+    <a href="tel:+34670607728" class="contact-btn cb-phone" target="_blank">📞 +34 670 607 728</a>
+    <a href="https://latenada.es/" class="contact-btn cb-web" target="_blank">🌐 Web oficial</a>
+  </div>
+
+  <div class="contact-info-grid">
+    <div class="ci-box">
+      <div class="ci-label">Teléfono / WhatsApp</div>
+      <div class="ci-val"><a href="tel:+34670607728">+34 670 607 728</a></div>
+    </div>
+    <div class="ci-box">
+      <div class="ci-label">Ubicación</div>
+      <div class="ci-val">Parque Natural Cabo de Gata-Níjar, Almería</div>
+    </div>
+    <div class="ci-box">
+      <div class="ci-label">Registro turístico</div>
+      <div class="ci-val">CR/AL/00139</div>
+    </div>
+    <div class="ci-box">
+      <div class="ci-label">Web oficial</div>
+      <div class="ci-val"><a href="https://latenada.es/" target="_blank">latenada.es</a></div>
+    </div>
+  </div>
+
+  <div class="social-links">
+    <a href="https://wa.me/34670607728" class="social-link" target="_blank" title="WhatsApp">💬</a>
+    <a href="https://www.facebook.com/cortijolatenada/" class="social-link" target="_blank" title="Facebook">📘</a>
+    <a href="https://www.instagram.com/cortijolatenada" class="social-link" target="_blank" title="Instagram">📸</a>
+    <a href="https://latenada.es/latenada.es/contacto/" class="social-link" target="_blank" title="Email">✉️</a>
+    <a href="https://latenada.es/como-llegar/" class="social-link" target="_blank" title="Cómo llegar">📍</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 · <strong>Cortijo La Tenada</strong> · Casa Rural Ecológica · Cabo de Gata-Níjar · Almería · España</p>
+  <p><a href="https://latenada.es/aviso-legal/" target="_blank">Aviso legal</a> · <a href="https://latenada.es/home/politica-de-proteccion-de-datos-de-caracter-personal/" target="_blank">Privacidad</a> · <a href="https://latenada.es/" target="_blank">latenada.es</a></p>
+</footer>
+
+</body>
+</html>
