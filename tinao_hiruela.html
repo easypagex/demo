@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Tinao de la Hiruela — Casa Rural en Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde: #2d7a3a;
+    --verde-claro: #5cb85c;
+    --naranja: #e8622a;
+    --amarillo: #f5c842;
+    --azul: #1a6fa8;
+    --lila: #7b5ea7;
+    --rosa: #e84393;
+    --rojo: #c0392b;
+    --crema: #fdf6e3;
+    --blanco: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #f0f9e8;
+    overflow-x: hidden;
+  }
+
+  /* ── FLOATING CTA ── */
+  .float-wa {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: #25d366; color: #fff;
+    border-radius: 50px; padding: 14px 22px;
+    font-weight: 800; font-size: 1rem;
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 6px 30px rgba(37,211,102,.5);
+    animation: pulse 2.5s infinite;
+  }
+  .float-wa svg { width: 22px; height: 22px; fill: #fff; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 6px 30px rgba(37,211,102,.5); }
+    50% { box-shadow: 0 6px 50px rgba(37,211,102,.9); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at top left, #2d7a3a99 0%, transparent 55%),
+      radial-gradient(ellipse at bottom right, #e8622a99 0%, transparent 55%),
+      radial-gradient(ellipse at top right, #f5c84299 0%, transparent 45%),
+      linear-gradient(160deg, #1a4a1a 0%, #2d7a3a 40%, #5a9e3a 70%, #e8a42a 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 40px 20px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    background: var(--amarillo); color: #1a1a1a;
+    font-weight: 800; font-size: .85rem; letter-spacing: .1em;
+    text-transform: uppercase; padding: 6px 18px; border-radius: 50px;
+    margin-bottom: 20px; display: inline-block;
+    animation: badgePop .6s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes badgePop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    color: #fff;
+    line-height: 1.05;
+    text-shadow: 0 4px 30px rgba(0,0,0,.4);
+    margin-bottom: 16px;
+    animation: fadeUp .8s .2s both;
+  }
+  .hero h1 em { color: var(--amarillo); font-style: italic; }
+  .hero p {
+    color: rgba(255,255,255,.92);
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    max-width: 650px; margin: 0 auto 32px;
+    animation: fadeUp .8s .4s both;
+  }
+  .hero-btns {
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    animation: fadeUp .8s .6s both;
+  }
+  @keyframes fadeUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .btn {
+    padding: 15px 30px; border-radius: 50px; font-weight: 800;
+    font-size: 1rem; text-decoration: none; transition: transform .2s, box-shadow .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+  .btn-primary { background: var(--naranja); color: #fff; }
+  .btn-secondary { background: rgba(255,255,255,.2); color: #fff; border: 2px solid rgba(255,255,255,.6); backdrop-filter: blur(6px); }
+  .btn-wa { background: #25d366; color: #fff; }
+
+  .scroll-hint {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,.7); font-size: .85rem; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeUp 1s 1.2s both;
+  }
+  .scroll-hint span { animation: bounce 1.5s infinite; display: block; font-size: 1.5rem; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 80px 20px; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-block;
+    font-weight: 800; font-size: .78rem; text-transform: uppercase; letter-spacing: .12em;
+    padding: 5px 16px; border-radius: 50px; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1; margin-bottom: 16px;
+  }
+  .section-sub { font-size: 1.1rem; opacity: .85; max-width: 650px; }
+
+  /* ── FACTS STRIP ── */
+  .facts-strip {
+    background: var(--naranja);
+    padding: 0; overflow: hidden;
+  }
+  .facts-track {
+    display: flex; gap: 0;
+    animation: scroll-left 22s linear infinite;
+    white-space: nowrap;
+  }
+  .fact-item {
+    padding: 20px 40px; color: #fff; font-weight: 800; font-size: 1rem;
+    display: inline-flex; align-items: center; gap: 12px;
+    border-right: 2px solid rgba(255,255,255,.25);
+  }
+  .fact-item span.icon { font-size: 1.4rem; }
+  @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── UNIQUE FACTS ── */
+  .unique-facts { background: linear-gradient(135deg, #1a0533 0%, #3b1060 50%, #7b5ea7 100%); }
+  .unique-facts .section-tag { background: var(--amarillo); color: #1a1a1a; }
+  .unique-facts .section-title { color: #fff; }
+  .unique-facts .section-sub { color: rgba(255,255,255,.8); }
+
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px; margin-top: 48px;
+  }
+  .fact-card {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px; padding: 28px;
+    transition: transform .3s, background .3s;
+    position: relative; overflow: hidden;
+  }
+  .fact-card::before {
+    content: ''; position: absolute;
+    top: -50%; right: -50%; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .fact-card:hover { transform: translateY(-6px); background: rgba(255,255,255,.15); }
+  .fact-card .num { font-size: 3.5rem; font-weight: 900; line-height: 1; margin-bottom: 8px; }
+  .fact-card .label { color: #fff; font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
+  .fact-card .desc { color: rgba(255,255,255,.7); font-size: .9rem; margin-top: 8px; }
+
+  /* ── FEATURES ── */
+  .features-section { background: var(--crema); }
+  .features-section .section-tag { background: var(--verde); color: #fff; }
+  .features-section .section-title { color: var(--verde); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px; margin-top: 48px;
+  }
+  .feature-card {
+    background: #fff; border-radius: 20px; padding: 28px 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    border-top: 5px solid;
+    transition: transform .3s;
+  }
+  .feature-card:hover { transform: translateY(-5px); }
+  .feature-card .icon { font-size: 2.5rem; margin-bottom: 14px; display: block; }
+  .feature-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+  .feature-card p { font-size: .9rem; color: #555; line-height: 1.5; }
+
+  /* ── LOCATION ── */
+  .location-section {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  }
+  .location-section .section-tag { background: var(--azul); color: #fff; }
+  .location-section .section-title { color: var(--azul); }
+
+  .location-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    align-items: center; margin-top: 40px;
+  }
+  @media (max-width: 760px) { .location-grid { grid-template-columns: 1fr; } }
+
+  .dist-list { display: flex; flex-direction: column; gap: 14px; }
+  .dist-item {
+    background: #fff; border-radius: 14px; padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    font-weight: 600;
+  }
+  .dist-icon { font-size: 1.6rem; }
+  .dist-time { margin-left: auto; background: var(--azul); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: .85rem; font-weight: 800; }
+
+  .map-frame {
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,.15);
+  }
+  .map-frame iframe { width: 100%; height: 340px; border: none; display: block; }
+
+  /* ── REVIEWS ── */
+  .reviews-section {
+    background: linear-gradient(160deg, #fff3e0 0%, #ffe0b2 100%);
+  }
+  .reviews-section .section-tag { background: var(--naranja); color: #fff; }
+  .reviews-section .section-title { color: #b33a00; }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px; margin-top: 40px;
+  }
+  .review-card {
+    background: #fff; border-radius: 20px; padding: 26px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    position: relative;
+  }
+  .review-card::before {
+    content: '"'; font-family: 'Playfair Display', serif;
+    font-size: 6rem; color: var(--naranja); opacity: .15;
+    position: absolute; top: -10px; left: 16px; line-height: 1;
+    pointer-events: none;
+  }
+  .stars { color: #f5c842; font-size: 1.1rem; margin-bottom: 12px; }
+  .review-text { font-size: .95rem; color: #444; line-height: 1.6; margin-bottom: 14px; }
+  .review-author { font-weight: 800; font-size: .9rem; color: var(--naranja); }
+  .review-platform { font-size: .8rem; color: #888; }
+
+  /* ── ACTIVITIES ── */
+  .activities-section {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  }
+  .activities-section .section-tag { background: var(--azul); color: #fff; }
+  .activities-section .section-title { color: var(--azul); }
+
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px; margin-top: 40px;
+  }
+  .activity-card {
+    background: #fff; border-radius: 18px; padding: 24px 18px;
+    text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.07);
+    transition: transform .3s;
+  }
+  .activity-card:hover { transform: scale(1.04); }
+  .activity-card .act-icon { font-size: 2.8rem; margin-bottom: 10px; display: block; }
+  .activity-card h3 { font-size: 1rem; font-weight: 800; color: var(--azul); margin-bottom: 6px; }
+  .activity-card p { font-size: .85rem; color: #666; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--naranja) 0%, #c0392b 100%);
+    text-align: center; padding: 100px 20px;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff; margin-bottom: 14px;
+    text-shadow: 0 3px 20px rgba(0,0,0,.25);
+  }
+  .cta-section p { color: rgba(255,255,255,.9); font-size: 1.2rem; margin-bottom: 36px; }
+  .cta-btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+  .btn-white { background: #fff; color: var(--naranja); font-weight: 800; }
+  .btn-outline-white { background: transparent; border: 2px solid #fff; color: #fff; font-weight: 800; }
+  .btn-outline-white:hover { background: rgba(255,255,255,.15); }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+  .contact-section .section-tag { background: var(--lila); color: #fff; }
+  .contact-section .section-title { color: #fff; }
+
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px; margin-top: 44px;
+  }
+  .contact-card {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 18px; padding: 26px;
+    text-align: center; transition: background .3s;
+  }
+  .contact-card:hover { background: rgba(255,255,255,.12); }
+  .contact-card .c-icon { font-size: 2.4rem; margin-bottom: 12px; display: block; }
+  .contact-card h3 { color: var(--amarillo); font-size: 1rem; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .05em; }
+  .contact-card a {
+    color: #fff; text-decoration: none; font-size: 1.05rem; font-weight: 600;
+    display: block; transition: color .2s;
+  }
+  .contact-card a:hover { color: var(--amarillo); }
+  .contact-card .sub { color: rgba(255,255,255,.5); font-size: .85rem; margin-top: 4px; }
+
+  .links-row {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    justify-content: center; margin-top: 48px;
+  }
+  .link-pill {
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    color: #fff; text-decoration: none; padding: 10px 22px;
+    border-radius: 50px; font-weight: 700; font-size: .9rem;
+    display: flex; align-items: center; gap: 8px;
+    transition: background .2s, transform .2s;
+  }
+  .link-pill:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
+  .link-pill.booking { background: #003580; border-color: #003580; }
+  .link-pill.airbnb { background: #ff5a5f; border-color: #ff5a5f; }
+  .link-pill.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); border: none; }
+  .link-pill.google { background: #4285f4; border-color: #4285f4; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0a0a; color: rgba(255,255,255,.5);
+    text-align: center; padding: 28px 20px;
+    font-size: .85rem;
+  }
+  footer a { color: var(--verde-claro); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .facts-grid { grid-template-columns: 1fr 1fr; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a class="float-wa" href="https://api.whatsapp.com/send?phone=34635509256&text=Hola%2C%20quiero%20información%20sobre%20El%20Tinao%20de%20la%20Hiruela" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  WhatsApp
+</a>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <span class="hero-badge">🌿 Casa Rural · Sierra del Rincón · Madrid</span>
+  <h1>El Tinao de<br><em>La Hiruela</em></h1>
+  <p>Tu refugio en la naturaleza, a solo 90 minutos de Madrid. Desconecta, respira y crea recuerdos que duran para siempre.</p>
+  <div class="hero-btns">
+    <a class="btn btn-primary" href="https://www.tinaodelahiruela.com/reservas-casa-rural-hiruela" target="_blank">🏡 Reserva ahora</a>
+    <a class="btn btn-wa" href="https://api.whatsapp.com/send?phone=34635509256&text=Hola%2C%20quiero%20información" target="_blank">📲 WhatsApp directo</a>
+    <a class="btn btn-secondary" href="https://www.tinaodelahiruela.com/" target="_blank">🌐 Web oficial</a>
+  </div>
+  <div class="scroll-hint">
+    Descubre más
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- ── FACTS TICKER ── -->
+<div class="facts-strip" aria-hidden="true">
+  <div class="facts-track">
+    <div class="fact-item"><span class="icon">🏆</span> Reserva de la Biosfera UNESCO</div>
+    <div class="fact-item"><span class="icon">🗺️</span> Uno de los pueblos más bonitos de Madrid</div>
+    <div class="fact-item"><span class="icon">🏠</span> Hasta 6 personas · 3 habitaciones</div>
+    <div class="fact-item"><span class="icon">🚗</span> Solo 90 min desde Madrid</div>
+    <div class="fact-item"><span class="icon">💧</span> Agua de montaña fresca en la puerta</div>
+    <div class="fact-item"><span class="icon">🌟</span> Mejor precio garantizado</div>
+    <div class="fact-item"><span class="icon">🥐</span> Desayuno incluido · Pan fresco cada día</div>
+    <div class="fact-item"><span class="icon">🍷</span> Botella de vino de bienvenida</div>
+    <!-- repeat for seamless loop -->
+    <div class="fact-item"><span class="icon">🏆</span> Reserva de la Biosfera UNESCO</div>
+    <div class="fact-item"><span class="icon">🗺️</span> Uno de los pueblos más bonitos de Madrid</div>
+    <div class="fact-item"><span class="icon">🏠</span> Hasta 6 personas · 3 habitaciones</div>
+    <div class="fact-item"><span class="icon">🚗</span> Solo 90 min desde Madrid</div>
+    <div class="fact-item"><span class="icon">💧</span> Agua de montaña fresca en la puerta</div>
+    <div class="fact-item"><span class="icon">🌟</span> Mejor precio garantizado</div>
+    <div class="fact-item"><span class="icon">🥐</span> Desayuno incluido · Pan fresco cada día</div>
+    <div class="fact-item"><span class="icon">🍷</span> Botella de vino de bienvenida</div>
+  </div>
+</div>
+
+<!-- ── UNIQUE FACTS ── -->
+<section class="unique-facts">
+  <div class="container">
+    <span class="section-tag">✨ Lo que no sabías</span>
+    <h2 class="section-title">Datos sorprendentes de<br>El Tinao y La Hiruela</h2>
+    <p class="section-sub">Hechos únicos que convierten esta escapada en algo verdaderamente especial y diferente.</p>
+    <div class="facts-grid">
+      <div class="fact-card">
+        <div class="num" style="color:#f5c842">🌍</div>
+        <div class="label">Reserva de la Biosfera de la UNESCO</div>
+        <div class="desc">La Sierra del Rincón es uno de los territorios más pequeños del mundo en obtener este reconocimiento de la UNESCO — solo 18.200 hectáreas de naturaleza virgen.</div>
+      </div>
+      <div class="fact-card">
+        <div class="num" style="color:#5cb85c">~100<span style="font-size:1.5rem">km</span></div>
+        <div class="label">A menos de 100 km de Madrid capital</div>
+        <div class="desc">Un mundo completamente diferente a menos de 90 minutos. La ciudad más concurrida de España queda atrás y encuentras silencio total.</div>
+      </div>
+      <div class="fact-card">
+        <div class="num" style="color:#e8622a">2007</div>
+        <div class="label">Años de historia acogedora</div>
+        <div class="desc">El Tinao lleva recibiendo viajeros desde 2007 y fue renovado en 2024 convirtiéndose en el refugio personal de sus propietarios, abierto ahora para ti.</div>
+      </div>
+      <div class="fact-card">
+        <div class="num" style="color:#e84393">💧</div>
+        <div class="label">Fuente de agua viva frente a la casa</div>
+        <div class="desc">Enfrente mismo de El Tinao brota una fuente de agua que desciende directamente de la montaña — agua pura y fresca, gratuita y sin plásticos.</div>
+      </div>
+      <div class="fact-card">
+        <div class="num" style="color:#7b5ea7">🦋</div>
+        <div class="label">Biodiversidad excepcional</div>
+        <div class="desc">La Sierra del Rincón alberga especies protegidas de aves, mamíferos e insectos que solo viven en territorios con ecosistemas completamente preservados.</div>
+      </div>
+      <div class="fact-card">
+        <div class="num" style="color:#1a6fa8">🏛️</div>
+        <div class="label">Museo Etnológico único</div>
+        <div class="desc">La Hiruela cuenta con un Museo Etnológico que preserva las tradiciones rurales del siglo XIX — una joya cultural casi desconocida a 90 minutos de la capital.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section class="features-section">
+  <div class="container">
+    <span class="section-tag">🏡 La casa</span>
+    <h2 class="section-title">Todo lo que necesitas,<br>nada que sobre</h2>
+    <p class="section-sub">Un espacio diseñado con cariño para que te sientas como en casa — o incluso mejor.</p>
+    <div class="features-grid">
+      <div class="feature-card" style="border-color: var(--verde);">
+        <span class="icon">🛏️</span>
+        <h3 style="color:var(--verde)">3 Habitaciones acogedoras</h3>
+        <p>2 habitaciones con cama de matrimonio y 1 individual. Camas y almohadas de máximo confort para dormir a pierna suelta.</p>
+      </div>
+      <div class="feature-card" style="border-color: var(--naranja);">
+        <span class="icon">🔥</span>
+        <h3 style="color:var(--naranja)">Salón con chimenea</h3>
+        <p>El rincón perfecto para las noches de invierno: enciende el fuego, ponte cómodo y desconecta de todo con una buena peli o un libro.</p>
+      </div>
+      <div class="feature-card" style="border-color: var(--azul);">
+        <span class="icon">🥐</span>
+        <h3 style="color:var(--azul)">Desayuno incluido</h3>
+        <p>Pan fresco pagado cada día en la tahona del pueblo. Huevos frescos, mermeladas caseras, leche y más. Un comienzo del día de lujo.</p>
+      </div>
+      <div class="feature-card" style="border-color: var(--lila);">
+        <span class="icon">🍷</span>
+        <h3 style="color:var(--lila)">Detalles de bienvenida</h3>
+        <p>Los anfitriones te reciben con botella de vino y detalles especiales. Una atención al huésped que se nota y se recuerda.</p>
+      </div>
+      <div class="feature-card" style="border-color: var(--amarillo);">
+        <span class="icon">🎲</span>
+        <h3 style="color:#b38b00">Juegos para todos</h3>
+        <p>Juegos de mesa para adultos y rincón de juegos para niños. La diversión está garantizada para cualquier tipo de grupo.</p>
+      </div>
+      <div class="feature-card" style="border-color: var(--rosa);">
+        <span class="icon">🅿️</span>
+        <h3 style="color:var(--rosa)">Parking gratuito</h3>
+        <p>Gran parking a escasos metros de la entrada del pueblo. Sin estrés por aparcar, más tiempo para disfrutar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOCATION ── -->
+<section class="location-section">
+  <div class="container">
+    <span class="section-tag">📍 Ubicación privilegiada</span>
+    <h2 class="section-title">En el corazón de la<br>Sierra del Rincón</h2>
+    <div class="location-grid">
+      <div>
+        <p class="section-sub" style="margin-bottom:28px">Calle Enmedio, 45 · La Hiruela, 28191, Madrid<br><br>A tan solo:</p>
+        <div class="dist-list">
+          <div class="dist-item">
+            <span class="dist-icon">🏙️</span>
+            <span>Madrid capital</span>
+            <span class="dist-time">~90 min</span>
+          </div>
+          <div class="dist-item">
+            <span class="dist-icon">🏘️</span>
+            <span>Buitrago de Lozoya</span>
+            <span class="dist-time">~25 min</span>
+          </div>
+          <div class="dist-item">
+            <span class="dist-icon">🌲</span>
+            <span>Parque Natural Sierra del Rincón</span>
+            <span class="dist-time">En la puerta</span>
+          </div>
+          <div class="dist-item">
+            <span class="dist-icon">🎿</span>
+            <span>Rutas de senderismo</span>
+            <span class="dist-time">Al salir</span>
+          </div>
+        </div>
+        <div style="margin-top:28px">
+          <a class="btn btn-primary" href="https://www.tinaodelahiruela.com/casa-rural-sierra-rincon" target="_blank">🗺️ Cómo llegar</a>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6015.24515105885!2d-3.455197!3d41.077242!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd43f30058dadaa7%3A0xb506bd925d08f39a!2sEl%20Tinao%20de%20la%20Hiruela!5e0!3m2!1ses!2ses!4v1745569478334!5m2!1ses!2ses"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa El Tinao de la Hiruela">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACTIVITIES ── -->
+<section class="activities-section">
+  <div class="container">
+    <span class="section-tag">🎯 Qué hacer</span>
+    <h2 class="section-title">La aventura empieza<br>al abrir la puerta</h2>
+    <p class="section-sub">La Hiruela y su entorno ofrecen experiencias únicas para todos los gustos y edades.</p>
+    <div class="activities-grid">
+      <div class="activity-card">
+        <span class="act-icon">🥾</span>
+        <h3>Senderismo</h3>
+        <p>Rutas para todos los niveles en el Parque Natural de la Sierra del Rincón</p>
+      </div>
+      <div class="activity-card">
+        <span class="act-icon">🏛️</span>
+        <h3>Museo Etnológico</h3>
+        <p>Descubre la historia rural del siglo XIX en este museo único de la comarca</p>
+      </div>
+      <div class="activity-card">
+        <span class="act-icon">🦅</span>
+        <h3>Observación de aves</h3>
+        <p>Avistamiento de especies protegidas en uno de los ecosistemas más puros de Madrid</p>
+      </div>
+      <div class="activity-card">
+        <span class="act-icon">🌸</span>
+        <h3>Turismo rural</h3>
+        <p>Visita uno de los pueblos más bonitos de Madrid con su arquitectura serrana</p>
+      </div>
+      <div class="activity-card">
+        <span class="act-icon">🌟</span>
+        <h3>Astroturismo</h3>
+        <p>Cielos sin contaminación lumínica para observar las estrellas como nunca antes</p>
+      </div>
+      <div class="activity-card">
+        <span class="act-icon">🍄</span>
+        <h3>Setas y naturaleza</h3>
+        <p>En otoño, recoge setas y disfruta de la naturaleza en su máximo esplendor</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REVIEWS ── -->
+<section class="reviews-section">
+  <div class="container">
+    <span class="section-tag">⭐ Opiniones reales</span>
+    <h2 class="section-title">Lo que dicen quienes<br>ya han venido</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Ha sido un fin de semana increíble con mi pareja. La casa está en un entorno natural espectacular. El salón con su chimenea te invita a pasar esas noches de invierno leyendo. Las camas muy cómodas, buenas duchas y con todo lo que necesitas.</p>
+        <div class="review-author">Carlos Ochoa</div>
+        <div class="review-platform">Google Reviews</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Casa muy acogedora, cuidada, limpia y con todo lo necesario para pasar un fin de semana espectacular. Recomendable 100% para hasta 6 personas. Tiene chimenea, recomendaciones de rutas y juegos de mesa para todas las edades.</p>
+        <div class="review-author">Silvia</div>
+        <div class="review-platform">Booking.com</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Experiencia de las que no se olvidan. La casa es preciosa, con absolutamente todo lo necesario. Rincón de juegos para niños, limpísima. Pan fresco cada día en la Tahona que nos dejó pagado el anfitrión.</p>
+        <div class="review-author">Glorita</div>
+        <div class="review-platform">Booking.com</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Pueblo precioso y casa estupenda. Nos dejaron pan pagado en la tienda y una botella de vino, muy amables. La gente del pueblo es encantadora y enfrente hay una fuente de agua que sale directamente de la montaña.</p>
+        <div class="review-author">Arantxa</div>
+        <div class="review-platform">Booking.com</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Una casa con mucho detalle. El anfitrión dejó productos para el desayuno, incluyendo huevos frescos, mermeladas, leche, pan fresco pagado en la tahona cada día e incluyó otros detalles especiales.</p>
+        <div class="review-author">Ana</div>
+        <div class="review-platform">Booking.com</div>
+      </div>
+      <div class="review-card" style="background: linear-gradient(135deg, var(--verde), #2d9e3a); color:#fff;">
+        <div style="font-size:3rem; margin-bottom:10px">💬</div>
+        <p style="color:#fff; font-size:1.05rem; font-weight:800; margin-bottom:12px">¿Ya has visitado El Tinao?</p>
+        <p style="color:rgba(255,255,255,.85); font-size:.9rem; margin-bottom:20px">¡Comparte tu experiencia y ayuda a otros a descubrir este rincón mágico!</p>
+        <a href="https://g.co/kgs/JbWWckf" target="_blank" class="btn btn-white" style="font-size:.9rem; padding:10px 22px;">⭐ Déjanos tu reseña</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BIG CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <h2>¿A qué esperas para<br>reservar tu escapada?</h2>
+    <p>Precio directo garantizado · Sin intermediarios · Atención personalizada</p>
+    <div class="cta-btns">
+      <a class="btn btn-white" href="https://www.tinaodelahiruela.com/reservas-casa-rural-hiruela" target="_blank">🏡 Reserva en la web oficial</a>
+      <a class="btn btn-wa" href="https://api.whatsapp.com/send?phone=34635509256&text=Hola%2C%20quiero%20información%20sobre%20El%20Tinao%20de%20la%20Hiruela" target="_blank">📲 Escríbenos por WhatsApp</a>
+      <a class="btn btn-outline-white" href="https://www.tinaodelahiruela.com/precios-casa-rural-hiruela" target="_blank">💶 Ver tarifas</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section">
+  <div class="container">
+    <span class="section-tag">📞 Contacto</span>
+    <h2 class="section-title">Estamos aquí para ti</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="c-icon">📍</span>
+        <h3>Dirección</h3>
+        <a href="https://www.tinaodelahiruela.com/casa-rural-sierra-rincon" target="_blank">Calle Enmedio, 45</a>
+        <div class="sub">La Hiruela, 28191, Madrid</div>
+      </div>
+      <div class="contact-card">
+        <span class="c-icon">📱</span>
+        <h3>WhatsApp & Teléfono</h3>
+        <a href="https://api.whatsapp.com/send?phone=34635509256&text=Hola" target="_blank">+34 635 509 256</a>
+        <div class="sub">Respuesta rápida garantizada</div>
+      </div>
+      <div class="contact-card">
+        <span class="c-icon">✉️</span>
+        <h3>Formulario de contacto</h3>
+        <a href="https://www.tinaodelahiruela.com/contacto-eltinaodelahiruela" target="_blank">Envíanos un mensaje</a>
+        <div class="sub">Te respondemos en 24h</div>
+      </div>
+      <div class="contact-card">
+        <span class="c-icon">🌐</span>
+        <h3>Web oficial</h3>
+        <a href="https://www.tinaodelahiruela.com/" target="_blank">www.tinaodelahiruela.com</a>
+        <div class="sub">Toda la información actualizada</div>
+      </div>
+    </div>
+
+    <div class="links-row">
+      <a class="link-pill" href="https://www.tinaodelahiruela.com/" target="_blank">🏡 Web oficial</a>
+      <a class="link-pill booking" href="https://www.booking.com/hotel/es/el-tinao-de-la-hiruela-entremelojos.es.html" target="_blank">🔵 Booking.com</a>
+      <a class="link-pill airbnb" href="https://www.airbnb.es/rooms/1141820322520762712" target="_blank">🏠 Airbnb</a>
+      <a class="link-pill instagram" href="https://www.instagram.com/eltinaodelahiruela/" target="_blank">📸 Instagram</a>
+      <a class="link-pill google" href="https://g.co/kgs/JbWWckf" target="_blank">⭐ Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>🌿 El Tinao de la Hiruela · Calle Enmedio 45, La Hiruela, Madrid · <a href="tel:+34635509256">+34 635 509 256</a></p>
+  <p style="margin-top:8px">
+    <a href="https://www.tinaodelahiruela.com/aviso-legal" target="_blank">Aviso legal</a> ·
+    <a href="https://www.tinaodelahiruela.com/politica-de-privacidad" target="_blank">Privacidad</a> ·
+    <a href="https://www.tinaodelahiruela.com/politica-de-cookies" target="_blank">Cookies</a>
+  </p>
+</footer>
+
+</body>
+</html>
