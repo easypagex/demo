@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☀️ Sol de Taberno — Casa Rural Almería</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFB800;
+    --terra: #E8472A;
+    --olive: #5A7A2E;
+    --sky: #1B8FD4;
+    --lavender: #8B5CF6;
+    --rose: #F43F8C;
+    --cream: #FFF8F0;
+    --dark: #1A1208;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── STICKY NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    background: rgba(26,18,8,0.92);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 62px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    color: var(--sun);
+    font-size: 1.3rem; font-weight: 900;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.6rem; }
+  .nav-links a {
+    color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    opacity: 0.85; transition: opacity .2s, color .2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--sun); }
+  .nav-cta {
+    background: var(--terra); color: #fff !important; opacity: 1 !important;
+    padding: .38rem 1.1rem; border-radius: 100px; font-weight: 600 !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: #c33a20 !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FFB800 0%, #E8472A 35%, #8B5CF6 68%, #1B8FD4 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 80px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(0,0,0,0.15) 0%, transparent 50%);
+  }
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    animation: float 7s ease-in-out infinite;
+    opacity: 0.18;
+  }
+  .hero-blob:nth-child(1) { width: 380px; height: 380px; background: #fff; top: -100px; left: -80px; animation-delay: 0s; }
+  .hero-blob:nth-child(2) { width: 260px; height: 260px; background: var(--sun); bottom: -60px; right: 10%; animation-delay: -3s; }
+  .hero-blob:nth-child(3) { width: 180px; height: 180px; background: var(--rose); top: 30%; right: -40px; animation-delay: -1.5s; }
+  @keyframes float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-22px) scale(1.04); }
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1.5px solid rgba(255,255,255,0.5);
+    color: #fff; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: .4rem 1.2rem; border-radius: 100px;
+    margin-bottom: 1.4rem; position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900; color: #fff;
+    line-height: 1.08; margin-bottom: 1rem;
+    position: relative;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--sun);
+    display: block;
+  }
+  .hero-sub {
+    color: rgba(255,255,255,0.92);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    max-width: 560px; line-height: 1.65;
+    margin-bottom: 2.4rem; position: relative;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; position: relative; }
+  .btn-primary {
+    background: #fff; color: var(--terra);
+    font-weight: 700; font-size: 1rem;
+    padding: .9rem 2.2rem; border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    transition: transform .2s, box-shadow .2s;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+  .btn-wa {
+    background: #25D366; color: #fff;
+    font-weight: 700; font-size: 1rem;
+    padding: .9rem 2.2rem; border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    transition: transform .2s, box-shadow .2s;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .btn-wa:hover { transform: translateY(-2px); background: #1fb855; }
+
+  /* ── NUMBERS STRIP ── */
+  .strip {
+    background: var(--dark);
+    padding: 2.4rem 5%;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+  }
+  .strip-item { text-align: center; }
+  .strip-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900;
+    background: linear-gradient(90deg, var(--sun), var(--rose));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .strip-label { color: rgba(255,255,255,0.6); font-size: 0.82rem; font-weight: 500; margin-top: .3rem; letter-spacing: 0.05em; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 5%; }
+
+  .section-tag {
+    display: inline-block; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: .3rem 1rem; border-radius: 100px; margin-bottom: 1rem;
+  }
+  .section-h {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-p { font-size: 1.05rem; line-height: 1.75; max-width: 560px; color: #3a3020; }
+
+  /* ── FACTS ── */
+  .facts { background: linear-gradient(135deg, #1B8FD4 0%, #5A7A2E 100%); }
+  .facts .section-tag { background: rgba(255,255,255,0.2); color: #fff; }
+  .facts .section-h { color: #fff; }
+  .facts .section-p { color: rgba(255,255,255,0.88); }
+  .facts-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .fact-card {
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    border-radius: 20px; padding: 1.8rem;
+    transition: transform .25s, background .25s;
+  }
+  .fact-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.2); }
+  .fact-icon { font-size: 2.2rem; margin-bottom: .8rem; }
+  .fact-title { font-size: 1.05rem; font-weight: 700; color: var(--sun); margin-bottom: .4rem; }
+  .fact-text { font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.6; }
+
+  /* ── ALOJAMIENTOS ── */
+  .alojamientos { background: #FFF8F0; }
+  .aloj-tag { background: #FFE4CC; color: var(--terra); }
+  .aloj-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem; margin-top: 3rem;
+  }
+  .aloj-card {
+    background: #fff;
+    border-radius: 18px; padding: 1.5rem;
+    border: 2px solid #f0e0cc;
+    display: flex; flex-direction: column; gap: .5rem;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+  }
+  .aloj-card:hover { transform: translateY(-4px); border-color: var(--terra); box-shadow: 0 10px 30px rgba(232,71,42,0.12); }
+  .aloj-emoji { font-size: 2rem; }
+  .aloj-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+  .aloj-desc { font-size: 0.85rem; color: #7a6a54; line-height: 1.5; }
+  .aloj-link {
+    font-size: 0.8rem; font-weight: 700; color: var(--terra);
+    text-decoration: none; margin-top: auto;
+    display: flex; align-items: center; gap: .3rem;
+  }
+  .aloj-link:hover { text-decoration: underline; }
+
+  /* ── EXPERIENCIAS ── */
+  .experiencias { background: linear-gradient(135deg, #8B5CF6 0%, #F43F8C 100%); }
+  .exp-tag { background: rgba(255,255,255,0.2); color: #fff; }
+  .exp-h { color: #fff; }
+  .exp-p { color: rgba(255,255,255,0.88); }
+  .exp-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.2rem; margin-top: 3rem;
+  }
+  .exp-pill {
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 16px; padding: 1.3rem;
+    text-align: center;
+    transition: background .2s, transform .2s;
+  }
+  .exp-pill:hover { background: rgba(255,255,255,0.28); transform: scale(1.03); }
+  .exp-icon { font-size: 2rem; margin-bottom: .5rem; }
+  .exp-name { font-size: 0.92rem; font-weight: 600; color: #fff; }
+  .exp-price { font-size: 0.8rem; color: var(--sun); font-weight: 700; margin-top: .2rem; }
+
+  /* ── EVENTOS ── */
+  .eventos { background: #FFF0F5; }
+  .ev-tag { background: #FFD6EA; color: var(--rose); }
+  .ev-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .ev-card {
+    border-radius: 22px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(244,63,140,0.12);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .ev-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(244,63,140,0.22); }
+  .ev-header {
+    padding: 2.5rem 2rem 2rem;
+    display: flex; flex-direction: column; gap: .5rem;
+  }
+  .ev-emoji { font-size: 2.8rem; }
+  .ev-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: #fff; }
+  .ev-desc { font-size: 0.88rem; color: rgba(255,255,255,0.88); line-height: 1.55; }
+  .ev-footer { background: rgba(255,255,255,0.95); padding: 1rem 2rem; }
+  .ev-cta {
+    font-size: 0.85rem; font-weight: 700; text-decoration: none;
+    display: flex; align-items: center; gap: .4rem;
+  }
+
+  /* ── CURIOSIDADES ── */
+  .curiosidades { background: linear-gradient(135deg, #FFB800 0%, #E8472A 60%, #8B5CF6 100%); }
+  .cur-tag { background: rgba(255,255,255,0.2); color: #fff; }
+  .cur-h { color: #fff; }
+  .cur-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .cur-card {
+    background: rgba(255,255,255,0.13);
+    border: 2px solid rgba(255,255,255,0.22);
+    border-radius: 20px; padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .cur-card::before {
+    content: attr(data-num);
+    position: absolute; right: -10px; top: -15px;
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem; font-weight: 900;
+    color: rgba(255,255,255,0.08); line-height: 1;
+    pointer-events: none;
+  }
+  .cur-ico { font-size: 1.8rem; margin-bottom: .6rem; }
+  .cur-title { font-size: 1rem; font-weight: 700; color: var(--sun); margin-bottom: .4rem; }
+  .cur-text { font-size: 0.88rem; color: rgba(255,255,255,0.88); line-height: 1.65; }
+
+  /* ── CONTACTO ── */
+  .contacto { background: var(--dark); }
+  .ct-tag { background: rgba(255,184,0,0.2); color: var(--sun); }
+  .ct-h { color: #fff; }
+  .ct-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .ct-card {
+    border-radius: 20px; padding: 2rem;
+    text-decoration: none;
+    display: flex; flex-direction: column; gap: .6rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .ct-card:hover { transform: translateY(-4px); }
+  .ct-card .ct-icon { font-size: 2rem; }
+  .ct-card .ct-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: .75; }
+  .ct-card .ct-value { font-size: 1.1rem; font-weight: 700; }
+
+  .ct-wa { background: #25D366; color: #fff; }
+  .ct-tel { background: var(--sky); color: #fff; }
+  .ct-mail { background: var(--terra); color: #fff; }
+  .ct-web { background: var(--lavender); color: #fff; }
+  .ct-map { background: var(--olive); color: #fff; }
+
+  /* ── MEJOR PRECIO ── */
+  .precio-banner {
+    background: linear-gradient(90deg, var(--sun) 0%, var(--terra) 100%);
+    padding: 3rem 5%; text-align: center;
+  }
+  .precio-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    color: #fff; font-weight: 900; margin-bottom: .5rem;
+  }
+  .precio-banner p { color: rgba(255,255,255,0.88); font-size: 1rem; margin-bottom: 1.8rem; }
+  .btn-reservar {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: #fff; color: var(--terra);
+    font-weight: 800; font-size: 1.05rem;
+    padding: .95rem 2.5rem; border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transition: transform .2s;
+  }
+  .btn-reservar:hover { transform: translateY(-2px) scale(1.02); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f0c06;
+    padding: 2.5rem 5%;
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    align-items: center; justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    color: var(--sun); font-size: 1.2rem; font-weight: 900;
+    text-decoration: none;
+  }
+  .footer-links { display: flex; flex-wrap: wrap; gap: .8rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); font-size: 0.8rem; text-decoration: none; }
+  .footer-links a:hover { color: var(--sun); }
+  footer p { color: rgba(255,255,255,0.35); font-size: 0.76rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 650px) {
+    .nav-links { display: none; }
+    .ev-header { padding: 1.8rem 1.4rem 1.2rem; }
+    .ev-footer { padding: .9rem 1.4rem; }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://www.soldetaberno.com/" target="_blank" class="nav-brand">☀️ Sol de Taberno</a>
+  <div class="nav-links">
+    <a href="#alojamientos">Alojamientos</a>
+    <a href="#experiencias">Experiencias</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#curiosidades">Datos únicos</a>
+    <a href="https://www.soldetaberno.com/reservas/" target="_blank" class="nav-cta">Reservar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-badge">🏆 Nº REG: A/AL/00183 · Calidad Turística Certificada</div>
+  <h1>Casa Rural en<em>Almería</em></h1>
+  <p class="hero-sub">
+    Un cortijo andaluz de más de 100 años en el corazón de la sierra de Taberno. 
+    Piscina, 9 alojamientos independientes, bodas, eventos y experiencias únicas rodeadas de naturaleza.
+  </p>
+  <div class="hero-btns">
+    <a href="https://www.soldetaberno.com/reservas/" target="_blank" class="btn-primary">🗓️ Reservar ahora — Mejor precio garantizado</a>
+    <a href="https://api.whatsapp.com/send?phone=34669515146" target="_blank" class="btn-wa">💬 WhatsApp directo</a>
+  </div>
+</section>
+
+<!-- NUMBERS STRIP -->
+<div class="strip">
+  <div class="strip-item"><div class="strip-num">100+</div><div class="strip-label">Años de historia del cortijo</div></div>
+  <div class="strip-item"><div class="strip-num">10.000</div><div class="strip-label">m² de terreno natural</div></div>
+  <div class="strip-item"><div class="strip-num">9</div><div class="strip-label">Alojamientos independientes</div></div>
+  <div class="strip-item"><div class="strip-num">11+</div><div class="strip-label">Experiencias rurales únicas</div></div>
+  <div class="strip-item"><div class="strip-num">300</div><div class="strip-label">días de sol al año en Almería</div></div>
+</div>
+
+<!-- FACTS / DATOS CURIOSOS -->
+<section class="facts reveal" id="curiosidades">
+  <div class="section-tag cur-tag">✨ Lo que no sabías</div>
+  <h2 class="section-h" style="color:#fff">Datos que hacen único a Sol de Taberno</h2>
+  <p class="section-p">Más de 100 años de historia, certificados por Calidad Turística, y un entorno que guarda secretos naturales que muy pocos conocen.</p>
+  <div class="facts-grid">
+    <div class="fact-card reveal">
+      <div class="fact-icon">🌋</div>
+      <div class="fact-title">La Geoda de Pulpí, a 40 min</div>
+      <div class="fact-text">Considerada la geoda habitable más grande del mundo, con cristales de hasta 2 metros. Puedes visitarla como experiencia desde Sol de Taberno.</div>
+    </div>
+    <div class="fact-card reveal">
+      <div class="fact-icon">🌿</div>
+      <div class="fact-title">Almería: el desierto más seco de Europa</div>
+      <div class="fact-text">La comarca de Taberno se sitúa en la única zona desértica de Europa continental. Un paisaje de película literalmente: aquí se rodaron westerns de Hollywood.</div>
+    </div>
+    <div class="fact-card reveal">
+      <div class="fact-icon">⭐</div>
+      <div class="fact-title">Cielo sin contaminación lumínica</div>
+      <div class="fact-text">La sierra de Taberno es una de las zonas de menor contaminación lumínica de Andalucía. Ver la Vía Láctea a ojo desnudo es posible aquí.</div>
+    </div>
+    <div class="fact-card reveal">
+      <div class="fact-icon">🏺</div>
+      <div class="fact-title">Tradición alfarera viva</div>
+      <div class="fact-text">Taberno conserva uno de los pocos talleres de alfarería tradicional activos en Almería. Sol de Taberno ofrece una experiencia alfarera con el artesano local.</div>
+    </div>
+    <div class="fact-card reveal">
+      <div class="fact-icon">🍷</div>
+      <div class="fact-title">Vinos de Almería, los más singulares</div>
+      <div class="fact-text">Los viñedos almerienses tienen unas condiciones únicas de altitud y clima seco. La experiencia vinícola de Sol de Taberno muestra esta joya desconocida del vino español.</div>
+    </div>
+    <div class="fact-card reveal">
+      <div class="fact-icon">💧</div>
+      <div class="fact-title">Piscina natural en pleno verano almeriense</div>
+      <div class="fact-text">Con 300 días de sol al año y temperaturas que superan los 40°C en verano, el cortijo ofrece piscina en temporada estival — un oasis en el desierto más seco de Europa.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ALOJAMIENTOS -->
+<section class="alojamientos reveal" id="alojamientos">
+  <div class="section-tag aloj-tag">🏡 Dónde dormir</div>
+  <h2 class="section-h">9 Alojamientos totalmente independientes</h2>
+  <p class="section-p">Cada alojamiento es un mundo propio, completamente equipado. Privacidad total para disfrutar de tu escapada.</p>
+  <div class="aloj-grid">
+    <div class="aloj-card reveal">
+      <div class="aloj-emoji">🌸</div>
+      <div class="aloj-name">Catalina</div>
+      <div class="aloj-desc">Apartamento rural con encanto andaluz clásico, equipamiento completo.</div>
+      <a href="https://www.soldetaberno.com/catalina/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+    <div class="aloj-card reveal">
+      <div class="aloj-emoji">🌿</div>
+      <div class="aloj-name">Ático Madroño</div>
+      <div class="aloj-desc">Vistas panorámicas desde las alturas de la finca.</div>
+      <a href="https://www.soldetaberno.com/atico-madrono/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+    <div class="aloj-card reveal">
+      <div class="aloj-emoji">🌺</div>
+      <div class="aloj-name">Malena</div>
+      <div class="aloj-desc">Acogedor y luminoso, ideal para parejas o familias pequeñas.</div>
+      <a href="https://www.soldetaberno.com/malena/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+    <div class="aloj-card reveal">
+      <div class="aloj-emoji">🫒</div>
+      <div class="aloj-name">El Olivo</div>
+      <div class="aloj-desc">Con vistas al olivar centenario de la finca.</div>
+      <a href="https://www.soldetaberno.com/el-olivo/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+    <div class="aloj-card reveal">
+      <div class="aloj-emoji">🌳</div>
+      <div class="aloj-name">El Algarrobo</div>
+      <div class="aloj-desc">Rodeado de vegetación típica mediterránea, frescor natural.</div>
+      <a href="https://www.soldetaberno.com/el-algarrobo/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+    <div class="aloj-card reveal">
+      <div class="aloj-emoji">🌰</div>
+      <div class="aloj-name">El Almendro</div>
+      <div class="aloj-desc">A la sombra del almendro en flor, pura esencia almeriense.</div>
+      <a href="https://www.soldetaberno.com/el-almendro/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+    <div class="aloj-card reveal">
+      <div class="aloj-emoji">🍃</div>
+      <div class="aloj-name">La Higuera</div>
+      <div class="aloj-desc">Bajo la higuera centenaria del cortijo, sombra y tradición.</div>
+      <a href="https://www.soldetaberno.com/la-higuera/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+    <div class="aloj-card reveal">
+      <div class="aloj-emoji">🏡</div>
+      <div class="aloj-name">Ático Tía Beba</div>
+      <div class="aloj-desc">Vistas privilegiadas y ambiente único, el ático más especial.</div>
+      <a href="https://www.soldetaberno.com/atico-tia-beba/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+    <div class="aloj-card reveal" style="border-color: var(--terra); background: #fff8f4;">
+      <div class="aloj-emoji">🏰</div>
+      <div class="aloj-name">Cortijo Alzabara</div>
+      <div class="aloj-desc">El más exclusivo: cortijo completo para grupos, bodas o eventos privados.</div>
+      <a href="https://www.soldetaberno.com/cortijo-alzabara/" target="_blank" class="aloj-link">Ver detalles →</a>
+    </div>
+  </div>
+  <div style="margin-top: 2rem; text-align:center;">
+    <a href="https://www.soldetaberno.com/tarifas/" target="_blank" class="btn-primary" style="display:inline-flex; background: var(--terra); color:#fff;">
+      💶 Ver todas las tarifas
+    </a>
+  </div>
+</section>
+
+<!-- EXPERIENCIAS -->
+<section class="experiencias reveal" id="experiencias">
+  <div class="section-tag exp-tag">🧭 Actividades</div>
+  <h2 class="section-h exp-h">11 Experiencias únicas en plena naturaleza</h2>
+  <p class="section-p exp-p">Desde €12/persona. No hay nada igual en Almería.</p>
+  <div class="exp-grid">
+    <div class="exp-pill"><div class="exp-icon">🐴</div><div class="exp-name">Rutas a caballo</div><div class="exp-price">desde 20€/pax</div></div>
+    <div class="exp-pill"><div class="exp-icon">🐄</div><div class="exp-name">Experiencia ganadera</div><div class="exp-price">desde 12€/pax</div></div>
+    <div class="exp-pill"><div class="exp-icon">🥾</div><div class="exp-name">Rutas de senderismo</div><div class="exp-price">en plena sierra</div></div>
+    <div class="exp-pill"><div class="exp-icon">🍷</div><div class="exp-name">Experiencia vinícola</div><div class="exp-price">vinos únicos almerienses</div></div>
+    <div class="exp-pill"><div class="exp-icon">🏺</div><div class="exp-name">Experiencia alfarero</div><div class="exp-price">artesanía viva</div></div>
+    <div class="exp-pill"><div class="exp-icon">🗺️</div><div class="exp-name">Visita Vive Taberno</div><div class="exp-price">guía local</div></div>
+    <div class="exp-pill"><div class="exp-icon">🚙</div><div class="exp-name">Rutas 4×4</div><div class="exp-price">off-road sierra</div></div>
+    <div class="exp-pill"><div class="exp-icon">🚵</div><div class="exp-name">Rutas en bicicleta</div><div class="exp-price">naturaleza libre</div></div>
+    <div class="exp-pill"><div class="exp-icon">🏆</div><div class="exp-name">Gymkana Humor Amarillo</div><div class="exp-price">para grupos</div></div>
+    <div class="exp-pill"><div class="exp-icon">🏍️</div><div class="exp-name">Rutas en quads</div><div class="exp-price">aventura garantizada</div></div>
+    <div class="exp-pill"><div class="exp-icon">💎</div><div class="exp-name">Visita Geoda de Pulpí</div><div class="exp-price">maravilla mundial</div></div>
+  </div>
+  <div style="margin-top:2rem; text-align:center;">
+    <a href="https://www.soldetaberno.com/experiencias/" target="_blank" style="display:inline-flex; align-items:center; gap:.5rem; background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.4); color:#fff; font-weight:700; padding:.85rem 2rem; border-radius:100px; text-decoration:none; transition: background .2s;" onmouseover="this.style.background='rgba(255,255,255,0.35)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">Ver todas las experiencias →</a>
+  </div>
+</section>
+
+<!-- EVENTOS -->
+<section class="eventos reveal" id="eventos">
+  <div class="section-tag ev-tag">🎉 Celebraciones</div>
+  <h2 class="section-h">Tu evento perfecto en plena naturaleza</h2>
+  <p class="section-p">Bodas, celebraciones, team building... 10.000 m² de jardines, salón comedor y piscina a tu disposición.</p>
+  <div class="ev-grid">
+    <div class="ev-card">
+      <div class="ev-header" style="background: linear-gradient(135deg, #F43F8C, #8B5CF6);">
+        <div class="ev-emoji">💍</div>
+        <div class="ev-title">Bodas al aire libre</div>
+        <div class="ev-desc">Celebra el día más especial de tu vida en un cortijo centenario con jardines, terraza y piscina en un entorno natural único.</div>
+      </div>
+      <div class="ev-footer">
+        <a href="https://www.soldetaberno.com/bodas/" target="_blank" class="ev-cta" style="color: var(--rose);">Información bodas →</a>
+      </div>
+    </div>
+    <div class="ev-card">
+      <div class="ev-header" style="background: linear-gradient(135deg, #FFB800, #E8472A);">
+        <div class="ev-emoji">🎊</div>
+        <div class="ev-title">Celebraciones</div>
+        <div class="ev-desc">Comuniones, cumpleaños, aniversarios... El escenario más especial para tus momentos más importantes.</div>
+      </div>
+      <div class="ev-footer">
+        <a href="https://www.soldetaberno.com/celebraciones/" target="_blank" class="ev-cta" style="color: var(--terra);">Ver celebraciones →</a>
+      </div>
+    </div>
+    <div class="ev-card">
+      <div class="ev-header" style="background: linear-gradient(135deg, #1B8FD4, #5A7A2E);">
+        <div class="ev-emoji">🤝</div>
+        <div class="ev-title">Team Building</div>
+        <div class="ev-desc">Retiros de empresa, actividades outdoor, gymkanas y experiencias para fortalecer equipos en un entorno inspirador.</div>
+      </div>
+      <div class="ev-footer">
+        <a href="https://www.soldetaberno.com/team-building/" target="_blank" class="ev-cta" style="color: var(--sky);">Ver eventos empresa →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER MEJOR PRECIO -->
+<div class="precio-banner reveal">
+  <h2>🏷️ Mejor precio garantizado en web oficial</h2>
+  <p>Reserva directamente aquí y ahorra más que en Booking.com · Sin intermediarios · Trato personal</p>
+  <a href="https://www.soldetaberno.com/reservas/" target="_blank" class="btn-reservar">🗓️ Hacer mi reserva ahora</a>
+</div>
+
+<!-- CONTACTO -->
+<section class="contacto reveal" id="contacto">
+  <div class="section-tag ct-tag">📞 Contacto directo</div>
+  <h2 class="section-h ct-h">Habla con nosotros ahora</h2>
+  <div class="ct-grid">
+    <a href="https://api.whatsapp.com/send?phone=34669515146" target="_blank" class="ct-card ct-wa">
+      <div class="ct-icon">💬</div>
+      <div class="ct-label">WhatsApp</div>
+      <div class="ct-value">+34 669 515 146</div>
+    </a>
+    <a href="tel:+34696978071" class="ct-card ct-tel">
+      <div class="ct-icon">📞</div>
+      <div class="ct-label">Teléfono atención</div>
+      <div class="ct-value">+34 696 978 071</div>
+    </a>
+    <a href="mailto:info@soldetaberno.com" class="ct-card ct-mail">
+      <div class="ct-icon">✉️</div>
+      <div class="ct-label">Email</div>
+      <div class="ct-value">info@soldetaberno.com</div>
+    </a>
+    <a href="https://www.soldetaberno.com/contacta/" target="_blank" class="ct-card ct-web">
+      <div class="ct-icon">🌐</div>
+      <div class="ct-label">Web oficial</div>
+      <div class="ct-value">soldetaberno.com</div>
+    </a>
+    <a href="https://maps.google.com/?q=Capellanias+8+Taberno+Almeria" target="_blank" class="ct-card ct-map">
+      <div class="ct-icon">📍</div>
+      <div class="ct-label">Dirección</div>
+      <div class="ct-value">Capellanías, 8 — Taberno (Almería)</div>
+    </a>
+  </div>
+  <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.5rem; align-items:center;">
+    <a href="https://www.instagram.com/soldetaberno/" target="_blank" style="color:rgba(255,255,255,0.6); font-size:.9rem; text-decoration:none;">📸 Instagram</a>
+    <a href="https://www.facebook.com/soldetaberno" target="_blank" style="color:rgba(255,255,255,0.6); font-size:.9rem; text-decoration:none;">👍 Facebook</a>
+    <a href="https://www.youtube.com/channel/UCY2vcc7VCm6o7g7f8jcVjRg" target="_blank" style="color:rgba(255,255,255,0.6); font-size:.9rem; text-decoration:none;">▶️ YouTube</a>
+    <a href="https://www.soldetaberno.com/galeria/" target="_blank" style="color:rgba(255,255,255,0.6); font-size:.9rem; text-decoration:none;">🖼️ Galería de fotos</a>
+    <a href="https://www.soldetaberno.com/ofertas/" target="_blank" style="color:rgba(255,255,255,0.6); font-size:.9rem; text-decoration:none;">🏷️ Ofertas especiales</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://www.soldetaberno.com/" target="_blank" class="footer-brand">☀️ Sol de Taberno</a>
+  <div class="footer-links">
+    <a href="https://www.soldetaberno.com/alojamientos/" target="_blank">Alojamientos</a>
+    <a href="https://www.soldetaberno.com/tarifas/" target="_blank">Tarifas</a>
+    <a href="https://www.soldetaberno.com/experiencias/" target="_blank">Experiencias</a>
+    <a href="https://www.soldetaberno.com/eventos/" target="_blank">Eventos</a>
+    <a href="https://www.soldetaberno.com/reservas/" target="_blank">Reservar</a>
+    <a href="https://www.soldetaberno.com/politica-de-privacidad/" target="_blank">Privacidad</a>
+  </div>
+  <p>© Sol de Taberno · Nº REG: A/AL/00183 · Taberno, Almería</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
