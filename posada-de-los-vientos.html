@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Posada de los Vientos — Hotel Rural Sierra Norte de Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2E7D32;
+    --verde-claro: #66BB6A;
+    --verde-oscuro: #1B5E20;
+    --ocre: #E65100;
+    --ocre-claro: #FF8F00;
+    --cielo: #0277BD;
+    --cielo-claro: #29B6F6;
+    --burdeos: #880E4F;
+    --burdeos-claro: #EC407A;
+    --tierra: #4E342E;
+    --crema: #FFF8E1;
+    --blanco: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a3a1a 0%, #0d2b3e 40%, #2d1a00 80%, #1a0d2e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 30%, rgba(46,125,50,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 70%, rgba(2,119,189,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(230,81,0,0.15) 0%, transparent 70%);
+  }
+
+  .hero-badge {
+    background: var(--ocre);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 0.9s ease 0.1s both;
+  }
+
+  .hero h1 span { color: var(--verde-claro); font-style: italic; }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,0.8);
+    max-width: 580px;
+    line-height: 1.7;
+    margin: 1.5rem auto 2.5rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 1s ease 0.2s both;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 1.1s ease 0.3s both;
+  }
+
+  .btn-primary {
+    background: var(--ocre);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 3rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(230,81,0,0.4);
+    display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(230,81,0,0.55); }
+
+  .btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.5);
+    padding: 0.9rem 2.2rem;
+    border-radius: 3rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+  .hero-facts {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1.2s ease 0.5s both;
+  }
+
+  .fact {
+    text-align: center;
+  }
+  .fact strong {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: 'Playfair Display', serif;
+    color: var(--verde-claro);
+  }
+  .fact span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECCIONES GENÉRICAS ── */
+  section { position: relative; overflow: hidden; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    max-width: 560px;
+    opacity: 0.88;
+  }
+
+  /* ── CURIOSIDADES ── */
+  .curiosidades {
+    background: linear-gradient(135deg, #0a2218 0%, #0d2b3e 100%);
+    padding: 6rem 2rem;
+  }
+
+  .curiosidades-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    color: #fff;
+  }
+
+  .curiosidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .curiosidad-card {
+    border-radius: 1.2rem;
+    padding: 2rem 1.8rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .curiosidad-card:hover { transform: translateY(-6px); }
+
+  .c-verde { background: linear-gradient(135deg, #1B5E20, #2E7D32); }
+  .c-ocre  { background: linear-gradient(135deg, #BF360C, #E65100); }
+  .c-cielo { background: linear-gradient(135deg, #01579B, #0277BD); }
+  .c-burdeos { background: linear-gradient(135deg, #4A148C, #7B1FA2); }
+  .c-tierra  { background: linear-gradient(135deg, #3E2723, #5D4037); }
+  .c-dorado  { background: linear-gradient(135deg, #E65100, #FF8F00); }
+
+  .curiosidad-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .curiosidad-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .curiosidad-card p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    opacity: 0.9;
+  }
+
+  /* ── HABITACIONES ── */
+  .habitaciones {
+    background: linear-gradient(160deg, #1a0d2e 0%, #0a2218 50%, #1a1200 100%);
+    padding: 6rem 2rem;
+  }
+
+  .hab-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 760px) {
+    .hab-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .hab-text { color: #fff; }
+
+  .hab-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .hab-feat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.8rem;
+    padding: 1rem 1.1rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .hab-feat strong { display: block; color: var(--verde-claro); font-size: 1rem; margin-bottom: 0.2rem; }
+
+  .hab-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .hab-img-placeholder {
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+  .hab-img-placeholder.tall { grid-column: span 2; aspect-ratio: 16/7; }
+  .bg-forest { background: linear-gradient(135deg, #1a3a0a, #2E7D32); }
+  .bg-stone  { background: linear-gradient(135deg, #3E2723, #795548); }
+  .bg-sky    { background: linear-gradient(135deg, #0d2b3e, #0277BD); }
+
+  /* ── RESTAURANTE ── */
+  .restaurante {
+    background: linear-gradient(135deg, #1a0800 0%, #3a1500 50%, #1a0d2e 100%);
+    padding: 6rem 2rem;
+  }
+
+  .rest-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 760px) { .rest-layout { grid-template-columns: 1fr; } }
+
+  .rest-text { color: #fff; }
+
+  .rest-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.8rem;
+  }
+  .badge {
+    padding: 0.35rem 0.9rem;
+    border-radius: 2rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-verde  { background: rgba(102,187,106,0.2); color: #81C784; border: 1px solid rgba(102,187,106,0.3); }
+  .badge-ocre   { background: rgba(255,143,0,0.2);   color: #FFB300; border: 1px solid rgba(255,143,0,0.3); }
+  .badge-cielo  { background: rgba(41,182,246,0.2);  color: #4FC3F7; border: 1px solid rgba(41,182,246,0.3); }
+
+  .menu-preview {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 1.2rem;
+    padding: 1.8rem;
+  }
+  .menu-preview h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--ocre-claro);
+    margin-bottom: 1rem;
+  }
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    gap: 1rem;
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-name { font-size: 0.92rem; color: #fff; flex: 1; }
+  .menu-item-cat  { font-size: 0.72rem; background: rgba(230,81,0,0.25); color: #FF8A65; padding: 0.2rem 0.6rem; border-radius: 1rem; white-space: nowrap; }
+
+  /* ── ENTORNO ── */
+  .entorno {
+    background: linear-gradient(160deg, #0a1a2e 0%, #0a2218 60%, #1a1200 100%);
+    padding: 6rem 2rem;
+  }
+
+  .entorno-header {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 3.5rem;
+  }
+
+  .entorno-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .entorno-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    padding: 1.5rem 1.4rem;
+    color: #fff;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .entorno-item:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.2); }
+  .entorno-item .ei-icon { font-size: 1.8rem; margin-bottom: 0.7rem; display: block; }
+  .entorno-item h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 0.4rem; color: var(--cielo-claro); }
+  .entorno-item p  { font-size: 0.85rem; opacity: 0.75; line-height: 1.55; }
+
+  /* ── CONTACTO ── */
+  .contacto {
+    background: linear-gradient(135deg, #0d2000 0%, #002040 50%, #1a0800 100%);
+    padding: 6rem 2rem;
+  }
+
+  .contacto-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 760px) { .contacto-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  .contacto-text { color: #fff; }
+
+  .contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0.9rem;
+    padding: 1rem 1.2rem;
+    color: #fff;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-card:hover { background: rgba(255,255,255,0.11); transform: translateX(5px); }
+
+  .cc-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .cc-tel     { background: rgba(46,125,50,0.3); }
+  .cc-whatsapp{ background: rgba(37,211,102,0.25); }
+  .cc-email   { background: rgba(2,119,189,0.3); }
+  .cc-web     { background: rgba(230,81,0,0.3); }
+
+  .cc-label { font-size: 0.72rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.07em; }
+  .cc-value { font-size: 0.96rem; font-weight: 600; }
+
+  .cta-reserva {
+    background: linear-gradient(135deg, #1B5E20, #2E7D32 50%, #388E3C);
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: #fff;
+  }
+  .cta-reserva h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .cta-reserva p { font-size: 0.95rem; opacity: 0.85; margin-bottom: 1.8rem; line-height: 1.6; }
+
+  .btn-big {
+    display: inline-block;
+    background: #fff;
+    color: var(--verde-oscuro);
+    padding: 0.9rem 2.4rem;
+    border-radius: 3rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .btn-big:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+
+  /* ── FRANJA DE CONFIANZA ── */
+  .trust-bar {
+    background: linear-gradient(90deg, var(--ocre) 0%, var(--ocre-claro) 50%, var(--ocre) 100%);
+    padding: 1.2rem 2rem;
+    text-align: center;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.03em;
+  }
+  .trust-bar span { margin: 0 1.5rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #030303;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--verde-claro); text-decoration: none; }
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.8rem;
+  }
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 1.2rem 0;
+  }
+  footer .footer-links a { font-size: 0.85rem; }
+
+  /* ── ANIMACIONES ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MEDIA QUERIES GENERALES ── */
+  @media (max-width: 600px) {
+    .hero-facts { gap: 1.5rem; }
+    .hab-features { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">🏔 Sierra Norte de Madrid · A solo 1 hora de la capital</span>
+  <h1>La Posada de<br><span>los Vientos</span></h1>
+  <p class="hero-sub">Un edificio del siglo XVIII restaurado con alma. Hotel rural y restaurante en La Acebeda, a 1.269 m de altitud, dentro del Parque Nacional de Guadarrama.</p>
+  <div class="hero-ctas">
+    <a href="https://www.casasrurales.net/ebooking/mod_2.php?id=580&k=0bf570173bc11e94b2ca94a638622c7a" target="_blank" class="btn-primary">✦ Reservar ahora</a>
+    <a href="https://laposadadelosvientos.es/" target="_blank" class="btn-secondary">Ver sitio oficial</a>
+  </div>
+  <div class="hero-facts">
+    <div class="fact"><strong>S. XVIII</strong><span>edificio histórico</span></div>
+    <div class="fact"><strong>9</strong><span>habitaciones dobles</span></div>
+    <div class="fact"><strong>21</strong><span>plazas máx.</span></div>
+    <div class="fact"><strong>1.269 m</strong><span>altitud</span></div>
+    <div class="fact"><strong>&lt; 80 km</strong><span>de Madrid</span></div>
+  </div>
+</section>
+
+<!-- FRANJA TRUST -->
+<div class="trust-bar">
+  <span>✓ Precios con IVA incluido</span>
+  <span>✓ Tarifas especiales 2+ noches</span>
+  <span>✓ Grupos y eventos privados</span>
+  <span>✓ Bonos regalo disponibles</span>
+</div>
+
+<!-- CURIOSIDADES -->
+<section class="curiosidades">
+  <div class="curiosidades-header">
+    <span class="section-label" style="color: var(--verde-claro);">Lo que nadie te cuenta</span>
+    <h2 class="section-title" style="color: #fff;">6 hechos sorprendentes<br>que no conocías</h2>
+  </div>
+  <div class="curiosidades-grid">
+    <div class="curiosidad-card c-verde">
+      <span class="curiosidad-icon">🌿</span>
+      <h3>Los acebos centenarios del nombre</h3>
+      <p>La Acebeda debe su nombre a los acebos centenarios que rodean el municipio. Son árboles protegidos y este lugar fue declarado Sitio Natural de Interés Nacional en 1930, hace casi 100 años.</p>
+    </div>
+    <div class="curiosidad-card c-ocre">
+      <span class="curiosidad-icon">🏠</span>
+      <h3>Bodega y cuadra convertidas en restaurante</h3>
+      <p>El restaurante ocupa literalmente lo que antaño fueron la bodega y la cuadra de la antigua casona de labranza, conservando la estructura de piedra y madera originales del siglo XVIII.</p>
+    </div>
+    <div class="curiosidad-card c-cielo">
+      <span class="curiosidad-icon">⛪</span>
+      <h3>Arte del siglo XVI en la iglesia de enfrente</h3>
+      <p>A metros de la posada, la Iglesia de San Sebastián (s. XVII) guarda un sagrario con pinturas del año 1500 y un crucifijo del siglo XVI. Un tesoro artístico casi desconocido.</p>
+    </div>
+    <div class="curiosidad-card c-burdeos">
+      <span class="curiosidad-icon">🔨</span>
+      <h3>La fragua medieval más conservada de la sierra</h3>
+      <p>La fragua municipal conserva intactos el hogar, la pila de agua, el yunque y el fuelle originales, junto con todos sus utensilios. Una joya etnográfica única en la Sierra Norte.</p>
+    </div>
+    <div class="curiosidad-card c-tierra">
+      <span class="curiosidad-icon">🏔</span>
+      <h3>GPS para los más aventureros</h3>
+      <p>La posada tiene coordenadas exactas: 41° 05' 11'' N – 3° 37' 22'' O, a 1.269 metros de altitud. Perfecta para rutas de montaña, bici de montaña, o simplemente contemplar el Guadarrama.</p>
+    </div>
+    <div class="curiosidad-card c-dorado">
+      <span class="curiosidad-icon">🍽</span>
+      <h3>Menú adaptado: celiaco, vegano, intolerante</h3>
+      <p>No es habitual en un hotel rural, pero ofrecen platos ecológicos, vegetarianos y dietas especiales asesoradas por profesionales: celíacos, intolerantes a la lactosa y más.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HABITACIONES -->
+<section class="habitaciones">
+  <div class="hab-layout">
+    <div class="hab-visual">
+      <div class="hab-img-placeholder bg-forest tall">🌲</div>
+      <div class="hab-img-placeholder bg-stone">🪨</div>
+      <div class="hab-img-placeholder bg-sky">🌤</div>
+    </div>
+    <div class="hab-text">
+      <span class="section-label" style="color: var(--verde-claro);">Alojamiento</span>
+      <h2 class="section-title">9 habitaciones<br>cargadas de historia</h2>
+      <p class="section-body">Cada habitación es única, decorada con mimo y respeto a la arquitectura original. Puedes reservar por habitación en pareja o alquilar la posada entera para grupos de hasta 21 personas.</p>
+      <div class="hab-features">
+        <div class="hab-feat"><strong>🏡 Alquiler completo</strong>Ideal para grupos, familias y celebraciones privadas</div>
+        <div class="hab-feat"><strong>💑 Pareja</strong>Habitaciones dobles con ambiente íntimo y romántico</div>
+        <div class="hab-feat"><strong>📅 2+ noches</strong>Tarifas especiales premiando estancias más largas</div>
+        <div class="hab-feat"><strong>🎁 Bonos regalo</strong>El regalo perfecto para quien ya tiene de todo</div>
+        <div class="hab-feat"><strong>👥 Eventos</strong>Reuniones de empresa, cursos, celebraciones familiares</div>
+        <div class="hab-feat"><strong>🏔 Entorno</strong>Dentro del Parque Nacional del Guadarrama</div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="https://www.casasrurales.net/ebooking/mod_2.php?id=580&k=0bf570173bc11e94b2ca94a638622c7a" target="_blank" class="btn-primary">Comprobar disponibilidad</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANTE -->
+<section class="restaurante">
+  <div class="rest-layout">
+    <div class="rest-text">
+      <span class="section-label" style="color: var(--ocre-claro);">Gastronomía</span>
+      <h2 class="section-title" style="color: #fff;">Sabor creativo<br>en piedra y madera</h2>
+      <p class="section-body" style="color: rgba(255,255,255,0.85);">El restaurante ocupa la antigua bodega y cuadra, con piedra vista, maderas nobles y mesas rematadas en cerámica verde artesanal. Una cocina que sorprende en cada visita.</p>
+      <div class="rest-badges">
+        <span class="badge badge-verde">🌱 Opciones vegetarianas</span>
+        <span class="badge badge-verde">🌾 Platos ecológicos</span>
+        <span class="badge badge-ocre">🚫🌾 Apto celíacos</span>
+        <span class="badge badge-cielo">🥛 Sin lactosa disponible</span>
+        <span class="badge badge-ocre">🎨 Cuadros de autor</span>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="https://laposadadelosvientos.es/wp-content/uploads/2017/03/carta.pdf" target="_blank" class="btn-primary" style="background: var(--ocre);">Ver carta completa PDF</a>
+      </div>
+      <p style="margin-top: 1.2rem; font-size: 0.85rem; color: rgba(255,255,255,0.55);">📞 Reserva de mesa: 918 699 195 · 619 392 742</p>
+    </div>
+    <div class="menu-preview">
+      <h4>¿Qué puedes esperar en la mesa?</h4>
+      <div class="menu-item">
+        <span class="menu-item-name">Propuestas dietéticas personalizadas asesoradas por profesionales</span>
+        <span class="menu-item-cat">Salud</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Cocina de temporada con producto local de la Sierra Norte</span>
+        <span class="menu-item-cat">Km 0</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Variedad para cubrir todas las expectativas del comensal</span>
+        <span class="menu-item-cat">Variedad</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Vinos y maridajes en un espacio con historia de bodega</span>
+        <span class="menu-item-cat">Bodega</span>
+      </div>
+      <div class="menu-item">
+        <span class="menu-item-name">Sillas artesanales del carpintero local, teñidas en verde</span>
+        <span class="menu-item-cat">Artesanía</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTORNO -->
+<section class="entorno">
+  <div class="entorno-header">
+    <span class="section-label" style="color: var(--cielo-claro);">Naturaleza & Cultura</span>
+    <h2 class="section-title">El entorno más<br>sorprendente de la sierra</h2>
+    <p style="color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto; font-size: 1rem; line-height: 1.7;">Arroyos cristalinos, bosques de acebos y robles, corzos y búhos… y casi nadie con quien cruzarse en kilómetros.</p>
+  </div>
+  <div class="entorno-grid">
+    <div class="entorno-item">
+      <span class="ei-icon">🦌</span>
+      <h4>Fauna salvaje</h4>
+      <p>Corzos, jabalís, zorros y búhos habitan los bosques. Puedes recorrer kilómetros sin cruzarte con otras personas.</p>
+    </div>
+    <div class="entorno-item">
+      <span class="ei-icon">🚵</span>
+      <h4>Rutas MTB y senderismo</h4>
+      <p>Diversas rutas de bicicleta de montaña y senderos para todos los niveles, desde el pueblo hasta cumbres.</p>
+    </div>
+    <div class="entorno-item">
+      <span class="ei-icon">🏇</span>
+      <h4>Rutas a caballo</h4>
+      <p>El entorno es ideal para rutas ecuestres. La sierra norte ofrece caminos y veredas tradicionales perfectos.</p>
+    </div>
+    <div class="entorno-item">
+      <span class="ei-icon">❄</span>
+      <h4>Esquí en invierno</h4>
+      <p>A solo minutos de La Acebeda, puedes disfrutar de pistas de esquí en temporada de nieve. Una base perfecta.</p>
+    </div>
+    <div class="entorno-item">
+      <span class="ei-icon">💧</span>
+      <h4>Arroyos y fuentes</h4>
+      <p>Un arroyo atraviesa el pueblo y mana en una fuente continua adosada a la fachada de la iglesia. Agua cristalina garantizada.</p>
+    </div>
+    <div class="entorno-item">
+      <span class="ei-icon">🛖</span>
+      <h4>Casa de la Peña Medieval</h4>
+      <p>La edificación más antigua, levantada en la Edad Media sobre la roca, con horno de pan original de piedra y madera.</p>
+    </div>
+    <div class="entorno-item">
+      <span class="ei-icon">🧪</span>
+      <h4>Talleres artesanos</h4>
+      <p>Pan artesano, queso, chorizos, jabones, cuero, mimbre y esparto. Cursos y talleres activos desde centros públicos y privados.</p>
+    </div>
+    <div class="entorno-item">
+      <span class="ei-icon">⛵</span>
+      <h4>Santuario de la Fuente del Saz</h4>
+      <p>A 2 km del pueblo, junto al arroyo de la Dehesa, una pequeña gruta artificial con imagen de la Virgen. Un rincón íntimo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO Y RESERVAS -->
+<section class="contacto">
+  <div class="contacto-inner">
+    <div class="contacto-text">
+      <span class="section-label" style="color: var(--verde-claro);">Contacto & Reservas</span>
+      <h2 class="section-title" style="color: #fff;">Habla con nosotros<br>cuando quieras</h2>
+      <p style="color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 0.5rem; font-size: 1rem;">C/ Encerradero, 2 · 28755 La Acebeda (Madrid)<br>GPS: 41° 05' 11'' N – 3° 37' 22'' O</p>
+      <div class="contact-cards">
+        <a href="tel:918699195" class="contact-card">
+          <div class="cc-icon cc-tel">📞</div>
+          <div><span class="cc-label">Teléfono principal</span><span class="cc-value">918 699 195</span></div>
+        </a>
+        <a href="tel:619392742" class="contact-card">
+          <div class="cc-icon cc-tel">📱</div>
+          <div><span class="cc-label">Móvil / Alternativo</span><span class="cc-value">619 392 742</span></div>
+        </a>
+        <a href="https://wa.me/34619392742?text=Hola%2C%20me%20interesa%20reservar%20en%20La%20Posada%20de%20los%20Vientos" target="_blank" class="contact-card">
+          <div class="cc-icon cc-whatsapp">💬</div>
+          <div><span class="cc-label">WhatsApp directo</span><span class="cc-value">619 392 742 — escríbenos</span></div>
+        </a>
+        <a href="mailto:info@laposadadelosvientos.es" class="contact-card">
+          <div class="cc-icon cc-email">✉</div>
+          <div><span class="cc-label">Email</span><span class="cc-value">info@laposadadelosvientos.es</span></div>
+        </a>
+        <a href="https://laposadadelosvientos.es/" target="_blank" class="contact-card">
+          <div class="cc-icon cc-web">🌐</div>
+          <div><span class="cc-label">Sitio oficial</span><span class="cc-value">laposadadelosvientos.es</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="cta-reserva">
+        <h3>¿Listo para escapar?</h3>
+        <p>Comprueba disponibilidad en tiempo real y asegura tu estancia. Tarifas especiales para 2 o más noches. IVA incluido siempre.</p>
+        <a href="https://www.casasrurales.net/ebooking/mod_2.php?id=580&k=0bf570173bc11e94b2ca94a638622c7a" target="_blank" class="btn-big">Reservar habitación ↗</a>
+        <p style="font-size: 0.8rem; margin-top: 1.2rem; opacity: 0.7;">O llama al <strong>918 699 195</strong> y te ayudamos</p>
+      </div>
+
+      <div style="margin-top: 1.5rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 1.2rem; padding: 1.5rem;">
+        <h4 style="color: var(--ocre-claro); font-family: 'Playfair Display', serif; margin-bottom: 1rem;">También te puede interesar</h4>
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+          <a href="https://laposadadelosvientos.es/category/ofertas/" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.9rem; display: flex; gap: 0.5rem; align-items: center;">🏷 Ver todas las promociones actuales</a>
+          <a href="https://laposadadelosvientos.es/category/bono-regalo/" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.9rem; display: flex; gap: 0.5rem; align-items: center;">🎁 Bonos regalo para regalar</a>
+          <a href="https://laposadadelosvientos.es/wp-content/uploads/2017/03/carta.pdf" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.9rem; display: flex; gap: 0.5rem; align-items: center;">🍽 Carta del restaurante (PDF)</a>
+          <a href="https://laposadadelosvientos.es/faq-2/" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.9rem; display: flex; gap: 0.5rem; align-items: center;">❓ Preguntas frecuentes</a>
+          <a href="https://www.facebook.com/laposadadelosvientoshotelrural" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.9rem; display: flex; gap: 0.5rem; align-items: center;">👍 Facebook de la posada</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">La Posada de los Vientos</div>
+  <p>Hotel Rural · Restaurante · La Acebeda, Sierra Norte de Madrid</p>
+  <div class="footer-links">
+    <a href="https://laposadadelosvientos.es/" target="_blank">Sitio oficial</a>
+    <a href="https://laposadadelosvientos.es/terminos-y-condiciones/" target="_blank">Términos y condiciones</a>
+    <a href="https://laposadadelosvientos.es/faq-2/" target="_blank">FAQ</a>
+    <a href="https://www.casasrurales.net/ebooking/mod_2.php?id=580&k=0bf570173bc11e94b2ca94a638622c7a" target="_blank">Reservar</a>
+    <a href="mailto:info@laposadadelosvientos.es">Email</a>
+  </div>
+  <p style="margin-top: 0.5rem;">Información basada en <a href="https://laposadadelosvientos.es/" target="_blank">laposadadelosvientos.es</a> · Todos los derechos de la posada.</p>
+</footer>
+
+</body>
+</html>
