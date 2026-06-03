@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casas Rurales Los Albardinales · Desierto de Tabernas, Almería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #F5C800;
+    --orange: #F0622A;
+    --red: #C8252A;
+    --teal: #00A896;
+    --sky: #3ABFF8;
+    --sand: #F5E6C8;
+    --purple: #7B2FBE;
+    --green: #2ECC71;
+    --dark: #1A0A00;
+    --white: #FFFDF7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #F0622A 0%, #F5C800 35%, #C8252A 70%, #7B2FBE 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    background: var(--dark);
+    color: var(--sun);
+    font-family: 'Space Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: .4rem 1.2rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 12vw, 9rem);
+    line-height: .95;
+    letter-spacing: .02em;
+    color: var(--white);
+    text-shadow: 6px 6px 0 var(--dark);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 span { color: var(--sun); }
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    max-width: 600px;
+    opacity: .92;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+  .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .cta-primary {
+    background: var(--dark);
+    color: var(--sun);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: .08em;
+    padding: .85rem 2.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 3px solid var(--dark);
+    transition: all .2s;
+    box-shadow: 4px 4px 0 var(--dark);
+  }
+  .cta-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); }
+  .cta-whatsapp {
+    background: #25D366;
+    color: var(--dark);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: .08em;
+    padding: .85rem 2.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 3px solid var(--dark);
+    box-shadow: 4px 4px 0 var(--dark);
+    transition: all .2s;
+  }
+  .cta-whatsapp:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); }
+  .scroll-hint {
+    position: absolute; bottom: 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .15em;
+    opacity: .6;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+  /* ─── FACTS TICKER ─── */
+  .ticker-wrap {
+    background: var(--sun);
+    overflow: hidden;
+    padding: .6rem 0;
+    border-top: 3px solid var(--dark);
+    border-bottom: 3px solid var(--dark);
+  }
+  .ticker {
+    display: flex;
+    gap: 3rem;
+    white-space: nowrap;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker span {
+    font-family: 'Space Mono', monospace;
+    font-size: .8rem;
+    color: var(--dark);
+    font-weight: 700;
+    letter-spacing: .06em;
+    flex-shrink: 0;
+  }
+  .ticker span::before { content: '☀️  '; }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 5rem 1.5rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: .8rem;
+    opacity: .7;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    line-height: 1;
+    margin-bottom: 2rem;
+  }
+
+  /* ─── FACTS ─── */
+  .facts-section {
+    background: linear-gradient(160deg, #00A896 0%, #3ABFF8 100%);
+    color: var(--dark);
+  }
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .fact-card {
+    background: var(--white);
+    border: 3px solid var(--dark);
+    border-radius: 8px;
+    padding: 1.8rem 1.4rem;
+    box-shadow: 6px 6px 0 var(--dark);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .fact-card:hover { transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--dark); }
+  .fact-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--red);
+  }
+  .fact-card h3 { font-size: 1rem; font-weight: 800; margin: .3rem 0; color: var(--dark); }
+  .fact-card p { font-size: .85rem; opacity: .75; line-height: 1.5; color: var(--dark); }
+
+  /* ─── CASAS ─── */
+  .casas-section { background: var(--dark); }
+  .casas-section .section-title { color: var(--sun); }
+  .casas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .casa-card {
+    border: 3px solid;
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    transition: transform .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .casa-card:hover { transform: translateY(-5px); }
+  .casa-card:nth-child(1) { border-color: var(--sun); background: rgba(245,200,0,.08); }
+  .casa-card:nth-child(2) { border-color: var(--orange); background: rgba(240,98,42,.08); }
+  .casa-card:nth-child(3) { border-color: var(--teal); background: rgba(0,168,150,.08); }
+  .casa-card:nth-child(4) { border-color: var(--purple); background: rgba(123,47,190,.08); }
+  .casa-card:nth-child(5) { border-color: var(--sky); background: rgba(58,191,248,.08); }
+  .casa-card:nth-child(6) { border-color: var(--green); background: rgba(46,204,113,.08); }
+  .casa-icon { font-size: 2.5rem; margin-bottom: .8rem; }
+  .casa-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: .05em; margin-bottom: .5rem; }
+  .casa-card p { font-size: .9rem; opacity: .75; line-height: 1.6; }
+  .casa-link {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-decoration: none;
+    padding: .4rem 1rem;
+    border-radius: 4px;
+    border: 2px solid currentColor;
+    transition: all .2s;
+  }
+  .casa-link:hover { background: currentColor; color: var(--dark) !important; }
+  .casa-card:nth-child(1) .casa-link { color: var(--sun); }
+  .casa-card:nth-child(2) .casa-link { color: var(--orange); }
+  .casa-card:nth-child(3) .casa-link { color: var(--teal); }
+  .casa-card:nth-child(4) .casa-link { color: var(--purple); }
+  .casa-card:nth-child(5) .casa-link { color: var(--sky); }
+  .casa-card:nth-child(6) .casa-link { color: var(--green); }
+
+  /* ─── SECRETOS ─── */
+  .secrets-section {
+    background: linear-gradient(135deg, #C8252A 0%, #7B2FBE 100%);
+  }
+  .secrets-section .section-title { color: var(--white); }
+  .secrets-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .secret-item {
+    background: rgba(255,255,255,.12);
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 8px;
+    padding: 1.8rem;
+    backdrop-filter: blur(4px);
+    transition: background .2s;
+  }
+  .secret-item:hover { background: rgba(255,255,255,.2); }
+  .secret-emoji { font-size: 2rem; margin-bottom: .8rem; }
+  .secret-item h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: .5rem; }
+  .secret-item p { font-size: .88rem; opacity: .85; line-height: 1.6; }
+
+  /* ─── BIOCLIMÁTICO ─── */
+  .bio-section { background: #F0622A; color: var(--dark); }
+  .bio-section .section-title { color: var(--dark); }
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    align-items: center;
+  }
+  @media(max-width:680px){ .bio-grid{ grid-template-columns:1fr; } }
+  .bio-points { display: flex; flex-direction: column; gap: 1rem; }
+  .bio-point {
+    background: var(--white);
+    border: 3px solid var(--dark);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    box-shadow: 4px 4px 0 var(--dark);
+    display: flex; align-items: flex-start; gap: .8rem;
+  }
+  .bio-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .bio-point h4 { font-size: .95rem; font-weight: 800; margin-bottom: .2rem; }
+  .bio-point p { font-size: .82rem; opacity: .75; }
+  .bio-highlight {
+    background: var(--dark);
+    color: var(--sun);
+    border-radius: 8px;
+    padding: 2.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    text-align: center;
+  }
+  .bio-highlight span { display: block; font-family: 'Syne', sans-serif; font-size: 1rem; color: var(--white); opacity: .7; margin-top: .5rem; font-weight: 400; }
+
+  /* ─── ENTORNO ─── */
+  .entorno-section { background: #1A2A1A; }
+  .entorno-section .section-title { color: var(--green); }
+  .entorno-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .entorno-card {
+    background: rgba(46,204,113,.08);
+    border: 2px solid rgba(46,204,113,.3);
+    border-radius: 8px;
+    padding: 1.8rem;
+    transition: border-color .2s;
+  }
+  .entorno-card:hover { border-color: var(--green); }
+  .entorno-card .e-icon { font-size: 2.2rem; margin-bottom: .8rem; }
+  .entorno-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: .4rem; color: var(--green); }
+  .entorno-card p { font-size: .87rem; opacity: .75; line-height: 1.6; }
+
+  /* ─── CONTACT ─── */
+  .contact-section {
+    background: var(--sun);
+    color: var(--dark);
+  }
+  .contact-section .section-title { color: var(--dark); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .contact-card {
+    background: var(--dark);
+    color: var(--white);
+    border: 3px solid var(--dark);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 6px 6px 0 rgba(0,0,0,.3);
+    text-decoration: none;
+    display: block;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .contact-card:hover { transform: translate(-3px,-3px); box-shadow: 9px 9px 0 rgba(0,0,0,.3); }
+  .contact-card .c-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .contact-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: .05em; margin-bottom: .4rem; }
+  .contact-card p { font-size: .9rem; opacity: .7; }
+  .contact-card.whatsapp { background: #25D366; color: var(--dark); border-color: var(--dark); }
+  .contact-card.whatsapp p { opacity: .8; }
+
+  /* ─── RESERVA CTA ─── */
+  .reserva-section {
+    background: linear-gradient(135deg, var(--dark) 0%, #2A1A3A 100%);
+    text-align: center;
+    padding: 6rem 1.5rem;
+  }
+  .reserva-section .section-title { color: var(--white); }
+  .reserva-section p { max-width: 580px; margin: 0 auto 2.5rem; opacity: .75; font-size: 1.05rem; line-height: 1.6; }
+  .btn-big {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: .1em;
+    padding: 1rem 3rem;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 3px solid;
+    box-shadow: 6px 6px 0 rgba(255,255,255,.15);
+    transition: all .2s;
+    margin: .5rem;
+  }
+  .btn-big:hover { transform: translate(-3px,-3px); box-shadow: 9px 9px 0 rgba(255,255,255,.15); }
+  .btn-big.primary { background: var(--sun); color: var(--dark); border-color: var(--sun); }
+  .btn-big.secondary { background: transparent; color: var(--white); border-color: var(--white); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    border-top: 3px solid var(--sun);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: .75rem;
+    opacity: .6;
+    line-height: 2;
+  }
+  footer a { color: var(--sun); text-decoration: none; }
+  footer strong { color: var(--white); opacity: 1; }
+
+  /* ─── STICKY WHATSAPP ─── */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: #25D366;
+    color: var(--dark);
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    text-decoration: none;
+    border: 3px solid var(--dark);
+    box-shadow: 4px 4px 0 var(--dark);
+    z-index: 999;
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(30px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .hero h1, .hero p, .cta-group { animation: fadeUp .7s ease both; }
+  .hero p { animation-delay: .2s; }
+  .cta-group { animation-delay: .4s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">🏜️ Desierto de Tabernas · Almería · Andalucía</span>
+  <h1>LOS<br><span>ALBARDINALES</span></h1>
+  <p>6 casas rurales bioclimáticas en el único desierto de Europa. Más de 3.000 horas de sol al año, paisajes de película y puestas de sol únicas en España.</p>
+  <div class="cta-group">
+    <a href="https://www.casasruralesentabernas.es/index.php/contacto-casas-rurales/" target="_blank" class="cta-primary">Reservar ahora</a>
+    <a href="https://wa.me/34950611707" target="_blank" class="cta-whatsapp">💬 WhatsApp</a>
+  </div>
+  <div class="scroll-hint">↓ SCROLL PARA DESCUBRIR</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>3.000+ horas de sol al año</span>
+    <span>Único desierto de Europa continental</span>
+    <span>Rodaje de Lawrence de Arabia y muchos más</span>
+    <span>Arquitectura bioclimática andaluza de los años 60</span>
+    <span>A 2 min del Restaurante-Almazara Los Albardinales</span>
+    <span>6 casas con nombres de variedades de aceitunas</span>
+    <span>Las puestas de sol más bellas de España</span>
+    <span>3.000+ horas de sol al año</span>
+    <span>Único desierto de Europa continental</span>
+    <span>Rodaje de Lawrence de Arabia y muchos más</span>
+    <span>Arquitectura bioclimática andaluza de los años 60</span>
+    <span>A 2 min del Restaurante-Almazara Los Albardinales</span>
+    <span>6 casas con nombres de variedades de aceitunas</span>
+    <span>Las puestas de sol más bellas de España</span>
+  </div>
+</div>
+
+<!-- DATOS IMPACTANTES -->
+<section class="facts-section">
+  <div class="container">
+    <div class="section-label">Por qué elegir Los Albardinales</div>
+    <div class="section-title">NÚMEROS<br>QUE SORPRENDEN</div>
+    <div class="facts-grid">
+      <div class="fact-card">
+        <div class="fact-number">3.000+</div>
+        <h3>Horas de sol al año</h3>
+        <p>Tabernas tiene uno de los microclimas más secos y soleados de toda Europa, superando incluso a muchas zonas del Mediterráneo.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-number">6</div>
+        <h3>Casas bioclimáticas</h3>
+        <p>Cada una nombrada con una variedad de aceituna: Cornicabra, Arbequina, Blanqueta, Hojiblanca, Lechín y Picual.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-number">2'</div>
+        <h3>Al restaurante propio</h3>
+        <p>La Almazara-Museo-Restaurante Los Albardinales, también de su propiedad, está a tan solo 2 minutos a pie.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-number">~200</div>
+        <h3>Películas rodadas aquí</h3>
+        <p>El Desierto de Tabernas fue el plató natural de clásicos del western spaghetti, Lawrence de Arabia y hasta de Conan el Bárbaro.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-number">N.º1</div>
+        <h3>Desierto de Europa</h3>
+        <p>El único desierto verdadero del continente europeo. Un paraje natural protegido con flora y fauna únicas.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-number">60s</div>
+        <h3>Casas restauradas</h3>
+        <p>Viviendas de los años 60 rehabilitadas con respeto a la arquitectura típica andaluza. Historia y confort juntos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASAS -->
+<section class="casas-section">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,253,247,.5)">Elige tu refugio</div>
+    <div class="section-title">NUESTRAS<br>6 CASAS</div>
+    <div class="casas-grid">
+      <div class="casa-card">
+        <div class="casa-icon">🌿</div>
+        <h3 style="color:var(--sun)">Cornicabra</h3>
+        <p>Variedad de aceituna de las tierras de Castilla. Su casa te regala vistas al desierto y toda la tranquilidad que buscas.</p>
+        <a href="https://www.casasruralesentabernas.es/index.php/casa-rural-en-almeria-cornicabra/" target="_blank" class="casa-link">Ver casa →</a>
+      </div>
+      <div class="casa-card">
+        <div class="casa-icon">🫒</div>
+        <h3 style="color:var(--orange)">Arbequina</h3>
+        <p>La más pequeña y aromática de las variedades, igual que esta casa: íntima, cálida y perfecta para parejas.</p>
+        <a href="https://www.casasruralesentabernas.es/index.php/casa-rural-en-almeria-arbequina/" target="_blank" class="casa-link">Ver casa →</a>
+      </div>
+      <div class="casa-card">
+        <div class="casa-icon">🌾</div>
+        <h3 style="color:var(--teal)">Blanqueta</h3>
+        <p>Luminosa como su nombre. Espacios diáfanos bañados por la luz del desierto almeriense.</p>
+        <a href="https://www.casasruralesentabernas.es/index.php/casa-rural-en-almeria-blanqueta/" target="_blank" class="casa-link">Ver casa →</a>
+      </div>
+      <div class="casa-card">
+        <div class="casa-icon">🏡</div>
+        <h3 style="color:var(--purple)">Hojiblanca</h3>
+        <p>De hoja verde por el haz y blanca por el envés, como el contraste entre el campo y el cielo de Almería.</p>
+        <a href="https://www.casasruralesentabernas.es/index.php/casa-rural-en-almeria-hojiblanca/" target="_blank" class="casa-link">Ver casa →</a>
+      </div>
+      <div class="casa-card">
+        <div class="casa-icon">☀️</div>
+        <h3 style="color:var(--sky)">Lechín</h3>
+        <p>Variedad autóctona de Andalucía. Esta casa fusiona la tradición con el confort moderno a la perfección.</p>
+        <a href="https://www.casasruralesentabernas.es/index.php/casa-rural-en-almeria-lechin/" target="_blank" class="casa-link">Ver casa →</a>
+      </div>
+      <div class="casa-card">
+        <div class="casa-icon">🌵</div>
+        <h3 style="color:var(--green)">Picual</h3>
+        <p>La más producida de España. Robusta, intensa, memorable. Ideal para grupos y familias que quieren espacio.</p>
+        <a href="https://www.casasruralesentabernas.es/index.php/casa-rural-en-almeria-picual/" target="_blank" class="casa-link">Ver casa →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECRETOS / COSAS NO CONOCIDAS -->
+<section class="secrets-section">
+  <div class="container">
+    <div class="section-label" style="opacity:.7">Lo que casi nadie sabe</div>
+    <div class="section-title">SECRETOS DEL<br>DESIERTO</div>
+    <div class="secrets-list">
+      <div class="secret-item">
+        <div class="secret-emoji">🎬</div>
+        <h3>Plató de Hollywood en el desierto</h3>
+        <p>El Desierto de Tabernas fue escenario de más de 200 producciones cinematográficas entre los años 60 y 80. Lawrence de Arabia, Por un puñado de dólares, Conan el Bárbaro... todo se rodó a pocos kilómetros de aquí.</p>
+      </div>
+      <div class="secret-item">
+        <div class="secret-emoji">🌧️</div>
+        <h3>Menos de 200 mm de lluvia al año</h3>
+        <p>Tabernas es técnicamente el único semi-desierto verdadero de Europa. La escasez de lluvia crea un microclima excepcional, con cielos despejados casi todo el año y temperatura media muy agradable.</p>
+      </div>
+      <div class="secret-item">
+        <div class="secret-emoji">🔭</div>
+        <h3>Cielos estrellados espectaculares</h3>
+        <p>La escasa contaminación lumínica y la sequedad del aire hacen del entorno de Tabernas uno de los mejores puntos de España para la astronomía amateur. Las noches aquí son mágicas.</p>
+      </div>
+      <div class="secret-item">
+        <div class="secret-emoji">🌿</div>
+        <h3>Diseño bioclimático real</h3>
+        <p>Las casas no solo son bonitas: su construcción aprovecha la orientación solar, las corrientes de aire naturales y materiales tradicionales para reducir el consumo energético. Turismo sostenible de verdad.</p>
+      </div>
+      <div class="secret-item">
+        <div class="secret-emoji">🫒</div>
+        <h3>Aceite de oliva propio en el restaurante</h3>
+        <p>A 2 minutos a pie, la Almazara-Museo-Restaurante Los Albardinales produce su propio aceite de oliva. Puedes visitar el museo del aceite y comer cocina tradicional almeriense con ingredientes de la tierra.</p>
+      </div>
+      <div class="secret-item">
+        <div class="secret-emoji">🌅</div>
+        <h3>Las mejores puestas de sol de España</h3>
+        <p>El cielo limpio y la topografía del desierto crean puestas de sol con colores únicos: ocres, rojizos y morados que parecen pintados. Muchos fotógrafos viajan solo por esto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIOCLIMÁTICO -->
+<section class="bio-section">
+  <div class="container">
+    <div class="section-label">Arquitectura sostenible</div>
+    <div class="section-title">DISEÑO<br>BIOCLIMÁTICO</div>
+    <div class="bio-grid">
+      <div class="bio-points">
+        <div class="bio-point">
+          <span class="bio-icon">🏗️</span>
+          <div><h4>Arquitectura andaluza restaurada</h4><p>Viviendas originales de los años 60, recuperadas respetando la tradición constructiva de la comarca.</p></div>
+        </div>
+        <div class="bio-point">
+          <span class="bio-icon">🌬️</span>
+          <div><h4>Ventilación natural</h4><p>Orientación y huecos diseñados para aprovechar las brisas del desierto y mantener frescor en verano.</p></div>
+        </div>
+        <div class="bio-point">
+          <span class="bio-icon">🌞</span>
+          <div><h4>Captación solar pasiva</h4><p>Las fachadas y techos están pensados para aprovechar el sol en invierno y protegerse en verano.</p></div>
+        </div>
+        <div class="bio-point">
+          <span class="bio-icon">♻️</span>
+          <div><h4>Bajo impacto ambiental</h4><p>Equipamiento eficiente y materiales locales que reducen la huella ecológica de cada estancia.</p></div>
+        </div>
+      </div>
+      <div class="bio-highlight">
+        3.000<br>HORAS<br>DE SOL
+        <span>al año en Tabernas · el microclima más soleado de Europa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTORNO -->
+<section class="entorno-section">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,253,247,.5)">Qué hacer cerca</div>
+    <div class="section-title">EL ENTORNO<br>TE ESPERA</div>
+    <div class="entorno-cards">
+      <div class="entorno-card">
+        <div class="e-icon">🎬</div>
+        <h3>Mini Hollywood / Oasys</h3>
+        <p>El parque temático del western español, construido sobre los decorados originales de las películas de Leone. A pocos km.</p>
+      </div>
+      <div class="entorno-card">
+        <div class="e-icon">🏖️</div>
+        <h3>Playas de Almería</h3>
+        <p>A menos de 40 minutos: Cabo de Gata, una de las costas más vírgenes y espectaculares de España.</p>
+      </div>
+      <div class="entorno-card">
+        <div class="e-icon">🌵</div>
+        <h3>Senderismo en el desierto</h3>
+        <p>Rutas entre badlands, barrancos y flora xerófila única. Un paisaje que parece de otro planeta.</p>
+      </div>
+      <div class="entorno-card">
+        <div class="e-icon">🏰</div>
+        <h3>Almería ciudad</h3>
+        <p>La Alcazaba árabe, la catedral-fortaleza, el casco histórico... a tan solo 30 minutos en coche.</p>
+      </div>
+      <div class="entorno-card">
+        <div class="e-icon">🫒</div>
+        <h3>Almazara & Restaurante</h3>
+        <p>A 2 minutos: el museo del aceite, catas y la cocina almeriense más auténtica. ¡También de la misma familia!</p>
+      </div>
+      <div class="entorno-card">
+        <div class="e-icon">🌠</div>
+        <h3>Astroturismo nocturno</h3>
+        <p>Cielos de los más limpios de Europa. La Vía Láctea se ve a simple vista. Ideal para noches de verano.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact-section">
+  <div class="container">
+    <div class="section-label">Hablemos</div>
+    <div class="section-title">CONTACTA<br>Y RESERVA</div>
+    <div class="contact-grid">
+      <a href="tel:+34950611707" class="contact-card">
+        <div class="c-icon">📞</div>
+        <h3>Llámanos</h3>
+        <p>950 611 707<br>Lunes a domingo · 9h–21h</p>
+      </a>
+      <a href="https://wa.me/34950611707" target="_blank" class="contact-card whatsapp">
+        <div class="c-icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>+34 950 611 707<br>Respuesta rápida garantizada</p>
+      </a>
+      <a href="mailto:info@casasruralesentabernas.es" class="contact-card">
+        <div class="c-icon">✉️</div>
+        <h3>Email</h3>
+        <p>info@casasruralesentabernas.es<br>Presupuesto sin compromiso</p>
+      </a>
+      <a href="https://www.casasruralesentabernas.es/index.php/contacto-casas-rurales/" target="_blank" class="contact-card">
+        <div class="c-icon">📍</div>
+        <h3>Ubicación</h3>
+        <p>Ctra. N-340, Km. 474<br>04200 Tabernas, Almería</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA RESERVA -->
+<section class="reserva-section">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,253,247,.5)">No esperes más</div>
+    <div class="section-title">RESERVA<br>TU ESCAPADA</div>
+    <p>El desierto más especial de Europa te espera. Pocas plazas disponibles. Consulta fechas y precios sin compromiso.</p>
+    <div>
+      <a href="https://www.casasruralesentabernas.es/index.php/contacto-casas-rurales/" target="_blank" class="btn-big primary">Ver Tarifas y Reservar</a>
+      <a href="https://www.casasruralesentabernas.es/" target="_blank" class="btn-big secondary">Web Oficial</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Casas Rurales Los Albardinales</strong><br>
+  Ctra. Nacional 340, Km. 474 · 04200 Tabernas (Almería)<br>
+  Tel: <a href="tel:+34950611707">950 611 707</a> · 
+  Email: <a href="mailto:info@casasruralesentabernas.es">info@casasruralesentabernas.es</a><br><br>
+  <a href="https://www.casasruralesentabernas.es/" target="_blank">🌐 Web Oficial</a> &nbsp;|&nbsp; 
+  <a href="https://wa.me/34950611707" target="_blank">💬 WhatsApp</a> &nbsp;|&nbsp; 
+  <a href="https://www.casasruralesentabernas.es/index.php/casas-rurales-en-almeria/" target="_blank">🏡 Nuestras Casas</a> &nbsp;|&nbsp; 
+  <a href="http://www.losalbardinales.com" target="_blank">🫒 Restaurante</a>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/34950611707" class="wa-float" target="_blank" title="WhatsApp">💬</a>
+
+</body>
+</html>
