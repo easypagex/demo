@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casita El Berrueco – Casa Rural Sierra Norte de Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFD93D;
+    --coral: #FF6B6B;
+    --mint: #6BCB77;
+    --sky: #4D96FF;
+    --lavender: #C77DFF;
+    --orange: #FF9F1C;
+    --teal: #2EC4B6;
+    --pink: #FF4D91;
+    --dark: #1a1a2e;
+    --white: #FFFDF7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.4);
+  }
+  nav .logo {
+    font-family: 'Righteous', sans-serif;
+    font-size: 1.4rem;
+    color: var(--sun);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+  nav .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  nav .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: .5px;
+    transition: color .2s;
+  }
+  nav .nav-links a:hover { color: var(--sun); }
+  nav .cta-nav {
+    background: var(--coral);
+    color: #fff !important;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: background .2s, transform .2s !important;
+  }
+  nav .cta-nav:hover { background: var(--orange) !important; transform: scale(1.05); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(255,107,107,.25) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, rgba(77,150,255,.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(107,203,119,.2) 0%, transparent 45%);
+  }
+  .hero-badge {
+    background: var(--sun);
+    color: var(--dark);
+    font-weight: 900;
+    font-size: .8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    animation: pop .6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Righteous', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    color: #fff;
+    position: relative;
+    animation: slideUp .8s ease both .1s;
+  }
+  .hero h1 span { color: var(--sun); }
+  .hero .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,.75);
+    max-width: 640px;
+    margin: 20px auto 40px;
+    position: relative;
+    animation: slideUp .8s ease both .25s;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    position: relative;
+    animation: slideUp .8s ease both .4s;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+  .btn-primary { background: var(--coral); color: #fff; }
+  .btn-wa { background: #25D366; color: #fff; }
+  .btn-tel { background: var(--sky); color: #fff; }
+  .btn-outline { background: transparent; border: 2px solid #fff; color: #fff; }
+
+  .hero-scroll {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,.5);
+    font-size: .8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  /* ── QUICK FACTS RIBBON ── */
+  .ribbon {
+    background: var(--sun);
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ribbon-inner {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+    padding: 14px 0;
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--dark);
+  }
+  .ribbon-inner span { margin: 0 40px; }
+  .ribbon-inner .dot { color: var(--coral); }
+
+  /* ── STATS ── */
+  .stats {
+    background: var(--dark);
+    padding: 70px 24px;
+    text-align: center;
+  }
+  .stats h2 {
+    font-family: 'Righteous', sans-serif;
+    color: #fff;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom: 50px;
+  }
+  .stats h2 span { color: var(--mint); }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .stat-card {
+    border-radius: 20px;
+    padding: 32px 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .stat-card:nth-child(1) { background: var(--coral); }
+  .stat-card:nth-child(2) { background: var(--sky); }
+  .stat-card:nth-child(3) { background: var(--mint); }
+  .stat-card:nth-child(4) { background: var(--orange); }
+  .stat-card:nth-child(5) { background: var(--lavender); }
+  .stat-card:nth-child(6) { background: var(--teal); }
+  .stat-num {
+    font-family: 'Righteous', sans-serif;
+    font-size: 2.8rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: .85rem;
+    font-weight: 700;
+    color: rgba(255,255,255,.9);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 80px 24px; }
+  .section-title {
+    font-family: 'Righteous', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 1.05rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto 48px;
+  }
+  .centered { text-align: center; }
+
+  /* ── FEATURES ── */
+  .features { background: #fff; }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .feat-card {
+    border-radius: 24px;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s;
+  }
+  .feat-card:hover { transform: translateY(-6px); }
+  .feat-card:nth-child(1) { background: linear-gradient(135deg, #fff0f0, #ffd6d6); border: 2px solid var(--coral); }
+  .feat-card:nth-child(2) { background: linear-gradient(135deg, #f0fff4, #c8f7d0); border: 2px solid var(--mint); }
+  .feat-card:nth-child(3) { background: linear-gradient(135deg, #f0f8ff, #c8e0ff); border: 2px solid var(--sky); }
+  .feat-card:nth-child(4) { background: linear-gradient(135deg, #fff8e6, #ffe8a0); border: 2px solid var(--sun); }
+  .feat-card:nth-child(5) { background: linear-gradient(135deg, #fef0ff, #e8c0ff); border: 2px solid var(--lavender); }
+  .feat-card:nth-child(6) { background: linear-gradient(135deg, #e6fff8, #a0ffe8); border: 2px solid var(--teal); }
+  .feat-icon { font-size: 2.8rem; margin-bottom: 14px; }
+  .feat-title { font-size: 1.2rem; font-weight: 900; margin-bottom: 8px; }
+  .feat-desc { font-size: .95rem; color: #444; line-height: 1.6; }
+
+  /* ── SECRETS / CURIOSIDADES ── */
+  .secrets { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+  .secrets .section-title { color: var(--sun); }
+  .secrets .section-sub { color: rgba(255,255,255,.65); }
+  .secrets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .secret-card {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 20px;
+    padding: 32px 24px;
+    transition: background .3s, transform .3s;
+  }
+  .secret-card:hover { background: rgba(255,255,255,.12); transform: translateY(-4px); }
+  .secret-card .tag {
+    font-size: .7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .tag-coral { background: var(--coral); color: #fff; }
+  .tag-sky { background: var(--sky); color: #fff; }
+  .tag-mint { background: var(--mint); color: var(--dark); }
+  .tag-sun { background: var(--sun); color: var(--dark); }
+  .tag-lav { background: var(--lavender); color: #fff; }
+  .tag-teal { background: var(--teal); color: #fff; }
+  .secret-card h3 { color: #fff; font-size: 1.1rem; font-weight: 900; margin-bottom: 10px; }
+  .secret-card p { color: rgba(255,255,255,.7); font-size: .9rem; line-height: 1.65; }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--white); }
+  .pricing .section-title { color: var(--dark); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .price-card {
+    border-radius: 24px;
+    padding: 36px 24px;
+    text-align: center;
+    position: relative;
+  }
+  .price-card.low { background: linear-gradient(135deg, #e8f4fd, #cce5ff); border: 2px solid var(--sky); }
+  .price-card.high { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 2px solid var(--orange); }
+  .price-card .season {
+    font-size: .75rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: #666;
+  }
+  .price-card .amount {
+    font-family: 'Righteous', sans-serif;
+    font-size: 3rem;
+    color: var(--dark);
+    line-height: 1;
+  }
+  .price-card .amount sup { font-size: 1.4rem; vertical-align: super; }
+  .price-card .price-type { font-size: .85rem; font-weight: 700; color: #666; margin: 6px 0 20px; }
+  .price-row { display: flex; justify-content: space-between; font-size: .9rem; margin: 6px 0; color: #555; }
+  .price-row strong { color: var(--dark); }
+  .price-note {
+    background: rgba(255,255,255,.8);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 20px;
+    font-size: .85rem;
+    color: #555;
+    max-width: 700px;
+    margin: 24px auto 0;
+    text-align: center;
+  }
+
+  /* ── ENTORNO ── */
+  .entorno { background: linear-gradient(135deg, #e8fff0, #d0f5e8); }
+  .entorno .section-title { color: #1a5c38; }
+  .entorno .section-sub { color: #2d7a52; }
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .place-pill {
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .place-pill:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+  .place-pill .dist {
+    background: var(--mint);
+    color: var(--dark);
+    font-weight: 900;
+    font-size: .75rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .place-pill .name { font-weight: 700; font-size: .9rem; color: var(--dark); }
+
+  /* ── BOOKING CTA ── */
+  .booking-cta {
+    background: var(--coral);
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .booking-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,.15), transparent 60%),
+                radial-gradient(circle at 70% 50%, rgba(255,200,0,.15), transparent 50%);
+  }
+  .booking-cta h2 {
+    font-family: 'Righteous', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .booking-cta p { color: rgba(255,255,255,.85); font-size: 1.1rem; margin-bottom: 40px; position: relative; }
+  .booking-cta .btn-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; position: relative; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--dark); padding: 80px 24px; text-align: center; }
+  .contact h2 { font-family: 'Righteous', sans-serif; color: #fff; font-size: 2rem; margin-bottom: 10px; }
+  .contact .sub { color: rgba(255,255,255,.6); margin-bottom: 40px; }
+  .contact-cards {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+    max-width: 900px; margin: 0 auto 40px;
+  }
+  .contact-card {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 20px;
+    padding: 28px 32px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    transition: background .3s, transform .3s;
+    min-width: 200px;
+  }
+  .contact-card:hover { background: rgba(255,255,255,.14); transform: translateY(-4px); }
+  .contact-card .icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+  .contact-card .label { font-size: .75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.5); margin-bottom: 6px; }
+  .contact-card .value { font-weight: 900; font-size: 1.1rem; }
+  .contact-card.wa-card { border-color: #25D366; }
+  .contact-card.wa-card:hover { background: rgba(37,211,102,.15); }
+
+  /* ── MAP ── */
+  .map-section { padding: 0; }
+  .map-section iframe { display: block; width: 100%; height: 380px; border: none; filter: saturate(1.2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111;
+    color: rgba(255,255,255,.45);
+    text-align: center;
+    padding: 28px 24px;
+    font-size: .85rem;
+  }
+  footer a { color: var(--sun); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(.8); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav .nav-links a:not(.cta-nav) { display: none; }
+    .hero-btns { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">🏡 El Berrueco</a>
+  <div class="nav-links">
+    <a href="#features">La Casa</a>
+    <a href="#pricing">Precios</a>
+    <a href="#entorno">Entorno</a>
+    <a href="#contact">Contacto</a>
+    <a href="https://www.casitaelberrueco.es/" target="_blank" class="cta-nav">Web Oficial</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🌿 Sierra Norte de Madrid · A solo 60 km de la capital</div>
+  <h1>Casita<br><span>El Berrueco</span></h1>
+  <p class="subtitle">Tu casa rural completa para hasta <strong style="color:var(--sun)">14 personas</strong>. Naturaleza, chimenea, piscina y puro descanso — todo para vosotros solos.</p>
+  <div class="hero-btns">
+    <a href="https://wa.me/34691306635" target="_blank" class="btn btn-wa">💬 Reservar por WhatsApp</a>
+    <a href="tel:+34691306635" class="btn btn-tel">📞 Llamar ahora</a>
+    <a href="https://www.casitaelberrueco.es/" target="_blank" class="btn btn-outline">Ver web oficial →</a>
+  </div>
+  <div class="hero-scroll">↓ descubre más ↓</div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-inner">
+    <span>🏠 CASA ENTERA SIN COMPARTIR</span><span class="dot">★</span>
+    <span>🐕 MASCOTAS BIENVENIDAS</span><span class="dot">★</span>
+    <span>👨‍👩‍👧‍👦 HASTA 14 PERSONAS</span><span class="dot">★</span>
+    <span>🔥 CHIMENEA DE LEÑA</span><span class="dot">★</span>
+    <span>🏊 PISCINA PROPIA</span><span class="dot">★</span>
+    <span>🌲 900 METROS DE ALTITUD</span><span class="dot">★</span>
+    <span>🏠 CASA ENTERA SIN COMPARTIR</span><span class="dot">★</span>
+    <span>🐕 MASCOTAS BIENVENIDAS</span><span class="dot">★</span>
+    <span>👨‍👩‍👧‍👦 HASTA 14 PERSONAS</span><span class="dot">★</span>
+    <span>🔥 CHIMENEA DE LEÑA</span><span class="dot">★</span>
+    <span>🏊 PISCINA PROPIA</span><span class="dot">★</span>
+    <span>🌲 900 METROS DE ALTITUD</span><span class="dot">★</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <h2>Lo esencial <span>de un vistazo</span></h2>
+  <div class="stats-grid">
+    <div class="stat-card"><span class="stat-num">14</span><span class="stat-label">Personas máx.</span></div>
+    <div class="stat-card"><span class="stat-num">4</span><span class="stat-label">Habitaciones</span></div>
+    <div class="stat-card"><span class="stat-num">3</span><span class="stat-label">Baños completos</span></div>
+    <div class="stat-card"><span class="stat-num">60</span><span class="stat-label">km de Madrid</span></div>
+    <div class="stat-card"><span class="stat-num">900<small style="font-size:1rem">m</small></span><span class="stat-label">Altitud</span></div>
+    <div class="stat-card"><span class="stat-num">20+</span><span class="stat-label">lugares a visitar</span></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="centered">
+    <h2 class="section-title">¿Por qué elegir <span style="color:var(--coral)">El Berrueco</span>?</h2>
+    <p class="section-sub">Una casa rural pensada para grupos y familias que quieren disfrutar al máximo sin compartir el espacio.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🏠</div>
+      <h3 class="feat-title">Casa entera para vosotros</h3>
+      <p class="feat-desc">Sin vecinos, sin normas de hotel. La casa es exclusivamente vuestra durante toda la estancia.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🏊‍♂️</div>
+      <h3 class="feat-title">Piscina privada</h3>
+      <p class="feat-desc">Jardín cerrado con piscina para uso exclusivo del grupo. Perfecta para los meses cálidos.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔥</div>
+      <h3 class="feat-title">Chimenea & Paellero</h3>
+      <p class="feat-desc">Chimenea de leña para las noches de invierno y un paellero grande para grandes celebraciones.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🐕</div>
+      <h3 class="feat-title">Mascotas bienvenidas</h3>
+      <p class="feat-desc">Trae a toda la familia, incluido el peludo. El jardín cerrado garantiza su seguridad y libertad.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🛏️</div>
+      <h3 class="feat-title">Capacidad para grandes grupos</h3>
+      <p class="feat-desc">3 habitaciones triples + 1 quíntuple. Ideal para cumpleaños, despedidas, reuniones familiares o viajes de empresa.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📶</div>
+      <h3 class="feat-title">WiFi + TV en habitaciones</h3>
+      <p class="feat-desc">Conectividad garantizada para trabajar en remoto o simplemente para relajarse con una serie por la noche.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CURIOSIDADES -->
+<section class="secrets">
+  <div class="centered">
+    <h2 class="section-title">✨ Datos que no sabías</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.6)">Razones sorprendentes para elegir El Berrueco y su entorno</p>
+  </div>
+  <div class="secrets-grid">
+    <div class="secret-card">
+      <span class="tag tag-coral">Historia</span>
+      <h3>Torre medieval árabe en el pueblo</h3>
+      <p>El Berrueco conserva una atalaya musulmana medieval, parte de la red de torres defensivas que vigilaban la Sierra Norte. Un monumento único a pocos minutos andando.</p>
+    </div>
+    <div class="secret-card">
+      <span class="tag tag-sky">Naturaleza</span>
+      <h3>El embalse del Atazar, el mayor de Madrid</h3>
+      <p>El término municipal comparte borde con el embalse del Atazar, uno de los más grandes de la Comunidad de Madrid. Paisajes de agua y montaña espectaculares.</p>
+    </div>
+    <div class="secret-card">
+      <span class="tag tag-mint">Reserva</span>
+      <h3>Hayedo Reserva de la Biosfera a 27 km</h3>
+      <p>El Hayedo de Montejo — el único hayedo de la Comunidad de Madrid — es Reserva de la Biosfera y está a menos de media hora. Espectacular en otoño.</p>
+    </div>
+    <div class="secret-card">
+      <span class="tag tag-sun">Templarios</span>
+      <h3>Iglesia templaria de poder a 47 km</h3>
+      <p>A menos de una hora, la Iglesia de la Veracruz de Segovia fue construida por los Templarios sobre un enclave de energía telúrica. Un lugar místico y fascinante.</p>
+    </div>
+    <div class="secret-card">
+      <span class="tag tag-lav">Patrimonio</span>
+      <h3>Acueducto Romano + Alcázar a 45 km</h3>
+      <p>Segovia, Patrimonio de la Humanidad, está a 45 minutos. Dos monumentos declarados Patrimonio Universal en una misma excursión de día.</p>
+    </div>
+    <div class="secret-card">
+      <span class="tag tag-teal">Secreto local</span>
+      <h3>Altitud perfecta: ni frío extremo, ni calor asfixiante</h3>
+      <p>A 900 m sobre el nivel del mar, el microclima de El Berrueco es notablemente más fresco que Madrid en verano y más suave que la alta sierra en invierno.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="centered">
+    <h2 class="section-title">💰 Tarifas <span style="color:var(--orange)">transparentes</span></h2>
+    <p class="section-sub">Precios por la casa completa, sin costes ocultos. Divide entre todo el grupo y sale más barato que un hotel.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card low">
+      <div class="season">🌙 Temporada Baja</div>
+      <div class="amount"><sup>€</sup>950</div>
+      <div class="price-type">fin de semana</div>
+      <div class="price-row"><span>Semana entera</span><strong>2.650 €</strong></div>
+      <div class="price-row"><span>Noche adicional</span><strong>450 €</strong></div>
+      <div class="price-row"><span>Cesto de leña</span><strong>10 €</strong></div>
+      <p style="font-size:.8rem;color:#666;margin-top:12px">Oct – Abr (exc. festivos)</p>
+    </div>
+    <div class="price-card high">
+      <div class="season">☀️ Temporada Alta</div>
+      <div class="amount"><sup>€</sup>1.100</div>
+      <div class="price-type">fin de semana</div>
+      <div class="price-row"><span>Semana entera</span><strong>2.750 €</strong></div>
+      <div class="price-row"><span>Noche adicional</span><strong>500 €</strong></div>
+      <div class="price-row"><span>Cesto de leña</span><strong>10 €</strong></div>
+      <p style="font-size:.8rem;color:#666;margin-top:12px">Mayo – Sep</p>
+    </div>
+  </div>
+  <p class="price-note">⚠️ <strong>Mínimo 2 noches.</strong> Puentes, Semana Santa, Navidad y fines de semana especiales: consultar precios y mínimos.<br>¿Dividido entre 14 personas? Un fin de semana en temporada baja sale a <strong style="color:var(--coral)">menos de 70€ por persona.</strong></p>
+</section>
+
+<!-- ENTORNO -->
+<section class="entorno" id="entorno">
+  <div class="centered">
+    <h2 class="section-title">🗺️ Un entorno increíble</h2>
+    <p class="section-sub">Más de 20 destinos espectaculares a menos de 1 hora de la casa</p>
+  </div>
+  <div class="places-grid">
+    <div class="place-pill"><span class="dist">27 km</span><span class="name">Hayedo de Montejo</span></div>
+    <div class="place-pill"><span class="dist">28 km</span><span class="name">Navafría</span></div>
+    <div class="place-pill"><span class="dist">30 km</span><span class="name">Cueva de los Enebralejos</span></div>
+    <div class="place-pill"><span class="dist">34 km</span><span class="name">Pedraza medieval</span></div>
+    <div class="place-pill"><span class="dist">35 km</span><span class="name">La Granja de San Ildefonso</span></div>
+    <div class="place-pill"><span class="dist">45 km</span><span class="name">Acueducto Romano de Segovia</span></div>
+    <div class="place-pill"><span class="dist">46 km</span><span class="name">Alcázar de Segovia</span></div>
+    <div class="place-pill"><span class="dist">47 km</span><span class="name">Iglesia Templaria Veracruz</span></div>
+    <div class="place-pill"><span class="dist">47 km</span><span class="name">Castillo de Turégano</span></div>
+    <div class="place-pill"><span class="dist">48 km</span><span class="name">Sepúlveda Histórico-Artística</span></div>
+    <div class="place-pill"><span class="dist">49 km</span><span class="name">Hoces del Río Duratón</span></div>
+    <div class="place-pill"><span class="dist">53 km</span><span class="name">Museo del Prado</span></div>
+    <div class="place-pill"><span class="dist">57 km</span><span class="name">El Escorial</span></div>
+    <div class="place-pill"><span class="dist">61 km</span><span class="name">Parque Natural de Peñalara</span></div>
+  </div>
+</section>
+
+<!-- BOOKING CTA -->
+<section class="booking-cta">
+  <h2>¿Listo para reservar?</h2>
+  <p>Disponibilidad limitada. Contacta ahora y asegura tu fecha antes de que se ocupe.</p>
+  <div class="btn-group">
+    <a href="https://wa.me/34691306635?text=Hola!%20Me%20gustar%C3%ADa%20consultar%20disponibilidad%20en%20la%20Casita%20El%20Berrueco." target="_blank" class="btn btn-wa" style="font-size:1.1rem;padding:16px 36px;">💬 WhatsApp directo</a>
+    <a href="tel:+34691306635" class="btn" style="background:#fff;color:var(--coral);font-size:1.1rem;padding:16px 36px;">📞 691 306 635</a>
+    <a href="https://www.casitaelberrueco.es/" target="_blank" class="btn btn-outline" style="font-size:1.1rem;padding:16px 36px;">🌐 Web oficial</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2>📬 Contacto</h2>
+  <p class="sub">Estamos disponibles por teléfono, WhatsApp y email</p>
+  <div class="contact-cards">
+    <a href="tel:+34691306635" class="contact-card">
+      <span class="icon">📞</span>
+      <div class="label">Teléfono</div>
+      <div class="value">691 306 635</div>
+    </a>
+    <a href="https://wa.me/34691306635?text=Hola!%20Me%20gustar%C3%ADa%20consultar%20disponibilidad." target="_blank" class="contact-card wa-card">
+      <span class="icon">💬</span>
+      <div class="label">WhatsApp</div>
+      <div class="value">Escríbenos</div>
+    </a>
+    <a href="mailto:pabloshmg@yahoo.es" class="contact-card">
+      <span class="icon">✉️</span>
+      <div class="label">Email</div>
+      <div class="value">pabloshmg@yahoo.es</div>
+    </a>
+    <a href="https://www.google.com/maps/search/?api=1&query=40.88013,-3.58790" target="_blank" class="contact-card">
+      <span class="icon">📍</span>
+      <div class="label">Dirección</div>
+      <div class="value">C/ Las Jaras, 14<br><small>El Berrueco, Madrid</small></div>
+    </a>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-section">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d772255.3061132155!2d-4.148699109486081!3d40.88016257124938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd43dd36f42457cf%3A0x718e0e9398fce064!2sC.%20de%20las%20Jaras%2C%2014P%2C%2028192%20El%20Berrueco%2C%20Madrid!5e0!3m2!1ses!2ses!4v1725351906524!5m2!1ses!2ses"
+    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Casita El Berrueco · C/ Las Jaras, 14 · 28192 El Berrueco, Madrid ·
+    <a href="https://www.casitaelberrueco.es/" target="_blank">Web oficial</a> ·
+    <a href="tel:+34691306635">691 306 635</a> ·
+    <a href="https://wa.me/34691306635" target="_blank">WhatsApp</a>
+  </p>
+</footer>
+
+</body>
+</html>
