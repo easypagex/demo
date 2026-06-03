@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Posada Cercedilla – Tu Escapada en la Sierra de Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde: #2d8a4e;
+      --verde-claro: #4caf72;
+      --amarillo: #f9c231;
+      --naranja: #f56a21;
+      --rojo: #e63946;
+      --azul: #1d7fb5;
+      --azul-cielo: #56c3e8;
+      --morado: #7b2d8b;
+      --crema: #fff8ee;
+      --oscuro: #1a1a2e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--oscuro);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg,
+          #1a472a 0%,
+          #2d8a4e 25%,
+          #1d7fb5 55%,
+          #7b2d8b 80%,
+          #e63946 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px 80px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 700px 500px at 20% 30%, rgba(249,194,49,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 400px at 80% 70%, rgba(86,195,232,.18) 0%, transparent 70%);
+    }
+
+    /* Floating decorative circles */
+    .hero .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .13;
+      animation: float 8s ease-in-out infinite;
+    }
+    .blob-1 { width:380px; height:380px; background:var(--amarillo); top:-100px; left:-100px; animation-delay:0s; }
+    .blob-2 { width:250px; height:250px; background:var(--azul-cielo); bottom:-60px; right:-60px; animation-delay:3s; }
+    .blob-3 { width:180px; height:180px; background:var(--naranja); top:40%; right:5%; animation-delay:5s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.04); }
+    }
+
+    .hero-badge {
+      background: var(--amarillo);
+      color: var(--oscuro);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      position: relative;
+      text-shadow: 0 4px 30px rgba(0,0,0,.3);
+    }
+
+    .hero h1 span { color: var(--amarillo); }
+
+    .hero-sub {
+      color: rgba(255,255,255,.88);
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin: 20px auto 0;
+      max-width: 560px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 34px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+
+    .btn-primary { background: var(--amarillo); color: var(--oscuro); }
+    .btn-whatsapp { background: #25d366; color: #fff; }
+    .btn-tel { background: rgba(255,255,255,.15); color: #fff; border: 2px solid rgba(255,255,255,.6); backdrop-filter: blur(8px); }
+    .btn-outline { background: transparent; color: var(--oscuro); border: 2px solid var(--oscuro); }
+    .btn-verde { background: var(--verde); color: #fff; }
+    .btn-azul { background: var(--azul); color: #fff; }
+    .btn-naranja { background: var(--naranja); color: #fff; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.6);
+      font-size: .85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint svg { width: 22px; }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--oscuro);
+      color: #fff;
+      padding: 28px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .stat-item {
+      flex: 1 1 160px;
+      text-align: center;
+      padding: 12px 24px;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .stat-num.c1 { color: var(--amarillo); }
+    .stat-num.c2 { color: var(--verde-claro); }
+    .stat-num.c3 { color: var(--azul-cielo); }
+    .stat-num.c4 { color: var(--naranja); }
+    .stat-num.c5 { color: #c89cff; }
+
+    .stat-label { font-size: .78rem; opacity: .7; margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 20px; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      opacity: .75;
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    /* ── HECHOS CURIOSOS ── */
+    .facts-section {
+      background: linear-gradient(135deg, #1d7fb5 0%, #7b2d8b 50%, #e63946 100%);
+      color: #fff;
+    }
+
+    .facts-section .section-tag { background: rgba(255,255,255,.2); color: #fff; }
+    .facts-section h2 { color: #fff; }
+    .facts-section .section-intro { opacity: .8; }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .fact-card {
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, background .2s;
+    }
+    .fact-card:hover { transform: translateY(-6px); background: rgba(255,255,255,.18); }
+
+    .fact-icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .fact-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+    .fact-card p { font-size: .92rem; opacity: .85; line-height: 1.6; }
+
+    .fact-highlight {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: var(--amarillo);
+      color: var(--oscuro);
+      font-size: .7rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    /* ── ALOJAMIENTOS ── */
+    .aloj-section { background: var(--crema); }
+    .aloj-section .section-tag { background: #d4f0de; color: var(--verde); }
+
+    .aloj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .aloj-card {
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,.1);
+      transition: transform .2s, box-shadow .2s;
+      background: #fff;
+    }
+    .aloj-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,.15); }
+
+    .aloj-header {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+
+    .aloj-body { padding: 24px; }
+    .aloj-body h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
+    .aloj-body p { font-size: .9rem; opacity: .7; line-height: 1.6; margin-bottom: 14px; }
+
+    .aloj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .aloj-tag {
+      background: #f0f0f0;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+      color: #444;
+    }
+
+    /* ── RESTAURANTE ── */
+    .resto-section {
+      background: linear-gradient(135deg, #2d1b00 0%, #8b4500 40%, #f56a21 100%);
+      color: #fff;
+    }
+    .resto-section .section-tag { background: rgba(249,194,49,.25); color: var(--amarillo); }
+    .resto-section h2 { color: #fff; }
+    .resto-section .section-intro { opacity: .8; }
+
+    .platos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .plato-item {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: background .2s;
+    }
+    .plato-item:hover { background: rgba(255,255,255,.18); }
+    .plato-item .emoji { font-size: 2rem; margin-bottom: 8px; }
+    .plato-item p { font-size: .9rem; font-weight: 700; }
+
+    /* ── ACTIVIDADES ── */
+    .act-section { background: #e8f5ff; }
+    .act-section .section-tag { background: #c3e3f7; color: var(--azul); }
+
+    .act-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .act-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 22px;
+      border-top: 5px solid;
+      box-shadow: 0 4px 20px rgba(0,0,0,.07);
+      transition: transform .2s;
+    }
+    .act-card:hover { transform: translateY(-5px); }
+    .act-card:nth-child(1) { border-color: var(--verde); }
+    .act-card:nth-child(2) { border-color: var(--azul); }
+    .act-card:nth-child(3) { border-color: var(--naranja); }
+    .act-card:nth-child(4) { border-color: var(--morado); }
+    .act-card:nth-child(5) { border-color: var(--rojo); }
+    .act-card:nth-child(6) { border-color: var(--amarillo); }
+
+    .act-card .icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .act-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 8px; }
+    .act-card p { font-size: .88rem; color: #555; line-height: 1.6; }
+
+    /* ── OPINIONES ── */
+    .reviews-section {
+      background: linear-gradient(135deg, #1a472a 0%, #2d8a4e 60%, #4caf72 100%);
+      color: #fff;
+    }
+    .reviews-section .section-tag { background: rgba(249,194,49,.3); color: var(--amarillo); }
+    .reviews-section h2 { color: #fff; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px;
+      padding: 26px 22px;
+      position: relative;
+    }
+
+    .review-stars { color: var(--amarillo); font-size: 1.1rem; margin-bottom: 12px; }
+    .review-text { font-size: .92rem; line-height: 1.7; opacity: .9; margin-bottom: 16px; font-style: italic; }
+    .review-author { font-weight: 800; font-size: .85rem; opacity: .7; }
+    .review-date { font-size: .75rem; opacity: .5; }
+
+    .quote-mark {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(255,255,255,.1);
+      font-family: Georgia, serif;
+    }
+
+    /* ── MAPA / UBICACIÓN ── */
+    .ubicacion-section { background: #fff8ee; }
+    .ubicacion-section .section-tag { background: #ffe8cc; color: var(--naranja); }
+
+    .ubicacion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 720px) { .ubicacion-grid { grid-template-columns: 1fr; } }
+
+    .distancias { display: flex; flex-direction: column; gap: 14px; }
+    .dist-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.06);
+    }
+    .dist-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .dist-info strong { font-size: .95rem; display: block; }
+    .dist-info span { font-size: .82rem; color: #888; }
+
+    .map-embed {
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,.12);
+      height: 340px;
+    }
+    .map-embed iframe { width:100%; height:100%; border:none; }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      background: var(--oscuro);
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background: radial-gradient(ellipse 900px 500px at 50% 50%, rgba(249,194,49,.08) 0%, transparent 70%);
+    }
+
+    .cta-final h2 {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .cta-final h2 span { color: var(--amarillo); }
+    .cta-final p { color: rgba(255,255,255,.6); font-size: 1.1rem; margin-bottom: 40px; position: relative; }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0e0e18;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: .82rem;
+    }
+    footer a { color: var(--amarillo); text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,20,10,.85);
+      backdrop-filter: blur(12px);
+      padding: 14px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .nav-logo span { color: var(--amarillo); }
+
+    .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+    .nav-link {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      transition: background .2s, color .2s;
+    }
+    .nav-link:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+    .nav-cta {
+      background: var(--verde);
+      color: #fff !important;
+    }
+    .nav-cta:hover { background: var(--verde-claro) !important; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── PRECIO BADGE ── */
+    .precio-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--amarillo);
+      color: var(--oscuro);
+      border-radius: 20px;
+      padding: 16px 28px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px rgba(249,194,49,.4);
+    }
+    .precio-badge .desde { font-size: .8rem; text-transform: uppercase; letter-spacing: 2px; }
+    .precio-badge .precio { font-family: 'Playfair Display', serif; font-size: 2.4rem; line-height: 1; }
+    .precio-badge .noche { font-size: .8rem; }
+
+    /* ── SEPARADORES COLORIDOS ── */
+    .separator {
+      height: 6px;
+      background: linear-gradient(90deg, var(--verde) 0%, var(--azul) 25%, var(--morado) 50%, var(--naranja) 75%, var(--rojo) 100%);
+    }
+
+    /* MASCOTAS STRIP */
+    .mascotas-strip {
+      background: linear-gradient(90deg, #ff6b6b, #ffa07a, #f9c231, #51cf66, #339af0, #845ef7);
+      padding: 18px 20px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #fff;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 4px rgba(0,0,0,.2);
+    }
+
+    /* ALOJAMIENTO COLORES */
+    .ac1 { background: linear-gradient(135deg, #2d8a4e, #4caf72); }
+    .ac2 { background: linear-gradient(135deg, #1d7fb5, #56c3e8); }
+    .ac3 { background: linear-gradient(135deg, #f56a21, #f9c231); }
+    .ac4 { background: linear-gradient(135deg, #7b2d8b, #e63946); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">La <span>Posada</span> Cercedilla</a>
+  <div class="nav-links">
+    <a href="#alojamiento" class="nav-link">🏡 Alojamiento</a>
+    <a href="#restaurante" class="nav-link">🍽️ Restaurante</a>
+    <a href="#actividades" class="nav-link">🥾 Actividades</a>
+    <a href="#ubicacion" class="nav-link">📍 Ubicación</a>
+    <a href="https://www.laposadacercedilla.com" target="_blank" class="nav-link nav-cta">✅ Reservar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <span class="hero-badge">🌿 Hotel Rural · Sierra de Guadarrama · Madrid</span>
+  <h1>La <span>Posada</span><br>Cercedilla</h1>
+  <p class="hero-sub">Tu refugio en la montaña a solo 60 km de Madrid. Naturaleza, paz, gastronomía y aventura en el corazón de la Sierra de Guadarrama.</p>
+
+  <div class="hero-ctas">
+    <a href="https://www.laposadacercedilla.com" target="_blank" class="btn btn-primary">🏡 Ver disponibilidad</a>
+    <a href="https://wa.me/34629602522" target="_blank" class="btn btn-whatsapp">💬 WhatsApp directo</a>
+    <a href="tel:+34629602522" class="btn btn-tel">📞 +34 629 602 522</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Descubre más</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num c1">19</div><div class="stat-label">Alojamientos</div></div>
+  <div class="stat-item"><div class="stat-num c2">60km</div><div class="stat-label">de Madrid capital</div></div>
+  <div class="stat-item"><div class="stat-num c3">14km</div><div class="stat-label">de estación de esquí</div></div>
+  <div class="stat-item"><div class="stat-num c4">desde 72€</div><div class="stat-label">por noche</div></div>
+  <div class="stat-item"><div class="stat-num c5">7</div><div class="stat-label">personas máx/cabaña</div></div>
+</div>
+
+<div class="separator"></div>
+
+<!-- MASCOTAS -->
+<div class="mascotas-strip">🐾 ¡Se admiten mascotas! Tus animales también son bienvenidos 🐕🐈</div>
+
+<!-- HECHOS CURIOSOS -->
+<section class="facts-section">
+  <div class="container">
+    <span class="section-tag">💡 Lo que no sabías</span>
+    <h2>Datos sorprendentes sobre La Posada</h2>
+    <p class="section-intro">Hay muchas razones para elegir La Posada Cercedilla, pero estas quizás no las conocías.</p>
+
+    <div class="facts-grid">
+      <div class="fact-card">
+        <span class="fact-highlight">🎿 Único</span>
+        <div class="fact-icon">⛷️</div>
+        <h3>A 14 km de las pistas de esquí</h3>
+        <p>La estación de Navacerrada está a solo 14 km. El alojamiento dispone de <strong>guardaesquís</strong> y la zona es perfecta para una semana blanca sin salir de Madrid.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-icon">🚂</div>
+        <h3>Sin coche desde Madrid</h3>
+        <p>La parada de Cercanías está a solo 379 metros. Puedes llegar directamente desde Atocha en tren y caminar hasta el alojamiento en menos de 5 minutos.</p>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-highlight">🎨 Historia</span>
+        <div class="fact-icon">🖼️</div>
+        <h3>Cercedilla, el pueblo de Sorolla</h3>
+        <p>Joaquín Sorolla fue vecino de Cercedilla y pintó el entorno local. Puedes hacer rutas guiadas descubriendo la historia del pueblo a través de sus cuadros.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-icon">🦮</div>
+        <h3>Un San Bernardo llamado Pongo</h3>
+        <p>Los huéspedes adoran a Pongo, el enorme San Bernardo de la posada. También hay gatitos y gallinas en el patio, convirtiendo el lugar en un pequeño paraíso rural.</p>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-highlight">🏆 Precio</span>
+        <div class="fact-icon">💰</div>
+        <h3>Comida para 7 por 82€</h3>
+        <p>Reseñas reales confirman que 7 personas comieron con raciones, tortilla, croquetas, torreznos y postre casero por solo 82€. Una relación calidad-precio extraordinaria.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-icon">🌨️</div>
+        <h3>Despertares nevados</h3>
+        <p>Huéspedes describen despertar con vistas a la nieve como "de lujo". La altitud de Cercedilla garantiza nevadas frecuentes en invierno sin perder la comodidad del alojamiento.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-icon">🏛️</div>
+        <h3>Calzada romana a 1 km</h3>
+        <p>La Via XXIV de Antonino, una calzada romana auténtica, está a solo 1 km. Una joya histórica a la vuelta de la esquina que la mayoría de visitantes ni imagina.</p>
+      </div>
+
+      <div class="fact-card">
+        <div class="fact-icon">⭐</div>
+        <h3>Restaurante "de toda la vida"</h3>
+        <p>Clientes llevan décadas volviendo. La sopa castellana, los champiñones y las natillas caseras son los platos más comentados. No es solo un hotel: es una experiencia gastronómica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ALOJAMIENTO -->
+<section class="aloj-section" id="alojamiento">
+  <div class="container">
+    <span class="section-tag">🏡 Dónde dormir</span>
+    <h2>Alojamientos para cada grupo</h2>
+    <p class="section-intro">Cabañas y bungalows de 12 a 80 m² para 2 a 7 personas. Cada uno con terraza, decoración propia y vistas que enamoran.</p>
+
+    <div class="aloj-grid">
+      <div class="aloj-card">
+        <div class="aloj-header ac1">🌲</div>
+        <div class="aloj-body">
+          <h3>Cabañas de montaña</h3>
+          <p>Con chimenea de piedra, sofá y vistas al jardín. Perfectas para parejas que buscan desconexión total.</p>
+          <div class="aloj-tags">
+            <span class="aloj-tag">🔥 Chimenea</span>
+            <span class="aloj-tag">🌄 Vistas</span>
+            <span class="aloj-tag">☕ Cafetera</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="aloj-card">
+        <div class="aloj-header ac2">🏠</div>
+        <div class="aloj-body">
+          <h3>Bungalows familiares</h3>
+          <p>Espaciosos, hasta 7 personas. Zona de estar, comedor y todas las comodidades para familias con niños.</p>
+          <div class="aloj-tags">
+            <span class="aloj-tag">👨‍👩‍👧‍👦 Familiar</span>
+            <span class="aloj-tag">📺 TV satélite</span>
+            <span class="aloj-tag">🛁 Baño completo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="aloj-card">
+        <div class="aloj-header ac3">🌿</div>
+        <div class="aloj-body">
+          <h3>Apartamentos con terraza</h3>
+          <p>Balcón con vistas a la montaña. Ideal para grupos de amigos o familias que quieren privacidad total.</p>
+          <div class="aloj-tags">
+            <span class="aloj-tag">🏔️ Vistas montaña</span>
+            <span class="aloj-tag">🍷 Terraza</span>
+            <span class="aloj-tag">🅿️ Zona picnic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="aloj-card">
+        <div class="aloj-header ac4">🌙</div>
+        <div class="aloj-body">
+          <h3>Escapada en pareja</h3>
+          <p>Unidades íntimas y acogedoras. Ambiente tranquilo, decoración con encanto y todo lo necesario para una noche romántica en la sierra.</p>
+          <div class="aloj-tags">
+            <span class="aloj-tag">💑 Romántico</span>
+            <span class="aloj-tag">🕯️ Íntimo</span>
+            <span class="aloj-tag">🌙 Silencio total</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px; display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+      <div class="precio-badge">
+        <span class="desde">Desde</span>
+        <span class="precio">72€</span>
+        <span class="noche">/ noche</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <a href="https://www.laposadacercedilla.com" target="_blank" class="btn btn-verde">🏡 Consultar disponibilidad en web oficial</a>
+        <a href="https://wa.me/34629602522?text=Hola,%20me%20gustaría%20consultar%20disponibilidad" target="_blank" class="btn btn-whatsapp">💬 Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- RESTAURANTE -->
+<section class="resto-section" id="restaurante">
+  <div class="container">
+    <span class="section-tag">🍽️ El Corralón</span>
+    <h2>Gastronomía de sierra auténtica</h2>
+    <p class="section-intro">El restaurante El Corralón sirve cocina española y mediterránea de temporada. Desayuno, menú del día y raciones para compartir. ¡Las natillas caseras son legendarias!</p>
+
+    <div class="platos-grid">
+      <div class="plato-item"><div class="emoji">🍳</div><p>Huevos con chorizo</p></div>
+      <div class="plato-item"><div class="emoji">🥚</div><p>Tortilla de patata</p></div>
+      <div class="plato-item"><div class="emoji">🍗</div><p>Torreznos</p></div>
+      <div class="plato-item"><div class="emoji">🥟</div><p>Croquetas caseras</p></div>
+      <div class="plato-item"><div class="emoji">🍲</div><p>Sopa castellana</p></div>
+      <div class="plato-item"><div class="emoji">🥩</div><p>Carne de sierra</p></div>
+      <div class="plato-item"><div class="emoji">🍮</div><p>Natillas caseras</p></div>
+      <div class="plato-item"><div class="emoji">🍚</div><p>Arroz con leche</p></div>
+      <div class="plato-item"><div class="emoji">🍄</div><p>Champiñones</p></div>
+      <div class="plato-item"><div class="emoji">🌅</div><p>Desayuno buffet</p></div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center;">
+      <a href="https://www.laposadacercedilla.com" target="_blank" class="btn btn-primary">🍽️ Ver carta y reservar mesa</a>
+      <a href="tel:+34629602522" class="btn btn-tel">📞 Reservar por teléfono</a>
+    </div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ACTIVIDADES -->
+<section class="act-section" id="actividades">
+  <div class="container">
+    <span class="section-tag">🥾 Aventura & Naturaleza</span>
+    <h2>Todo lo que puedes hacer</h2>
+    <p class="section-intro">La posada es la base perfecta para explorar el Parque Nacional de la Sierra de Guadarrama. Aquí no te aburrirás.</p>
+
+    <div class="act-grid">
+      <div class="act-card">
+        <div class="icon">🥾</div>
+        <h3>Senderismo</h3>
+        <p>Rutas de todos los niveles. El Valle de la Fuenfría es espectacular en primavera. Senderos señalizados accesibles desde el alojamiento.</p>
+      </div>
+      <div class="act-card">
+        <div class="icon">⛷️</div>
+        <h3>Esquí y nieve</h3>
+        <p>Estación de Navacerrada a 14 km. El alojamiento tiene guardaesquís. Ideal para escapadas invernales con la familia.</p>
+      </div>
+      <div class="act-card">
+        <div class="icon">🐴</div>
+        <h3>Hípica</h3>
+        <p>Rutas a caballo por la sierra con guías profesionales. Una experiencia única para descubrir los rincones más salvajes del Guadarrama.</p>
+      </div>
+      <div class="act-card">
+        <div class="icon">🚵</div>
+        <h3>Ciclismo de montaña</h3>
+        <p>Alquiler de bicicletas disponible. Rutas BTT por los senderos de la sierra con distintos niveles de dificultad.</p>
+      </div>
+      <div class="act-card">
+        <div class="icon">🌟</div>
+        <h3>Astroturismo</h3>
+        <p>Cielos limpios y alejados de la contaminación lumínica de Madrid. Las noches en Cercedilla son perfectas para observar las estrellas.</p>
+      </div>
+      <div class="act-card">
+        <div class="icon">🏛️</div>
+        <h3>Turismo cultural</h3>
+        <p>Calzada romana, Museo del Esquí Paquito Fernández Ochoa, Fábrica de la Luz y rutas por el Cercedilla histórico de Sorolla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- OPINIONES -->
+<section class="reviews-section">
+  <div class="container">
+    <span class="section-tag">⭐ Lo que dicen los huéspedes</span>
+    <h2>Opiniones reales</h2>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Restaurante de toda la vida, de esos que nunca fallan. El trato es cercano y amable, te hacen sentir a gusto de verdad. La comida se nota que está hecha con cariño.</p>
+        <div class="review-author">— Cliente habitual</div>
+        <div class="review-date">Marzo 2026</div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Un hotel como un mini pueblo precioso y encantador. Nos nevó y fue un despertar de lujo. La única pega: quedarse con ganas de más días.</p>
+        <div class="review-author">— Familia madrileña</div>
+        <div class="review-date">Enero 2026</div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">La Posada es preciosa. Situada en un sitio perfecto para senderismo. Los bungalows son acogedores, la decoración muy bonita. Lo recomendamos sin dudarlo.</p>
+        <div class="review-author">— Amigas viajeras</div>
+        <div class="review-date">2025</div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Menú del día genial: calidad y precio estupendo, ambiente increíble. ¡Volveremos seguro! La sopa castellana y los champiñones, imprescindibles.</p>
+        <div class="review-author">— Pareja en escapada</div>
+        <div class="review-date">Marzo 2026</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- UBICACIÓN -->
+<section class="ubicacion-section" id="ubicacion">
+  <div class="container">
+    <span class="section-tag">📍 Cómo llegar</span>
+    <h2>Fácil de llegar, difícil de dejar</h2>
+    <p class="section-intro">Ctra. de las Dehesas, 2 · 28470 Cercedilla (Madrid)</p>
+
+    <div class="ubicacion-grid">
+      <div class="distancias">
+        <div class="dist-item">
+          <div class="dist-icon">🚂</div>
+          <div class="dist-info">
+            <strong>Cercanías Cercedilla</strong>
+            <span>379 m andando · directo desde Atocha</span>
+          </div>
+        </div>
+        <div class="dist-item">
+          <div class="dist-icon">✈️</div>
+          <div class="dist-info">
+            <strong>Aeropuerto Madrid-Barajas</strong>
+            <span>75 km en coche</span>
+          </div>
+        </div>
+        <div class="dist-item">
+          <div class="dist-icon">🏙️</div>
+          <div class="dist-info">
+            <strong>Centro de Madrid</strong>
+            <span>~60 km · aprox. 1 hora</span>
+          </div>
+        </div>
+        <div class="dist-item">
+          <div class="dist-icon">⛷️</div>
+          <div class="dist-info">
+            <strong>Estación de Navacerrada</strong>
+            <span>14 km en coche</span>
+          </div>
+        </div>
+        <div class="dist-item">
+          <div class="dist-icon">🌊</div>
+          <div class="dist-info">
+            <strong>Embalse de Navalmedio</strong>
+            <span>2 km</span>
+          </div>
+        </div>
+        <div class="dist-item">
+          <div class="dist-icon">🏛️</div>
+          <div class="dist-info">
+            <strong>Calzada romana Via XXIV</strong>
+            <span>1 km</span>
+          </div>
+        </div>
+
+        <div style="margin-top:8px; display:flex; flex-direction:column; gap:10px;">
+          <a href="https://maps.google.com/?q=Ctra.+de+las+Dehesas,+2,+28470+Cercedilla" target="_blank" class="btn btn-naranja">🗺️ Abrir en Google Maps</a>
+          <a href="https://www.laposadacercedilla.com/contacto/" target="_blank" class="btn btn-outline">📩 Página de contacto</a>
+        </div>
+      </div>
+
+      <div class="map-embed">
+        <iframe
+          src="https://maps.google.com/maps?q=Ctra.+de+las+Dehesas+2,+Cercedilla,+Madrid&output=embed"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <h2>¿Listo para tu escapada<br>a la <span>sierra</span>?</h2>
+    <p>Plazas limitadas · Reserva directa = mejor precio garantizado</p>
+
+    <div class="cta-buttons">
+      <a href="https://www.laposadacercedilla.com" target="_blank" class="btn btn-primary">🌐 Web oficial · Ver precios</a>
+      <a href="https://wa.me/34629602522?text=Hola!%20Quiero%20reservar%20en%20La%20Posada%20Cercedilla" target="_blank" class="btn btn-whatsapp">💬 WhatsApp · Reserva rápida</a>
+      <a href="tel:+34629602522" class="btn btn-tel">📞 Llamar ahora · 629 602 522</a>
+    </div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<footer>
+  <p>
+    <strong style="color:#fff;">La Posada Cercedilla</strong> ·
+    Ctra. de las Dehesas, 2, 28470 Cercedilla (Madrid) ·
+    <a href="tel:+34629602522">📞 629 602 522</a> ·
+    <a href="https://wa.me/34629602522" target="_blank">💬 WhatsApp</a> ·
+    <a href="https://www.laposadacercedilla.com" target="_blank">🌐 laposadacercedilla.com</a>
+  </p>
+  <p style="margin-top:10px; font-size:.75rem;">Sitio de información creado para facilitar reservas. Para reservas oficiales visita <a href="https://www.laposadacercedilla.com" target="_blank">laposadacercedilla.com</a></p>
+</footer>
+
+</body>
+</html>
