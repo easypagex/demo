@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hogares con ZenTIDO — Casas Rurales en Vélez-Rubio, Almería</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFB800;
+    --terracotta: #E05A2B;
+    --sage: #5A8A5E;
+    --sky: #3B82C4;
+    --lavender: #8B5FBF;
+    --rose: #E8456A;
+    --cream: #FFF8F0;
+    --dark: #1A1208;
+    --sand: #F5DEB3;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ======= HERO ======= */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FF6B35 0%, #FFB800 25%, #E8456A 50%, #8B5FBF 75%, #3B82C4 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: bgscroll 20s linear infinite;
+  }
+
+  @keyframes bgscroll {
+    from { background-position: 0 0; }
+    to { background-position: 60px 60px; }
+  }
+
+  .hero-badge {
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeDown 0.8s ease;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    margin-bottom: 16px;
+    animation: fadeDown 0.9s ease;
+  }
+
+  .hero h1 span {
+    color: var(--sun);
+    display: block;
+    font-style: italic;
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,0.95);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    animation: fadeDown 1s ease;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 1.1s ease;
+  }
+
+  .btn {
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: #fff;
+    color: var(--terracotta);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.3);
+  }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+  }
+  .btn-whatsapp:hover {
+    transform: translateY(-3px) scale(1.03);
+    background: #1EB558;
+  }
+
+  .btn-phone {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px);
+  }
+  .btn-phone:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-3px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ======= DATOS SORPRENDENTES ======= */
+  .facts {
+    background: var(--dark);
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .facts::before {
+    content: '✦ DATOS QUE NO CONOCÍAS ✦';
+    position: absolute;
+    top: 20px; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--sun);
+    font-weight: 800;
+  }
+
+  .facts-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #fff;
+    text-align: center;
+    margin-bottom: 60px;
+    margin-top: 20px;
+  }
+
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .fact-card {
+    border-radius: 24px;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .fact-card:hover { transform: translateY(-6px) rotate(-1deg); }
+
+  .fact-card:nth-child(1) { background: linear-gradient(135deg, #FFB800, #FF6B35); }
+  .fact-card:nth-child(2) { background: linear-gradient(135deg, #E8456A, #8B5FBF); }
+  .fact-card:nth-child(3) { background: linear-gradient(135deg, #5A8A5E, #3B82C4); }
+  .fact-card:nth-child(4) { background: linear-gradient(135deg, #3B82C4, #8B5FBF); }
+  .fact-card:nth-child(5) { background: linear-gradient(135deg, #E05A2B, #FFB800); }
+  .fact-card:nth-child(6) { background: linear-gradient(135deg, #8B5FBF, #E8456A); }
+
+  .fact-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .fact-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.95);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .fact-label {
+    font-size: 1rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 8px;
+  }
+
+  .fact-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+  }
+
+  /* ======= ALOJAMIENTOS ======= */
+  .alojamientos {
+    background: linear-gradient(180deg, #FFF3E8 0%, #FFF8F0 100%);
+    padding: 90px 20px;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: var(--terracotta);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--dark);
+  }
+
+  .section-sub {
+    text-align: center;
+    font-size: 1.05rem;
+    color: #666;
+    max-width: 550px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+  }
+
+  .aloj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .aloj-card {
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+  }
+  .aloj-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  }
+
+  .aloj-header {
+    padding: 32px 28px 24px;
+    position: relative;
+  }
+
+  .aloj-card:nth-child(1) .aloj-header { background: linear-gradient(135deg, #FF6B35, #FFB800); }
+  .aloj-card:nth-child(2) .aloj-header { background: linear-gradient(135deg, #5A8A5E, #3B82C4); }
+  .aloj-card:nth-child(3) .aloj-header { background: linear-gradient(135deg, #8B5FBF, #E8456A); }
+
+  .aloj-emoji { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+  .aloj-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .aloj-tagline {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .aloj-body { padding: 28px; }
+
+  .aloj-features {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .aloj-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .aloj-features li:last-child { border-bottom: none; }
+
+  .aloj-btn {
+    display: block;
+    text-align: center;
+    background: var(--dark);
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  .aloj-btn:hover {
+    background: var(--terracotta);
+    transform: scale(1.03);
+  }
+
+  /* ======= POR QUÉ ELEGIRNOS ======= */
+  .porq {
+    background: linear-gradient(135deg, #8B5FBF 0%, #E8456A 50%, #FFB800 100%);
+    padding: 90px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .porq::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  }
+
+  .porq > * { position: relative; z-index: 1; }
+
+  .porq .section-title, .porq .section-label { color: rgba(255,255,255,0.9); }
+  .porq .section-label { color: rgba(255,255,255,0.7); }
+  .porq .section-sub { color: rgba(255,255,255,0.85); }
+
+  .porq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .porq-item {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 32px 20px;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .porq-item:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.28);
+  }
+
+  .porq-icon { font-size: 2.5rem; margin-bottom: 14px; display: block; }
+  .porq-name {
+    font-weight: 800;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .porq-text { font-size: 0.85rem; color: rgba(255,255,255,0.82); line-height: 1.6; }
+
+  /* ======= ENTORNO ======= */
+  .entorno {
+    background: var(--cream);
+    padding: 90px 20px;
+  }
+
+  .entorno-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .entorno-card {
+    border-radius: 20px;
+    padding: 28px;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .entorno-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    opacity: 0.08;
+    transition: opacity 0.3s;
+  }
+  .entorno-card:hover::before { opacity: 0.15; }
+  .entorno-card:hover { transform: translateY(-4px); }
+
+  .entorno-card:nth-child(1) { background: #FFF3E8; border-color: var(--terracotta); }
+  .entorno-card:nth-child(2) { background: #F0F8F0; border-color: var(--sage); }
+  .entorno-card:nth-child(3) { background: #F0F4FF; border-color: var(--sky); }
+  .entorno-card:nth-child(4) { background: #FFF0F5; border-color: var(--rose); }
+
+  .entorno-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+  .entorno-title {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .entorno-text { font-size: 0.88rem; color: #666; line-height: 1.7; }
+
+  /* ======= RESERVA / CTA ======= */
+  .cta {
+    background: var(--dark);
+    padding: 90px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-decoration {
+    position: absolute;
+    font-size: 20rem;
+    opacity: 0.03;
+    font-family: 'Playfair Display', serif;
+    top: -40px; right: -40px;
+    line-height: 1;
+    color: var(--sun);
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .cta-title span { color: var(--sun); font-style: italic; }
+
+  .cta-sub {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .cta-highlight {
+    display: inline-block;
+    background: var(--terracotta);
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .btn-sun {
+    background: var(--sun);
+    color: var(--dark);
+    font-weight: 800;
+    box-shadow: 0 8px 30px rgba(255,184,0,0.4);
+  }
+  .btn-sun:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 40px rgba(255,184,0,0.5);
+  }
+
+  .btn-terracotta {
+    background: var(--terracotta);
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(224,90,43,0.35);
+  }
+  .btn-terracotta:hover {
+    transform: translateY(-3px) scale(1.03);
+  }
+
+  .contact-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--sun); }
+  .contact-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    flex-shrink: 0;
+  }
+
+  /* ======= FOOTER ======= */
+  footer {
+    background: #0D0A04;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--sun);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .footer-tagline {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--sun); }
+
+  /* ======= STICKY BAR ======= */
+  .sticky-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(26,18,8,0.95);
+    backdrop-filter: blur(10px);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    z-index: 1000;
+    border-top: 2px solid var(--sun);
+    flex-wrap: wrap;
+  }
+
+  .sticky-bar span {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .sticky-btn {
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  .sticky-btn.r { background: var(--sun); color: var(--dark); }
+  .sticky-btn.w { background: #25D366; color: #fff; }
+  .sticky-btn.p { background: var(--terracotta); color: #fff; }
+  .sticky-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+  /* ======= ANIMATIONS ======= */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ======= RIBBON PRECIO ======= */
+  .precio-ribbon {
+    background: linear-gradient(90deg, var(--sage), #3B82C4);
+    padding: 18px 20px;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .precio-ribbon a {
+    color: var(--sun);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .sticky-bar span { display: none; }
+    .hero-ctas { flex-direction: column; align-items: center; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar">
+  <span>✨ Mejor precio en web oficial</span>
+  <a href="https://www.hogaresconzentido.es/es/book" target="_blank" class="sticky-btn r">🗓 Reservar</a>
+  <a href="https://api.whatsapp.com/send?phone=34679287008" target="_blank" class="sticky-btn w">💬 WhatsApp</a>
+  <a href="tel:679287008" class="sticky-btn p">📞 Llamar</a>
+</div>
+
+<!-- RIBBON -->
+<div class="precio-ribbon">
+  🎯 Reserva directamente en la <a href="https://www.hogaresconzentido.es/" target="_blank">web oficial</a> y obtén siempre el mejor precio garantizado
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🏡 Vélez-Rubio · Almería · Sierra María-Los Vélez</div>
+  <h1>
+    Casas rurales<br>
+    <span>con ZenTIDO</span>
+  </h1>
+  <p>
+    Tres hogares únicos en el corazón de Almería para desconectar, respirar naturaleza y reconectar contigo mismo. Totalmente reformados, con todo el encanto de lo auténtico.
+  </p>
+  <div class="hero-ctas">
+    <a href="https://www.hogaresconzentido.es/es/book" target="_blank" class="btn btn-primary">🗓 Reservar ahora</a>
+    <a href="https://api.whatsapp.com/send?phone=34679287008" target="_blank" class="btn btn-whatsapp">💬 WhatsApp</a>
+    <a href="tel:679287008" class="btn btn-phone">📞 679 287 008</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Descubre más</span>
+    <span>▼</span>
+  </div>
+</section>
+
+<!-- DATOS SORPRENDENTES -->
+<section class="facts">
+  <h2 class="facts-title reveal">Lo que no sabías de Hogares con ZenTIDO</h2>
+  <div class="facts-grid">
+    <div class="fact-card reveal">
+      <span class="fact-icon">🌿</span>
+      <div class="fact-number">3</div>
+      <div class="fact-label">Alojamientos únicos</div>
+      <div class="fact-desc">Cada hogar tiene personalidad propia: íntimo para dos, acogedor para familias o espacioso para grupos con piscina.</div>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">⭐</span>
+      <div class="fact-number">1.000+</div>
+      <div class="fact-label">Años de historia en la Sabina</div>
+      <div class="fact-desc">A pocos minutos está la Sabina Milenaria del bosque de la Alfahuara, uno de los árboles más antiguos de España.</div>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🏔️</span>
+      <div class="fact-number">2.045m</div>
+      <div class="fact-label">Altura del Pico de María</div>
+      <div class="fact-desc">El techo del Parque Natural Sierra María-Los Vélez está literalmente en tu puerta. Senderismo espectacular garantizado.</div>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🌟</span>
+      <div class="fact-number">0</div>
+      <div class="fact-label">Intermediarios en tu reserva</div>
+      <div class="fact-desc">Reserva directamente con los propietarios. Sin comisiones, trato personalizado y el mejor precio garantizado.</div>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🔥</span>
+      <div class="fact-number">4</div>
+      <div class="fact-label">Estaciones, una experiencia distinta</div>
+      <div class="fact-desc">Chimenea en invierno, jardines en primavera, noches estelares en verano y colores dorados en otoño.</div>
+    </div>
+    <div class="fact-card reveal">
+      <span class="fact-icon">🏘️</span>
+      <div class="fact-number">100%</div>
+      <div class="fact-label">Reformados y con encanto</div>
+      <div class="fact-desc">Arquitectura tradicional con comodidad moderna. Lo mejor de ambos mundos sin sacrificar la autenticidad.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ALOJAMIENTOS -->
+<section class="alojamientos">
+  <div class="section-label">Nuestros Espacios</div>
+  <h2 class="section-title reveal">Tres hogares, tres experiencias</h2>
+  <p class="section-sub reveal">Elige el que mejor se adapta a ti, tu familia o tu grupo. Todos en Vélez-Rubio, todos con encanto.</p>
+
+  <div class="aloj-grid">
+    <div class="aloj-card reveal">
+      <div class="aloj-header">
+        <span class="aloj-emoji">🏡</span>
+        <div class="aloj-name">La Pequeña</div>
+        <div class="aloj-tagline">Alojamiento Rural — Escapadas familiares</div>
+      </div>
+      <div class="aloj-body">
+        <ul class="aloj-features">
+          <li>🌿 Entorno natural tranquilo</li>
+          <li>👨‍👩‍👧 Ideal para familias y parejas</li>
+          <li>🛁 Totalmente reformada con encanto</li>
+          <li>📍 A pasos del centro de Vélez-Rubio</li>
+          <li>☕ Ambiente cálido y acogedor</li>
+        </ul>
+        <a href="https://www.hogaresconzentido.es/es/room/13149/La-Pequena-Alojamiento-Rural" target="_blank" class="aloj-btn">Ver más y reservar →</a>
+      </div>
+    </div>
+
+    <div class="aloj-card reveal">
+      <div class="aloj-header">
+        <span class="aloj-emoji">🏊</span>
+        <div class="aloj-name">Cortijo Rural Ananda</div>
+        <div class="aloj-tagline">La casa perfecta para grupos</div>
+      </div>
+      <div class="aloj-body">
+        <ul class="aloj-features">
+          <li>🏊 Piscina propia</li>
+          <li>👥 Perfecto para grupos y celebraciones</li>
+          <li>🌄 Vistas espectaculares a la naturaleza</li>
+          <li>🌿 Rodeado de campo y aire puro</li>
+          <li>🔥 Espacios amplios interiores y exteriores</li>
+        </ul>
+        <a href="https://www.hogaresconzentido.es/es/room/13152/Cortijo-Rural-Ananda" target="_blank" class="aloj-btn">Ver más y reservar →</a>
+      </div>
+    </div>
+
+    <div class="aloj-card reveal">
+      <div class="aloj-header">
+        <span class="aloj-emoji">🍷</span>
+        <div class="aloj-name">La Bodega de la Yaya</div>
+        <div class="aloj-tagline">Tu refugio rural para dos</div>
+      </div>
+      <div class="aloj-body">
+        <ul class="aloj-features">
+          <li>💑 Ideal para parejas y escapadas románticas</li>
+          <li>🏺 Diseño con historia y calidez</li>
+          <li>✨ Ambiente íntimo y especial</li>
+          <li>🛁 Confort y autenticidad combinados</li>
+          <li>🌙 Perfecta para desconectar del mundo</li>
+        </ul>
+        <a href="https://www.hogaresconzentido.es/es/room/13153/La-Bodega-de-la-Yaya" target="_blank" class="aloj-btn">Ver más y reservar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="porq">
+  <div class="section-label">¿Por qué Hogares con ZenTIDO?</div>
+  <h2 class="section-title reveal">No es solo un alojamiento</h2>
+  <p class="section-sub reveal">Es una experiencia diseñada para que te vayas sintiéndote mejor que cuando llegaste.</p>
+
+  <div class="porq-grid">
+    <div class="porq-item reveal">
+      <span class="porq-icon">🤝</span>
+      <div class="porq-name">Trato directo</div>
+      <div class="porq-text">Hablas con los propietarios, no con un call center. Atención personal y cercana siempre.</div>
+    </div>
+    <div class="porq-item reveal">
+      <span class="porq-icon">💰</span>
+      <div class="porq-name">Mejor precio garantizado</div>
+      <div class="porq-text">Reserva en la web oficial y nunca pagarás más que en ningún portal de terceros.</div>
+    </div>
+    <div class="porq-item reveal">
+      <span class="porq-icon">🌱</span>
+      <div class="porq-name">Autenticidad rural</div>
+      <div class="porq-text">Sin artificios. Arquitectura tradicional, materiales naturales y sabor a vida de pueblo.</div>
+    </div>
+    <div class="porq-item reveal">
+      <span class="porq-icon">🗺️</span>
+      <div class="porq-name">Ubicación única</div>
+      <div class="porq-text">En el Parque Natural más desconocido y sorprendente de Almería. Un secreto que merece descubrirse.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTORNO -->
+<section class="entorno">
+  <div class="section-label">Qué hacer en los alrededores</div>
+  <h2 class="section-title reveal">Un destino con muchas capas</h2>
+  <p class="section-sub reveal">Vélez-Rubio y la Sierra María-Los Vélez guardan secretos que no encontrarás en guías de viaje convencionales.</p>
+
+  <div class="entorno-grid">
+    <div class="entorno-card reveal">
+      <span class="entorno-icon">🌲</span>
+      <div class="entorno-title">Bosque de la Alfahuara</div>
+      <div class="entorno-text">Un bosque mágico con sabinas milenarias. El ejemplar más emblemático tiene más de 1.000 años. Un espectáculo de la naturaleza que quita el aliento.</div>
+    </div>
+    <div class="entorno-card reveal">
+      <span class="entorno-icon">🏰</span>
+      <div class="entorno-title">Descubre Vélez-Rubio</div>
+      <div class="entorno-text">Un pueblo con Iglesia Barroca del siglo XVIII, bares de tapas auténticas y vecinos que todavía saludan cuando cruzas la calle. La España auténtica.</div>
+    </div>
+    <div class="entorno-card reveal">
+      <span class="entorno-icon">🥘</span>
+      <div class="entorno-title">Gastronomía local</div>
+      <div class="entorno-text">Tapeo en bares de toda la vida, productos del campo y cocina tradicional almeriense. La comida aquí no es un trámite, es un plan.</div>
+    </div>
+    <div class="entorno-card reveal">
+      <span class="entorno-icon">🥾</span>
+      <div class="entorno-title">Senderismo y naturaleza</div>
+      <div class="entorno-text">Rutas para todos los niveles por el Parque Natural. Flora única, fauna silvestre y paisajes que solo existen aquí, en el corazón de la Almería menos conocida.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA RESERVA -->
+<section class="cta">
+  <div class="cta-decoration">Z</div>
+  <div class="cta-highlight">✨ PRECIO GARANTIZADO EN WEB OFICIAL</div>
+  <h2 class="cta-title reveal">¿Listo para tu<br><span>escapada con ZenTIDO?</span></h2>
+  <p class="cta-sub reveal">No esperes más. Reserva directamente con nosotros y vive una experiencia que no encontrarás en ningún otro sitio.</p>
+
+  <div class="cta-buttons reveal">
+    <a href="https://www.hogaresconzentido.es/es/book" target="_blank" class="btn btn-sun">🗓 Reservar online ahora</a>
+    <a href="https://api.whatsapp.com/send?phone=34679287008" target="_blank" class="btn btn-whatsapp">💬 Escríbenos por WhatsApp</a>
+    <a href="mailto:hogaresconzentido@gmail.com" class="btn btn-terracotta">✉️ Enviar email</a>
+  </div>
+
+  <div class="contact-row reveal">
+    <a href="tel:679287008" class="contact-item">
+      <span class="contact-dot"></span>
+      📞 679 287 008
+    </a>
+    <a href="https://api.whatsapp.com/send?phone=34679287008" target="_blank" class="contact-item">
+      <span class="contact-dot"></span>
+      💬 WhatsApp directo
+    </a>
+    <a href="mailto:hogaresconzentido@gmail.com" class="contact-item">
+      <span class="contact-dot"></span>
+      ✉️ hogaresconzentido@gmail.com
+    </a>
+    <a href="https://maps.google.com/maps?z=18&q=37.65083044115347,-2.0733481171253985" target="_blank" class="contact-item">
+      <span class="contact-dot"></span>
+      📍 C/ Jose Manuel Llamas Elvira, 04820 Vélez-Rubio
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hogares con ZenTIDO</div>
+  <div class="footer-tagline">"Vive la calma, la naturaleza y el encanto rural de Almería."</div>
+  <div class="footer-links">
+    <a href="https://www.hogaresconzentido.es/" target="_blank">Web oficial</a>
+    <a href="https://www.hogaresconzentido.es/es/book" target="_blank">Reservas</a>
+    <a href="https://www.instagram.com/hogaresconzentido/" target="_blank">Instagram</a>
+    <a href="https://www.hogaresconzentido.es/es/legal-privacy" target="_blank">Privacidad</a>
+    <a href="https://www.hogaresconzentido.es/es/legal-politic" target="_blank">Aviso Legal</a>
+  </div>
+  <p style="color:rgba(255,255,255,0.2); font-size:0.75rem; margin-top:20px;">
+    Vélez-Rubio, Almería, España · Parque Natural Sierra María-Los Vélez
+  </p>
+</footer>
+
+<!-- SCROLL REVEAL -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- Padding for sticky bar -->
+<div style="height:70px;"></div>
+
+</body>
+</html>
