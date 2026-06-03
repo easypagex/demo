@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Rural Valle de la Laguna | Valdelaguna, Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #FF5E5B;
+    --sun: #FFD166;
+    --mint: #06D6A0;
+    --sky: #118AB2;
+    --plum: #7B2D8B;
+    --peach: #FF9F68;
+    --lime: #C7EF00;
+    --rose: #FF6B9D;
+    --deep: #1A1A2E;
+    --cream: #FFF9F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FF5E5B 0%, #FF9F68 25%, #FFD166 50%, #06D6A0 75%, #118AB2 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-badge {
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50px;
+    padding: 0.4rem 1.4rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeDown 0.8s ease;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    animation: fadeDown 1s ease 0.2s both;
+  }
+
+  .hero h1 span {
+    display: block;
+    background: var(--sun);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    color: rgba(255,255,255,0.95);
+    max-width: 650px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+    animation: fadeDown 1s ease 0.4s both;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeDown 1s ease 0.6s both;
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--coral);
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.2); }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(37,211,102,0.5); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+    font-size: 1.8rem;
+  }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--deep);
+    padding: 2.5rem 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 1rem 3rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .c1 { color: var(--coral); }
+  .c2 { color: var(--sun); }
+  .c3 { color: var(--mint); }
+  .c4 { color: var(--peach); }
+  .c5 { color: var(--rose); }
+
+  /* ── SECTION SHELL ── */
+  section { padding: 5rem 2rem; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 640px;
+    opacity: 0.85;
+  }
+
+  /* ── SECRETS / FACTS ── */
+  .secrets {
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+    color: white;
+  }
+
+  .secrets .section-tag { background: var(--sun); color: var(--deep); }
+
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .fact-card {
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .fact-card:hover { transform: translateY(-6px); }
+
+  .fact-card::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    opacity: 0.15;
+    background: white;
+  }
+
+  .fact-card:nth-child(1) { background: linear-gradient(135deg, #FF5E5B, #FF9F68); }
+  .fact-card:nth-child(2) { background: linear-gradient(135deg, #7B2D8B, #118AB2); }
+  .fact-card:nth-child(3) { background: linear-gradient(135deg, #06D6A0, #118AB2); }
+  .fact-card:nth-child(4) { background: linear-gradient(135deg, #FFD166, #FF9F68); color: var(--deep); }
+  .fact-card:nth-child(5) { background: linear-gradient(135deg, #FF6B9D, #7B2D8B); }
+  .fact-card:nth-child(6) { background: linear-gradient(135deg, #C7EF00, #06D6A0); color: var(--deep); }
+
+  .fact-emoji { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+
+  .fact-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .fact-card p { font-size: 0.95rem; line-height: 1.6; opacity: 0.9; }
+
+  /* ── AMENITIES ── */
+  .amenities { background: #FFF0F5; }
+
+  .amenities .section-tag { background: var(--rose); color: white; }
+
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .amenity {
+    background: white;
+    border-radius: 16px;
+    padding: 1.4rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(255,107,157,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+  }
+
+  .amenity:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255,107,157,0.2);
+    border-color: var(--rose);
+  }
+
+  .amenity-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+  .amenity-label { font-size: 0.88rem; font-weight: 700; color: var(--deep); }
+
+  /* ── ACTIVITIES ── */
+  .activities {
+    background: linear-gradient(135deg, #06D6A0 0%, #118AB2 100%);
+    color: white;
+  }
+
+  .activities .section-tag { background: white; color: var(--sky); }
+
+  .activities-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .act-pill {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(6px);
+    border-radius: 50px;
+    padding: 0.7rem 1.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .act-pill:hover { background: rgba(255,255,255,0.35); transform: scale(1.05); }
+
+  /* ── LOCATION ── */
+  .location { background: #FFFFF0; }
+
+  .location .section-tag { background: var(--sun); color: var(--deep); }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) { .location-grid { grid-template-columns: 1fr; } }
+
+  .distance-list { list-style: none; }
+
+  .distance-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: 12px;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: background 0.2s;
+  }
+
+  .distance-list li:hover { background: rgba(255,209,102,0.2); }
+  .dist-icon { font-size: 1.4rem; }
+  .dist-km { margin-left: auto; font-weight: 800; color: var(--sky); }
+
+  .map-box {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+  }
+
+  .map-box iframe { display: block; width: 100%; height: 350px; border: none; }
+
+  /* ── REVIEWS ── */
+  .reviews {
+    background: linear-gradient(135deg, #7B2D8B 0%, #FF5E5B 100%);
+    color: white;
+  }
+
+  .reviews .section-tag { background: var(--sun); color: var(--deep); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .review-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 1.8rem;
+    transition: transform 0.2s;
+  }
+
+  .review-card:hover { transform: translateY(-4px); }
+
+  .stars { color: var(--sun); font-size: 1.1rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
+
+  .review-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-style: italic;
+    opacity: 0.95;
+    margin-bottom: 1rem;
+  }
+
+  .reviewer { font-weight: 800; font-size: 0.88rem; opacity: 0.8; }
+
+  /* ── EVENTS ── */
+  .events { background: #F0F8FF; }
+
+  .events .section-tag { background: var(--sky); color: white; }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .event-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(17,138,178,0.12);
+    transition: transform 0.3s;
+    background: white;
+  }
+
+  .event-card:hover { transform: translateY(-6px); }
+
+  .event-header {
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 2.5rem;
+  }
+
+  .event-card:nth-child(1) .event-header { background: linear-gradient(135deg, #FF5E5B, #FF9F68); }
+  .event-card:nth-child(2) .event-header { background: linear-gradient(135deg, #7B2D8B, #FF6B9D); }
+  .event-card:nth-child(3) .event-header { background: linear-gradient(135deg, #06D6A0, #C7EF00); }
+  .event-card:nth-child(4) .event-header { background: linear-gradient(135deg, #FFD166, #FF9F68); }
+
+  .event-body { padding: 1.3rem; }
+  .event-body h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .event-body p { font-size: 0.9rem; line-height: 1.6; opacity: 0.75; }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: linear-gradient(135deg, #FF5E5B 0%, #FF9F68 33%, #FFD166 66%, #06D6A0 100%);
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: white;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+  }
+
+  .cta-final p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-dark {
+    background: var(--deep);
+    color: white;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+
+  .btn-dark:hover { transform: translateY(-3px); }
+
+  .btn-tel {
+    background: white;
+    color: var(--coral);
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
+
+  .btn-tel:hover { transform: translateY(-3px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.9rem;
+    line-height: 2;
+  }
+
+  footer a { color: var(--sun); text-decoration: none; font-weight: 700; }
+  footer a:hover { color: var(--peach); }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── STICKY WA BUTTON ── */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+    text-decoration: none;
+    z-index: 999;
+    animation: pulse 2s infinite;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(10px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+    50%       { box-shadow: 0 8px 50px rgba(37,211,102,0.8); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .stat-item { padding: 1rem 1.5rem; }
+    .hero-ctas { flex-direction: column; align-items: center; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: white;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    text-decoration: none;
+  }
+
+  .nav-cta {
+    background: white;
+    color: var(--coral);
+    padding: 0.5rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  .nav-cta:hover { transform: scale(1.05); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://www.valledelalaguna.com/es" target="_blank" class="nav-logo">🏡 Valle de la Laguna</a>
+  <a href="https://www.valledelalaguna.com/es" target="_blank" class="nav-cta">Reservar ya →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✨ Solo a 30 min de Madrid · Valdelaguna</div>
+  <h1>Tu escapada perfecta<span>en plena naturaleza</span></h1>
+  <p class="hero-sub">Casa rural con encanto del siglo XIX, rehabilitada con todo el amor del mundo para grupos de hasta 25 personas. Un lugar donde el tiempo se detiene.</p>
+  <div class="hero-ctas">
+    <a href="https://www.valledelalaguna.com/es" target="_blank" class="btn-primary">🏡 Ver la casa y reservar</a>
+    <a href="https://wa.me/34606661984" target="_blank" class="btn-whatsapp">💬 WhatsApp directo</a>
+  </div>
+  <div class="hero-scroll">↓</div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num c1">9</div>
+    <div class="stat-label">Habitaciones con baño propio</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num c2">25</div>
+    <div class="stat-label">Personas máx. capacidad</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num c3">4,5⭐</div>
+    <div class="stat-label">Valoración media</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num c4">30'</div>
+    <div class="stat-label">Min desde Madrid</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num c5">XIX</div>
+    <div class="stat-label">Siglo de construcción</div>
+  </div>
+</div>
+
+<!-- SECRETS / CURIOSIDADES -->
+<section class="secrets">
+  <div class="container">
+    <span class="section-tag">🔍 Lo que no sabías</span>
+    <h2 class="section-title" style="color:white;">Datos que te van a sorprender</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.8);">La historia y los detalles únicos que hacen de esta casa un lugar verdaderamente especial.</p>
+
+    <div class="facts-grid">
+      <div class="fact-card">
+        <span class="fact-emoji">🏛️</span>
+        <h3>Casa del siglo XIX restaurada con alma</h3>
+        <p>La antigua casa familiar ha sido rehabilitada con extremo cuidado manteniendo su distribución original, vigas de madera y el espíritu de antaño intacto.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">🗺️</span>
+        <h3>Estratégicamente entre 3 ciudades Patrimonio UNESCO</h3>
+        <p>Desde aquí puedes visitar Chinchón (5 km), Aranjuez (20 km) y Toledo en el mismo día. Ningún otro alojamiento de la zona lo tiene tan fácil.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">🛁</span>
+        <h3>Cada habitación tiene su baño privado</h3>
+        <p>Un lujo poco común en casas rurales: 9 habitaciones y 10 baños. No tendrás que compartir ni hacer cola por las mañanas, aunque vengáis 20 personas.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">🎓</span>
+        <h3>Espacio habilitado para formación empresarial</h3>
+        <p>Ideal para team buildings, cursos de empresa, talleres y retreats. Los propietarios ofrecen sesiones de coaching grupal para adolescentes, parejas y empresas.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">🎬</span>
+        <h3>El pueblo de Valdelaguna aparece en guías históricas</h3>
+        <p>El municipio cuenta con una guía turística oficial y rutas catalogadas en Wikiloc. Un pueblo con siglos de historia que muy poca gente conoce aún.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">🦅</span>
+        <h3>Comarca de las Vegas: avistamiento de aves poco explorado</h3>
+        <p>La zona es un paraíso para observar aves en un entorno natural casi sin turistas. Actividades de quads y paintball a apenas minutos de la casa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="amenities">
+  <div class="container">
+    <span class="section-tag">🎁 Todo incluido</span>
+    <h2 class="section-title">Lo que tiene la casa</h2>
+    <p class="section-desc">Todo lo que necesitas para que tu estancia sea perfecta, sin tener que pensar en nada.</p>
+
+    <div class="amenities-grid">
+      <div class="amenity"><span class="amenity-icon">🛏️</span><div class="amenity-label">9 habitaciones dobles</div></div>
+      <div class="amenity"><span class="amenity-icon">🚿</span><div class="amenity-label">10 baños privados</div></div>
+      <div class="amenity"><span class="amenity-icon">❄️</span><div class="amenity-label">Aire acondicionado</div></div>
+      <div class="amenity"><span class="amenity-icon">🔥</span><div class="amenity-label">Chimenea</div></div>
+      <div class="amenity"><span class="amenity-icon">📺</span><div class="amenity-label">TV en habitaciones</div></div>
+      <div class="amenity"><span class="amenity-icon">🍳</span><div class="amenity-label">Cocina equipada</div></div>
+      <div class="amenity"><span class="amenity-icon">🫙</span><div class="amenity-label">Lavavajillas</div></div>
+      <div class="amenity"><span class="amenity-icon">🥩</span><div class="amenity-label">Barbacoa</div></div>
+      <div class="amenity"><span class="amenity-icon">🌿</span><div class="amenity-label">Patio y jardín</div></div>
+      <div class="amenity"><span class="amenity-icon">🌅</span><div class="amenity-label">Terraza / Mirador</div></div>
+      <div class="amenity"><span class="amenity-icon">🎮</span><div class="amenity-label">Sala de juegos</div></div>
+      <div class="amenity"><span class="amenity-icon">⚽</span><div class="amenity-label">Futbolín</div></div>
+      <div class="amenity"><span class="amenity-icon">♿</span><div class="amenity-label">Hab. adaptada PMR</div></div>
+      <div class="amenity"><span class="amenity-icon">🐶</span><div class="amenity-label">Mascotas permitidas</div></div>
+      <div class="amenity"><span class="amenity-icon">📶</span><div class="amenity-label">WiFi en toda la casa</div></div>
+      <div class="amenity"><span class="amenity-icon">👶</span><div class="amenity-label">Cunas disponibles</div></div>
+      <div class="amenity"><span class="amenity-icon">🍳</span><div class="amenity-label">Desayunos servidos</div></div>
+      <div class="amenity"><span class="amenity-icon">🌳</span><div class="amenity-label">Leña gratuita</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities">
+  <div class="container">
+    <span class="section-tag">🏃 Actividades</span>
+    <h2 class="section-title">Aventura a tu alrededor</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.9);">El entorno de Valdelaguna y la Comarca de las Vegas ofrece mil planes para todos los gustos y edades.</p>
+
+    <div class="activities-row">
+      <div class="act-pill">🚵 Rutas en bicicleta</div>
+      <div class="act-pill">🏇 Rutas a caballo</div>
+      <div class="act-pill">🥾 Senderismo</div>
+      <div class="act-pill">🎯 Paintball</div>
+      <div class="act-pill">🏹 Tiro con arco</div>
+      <div class="act-pill">🚤 Deportes náuticos</div>
+      <div class="act-pill">🏎️ Quads</div>
+      <div class="act-pill">🧘 Actividades de relajación</div>
+      <div class="act-pill">🦜 Avistamiento de aves</div>
+      <div class="act-pill">⛳ Golf cercano</div>
+      <div class="act-pill">🧠 Coaching grupal</div>
+      <div class="act-pill">🎨 Talleres creativos</div>
+      <div class="act-pill">🏰 Visita a Chinchón</div>
+      <div class="act-pill">🌸 Aranjuez</div>
+      <div class="act-pill">⚔️ Toledo</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location">
+  <div class="container">
+    <span class="section-tag">📍 Ubicación privilegiada</span>
+    <h2 class="section-title">A un paso de todo</h2>
+    <p class="section-desc">Valdelaguna, Comarca de las Vegas, Comunidad de Madrid. Acceso por la A-3 dirección Valencia, desvío pasado Perales de Tajuña.</p>
+
+    <div class="location-grid">
+      <div>
+        <ul class="distance-list">
+          <li><span class="dist-icon">🏙️</span> Madrid capital <span class="dist-km">45 km · 30 min</span></li>
+          <li><span class="dist-icon">✈️</span> Aeropuerto Barajas <span class="dist-km">47 km</span></li>
+          <li><span class="dist-icon">🏘️</span> Chinchón (Plaza Mayor) <span class="dist-km">5 km</span></li>
+          <li><span class="dist-icon">🌹</span> Aranjuez <span class="dist-km">20 km</span></li>
+          <li><span class="dist-icon">🎢</span> Parque Warner <span class="dist-km">32 km</span></li>
+          <li><span class="dist-icon">⛪</span> Toledo <span class="dist-km">80 km</span></li>
+          <li><span class="dist-icon">🖼️</span> Museo del Prado <span class="dist-km">50 km</span></li>
+        </ul>
+        <br>
+        <p style="font-size:0.9rem; opacity:0.7; line-height:1.6;">📌 Av. del Generalísimo, 6<br>28391 Valdelaguna, Madrid<br>GPS: 40°9'42"N / 3°22'4"W</p>
+      </div>
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.04!2d-3.368!3d40.162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418c6d5b0f3b01%3A0x8f82d4c6b1234567!2sValdelaguna%2C%20Madrid!5e0!3m2!1ses!2ses!4v1700000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <span class="section-tag">⭐ Lo que dicen los huéspedes</span>
+    <h2 class="section-title">Más de 122 familias y grupos enamorados</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.85);">Con una valoración de 4,54 sobre 5, los huéspedes hablan por sí solos.</p>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Fuimos un grupo de 19 personas y nos encantó a todos. La anfitriona súper amable y pendiente de todo. El salón de arriba separado, ideal para los adolescentes."</p>
+        <div class="reviewer">— Huéspedes verificados, Google</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"IMPOSIBLE NO EMOCIONARSE. Los dueños Elia y Fran, con la incansable Nayara, nos hicieron sentir como parte de la casa. No faltó ni un detalle el día de nuestra boda."</p>
+        <div class="reviewer">— Aroa, novia emocionada</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Complicado encontrar casas así con tanto espacio y con baños en cada habitación. Una casa muy agradable y acogedora para grupos grandes."</p>
+        <div class="reviewer">— Huésped verificado, Booking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events">
+  <div class="container">
+    <span class="section-tag">🎉 Celebra aquí</span>
+    <h2 class="section-title">El lugar perfecto para cada momento</h2>
+    <p class="section-desc">Cumpleaños, bodas, despedidas, team buildings... la casa se adapta a lo que necesites.</p>
+
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="event-header">💍</div>
+        <div class="event-body">
+          <h3>Bodas y celebraciones</h3>
+          <p>Espacio único con patio, terraza-mirador y todo el confort para que el día más especial sea perfecto.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">🎂</div>
+        <div class="event-body">
+          <h3>Cumpleaños y despedidas</h3>
+          <p>Grupos de hasta 25 personas, barbacoa, cocina completa y sala de juegos. Solo tienes que llegar.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">🏢</div>
+        <div class="event-body">
+          <h3>Team Building empresarial</h3>
+          <p>Formaciones, talleres, sesiones de coaching y retiros corporativos en un entorno que inspira.</p>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">👨‍👩‍👧‍👦</div>
+        <div class="event-body">
+          <h3>Reuniones familiares</h3>
+          <p>Habitación adaptada para PMR, cunas, sala de juegos, jardín y todos los detalles para familias.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <h2>¿A qué estás esperando?</h2>
+    <p>Plazas limitadas · Reserva directa sin intermediarios · Precio desde 20€/persona</p>
+    <div class="cta-buttons">
+      <a href="https://www.valledelalaguna.com/es" target="_blank" class="btn-dark">🌐 Reservar en la web oficial</a>
+      <a href="tel:+34606661984" class="btn-tel">📞 Llamar ahora · 606 661 984</a>
+      <a href="https://wa.me/34606661984?text=Hola!%20Me%20gustaría%20información%20sobre%20disponibilidad%20y%20tarifas%20en%20Casa%20Rural%20Valle%20de%20la%20Laguna." target="_blank" class="btn-whatsapp">💬 WhatsApp · 606 661 984</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.valledelalaguna.com/es" target="_blank">🌐 Web oficial</a>
+    <a href="https://www.valledelalaguna.com/es/habitaciones" target="_blank">🛏️ Ver habitaciones</a>
+    <a href="tel:+34606661984">📞 606 661 984</a>
+    <a href="https://wa.me/34606661984" target="_blank">💬 WhatsApp</a>
+    <a href="mailto:info@valledelalaguna.com">✉️ Contacto</a>
+  </div>
+  <p>📍 Av. del Generalísimo, 6 · 28391 Valdelaguna, Madrid · Comunidad de Madrid</p>
+  <p style="margin-top:0.5rem; font-size:0.8rem; opacity:0.5;">Página informativa no oficial · Todos los derechos reservados a Casa Rural Valle de la Laguna</p>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/34606661984?text=Hola!%20Me%20gustaría%20información%20sobre%20disponibilidad%20y%20tarifas%20en%20Casa%20Rural%20Valle%20de%20la%20Laguna." target="_blank" class="wa-float" title="Contactar por WhatsApp">
+  💬
+</a>
+
+</body>
+</html>
