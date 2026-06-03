@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRIPTHOS – Escape Room Portátil para Empresas</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c1: #FF3CAC;
+    --c2: #784BA0;
+    --c3: #2B86C5;
+    --c4: #00F5D4;
+    --c5: #FFE900;
+    --c6: #FF6B35;
+    --c7: #06D6A0;
+    --dark: #0a0a1a;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─────────────────────────────── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,10,26,0.92);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 40px;
+    border-bottom: 2px solid var(--c1);
+  }
+  .logo {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 2rem;
+    background: linear-gradient(90deg, var(--c1), var(--c5), var(--c4));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+  }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a {
+    color: #ccc; text-decoration: none; font-weight: 700;
+    font-size: 0.95rem; letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--c5); }
+  .btn-nav {
+    background: linear-gradient(135deg, var(--c1), var(--c6));
+    color: #fff !important;
+    padding: 10px 22px; border-radius: 30px;
+    font-weight: 900 !important; font-size: 0.9rem !important;
+    box-shadow: 0 4px 20px rgba(255,60,172,0.5);
+    transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+  .btn-nav:hover { transform: scale(1.06); box-shadow: 0 6px 30px rgba(255,60,172,0.7) !important; }
+
+  /* ─── HERO ─────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 20% 50%, rgba(255,60,172,0.35) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(43,134,197,0.35) 0%, transparent 55%),
+                radial-gradient(ellipse at 60% 80%, rgba(0,245,212,0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a1a 0%, #12083a 50%, #0a1a2a 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; text-align: center;
+    padding: 120px 40px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    color: #fff; padding: 6px 20px; border-radius: 30px;
+    font-size: 0.85rem; font-weight: 900; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(255,60,172,0.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(255,60,172,0.5); }
+    50% { box-shadow: 0 4px 40px rgba(255,60,172,0.9); }
+  }
+  .hero h1 {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  .hero h1 .line1 {
+    background: linear-gradient(90deg, var(--c5), var(--c6), var(--c1));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero h1 .line2 {
+    background: linear-gradient(90deg, var(--c4), var(--c3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: #bbb; max-width: 700px; margin: 20px auto 40px;
+    font-weight: 600; line-height: 1.6;
+  }
+  .hero-sub span { color: var(--c5); font-weight: 800; }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--c1), var(--c6));
+    color: #fff; padding: 16px 36px; border-radius: 50px;
+    font-size: 1.1rem; font-weight: 900; text-decoration: none;
+    box-shadow: 0 6px 30px rgba(255,60,172,0.6);
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 40px rgba(255,60,172,0.8); }
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--c4);
+    color: var(--c4); padding: 16px 36px; border-radius: 50px;
+    font-size: 1.1rem; font-weight: 900; text-decoration: none;
+    transition: all 0.2s; letter-spacing: 1px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { background: var(--c4); color: var(--dark); transform: translateY(-3px); }
+
+  /* Floating shapes */
+  .float-shape {
+    position: absolute; border-radius: 50%;
+    filter: blur(60px); pointer-events: none;
+  }
+  .fs1 { width: 400px; height: 400px; background: rgba(255,60,172,0.15); top: -100px; left: -100px; animation: floatA 8s ease-in-out infinite; }
+  .fs2 { width: 300px; height: 300px; background: rgba(0,245,212,0.12); bottom: 0; right: -80px; animation: floatB 10s ease-in-out infinite; }
+  @keyframes floatA { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,30px)} }
+  @keyframes floatB { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-20px)} }
+
+  /* ─── HECHOS SORPRENDENTES ───────────────── */
+  .facts {
+    padding: 80px 40px;
+    background: linear-gradient(135deg, #12083a, #0a0a1a, #061828);
+  }
+  .section-title {
+    text-align: center; margin-bottom: 60px;
+  }
+  .section-title h2 {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 12px;
+  }
+  .section-title p {
+    color: #aaa; font-size: 1.1rem; max-width: 600px; margin: 0 auto;
+  }
+  .facts-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px; max-width: 1200px; margin: 0 auto;
+  }
+  .fact-card {
+    border-radius: 20px; padding: 32px 28px;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .fact-card:hover { transform: translateY(-6px); }
+  .fact-card::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.12;
+    background: radial-gradient(circle at 30% 30%, white, transparent);
+  }
+  .fc1 { background: linear-gradient(135deg, #FF3CAC, #784BA0); box-shadow: 0 8px 40px rgba(255,60,172,0.4); }
+  .fc2 { background: linear-gradient(135deg, #FFE900, #FF6B35); box-shadow: 0 8px 40px rgba(255,233,0,0.3); }
+  .fc3 { background: linear-gradient(135deg, #00F5D4, #2B86C5); box-shadow: 0 8px 40px rgba(0,245,212,0.3); }
+  .fc4 { background: linear-gradient(135deg, #06D6A0, #1B4332); box-shadow: 0 8px 40px rgba(6,214,160,0.3); }
+  .fc5 { background: linear-gradient(135deg, #FF6B35, #C62A47); box-shadow: 0 8px 40px rgba(255,107,53,0.3); }
+  .fc6 { background: linear-gradient(135deg, #784BA0, #2B86C5); box-shadow: 0 8px 40px rgba(120,75,160,0.3); }
+  .fact-icon { font-size: 2.8rem; margin-bottom: 16px; display: block; }
+  .fact-number {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 3.5rem; line-height: 1; color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .fact-label { font-size: 1.05rem; font-weight: 800; color: rgba(255,255,255,0.9); margin-top: 8px; }
+  .fact-desc { font-size: 0.9rem; color: rgba(255,255,255,0.75); margin-top: 8px; line-height: 1.5; }
+
+  /* ─── MODALIDADES ─────────────────────────── */
+  .modalities {
+    padding: 80px 40px;
+    background: linear-gradient(160deg, #0a1a2a, #1a0a2a, #0a1a0a);
+  }
+  .mod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; max-width: 1100px; margin: 0 auto; }
+  .mod-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 24px; padding: 40px 32px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .mod-card:hover { transform: translateY(-8px); }
+  .mod-card.m1:hover { border-color: var(--c1); box-shadow: 0 10px 50px rgba(255,60,172,0.3); }
+  .mod-card.m2:hover { border-color: var(--c4); box-shadow: 0 10px 50px rgba(0,245,212,0.3); }
+  .mod-card.m3:hover { border-color: var(--c5); box-shadow: 0 10px 50px rgba(255,233,0,0.3); }
+  .mod-accent { font-size: 3rem; margin-bottom: 20px; }
+  .mod-tag {
+    display: inline-block; padding: 4px 14px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 900; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .t1 { background: rgba(255,60,172,0.25); color: var(--c1); border: 1px solid var(--c1); }
+  .t2 { background: rgba(0,245,212,0.2); color: var(--c4); border: 1px solid var(--c4); }
+  .t3 { background: rgba(255,233,0,0.2); color: var(--c5); border: 1px solid var(--c5); }
+  .mod-card h3 { font-size: 1.6rem; font-weight: 900; margin-bottom: 12px; }
+  .mod-card p { color: #aaa; line-height: 1.7; font-size: 0.95rem; }
+  .mod-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: linear-gradient(135deg, var(--c1), var(--c6));
+    color: #fff; padding: 4px 12px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 900; letter-spacing: 1px;
+  }
+
+  /* ─── JUEGOS ──────────────────────────────── */
+  .games {
+    padding: 80px 40px;
+    background: linear-gradient(135deg, #0a0a1a, #1a0a0a, #0a1228);
+  }
+  .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .game-card {
+    border-radius: 20px; padding: 30px 24px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .game-card:hover { transform: scale(1.04) rotate(-1deg); }
+  .gc1 { background: linear-gradient(145deg, #1a0533, #5c0085); border: 1px solid rgba(255,60,172,0.4); }
+  .gc2 { background: linear-gradient(145deg, #002244, #004488); border: 1px solid rgba(0,245,212,0.4); }
+  .gc3 { background: linear-gradient(145deg, #1a1a00, #444400); border: 1px solid rgba(255,233,0,0.4); }
+  .gc4 { background: linear-gradient(145deg, #001a0a, #003322); border: 1px solid rgba(6,214,160,0.4); }
+  .gc5 { background: linear-gradient(145deg, #1a0a00, #3a1500); border: 1px solid rgba(255,107,53,0.4); }
+  .game-icon { font-size: 3rem; margin-bottom: 16px; }
+  .game-card h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 10px; }
+  .game-card p { font-size: 0.88rem; color: #aaa; line-height: 1.6; }
+  .game-pill {
+    display: inline-block; margin-top: 14px; padding: 5px 14px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 800; background: rgba(255,255,255,0.1); color: #ddd;
+  }
+
+  /* ─── EMPRESAS ─────────────────────────────── */
+  .clients {
+    padding: 60px 40px;
+    background: linear-gradient(90deg, #0d0d0d, #1a1040, #0d0d0d);
+    text-align: center;
+  }
+  .clients h2 {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 1.4rem; color: #666; letter-spacing: 4px;
+    text-transform: uppercase; margin-bottom: 40px;
+  }
+  .clients-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: center; }
+  .client-logo {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 1.3rem; color: #444;
+    letter-spacing: 2px; transition: color 0.3s;
+    text-transform: uppercase;
+  }
+  .client-logo:hover { color: var(--c4); }
+
+  /* ─── VENTAJAS ─────────────────────────────── */
+  .why {
+    padding: 80px 40px;
+    background: linear-gradient(180deg, #050520, #0a1a0a);
+  }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; max-width: 1000px; margin: 0 auto; }
+  .why-card {
+    text-align: center; padding: 32px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .why-card:hover { transform: translateY(-5px); border-color: rgba(255,233,0,0.4); }
+  .why-icon { font-size: 2.8rem; margin-bottom: 14px; }
+  .why-card h3 { font-size: 1.05rem; font-weight: 900; margin-bottom: 8px; color: var(--c5); }
+  .why-card p { color: #888; font-size: 0.88rem; line-height: 1.6; }
+
+  /* ─── CTA CENTRAL ─────────────────────────── */
+  .cta-main {
+    padding: 100px 40px;
+    background: radial-gradient(ellipse at center, rgba(255,60,172,0.25) 0%, rgba(43,134,197,0.15) 50%, transparent 80%),
+                linear-gradient(135deg, #0a0a1a, #12083a);
+    text-align: center;
+  }
+  .cta-main h2 {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, var(--c1), var(--c5), var(--c4));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .cta-main p { color: #bbb; font-size: 1.15rem; max-width: 600px; margin: 0 auto 40px; font-weight: 600; }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  /* ─── CONTACTO ─────────────────────────────── */
+  .contact {
+    padding: 80px 40px;
+    background: linear-gradient(135deg, #0a1228, #1a0a2a, #0a1a0a);
+  }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
+  .contact-card {
+    border-radius: 20px; padding: 36px 28px;
+    text-align: center; text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .contact-card:hover { transform: translateY(-6px); }
+  .cc-web { background: linear-gradient(135deg, #1a0533, #5c0085); border: 2px solid var(--c1); box-shadow: 0 0 30px rgba(255,60,172,0.2); }
+  .cc-web:hover { box-shadow: 0 0 60px rgba(255,60,172,0.5); }
+  .cc-wa { background: linear-gradient(135deg, #001a0a, #003322); border: 2px solid #25D366; box-shadow: 0 0 30px rgba(37,211,102,0.2); }
+  .cc-wa:hover { box-shadow: 0 0 60px rgba(37,211,102,0.5); }
+  .cc-tel { background: linear-gradient(135deg, #001222, #002244); border: 2px solid var(--c3); box-shadow: 0 0 30px rgba(43,134,197,0.2); }
+  .cc-tel:hover { box-shadow: 0 0 60px rgba(43,134,197,0.5); }
+  .cc-email { background: linear-gradient(135deg, #1a1000, #3a2800); border: 2px solid var(--c5); box-shadow: 0 0 30px rgba(255,233,0,0.15); }
+  .cc-email:hover { box-shadow: 0 0 60px rgba(255,233,0,0.4); }
+  .contact-icon { font-size: 3rem; }
+  .contact-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; }
+  .contact-value { font-size: 1.2rem; font-weight: 900; color: #fff; }
+  .contact-desc { font-size: 0.85rem; color: #999; }
+
+  /* ─── FOOTER ──────────────────────────────── */
+  footer {
+    background: #050510;
+    text-align: center; padding: 40px;
+    border-top: 1px solid rgba(255,60,172,0.3);
+  }
+  footer .footer-logo {
+    font-family: 'Black Han Sans', sans-serif; font-size: 2rem;
+    background: linear-gradient(90deg, var(--c1), var(--c5), var(--c4));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  footer p { color: #555; font-size: 0.9rem; margin-bottom: 6px; }
+  footer a { color: var(--c4); text-decoration: none; }
+
+  /* ─── RIBBON ──────────────────────────────── */
+  .ribbon {
+    overflow: hidden; white-space: nowrap;
+    padding: 16px 0;
+    background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c6), var(--c7), var(--c1));
+    background-size: 300%;
+    animation: ribbonMove 5s linear infinite;
+  }
+  @keyframes ribbonMove { 0%{background-position:0%} 100%{background-position:100%} }
+  .ribbon span {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 1rem; letter-spacing: 3px;
+    color: #fff; opacity: 0.9;
+    margin: 0 40px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  /* ─── UTIL ───────────────────────────────── */
+  .gradient-text-pink {
+    background: linear-gradient(90deg, var(--c1), var(--c6));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .gradient-text-cyan {
+    background: linear-gradient(90deg, var(--c4), var(--c3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .gradient-text-yellow {
+    background: linear-gradient(90deg, var(--c5), var(--c6));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* Animated entry */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(30px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.7s ease both; }
+  .hero-badge { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.3s; }
+  .hero-sub { animation-delay: 0.5s; }
+  .hero-ctas { animation-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">CRIPTHOS</div>
+  <div class="nav-links">
+    <a href="#modalidades">Modalidades</a>
+    <a href="#juegos">Juegos</a>
+    <a href="#por-que">¿Por qué?</a>
+    <a href="#contacto" class="btn-nav">📩 Reservar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="float-shape fs1"></div>
+  <div class="float-shape fs2"></div>
+  <div class="hero-badge">🔐 Escape Room Portátil · Team Building</div>
+  <h1>
+    <div class="line1">Escape Room</div>
+    <div class="line2">donde tú quieras</div>
+  </h1>
+  <p class="hero-sub">
+    El único escape room que <span>llega a tu empresa, hotel o evento</span>. 
+    Tecnología punta, experiencias WOW, hasta <span>250 participantes</span> simultáneos. 
+    Sin límite de espacio.
+  </p>
+  <div class="hero-ctas">
+    <a href="#contacto" class="btn-primary">🚀 Pedir presupuesto</a>
+    <a href="https://www.cripthos.com" target="_blank" class="btn-secondary">🌐 Ver sitio oficial</a>
+  </div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <span>ESCAPE ROOM PORTÁTIL</span>
+  <span>TEAM BUILDING</span>
+  <span>ESCAPE BOX®</span>
+  <span>DIGITAL SYNC</span>
+  <span>HASTA 250 PERSONAS</span>
+  <span>SIN OBRAS NI INSTALACIÓN</span>
+  <span>🔐 CRIPTHOS</span>
+  <span>ESCAPE ROOM PORTÁTIL</span>
+  <span>TEAM BUILDING</span>
+  <span>ESCAPE BOX®</span>
+  <span>DIGITAL SYNC</span>
+</div>
+
+<!-- HECHOS SORPRENDENTES -->
+<section class="facts" id="por-que">
+  <div class="section-title">
+    <h2><span class="gradient-text-yellow">Datos que te</span> <span class="gradient-text-pink">sorprenderán</span></h2>
+    <p>Lo que hace a Cripthos único y diferente a cualquier otro escape room</p>
+  </div>
+  <div class="facts-grid">
+    <div class="fact-card fc1">
+      <span class="fact-icon">📦</span>
+      <div class="fact-number">2018</div>
+      <div class="fact-label">Año del Escape Box®</div>
+      <div class="fact-desc">Inventaron el concepto de escape room portátil dentro de una caja. Tecnología propia, patentada.</div>
+    </div>
+    <div class="fact-card fc2">
+      <span class="fact-icon">👥</span>
+      <div class="fact-number">250</div>
+      <div class="fact-label">Participantes simultáneos</div>
+      <div class="fact-desc">La actividad escala hasta 250 jugadores en equipos pequeños al mismo tiempo. Única en el mundo.</div>
+    </div>
+    <div class="fact-card fc3">
+      <span class="fact-icon">⏱️</span>
+      <div class="fact-number">70'</div>
+      <div class="fact-label">Duración perfecta</div>
+      <div class="fact-desc">70 minutos de inmersión total. Sin tiempos muertos ni esperas. Adrenalina desde el minuto 1.</div>
+    </div>
+    <div class="fact-card fc4">
+      <span class="fact-icon">🌍</span>
+      <div class="fact-number">0</div>
+      <div class="fact-label">Obras necesarias</div>
+      <div class="fact-desc">Se monta en cualquier espacio: tu oficina, un hotel, al aire libre, indoor o outdoor. Cero instalación.</div>
+    </div>
+    <div class="fact-card fc5">
+      <span class="fact-icon">💻</span>
+      <div class="fact-number">∞</div>
+      <div class="fact-label">Sin límite online</div>
+      <div class="fact-desc">La modalidad Digital Sync no requiere software. Sin límite de participantes. Desde cualquier lugar del mundo.</div>
+    </div>
+    <div class="fact-card fc6">
+      <span class="fact-icon">🏆</span>
+      <div class="fact-number">Top</div>
+      <div class="fact-label">Marcas que confían</div>
+      <div class="fact-desc">Coca-Cola, Hewlett Packard, AXA, Cruz Roja, Just Eat… Las empresas más exigentes eligen Cripthos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section class="modalities" id="modalidades">
+  <div class="section-title">
+    <h2><span class="gradient-text-cyan">Elige</span> <span class="gradient-text-pink">tu modalidad</span></h2>
+    <p>Tres formas de vivir la experiencia Cripthos. Todas sorprendentes.</p>
+  </div>
+  <div class="mod-grid">
+    <div class="mod-card m1">
+      <div class="mod-badge">MÁS POPULAR</div>
+      <div class="mod-accent">📦</div>
+      <div class="mod-tag t1">Presencial · Portátil</div>
+      <h3>Escape Box®</h3>
+      <p>La revolución del escape room: una caja con tecnología punta que se monta en cualquier espacio. Hasta 250 personas. 70 minutos de pura adrenalina. <strong>Van a ti, no al revés.</strong></p>
+    </div>
+    <div class="mod-card m2">
+      <div class="mod-accent">💻</div>
+      <div class="mod-tag t2">Online · Sin límites</div>
+      <h3>Digital Sync</h3>
+      <p>El escape room del futuro. Cada participante juega en su ordenador o tablet conectado por videollamada. Las acciones de cada uno afectan a todos. 60 o 90 minutos. Sin instalar nada.</p>
+    </div>
+    <div class="mod-card m3">
+      <div class="mod-accent">🏛️</div>
+      <div class="mod-tag t3">Presencial · Sala</div>
+      <h3>Hall Escape</h3>
+      <p>¿Tienes un espacio vacío o sala de eventos? Cripthos instala sus juegos en modo sala fija. Ideal para negocios que quieren ofrecer escape room de calidad premium sin diseñarlo desde cero.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JUEGOS -->
+<section class="games" id="juegos">
+  <div class="section-title">
+    <h2><span class="gradient-text-yellow">Los juegos</span> <span class="gradient-text-cyan">más alucinantes</span></h2>
+    <p>5 experiencias únicas. Cada una diseñada para emocionar, conectar y sorprender.</p>
+  </div>
+  <div class="games-grid">
+    <div class="game-card gc1">
+      <div class="game-icon">🧬</div>
+      <h3>El Proyecto C</h3>
+      <p>Superáis un proceso de selección para salvar a la humanidad. Misión imposible con storytelling épico.</p>
+      <span class="game-pill">Épico</span>
+    </div>
+    <div class="game-card gc2">
+      <div class="game-icon">🦸</div>
+      <h3>SuperHeroes</h3>
+      <p>Convertíos en superhéroes y salvad el mundo. Tecnología inmersiva, adrenalina máxima.</p>
+      <span class="game-pill">Acción</span>
+    </div>
+    <div class="game-card gc3">
+      <div class="game-icon">⚡</div>
+      <h3>Fast Pace</h3>
+      <p>El primer True Escape Remoto del mundo. Velocidad y comunicación en estado puro.</p>
+      <span class="game-pill">Innovador</span>
+    </div>
+    <div class="game-card gc4">
+      <div class="game-icon">🛑</div>
+      <h3>Stop Bullying</h3>
+      <p>Una experiencia con propósito. Ideal para centros educativos y formaciones con valores.</p>
+      <span class="game-pill">Concienciación</span>
+    </div>
+    <div class="game-card gc5">
+      <div class="game-icon">🎨</div>
+      <h3>A Medida</h3>
+      <p>Diseñamos un escape room personalizado con la historia, valores y marca de tu empresa.</p>
+      <span class="game-pill">100% Personalizado</span>
+    </div>
+  </div>
+</section>
+
+<!-- EMPRESAS QUE CONFÍAN -->
+<section class="clients">
+  <h2>Confían en Cripthos</h2>
+  <div class="clients-logos">
+    <span class="client-logo">Coca‑Cola</span>
+    <span class="client-logo">Hewlett Packard</span>
+    <span class="client-logo">AXA Seguros</span>
+    <span class="client-logo">Cruz Roja</span>
+    <span class="client-logo">Just Eat</span>
+  </div>
+</section>
+
+<!-- POR QUÉ CRIPTHOS -->
+<section class="why">
+  <div class="section-title">
+    <h2><span class="gradient-text-pink">¿Por qué</span> <span class="gradient-text-yellow">Cripthos?</span></h2>
+    <p>No es solo un juego. Es una herramienta de transformación de equipos.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🔧</div>
+      <h3>Soft Skills reales</h3>
+      <p>Liderazgo, comunicación, resolución bajo presión, empatía… todo se trabaja en 70 minutos de juego.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🧲</div>
+      <h3>Rompe el hielo</h3>
+      <p>Ideal para onboardings, eventos corporativos o cuando nuevos departamentos necesitan conectar rápido.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h3>Selección de personal</h3>
+      <p>El escape room elimina las máscaras. En 30 minutos ves cómo es realmente un candidato bajo presión.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📐</div>
+      <h3>100% portable</h3>
+      <p>Sin obras, sin espera, sin complicaciones. Llegan a tu espacio y en 1 hora está montado y listo.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <h3>Facilitadores expertos</h3>
+      <p>Su equipo de actores y coaches transforma el juego en una experiencia de aprendizaje memorable.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">✨</div>
+      <h3>Efecto WOW garantizado</h3>
+      <p>Materiales premium, storytelling cinematográfico. Cada detalle está diseñado para dejar sin palabras.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA CENTRAL -->
+<section class="cta-main">
+  <h2>¿Tu equipo necesita conectar?</h2>
+  <p>Reserva ahora y organiza la actividad de team building más impactante del año. Precios personalizados según tu equipo.</p>
+  <div class="cta-buttons">
+    <a href="https://wa.me/34000000000?text=Hola%2C%20me%20interesa%20conocer%20vuestras%20actividades%20de%20team%20building%20con%20Cripthos" 
+       target="_blank" class="btn-primary">💬 WhatsApp directo</a>
+    <a href="https://www.cripthos.com/contacto" target="_blank" class="btn-secondary">📋 Formulario de contacto</a>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="section-title">
+    <h2><span class="gradient-text-cyan">Contacta</span> <span class="gradient-text-yellow">ahora</span></h2>
+    <p>Escríbenos, llámanos o visita el sitio oficial. Respondemos rápido.</p>
+  </div>
+  <div class="contact-grid">
+    <a href="https://www.cripthos.com" target="_blank" class="contact-card cc-web">
+      <div class="contact-icon">🌐</div>
+      <div class="contact-label">Sitio web oficial</div>
+      <div class="contact-value">www.cripthos.com</div>
+      <div class="contact-desc">Conoce todos los juegos, modalidades y precios</div>
+    </a>
+    <a href="https://wa.me/34000000000?text=Hola%2C%20quiero%20información%20sobre%20Cripthos%20Escape%20Room" 
+       target="_blank" class="contact-card cc-wa">
+      <div class="contact-icon">💬</div>
+      <div class="contact-label">WhatsApp</div>
+      <div class="contact-value">Escríbenos ahora</div>
+      <div class="contact-desc">Respuesta en menos de 1 hora en horario laboral</div>
+    </a>
+    <a href="https://www.cripthos.com/contacto" target="_blank" class="contact-card cc-tel">
+      <div class="contact-icon">📞</div>
+      <div class="contact-label">Teléfono / Contacto</div>
+      <div class="contact-value">Formulario online</div>
+      <div class="contact-desc">Cuéntanos tu evento y te enviamos presupuesto</div>
+    </a>
+    <a href="mailto:info@cripthos.com" class="contact-card cc-email">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value">info@cripthos.com</div>
+      <div class="contact-desc">Para eventos grandes y presupuestos detallados</div>
+    </a>
+  </div>
+</section>
+
+<!-- RIBBON FINAL -->
+<div class="ribbon">
+  <span>🔐 CRIPTHOS</span>
+  <span>ESCAPE BOX®</span>
+  <span>TEAM BUILDING ÚNICO</span>
+  <span>TECNOLOGÍA PUNTA</span>
+  <span>DESDE CATALUÑA AL MUNDO</span>
+  <span>DIGITAL SYNC</span>
+  <span>FAST PACE</span>
+  <span>EL PROYECTO C</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CRIPTHOS</div>
+  <p>Escape Rooms Portátiles y Virtuales para empresas, eventos y centros educativos</p>
+  <p>
+    <a href="https://www.cripthos.com" target="_blank">www.cripthos.com</a> · 
+    <a href="https://www.cripthos.com/contacto" target="_blank">Contacto</a> · 
+    <a href="https://www.cripthos.com/escape-room-para-empresas" target="_blank">Empresas</a>
+  </p>
+  <p style="margin-top:16px; color:#333; font-size:0.8rem;">
+    Este sitio es una presentación no oficial creada con fines promocionales · © 2026
+  </p>
+</footer>
+
+</body>
+</html>
