@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Rural El Pedregoso · Guadalajara</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2d7a3a;
+    --verde-claro: #5cb85c;
+    --naranja: #e8650a;
+    --amarillo: #f5c518;
+    --azul: #1a6fa8;
+    --rojo: #c0392b;
+    --morado: #7d3c98;
+    --turquesa: #16a085;
+    --crema: #fdf6e3;
+    --oscuro: #1a1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--crema);
+    color: var(--oscuro);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a3c1f 0%, #2d7a3a 30%, #16a085 60%, #1a6fa8 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(245,197,24,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(232,101,10,0.12) 0%, transparent 50%);
+  }
+  .hero-badge {
+    background: var(--amarillo);
+    color: var(--oscuro);
+    font-weight: 800;
+    font-size: .85rem;
+    padding: .4rem 1.2rem;
+    border-radius: 50px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    animation: popIn .6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    animation: fadeUp .8s .1s ease both;
+  }
+  .hero h1 span { color: var(--amarillo); }
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,.88);
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    animation: fadeUp .8s .2s ease both;
+  }
+  .hero-btns {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .btn-primary {
+    background: var(--naranja);
+    color: #fff; font-weight: 800;
+    padding: 1rem 2.4rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 6px 24px rgba(232,101,10,.45);
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(232,101,10,.55); }
+  .btn-whatsapp {
+    background: #25d366; color: #fff; font-weight: 800;
+    padding: 1rem 2.4rem; border-radius: 50px;
+    text-decoration: none; font-size: 1.05rem;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 6px 24px rgba(37,211,102,.45);
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(37,211,102,.55); }
+  .btn-outline {
+    background: transparent; color: #fff; font-weight: 700;
+    padding: .95rem 2.2rem; border-radius: 50px;
+    text-decoration: none; font-size: 1rem;
+    border: 2px solid rgba(255,255,255,.6);
+    transition: all .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,.15); border-color: #fff; }
+
+  /* scroll indicator */
+  .scroll-arrow {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    color: rgba(255,255,255,.6); font-size: 2rem;
+  }
+
+  /* ===== STICKY BAR ===== */
+  .sticky-bar {
+    position: sticky; top: 0; z-index: 999;
+    background: var(--oscuro);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: .5rem;
+    padding: .8rem 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  }
+  .sticky-bar-brand { color: #fff; font-weight: 800; font-size: 1rem; text-decoration: none; }
+  .sticky-bar-links { display: flex; gap: .8rem; flex-wrap: wrap; align-items: center; }
+  .sticky-bar-links a {
+    color: rgba(255,255,255,.8); text-decoration: none;
+    font-size: .85rem; font-weight: 600;
+    transition: color .2s;
+    white-space: nowrap;
+  }
+  .sticky-bar-links a:hover { color: var(--amarillo); }
+  .sticky-btn {
+    background: var(--naranja); color: #fff; font-weight: 800;
+    padding: .45rem 1.2rem; border-radius: 50px;
+    text-decoration: none; font-size: .85rem;
+    transition: background .2s;
+  }
+  .sticky-btn:hover { background: #c0540a; color: #fff; }
+
+  /* ===== SECCIONES ===== */
+  section { padding: 5rem 1.5rem; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: .5rem;
+  }
+  .section-sub {
+    font-size: 1.1rem; opacity: .7; margin-bottom: 2.5rem;
+  }
+  .centered { text-align: center; }
+  .container { max-width: 1140px; margin: 0 auto; }
+
+  /* ===== CIFRAS CLAVE ===== */
+  .stats-section {
+    background: linear-gradient(135deg, var(--naranja) 0%, #f7a500 100%);
+    padding: 4rem 1.5rem;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem; max-width: 900px; margin: 0 auto;
+  }
+  .stat-card {
+    background: rgba(255,255,255,.18);
+    border-radius: 16px; padding: 1.8rem 1rem;
+    text-align: center; color: #fff;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.3);
+    transition: transform .2s;
+  }
+  .stat-card:hover { transform: scale(1.04); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900; line-height: 1;
+    display: block;
+  }
+  .stat-label { font-size: .9rem; font-weight: 700; margin-top: .4rem; opacity: .9; }
+
+  /* ===== DATOS SORPRENDENTES ===== */
+  .facts-section { background: #fff; }
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .fact-card {
+    border-radius: 20px; padding: 2rem 1.8rem;
+    position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .fact-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.15); }
+  .fact-card:nth-child(1) { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+  .fact-card:nth-child(2) { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+  .fact-card:nth-child(3) { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+  .fact-card:nth-child(4) { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
+  .fact-card:nth-child(5) { background: linear-gradient(135deg, #fce4ec, #f8bbd9); }
+  .fact-card:nth-child(6) { background: linear-gradient(135deg, #e0f7fa, #b2ebf2); }
+  .fact-emoji { font-size: 2.5rem; margin-bottom: .8rem; display: block; }
+  .fact-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .5rem; }
+  .fact-card p { font-size: .95rem; line-height: 1.55; opacity: .85; }
+
+  /* ===== APARTAMENTOS ===== */
+  .apts-section { background: linear-gradient(180deg, #f0f9f1 0%, #e8f5e9 100%); }
+  .apts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .apt-card {
+    background: #fff; border-radius: 20px;
+    overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .apt-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,.14); }
+  .apt-header {
+    padding: 1.8rem 1.5rem 1rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .apt-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; flex-shrink: 0;
+  }
+  .apt-icon.green { background: #e8f5e9; }
+  .apt-icon.orange { background: #fff3e0; }
+  .apt-icon.blue { background: #e3f2fd; }
+  .apt-icon.purple { background: #f3e5f5; }
+  .apt-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: .3rem; }
+  .apt-tags { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0 1.5rem 1rem; }
+  .apt-tag {
+    background: #f5f5f5; border-radius: 50px;
+    padding: .25rem .75rem; font-size: .78rem; font-weight: 700;
+    color: #555;
+  }
+  .apt-tag.hot { background: #fff3e0; color: var(--naranja); }
+  .apt-body { padding: .5rem 1.5rem 1.5rem; }
+  .apt-price {
+    font-size: 1.5rem; font-weight: 900; color: var(--verde);
+    margin-bottom: 1rem;
+  }
+  .apt-price span { font-size: .85rem; font-weight: 600; color: #888; }
+  .apt-link {
+    display: block; text-align: center;
+    background: var(--verde); color: #fff;
+    padding: .75rem; border-radius: 12px;
+    font-weight: 800; text-decoration: none;
+    transition: background .2s;
+  }
+  .apt-link:hover { background: #1e5c2a; }
+
+  /* ===== ACTIVIDADES ===== */
+  .act-section { background: linear-gradient(135deg, #1a3c50 0%, #1a6fa8 50%, #16a085 100%); }
+  .act-section .section-title, .act-section .section-sub { color: #fff; }
+  .act-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .act-card {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 16px; padding: 1.5rem 1rem;
+    text-align: center; color: #fff;
+    backdrop-filter: blur(6px);
+    transition: background .2s, transform .2s;
+    cursor: default;
+  }
+  .act-card:hover { background: rgba(255,255,255,.2); transform: scale(1.04); }
+  .act-emoji { font-size: 2.4rem; display: block; margin-bottom: .6rem; }
+  .act-card h4 { font-size: .95rem; font-weight: 800; }
+
+  /* ===== UBICACIÓN ===== */
+  .ubi-section { background: #fff; }
+  .ubi-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center;
+  }
+  @media(max-width:720px) { .ubi-grid { grid-template-columns: 1fr; } }
+  .ubi-list { list-style: none; }
+  .ubi-list li {
+    display: flex; align-items: flex-start; gap: .8rem;
+    padding: .85rem 0; border-bottom: 1px dashed #e0e0e0;
+    font-size: 1rem;
+  }
+  .ubi-list li:last-child { border: none; }
+  .ubi-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+  .ubi-map {
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    background: #eee; height: 320px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+  }
+  .ubi-map a {
+    background: var(--azul); color: #fff;
+    padding: .9rem 2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 800;
+    display: inline-flex; align-items: center; gap: .5rem;
+    transition: background .2s;
+  }
+  .ubi-map a:hover { background: #145c8e; }
+  .ubi-map p { color: #888; font-size: .9rem; }
+
+  /* ===== CONTACTO ===== */
+  .contact-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1a3a 100%);
+    text-align: center;
+  }
+  .contact-section .section-title { color: #fff; }
+  .contact-section .section-sub { color: rgba(255,255,255,.65); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem; max-width: 900px; margin: 0 auto 2.5rem;
+  }
+  .contact-card {
+    border-radius: 18px; padding: 1.8rem 1.4rem;
+    text-align: center; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    display: block;
+  }
+  .contact-card:hover { transform: translateY(-5px); }
+  .contact-card.tel { background: linear-gradient(135deg, var(--azul), #0d4f80); box-shadow: 0 6px 24px rgba(26,111,168,.4); }
+  .contact-card.wa  { background: linear-gradient(135deg, #25d366, #128c3e); box-shadow: 0 6px 24px rgba(37,211,102,.4); }
+  .contact-card.mail{ background: linear-gradient(135deg, var(--naranja), #c04800); box-shadow: 0 6px 24px rgba(232,101,10,.4); }
+  .contact-card.web { background: linear-gradient(135deg, var(--verde), #1a4d22); box-shadow: 0 6px 24px rgba(45,122,58,.4); }
+  .contact-card .c-icon { font-size: 2.2rem; display: block; margin-bottom: .6rem; }
+  .contact-card .c-label { color: rgba(255,255,255,.75); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: .3rem; }
+  .contact-card .c-val { color: #fff; font-weight: 800; font-size: 1rem; }
+
+  /* ===== RECONOCIMIENTOS ===== */
+  .awards-section { background: var(--crema); }
+  .awards-flex {
+    display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center;
+  }
+  .award-pill {
+    background: #fff; border-radius: 50px;
+    padding: .9rem 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    display: inline-flex; align-items: center; gap: .7rem;
+    font-weight: 700; font-size: .95rem;
+    border: 2px solid transparent;
+    transition: border-color .2s, transform .2s;
+  }
+  .award-pill:hover { transform: scale(1.03); }
+  .award-pill.gold { border-color: var(--amarillo); }
+  .award-pill.blue { border-color: #003580; }
+  .award-pill.green { border-color: var(--verde-claro); }
+  .award-pill span { font-size: 1.5rem; }
+
+  /* ===== MASCOTAS BANNER ===== */
+  .pets-banner {
+    background: linear-gradient(135deg, var(--turquesa), var(--verde));
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+  .pets-banner h2 {
+    font-family: 'Playfair Display', serif;
+    color: #fff; font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin-bottom: .8rem;
+  }
+  .pets-banner p { color: rgba(255,255,255,.88); font-size: 1.05rem; max-width: 540px; margin: 0 auto 1.5rem; }
+  .pets-emoji { font-size: 3rem; display: block; margin-bottom: .5rem; }
+
+  /* ===== CTA FINAL ===== */
+  .cta-final {
+    background: linear-gradient(135deg, var(--naranja) 0%, var(--amarillo) 100%);
+    padding: 5rem 1.5rem; text-align: center;
+  }
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); color: var(--oscuro);
+    margin-bottom: 1rem;
+  }
+  .cta-final p { font-size: 1.1rem; color: rgba(0,0,0,.7); max-width: 540px; margin: 0 auto 2.5rem; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--oscuro); color: rgba(255,255,255,.6);
+    padding: 2rem 1.5rem; text-align: center; font-size: .88rem;
+  }
+  footer a { color: var(--amarillo); text-decoration: none; }
+  footer strong { color: #fff; }
+
+  /* ===== ANIMACIONES ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(.8); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(10px); }
+  }
+
+  /* Responsive tweaks */
+  @media(max-width:600px) {
+    .sticky-bar { padding: .6rem 1rem; }
+    .sticky-bar-links a:not(:last-child):not(.sticky-btn) { display: none; }
+    section { padding: 3.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <span class="hero-badge">🏡 Turismo rural en Guadalajara</span>
+  <h1>Casa Rural<br><span>El Pedregoso</span></h1>
+  <p>Un refugio único en plena naturaleza de Guadalajara, a los pies de La Muela. Escapadas para familias, grupos y mascotas.</p>
+  <div class="hero-btns">
+    <a href="https://hotels.cloudbeds.com/es/reservation/EBI0uu/?currency=eur" target="_blank" class="btn-primary">🛏️ Reservar ahora</a>
+    <a href="https://wa.me/34656902070?text=Hola!%20Me%20gustaría%20información%20sobre%20El%20Pedregoso" target="_blank" class="btn-whatsapp">💬 WhatsApp</a>
+    <a href="https://casaruralelpedregoso.es/" target="_blank" class="btn-outline">🌐 Web oficial</a>
+  </div>
+  <div class="scroll-arrow">↓</div>
+</section>
+
+<!-- ===== STICKY NAV ===== -->
+<nav class="sticky-bar">
+  <a href="https://casaruralelpedregoso.es/" target="_blank" class="sticky-bar-brand">🏡 El Pedregoso</a>
+  <div class="sticky-bar-links">
+    <a href="tel:+34656902070">📞 656 902 070</a>
+    <a href="https://wa.me/34656902070" target="_blank">💬 WhatsApp</a>
+    <a href="https://casaruralelpedregoso.es/contactar-alojamiento-rural-el-pedregoso/" target="_blank">✉️ Contacto</a>
+    <a href="https://hotels.cloudbeds.com/es/reservation/EBI0uu/?currency=eur" target="_blank" class="sticky-btn">Reservar</a>
+  </div>
+</nav>
+
+<!-- ===== CIFRAS ===== -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-num">20</span>
+      <div class="stat-label">personas máximo (casa completa)</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">4</span>
+      <div class="stat-label">apartamentos independientes</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">1h</span>
+      <div class="stat-label">desde Madrid en coche</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">100€</span>
+      <div class="stat-label">precio desde / noche</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">365</span>
+      <div class="stat-label">días de actividades en Guadalajara</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DATOS SORPRENDENTES ===== -->
+<section class="facts-section">
+  <div class="container">
+    <div class="centered">
+      <h2 class="section-title">🤫 Lo que muy poca gente sabe</h2>
+      <p class="section-sub">6 datos fascinantes sobre El Pedregoso y Guadalajara</p>
+    </div>
+    <div class="facts-grid">
+      <div class="fact-card">
+        <span class="fact-emoji">🪂</span>
+        <h3>Zona de parapente y ala delta</h3>
+        <p>El cerro de La Muela, junto a la casa, es uno de los puntos de vuelo más espectaculares de Castilla-La Mancha. Los huéspedes pueden hacer vuelos en biplaza sin experiencia previa.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">🌿</span>
+        <h3>La provincia más desconocida de España</h3>
+        <p>Guadalajara tiene más kilómetros cuadrados que muchas comunidades autónomas, pero es la provincia española menos visitada. Una ventaja enorme para los que la descubren.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">🏘️</span>
+        <h3>Los únicos "Pueblos Negros" del mundo</h3>
+        <p>A menos de 40 min de El Pedregoso se encuentran los Pueblos Negros: aldeas medievales construidas con pizarra oscura que no existen en ningún otro lugar del planeta.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">💜</span>
+        <h3>El mayor campo de lavanda de Europa</h3>
+        <p>Brihuega, a 20 minutos, alberga en junio el Festival de la Lavanda. Los campos en flor crean paisajes de película que rivalizan con la Provenza francesa.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">🐾</span>
+        <h3>Pet-friendly de verdad</h3>
+        <p>Todos los apartamentos admiten mascotas. Tu perro puede correr libre por el jardín y acompañarte en las rutas por el campo. Sin sorpresas ni recargos ocultos.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-emoji">⭐</span>
+        <h3>SuperHost en Airbnb + Award Booking</h3>
+        <p>El Pedregoso ha conseguido el badge de SuperHost en Airbnb y el Traveller Award de Booking.com, dos de los reconocimientos más exigentes del turismo rural online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MASCOTA BANNER ===== -->
+<div class="pets-banner">
+  <span class="pets-emoji">🐕</span>
+  <h2>¡Tu mascota también es bienvenida!</h2>
+  <p>En El Pedregoso los peludos de la familia son huéspedes de pleno derecho. Jardín, rutas y naturaleza para todos.</p>
+  <a href="https://wa.me/34656902070?text=Quiero%20reservar%20con%20mascota" target="_blank" class="btn-whatsapp">💬 Preguntar por mascotas</a>
+</div>
+
+<!-- ===== APARTAMENTOS ===== -->
+<section class="apts-section">
+  <div class="container">
+    <div class="centered">
+      <h2 class="section-title">🏠 Nuestros apartamentos</h2>
+      <p class="section-sub">Alquila la casa entera o un apartamento — tú eliges</p>
+    </div>
+    <div class="apts-grid">
+      <div class="apt-card">
+        <div class="apt-header">
+          <div class="apt-icon green">🛏️</div>
+          <div>
+            <h3>Apartamento Superior</h3>
+            <p style="font-size:.85rem;color:#777">4–6 personas · 40 m²</p>
+          </div>
+        </div>
+        <div class="apt-tags">
+          <span class="apt-tag">2 habitaciones</span>
+          <span class="apt-tag">Chimenea leña</span>
+          <span class="apt-tag hot">Smart TV</span>
+          <span class="apt-tag">WiFi</span>
+          <span class="apt-tag">Terraza</span>
+        </div>
+        <div class="apt-body">
+          <div class="apt-price">desde 100€ <span>/ noche</span></div>
+          <a href="https://casaruralelpedregoso.es/apartamento-superior/" target="_blank" class="apt-link">Ver apartamento →</a>
+        </div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-header">
+          <div class="apt-icon orange">🌿</div>
+          <div>
+            <h3>Apartamento con Terraza</h3>
+            <p style="font-size:.85rem;color:#777">hasta 6 personas · 40 m²</p>
+          </div>
+        </div>
+        <div class="apt-tags">
+          <span class="apt-tag">2 habitaciones</span>
+          <span class="apt-tag">Terraza privada</span>
+          <span class="apt-tag hot">Estufa exterior</span>
+          <span class="apt-tag">WiFi</span>
+        </div>
+        <div class="apt-body">
+          <div class="apt-price">Consultar <span>disponibilidad</span></div>
+          <a href="https://casaruralelpedregoso.es/apartamento-con-terraza/" target="_blank" class="apt-link">Ver apartamento →</a>
+        </div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-header">
+          <div class="apt-icon blue">🌄</div>
+          <div>
+            <h3>Estudio con Vistas</h3>
+            <p style="font-size:.85rem;color:#777">2 personas · 20 m²</p>
+          </div>
+        </div>
+        <div class="apt-tags">
+          <span class="apt-tag">1 habitación</span>
+          <span class="apt-tag hot">Vistas al campo</span>
+          <span class="apt-tag">WiFi</span>
+          <span class="apt-tag">A/C</span>
+        </div>
+        <div class="apt-body">
+          <div class="apt-price">Consultar <span>disponibilidad</span></div>
+          <a href="https://casaruralelpedregoso.es/estudio-con-vistas/" target="_blank" class="apt-link">Ver estudio →</a>
+        </div>
+      </div>
+      <div class="apt-card">
+        <div class="apt-header">
+          <div class="apt-icon purple">🌻</div>
+          <div>
+            <h3>Apt. Vistas al Jardín</h3>
+            <p style="font-size:.85rem;color:#777">2–6 personas · 42 m²</p>
+          </div>
+        </div>
+        <div class="apt-tags">
+          <span class="apt-tag">2 habitaciones</span>
+          <span class="apt-tag hot">Chimenea</span>
+          <span class="apt-tag">Jardín</span>
+          <span class="apt-tag">WiFi</span>
+        </div>
+        <div class="apt-body">
+          <div class="apt-price">Consultar <span>disponibilidad</span></div>
+          <a href="https://casaruralelpedregoso.es/apartamento-con-vistas-al-jardin/" target="_blank" class="apt-link">Ver apartamento →</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="https://hotels.cloudbeds.com/es/reservation/EBI0uu/?currency=eur" target="_blank" class="btn-primary" style="font-size:1.1rem;padding:1.1rem 2.8rem">🛏️ Ver disponibilidad y reservar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACTIVIDADES ===== -->
+<section class="act-section">
+  <div class="container centered">
+    <h2 class="section-title">⚡ Actividades para todos</h2>
+    <p class="section-sub">Turismo activo, cultura y gastronomía durante todo el año</p>
+    <div class="act-grid">
+      <div class="act-card"><span class="act-emoji">🪂</span><h4>Parapente y Ala Delta</h4></div>
+      <div class="act-card"><span class="act-emoji">✈️</span><h4>Vuelo en Avioneta</h4></div>
+      <div class="act-card"><span class="act-emoji">🧗</span><h4>Escalada en Rocódromo</h4></div>
+      <div class="act-card"><span class="act-emoji">🐴</span><h4>Equitación y Rutas a Caballo</h4></div>
+      <div class="act-card"><span class="act-emoji">🚴</span><h4>Cicloturismo</h4></div>
+      <div class="act-card"><span class="act-emoji">🛶</span><h4>Piragüismo</h4></div>
+      <div class="act-card"><span class="act-emoji">🏸</span><h4>Pádel</h4></div>
+      <div class="act-card"><span class="act-emoji">🍷</span><h4>Catas de Vino en Bodegas</h4></div>
+      <div class="act-card"><span class="act-emoji">🍖</span><h4>Asados Tradicionales</h4></div>
+      <div class="act-card"><span class="act-emoji">🗺️</span><h4>Rutas con Guía Turístico</h4></div>
+      <div class="act-card"><span class="act-emoji">💜</span><h4>Festival de la Lavanda</h4></div>
+      <div class="act-card"><span class="act-emoji">🌅</span><h4>Atardeceres en La Muela</h4></div>
+    </div>
+    <div style="margin-top:2.5rem">
+      <a href="https://casaruralelpedregoso.es/actividades-en-alarilla-guadalajara/" target="_blank" class="btn-outline" style="border-color:rgba(255,255,255,.7)">Ver todas las actividades →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UBICACIÓN ===== -->
+<section class="ubi-section">
+  <div class="container">
+    <div class="ubi-grid">
+      <div>
+        <h2 class="section-title">📍 ¿Dónde estamos?</h2>
+        <p style="opacity:.7;margin-bottom:1.5rem">Alarilla, Guadalajara — en el corazón de Castilla-La Mancha</p>
+        <ul class="ubi-list">
+          <li><span class="ubi-icon">🏙️</span><div><strong>~1 hora de Madrid</strong> en coche por la A-2 / CM-1001</div></li>
+          <li><span class="ubi-icon">🏰</span><div><strong>Hita, Brihuega y Cogolludo</strong> a menos de 25 minutos</div></li>
+          <li><span class="ubi-icon">🌲</span><div><strong>Parque Natural Sierra Norte</strong> y los Pueblos Negros a 35 min</div></li>
+          <li><span class="ubi-icon">🏔️</span><div><strong>Cerro de La Muela</strong> a pie desde la casa</div></li>
+          <li><span class="ubi-icon">📬</span><div>Calle De la Ermita, 13 · 19227 Alarilla, Guadalajara</div></li>
+        </ul>
+      </div>
+      <div class="ubi-map">
+        <p>📍 Alarilla, Guadalajara</p>
+        <a href="https://www.google.es/maps/place/C.+la+Ermita,+13,+19227+Alarilla,+Guadalajara/@40.8494439,-3.1074003,17z" target="_blank">🗺️ Cómo llegar en Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RECONOCIMIENTOS ===== -->
+<section class="awards-section">
+  <div class="container centered">
+    <h2 class="section-title">🏆 Reconocimientos</h2>
+    <p class="section-sub">Valorado entre los mejores alojamientos rurales en las principales plataformas</p>
+    <div class="awards-flex">
+      <div class="award-pill gold"><span>🏠</span> Airbnb SuperHost</div>
+      <div class="award-pill blue"><span>🔵</span> Booking.com Traveller Award</div>
+      <div class="award-pill green"><span>⭐</span> Valoraciones excelentes en OTAs</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="contact-section">
+  <div class="container">
+    <h2 class="section-title">📞 Contáctanos</h2>
+    <p class="section-sub">Estamos disponibles para resolver dudas y ayudarte a planificar tu escapada perfecta</p>
+    <div class="contact-grid">
+      <a href="tel:+34656902070" class="contact-card tel">
+        <span class="c-icon">📞</span>
+        <span class="c-label">Llamar ahora</span>
+        <span class="c-val">656 902 070</span>
+      </a>
+      <a href="https://wa.me/34656902070?text=Hola!%20Quiero%20información%20sobre%20la%20casa%20rural%20El%20Pedregoso" target="_blank" class="contact-card wa">
+        <span class="c-icon">💬</span>
+        <span class="c-label">WhatsApp</span>
+        <span class="c-val">Escribir mensaje</span>
+      </a>
+      <a href="mailto:info@casaruralelpedregoso.es" class="contact-card mail">
+        <span class="c-icon">✉️</span>
+        <span class="c-label">Email</span>
+        <span class="c-val">info@casaruralelpedregoso.es</span>
+      </a>
+      <a href="https://casaruralelpedregoso.es/contactar-alojamiento-rural-el-pedregoso/" target="_blank" class="contact-card web">
+        <span class="c-icon">🌐</span>
+        <span class="c-label">Formulario web</span>
+        <span class="c-val">Contactar en web oficial</span>
+      </a>
+    </div>
+    <a href="https://www.instagram.com/cr_elpedregoso/" target="_blank" style="color:rgba(255,255,255,.6);text-decoration:none;font-size:.95rem">📸 Síguenos en Instagram @cr_elpedregoso</a>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-final">
+  <h2>Tu escapada rural empieza hoy 🌿</h2>
+  <p>Pocas plazas disponibles. Reserva directamente y disfruta de la provincia más auténtica de España.</p>
+  <div class="hero-btns" style="justify-content:center">
+    <a href="https://hotels.cloudbeds.com/es/reservation/EBI0uu/?currency=eur" target="_blank" class="btn-primary" style="font-size:1.1rem">🛏️ Reservar ahora</a>
+    <a href="https://wa.me/34656902070" target="_blank" class="btn-whatsapp" style="font-size:1.1rem">💬 WhatsApp directo</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>
+    <strong>Casa Rural El Pedregoso</strong> · Calle De la Ermita 13, 19227 Alarilla, Guadalajara ·
+    <a href="tel:+34656902070">656 902 070</a> ·
+    <a href="https://casaruralelpedregoso.es/" target="_blank">casaruralelpedregoso.es</a>
+  </p>
+  <p style="margin-top:.5rem;font-size:.8rem">Página informativa no oficial · Datos extraídos del sitio oficial · © 2025</p>
+</footer>
+
+</body>
+</html>
