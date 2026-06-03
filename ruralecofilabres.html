@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RuralEcoFilabres – Tu Escapada en la Sierra de los Filabres</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFD93D;
+    --fire: #FF6B35;
+    --sky: #4ECDC4;
+    --forest: #2ECC71;
+    --night: #1A1A2E;
+    --dusk: #6C3483;
+    --clay: #E74C3C;
+    --cream: #FFF8F0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 999;
+    background: rgba(26,26,46,0.92);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.8rem 2rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900;
+    color: var(--sun);
+    letter-spacing: 1px;
+  }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    color: #fff; text-decoration: none; font-size: 0.85rem;
+    font-weight: 600; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sun); }
+  .nav-cta {
+    background: var(--fire); color: #fff !important;
+    padding: 0.4rem 1.1rem; border-radius: 20px;
+    font-weight: 800 !important;
+  }
+  .nav-cta:hover { background: var(--sun); color: var(--night) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 40%, #0F3460 70%, #2ECC71 120%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(255,107,53,0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(78,205,196,0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(108,52,131,0.2) 0%, transparent 60%);
+  }
+  .stars {
+    position: absolute; inset: 0; overflow: hidden;
+  }
+  .star {
+    position: absolute; border-radius: 50%;
+    background: #fff; animation: twinkle 3s infinite alternate;
+  }
+  @keyframes twinkle { from { opacity: 0.2; transform: scale(1); } to { opacity: 1; transform: scale(1.4); } }
+  .hero-badge {
+    position: relative;
+    background: rgba(255,217,61,0.15);
+    border: 2px solid var(--sun);
+    color: var(--sun);
+    padding: 0.4rem 1.2rem; border-radius: 20px;
+    font-size: 0.8rem; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    animation: fadeDown 0.8s ease both;
+  }
+  .hero h1 {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: #fff; margin-bottom: 1.2rem;
+    animation: fadeDown 0.9s 0.1s ease both;
+  }
+  .hero h1 span { color: var(--sun); }
+  .hero-sub {
+    position: relative;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,0.8);
+    max-width: 600px; margin-bottom: 2.5rem;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+  .hero-btns {
+    position: relative;
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeDown 1s 0.3s ease both;
+  }
+  .btn {
+    padding: 0.85rem 2.2rem; border-radius: 30px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem; font-weight: 800;
+    text-decoration: none; transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary { background: var(--fire); color: #fff; box-shadow: 0 6px 25px rgba(255,107,53,0.5); }
+  .btn-primary:hover { background: #ff4500; transform: translateY(-3px); box-shadow: 0 10px 35px rgba(255,107,53,0.6); }
+  .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+  .btn-secondary:hover { background: rgba(255,255,255,0.22); transform: translateY(-3px); }
+  .btn-wa { background: #25D366; color: #fff; box-shadow: 0 6px 25px rgba(37,211,102,0.4); }
+  .btn-wa:hover { background: #1DA951; transform: translateY(-3px); }
+
+  /* STATS RIBBON */
+  .stats-ribbon {
+    background: var(--sun);
+    padding: 1.5rem 2rem;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--night);
+  }
+  .stat-label {
+    font-size: 0.8rem; font-weight: 700;
+    color: rgba(26,26,46,0.7); text-transform: uppercase; letter-spacing: 1px;
+  }
+
+  /* SECTIONS COMMON */
+  section { padding: 5rem 2rem; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 15px;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* FACTS */
+  .facts {
+    background: linear-gradient(135deg, #1A1A2E 0%, #0F3460 100%);
+    color: #fff;
+  }
+  .facts .section-tag { background: rgba(255,217,61,0.2); color: var(--sun); }
+  .facts h2 { color: #fff; }
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .fact-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 2rem;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .fact-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); }
+  .fact-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .fact-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--sun); margin-bottom: 0.6rem; }
+  .fact-card p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+  .fact-highlight {
+    display: inline-block;
+    background: var(--fire); color: #fff;
+    font-size: 0.75rem; font-weight: 800;
+    padding: 0.2rem 0.7rem; border-radius: 10px; margin-top: 0.8rem;
+  }
+
+  /* APARTMENTS */
+  .apartments { background: linear-gradient(160deg, #E8F5E9 0%, #B2EBF2 100%); }
+  .apartments .section-tag { background: rgba(46,204,113,0.2); color: #1a7a4a; }
+  .apartments h2 { color: var(--night); }
+  .apt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem; margin-top: 2.5rem;
+  }
+  .apt-card {
+    background: #fff; border-radius: 18px; padding: 1.6rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border-left: 5px solid var(--forest);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .apt-card:hover { transform: translateY(-5px); box-shadow: 0 10px 35px rgba(0,0,0,0.12); }
+  .apt-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--night); margin-bottom: 0.5rem; }
+  .apt-cap { font-size: 0.85rem; color: #555; margin-bottom: 0.8rem; }
+  .apt-features { list-style: none; font-size: 0.82rem; color: #666; }
+  .apt-features li::before { content: '✓ '; color: var(--forest); font-weight: 800; }
+
+  /* WHY */
+  .why {
+    background: linear-gradient(135deg, #FF6B35 0%, #FFD93D 50%, #FF6B35 100%);
+    background-size: 200% 200%;
+    animation: gradMove 8s ease infinite;
+  }
+  @keyframes gradMove { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .why h2 { color: var(--night); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .why-card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px; padding: 1.8rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
+  .why-card:hover { transform: scale(1.05); }
+  .why-icon { font-size: 2.8rem; margin-bottom: 0.8rem; }
+  .why-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--night); margin-bottom: 0.4rem; }
+  .why-card p { font-size: 0.82rem; color: #555; }
+
+  /* ACTIVITIES */
+  .activities { background: linear-gradient(160deg, #4ECDC4 0%, #2ECC71 100%); }
+  .activities h2 { color: var(--night); }
+  .activities .section-tag { background: rgba(26,26,46,0.15); color: var(--night); }
+  .act-list {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;
+  }
+  .act-pill {
+    background: rgba(255,255,255,0.8);
+    color: var(--night); font-weight: 700; font-size: 0.9rem;
+    padding: 0.6rem 1.4rem; border-radius: 25px;
+    transition: all 0.2s; cursor: default;
+  }
+  .act-pill:hover { background: var(--night); color: var(--sun); transform: translateY(-3px); }
+  .act-note {
+    margin-top: 2rem; background: rgba(26,26,46,0.8);
+    color: #fff; padding: 1.5rem 2rem; border-radius: 16px;
+    font-size: 0.95rem; line-height: 1.7;
+  }
+  .act-note strong { color: var(--sun); }
+
+  /* ASTRONOMY */
+  .astronomy {
+    background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 50%, #16213E 100%);
+    color: #fff; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .astronomy::before {
+    content: '✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ★ ✦ ✧ ★';
+    position: absolute; top: 1.5rem; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,217,61,0.3); font-size: 1.2rem; letter-spacing: 10px;
+    white-space: nowrap;
+  }
+  .astronomy .section-tag { background: rgba(255,217,61,0.2); color: var(--sun); }
+  .astronomy h2 { color: #fff; }
+  .astronomy-content {
+    max-width: 750px; margin: 0 auto;
+  }
+  .astronomy p { color: rgba(255,255,255,0.8); line-height: 1.8; font-size: 1rem; margin-bottom: 1.2rem; }
+  .astro-stat {
+    display: inline-flex; flex-direction: column; align-items: center;
+    background: rgba(255,217,61,0.1); border: 1px solid rgba(255,217,61,0.3);
+    border-radius: 16px; padding: 1.2rem 2rem; margin: 0.5rem;
+  }
+  .astro-stat span:first-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--sun);
+  }
+  .astro-stat span:last-child { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+  .astro-stats { margin: 2rem 0; }
+
+  /* LOCATION */
+  .location { background: linear-gradient(160deg, #f8e8ff 0%, #ffe0f0 50%, #fff0e0 100%); }
+  .location h2 { color: var(--night); }
+  .location .section-tag { background: rgba(108,52,131,0.15); color: var(--dusk); }
+  .dist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem; margin-top: 2rem;
+  }
+  .dist-card {
+    background: #fff; border-radius: 14px; padding: 1.2rem;
+    text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    border-top: 4px solid var(--dusk);
+    transition: transform 0.2s;
+  }
+  .dist-card:hover { transform: translateY(-4px); }
+  .dist-km {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900; color: var(--dusk);
+  }
+  .dist-dest { font-size: 0.85rem; color: #555; font-weight: 600; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--night);
+    color: #fff; text-align: center;
+  }
+  .contact h2 { color: var(--sun); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem; text-align: left;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px; padding: 1.8rem;
+    transition: background 0.3s;
+  }
+  .contact-card:hover { background: rgba(255,255,255,0.1); }
+  .contact-card h3 { color: var(--sky); font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.8rem; }
+  .contact-card a {
+    display: block; color: #fff; text-decoration: none;
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;
+    transition: color 0.2s;
+  }
+  .contact-card a:hover { color: var(--sun); }
+  .contact-card p { color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.6; }
+  .contact-btns {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+    margin-top: 3rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0a0a14; color: rgba(255,255,255,0.4);
+    text-align: center; padding: 2rem;
+    font-size: 0.85rem; line-height: 1.7;
+  }
+  footer a { color: var(--sun); text-decoration: none; }
+
+  /* SCROLL DECORATION */
+  .divider {
+    height: 6px;
+    background: linear-gradient(90deg, var(--fire), var(--sun), var(--forest), var(--sky), var(--dusk), var(--fire));
+    background-size: 200% 100%;
+    animation: rainbow 4s linear infinite;
+  }
+  @keyframes rainbow { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .hero-btns { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🌿 RuralEcoFilabres</div>
+  <ul class="nav-links">
+    <li><a href="#hechos">Lo que no sabías</a></li>
+    <li><a href="#apartamentos">Apartamentos</a></li>
+    <li><a href="#actividades">Actividades</a></li>
+    <li><a href="#astronomia">Astronomía</a></li>
+    <li><a href="#contacto" class="nav-cta">📅 Reservar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stars" id="stars"></div>
+  <div class="hero-badge">⭐ Registro A/AL/00130 · Almería</div>
+  <h1>La <span>Sierra de los Filabres</span><br>te está esperando</h1>
+  <p class="hero-sub">10 apartamentos rurales en Bacares a 1.205 m de altitud. Naturaleza, silencio y cielos de otro mundo en el corazón de Almería.</p>
+  <div class="hero-btns">
+    <a href="https://www.ruralecofilabres.com" target="_blank" class="btn btn-primary">🏡 Ver Web Oficial</a>
+    <a href="https://wa.me/34722330563" target="_blank" class="btn btn-wa">💬 WhatsApp</a>
+    <a href="#contacto" class="btn btn-secondary">📞 Contactar</a>
+  </div>
+</section>
+
+<!-- STATS RIBBON -->
+<div class="stats-ribbon">
+  <div class="stat-item">
+    <span class="stat-num">10</span>
+    <span class="stat-label">Apartamentos</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">52</span>
+    <span class="stat-label">Plazas totales</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">1.205m</span>
+    <span class="stat-label">Altitud Bacares</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">2.168m</span>
+    <span class="stat-label">Calar Alto (cima)</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">~300</span>
+    <span class="stat-label">Habitantes pueblo</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">65km</span>
+    <span class="stat-label">De Almería capital</span>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- HECHOS SORPRENDENTES -->
+<section class="facts" id="hechos">
+  <div class="container">
+    <span class="section-tag">🔍 Lo que no sabías</span>
+    <h2>Datos que te sorprenderán</h2>
+    <p style="color:rgba(255,255,255,0.65); max-width:600px;">Bacares y la Sierra de los Filabres esconden secretos que pocos turistas conocen. Aquí los más impactantes.</p>
+    <div class="facts-grid">
+      <div class="fact-card">
+        <div class="fact-icon">🔭</div>
+        <h3>El mayor telescopio de Europa continental</h3>
+        <p>El Observatorio de Calar Alto, a solo minutos de RuralEcoFilabres, alberga el telescopio de 3,5 m más grande de Europa continental. Fundado en 1973 por acuerdo hispano-alemán.</p>
+        <span class="fact-highlight">A 2.168 m de altitud</span>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🌌</div>
+        <h3>Cielos entre los más limpios de España</h3>
+        <p>Los cielos de la Sierra de los Filabres tienen una contaminación lumínica mínima, lo que los convierte en un destino de primer nivel mundial para la observación de estrellas.</p>
+        <span class="fact-highlight">Stargazing de nivel profesional</span>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">💎</div>
+        <h3>Bacares: la "Perla Escondida"</h3>
+        <p>Segundo pueblo más elevado de la provincia (1.213 m), dividido por el Río del Medio entre una iglesia mudéjar y un castillo medieval. Un cartel en su plaza lo proclama: "Perla Escondida de la Sierra de los Filabres".</p>
+        <span class="fact-highlight">~300 habitantes</span>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🌍</div>
+        <h3>Unió África con Europa</h3>
+        <p>En 1879 se realizó desde la Tetica de Bacares (junto a Calar Alto) la triangulación geodésica que midió oficialmente la distancia entre España y Argelia, uniendo los dos continentes.</p>
+        <span class="fact-highlight">Hito científico histórico</span>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🗿</div>
+        <h3>Mármol de Macael a tus pies</h3>
+        <p>La vertiente sur de la Sierra de los Filabres alberga los famosos mármoles de Macael, exportados a todo el mundo. Pisas la misma roca que adorna palacios internacionales.</p>
+        <span class="fact-highlight">Mármol de fama mundial</span>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🎬</div>
+        <h3>El desierto de cine a 30 km</h3>
+        <p>El Desierto de Tabernas y los decorados del Minihollywood (los más grandes de Europa estilo western) están a solo 30 km. El mismo paisaje donde se rodaron clásicos del spaghetti western.</p>
+        <span class="fact-highlight">Desde los años 60</span>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- APARTAMENTOS -->
+<section class="apartments" id="apartamentos">
+  <div class="container">
+    <span class="section-tag">🏠 Alojamientos</span>
+    <h2>10 Apartamentos con nombres de la sierra</h2>
+    <p style="color:#555; max-width:620px;">Cada apartamento lleva el nombre de un lugar singular de la zona. Totalmente equipados, estilo rústico-moderno, con terraza y vistas espectaculares.</p>
+    <div class="apt-grid">
+      <div class="apt-card">
+        <div class="apt-name">La Loma</div>
+        <div class="apt-cap">Hasta 4 personas · 2 dormitorios</div>
+        <ul class="apt-features">
+          <li>Cocina completa equipada</li>
+          <li>Salón comedor</li>
+          <li>Baño completo</li>
+          <li>Terraza con vistas</li>
+        </ul>
+      </div>
+      <div class="apt-card">
+        <div class="apt-name">Apartamentos 3 hab.</div>
+        <div class="apt-cap">Hasta 6-8 personas</div>
+        <ul class="apt-features">
+          <li>3 dormitorios</li>
+          <li>Cocina completa</li>
+          <li>Salón comedor amplio</li>
+          <li>Terraza privada</li>
+        </ul>
+      </div>
+      <div class="apt-card">
+        <div class="apt-name">Apartamentos 2 hab.</div>
+        <div class="apt-cap">Hasta 4-5 personas</div>
+        <ul class="apt-features">
+          <li>2 dormitorios</li>
+          <li>Cocina completa</li>
+          <li>Baño completo</li>
+          <li>Terraza privada</li>
+        </ul>
+      </div>
+      <div class="apt-card" style="border-left-color: var(--fire);">
+        <div class="apt-name" style="color:var(--fire);">Zona Común</div>
+        <div class="apt-cap">Para todos los huéspedes</div>
+        <ul class="apt-features">
+          <li>Gran plaza central</li>
+          <li>Zona infantil</li>
+          <li>Área de barbacoa</li>
+          <li>Salón multiusos</li>
+          <li>Parking gratuito</li>
+          <li>Wi-Fi</li>
+          <li>Lavandería</li>
+          <li>Cunas para bebés</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="why">
+  <div class="container">
+    <span class="section-tag" style="background:rgba(26,26,46,0.15); color:var(--night);">🌟 Por qué elegirnos</span>
+    <h2>Una escapada para todos</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">👨‍👩‍👧‍👦</div>
+        <h3>Familias con niños</h3>
+        <p>Zona infantil, cunas, espacio seguro y naturaleza para explorar.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💑</div>
+        <h3>Parejas románticas</h3>
+        <p>Cielos estrellados, silencio absoluto y atardeceres sobre el valle.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🐕</div>
+        <h3>Pet-Friendly</h3>
+        <p>¡Tu mascota también es bienvenida! Consulta al reservar.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏢</div>
+        <h3>Grupos y eventos</h3>
+        <p>Hasta 52 personas. Salón de eventos y áreas comunes para grupos.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌱</div>
+        <h3>Eco-sostenible</h3>
+        <p>Alojamiento ecológico en armonía con el entorno natural de la sierra.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔥</div>
+        <h3>Chimenea en invierno</h3>
+        <p>Calefacción central y chimenea para las noches frías de montaña.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ACTIVIDADES -->
+<section class="activities" id="actividades">
+  <div class="container">
+    <span class="section-tag">🏃 Turismo Activo</span>
+    <h2>Qué hacer en la Sierra</h2>
+    <p style="color:var(--night); max-width:600px; font-weight:600;">Desde aventura hasta cultura, hay experiencias únicas para todos los gustos y edades.</p>
+    <div class="act-list">
+      <span class="act-pill">🌄 Senderismo</span>
+      <span class="act-pill">🚵 Mountain Bike</span>
+      <span class="act-pill">🔭 Observación astronómica</span>
+      <span class="act-pill">🦅 Adiestramiento canino y rapaces</span>
+      <span class="act-pill">🌲 Rutas en 4x4</span>
+      <span class="act-pill">🎣 Pesca en embalses</span>
+      <span class="act-pill">🧘 Retiros y meditación</span>
+      <span class="act-pill">🏛 Visita al Observatorio Calar Alto</span>
+      <span class="act-pill">🎬 Ruta Minihollywood Tabernas</span>
+      <span class="act-pill">🏖 Playas (65 km)</span>
+      <span class="act-pill">⛷ Sierra Nevada (ski, 1h)</span>
+      <span class="act-pill">🏺 Ruta cultural por pueblos blancos</span>
+      <span class="act-pill">🛠 Talleres artesanales</span>
+      <span class="act-pill">🏍 Rutas en moto</span>
+      <span class="act-pill">🌿 Fotografía de naturaleza</span>
+    </div>
+    <div class="act-note">
+      <strong>📍 Desde RuralEcoFilabres también organizamos:</strong> Talleres de restauración de sillas antiguas · Concentraciones moteras · Espacios para reuniones de asociaciones · Exhibición de rapaces y adiestramiento canino.
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ASTRONOMÍA -->
+<section class="astronomy" id="astronomia">
+  <div class="container astronomy-content">
+    <span class="section-tag">🌌 Cielo Único</span>
+    <h2>Donde Europa mira las estrellas</h2>
+    <p>A solo minutos de RuralEcoFilabres se encuentra el <strong style="color:var(--sun)">Observatorio de Calar Alto</strong>, el observatorio astronómico más grande de Europa continental. Sus cielos oscuros hacen de esta sierra un lugar irrepetible para contemplar el universo a simple vista.</p>
+    <div class="astro-stats">
+      <div class="astro-stat">
+        <span>1973</span>
+        <span>Fundación del observatorio</span>
+      </div>
+      <div class="astro-stat">
+        <span>6</span>
+        <span>Telescopios activos</span>
+      </div>
+      <div class="astro-stat">
+        <span>3,5m</span>
+        <span>Mayor telescopio de Europa continental</span>
+      </div>
+      <div class="astro-stat">
+        <span>365</span>
+        <span>Noches de observación al año</span>
+      </div>
+    </div>
+    <p>Las visitas guiadas al observatorio están abiertas al público general. Desde las terrazas de RuralEcoFilabres, en noches despejadas, la Vía Láctea es visible a simple vista. Una experiencia que no se olvida jamás.</p>
+    <a href="https://www.caha.es" target="_blank" class="btn btn-secondary" style="margin-top:1.5rem; display:inline-block;">🔭 Web del Observatorio CAHA</a>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- DISTANCIAS -->
+<section class="location">
+  <div class="container">
+    <span class="section-tag">📍 Dónde estamos</span>
+    <h2>En el corazón de todo</h2>
+    <p style="color:#555;">Bacares, Almería. Lejos del ruido pero cerca de todo lo que merece la pena.</p>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="dist-km">20 km</div>
+        <div class="dist-dest">🌊 Balsa de Cela</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-km">30 km</div>
+        <div class="dist-dest">🎬 Desierto de Tabernas · Minihollywood</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-km">65 km</div>
+        <div class="dist-dest">🏙 Almería capital · Playas</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-km">~1h</div>
+        <div class="dist-dest">⛷ Sierra Nevada (nieve)</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-km">5 min</div>
+        <div class="dist-dest">🔭 Observatorio Calar Alto</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-km">1.205m</div>
+        <div class="dist-dest">⛰ Altitud del alojamiento</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem; text-align:center;">
+      <a href="https://maps.google.com/?q=Calle+Calvario+Bacares+Almeria" target="_blank" class="btn btn-primary">🗺 Ver en Google Maps</a>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- CONTACTO / RESERVAS -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <span class="section-tag" style="background:rgba(255,217,61,0.15); color:var(--sun);">📅 Reservas & Contacto</span>
+    <h2>¡Reserva tu escapada ahora!</h2>
+    <p style="color:rgba(255,255,255,0.65); max-width:550px; margin:0 auto 2rem;">Contacta directamente con RuralEcoFilabres para fechas, disponibilidad y tarifas especiales para grupos.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>📞 Teléfono</h3>
+        <a href="tel:+34722330563">722 330 563</a>
+        <p>Llamada directa para consultas y reservas.</p>
+      </div>
+      <div class="contact-card">
+        <h3>💬 WhatsApp</h3>
+        <a href="https://wa.me/34722330563" target="_blank">Escribir por WhatsApp</a>
+        <p>Respuesta rápida, envía fotos o consulta disponibilidad al instante.</p>
+      </div>
+      <div class="contact-card">
+        <h3>📧 Email</h3>
+        <a href="mailto:info@ruralecofilabres.com">info@ruralecofilabres.com</a>
+        <p>Para grupos, eventos y consultas detalladas.</p>
+      </div>
+      <div class="contact-card">
+        <h3>📍 Dirección</h3>
+        <a href="https://maps.google.com/?q=Calle+Calvario+Bacares+Almeria" target="_blank">C/ Calvario, s/n</a>
+        <p>04889 Bacares, Almería, España.</p>
+      </div>
+    </div>
+    <div class="contact-btns">
+      <a href="https://www.ruralecofilabres.com" target="_blank" class="btn btn-primary">🌐 Web Oficial Completa</a>
+      <a href="https://wa.me/34722330563?text=Hola!%20Me%20interesa%20reservar%20en%20RuralEcoFilabres" target="_blank" class="btn btn-wa">💬 WhatsApp Directo</a>
+      <a href="tel:+34722330563" class="btn btn-secondary">📞 Llamar ahora</a>
+      <a href="mailto:info@ruralecofilabres.com" class="btn btn-secondary">✉️ Enviar email</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🌿 <strong>RuralEcoFilabres</strong> · Registro Turístico A/AL/00130</p>
+  <p>C/ Calvario, s/n · 04889 Bacares, Almería</p>
+  <p>
+    <a href="https://www.ruralecofilabres.com" target="_blank">www.ruralecofilabres.com</a> ·
+    <a href="tel:+34722330563">722 330 563</a> ·
+    <a href="mailto:info@ruralecofilabres.com">info@ruralecofilabres.com</a>
+  </p>
+  <p style="margin-top:1rem; font-size:0.78rem;">Página informativa creada con fines promocionales. Todos los datos oficiales en la web del establecimiento.</p>
+</footer>
+
+<script>
+  // Generate stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 3 + 1;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      top:${Math.random()*100}%; left:${Math.random()*100}%;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${2+Math.random()*3}s;
+      opacity:${Math.random()};
+    `;
+    starsEl.appendChild(s);
+  }
+</script>
+</body>
+</html>
