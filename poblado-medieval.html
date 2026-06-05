@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poblado Medieval · Despedidas de Soltero/a en Salamanca 🔥</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c-red: #FF2D55;
+    --c-orange: #FF6B00;
+    --c-yellow: #FFD600;
+    --c-green: #00C853;
+    --c-teal: #00BCD4;
+    --c-blue: #2979FF;
+    --c-purple: #AA00FF;
+    --c-pink: #FF4081;
+    --c-dark: #0D0D1A;
+    --c-white: #FFFFFF;
+    --font-head: 'Bangers', cursive;
+    --font-sub: 'Fredoka One', cursive;
+    --font-body: 'Nunito', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--c-dark);
+    color: var(--c-white);
+    overflow-x: hidden;
+  }
+
+  /* ─── STICKY HEADER ─── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,13,26,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid var(--c-yellow);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .7rem 1.4rem;
+  }
+  .logo-text {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--c-yellow), var(--c-orange), var(--c-red));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header-btns { display: flex; gap: .6rem; }
+  .btn-wa, .btn-tel {
+    display: inline-flex; align-items: center; gap: .35rem;
+    padding: .5rem 1rem; border-radius: 50px; font-weight: 900;
+    font-family: var(--font-body); font-size: .85rem;
+    text-decoration: none; transition: transform .15s, box-shadow .15s;
+    white-space: nowrap;
+  }
+  .btn-wa  { background: #25D366; color: #000; }
+  .btn-tel { background: var(--c-yellow); color: #000; }
+  .btn-wa:hover, .btn-tel:hover { transform: scale(1.06); box-shadow: 0 4px 18px rgba(0,0,0,.4); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(255,45,85,.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 80%, rgba(0,188,212,.3) 0%, transparent 55%),
+      radial-gradient(ellipse at 60% 10%, rgba(255,214,0,.25) 0%, transparent 45%),
+      linear-gradient(160deg, #0D0D1A 0%, #1a0030 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 1.5rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E") repeat;
+  }
+  .hero-badge {
+    background: var(--c-red); color: #fff;
+    font-family: var(--font-sub); font-size: .95rem;
+    padding: .35rem 1.2rem; border-radius: 50px;
+    letter-spacing: 1px; margin-bottom: 1.2rem;
+    animation: pulse 2s infinite;
+    position: relative;
+  }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,45,85,.5)} 50%{box-shadow:0 0 0 12px rgba(255,45,85,0)} }
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(3.2rem, 9vw, 7rem);
+    line-height: 1;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--c-yellow) 0%, var(--c-orange) 40%, var(--c-red) 70%, var(--c-pink) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .hero-sub {
+    font-family: var(--font-sub); font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: rgba(255,255,255,.85); max-width: 660px;
+    line-height: 1.5; margin-bottom: 1.8rem;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+  .tag {
+    padding: .4rem .9rem; border-radius: 50px;
+    font-weight: 800; font-size: .82rem; letter-spacing: .5px;
+  }
+  .t1{background:var(--c-red);color:#fff}
+  .t2{background:var(--c-orange);color:#000}
+  .t3{background:var(--c-yellow);color:#000}
+  .t4{background:var(--c-green);color:#000}
+  .t5{background:var(--c-teal);color:#000}
+  .t6{background:var(--c-purple);color:#fff}
+  .cta-hero {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--c-orange), var(--c-red));
+    color: #fff; font-family: var(--font-sub); font-size: 1.3rem;
+    padding: 1rem 2.8rem; border-radius: 60px; text-decoration: none;
+    box-shadow: 0 8px 30px rgba(255,107,0,.5);
+    transition: transform .2s, box-shadow .2s;
+    position: relative;
+  }
+  .cta-hero:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(255,45,85,.6); }
+  .cta-hero::after { content: ' →'; }
+  .scroll-hint {
+    position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    font-size: .8rem; color: rgba(255,255,255,.4); letter-spacing: 2px;
+    animation: bounce 1.8s infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* ─── FACT STRIP ─── */
+  .facts-strip {
+    background: linear-gradient(90deg, var(--c-yellow), var(--c-orange), var(--c-red), var(--c-purple), var(--c-blue), var(--c-teal), var(--c-green), var(--c-yellow));
+    background-size: 400% 100%;
+    animation: gradshift 6s linear infinite;
+    padding: 1rem 0; overflow: hidden;
+  }
+  @keyframes gradshift { 0%{background-position:0 0} 100%{background-position:400% 0} }
+  .facts-track {
+    display: flex; gap: 2rem; align-items: center;
+    animation: scroll 25s linear infinite;
+    width: max-content;
+  }
+  @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .fact-item {
+    font-family: var(--font-sub); font-size: 1rem;
+    color: #000; white-space: nowrap; display: flex; align-items: center; gap: .5rem;
+  }
+  .fact-sep { color: #000; font-size: 1.4rem; }
+
+  /* ─── SECTIONS GENERIC ─── */
+  section { padding: 5rem 1.5rem; }
+  .sec-title {
+    font-family: var(--font-head);
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    letter-spacing: 2px;
+    text-align: center; margin-bottom: .5rem;
+  }
+  .sec-sub {
+    text-align: center; font-size: 1.1rem;
+    color: rgba(255,255,255,.7); max-width: 680px; margin: 0 auto 3rem;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ─── WHY SECTION ─── */
+  .why { background: linear-gradient(135deg, #0d001a 0%, #001a2e 100%); }
+  .why .sec-title { color: var(--c-yellow); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+  }
+  .why-card {
+    background: rgba(255,255,255,.06);
+    border: 2px solid transparent;
+    border-radius: 20px; padding: 2rem 1.5rem;
+    text-align: center; transition: transform .2s, border-color .2s;
+    position: relative; overflow: hidden;
+  }
+  .why-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--card-grad); opacity: .12;
+    transition: opacity .2s;
+  }
+  .why-card:hover { transform: translateY(-6px); border-color: var(--card-accent); }
+  .why-card:hover::before { opacity: .22; }
+  .why-icon { font-size: 3rem; margin-bottom: .8rem; display: block; }
+  .why-card h3 { font-family: var(--font-sub); font-size: 1.2rem; margin-bottom: .5rem; color: var(--card-accent); }
+  .why-card p { font-size: .92rem; color: rgba(255,255,255,.75); line-height: 1.55; }
+
+  /* ─── SECRETS SECTION ─── */
+  .secrets { background: linear-gradient(135deg, #001a00 0%, #1a0010 100%); }
+  .secrets .sec-title { color: var(--c-green); }
+  .secrets-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .secret-card {
+    border-radius: 18px; padding: 2rem;
+    position: relative; overflow: hidden;
+    background: rgba(255,255,255,.05);
+    border-left: 5px solid var(--s-color);
+    transition: transform .2s;
+  }
+  .secret-card:hover { transform: scale(1.02); }
+  .secret-num {
+    font-family: var(--font-head); font-size: 4rem;
+    color: var(--s-color); opacity: .2;
+    position: absolute; top: .5rem; right: 1rem;
+    line-height: 1;
+  }
+  .secret-card h3 { font-family: var(--font-sub); font-size: 1.1rem; margin-bottom: .6rem; color: var(--s-color); }
+  .secret-card p { font-size: .92rem; color: rgba(255,255,255,.78); line-height: 1.55; }
+
+  /* ─── PLANES SECTION ─── */
+  .planes { background: linear-gradient(160deg, #1a0000 0%, #000d1a 100%); }
+  .planes .sec-title { color: var(--c-red); }
+  .planes-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .plan-card {
+    border-radius: 22px; overflow: hidden;
+    background: rgba(255,255,255,.06);
+    transition: transform .2s, box-shadow .2s;
+    border: 2px solid rgba(255,255,255,.1);
+    display: flex; flex-direction: column;
+  }
+  .plan-card:hover { transform: translateY(-8px); box-shadow: 0 16px 50px rgba(0,0,0,.5); }
+  .plan-head {
+    background: var(--p-bg);
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  .plan-head .plan-emoji { font-size: 2.5rem; }
+  .plan-head h3 { font-family: var(--font-sub); font-size: 1.3rem; color: #fff; }
+  .plan-head .plan-badge {
+    display: inline-block; background: rgba(0,0,0,.3);
+    border-radius: 50px; padding: .2rem .8rem;
+    font-size: .8rem; color: rgba(255,255,255,.85); margin-top: .3rem;
+  }
+  .plan-body { padding: 1.4rem 1.2rem; flex: 1; }
+  .plan-price {
+    font-family: var(--font-head); font-size: 2.4rem;
+    color: var(--p-accent); margin-bottom: .3rem;
+  }
+  .plan-price span { font-size: 1rem; color: rgba(255,255,255,.6); }
+  .plan-body ul { list-style: none; margin-top: .8rem; }
+  .plan-body ul li {
+    font-size: .88rem; color: rgba(255,255,255,.8);
+    padding: .25rem 0;
+  }
+  .plan-body ul li::before { content: '✅ '; }
+  .plan-cta {
+    display: block; text-align: center; text-decoration: none;
+    background: var(--p-bg); color: #fff;
+    font-family: var(--font-sub); font-size: 1rem;
+    padding: .9rem; margin: 1rem 1.2rem 1.2rem;
+    border-radius: 50px;
+    transition: opacity .2s, transform .15s;
+  }
+  .plan-cta:hover { opacity: .85; transform: scale(1.03); }
+
+  /* ─── ACTIVITIES ─── */
+  .activities { background: linear-gradient(160deg, #00001a 0%, #001a10 100%); }
+  .activities .sec-title { color: var(--c-teal); }
+  .act-grid {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+  }
+  .act-pill {
+    padding: .7rem 1.4rem; border-radius: 50px;
+    font-family: var(--font-sub); font-size: 1rem;
+    font-weight: 600; transition: transform .15s;
+    cursor: default;
+  }
+  .act-pill:hover { transform: scale(1.1) rotate(-2deg); }
+
+  /* ─── OPINIONES ─── */
+  .opiniones { background: linear-gradient(135deg, #1a1000 0%, #001a1a 100%); }
+  .opiniones .sec-title { color: var(--c-orange); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.5rem;
+  }
+  .review-card {
+    background: rgba(255,255,255,.07);
+    border-radius: 18px; padding: 1.8rem;
+    border-top: 4px solid var(--r-color);
+    transition: transform .2s;
+  }
+  .review-card:hover { transform: translateY(-4px); }
+  .stars { color: var(--c-yellow); font-size: 1.1rem; margin-bottom: .6rem; }
+  .review-card p { font-size: .95rem; color: rgba(255,255,255,.82); line-height: 1.6; margin-bottom: .8rem; font-style: italic; }
+  .review-author { font-weight: 800; color: var(--r-color); font-size: .9rem; }
+
+  /* ─── LOCATION ─── */
+  .location { background: linear-gradient(135deg, #0d001a 0%, #1a0d00 100%); }
+  .location .sec-title { color: var(--c-purple); }
+  .loc-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem; align-items: start;
+  }
+  @media(max-width:700px){ .loc-inner{grid-template-columns:1fr;} }
+  .loc-data { display: flex; flex-direction: column; gap: 1rem; }
+  .loc-row {
+    background: rgba(255,255,255,.07); border-radius: 14px; padding: 1.2rem 1.4rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .loc-icon { font-size: 1.8rem; }
+  .loc-row h4 { font-family: var(--font-sub); color: var(--c-yellow); font-size: 1rem; }
+  .loc-row p, .loc-row a { font-size: .92rem; color: rgba(255,255,255,.78); text-decoration: none; line-height: 1.55; }
+  .loc-row a { color: var(--c-teal); font-weight: 700; }
+  .loc-row a:hover { text-decoration: underline; }
+  .map-box {
+    border-radius: 20px; overflow: hidden;
+    border: 3px solid var(--c-purple);
+    box-shadow: 0 0 40px rgba(170,0,255,.3);
+  }
+  .map-box iframe { display: block; width: 100%; height: 320px; border: none; }
+
+  /* ─── SOCIAL BAR ─── */
+  .social-bar {
+    background: var(--c-dark);
+    border-top: 2px solid rgba(255,255,255,.08);
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+  .social-bar h2 {
+    font-family: var(--font-head); font-size: 2.5rem;
+    background: linear-gradient(90deg, var(--c-pink), var(--c-purple));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+  }
+  .social-links {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem;
+  }
+  .soc-btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .75rem 1.6rem; border-radius: 50px;
+    text-decoration: none; font-family: var(--font-sub);
+    font-size: 1.05rem; font-weight: 600;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .soc-btn:hover { transform: scale(1.07); box-shadow: 0 6px 22px rgba(0,0,0,.4); }
+  .soc-ig { background: linear-gradient(45deg, #f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+  .soc-tt { background: #000; color: #fff; border: 2px solid #fff; }
+  .soc-fb { background: #1877F2; color: #fff; }
+  .soc-wa { background: #25D366; color: #000; }
+  .soc-mail { background: var(--c-yellow); color: #000; }
+  .soc-web { background: var(--c-blue); color: #fff; }
+  .soc-btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    background: linear-gradient(135deg, var(--c-red) 0%, var(--c-orange) 50%, var(--c-yellow) 100%);
+    padding: 4rem 1.5rem; text-align: center;
+  }
+  .final-cta h2 {
+    font-family: var(--font-head); font-size: clamp(2.5rem, 7vw, 5rem);
+    color: #fff; letter-spacing: 2px; margin-bottom: .8rem;
+    text-shadow: 3px 3px 0 rgba(0,0,0,.25);
+  }
+  .final-cta p { font-size: 1.2rem; color: rgba(0,0,0,.75); font-weight: 700; margin-bottom: 2rem; }
+  .cta-big-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .cta-big {
+    display: inline-flex; align-items: center; gap: .6rem;
+    padding: 1rem 2.4rem; border-radius: 60px;
+    font-family: var(--font-sub); font-size: 1.2rem;
+    text-decoration: none; font-weight: 600;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 6px 25px rgba(0,0,0,.3);
+  }
+  .cta-big:hover { transform: scale(1.06); box-shadow: 0 10px 35px rgba(0,0,0,.5); }
+  .cta-wa2 { background: #25D366; color: #000; }
+  .cta-tel2 { background: #fff; color: #000; }
+  .cta-res2 { background: #0D0D1A; color: var(--c-yellow); border: 2px solid var(--c-yellow); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #080810; border-top: 3px solid rgba(255,255,255,.05);
+    padding: 1.5rem; text-align: center;
+    font-size: .82rem; color: rgba(255,255,255,.35);
+  }
+  footer a { color: rgba(255,255,255,.4); text-decoration: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:500px){
+    .header-btns .btn-tel { display: none; }
+    .logo-text { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header>
+  <div class="logo-text">⚔️ POBLADO MEDIEVAL</div>
+  <div class="header-btns">
+    <a href="tel:+34915310327" class="btn-tel">📞 915 310 327</a>
+    <a href="https://wa.link/m6s3q4" target="_blank" class="btn-wa">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.523 5.857L.057 23.514a.75.75 0 0 0 .924.924l5.684-1.473A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.585-.498-5.077-1.368l-.364-.213-3.753.972.996-3.719-.235-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🔥 +800 RESEÑAS · SOLO A 1H DE MADRID 🔥</div>
+  <h1>DESPEDIDAS<br>ÉPICAS EN<br>SALAMANCA</h1>
+  <p class="hero-sub">Alojamiento · Pensión completa · Bebidas · +13 Actividades · Discoteca · TODO EN UN SOLO LUGAR</p>
+  <div class="hero-tags">
+    <span class="tag t1">🏰 Finca Exclusiva</span>
+    <span class="tag t2">🌊 Río Tormes</span>
+    <span class="tag t3">🎉 Todo Incluido</span>
+    <span class="tag t4">🏄 Actividades Acuáticas</span>
+    <span class="tag t5">🎵 Discoteca Nocturna</span>
+    <span class="tag t6">👑 Novi@ GRATIS</span>
+  </div>
+  <a href="https://wa.link/m6s3q4" target="_blank" class="cta-hero">¡QUIERO INFO AHORA!</a>
+  <div class="scroll-hint">↓ SCROLL ↓</div>
+</section>
+
+<!-- SCROLLING FACTS -->
+<div class="facts-strip">
+  <div class="facts-track">
+    <span class="fact-item">⚔️ +20.000 clientes felices</span><span class="fact-sep">✦</span>
+    <span class="fact-item">📍 Solo 1h de Madrid</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🏊 Deslizador más largo de España</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🌊 Junto al río Tormes</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🎡 +13 Actividades incluidas</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🍺 Barra libre incluida</span><span class="fact-sep">✦</span>
+    <span class="fact-item">👑 Novi@ gratis desde 12 personas</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🎉 Fiesta con otros grupos</span><span class="fact-sep">✦</span>
+    <span class="fact-item">⚔️ +20.000 clientes felices</span><span class="fact-sep">✦</span>
+    <span class="fact-item">📍 Solo 1h de Madrid</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🏊 Deslizador más largo de España</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🌊 Junto al río Tormes</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🎡 +13 Actividades incluidas</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🍺 Barra libre incluida</span><span class="fact-sep">✦</span>
+    <span class="fact-item">👑 Novi@ gratis desde 12 personas</span><span class="fact-sep">✦</span>
+    <span class="fact-item">🎉 Fiesta con otros grupos</span><span class="fact-sep">✦</span>
+  </div>
+</div>
+
+<!-- WHY SECTION -->
+<section class="why">
+  <div class="container">
+    <h2 class="sec-title">¿POR QUÉ POBLADO MEDIEVAL?</h2>
+    <p class="sec-sub">Datos y secretos que no encontrarás fácilmente en ningún otro sitio</p>
+    <div class="why-grid">
+      <div class="why-card" style="--card-grad:linear-gradient(135deg,#FF2D55,#FF6B00);--card-accent:#FF6B00">
+        <span class="why-icon">🎢</span>
+        <h3>El Deslizador Más Largo</h3>
+        <p>Tienen el <strong>tobogán acuático gigante más largo de España</strong>. Sobre flotadores, con curvas y velocidad. Solo en verano, incluido en el precio.</p>
+      </div>
+      <div class="why-card" style="--card-grad:linear-gradient(135deg,#FFD600,#00C853);--card-accent:#FFD600">
+        <span class="why-icon">⚔️</span>
+        <h3>Humor Amarillo Grand Prix</h3>
+        <p>No es un juego cualquiera: <strong>5 pruebas medievales</strong> diseminadas por toda la finca. Compites contra tu grupo Y contra otros grupos de despedidas.</p>
+      </div>
+      <div class="why-card" style="--card-grad:linear-gradient(135deg,#00BCD4,#2979FF);--card-accent:#00BCD4">
+        <span class="why-icon">🌊</span>
+        <h3>Junto al Río Tormes</h3>
+        <p>La finca está a orillas del río Tormes. Hay <strong>zona de río-playa, canoas, y chiringuito</strong>. Todo a pie de agua sin coger el coche.</p>
+      </div>
+      <div class="why-card" style="--card-grad:linear-gradient(135deg,#AA00FF,#FF4081);--card-accent:#AA00FF">
+        <span class="why-icon">🏰</span>
+        <h3>Pueblo Medieval Real</h3>
+        <p>El complejo está en <strong>Puente del Congosto</strong>, un pueblo medieval con castillo del siglo XV y calles empedradas. La ambientación es auténtica.</p>
+      </div>
+      <div class="why-card" style="--card-grad:linear-gradient(135deg,#00C853,#00BCD4);--card-accent:#00C853">
+        <span class="why-icon">👥</span>
+        <h3>Conoces a Otros Grupos</h3>
+        <p>No estaréis solos. <strong>Varios grupos de despedidas comparten finca</strong>, actividades, cena y discoteca. Hacéis amigos y la noche se multiplica.</p>
+      </div>
+      <div class="why-card" style="--card-grad:linear-gradient(135deg,#FF6B00,#FFD600);--card-accent:#FFD600">
+        <span class="why-icon">🚗</span>
+        <h3>Sin Mover El Coche</h3>
+        <p>Todo en la misma finca: cabañas, restaurante, actividades, discoteca. <strong>Aparcar y olvidar las llaves</strong> todo el fin de semana. Parking gratuito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECRETS SECTION -->
+<section class="secrets">
+  <div class="container">
+    <h2 class="sec-title">🤫 DATOS SECRETOS QUE NO SABÍAS</h2>
+    <p class="sec-sub">Curiosidades que hacen de Poblado Medieval algo único en España</p>
+    <div class="secrets-grid">
+      <div class="secret-card" style="--s-color:#FFD600">
+        <div class="secret-num">01</div>
+        <h3>20.000 clientes y siguen contando</h3>
+        <p>Más de veinte mil personas han celebrado aquí su despedida. Hay clientes que han venido <strong>desde las Islas Canarias</strong> expresamente a Salamanca. La fama ha cruzado el océano.</p>
+      </div>
+      <div class="secret-card" style="--s-color:#FF2D55">
+        <div class="secret-num">02</div>
+        <h3>La Rana de la Suerte está cerca</h3>
+        <p>La Universidad de Salamanca, a 40 min, esconde la famosa <strong>rana de la buena suerte</strong> en su fachada. Quien la encuentra de un vistazo aprueba todos sus exámenes según la leyenda.</p>
+      </div>
+      <div class="secret-card" style="--s-color:#00BCD4">
+        <div class="secret-num">03</div>
+        <h3>El Astronauta en la Catedral</h3>
+        <p>La Catedral Nueva de Salamanca tiene una figura de astronauta tallada en 1992 en su fachada. <strong>Solo los más atentos lo encuentran</strong>. Perfecto para la gymkhana de la despedida.</p>
+      </div>
+      <div class="secret-card" style="--s-color:#00C853">
+        <div class="secret-num">04</div>
+        <h3>Nació para superar las casas rurales</h3>
+        <p>Poblado Medieval se creó como <strong>alternativa directa a las casas rurales</strong>: mismo entorno natural pero con actividades organizadas, barra libre, discoteca y animación. Sin la pereza logística.</p>
+      </div>
+      <div class="secret-card" style="--s-color:#AA00FF">
+        <div class="secret-num">05</div>
+        <h3>El Novi@ de verdad GRATIS</h3>
+        <p>Con mínimo 12 personas (11 + el/la protagonista), <strong>el novio o la novia entra gratis</strong> en planes Premium, Plus, Aqua Party 2×1 e Invierno. Una oferta real, no un truco de marketing.</p>
+      </div>
+      <div class="secret-card" style="--s-color:#FF6B00">
+        <div class="secret-num">06</div>
+        <h3>El invierno tiene su magia</h3>
+        <p>En invierno los precios bajan y hay <strong>exclusividad total de la finca</strong>. Solo vuestro grupo. Sin competencia en los juegos. Más íntimo, igual de divertido, con Humor Amarillo bajo las estrellas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="planes">
+  <div class="container">
+    <h2 class="sec-title">💥 ELIGE TU PLAN</h2>
+    <p class="sec-sub">Desde 55€ por persona hasta el paquete total con todo incluido. Sin sorpresas, sin letras pequeñas.</p>
+    <div class="planes-grid">
+      <div class="plan-card" style="--p-bg:linear-gradient(135deg,#2979FF,#00BCD4);--p-accent:#00BCD4">
+        <div class="plan-head">
+          <div class="plan-emoji">☀️</div>
+          <h3>Plan de Día</h3>
+          <div class="plan-badge">Sin mínimo de personas</div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-price">55€ <span>/ persona</span></div>
+          <ul>
+            <li>Actividades durante el día</li>
+            <li>Humor Amarillo incluido</li>
+            <li>Sin alojamiento</li>
+            <li>Ideal si vienes de día</li>
+          </ul>
+        </div>
+        <a href="https://www.pobladomedieval.es/planes/plan-dia/" target="_blank" class="plan-cta" style="--p-bg:linear-gradient(135deg,#2979FF,#00BCD4)">Ver plan →</a>
+      </div>
+      <div class="plan-card" style="--p-bg:linear-gradient(135deg,#FF6B00,#FFD600);--p-accent:#FFD600">
+        <div class="plan-head">
+          <div class="plan-emoji">🎉</div>
+          <h3>Plan Fin de Semana</h3>
+          <div class="plan-badge">Mínimo 7 personas</div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-price">150€ <span>/ persona</span></div>
+          <ul>
+            <li>Alojamiento en cabañas</li>
+            <li>Pensión completa</li>
+            <li>Actividades incluidas</li>
+            <li>Fiesta nocturna</li>
+          </ul>
+        </div>
+        <a href="https://www.pobladomedieval.es/planes/plan-fin-semana/" target="_blank" class="plan-cta" style="--p-bg:linear-gradient(135deg,#FF6B00,#FFD600)">Ver plan →</a>
+      </div>
+      <div class="plan-card" style="--p-bg:linear-gradient(135deg,#AA00FF,#FF4081);--p-accent:#FF4081">
+        <div class="plan-head" style="position:relative">
+          <div class="plan-emoji">👑</div>
+          <h3>Plan Premium</h3>
+          <div class="plan-badge">⭐ Novi@ GRATIS (12+)</div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-price">165€ <span>/ persona</span></div>
+          <ul>
+            <li>Todo del Fin de Semana</li>
+            <li>Barra libre en comidas</li>
+            <li>Extras premium</li>
+            <li>Novi@ gratis 12+ pax</li>
+          </ul>
+        </div>
+        <a href="https://www.pobladomedieval.es/planes/plan-premium/" target="_blank" class="plan-cta" style="--p-bg:linear-gradient(135deg,#AA00FF,#FF4081)">Ver plan →</a>
+      </div>
+      <div class="plan-card" style="--p-bg:linear-gradient(135deg,#FF2D55,#FF6B00);--p-accent:#FF6B00">
+        <div class="plan-head">
+          <div class="plan-emoji">🔥</div>
+          <h3>Plan Plus</h3>
+          <div class="plan-badge">⭐ El más completo</div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-price">179€ <span>/ persona</span></div>
+          <ul>
+            <li>Todo el Premium</li>
+            <li>Actividades extra</li>
+            <li>Sorpresas adicionales</li>
+            <li>Novi@ gratis 12+ pax</li>
+          </ul>
+        </div>
+        <a href="https://www.pobladomedieval.es/planes/plan-plus/" target="_blank" class="plan-cta" style="--p-bg:linear-gradient(135deg,#FF2D55,#FF6B00)">Ver plan →</a>
+      </div>
+      <div class="plan-card" style="--p-bg:linear-gradient(135deg,#00BCD4,#00C853);--p-accent:#00C853">
+        <div class="plan-head">
+          <div class="plan-emoji">🏊</div>
+          <h3>Aqua Party 2×1</h3>
+          <div class="plan-badge">Solo en verano</div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-price">150€ <span>/ persona</span></div>
+          <ul>
+            <li>Deslizador gigante</li>
+            <li>Aqua Cash + Aqua Party</li>
+            <li>Canoas en el río</li>
+            <li>Novi@ gratis 12+ pax</li>
+          </ul>
+        </div>
+        <a href="https://www.pobladomedieval.es/planes/plan-2x1-verano/" target="_blank" class="plan-cta" style="--p-bg:linear-gradient(135deg,#00BCD4,#00C853)">Ver plan →</a>
+      </div>
+      <div class="plan-card" style="--p-bg:linear-gradient(135deg,#2979FF,#AA00FF);--p-accent:#AA00FF">
+        <div class="plan-head">
+          <div class="plan-emoji">❄️</div>
+          <h3>Plan Invierno</h3>
+          <div class="plan-badge">Oct. a Mar. · Finca exclusiva</div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-price">Desde 110€ <span>/ persona</span></div>
+          <ul>
+            <li>Finca SOLO para vosotros</li>
+            <li>Humor Amarillo 6 pruebas</li>
+            <li>Barra libre incluida</li>
+            <li>Novi@ gratis 12+ pax</li>
+          </ul>
+        </div>
+        <a href="https://www.pobladomedieval.es/planes/plan-escapada-invierno/" target="_blank" class="plan-cta" style="--p-bg:linear-gradient(135deg,#2979FF,#AA00FF)">Ver plan →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVIDADES -->
+<section class="activities">
+  <div class="container">
+    <h2 class="sec-title">🎯 +13 ACTIVIDADES INCLUIDAS</h2>
+    <p class="sec-sub">Todas incluidas en el precio. Ninguna se paga aparte. Monitores profesionales en todo momento.</p>
+    <div class="act-grid">
+      <span class="act-pill" style="background:#FF2D55;color:#fff">⚽ Fútbol Burbuja</span>
+      <span class="act-pill" style="background:#FF6B00;color:#000">😂 Humor Amarillo Grand Prix</span>
+      <span class="act-pill" style="background:#FFD600;color:#000">🎤 Karaoke</span>
+      <span class="act-pill" style="background:#00C853;color:#000">⚔️ Gladiator: Lucha</span>
+      <span class="act-pill" style="background:#00BCD4;color:#000">🎯 Gymkhana</span>
+      <span class="act-pill" style="background:#2979FF;color:#fff">🎉 Concurso Furor</span>
+      <span class="act-pill" style="background:#AA00FF;color:#fff">🐛 Gusano Loco</span>
+      <span class="act-pill" style="background:#FF4081;color:#fff">🥔 Patata Caliente</span>
+      <span class="act-pill" style="background:#FF2D55;color:#fff">🤸 Tragabolas Humano</span>
+      <span class="act-pill" style="background:#FFD600;color:#000">📸 Photocall</span>
+      <span class="act-pill" style="background:#00C853;color:#000">🐂 Toro Mecánico</span>
+      <span class="act-pill" style="background:#00BCD4;color:#000">🚣 Paseo en Canoa</span>
+      <span class="act-pill" style="background:#FF6B00;color:#000">💦 Aqua Cash</span>
+      <span class="act-pill" style="background:#2979FF;color:#fff">🎊 Aqua Party</span>
+      <span class="act-pill" style="background:#AA00FF;color:#fff">🛝 Deslizador Gigante Acuático</span>
+    </div>
+  </div>
+</section>
+
+<!-- OPINIONES -->
+<section class="opiniones">
+  <div class="container">
+    <h2 class="sec-title">⭐ LO QUE DICEN ELLOS</h2>
+    <p class="sec-sub">+800 reseñas reales. Aquí tienes solo algunas. Lee todas en la web oficial.</p>
+    <div class="reviews-grid">
+      <div class="review-card" style="--r-color:#FFD600">
+        <div class="stars">★★★★★</div>
+        <p>"Muchísimas gracias por todo. Trato de 10 y personal increíble. Se lo recomiendo a todo el mundo. La mejor despedida que he visto."</p>
+        <div class="review-author">— Alberto García Díaz</div>
+      </div>
+      <div class="review-card" style="--r-color:#FF4081">
+        <div class="stars">★★★★★</div>
+        <p>"Absolutamente espectacular, lo hemos pasado como enanas. Sois unos profesionales. El día de la boda será inolvidable pero la despedida fue HISTÓRICA."</p>
+        <div class="review-author">— Patricia Andrés</div>
+      </div>
+      <div class="review-card" style="--r-color:#00BCD4">
+        <div class="stars">★★★★★</div>
+        <p>"Estuvimos el fin de semana y fue una experiencia increíble. Personal super amable y atento. Las actividades muy chulas. Si podemos, repetiremos."</p>
+        <div class="review-author">— Pedro Antonio Álvarez</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="https://www.pobladomedieval.es/opiniones/" target="_blank" style="display:inline-block;background:rgba(255,255,255,.1);border:2px solid var(--c-orange);color:var(--c-orange);padding:.8rem 2rem;border-radius:50px;text-decoration:none;font-family:var(--font-sub);font-size:1rem;transition:background .2s" onmouseover="this.style.background='rgba(255,107,0,.2)'" onmouseout="this.style.background='rgba(255,255,255,.1)'">
+        📖 Leer todas las opiniones →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location">
+  <div class="container">
+    <h2 class="sec-title">📍 CÓMO LLEGAR</h2>
+    <p class="sec-sub">En el corazón de Salamanca, entre Madrid y la Sierra. Con parking gratuito en la finca.</p>
+    <div class="loc-inner">
+      <div class="loc-data">
+        <div class="loc-row">
+          <div class="loc-icon">📍</div>
+          <div>
+            <h4>Dirección</h4>
+            <p>Calle Camino del Tejado, s/n<br>37748 Puente del Congosto, Salamanca</p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon">🚗</div>
+          <div>
+            <h4>Desde Madrid</h4>
+            <p>Solo <strong>1 hora</strong> en coche. A 165 km por la A-5 dirección Salamanca. Perfecta distancia para un fin de semana.</p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon">📞</div>
+          <div>
+            <h4>Teléfonos</h4>
+            <a href="tel:+34915310327">+34 915 310 327</a><br>
+            <a href="tel:+34609985726">+34 609 985 726</a>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon">💬</div>
+          <div>
+            <h4>WhatsApp</h4>
+            <a href="https://wa.link/m6s3q4" target="_blank">+34 686 948 128 → Escríbenos ahora</a>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:info@pobladomedieval.es">info@pobladomedieval.es</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3028.3!2d-5.5251!3d40.4828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd7ab1e4e837da100!2sPoblado+Medieval!5e0!3m2!1ses!2ses!4v1680000000000"
+          allowfullscreen="" loading="lazy"
+          title="Mapa Poblado Medieval">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <h2>🔗 SÍGUENOS Y CONTACTA</h2>
+  <div class="social-links">
+    <a href="https://www.instagram.com/pobladomedieval/" target="_blank" class="soc-btn soc-ig">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.tiktok.com/@pobladomedieval" target="_blank" class="soc-btn soc-tt">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.22 8.22 0 0 0 4.79 1.52V6.74a4.85 4.85 0 0 1-1.02-.05z"/></svg>
+      TikTok
+    </a>
+    <a href="https://www.facebook.com/Despedidas.Poblado.Medieval/" target="_blank" class="soc-btn soc-fb">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a href="https://wa.link/m6s3q4" target="_blank" class="soc-btn soc-wa">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.523 5.857L.057 23.514a.75.75 0 0 0 .924.924l5.684-1.473A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.585-.498-5.077-1.368l-.364-.213-3.753.972.996-3.719-.235-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:info@pobladomedieval.es" class="soc-btn soc-mail">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Email
+    </a>
+    <a href="https://www.pobladomedieval.es" target="_blank" class="soc-btn soc-web">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      Web oficial
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>¡NO ESPERES MÁS!</h2>
+  <p>Las fechas se agotan rápido. Reserva ahora y asegura la despedida más épica de tu vida.</p>
+  <div class="cta-big-btns">
+    <a href="https://wa.link/m6s3q4" target="_blank" class="cta-big cta-wa2">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.523 5.857L.057 23.514a.75.75 0 0 0 .924.924l5.684-1.473A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.585-.498-5.077-1.368l-.364-.213-3.753.972.996-3.719-.235-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Escríbenos por WhatsApp
+    </a>
+    <a href="tel:+34915310327" class="cta-big cta-tel2">
+      📞 Llamar ahora
+    </a>
+    <a href="https://www.pobladomedieval.es/planes/" target="_blank" class="cta-big cta-res2">
+      ⚔️ Ver todos los planes
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Contenido basado en información pública de <a href="https://www.pobladomedieval.es" target="_blank">pobladomedieval.es</a> · Poblado Medieval, Puente del Congosto, Salamanca · Este sitio no es el sitio oficial</p>
+</footer>
+
+</body>
+</html>
