@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wesson's Canine Bakery — Veteran Owned Dog Treat Company</title>
+<meta name="description" content="Veteran Owned Dog Treat Company local to Indiana who focuses on the health and well-being of the whole health of the dogs in our lives.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF6EE;
+    --warm-white: #FDF9F3;
+    --brown: #6B3D14;
+    --dark-brown: #3E1F05;
+    --caramel: #C47B2B;
+    --honey: #E8A038;
+    --sage: #7B8C6A;
+    --light-sage: #D4DBC9;
+    --paw: #8B5E3C;
+    --text: #2E1A0E;
+    --muted: #7A6552;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,246,238,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(107,61,20,0.12);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.25rem;
+    color: var(--brown);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-logo span { color: var(--caramel); }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { background: var(--light-sage); color: var(--brown); }
+
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a::after { content: ' ▾'; font-size: 0.7rem; }
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--warm-white);
+    border: 1px solid rgba(107,61,20,0.12);
+    border-radius: 8px;
+    min-width: 220px;
+    padding: 0.5rem 0;
+    box-shadow: 0 8px 32px rgba(107,61,20,0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: all 0.2s;
+  }
+  .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dropdown-menu a {
+    display: block;
+    padding: 0.55rem 1.25rem;
+    border-radius: 0;
+    font-size: 0.8rem;
+  }
+  .dropdown-menu a:hover { background: var(--light-sage); }
+
+  .nav-cta {
+    background: var(--brown) !important;
+    color: var(--cream) !important;
+    border-radius: 6px !important;
+    padding: 0.5rem 1.1rem !important;
+  }
+  .nav-cta:hover { background: var(--dark-brown) !important; color: var(--cream) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 68px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(196,123,43,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(123,140,106,0.1) 0%, transparent 60%);
+  }
+
+  /* Paw print watermarks */
+  .hero-bg::before {
+    content: '🐾';
+    position: absolute;
+    font-size: 18rem;
+    opacity: 0.04;
+    bottom: -2rem;
+    right: 5%;
+    transform: rotate(-20deg);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--light-sage);
+    color: var(--sage);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--dark-brown);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero-title em { color: var(--caramel); font-style: italic; }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--brown);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--dark-brown); transform: translateY(-1px); }
+
+  .btn-outline {
+    border: 2px solid var(--brown);
+    color: var(--brown);
+    text-decoration: none;
+    padding: 0.82rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--brown); color: var(--cream); transform: translateY(-1px); }
+
+  .hero-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 4rem 3rem 2rem;
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 1s 0.3s ease both;
+  }
+
+  .hero-image-card {
+    background: var(--warm-white);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(107,61,20,0.18), 0 8px 24px rgba(107,61,20,0.1);
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4/5;
+    position: relative;
+  }
+
+  .hero-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-image-card .product-label {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    background: rgba(250,246,238,0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+  }
+  .product-label h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+  }
+  .product-label p { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+  .product-label .price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--caramel);
+    margin-top: 0.4rem;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--brown);
+    color: var(--cream);
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+  .trust-item .icon { font-size: 1.2rem; }
+
+  /* ── SECTION GENERIC ── */
+  section { padding: 6rem 6rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: var(--dark-brown);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title em { color: var(--caramel); font-style: italic; }
+
+  .section-body {
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 1rem;
+    max-width: 620px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    padding: 6rem;
+  }
+
+  .about-image {
+    position: relative;
+  }
+
+  .about-image-frame {
+    background: var(--light-sage);
+    border-radius: 20px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-image-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(196,123,43,0.15));
+  }
+
+  .about-tag {
+    position: absolute;
+    top: -1.5rem;
+    right: -1.5rem;
+    background: var(--caramel);
+    color: white;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(196,123,43,0.3);
+  }
+  .about-tag span { display: block; font-size: 1.8rem; font-weight: 900; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .stat-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid rgba(107,61,20,0.1);
+  }
+  .stat-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--caramel);
+  }
+  .stat-card .label { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── PRODUCTS ── */
+  .products { background: var(--cream); }
+
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .product-card {
+    background: var(--warm-white);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(107,61,20,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(107,61,20,0.14); }
+
+  .product-card-img {
+    aspect-ratio: 4/3;
+    background: var(--light-sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .product-card-body { padding: 1.25rem; }
+  .product-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    margin-bottom: 0.4rem;
+  }
+  .product-card-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+  .product-card-body .card-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--caramel);
+    margin-top: 0.75rem;
+  }
+
+  /* ── CATEGORIES ── */
+  .categories { background: var(--dark-brown); color: var(--cream); }
+
+  .categories .section-title { color: var(--cream); }
+  .categories .section-body { color: rgba(250,246,238,0.7); }
+  .categories .section-label { color: var(--honey); }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .cat-card {
+    background: rgba(250,246,238,0.06);
+    border: 1px solid rgba(250,246,238,0.12);
+    border-radius: 16px;
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--cream);
+    display: block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cat-card:hover { background: rgba(250,246,238,0.12); transform: translateY(-2px); }
+  .cat-card .cat-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .cat-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .cat-card p { font-size: 0.85rem; color: rgba(250,246,238,0.65); line-height: 1.65; }
+  .cat-card .arrow { margin-top: 1.25rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--honey); }
+
+  /* ── EVENTS ── */
+  .events { background: var(--warm-white); }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .event-card {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 1.75rem;
+    border: 1px solid rgba(107,61,20,0.1);
+    transition: transform 0.2s;
+  }
+  .event-card:hover { transform: translateY(-3px); }
+
+  .event-date {
+    background: var(--caramel);
+    color: white;
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .event-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    margin-bottom: 0.4rem;
+  }
+  .event-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── MISSION STRIP ── */
+  .mission {
+    background: linear-gradient(135deg, var(--caramel) 0%, var(--honey) 100%);
+    color: white;
+    text-align: center;
+    padding: 5rem 6rem;
+  }
+  .mission blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-style: italic;
+    font-weight: 400;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .mission cite {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    opacity: 0.85;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark-brown);
+    color: var(--cream);
+    padding: 4rem 6rem 2rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(250,246,238,0.1);
+  }
+
+  .footer-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+  }
+  .footer-brand h2 span { color: var(--honey); }
+  .footer-brand p { font-size: 0.85rem; color: rgba(250,246,238,0.65); line-height: 1.75; max-width: 280px; }
+
+  .footer-social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .social-btn {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    background: rgba(250,246,238,0.08);
+    border: 1px solid rgba(250,246,238,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+    color: var(--cream);
+  }
+  .social-btn:hover { background: var(--caramel); }
+
+  .footer-col h4 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--honey);
+    margin-bottom: 1.25rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.65rem; }
+  .footer-col ul a {
+    text-decoration: none;
+    color: rgba(250,246,238,0.65);
+    font-size: 0.87rem;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: rgba(250,246,238,0.4);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-bottom a { color: rgba(250,246,238,0.5); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--cream); }
+
+  .vet-badge {
+    background: rgba(250,246,238,0.06);
+    border: 1px solid rgba(250,246,238,0.12);
+    border-radius: 8px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    section { padding: 4rem 2rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 68px; }
+    .hero-content { padding: 3rem 2rem 2rem; }
+    .hero-image { padding: 0 2rem 3rem; }
+    .about { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2.5rem; }
+    .about-tag { top: -1rem; right: 0; }
+    .cat-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .mission { padding: 4rem 2rem; }
+    .trust-bar { gap: 2rem; padding: 1.5rem 2rem; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .footer-top { grid-template-columns: 1fr; }
+    .products-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="https://www.wessonscaninebakery.com/" class="nav-logo">Wesson's <span>Canine Bakery</span></a>
+  <ul class="nav-links">
+    <li><a href="https://www.wessonscaninebakery.com/">Home</a></li>
+    <li><a href="https://www.wessonscaninebakery.com/meet-the-team">Meet the Team</a></li>
+    <li class="nav-dropdown">
+      <a href="https://www.wessonscaninebakery.com/product-services">Products & Services</a>
+      <div class="dropdown-menu">
+        <a href="https://www.wessonscaninebakery.com/treats-2">🍖 Treats</a>
+        <a href="https://www.wessonscaninebakery.com/canine-health-products">💚 Canine Health Products</a>
+        <a href="https://www.wessonscaninebakery.com/dog-boutique">🛍️ Dog Boutique</a>
+        <a href="https://www.wessonscaninebakery.com/new-page">💍 Pet Wedding Services</a>
+      </div>
+    </li>
+    <li><a href="https://www.wessonscaninebakery.com/upcoming-events-1">Events</a></li>
+    <li><a href="https://www.wessonscaninebakery.com/treats-2" class="nav-cta">Shop Now</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">🎖️ Veteran Owned · Indiana Local</div>
+    <h1 class="hero-title">
+      Baked with Love,<br>
+      <em>Crafted for Health.</em>
+    </h1>
+    <p class="hero-desc">
+      From Canine Nutrition expertise to your dog's bowl — every treat is rigorously tested for quality, purity, and nutritional benefit. Because your fur baby deserves better.
+    </p>
+    <div class="hero-actions">
+      <a href="https://www.wessonscaninebakery.com/treats-2" class="btn-primary">Shop Treats</a>
+      <a href="https://www.wessonscaninebakery.com/meet-the-team" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <div class="hero-image-card">
+      <img src="https://images.squarespace-cdn.com/content/v1/5c1939420dbda34c14634509/58e616c2-9997-459d-817f-9456582dd78c/IMG_1867.JPG"
+           alt="Canine Copaiba Flavored Cookies"
+           onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex'">
+      <div class="fallback" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:7rem; background:var(--light-sage);">🦴</div>
+      <div class="product-label">
+        <h3>Canine Copaiba Cookies</h3>
+        <p>Essential oil · Turmeric · Cinnamon</p>
+        <div class="price">$10.00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="icon">✅</span> State Licensed</div>
+  <div class="trust-item"><span class="icon">🔬</span> Rigorously Tested</div>
+  <div class="trust-item"><span class="icon">🌿</span> Natural Ingredients</div>
+  <div class="trust-item"><span class="icon">🎖️</span> Veteran Owned</div>
+  <div class="trust-item"><span class="icon">🐾</span> Whole Health Focus</div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about">
+  <div class="about-image">
+    <div class="about-image-frame">🐕</div>
+    <div class="about-tag">
+      <span>100%</span>
+      Whole Health
+    </div>
+  </div>
+  <div>
+    <p class="section-label">Our Mission</p>
+    <h2 class="section-title">Born from a <em>desire to do better</em></h2>
+    <p class="section-body">
+      After the loss of Hannah's childhood dog due to preventable causes, she pursued a degree in Canine Nutrition — learning to formulate healthy meals and treats with real nutritional benefits.
+    </p>
+    <p class="section-body" style="margin-top:1rem;">
+      Every product is put through a strenuous process to ensure quality and purity before it ever reaches your dog's bowl. We proudly abide by all proper state licensing and strive to be a lifelong source of support for your family's whole-dog well-being.
+    </p>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="num">100%</div>
+        <div class="label">Natural Ingredients</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">State</div>
+        <div class="label">Licensed & Compliant</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">Tested</div>
+        <div class="label">Every Flavor & Product</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">Free</div>
+        <div class="label">Canine Advice Available</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;">
+      <a href="https://www.wessonscaninebakery.com/meet-the-team" class="btn-primary">Meet Hannah & the Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section class="products">
+  <div class="products-header">
+    <div>
+      <p class="section-label">Featured Products</p>
+      <h2 class="section-title">Treats your dog <em>will love</em></h2>
+    </div>
+    <a href="https://www.wessonscaninebakery.com/treats-2" class="btn-outline">View All Treats →</a>
+  </div>
+
+  <div class="products-grid">
+    <a href="https://www.wessonscaninebakery.com/treats-2/p/copaiba-cookies" class="product-card">
+      <div class="product-card-img">
+        <img src="https://images.squarespace-cdn.com/content/v1/5c1939420dbda34c14634509/58e616c2-9997-459d-817f-9456582dd78c/IMG_1867.JPG"
+             alt="Copaiba Cookies"
+             onerror="this.style.display='none'">
+        <span style="position:absolute">🍪</span>
+      </div>
+      <div class="product-card-body">
+        <h3>Canine Copaiba Cookies</h3>
+        <p>Copaiba essential oil, turmeric & cinnamon for whole-body support.</p>
+        <div class="card-price">$10.00</div>
+      </div>
+    </a>
+
+    <a href="https://www.wessonscaninebakery.com/canine-health-products" class="product-card">
+      <div class="product-card-img" style="background:var(--cream);">
+        <span>💚</span>
+      </div>
+      <div class="product-card-body">
+        <h3>Canine Health Products</h3>
+        <p>Skin care, supplements, and wellness products formulated for dogs.</p>
+        <div class="card-price">Shop Now →</div>
+      </div>
+    </a>
+
+    <a href="https://www.wessonscaninebakery.com/dog-boutique" class="product-card">
+      <div class="product-card-img" style="background:#f0e8d5;">
+        <span>🛍️</span>
+      </div>
+      <div class="product-card-body">
+        <h3>Dog Boutique</h3>
+        <p>Curated accessories and lifestyle products for the discerning pup.</p>
+        <div class="card-price">Explore →</div>
+      </div>
+    </a>
+
+    <a href="https://www.wessonscaninebakery.com/new-page" class="product-card">
+      <div class="product-card-img" style="background:#ede8f5;">
+        <span>💍</span>
+      </div>
+      <div class="product-card-body">
+        <h3>Pet Wedding Attendant Services</h3>
+        <p>Make your special day even more memorable with your fur baby.</p>
+        <div class="card-price">Learn More →</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── CATEGORIES ── -->
+<section class="categories">
+  <div style="max-width:520px;">
+    <p class="section-label">Everything Your Dog Needs</p>
+    <h2 class="section-title">The complete canine <em>wellness destination</em></h2>
+  </div>
+  <div class="cat-grid">
+    <a href="https://www.wessonscaninebakery.com/treats-2" class="cat-card">
+      <div class="cat-icon">🦴</div>
+      <h3>Artisan Dog Treats</h3>
+      <p>Handcrafted in small batches with nutritionist-approved, all-natural ingredients. Each treat is tested for purity before hitting our shelves.</p>
+      <div class="arrow">Shop Treats →</div>
+    </a>
+    <a href="https://www.wessonscaninebakery.com/canine-health-products" class="cat-card">
+      <div class="cat-icon">🌿</div>
+      <h3>Health & Wellness</h3>
+      <p>From skin care to supplements — products designed to support your dog's whole health, inside and out.</p>
+      <div class="arrow">View Products →</div>
+    </a>
+    <a href="https://www.wessonscaninebakery.com/dog-boutique" class="cat-card">
+      <div class="cat-icon">✨</div>
+      <h3>Dog Boutique</h3>
+      <p>Stylish, thoughtfully curated accessories that celebrate the joy dogs bring to our lives.</p>
+      <div class="arrow">Browse Boutique →</div>
+    </a>
+    <a href="https://www.wessonscaninebakery.com/new-page" class="cat-card">
+      <div class="cat-icon">💐</div>
+      <h3>Pet Wedding Services</h3>
+      <p>Have your furry best friend walk the aisle with you. Professional, adorable, and unforgettable.</p>
+      <div class="arrow">Learn More →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ── MISSION ── -->
+<div class="mission">
+  <blockquote>
+    "We strive to be a source for your family in helping to ensure better for your fur baby through their whole health and well-being."
+  </blockquote>
+  <cite>— Hannah Wesson, Founder & Canine Nutritionist</cite>
+</div>
+
+<!-- ── EVENTS ── -->
+<section class="events">
+  <div class="products-header">
+    <div>
+      <p class="section-label">In the Community</p>
+      <h2 class="section-title">Upcoming <em>Events</em></h2>
+    </div>
+    <a href="https://www.wessonscaninebakery.com/upcoming-events-1" class="btn-outline">All Events →</a>
+  </div>
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-date">Coming Soon</div>
+      <h3>Local Farmers Market</h3>
+      <p>Find us at Indiana-area farmers markets! Check our events page for the latest schedule and locations near you.</p>
+    </div>
+    <div class="event-card">
+      <div class="event-date">Ongoing</div>
+      <h3>Dog Wellness Pop-Ups</h3>
+      <p>We attend local dog-friendly events throughout the year. Come meet the team and let your pup sample our treats!</p>
+    </div>
+    <div class="event-card">
+      <div class="event-date">Stay Tuned</div>
+      <h3>New Product Launches</h3>
+      <p>Follow us on social media to be the first to know about new flavors, health products, and boutique arrivals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Wesson's <span>Canine Bakery</span></h2>
+      <p>Veteran Owned · Indiana Local · Whole-dog health and well-being for the fur babies we love.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/WessonsCanineBakery" class="social-btn" target="_blank" rel="noopener" title="Facebook">f</a>
+        <a href="https://www.instagram.com/wessonscaninebakery" class="social-btn" target="_blank" rel="noopener" title="Instagram">📷</a>
+        <a href="https://twitter.com/WessonsCanine" class="social-btn" target="_blank" rel="noopener" title="Twitter/X">𝕏</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="https://www.wessonscaninebakery.com/treats-2">Treats</a></li>
+        <li><a href="https://www.wessonscaninebakery.com/canine-health-products">Health Products</a></li>
+        <li><a href="https://www.wessonscaninebakery.com/dog-boutique">Dog Boutique</a></li>
+        <li><a href="https://www.wessonscaninebakery.com/new-page">Wedding Services</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://www.wessonscaninebakery.com/">Home</a></li>
+        <li><a href="https://www.wessonscaninebakery.com/meet-the-team">Meet the Team</a></li>
+        <li><a href="https://www.wessonscaninebakery.com/upcoming-events-1">Upcoming Events</a></li>
+        <li><a href="https://www.wessonscaninebakery.com/cart">Cart</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://www.wessonscaninebakery.com/">Message Us</a></li>
+        <li><a href="mailto:info@wessonscaninebakery.com">Email Us</a></li>
+        <li><a href="https://www.wessonscaninebakery.com/upcoming-events-1">Find Us at Events</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2024 Wesson's Canine Bakery. All rights reserved.</span>
+    <span class="vet-badge">🎖️ Veteran Owned Business</span>
+    <span>Made with ❤️ in Indiana</span>
+  </div>
+</footer>
+
+</body>
+</html>
