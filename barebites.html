@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BARE BITES — Pet Treats</title>
+<meta name="description" content="The Best Pet Treats for your dog, cat or horse! Bare Bites have simple products with 100% natural ingredients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE0;
+    --bone: #E8DFC8;
+    --brown: #5C3D1E;
+    --tan: #C4873C;
+    --rust: #B84C1A;
+    --forest: #2D4A2A;
+    --warm-black: #1A1208;
+    --paw: #8B5E3C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--warm-black);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announcement {
+    background: var(--forest);
+    color: var(--cream);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--cream);
+    border-bottom: 2px solid var(--bone);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 72px;
+  }
+
+  .nav-logo img {
+    height: 52px;
+    object-fit: contain;
+  }
+  .nav-logo span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--brown);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--brown);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--tan);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--tan); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-social {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .nav-social a {
+    color: var(--brown);
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+  }
+  .nav-social a:hover { color: var(--tan); transform: scale(1.15); }
+
+  .nav-cta {
+    background: var(--rust);
+    color: #fff !important;
+    padding: 9px 22px !important;
+    border-radius: 3px;
+    letter-spacing: 0.1em !important;
+    text-decoration: none;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--brown) !important; color: #fff !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 88vh;
+    background: var(--warm-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://static.wixstatic.com/media/11062b_a385ef4974b8460fa67cccf339808679~mv2.jpg/v1/fill/w_1408,h_627,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_a385ef4974b8460fa67cccf339808679~mv2.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    filter: brightness(0.45);
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--tan);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    color: var(--cream);
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+  }
+  .hero-title span {
+    display: block;
+    color: var(--tan);
+  }
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: var(--bone);
+    margin: 28px 0 40px;
+    opacity: 0.9;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+  }
+  .badge {
+    border: 1.5px solid rgba(196,135,60,0.6);
+    color: var(--tan);
+    padding: 6px 18px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--rust);
+    color: #fff;
+    padding: 16px 44px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--tan); transform: translateY(-2px); }
+  .btn-outline {
+    border: 2px solid var(--cream);
+    color: var(--cream);
+    padding: 14px 44px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--cream); color: var(--brown); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::before {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+  }
+
+  /* ── TRUST STRIP ── */
+  .trust-strip {
+    background: var(--brown);
+    padding: 22px 40px;
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    color: var(--bone);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .trust-item span { font-size: 20px; }
+
+  /* ── PRODUCTS SECTION ── */
+  .section { padding: 96px 40px; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--tan);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    color: var(--brown);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .section-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--paw);
+    margin-top: 10px;
+    max-width: 500px;
+  }
+
+  #products {
+    background: #F0E8D4;
+  }
+  .products-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .product-card {
+    background: var(--cream);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    border: 1px solid var(--bone);
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(92,61,30,0.15);
+  }
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--rust);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    z-index: 2;
+  }
+  .product-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    background: var(--bone);
+    font-size: 0;
+  }
+  .product-img-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--bone) 0%, #d4c8a8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+  }
+  .product-info {
+    padding: 18px 20px 22px;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .product-tag {
+    font-size: 11px;
+    color: var(--paw);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .product-cta {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    border-bottom: 1px solid var(--rust);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .product-card:hover .product-cta { color: var(--tan); border-color: var(--tan); }
+
+  .products-footer {
+    text-align: center;
+    margin-top: 52px;
+  }
+
+  /* ── BENEFITS ── */
+  #benefits {
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  #benefits::before {
+    content: 'BENEFITS';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 200px;
+    color: rgba(196,135,60,0.06);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.05em;
+  }
+  .benefits-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .benefits-left {}
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .benefit-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .benefit-item.visible { opacity: 1; transform: translateY(0); }
+  .benefit-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  .benefit-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--brown);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .benefit-desc {
+    font-size: 14px;
+    color: var(--paw);
+    line-height: 1.7;
+  }
+  .benefits-right {
+    position: relative;
+  }
+  .banner-block {
+    background: var(--brown);
+    border-radius: 6px;
+    padding: 56px 48px;
+    color: var(--cream);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner-block::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(196,135,60,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .banner-block .section-label { color: var(--tan); margin-bottom: 18px; }
+  .banner-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+  .banner-block p {
+    font-size: 15px;
+    opacity: 0.85;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .usa-flag { font-size: 40px; margin-bottom: 16px; }
+
+  /* ── REVIEWS ── */
+  #reviews {
+    background: var(--warm-black);
+    color: var(--cream);
+    position: relative;
+  }
+  .reviews-header { text-align: center; margin-bottom: 64px; }
+  .reviews-header .section-title { color: var(--cream); }
+  .reviews-header .section-sub { color: rgba(232,223,200,0.6); margin: 10px auto 0; }
+  .stars { color: var(--tan); font-size: 20px; margin-bottom: 10px; letter-spacing: 2px; }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .review-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 32px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .review-card:hover { background: rgba(196,135,60,0.08); }
+  .review-card::before {
+    content: '"';
+    position: absolute;
+    top: 16px; left: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--tan);
+    opacity: 0.3;
+    line-height: 1;
+  }
+  .review-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--bone);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .review-author {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--tan);
+  }
+
+  /* ── PETS SECTION ── */
+  #pets { background: var(--bone); }
+  .pets-header { text-align: center; margin-bottom: 56px; }
+  .pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto 48px;
+  }
+  .pet-card {
+    text-align: center;
+    background: var(--cream);
+    border-radius: 6px;
+    padding: 28px 20px;
+    border: 1px solid rgba(196,135,60,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .pet-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(92,61,30,0.12);
+  }
+  .pet-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--tan);
+    margin-bottom: 16px;
+  }
+  .pet-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--brown);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .pet-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--paw);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .pet-breed {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tan);
+    font-weight: 500;
+  }
+  .send-photo {
+    text-align: center;
+  }
+  .send-photo p {
+    font-size: 15px;
+    color: var(--paw);
+    margin-bottom: 16px;
+  }
+
+  /* ── WHOLESALE ── */
+  .wholesale-banner {
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .wholesale-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://static.wixstatic.com/media/4a7799_98b0066075c04f4ebf503fe875d0caff~mv2.jpg/v1/fill/w_1253,h_519,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Pet%20Store_edited.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3) saturate(0.6);
+  }
+  .wholesale-content {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .wholesale-content .section-label { color: var(--tan); margin-bottom: 16px; }
+  .wholesale-content h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 7vw, 88px);
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+  .wholesale-content p {
+    color: var(--bone);
+    font-size: 16px;
+    opacity: 0.85;
+    margin-bottom: 36px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--warm-black);
+    color: var(--bone);
+    padding: 72px 60px 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 48px;
+    margin-bottom: 56px;
+    max-width: 1100px;
+    margin: 0 auto 56px;
+  }
+  .footer-brand {}
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--tan);
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+  }
+  .footer-brand p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.65;
+    max-width: 280px;
+  }
+  .footer-social {
+    display: flex;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .footer-social a {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bone);
+    text-decoration: none;
+    font-size: 15px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .footer-social a:hover {
+    border-color: var(--tan);
+    color: var(--tan);
+    background: rgba(196,135,60,0.1);
+  }
+  .footer-col h4 {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--tan);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    color: rgba(232,223,200,0.6);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--tan); }
+  .footer-contact p {
+    font-size: 14px;
+    opacity: 0.65;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-contact a {
+    color: var(--bone);
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .footer-contact a:hover { opacity: 1; color: var(--tan); }
+
+  .footer-newsletter {
+    margin-top: 16px;
+  }
+  .footer-newsletter p {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    max-width: 280px;
+  }
+  .newsletter-form input {
+    flex: 1;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+    padding: 11px 14px;
+    font-size: 13px;
+    color: var(--cream);
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .newsletter-form input::placeholder { opacity: 0.4; }
+  .newsletter-form button {
+    background: var(--rust);
+    border: none;
+    color: #fff;
+    padding: 0 18px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0;
+    transition: background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .newsletter-form button:hover { background: var(--tan); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 28px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(232,223,200,0.35);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    nav { padding: 0 24px; }
+    .section { padding: 72px 24px; }
+    .benefits-wrap { grid-template-columns: 1fr; gap: 48px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+  @media (max-width: 580px) {
+    .trust-strip { gap: 22px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement -->
+<div class="announcement">🐾 Free Shipping on All Orders Over $50</div>
+
+<!-- Nav -->
+<nav>
+  <a href="https://www.barebites.com" class="nav-logo" target="_blank">
+    <span>BARE BITES</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://www.barebites.com" target="_blank">Home</a></li>
+    <li><a href="https://www.barebites.com/shop" target="_blank">Shop</a></li>
+    <li><a href="https://www.barebites.com/about" target="_blank">About</a></li>
+    <li><a href="https://www.barebites.com/find-it" target="_blank">Find It</a></li>
+    <li><a href="https://www.barebites.com/sellwholsale" target="_blank">Wholesale</a></li>
+    <li><a href="https://www.barebites.com/contact" target="_blank">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <div class="nav-social">
+      <a href="http://www.instagram.com/barebites/" target="_blank" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/BareBites" target="_blank" title="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://twitter.com/BareBites" target="_blank" title="Twitter/X">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </div>
+    <a href="https://www.barebites.com/shop" target="_blank" class="nav-cta">Shop Now</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">100% Natural Pet Treats</p>
+    <h1 class="hero-title">
+      DARE TO<br><span>GO BARE</span>
+    </h1>
+    <p class="hero-subtitle">Simple. Pure. Irresistible — just the way nature intended.</p>
+    <div class="hero-badges">
+      <span class="badge">Single Ingredient</span>
+      <span class="badge">Made in the USA</span>
+      <span class="badge">All Natural</span>
+      <span class="badge">No Fillers</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://www.barebites.com/shop" target="_blank" class="btn-primary">Shop All Treats</a>
+      <a href="https://www.barebites.com/about" target="_blank" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- Trust Strip -->
+<div class="trust-strip">
+  <div class="trust-item"><span>🇺🇸</span> Made in the USA</div>
+  <div class="trust-item"><span>🌿</span> 100% All Natural</div>
+  <div class="trust-item"><span>🐾</span> Single Ingredient</div>
+  <div class="trust-item"><span>⭐</span> Vet & Trainer Approved</div>
+  <div class="trust-item"><span>🚚</span> Free Shipping $50+</div>
+</div>
+
+<!-- Products -->
+<section class="section" id="products">
+  <div class="products-header">
+    <p class="section-label">Our Products</p>
+    <h2 class="section-title">THE BARE LINE</h2>
+    <p class="section-sub" style="margin:10px auto 0;text-align:center;">Dehydrated goodness, nothing else.</p>
+  </div>
+  <div class="products-grid">
+
+    <a href="https://www.barebites.com/product-page/bare-bites-beef-liver" target="_blank" class="product-card">
+      <div class="product-img-placeholder">🥩</div>
+      <div class="product-info">
+        <p class="product-name">Bare Bites – Beef Liver</p>
+        <p class="product-tag">Dehydrated · High Protein</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/copy-of-bare-bites-beef-liver" target="_blank" class="product-card">
+      <div class="product-img-placeholder">🐷</div>
+      <div class="product-info">
+        <p class="product-name">Piggy Pack – Pork</p>
+        <p class="product-tag">Dehydrated · Nutrient Rich</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/bare-breasts" target="_blank" class="product-card">
+      <div class="product-img-placeholder">🍗</div>
+      <div class="product-info">
+        <p class="product-name">Bare Breasts – Chicken</p>
+        <p class="product-tag">Dehydrated · Lean Protein</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/bare-breasts-turkey" target="_blank" class="product-card">
+      <div class="product-img-placeholder">🦃</div>
+      <div class="product-info">
+        <p class="product-name">Bare Breasts – Turkey</p>
+        <p class="product-tag">Dehydrated · Hypoallergenic</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/bare-bits-beef-liver-seasoning-3oz" target="_blank" class="product-card">
+      <div class="product-img-placeholder">🧂</div>
+      <div class="product-info">
+        <p class="product-name">Bare Bits – Beef Liver Seasoning 3oz</p>
+        <p class="product-tag">Seasoning · Sprinkle on Food</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/bare-bites-12-ct-variety-samples" target="_blank" class="product-card">
+      <div class="product-badge">Limited Time</div>
+      <div class="product-img-placeholder">🎁</div>
+      <div class="product-info">
+        <p class="product-name">Bare Bites 12ct. Variety Samples</p>
+        <p class="product-tag">Sampler · Try Everything</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/bare-bits-chicken-seasoning-3oz" target="_blank" class="product-card">
+      <div class="product-img-placeholder">🧂</div>
+      <div class="product-info">
+        <p class="product-name">Bare Bits – Chicken Seasoning 3oz</p>
+        <p class="product-tag">Seasoning · All Natural</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/3oz-holiday-bundle" target="_blank" class="product-card">
+      <div class="product-img-placeholder">📦</div>
+      <div class="product-info">
+        <p class="product-name">3oz. Favorites Bundle</p>
+        <p class="product-tag">Bundle · Best Value</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/bare-feet-chicken-feet-30pk" target="_blank" class="product-card">
+      <div class="product-img-placeholder">🦶</div>
+      <div class="product-info">
+        <p class="product-name">Bare Feet – Chicken Feet</p>
+        <p class="product-tag">Dehydrated · Joint Support</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/new-item-hello-piggy" target="_blank" class="product-card">
+      <div class="product-badge">NEW!</div>
+      <div class="product-img-placeholder">🐽</div>
+      <div class="product-info">
+        <p class="product-name">Hello Piggy</p>
+        <p class="product-tag">New Item · Pork Treat</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+    <a href="https://www.barebites.com/product-page/9-beef-center-bone-bare-bones" target="_blank" class="product-card">
+      <div class="product-badge">NEW!</div>
+      <div class="product-img-placeholder">🦴</div>
+      <div class="product-info">
+        <p class="product-name">9" Beef Center Bone</p>
+        <p class="product-tag">Bare Bones · Long Lasting Chew</p>
+        <span class="product-cta">View Product →</span>
+      </div>
+    </a>
+
+  </div>
+  <div class="products-footer">
+    <a href="https://www.barebites.com/shop" target="_blank" class="btn-primary">View All Products</a>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="section" id="benefits">
+  <div class="benefits-wrap">
+    <div class="benefits-left">
+      <p class="section-label">Why Bare Bites</p>
+      <h2 class="section-title">THE BENEFITS</h2>
+      <p class="section-sub">Packed with protein and nutrients, dehydrated meat varieties offer a wholesome, natural boost to your pet's health and happiness.</p>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">🥩</div>
+          <div class="benefit-name">BEEF LIVER</div>
+          <p class="benefit-desc">Protein-packed crunch dogs crave. Keeps tails wagging naturally!</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🦃</div>
+          <div class="benefit-name">TURKEY BREAST</div>
+          <p class="benefit-desc">Lean, hypoallergenic protein — gentle on tummies and packed with flavor.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🍗</div>
+          <div class="benefit-name">CHICKEN BREAST</div>
+          <p class="benefit-desc">High-protein, easy to digest and irresistibly tasty.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🦶</div>
+          <div class="benefit-name">CHICKEN FEET</div>
+          <p class="benefit-desc">Natural glucosamine & chondroitin — supports joints and keeps chompers clean.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🐷</div>
+          <div class="benefit-name">PORK</div>
+          <p class="benefit-desc">Flavorful & nutrient-rich, with essential amino acids your pet needs.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">👂</div>
+          <div class="benefit-name">PORK EARS</div>
+          <p class="benefit-desc">Slow smoked. Long-lasting chew that supports dental health.</p>
+        </div>
+      </div>
+    </div>
+    <div class="benefits-right">
+      <div class="banner-block">
+        <div class="usa-flag">🇺🇸</div>
+        <p class="section-label">Our Promise</p>
+        <h3>SINGLE<br>INGREDIENT<br>ALL NATURAL<br>MADE IN THE USA</h3>
+        <p>No fillers. No additives. No shortcuts. Just pure, wholesome protein your pet can trust — sourced and made right here in the United States.</p>
+        <a href="https://www.barebites.com/shop" target="_blank" class="btn-primary">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="section" id="reviews">
+  <div class="reviews-header">
+    <p class="section-label" style="color:var(--tan)">What They're Saying</p>
+    <h2 class="section-title">LOVED BY PETS,<br>VETS, & TRAINERS</h2>
+    <div class="stars">★★★★★</div>
+    <p class="section-sub">5-Star Flavor in Every Bite</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars" style="font-size:14px;margin-bottom:20px;">★★★★★</div>
+      <p class="review-text">My dogs love them. They would do almost anything for them.</p>
+      <p class="review-author">— Diane, OR</p>
+    </div>
+    <div class="review-card">
+      <div class="stars" style="font-size:14px;margin-bottom:20px;">★★★★★</div>
+      <p class="review-text">My dogs LOVE these treats, and I love the ingredients! Superior product made by people who love and care for dogs!!</p>
+      <p class="review-author">— Angela, FL</p>
+    </div>
+    <div class="review-card">
+      <div class="stars" style="font-size:14px;margin-bottom:20px;">★★★★★</div>
+      <p class="review-text">My dogs leap off the ground from just the sound of the bag. They know when they hear that bag their favorite treat is coming.</p>
+      <p class="review-author">— Holley, US</p>
+    </div>
+  </div>
+</section>
+
+<!-- Happy Pets -->
+<section class="section" id="pets">
+  <div class="pets-header">
+    <p class="section-label">Our Community</p>
+    <h2 class="section-title">OUR HAPPY<br>BARE BUDDIES</h2>
+    <p class="section-sub" style="text-align:center;margin:10px auto 0">Real pets, real love.</p>
+  </div>
+  <div class="pets-grid">
+    <div class="pet-card">
+      <img src="https://static.wixstatic.com/media/274941_93a1a32a8cf04d9e8bbe6c3e978ca2a7~mv2.jpg/v1/fit/w_480,h_479,q_90,enc_avif,quality_auto/274941_93a1a32a8cf04d9e8bbe6c3e978ca2a7~mv2.jpg"
+           alt="Abe the Golden Retriever" class="pet-img" onerror="this.style.display='none'">
+      <div class="pet-name">ABE</div>
+      <p class="pet-quote">"Just loves holding that Bare Bites bag in his mouth everywhere he goes."</p>
+      <span class="pet-breed">2 yr old · Golden Retriever</span>
+    </div>
+    <div class="pet-card">
+      <img src="https://static.wixstatic.com/media/274941_3f203c3f5be44885b1e28016f73610f3~mv2.jpg/v1/fit/w_480,h_479,q_90,enc_avif,quality_auto/274941_3f203c3f5be44885b1e28016f73610f3~mv2.jpg"
+           alt="Juno the pup" class="pet-img" onerror="this.style.display='none'">
+      <div class="pet-name">JUNO</div>
+      <p class="pet-quote">"Loves his Beef Liver treats from Bare Bites."</p>
+      <span class="pet-breed">Cute lil Pup</span>
+    </div>
+    <div class="pet-card">
+      <img src="https://static.wixstatic.com/media/4a7799_a5f6cd59ce104d97bfabbf9dc59016fb~mv2.jpg/v1/fit/w_480,h_479,q_90,enc_avif,quality_auto/4a7799_a5f6cd59ce104d97bfabbf9dc59016fb~mv2.jpg"
+           alt="Tilly the Shi-poo" class="pet-img" onerror="this.style.display='none'">
+      <div class="pet-name">TILLY</div>
+      <p class="pet-quote">"Can't go a day without her Bare Bites."</p>
+      <span class="pet-breed">1 yr old · Shi-poo</span>
+    </div>
+    <div class="pet-card">
+      <img src="https://static.wixstatic.com/media/4a7799_521c9f14326f4b8f9b8c2f3280ad7430~mv2.jpg/v1/fit/w_140,h_320,q_90,enc_avif,quality_auto/4a7799_521c9f14326f4b8f9b8c2f3280ad7430~mv2.jpg"
+           alt="Boomer the Havanese" class="pet-img" onerror="this.style.display='none'">
+      <div class="pet-name">BOOMER</div>
+      <p class="pet-quote">"Loyal Bare Buddy Since 2013!"</p>
+      <span class="pet-breed">13.5 yr old · Havanese</span>
+    </div>
+  </div>
+  <div class="send-photo">
+    <p>Want your pet featured? Send us their photo!</p>
+    <a href="mailto:info@barebites.com?subject=Bare%20Buddies%20Photos" class="btn-primary">Send Photos 🐾</a>
+  </div>
+</section>
+
+<!-- Wholesale -->
+<div class="wholesale-banner">
+  <div class="wholesale-bg"></div>
+  <div class="wholesale-content">
+    <p class="section-label">For Retailers</p>
+    <h2>WHOLESALE<br>PORTAL</h2>
+    <p>Carry Bare Bites in your store. Join our growing network of retail partners across the USA.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://www.barebiteswholesale.com/" target="_blank" class="btn-primary">Enter Wholesale Portal</a>
+      <a href="https://www.barebites.com/sellwholsale" target="_blank" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">BARE BITES</div>
+      <p>The best pet treats for your dog, cat, or horse. Simple products with 100% natural ingredients — made with love in the USA.</p>
+      <div class="footer-social">
+        <a href="http://www.instagram.com/barebites/" target="_blank" title="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/BareBites" target="_blank" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://twitter.com/BareBites" target="_blank" title="Twitter/X">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://www.barebites.com/shop" target="_blank">All Treats</a></li>
+        <li><a href="https://www.barebites.com/product-page/bare-bites-beef-liver" target="_blank">Beef Liver</a></li>
+        <li><a href="https://www.barebites.com/product-page/bare-breasts" target="_blank">Chicken Breast</a></li>
+        <li><a href="https://www.barebites.com/product-page/bare-breasts-turkey" target="_blank">Turkey Breast</a></li>
+        <li><a href="https://www.barebites.com/product-page/bare-bites-12-ct-variety-samples" target="_blank">Variety Sampler</a></li>
+        <li><a href="https://www.barebites.com/product-page/9-beef-center-bone-bare-bones" target="_blank">Bare Bones</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="https://www.barebites.com/about" target="_blank">About Us</a></li>
+        <li><a href="https://www.barebites.com/find-it" target="_blank">Find It Near You</a></li>
+        <li><a href="https://www.barebites.com/faq" target="_blank">FAQ</a></li>
+        <li><a href="https://www.barebites.com/shipping-returns" target="_blank">Shipping & Returns</a></li>
+        <li><a href="https://www.barebites.com/sellwholsale" target="_blank">Sell Wholesale</a></li>
+        <li><a href="https://www.barebiteswholesale.com/" target="_blank">Wholesale Portal</a></li>
+        <li><a href="https://www.barebites.com/contact" target="_blank">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col footer-contact">
+      <h4>Customer Service</h4>
+      <p>📞 <a href="tel:3014012750">(301) 401-2750</a></p>
+      <p>✉️ <a href="mailto:info@barebites.com">info@barebites.com</a></p>
+      <div class="footer-newsletter">
+        <p>Join our furry community</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email">
+          <button onclick="window.open('https://www.barebites.com/contact','_blank')">JOIN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Bare Bites. All rights reserved. · Made with 🐾 in the USA</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal for benefit items
+  const items = document.querySelectorAll('.benefit-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(item => observer.observe(item));
+</script>
+</body>
+</html>
