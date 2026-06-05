@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barking Muse – Where Every Small Dog Finds Their Happy Place</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6ed;
+    --warm: #f5ebe0;
+    --bark: #6b4c35;
+    --bark-light: #9a7055;
+    --sage: #8aaa8a;
+    --sage-dark: #5c7a5c;
+    --rose: #e8b4a0;
+    --rose-deep: #d47f63;
+    --gold: #d4a94a;
+    --ink: #2a1f17;
+    --ink-soft: #4a3728;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(253,246,237,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(107,76,53,0.12);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(107,76,53,.1); }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 1.5rem; color: var(--bark);
+    text-decoration: none; letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--rose-deep); }
+
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink-soft);
+    font-size: .9rem; font-weight: 500; letter-spacing: .02em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--bark); }
+
+  .nav-cta {
+    background: var(--bark); color: var(--cream) !important;
+    padding: 10px 22px; border-radius: 50px;
+    transition: background .2s, transform .15s !important;
+  }
+  .nav-cta:hover { background: var(--ink) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 100px 48px 60px;
+    position: relative; overflow: hidden; text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 80%, rgba(138,170,138,.22) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(232,180,160,.25) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 55% 55%, rgba(212,169,74,.1) 0%, transparent 60%);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--sage); color: #fff;
+    font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+    padding: 7px 18px; border-radius: 50px; margin-bottom: 28px;
+    animation: fadeUp .8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--ink); letter-spacing: -0.03em;
+    max-width: 900px;
+    animation: fadeUp .8s .1s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--rose-deep); }
+
+  .hero-sub {
+    font-size: 1.15rem; color: var(--ink-soft); font-weight: 300;
+    max-width: 580px; line-height: 1.7; margin: 24px auto 0;
+    animation: fadeUp .8s .2s ease both;
+  }
+
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; margin-top: 28px;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .hero-tags span {
+    background: rgba(107,76,53,.08); border: 1px solid rgba(107,76,53,.15);
+    color: var(--bark); font-size: .82rem; padding: 6px 16px; border-radius: 50px;
+  }
+
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    justify-content: center; margin-top: 36px;
+    animation: fadeUp .8s .4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--bark); color: var(--cream);
+    padding: 16px 36px; border-radius: 50px;
+    text-decoration: none; font-weight: 500; font-size: 1rem;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 6px 24px rgba(107,76,53,.25);
+  }
+  .btn-primary:hover { background: var(--ink); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(107,76,53,.3); }
+
+  .btn-outline {
+    border: 2px solid var(--bark); color: var(--bark);
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; font-weight: 500; font-size: 1rem;
+    transition: all .2s;
+  }
+  .btn-outline:hover { background: var(--bark); color: var(--cream); }
+
+  .hero-promo {
+    margin-top: 48px; padding: 20px 36px;
+    background: rgba(255,255,255,.7); border: 1px solid rgba(107,76,53,.15);
+    border-radius: 16px; backdrop-filter: blur(8px);
+    display: inline-flex; gap: 32px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp .8s .5s ease both;
+  }
+  .promo-item { text-align: center; }
+  .promo-item strong { display: block; font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--bark); }
+  .promo-item span { font-size: .8rem; color: var(--ink-soft); }
+
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--bark-light); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+    animation: bounce 2s 1.5s ease-in-out infinite;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 36px;
+    background: linear-gradient(to bottom, var(--bark-light), transparent);
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 100px 48px;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .about-text .section-label {
+    display: inline-block; font-size: .75rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--sage-dark);
+    margin-bottom: 16px;
+  }
+
+  .about-text h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.15;
+    color: var(--ink); letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .about-text p {
+    color: var(--ink-soft); line-height: 1.8;
+    font-size: 1rem; margin-bottom: 16px;
+  }
+
+  .about-text .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .about-text .pill {
+    background: var(--warm); border: 1px solid rgba(107,76,53,.18);
+    color: var(--bark); font-size: .82rem; padding: 7px 16px; border-radius: 50px;
+    font-weight: 500;
+  }
+
+  .about-visual {
+    position: relative; display: flex; flex-direction: column; gap: 16px;
+  }
+  .stat-card {
+    background: #fff; border: 1px solid rgba(107,76,53,.12);
+    border-radius: 20px; padding: 28px 32px;
+    box-shadow: 0 4px 24px rgba(107,76,53,.07);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(107,76,53,.12); }
+  .stat-card .num {
+    font-family: 'Fraunces', serif; font-size: 2.5rem;
+    font-weight: 700; color: var(--bark); line-height: 1;
+  }
+  .stat-card p { color: var(--ink-soft); font-size: .9rem; margin-top: 6px; line-height: 1.5; }
+  .stat-card.accent { background: var(--bark); border-color: var(--bark); }
+  .stat-card.accent .num, .stat-card.accent p { color: var(--cream); }
+
+  /* ── SERVICES ── */
+  .services {
+    background: var(--warm);
+    padding: 100px 48px;
+  }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-header .section-label {
+    display: inline-block; font-size: .75rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--sage-dark);
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
+  }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .service-card {
+    background: #fff; border-radius: 24px; overflow: hidden;
+    border: 1px solid rgba(107,76,53,.1);
+    box-shadow: 0 4px 20px rgba(107,76,53,.07);
+    transition: transform .3s, box-shadow .3s;
+    text-decoration: none; color: inherit;
+    display: block;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(107,76,53,.14); }
+
+  .service-icon {
+    height: 140px; display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .service-icon.camp { background: linear-gradient(135deg, rgba(138,170,138,.3), rgba(138,170,138,.1)); }
+  .service-icon.board { background: linear-gradient(135deg, rgba(212,169,74,.3), rgba(212,169,74,.1)); }
+  .service-icon.groom { background: linear-gradient(135deg, rgba(232,180,160,.4), rgba(232,180,160,.1)); }
+
+  .service-body { padding: 28px 28px 32px; }
+  .service-body h3 {
+    font-family: 'Fraunces', serif; font-size: 1.5rem;
+    font-weight: 600; color: var(--ink); margin-bottom: 10px;
+  }
+  .service-body p { color: var(--ink-soft); line-height: 1.7; font-size: .93rem; margin-bottom: 16px; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--bark); font-weight: 500; font-size: .9rem;
+    text-decoration: none; transition: gap .2s;
+  }
+  .service-link:hover { gap: 10px; }
+
+  /* ── MEMBERSHIP ── */
+  .membership {
+    padding: 100px 48px;
+    max-width: 900px; margin: 0 auto; text-align: center;
+  }
+  .membership-box {
+    background: var(--bark);
+    border-radius: 32px; padding: 60px 48px;
+    color: var(--cream); position: relative; overflow: hidden;
+  }
+  .membership-box::before {
+    content: ''; position: absolute;
+    top: -60px; right: -60px; width: 260px; height: 260px;
+    background: rgba(255,255,255,.06); border-radius: 50%;
+  }
+  .membership-box .section-label { color: var(--rose); margin-bottom: 16px; display: block; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+  .membership-box h2 {
+    font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .membership-box p { opacity: .8; font-size: 1rem; line-height: 1.7; max-width: 500px; margin: 0 auto 32px; }
+  .price-row { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin-bottom: 32px; }
+  .price-big { font-family: 'Fraunces', serif; font-size: 5rem; font-weight: 700; line-height: 1; }
+  .price-sub { font-size: 1rem; opacity: .7; }
+  .membership-box .btn-light {
+    background: var(--cream); color: var(--bark);
+    padding: 16px 40px; border-radius: 50px;
+    text-decoration: none; font-weight: 600; font-size: 1rem;
+    display: inline-block; transition: transform .15s, box-shadow .2s;
+    box-shadow: 0 6px 24px rgba(0,0,0,.2);
+  }
+  .membership-box .btn-light:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,.28); }
+
+  /* ── PRICING / HOURS ── */
+  .pricing {
+    background: var(--warm); padding: 100px 48px;
+  }
+  .pricing-inner { max-width: 1100px; margin: 0 auto; }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+
+  .info-card {
+    background: #fff; border-radius: 24px; padding: 36px 36px;
+    border: 1px solid rgba(107,76,53,.1);
+    box-shadow: 0 4px 20px rgba(107,76,53,.06);
+  }
+  .info-card h3 {
+    font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+  }
+  .hours-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .hours-list li {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: .93rem; padding-bottom: 12px;
+    border-bottom: 1px solid rgba(107,76,53,.08);
+  }
+  .hours-list li:last-child { border-bottom: none; }
+  .hours-list .day { color: var(--ink-soft); }
+  .hours-list .time { color: var(--bark); font-weight: 500; }
+  .hours-list .closed { color: var(--rose-deep); font-weight: 500; }
+
+  .contact-details { display: flex; flex-direction: column; gap: 16px; }
+  .contact-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px; background: var(--warm); border-radius: 12px;
+  }
+  .contact-row .icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+  .contact-row .label { font-size: .75rem; color: var(--ink-soft); letter-spacing: .06em; text-transform: uppercase; }
+  .contact-row .val { color: var(--ink); font-weight: 500; font-size: .95rem; }
+  .contact-row a { color: var(--bark); text-decoration: none; }
+  .contact-row a:hover { text-decoration: underline; }
+
+  /* ── SOCIAL ── */
+  .social-section {
+    padding: 80px 48px; text-align: center;
+    max-width: 700px; margin: 0 auto;
+  }
+  .social-section h2 {
+    font-family: 'Fraunces', serif; font-size: 2.2rem;
+    font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.02em;
+  }
+  .social-section p { color: var(--ink-soft); margin-bottom: 36px; }
+  .social-icons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .social-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border-radius: 50px;
+    text-decoration: none; font-weight: 500; font-size: .9rem;
+    border: 2px solid transparent; transition: all .2s;
+  }
+  .social-btn svg { width: 20px; height: 20px; }
+  .social-btn.instagram { background: #fdf3f0; border-color: #e8b4a0; color: #c0615c; }
+  .social-btn.instagram:hover { background: #c0615c; color: #fff; border-color: #c0615c; }
+  .social-btn.facebook { background: #f0f4fb; border-color: #a8bfdf; color: #3b5998; }
+  .social-btn.facebook:hover { background: #3b5998; color: #fff; border-color: #3b5998; }
+  .social-btn.twitter { background: #f5f9ff; border-color: #b0cce8; color: #1da1f2; }
+  .social-btn.twitter:hover { background: #1da1f2; color: #fff; border-color: #1da1f2; }
+  .social-btn.google { background: #fff5f0; border-color: #f5b49a; color: #ea4335; }
+  .social-btn.google:hover { background: #ea4335; color: #fff; border-color: #ea4335; }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    background: var(--warm); padding: 80px 48px; text-align: center;
+  }
+  .newsletter-inner { max-width: 560px; margin: 0 auto; }
+  .newsletter h2 {
+    font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700;
+    color: var(--ink); letter-spacing: -0.02em; margin-bottom: 10px;
+  }
+  .newsletter p { color: var(--ink-soft); margin-bottom: 28px; }
+  .form-row { display: flex; gap: 10px; }
+  .form-row input {
+    flex: 1; padding: 14px 20px;
+    border: 2px solid rgba(107,76,53,.2); border-radius: 50px;
+    background: #fff; font-family: 'DM Sans', sans-serif;
+    font-size: .95rem; color: var(--ink); outline: none;
+    transition: border-color .2s;
+  }
+  .form-row input:focus { border-color: var(--bark); }
+  .form-row button {
+    background: var(--bark); color: var(--cream);
+    border: none; padding: 14px 28px; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: .95rem;
+    cursor: pointer; transition: background .2s, transform .15s;
+    white-space: nowrap;
+  }
+  .form-row button:hover { background: var(--ink); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(253,246,237,.7);
+    padding: 48px 48px 32px;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 1.4rem;
+    color: var(--cream); text-decoration: none; font-weight: 700;
+  }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a {
+    color: rgba(253,246,237,.6); text-decoration: none; font-size: .85rem;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-copy {
+    width: 100%; border-top: 1px solid rgba(255,255,255,.08);
+    margin-top: 28px; padding-top: 24px;
+    text-align: center; font-size: .8rem;
+  }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero, .about, .services, .membership, .pricing, .social-section, .newsletter, footer { padding-left: 24px; padding-right: 24px; }
+    .about { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .form-row { flex-direction: column; }
+    .footer-inner { justify-content: center; text-align: center; }
+    .hero-promo { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="https://www.barkingmuse.com/" class="nav-logo">Barking<span>Muse</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing & Hours</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://www.barkingmuse.com/join-our-team/" target="_blank">Join Our Team</a></li>
+    <li><a href="https://pawpartner.com/pz/book?p=1573684" target="_blank" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-badge">🐾 Exclusively for dogs 25 lbs & under</div>
+  <h1 class="hero-title">Where Every Small Dog<br>Finds Their <em>Happy Place</em></h1>
+  <p class="hero-sub">Premier enrichment daycare, boarding & creative grooming in Sugar Land, TX — designed around your dog's unique needs.</p>
+
+  <div class="hero-tags">
+    <span>✂️ Creative Grooming</span>
+    <span>🎨 Pet-Safe Colors</span>
+    <span>💅 Dog Nail Polish</span>
+    <span>🏕️ Enrichment Day Camp</span>
+    <span>🌙 Boarding</span>
+  </div>
+
+  <div class="hero-btns">
+    <a href="https://pawpartner.com/pz/book?p=1573684" target="_blank" class="btn-primary">Book an Appointment</a>
+    <a href="#services" class="btn-outline">Explore Services</a>
+  </div>
+
+  <div class="hero-promo">
+    <div class="promo-item">
+      <strong>7am</strong>
+      <span>Friday Drop-Off</span>
+    </div>
+    <div class="promo-item">
+      <strong>Groom + Play</strong>
+      <span>Add daycare for +$10</span>
+    </div>
+    <div class="promo-item">
+      <strong>$30/mo</strong>
+      <span>Unlimited Bath Membership</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text reveal">
+    <span class="section-label">About Barking Muse</span>
+    <h2>We go beyond the<br>typical daycare model</h2>
+    <p>Did you know that only 5% of dogs truly enjoy an open-play daycare environment? Many dogs end up with injuries or suffer from daycare burnout, showing signs of stress or boredom.</p>
+    <p>At Barking Muse, we recognize that every dog is unique. Our enrichment-focused program engages your dog's natural senses — keeping them happy, healthy, and excited to come back.</p>
+    <div class="pill-row">
+      <span class="pill">🌿 Enrichment-Focused</span>
+      <span class="pill">🐶 Small Dogs Only</span>
+      <span class="pill">❤️ Personalized Care</span>
+      <span class="pill">🏆 Safety First</span>
+    </div>
+  </div>
+  <div class="about-visual reveal">
+    <div class="stat-card accent">
+      <div class="num">25 lbs</div>
+      <p>Maximum weight — we specialize exclusively in small dogs so every pup gets care tailored to their size.</p>
+    </div>
+    <div class="stat-card">
+      <div class="num">5%</div>
+      <p>Of dogs actually enjoy open-play daycare. We build a better experience for the other 95%.</p>
+    </div>
+    <div class="stat-card">
+      <div class="num">3</div>
+      <p>Signature services — Day Camp, Boarding & Creative Grooming — all under one roof.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header reveal">
+    <span class="section-label">What We Offer</span>
+    <h2>Our Services</h2>
+  </div>
+  <div class="services-grid">
+    <a href="https://www.barkingmuse.com/services/day-camp/" target="_blank" class="service-card reveal">
+      <div class="service-icon camp">🌳</div>
+      <div class="service-body">
+        <h3>Enrichment Day Camp</h3>
+        <p>Stimulating activities designed around your dog's natural instincts. More than just playtime — a genuinely enriching day that your pup will love.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </a>
+    <a href="https://www.barkingmuse.com/services/boarding/" target="_blank" class="service-card reveal">
+      <div class="service-icon board">🌙</div>
+      <div class="service-body">
+        <h3>Overnight Boarding</h3>
+        <p>Safe, cozy overnight stays where your small dog is never far from a caring hand. Sunday boarding pick-up & drop-off from 10am–12pm.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </a>
+    <a href="https://www.barkingmuse.com/services/grooming/" target="_blank" class="service-card reveal">
+      <div class="service-icon groom">✂️</div>
+      <div class="service-body">
+        <h3>Creative Grooming</h3>
+        <p>Fun designs, pet-safe colors, dog nail polish & personalized styling. Express your pup's personality with our creative grooming services.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="membership">
+  <div class="membership-box reveal">
+    <span class="section-label">Members Only</span>
+    <h2>Unlimited Baths Monthly Membership</h2>
+    <p>Keep your pup fresh and clean all month long with our exclusive bath membership — no limits, no fuss.</p>
+    <div class="price-row">
+      <span class="price-big">$30</span>
+      <span class="price-sub">/ month</span>
+    </div>
+    <a href="https://pawpartner.com/pz/book?p=1573684" target="_blank" class="btn-light">Get Started Today</a>
+  </div>
+</section>
+
+<!-- PRICING / HOURS -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-header reveal">
+      <span class="section-label">Plan Your Visit</span>
+      <h2>Pricing & Hours</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="info-card reveal">
+        <h3>🕐 Hours of Operation</h3>
+        <ul class="hours-list">
+          <li><span class="day">Monday – Thursday</span><span class="time">8:00am – 6:00pm</span></li>
+          <li><span class="day">Friday</span><span class="time">7:00am – 6:00pm</span></li>
+          <li><span class="day">Saturday</span><span class="time">8:00am – 4:00pm</span></li>
+          <li><span class="day">Sunday</span><span class="closed">Boarding Pick-up/Drop-Off Only<br><small style="font-weight:400;color:var(--ink-soft)">10:00am – 12:00pm</small></span></li>
+        </ul>
+      </div>
+      <div class="info-card reveal" id="contact">
+        <h3>📍 Find Us</h3>
+        <div class="contact-details">
+          <div class="contact-row">
+            <span class="icon">📍</span>
+            <div>
+              <div class="label">Address</div>
+              <div class="val">4645 Hwy 6, Suite B<br>Sugar Land, TX 77478</div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <span class="icon">📞</span>
+            <div>
+              <div class="label">Phone</div>
+              <div class="val"><a href="tel:8325861427">832-586-1427</a></div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <span class="icon">✉️</span>
+            <div>
+              <div class="label">Contact Form</div>
+              <div class="val"><a href="https://www.barkingmuse.com/contact-us/" target="_blank">Send us a message →</a></div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <span class="icon">💼</span>
+            <div>
+              <div class="label">Careers</div>
+              <div class="val"><a href="https://www.barkingmuse.com/join-our-team/" target="_blank">Join Our Team →</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social-section">
+  <h2 class="reveal">Follow Along 🐾</h2>
+  <p class="reveal">See what our pups are up to on social media</p>
+  <div class="social-icons reveal">
+    <a href="https://www.instagram.com/barking.muse" target="_blank" class="social-btn instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61584429188412" target="_blank" class="social-btn facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a href="https://x.com/barking_muse" target="_blank" class="social-btn twitter">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      X / Twitter
+    </a>
+    <a href="https://search.google.com/local/writereview?placeid=ChIJSX6W74jnQIYRKosOE9W0yi8" target="_blank" class="social-btn google">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 0 1-6.032-6.032 6.033 6.033 0 0 1 6.032-6.032c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0 0 12.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/></svg>
+      Google Review
+    </a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner reveal">
+    <h2>Stay Up To Date</h2>
+    <p>Get the latest news, promotions, and updates from Barking Muse directly in your inbox.</p>
+    <div class="form-row">
+      <input type="email" placeholder="Your email address">
+      <button type="button" onclick="window.location.href='https://www.barkingmuse.com/contact-us/'">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="https://www.barkingmuse.com/" class="footer-logo">Barking Muse</a>
+    <div class="footer-links">
+      <a href="https://www.barkingmuse.com/" target="_blank">Home</a>
+      <a href="https://www.barkingmuse.com/services/" target="_blank">Services</a>
+      <a href="https://www.barkingmuse.com/pricing-hours/" target="_blank">Pricing & Hours</a>
+      <a href="https://www.barkingmuse.com/contact-us/" target="_blank">Contact</a>
+      <a href="https://www.barkingmuse.com/join-our-team/" target="_blank">Join Our Team</a>
+      <a href="https://www.barkingmuse.com/about/" target="_blank">About</a>
+      <a href="https://www.barkingmuse.com/j/privacy" target="_blank">Privacy Policy</a>
+      <a href="https://www.barkingmuse.com/sitemap/" target="_blank">Sitemap</a>
+    </div>
+    <div class="footer-copy">
+      4645 Hwy 6, Suite B, Sugar Land, TX 77478 &nbsp;·&nbsp; <a href="tel:8325861427" style="color:var(--rose)">832-586-1427</a><br><br>
+      © 2024 Barking Muse – Pet Club. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
