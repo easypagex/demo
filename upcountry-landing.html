@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Up Country Inc — Premium Pet Products Since 1984</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest: #2C3E2D;
+    --moss:   #4A6741;
+    --sage:   #7D9B70;
+    --cream:  #F5F0E8;
+    --warm:   #EDE3CF;
+    --rust:   #B85C2A;
+    --gold:   #C8983A;
+    --charcoal: #1E1E1A;
+    --text:   #3A3A32;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--forest);
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 8px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar a { color: inherit; text-decoration: none; }
+  .topbar a:hover { color: var(--gold); }
+  .topbar-links { display: flex; gap: 24px; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--cream);
+    border-bottom: 1px solid rgba(44,62,45,.12);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 72px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--forest);
+    text-decoration: none;
+    letter-spacing: .02em;
+  }
+  .nav-logo span { color: var(--rust); }
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 6px;
+    align-items: center;
+  }
+  .nav-links > li { position: relative; }
+  .nav-links > li > a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 2px;
+    transition: background .2s, color .2s;
+    display: block;
+  }
+  .nav-links > li > a:hover,
+  .nav-links > li.active > a {
+    background: var(--forest);
+    color: var(--cream);
+  }
+  .nav-links .sale > a { color: var(--rust); }
+  .nav-links .sale > a:hover { background: var(--rust); color: #fff; }
+
+  /* dropdown */
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background: var(--charcoal);
+    min-width: 200px;
+    border-radius: 4px;
+    padding: 12px 0;
+    box-shadow: 0 12px 40px rgba(0,0,0,.25);
+    z-index: 200;
+  }
+  .dropdown a {
+    display: block;
+    padding: 8px 20px;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    transition: color .2s, background .2s;
+  }
+  .dropdown a:hover { color: var(--gold); background: rgba(255,255,255,.04); }
+  .nav-links > li:hover .dropdown { display: block; }
+
+  .nav-actions { display: flex; gap: 16px; align-items: center; }
+  .nav-actions a {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-actions a:hover { color: var(--rust); }
+  .btn-cart {
+    background: var(--forest);
+    color: var(--cream) !important;
+    padding: 8px 18px;
+    border-radius: 2px;
+  }
+  .btn-cart:hover { background: var(--rust) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 88vh;
+    background:
+      linear-gradient(160deg, rgba(44,62,45,.82) 0%, rgba(30,30,26,.6) 100%),
+      url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1800&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 80px 80px 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to top, var(--cream), transparent);
+  }
+  .hero-inner { max-width: 620px; }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,.8);
+    max-width: 480px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--rust);
+    color: #fff;
+    padding: 16px 36px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background .25s, transform .2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,.5);
+    color: #fff;
+    padding: 16px 36px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color .25s, background .25s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+  /* ── BANNER STRIP ── */
+  .strip {
+    background: var(--rust);
+    color: #fff;
+    text-align: center;
+    padding: 14px 40px;
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .strip a { color: #fff; text-decoration: underline; }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 90px 60px; }
+  .section-tight { padding: 60px 60px; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  /* ── CATEGORY GRID ── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 50px;
+  }
+  .cat-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }
+  .cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease;
+  }
+  .cat-card:hover img { transform: scale(1.06); }
+  .cat-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(30,30,26,.85) 30%, transparent 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+  }
+  .cat-tag {
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .cat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .cat-link {
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.7);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    transition: color .2s;
+  }
+  .cat-card:hover .cat-link { color: var(--gold); }
+  .cat-link::after { content: '→'; }
+
+  /* wide card */
+  .cat-card.wide { grid-column: span 2; aspect-ratio: 16/9; }
+
+  /* ── FEATURES ROW ── */
+  .features {
+    background: var(--forest);
+    padding: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  .feature { text-align: center; }
+  .feature-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+  .feature h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .feature p {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── COLLECTIONS PROMO ── */
+  .promo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 50px;
+  }
+  .promo-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    min-height: 340px;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+  }
+  .promo-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s;
+  }
+  .promo-card:hover img { transform: scale(1.05); }
+  .promo-card-body {
+    position: relative;
+    z-index: 2;
+    padding: 36px;
+    background: linear-gradient(to top, rgba(30,30,26,.9) 0%, transparent 100%);
+    width: 100%;
+  }
+  .promo-card-body p {
+    font-size: 10px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .promo-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .promo-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    background: #fff;
+    color: var(--charcoal);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 2px;
+    transition: background .2s, color .2s;
+  }
+  .promo-card:hover .promo-btn { background: var(--rust); color: #fff; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--warm); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 50px;
+  }
+  .testi-card {
+    background: #fff;
+    border-radius: 4px;
+    padding: 32px;
+    position: relative;
+  }
+  .testi-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--sage);
+    opacity: .25;
+    position: absolute;
+    top: 10px;
+    left: 24px;
+    line-height: 1;
+  }
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; }
+  .testi-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 10px;
+  }
+  .testi-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .testi-author {
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 600;
+  }
+
+  /* ── ABOUT SPLIT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-img { position: relative; }
+  .about-img img {
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    background: var(--rust);
+    color: #fff;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+  .about-badge span:first-child { font-size: 32px; font-weight: 900; line-height: 1; }
+  .about-badge span:last-child { font-size: 11px; font-weight: 400; letter-spacing: .05em; }
+  .about-text .section-title { margin-bottom: 20px; }
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 32px 0;
+    padding: 28px 0;
+    border-top: 1px solid rgba(44,62,45,.12);
+    border-bottom: 1px solid rgba(44,62,45,.12);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--forest);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 500;
+  }
+
+  /* ── BLOG ── */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 50px;
+  }
+  .blog-card { text-decoration: none; display: block; }
+  .blog-card-img {
+    background: var(--warm);
+    aspect-ratio: 16/10;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  }
+  .blog-meta {
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .blog-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.3;
+    margin-bottom: 10px;
+    transition: color .2s;
+  }
+  .blog-card:hover h4 { color: var(--rust); }
+  .blog-card p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #666;
+    font-weight: 300;
+  }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    background: var(--charcoal);
+    text-align: center;
+    padding: 80px 60px;
+  }
+  .newsletter .section-label { color: var(--gold); }
+  .newsletter .section-title { color: #fff; }
+  .newsletter p {
+    font-size: 15px;
+    color: rgba(255,255,255,.6);
+    margin: 16px auto 36px;
+    max-width: 460px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .nl-form {
+    display: flex;
+    max-width: 440px;
+    margin: 0 auto;
+    gap: 0;
+  }
+  .nl-form input {
+    flex: 1;
+    padding: 14px 20px;
+    background: rgba(255,255,255,.07);
+    border: 1.5px solid rgba(255,255,255,.15);
+    border-right: none;
+    border-radius: 2px 0 0 2px;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .nl-form input::placeholder { color: rgba(255,255,255,.35); }
+  .nl-form input:focus { border-color: var(--gold); }
+  .nl-form button {
+    padding: 14px 28px;
+    background: var(--rust);
+    color: #fff;
+    border: none;
+    border-radius: 0 2px 2px 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .nl-form button:hover { background: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--forest);
+    color: rgba(255,255,255,.7);
+    padding: 70px 60px 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 60px;
+  }
+  .footer-brand .nav-logo {
+    color: #fff;
+    font-size: 24px;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .footer-brand p {
+    font-size: 13px;
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .social-links { display: flex; gap: 12px; }
+  .social-links a {
+    width: 36px;
+    height: 36px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background .2s, color .2s;
+  }
+  .social-links a:hover { background: var(--rust); color: #fff; }
+  .footer-col h5 {
+    font-size: 10px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color .2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .contact-line {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+  .contact-line a {
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .contact-line a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(255,255,255,.4);
+  }
+  .footer-bottom a { color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+  .footer-bottom a:hover { color: var(--gold); }
+  .footer-bottom-links { display: flex; gap: 20px; }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 1024px) {
+    .cat-grid { grid-template-columns: repeat(2,1fr); }
+    .cat-card.wide { grid-column: span 2; }
+    .features { grid-template-columns: repeat(2,1fr); }
+    .testi-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .topbar { display: none; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 60px 24px; }
+    .section, .section-tight { padding: 60px 24px; }
+    .cat-grid { grid-template-columns: 1fr; }
+    .cat-card.wide { grid-column: span 1; aspect-ratio: 3/2; }
+    .features { grid-template-columns: 1fr; padding: 40px 24px; }
+    .promo-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-badge { right: 10px; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .newsletter { padding: 60px 24px; }
+    .nl-form { flex-direction: column; }
+    .nl-form input { border-right: 1.5px solid rgba(255,255,255,.15); border-radius: 2px; }
+    .nl-form button { border-radius: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div>Located in East Providence, Rhode Island · Est. 1984</div>
+  <div class="topbar-links">
+    <a href="https://upcountryinc.com/pages/sizing-chart" target="_blank">Size Chart</a>
+    <a href="https://wholesale.upcountryinc.com/account/login" target="_blank">Wholesale</a>
+    <a href="https://upcountryinc.com/account" target="_blank">My Account</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="https://upcountryinc.com/" class="nav-logo" target="_blank">Up <span>Country</span></a>
+  <ul class="nav-links">
+    <li>
+      <a href="https://upcountryinc.com/collections/dog-collars" target="_blank">Dogs</a>
+      <div class="dropdown">
+        <a href="https://upcountryinc.com/collections/dog-collar-ribbons" target="_blank">Collars – Regular</a>
+        <a href="https://upcountryinc.com/collections/up-country-sport" target="_blank">Collars – Sport</a>
+        <a href="https://upcountryinc.com/collections/martingale-collars" target="_blank">Martingale Collars</a>
+        <a href="https://upcountryinc.com/collections/dog-lead-ribbons" target="_blank">Leads – Regular</a>
+        <a href="https://upcountryinc.com/collections/dog-harness-ribbons" target="_blank">Harnesses</a>
+        <a href="https://upcountryinc.com/collections/vest-harnesses" target="_blank">Vest Harnesses</a>
+        <a href="https://upcountryinc.com/collections/dog-apparel" target="_blank">Apparel</a>
+        <a href="https://upcountryinc.com/collections/treats" target="_blank">Treats</a>
+      </div>
+    </li>
+    <li>
+      <a href="https://upcountryinc.com/collections/cat-collars" target="_blank">Cats</a>
+      <div class="dropdown">
+        <a href="https://upcountryinc.com/collections/cat-collars" target="_blank">Cat Collars</a>
+        <a href="https://upcountryinc.com/collections/cat-harness-sets" target="_blank">Cat Harness Sets</a>
+      </div>
+    </li>
+    <li>
+      <a href="https://upcountryinc.com/collections/home-decor" target="_blank">Home</a>
+      <div class="dropdown">
+        <a href="https://upcountryinc.com/collections/home-decor" target="_blank">Home Décor</a>
+        <a href="https://upcountryinc.com/collections/key-rings" target="_blank">Key Rings</a>
+        <a href="https://upcountryinc.com/collections/stockings" target="_blank">Stockings</a>
+        <a href="https://upcountryinc.com/collections/doggie-doorbells" target="_blank">Doggie Doorbells</a>
+        <a href="https://upcountryinc.com/collections/gift-cards" target="_blank">Gift Cards</a>
+      </div>
+    </li>
+    <li><a href="https://upcountryinc.com/collections/treats" target="_blank">Treats</a></li>
+    <li class="sale"><a href="https://upcountryinc.com/collections/sale" target="_blank">Sale</a></li>
+    <li><a href="https://upcountryinc.com/pages/about-us" target="_blank">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://upcountryinc.com/search" target="_blank">Search</a>
+    <a href="https://upcountryinc.com/pages/wishlist" target="_blank">Wishlist</a>
+    <a href="https://upcountryinc.com/cart" class="btn-cart" target="_blank">Cart (0)</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">New 2026 Designs Are Here</p>
+    <h1>Handcrafted <em>Style</em><br>for Every Pup</h1>
+    <p>Premium collars, leads, harnesses, and apparel made with love in Rhode Island. Designed for dogs who live life to the fullest — and the humans who adore them.</p>
+    <div class="hero-btns">
+      <a href="https://upcountryinc.com/collections/new-in-2026" class="btn-primary" target="_blank">Shop New Arrivals</a>
+      <a href="https://upcountryinc.com/pages/about-us" class="btn-outline" target="_blank">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  🐾 Free shipping on orders over $50 · <a href="https://upcountryinc.com/collections/sale" target="_blank">Shop the Sale →</a>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section">
+  <div class="reveal">
+    <p class="section-label">Shop by Category</p>
+    <h2 class="section-title">Everything Your Pet Deserves</h2>
+    <p class="section-sub">From everyday walks to special occasions — find the perfect match for your pup's personality.</p>
+  </div>
+  <div class="cat-grid">
+    <a href="https://upcountryinc.com/collections/dog-collar-ribbons" class="cat-card reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&q=80" alt="Dog Collars" loading="lazy">
+      <div class="cat-card-overlay">
+        <span class="cat-tag">Dogs</span>
+        <div class="cat-name">Collars</div>
+        <span class="cat-link">Shop Now</span>
+      </div>
+    </a>
+    <a href="https://upcountryinc.com/collections/dog-lead-ribbons" class="cat-card reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=600&q=80" alt="Dog Leads" loading="lazy">
+      <div class="cat-card-overlay">
+        <span class="cat-tag">Dogs</span>
+        <div class="cat-name">Leads</div>
+        <span class="cat-link">Shop Now</span>
+      </div>
+    </a>
+    <a href="https://upcountryinc.com/collections/dog-harness-ribbons" class="cat-card reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Dog Harnesses" loading="lazy">
+      <div class="cat-card-overlay">
+        <span class="cat-tag">Dogs</span>
+        <div class="cat-name">Harnesses</div>
+        <span class="cat-link">Shop Now</span>
+      </div>
+    </a>
+    <a href="https://upcountryinc.com/collections/cat-collars" class="cat-card reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80" alt="Cat Collars" loading="lazy">
+      <div class="cat-card-overlay">
+        <span class="cat-tag">Cats</span>
+        <div class="cat-name">Cat Collars &amp; Harnesses</div>
+        <span class="cat-link">Shop Now</span>
+      </div>
+    </a>
+    <a href="https://upcountryinc.com/collections/dog-apparel" class="cat-card wide reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=900&q=80" alt="Dog Apparel" loading="lazy">
+      <div class="cat-card-overlay">
+        <span class="cat-tag">Apparel</span>
+        <div class="cat-name">Coats, Sweaters &amp; More</div>
+        <span class="cat-link">Shop Now</span>
+      </div>
+    </a>
+    <a href="https://upcountryinc.com/collections/home-decor" class="cat-card wide reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=80" alt="Home Decor" loading="lazy">
+      <div class="cat-card-overlay">
+        <span class="cat-tag">Home</span>
+        <div class="cat-name">Home Décor &amp; Gifts</div>
+        <span class="cat-link">Shop Now</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature reveal">
+    <div class="feature-icon">🇺🇸</div>
+    <h4>Made in the USA</h4>
+    <p>Every product crafted with pride in East Providence, Rhode Island since 1984.</p>
+  </div>
+  <div class="feature reveal">
+    <div class="feature-icon">✦</div>
+    <h4>Premium Quality</h4>
+    <p>Hardware that doesn't rust, webbing that lasts a lifetime — built for real dogs.</p>
+  </div>
+  <div class="feature reveal">
+    <div class="feature-icon">🎨</div>
+    <h4>Original Designs</h4>
+    <p>Hundreds of unique patterns designed in-house for every style and season.</p>
+  </div>
+  <div class="feature reveal">
+    <div class="feature-icon">🐾</div>
+    <h4>Personalization</h4>
+    <p>Customize collars with names, numbers, or nicknames just for your one-of-a-kind pup.</p>
+  </div>
+</div>
+
+<!-- PROMO COLLECTIONS -->
+<section class="section">
+  <div class="reveal">
+    <p class="section-label">Featured Collections</p>
+    <h2 class="section-title">Built for Adventure</h2>
+    <p class="section-sub">Explore our most-loved lines — from rugged outdoor Sport gear to whimsical seasonal prints.</p>
+  </div>
+  <div class="promo-grid">
+    <a href="https://upcountryinc.com/collections/up-country-sport-1" class="promo-card reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=900&q=80" alt="Sport Collection" loading="lazy">
+      <div class="promo-card-body">
+        <p>Outdoor Ready</p>
+        <h3>Sport Collection</h3>
+        <span class="promo-btn">Shop Now</span>
+      </div>
+    </a>
+    <a href="https://upcountryinc.com/collections/make-it-personal" class="promo-card reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1530041539828-114de669390e?w=900&q=80" alt="Personalized" loading="lazy">
+      <div class="promo-card-body">
+        <p>One of a Kind</p>
+        <h3>Make It Personal</h3>
+        <span class="promo-btn">Customize Now</span>
+      </div>
+    </a>
+    <a href="https://upcountryinc.com/collections/vest-harnesses" class="promo-card reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=900&q=80" alt="Vest Harnesses" loading="lazy">
+      <div class="promo-card-body">
+        <p>Small Breeds</p>
+        <h3>Vest Soft Harnesses</h3>
+        <span class="promo-btn">Shop Now</span>
+      </div>
+    </a>
+    <a href="https://upcountryinc.com/collections/new-in-2026" class="promo-card reveal" target="_blank">
+      <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=900&q=80" alt="New 2026 Designs" loading="lazy">
+      <div class="promo-card-body">
+        <p>Just Arrived</p>
+        <h3>New 2026 Designs</h3>
+        <span class="promo-btn">Explore Now</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials">
+  <div style="text-align:center;" class="reveal">
+    <p class="section-label">Happy Customers</p>
+    <h2 class="section-title">Tail-Wagging Testimonials</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-title">Excellent Quality</div>
+      <p>I bought this collar at least 10–13 years ago and was happy to see it's still a seller! I'm a repeat customer of over 20 years. Long-lasting quality and vibrant collars.</p>
+      <div class="testi-author">— Linda P.</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-title">Best Dog Leads and Collars</div>
+      <p>I've used these leads with all my dogs over 35 years. The hardware does not rust. The colors are without compare, and always looks classy. Still made in America. Yay!</p>
+      <div class="testi-author">— Rhenna S.</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-title">I'm Obsessed!</div>
+      <p>I think I adopted a second puppy just so I could purchase more collars and accessories from Up Country. Well made, excellent service, and fast shipping — always.</p>
+      <div class="testi-author">— Gabbi D.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="about-grid">
+    <div class="about-img reveal">
+      <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=800&q=80" alt="About Up Country">
+      <div class="about-badge">
+        <span>40+</span>
+        <span>Years of Love</span>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">Rhode Island Roots,<br>Made for Every Dog</h2>
+      <p>Located just outside Providence, Rhode Island, Up Country has been crafting premium pet products since 1984. We believe your pets deserve the finest — so every collar, lead, and harness is designed with both style and durability in mind.</p>
+      <p>Each in-house design is printed on durable webbing and paired with quality hardware built to last a lifetime. From working farms to city walks, Up Country is for all dogs who crave adventure.</p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Years in Business</div>
+        </div>
+        <div>
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Unique Designs</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Made in USA</div>
+        </div>
+      </div>
+      <a href="https://upcountryinc.com/pages/about-us" class="btn-primary" target="_blank">Learn More About Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="section-tight section" style="background: var(--warm);">
+  <div class="reveal" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;">
+    <div>
+      <p class="section-label">From the Blog</p>
+      <h2 class="section-title">Blog Tails</h2>
+    </div>
+    <a href="https://upcountryinc.com/blogs/blog" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--rust);text-decoration:none;" target="_blank">View All Posts →</a>
+  </div>
+  <div class="blog-grid">
+    <a href="https://upcountryinc.com/blogs/blog/up-country-is-40-celebrating-40-years-with-baybreeze-interiors" class="blog-card reveal" target="_blank">
+      <div class="blog-card-img">🎉</div>
+      <div class="blog-meta">October 2024</div>
+      <h4>Up Country is 40! Celebrating 40 Years with Baybreeze Interiors</h4>
+      <p>Here at Up Country, we are proudly celebrating 40 years in business — made possible by incredible partners like Baybreeze Interiors.</p>
+    </a>
+    <a href="https://upcountryinc.com/blogs/blog/customer-spotlight-dolittles" class="blog-card reveal" target="_blank">
+      <div class="blog-card-img">🐕</div>
+      <div class="blog-meta">September 2024</div>
+      <h4>Celebrating 25 Years with Dolittles</h4>
+      <p>A quarter-century of partnership with one of our most treasured retail friends. Here's their story and ours together.</p>
+    </a>
+    <a href="https://upcountryinc.com/blogs/blog/customer-spotlight-pasquesi-home-gardens" class="blog-card reveal" target="_blank">
+      <div class="blog-card-img">🌿</div>
+      <div class="blog-meta">August 2024</div>
+      <h4>Celebrating 15 Years with Pasquesi Home &amp; Gardens</h4>
+      <p>Up Country and Pasquesi Home &amp; Gardens — a natural pairing of beautiful home goods and beloved pet products.</p>
+    </a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <p class="section-label">Stay in the Loop</p>
+  <h2 class="section-title">Join the Up Country Family</h2>
+  <p>Be the first to know about new designs, seasonal collections, and exclusive offers for you and your pup.</p>
+  <div class="nl-form">
+    <input type="email" placeholder="Your email address">
+    <button type="button">Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="https://upcountryinc.com/" class="nav-logo" target="_blank">Up <span style="color:var(--rust)">Country</span></a>
+      <p>Premium pet products handcrafted in Rhode Island since 1984. Style, quality, and love — for every dog and cat.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/Upcountrypet" target="_blank" title="Facebook">f</a>
+        <a href="https://twitter.com/upcountryinc" target="_blank" title="Twitter/X">𝕏</a>
+        <a href="https://www.instagram.com/upcountryinc" target="_blank" title="Instagram">in</a>
+        <a href="https://in.pinterest.com/upcountryinc" target="_blank" title="Pinterest">P</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Information</h5>
+      <ul>
+        <li><a href="https://issuu.com/ggonsalves/docs/up_country-2026_catalog_temp" target="_blank">2026 Catalog</a></li>
+        <li><a href="https://upcountryinc.com/pages/about-us" target="_blank">About Us</a></li>
+        <li><a href="https://upcountryinc.com/pages/up-country-custom" target="_blank">Custom Products</a></li>
+        <li><a href="https://wholesale.upcountryinc.com/account/login" target="_blank">Wholesaler Sign-in</a></li>
+        <li><a href="https://upcountryinc.com/pages/ambassador" target="_blank">Ambassador Program</a></li>
+        <li><a href="https://upcountryinc.com/blogs/blog" target="_blank">Blog</a></li>
+        <li><a href="https://upcountryinc.com/pages/sizing-chart" target="_blank">Sizing Chart</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Customer Service</h5>
+      <ul>
+        <li><a href="https://upcountryinc.com/pages/contact-us" target="_blank">Contact Us</a></li>
+        <li><a href="https://upcountryinc.com/pages/ordering-information" target="_blank">Ordering Information</a></li>
+        <li><a href="https://upcountryinc.com/pages/shipping-and-returns" target="_blank">Shipping &amp; Returns</a></li>
+        <li><a href="https://upcountryinc.com/pages/privacy-policy" target="_blank">Privacy Policy</a></li>
+        <li><a href="https://upcountryinc.com/pages/terms-of-use" target="_blank">Terms of Use</a></li>
+        <li><a href="https://upcountryinc.com/pages/frequently-asked-questions" target="_blank">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact Us</h5>
+      <div class="contact-line">76 Boyd Avenue<br>East Providence, RI 02914</div>
+      <div class="contact-line"><a href="tel:8005415909">(800) 541-5909</a></div>
+      <div class="contact-line"><a href="mailto:customerservice@upcountryinc.com">customerservice@upcountryinc.com</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Up Country Inc. All Rights Reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="https://upcountryinc.com/pages/privacy-policy" target="_blank">Privacy</a>
+      <a href="https://upcountryinc.com/pages/terms-of-use" target="_blank">Terms</a>
+      <a href="https://upcountryinc.com/pages/shipping-and-returns" target="_blank">Shipping</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Newsletter button feedback
+  document.querySelector('.nl-form button').addEventListener('click', function() {
+    const input = document.querySelector('.nl-form input');
+    if (input.value.includes('@')) {
+      this.textContent = '✓ Subscribed!';
+      this.style.background = '#4A6741';
+      input.value = '';
+    } else {
+      input.style.borderColor = '#B85C2A';
+      input.placeholder = 'Please enter a valid email';
+    }
+  });
+</script>
+</body>
+</html>
