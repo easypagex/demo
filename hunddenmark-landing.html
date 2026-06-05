@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUND Denmark — Luxury Leather Dog Collars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF8F4;
+    --cognac: #8B4A2B;
+    --cognac-light: #C27C56;
+    --cognac-dark: #5C2E14;
+    --sand: #D4C5A9;
+    --slate: #2C2620;
+    --slate-mid: #4A3F38;
+    --slate-light: #7A6E67;
+    --gold: #C9A96E;
+    --gold-light: #E8D5A8;
+    --green: #4A5C4A;
+    --navy: #2A3550;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--slate);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── ANNOUNCEMENT BAR ─── */
+  .bar {
+    background: var(--slate);
+    color: var(--gold-light);
+    text-align: center;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    font-weight: 400;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--sand);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--slate);
+  }
+  .nav-logo span { color: var(--cognac); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--slate-mid);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0; right: 100%;
+    height: 1px;
+    background: var(--cognac);
+    transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--cognac); }
+  .nav-links a:hover::after { right: 0; }
+
+  .nav-actions { display: flex; gap: 20px; align-items: center; }
+  .nav-cart {
+    background: var(--cognac);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .nav-cart:hover { background: var(--cognac-dark); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    font-weight: 400;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--cognac);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 5vw, 5.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--slate);
+    margin-bottom: 32px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--cognac);
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--slate-light);
+    max-width: 420px;
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--slate);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 16px 40px;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--cognac);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--slate);
+    color: var(--slate);
+    text-decoration: none;
+    padding: 16px 40px;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-outline:hover {
+    background: var(--cream);
+    border-color: var(--cognac);
+    color: var(--cognac);
+  }
+
+  .hero-rating {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 40px;
+    border-top: 1px solid var(--sand);
+  }
+  .stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 2px; }
+  .rating-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-light);
+  }
+  .rating-text strong { color: var(--slate); font-weight: 500; }
+
+  .hero-right {
+    position: relative;
+    background: var(--cream);
+    overflow: hidden;
+  }
+
+  .hero-img-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Decorative collar illustration */
+  .collar-art {
+    width: 80%;
+    max-width: 460px;
+    position: relative;
+  }
+  .collar-art svg { width: 100%; height: auto; }
+
+  .hero-badge {
+    position: absolute;
+    bottom: 48px;
+    left: -20px;
+    background: var(--slate);
+    color: var(--cream);
+    padding: 24px 32px;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    max-width: 220px;
+    line-height: 1.5;
+    box-shadow: 0 12px 48px rgba(44,38,32,0.25);
+    animation: floatBadge 4s ease-in-out infinite;
+  }
+  .hero-badge small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  @keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ─── MARQUEE ─── */
+  .marquee-wrap {
+    background: var(--cognac);
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: 1px solid var(--cognac-light);
+    border-bottom: 1px solid var(--cognac-dark);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 28s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    padding: 0 48px;
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+  .marquee-dot { color: var(--cognac-light); padding: 0; }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--sand);
+    max-width: 80px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--slate);
+  }
+  .section-title em { font-style: italic; color: var(--cognac); }
+
+  /* ─── PRODUCTS ─── */
+  #shop { padding: 100px 80px; }
+
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+  }
+  .view-all {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cognac);
+    padding-bottom: 3px;
+    transition: opacity 0.25s;
+  }
+  .view-all:hover { opacity: 0.7; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .product-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    group: true;
+  }
+
+  .product-img {
+    aspect-ratio: 4/5;
+    background: var(--cream);
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .product-img-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s ease;
+  }
+  .product-card:hover .product-img-inner { transform: scale(1.04); }
+
+  .product-img svg { width: 60%; height: 60%; }
+
+  .product-badge-new {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--cognac);
+    color: #fff;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    font-weight: 400;
+  }
+
+  .product-info { padding: 4px 0; }
+  .product-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    transition: color 0.25s;
+  }
+  .product-card:hover .product-name { color: var(--cognac); }
+
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .product-price {
+    font-size: 0.85rem;
+    color: var(--slate-mid);
+    letter-spacing: 0.05em;
+  }
+  .product-stars { color: var(--gold); font-size: 0.75rem; }
+
+  .product-colors {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.12);
+  }
+
+  /* ─── CATEGORIES ─── */
+  #categories { padding: 0 80px 100px; }
+
+  .cats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .cat-card {
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    aspect-ratio: 3/4;
+  }
+  .cat-card:first-child { grid-row: span 2; aspect-ratio: auto; }
+
+  .cat-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s ease;
+  }
+  .cat-card:hover .cat-bg { transform: scale(1.05); }
+
+  .cat-bg-1 { background: linear-gradient(135deg, #2C3E50 0%, #4A3F38 100%); }
+  .cat-bg-2 { background: linear-gradient(135deg, #8B4A2B 0%, #C27C56 100%); }
+  .cat-bg-3 { background: linear-gradient(135deg, #4A5C4A 0%, #6B8C6B 100%); }
+  .cat-bg-4 { background: linear-gradient(135deg, #2A3550 0%, #4A5C7A 100%); }
+
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(20,15,10,0.7) 0%, transparent 60%);
+  }
+
+  .cat-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 36px 32px;
+    color: #fff;
+  }
+  .cat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .cat-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .cat-cta {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    padding-bottom: 3px;
+    display: inline-block;
+    transition: border-color 0.25s;
+  }
+  .cat-card:hover .cat-cta { border-color: var(--gold-light); color: var(--gold-light); }
+
+  .cat-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    opacity: 0.15;
+    width: 60%;
+  }
+
+  /* ─── WHY ─── */
+  #why {
+    padding: 100px 80px;
+    background: var(--slate);
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .why-left .section-label { color: var(--gold); }
+  .why-left .section-label::after { background: var(--slate-mid); }
+  .why-left .section-title { color: var(--cream); }
+
+  .why-desc {
+    color: var(--sand);
+    line-height: 1.9;
+    margin-top: 28px;
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+  }
+
+  .certs {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .cert {
+    border: 1px solid var(--slate-mid);
+    padding: 12px 20px;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 400;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .pillar {
+    background: var(--slate-mid);
+    padding: 36px 32px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .pillar:hover { background: #3a3028; }
+
+  .pillar-num {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--cognac);
+    opacity: 0.6;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .pillar-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .pillar-desc {
+    font-size: 0.82rem;
+    color: var(--sand);
+    line-height: 1.7;
+  }
+
+  /* ─── REVIEWS ─── */
+  #reviews { padding: 100px 80px; background: var(--cream); }
+
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .reviews-header .section-label { justify-content: center; }
+  .reviews-header .section-label::after, .reviews-header .section-label::before {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--sand);
+    max-width: 80px;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .review-card {
+    background: var(--warm-white);
+    padding: 36px;
+    border-top: 3px solid var(--cognac);
+  }
+  .review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 16px; }
+  .review-text {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--slate);
+    margin-bottom: 24px;
+  }
+  .review-author {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate-light);
+    font-weight: 400;
+  }
+  .review-product {
+    font-size: 0.68rem;
+    color: var(--cognac);
+    margin-top: 4px;
+  }
+
+  .reviews-total {
+    text-align: center;
+    margin-top: 56px;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--slate-light);
+  }
+  .reviews-total strong { color: var(--slate); font-weight: 600; font-size: 1.4rem; }
+
+  /* ─── FAQ ─── */
+  #faq { padding: 100px 80px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; }
+
+  .faq-left .section-title { margin-bottom: 24px; }
+  .faq-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cognac);
+    padding-bottom: 3px;
+    transition: opacity 0.25s;
+  }
+  .faq-link:hover { opacity: 0.7; }
+
+  .faq-items { display: flex; flex-direction: column; gap: 0; }
+  .faq-item {
+    border-bottom: 1px solid var(--sand);
+  }
+  .faq-q {
+    padding: 24px 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--slate);
+    transition: color 0.25s;
+  }
+  .faq-q:hover { color: var(--cognac); }
+  .faq-icon {
+    font-size: 1.4rem;
+    color: var(--cognac);
+    font-weight: 200;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--slate-light);
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+  /* ─── BLOG ─── */
+  #learn { padding: 100px 80px; background: var(--cream); }
+
+  .blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .blog-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .blog-img {
+    aspect-ratio: 16/10;
+    background: var(--sand);
+    margin-bottom: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+  .blog-img-fill {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .blog-card:hover .blog-img-fill { transform: scale(1.04); }
+  .blog-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cognac);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .blog-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    transition: color 0.25s;
+  }
+  .blog-card:hover .blog-title { color: var(--cognac); }
+  .blog-excerpt {
+    font-size: 0.82rem;
+    color: var(--slate-light);
+    line-height: 1.7;
+  }
+
+  /* ─── TRUST BAR ─── */
+  .trust-bar {
+    background: var(--slate);
+    padding: 56px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+  }
+  .trust-item {
+    padding: 32px;
+    text-align: center;
+    background: var(--slate-mid);
+    transition: background 0.3s;
+  }
+  .trust-item:hover { background: #3a3028; }
+  .trust-icon {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .trust-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .trust-sub {
+    font-size: 0.78rem;
+    color: var(--sand);
+    font-style: italic;
+    font-family: var(--serif);
+  }
+
+  /* ─── NEWSLETTER ─── */
+  .newsletter {
+    padding: 100px 80px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--cognac-dark) 0%, var(--cognac) 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .newsletter::before {
+    content: 'HUND';
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 18vw;
+    font-weight: 600;
+    color: rgba(255,255,255,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .newsletter .section-label { justify-content: center; color: var(--gold-light); }
+  .newsletter .section-label::after { display: none; }
+  .newsletter .section-title { color: #fff; margin-bottom: 16px; }
+  .newsletter p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 40px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .newsletter-form input {
+    flex: 1;
+    padding: 16px 24px;
+    border: none;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    outline: none;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+  }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .newsletter-form button {
+    background: var(--slate);
+    color: var(--cream);
+    border: none;
+    padding: 16px 32px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+  .newsletter-form button:hover { background: var(--cognac-dark); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--slate);
+    color: var(--sand);
+    padding: 72px 80px 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--slate-mid);
+  }
+
+  .footer-brand .nav-logo { color: var(--cream); }
+  .footer-brand .nav-logo span { color: var(--cognac-light); }
+  .footer-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--sand);
+    margin: 20px 0 24px;
+    line-height: 1.7;
+  }
+  .footer-social { display: flex; gap: 16px; }
+  .social-link {
+    width: 40px; height: 40px;
+    border: 1px solid var(--slate-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.25s;
+  }
+  .social-link:hover {
+    border-color: var(--cognac-light);
+    color: var(--cognac-light);
+    background: rgba(139,74,43,0.1);
+  }
+
+  .footer-col-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a {
+    text-decoration: none;
+    color: var(--sand);
+    font-size: 0.82rem;
+    transition: color 0.25s;
+    letter-spacing: 0.03em;
+  }
+  .footer-links a:hover { color: var(--cognac-light); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--slate-light);
+    letter-spacing: 0.08em;
+  }
+  .payment-methods { display: flex; gap: 8px; }
+  .pay-badge {
+    background: var(--slate-mid);
+    color: var(--sand);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    font-weight: 400;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1100px) {
+    nav, #shop, #categories, #why, #faq, #learn, .newsletter, footer { padding-left: 40px; padding-right: 40px; }
+    .trust-bar { padding: 40px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 60px 24px; }
+    .hero-right { height: 50vw; min-height: 280px; }
+    #shop, #categories, #why, #faq, #learn, .newsletter, footer { padding: 60px 24px; }
+    .trust-bar { padding: 32px 24px; grid-template-columns: 1fr 1fr; }
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .cats-grid { grid-template-columns: 1fr; }
+    .cat-card:first-child { grid-row: span 1; }
+    #why { grid-template-columns: 1fr; gap: 48px; }
+    .pillars { grid-template-columns: 1fr; }
+    #faq { grid-template-columns: 1fr; gap: 40px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .products-header, .blog-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="bar">Free Shipping in the US on Orders Over $150 &nbsp;·&nbsp; Free Returns Within 30 Days &nbsp;·&nbsp; Certified Italian Leather</div>
+
+<!-- Nav -->
+<nav>
+  <a href="https://www.hunddenmark.com/" class="nav-logo">HUND <span>Denmark</span></a>
+  <ul class="nav-links">
+    <li><a href="https://www.hunddenmark.com/collections/no-matting-collars">Collars</a></li>
+    <li><a href="https://www.hunddenmark.com/collections/dog-leashes-all">Leashes</a></li>
+    <li><a href="https://www.hunddenmark.com/collections/harness">Harness</a></li>
+    <li><a href="https://www.hunddenmark.com/collections/accessories">Accessories</a></li>
+    <li><a href="https://www.hunddenmark.com/pages/about-us">Why HUND</a></li>
+    <li><a href="https://www.hunddenmark.com/blogs/news">Learn</a></li>
+    <li><a href="https://www.hunddenmark.com/pages/contact-us">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://www.hunddenmark.com/cart" class="nav-cart">Shop Now</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Designed in Denmark · Crafted in Italy</div>
+    <h1 class="hero-title">
+      Luxury Leather<br>
+      <em>Dog Collars</em><br>
+      & Gear
+    </h1>
+    <p class="hero-sub">Handcrafted from certified Italian Nappa leather, our coat-protective collars prevent matting, irritation, and friction — so your dog looks as remarkable as they are.</p>
+    <div class="hero-ctas">
+      <a href="https://www.hunddenmark.com/collections/no-matting-collars" class="btn-primary">Shop Collars</a>
+      <a href="https://www.hunddenmark.com/pages/about-us" class="btn-outline">Our Story</a>
+    </div>
+    <div class="hero-rating">
+      <div class="stars">★★★★★</div>
+      <div class="rating-text"><strong>4.8 / 5</strong> · Verified by 20,000+ Buyers</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <div class="collar-art">
+        <!-- Decorative collar illustration SVG -->
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <!-- Background circle -->
+          <circle cx="250" cy="250" r="220" fill="#E8DDD0" opacity="0.5"/>
+          <!-- Collar body -->
+          <ellipse cx="250" cy="250" rx="165" ry="60" stroke="#8B4A2B" stroke-width="22" fill="none" stroke-linecap="round"/>
+          <!-- Stitching top -->
+          <ellipse cx="250" cy="250" rx="148" ry="43" stroke="#C27C56" stroke-width="2" fill="none" stroke-dasharray="8 6"/>
+          <!-- Buckle -->
+          <rect x="218" y="218" width="64" height="64" rx="4" fill="#C9A96E" stroke="#8B4A2B" stroke-width="2"/>
+          <rect x="230" y="230" width="40" height="40" rx="2" fill="none" stroke="#8B4A2B" stroke-width="1.5"/>
+          <line x1="250" y1="230" x2="250" y2="270" stroke="#8B4A2B" stroke-width="2"/>
+          <!-- D-ring -->
+          <circle cx="250" cy="310" r="16" stroke="#C9A96E" stroke-width="4" fill="none"/>
+          <!-- Color swatches -->
+          <circle cx="90" cy="250" r="24" fill="#8B4A2B" stroke="#fff" stroke-width="3"/>
+          <circle cx="145" cy="180" r="18" fill="#4A5C4A" stroke="#fff" stroke-width="3"/>
+          <circle cx="355" cy="180" r="18" fill="#2A3550" stroke="#fff" stroke-width="3"/>
+          <circle cx="410" cy="250" r="24" fill="#C27C56" stroke="#fff" stroke-width="3"/>
+          <circle cx="355" cy="320" r="18" fill="#7A3B5A" stroke="#fff" stroke-width="3"/>
+          <circle cx="145" cy="320" r="18" fill="#3D6B7A" stroke="#fff" stroke-width="3"/>
+          <!-- Sparkle marks -->
+          <text x="70" y="120" font-family="serif" font-size="28" fill="#C9A96E" opacity="0.6">✦</text>
+          <text x="390" y="380" font-family="serif" font-size="20" fill="#C9A96E" opacity="0.4">✦</text>
+          <text x="430" y="130" font-family="serif" font-size="14" fill="#8B4A2B" opacity="0.4">✦</text>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-badge">
+      "Crafted for comfort, made to last a lifetime."
+      <small>Women-Owned · Denmark</small>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Coat Protective Design</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Certified Italian Leather</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">OEKO-TEX® Certified</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Leather Working Group Gold</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Free US Shipping $150+</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">30-Day Returns</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">4.8 Stars · 20,000+ Reviews</span><span class="marquee-item marquee-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Coat Protective Design</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Certified Italian Leather</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">OEKO-TEX® Certified</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Leather Working Group Gold</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Free US Shipping $150+</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">30-Day Returns</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">4.8 Stars · 20,000+ Reviews</span><span class="marquee-item marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- Best Sellers -->
+<section id="shop">
+  <div class="products-header fade-up">
+    <div>
+      <div class="section-label">Most Loved</div>
+      <h2 class="section-title">Best <em>Sellers</em></h2>
+    </div>
+    <a href="https://www.hunddenmark.com/collections/top-performers" class="view-all">View All →</a>
+  </div>
+  <div class="products-grid">
+
+    <a href="https://www.hunddenmark.com/products/coat-protective-baldy-collar-wide-width" class="product-card fade-up">
+      <div class="product-img">
+        <div class="product-img-inner">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <ellipse cx="100" cy="100" rx="70" ry="26" stroke="#8B4A2B" stroke-width="14" fill="none"/>
+            <ellipse cx="100" cy="100" rx="60" ry="16" stroke="#C27C56" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+            <rect x="82" y="84" width="36" height="32" rx="3" fill="#C9A96E" stroke="#8B4A2B" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Århus — Rolled Round Robust</div>
+        <div class="product-meta">
+          <span class="product-price">From $59.99</span>
+          <span class="product-stars">★★★★★</span>
+        </div>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#8B4A2B"></span>
+          <span class="color-dot" style="background:#4A5C4A"></span>
+          <span class="color-dot" style="background:#2A3550"></span>
+          <span class="color-dot" style="background:#C27C56"></span>
+          <span class="color-dot" style="background:#7A3B5A"></span>
+          <span class="color-dot" style="background:#3D6B7A"></span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.hunddenmark.com/products/quick-release-rolled-leather-collar" class="product-card fade-up">
+      <div class="product-img">
+        <div class="product-badge-new">New</div>
+        <div class="product-img-inner">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <ellipse cx="100" cy="100" rx="70" ry="26" stroke="#4A5C4A" stroke-width="14" fill="none"/>
+            <ellipse cx="100" cy="100" rx="60" ry="16" stroke="#6B8C6B" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+            <rect x="82" y="84" width="36" height="32" rx="8" fill="#C9A96E" stroke="#4A5C4A" stroke-width="1.5"/>
+            <line x1="90" y1="100" x2="110" y2="100" stroke="#4A5C4A" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Skagen — Quick Release Round</div>
+        <div class="product-meta">
+          <span class="product-price">From $59.99</span>
+          <span class="product-stars">★★★★★</span>
+        </div>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#4A5C4A"></span>
+          <span class="color-dot" style="background:#8B4A2B"></span>
+          <span class="color-dot" style="background:#2A3550"></span>
+          <span class="color-dot" style="background:#C9A96E"></span>
+          <span class="color-dot" style="background:#7A3B5A"></span>
+          <span class="color-dot" style="background:#3D6B7A"></span>
+          <span class="color-dot" style="background:#C27C56"></span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.hunddenmark.com/products/round-rolled-leather-collar-all-breed-sizes" class="product-card fade-up">
+      <div class="product-img">
+        <div class="product-img-inner">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <ellipse cx="100" cy="100" rx="70" ry="26" stroke="#2A3550" stroke-width="14" fill="none"/>
+            <ellipse cx="100" cy="100" rx="60" ry="16" stroke="#4A5C7A" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+            <rect x="82" y="84" width="36" height="32" rx="3" fill="#C9A96E" stroke="#2A3550" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Randers — Sensitive Skin Anti-Mat</div>
+        <div class="product-meta">
+          <span class="product-price">From $54.99</span>
+          <span class="product-stars">★★★★★</span>
+        </div>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#2A3550"></span>
+          <span class="color-dot" style="background:#8B4A2B"></span>
+          <span class="color-dot" style="background:#4A5C4A"></span>
+          <span class="color-dot" style="background:#7A3B5A"></span>
+          <span class="color-dot" style="background:#C27C56"></span>
+          <span class="color-dot" style="background:#3D6B7A"></span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.hunddenmark.com/products/6-way-rolled-round-leather-colored-leashes" class="product-card fade-up">
+      <div class="product-img">
+        <div class="product-img-inner">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M50 60 Q100 40 150 60 L140 160 Q100 180 60 160 Z" fill="none" stroke="#C27C56" stroke-width="10"/>
+            <path d="M65 70 Q100 55 135 70 L128 150 Q100 165 72 150 Z" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <circle cx="100" cy="58" r="10" fill="#C9A96E" stroke="#C27C56" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">København — 6-in-1 Rolled Leash</div>
+        <div class="product-meta">
+          <span class="product-price">From $109.99</span>
+          <span class="product-stars">★★★★★</span>
+        </div>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#C27C56"></span>
+          <span class="color-dot" style="background:#8B4A2B"></span>
+          <span class="color-dot" style="background:#4A5C4A"></span>
+          <span class="color-dot" style="background:#2A3550"></span>
+          <span class="color-dot" style="background:#7A3B5A"></span>
+          <span class="color-dot" style="background:#3D6B7A"></span>
+          <span class="color-dot" style="background:#2C2620"></span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Category Tiles -->
+<section id="categories">
+  <div class="cats-grid">
+
+    <a href="https://www.hunddenmark.com/collections/no-matting-collars" class="cat-card fade-up">
+      <div class="cat-bg cat-bg-1"></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <span class="cat-label">Signature Collection</span>
+        <div class="cat-title">Coat Protective<br>Collars</div>
+        <span class="cat-cta">Shop Collars →</span>
+      </div>
+    </a>
+
+    <a href="https://www.hunddenmark.com/collections/dog-leashes-all" class="cat-card fade-up">
+      <div class="cat-bg cat-bg-2"></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <span class="cat-label">6-in-1 Versatility</span>
+        <div class="cat-title">Leather<br>Leashes</div>
+        <span class="cat-cta">Shop Leashes →</span>
+      </div>
+    </a>
+
+    <a href="https://www.hunddenmark.com/collections/harness" class="cat-card fade-up">
+      <div class="cat-bg cat-bg-3"></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <span class="cat-label">No-Pull Design</span>
+        <div class="cat-title">Rolled<br>Harness</div>
+        <span class="cat-cta">Shop Harness →</span>
+      </div>
+    </a>
+
+    <a href="https://www.hunddenmark.com/collections/accessories" class="cat-card fade-up">
+      <div class="cat-bg cat-bg-4"></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <span class="cat-label">Complete the Look</span>
+        <div class="cat-title">Accessories<br>& More</div>
+        <span class="cat-cta">Shop All →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Why HUND -->
+<section id="why">
+  <div class="why-left fade-up">
+    <div class="section-label">The Danish Difference</div>
+    <h2 class="section-title">Why <em>HUND</em><br>Denmark?</h2>
+    <p class="why-desc">We believe your dog deserves more than ordinary gear. Every HUND product is designed with a single purpose: exceptional comfort and coat protection, without compromising on beauty. Founded by Anita — a women-led brand where sustainability meets Scandinavian elegance.</p>
+    <div class="certs">
+      <span class="cert">OEKO-TEX®</span>
+      <span class="cert">LWG Gold</span>
+      <span class="cert">EU Ecolabel</span>
+      <span class="cert">ICEC</span>
+    </div>
+  </div>
+  <div class="pillars fade-up">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">Innovative Design</div>
+      <p class="pillar-desc">Our inverted round seam prevents more fur matting and friction than any other collar on the market.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">Buttery Soft Leather</div>
+      <p class="pillar-desc">Finest eco-certified Italian Nappa leather — feels as soft as a second skin from day one.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">Inverted Seam</div>
+      <p class="pillar-desc">Unlike traditional collars, our hidden seam faces outward, keeping coats pristine and tangle-free.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <div class="pillar-title">Uncompromised Quality</div>
+      <p class="pillar-desc">Biodegradable and built to last years — a cost-effective investment in your dog's well-being.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews">
+  <div class="reviews-header fade-up">
+    <div class="section-label">Customer Love</div>
+    <h2 class="section-title">What Dog Owners <em>Say</em></h2>
+  </div>
+  <div class="reviews-grid">
+
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Only the best. My dogs are beautiful, big, and worthy of only the best gear. That's why I buy HUND."</div>
+      <div class="review-author">Holly Decker</div>
+      <div class="review-product">Århus Rolled Collar</div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"The harness has dramatically reduced the rubbing and tangling we experienced with traditional fabric harnesses. Beautiful craftsmanship."</div>
+      <div class="review-author">Heidi Elston</div>
+      <div class="review-product">Ålborg No-Pull Harness</div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Obsessed with this new olive green shade. I was hesitant about the buckle, but it's incredibly sturdy! OLIVE it so much!"</div>
+      <div class="review-author">Schamma</div>
+      <div class="review-product">Skagen Quick Release</div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Beautiful work and excellent material. Very well made. Nicely packaged. Truly the finest collar we've owned."</div>
+      <div class="review-author">Jordan Goldblatt</div>
+      <div class="review-product">Århus Rolled Collar</div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Finley loves her new collar. Her neck is 11" but the 14" fits on the tightest hole beautifully. Perfect for our Moyen!"</div>
+      <div class="review-author">Candie White</div>
+      <div class="review-product">Århus Wide Collar</div>
+    </div>
+
+    <div class="review-card fade-up">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"So Beautiful. It is a beautiful collar — so well made. My dog gets compliments every single walk."</div>
+      <div class="review-author">Shely McKenzie</div>
+      <div class="review-product">Næstved 6-in-1 Rope Leash</div>
+    </div>
+
+  </div>
+  <div class="reviews-total fade-up">
+    <strong>4.8 / 5</strong> · Based on over 2,235 verified reviews
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-left fade-up">
+    <div class="section-label">Need Help?</div>
+    <h2 class="section-title">Frequently<br><em>Asked</em></h2>
+    <br>
+    <a href="https://www.hunddenmark.com/pages/faq-1" class="faq-link">View All FAQs →</a>
+    <br><br>
+    <a href="https://www.hunddenmark.com/pages/contact-us" class="faq-link" style="margin-top:12px">Contact Us →</a>
+  </div>
+  <div class="faq-items fade-up">
+    <div class="faq-item open">
+      <div class="faq-q" onclick="toggleFaq(this)">What materials are HUND collars made from? <span class="faq-icon">+</span></div>
+      <div class="faq-a">We use all-natural Italian Nappa leather without unnecessary chemicals, making our collars hypoallergenic and perfect for preventing irritation and itching — even for dogs with the most sensitive skin.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Where are products made and shipped from? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Our dog gear is crafted by skilled leather artisans in Europe. Non-custom products ship from our office near Dallas, Texas (2–3 business day USPS delivery). Custom harnesses ship from Europe and may take 2–6 weeks.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is your return policy? <span class="faq-icon">+</span></div>
+      <div class="faq-a">We offer a 30-day hassle-free return and exchange window, with free return labels provided for exchanges. Initiate a return at hunddenmark.com/apps/redo/returns-portal/login.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Are your products safe for dogs with sensitive skin? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. Our collars are specifically designed to be gentle on sensitive skin, reducing the risk of irritation and discomfort. The inverted round seam and natural leather eliminate the friction points that cause most matting and hot spots.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I get discounts or promotions? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Sign up for our newsletter below and follow us on Instagram @hunddenmark to stay updated on our latest offers, new arrivals, and exclusive promotions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Blog -->
+<section id="learn">
+  <div class="blog-header fade-up">
+    <div>
+      <div class="section-label">From the Journal</div>
+      <h2 class="section-title">Learn & <em>Discover</em></h2>
+    </div>
+    <a href="https://www.hunddenmark.com/blogs/news" class="view-all">All Articles →</a>
+  </div>
+  <div class="blog-grid">
+
+    <a href="https://www.hunddenmark.com/blogs/news/what-makes-a-high-quality-dog-collar-a-practical-guide-for-dog-owners" class="blog-card fade-up">
+      <div class="blog-img">
+        <div class="blog-img-fill" style="background:linear-gradient(135deg,#D4C5A9,#8B4A2B30)">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="40" rx="30" ry="11" stroke="#8B4A2B" stroke-width="7" fill="none"/>
+            <rect x="28" y="32" width="24" height="16" rx="3" fill="#C9A96E" stroke="#8B4A2B" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="blog-tag">Buying Guide</div>
+      <div class="blog-title">What Makes a High-Quality Dog Collar?</div>
+      <div class="blog-excerpt">Not all collars are created equal. Learn what separates truly premium leather from cheap alternatives, and why it matters for your dog's daily comfort.</div>
+    </a>
+
+    <a href="https://www.hunddenmark.com/blogs/news/why-plastic-amp-pvc-dog-collars-aren-t-good-for-dogs-or-the-planet" class="blog-card fade-up">
+      <div class="blog-img">
+        <div class="blog-img-fill" style="background:linear-gradient(135deg,#C5D4B0,#4A5C4A30)">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="28" stroke="#4A5C4A" stroke-width="6" fill="none"/>
+            <path d="M28 40 L36 48 L52 32" stroke="#4A5C4A" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="blog-tag">Sustainability</div>
+      <div class="blog-title">Why PVC & Plastic Collars Are Bad for Dogs & the Planet</div>
+      <div class="blog-excerpt">When choosing a dog collar, most people focus on price. But synthetic materials carry hidden costs — for your dog's skin and for the environment.</div>
+    </a>
+
+    <a href="https://www.hunddenmark.com/blogs/news/why-rolled-leather-dog-collars-are-better-for-your-dog" class="blog-card fade-up">
+      <div class="blog-img">
+        <div class="blog-img-fill" style="background:linear-gradient(135deg,#C5B8D4,#2A355030)">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="40" rx="30" ry="11" stroke="#2A3550" stroke-width="7" fill="none"/>
+            <ellipse cx="40" cy="40" rx="22" ry="5" stroke="#2A3550" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="blog-tag">Dog Care</div>
+      <div class="blog-title">Why Rolled Leather Collars Are Better for Your Dog</div>
+      <div class="blog-excerpt">Design and materials matter far more than most owners realize. Discover why the shape of a collar determines its impact on your dog's coat and neck health.</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <div class="trust-item fade-up">
+    <span class="trust-icon">🚚</span>
+    <div class="trust-title">Fast USPS Shipping</div>
+    <div class="trust-sub">2–3 day delivery in the US</div>
+  </div>
+  <div class="trust-item fade-up">
+    <span class="trust-icon">↩</span>
+    <div class="trust-title">30-Day Returns</div>
+    <div class="trust-sub">Hassle free, always</div>
+  </div>
+  <div class="trust-item fade-up">
+    <span class="trust-icon">🌿</span>
+    <div class="trust-title">Eco-Friendly Leather</div>
+    <div class="trust-sub">Long-lasting Italian finest</div>
+  </div>
+  <div class="trust-item fade-up">
+    <span class="trust-icon">🏅</span>
+    <div class="trust-title">Made in Europe</div>
+    <div class="trust-sub">By skilled leather artisans</div>
+  </div>
+</div>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <div class="section-label">Stay Connected</div>
+  <h2 class="section-title">Join the HUND <em>Community</em></h2>
+  <p>Sign up for exclusive offers, new arrivals, and dog care tips.<br>No spam, ever. Unsubscribe anytime.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Your email address">
+    <button onclick="alert('Thank you! Redirecting to hunddenmark.com'); window.location.href='https://www.hunddenmark.com/'">Subscribe</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="https://www.hunddenmark.com/" class="nav-logo">HUND <span>Denmark</span></a>
+      <p class="footer-tagline">"Luxury leather dog gear, designed in Denmark — crafted for the dogs who deserve the finest."</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/hunddenmark" target="_blank" rel="noopener" class="social-link" title="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Shop</div>
+      <ul class="footer-links">
+        <li><a href="https://www.hunddenmark.com/collections/no-matting-collars">Collars</a></li>
+        <li><a href="https://www.hunddenmark.com/collections/dog-leashes-all">Leashes</a></li>
+        <li><a href="https://www.hunddenmark.com/collections/harness">Harness</a></li>
+        <li><a href="https://www.hunddenmark.com/collections/accessories">Accessories & More</a></li>
+        <li><a href="https://www.hunddenmark.com/collections/dematting-products">Dematting Products</a></li>
+        <li><a href="https://www.hunddenmark.com/collections/hund-wear">HUND Wear</a></li>
+        <li><a href="https://www.hunddenmark.com/products/gift-cards">Gift Cards</a></li>
+        <li><a href="https://www.hunddenmark.com/collections/new">New Arrivals</a></li>
+        <li><a href="https://www.hunddenmark.com/collections/sale">Sale</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="https://www.hunddenmark.com/pages/about-us">About Us</a></li>
+        <li><a href="https://www.hunddenmark.com/blogs/news">Learn / Blog</a></li>
+        <li><a href="https://www.hunddenmark.com/pages/in-the-press">Media</a></li>
+        <li><a href="https://www.hunddenmark.com/pages/wholesale">Wholesale</a></li>
+        <li><a href="https://www.instagram.com/hunddenmark" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Support</div>
+      <ul class="footer-links">
+        <li><a href="https://www.hunddenmark.com/pages/faq-1">FAQ</a></li>
+        <li><a href="https://www.hunddenmark.com/pages/contact-us">Contact Us</a></li>
+        <li><a href="https://www.hunddenmark.com/pages/return-policy">Return Policy</a></li>
+        <li><a href="https://hunddenmark.com/apps/redo/returns-portal/login">Start a Return</a></li>
+        <li><a href="https://www.hunddenmark.com/pages/privacy-policy">Privacy Policy</a></li>
+        <li><a href="https://www.hunddenmark.com/search">Search</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 HUND Denmark. All rights reserved.</div>
+    <div class="payment-methods">
+      <span class="pay-badge">Visa</span>
+      <span class="pay-badge">MC</span>
+      <span class="pay-badge">Amex</span>
+      <span class="pay-badge">PayPal</span>
+      <span class="pay-badge">Apple Pay</span>
+      <span class="pay-badge">Google Pay</span>
+      <span class="pay-badge">Shop Pay</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // FAQ toggle
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
