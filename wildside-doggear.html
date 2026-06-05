@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wildside Dog Gear – Built for Real Dogs on Real Adventures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a2e1a;
+    --pine: #2d4a2d;
+    --sage: #5a7a4a;
+    --moss: #8aaa6a;
+    --cream: #f5f0e8;
+    --sand: #e8dcc8;
+    --rust: #c4581a;
+    --amber: #e8922a;
+    --sky: #4a7a9b;
+    --white: #ffffff;
+    --dark: #0e1a0e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--cream);
+    color: var(--forest);
+    overflow-x: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--rust);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .topbar a { color: var(--white); text-decoration: underline; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--forest);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    color: var(--cream);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo .paw { font-size: 1.4rem; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sand);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  .nav-links .dropdown { position: relative; }
+  .nav-links .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--pine);
+    min-width: 200px;
+    padding: 10px 0;
+    border-top: 2px solid var(--amber);
+  }
+  .nav-links .dropdown:hover .dropdown-menu { display: block; }
+  .nav-links .dropdown-menu a {
+    display: block;
+    padding: 8px 20px;
+    font-size: 0.82rem;
+    color: var(--sand);
+  }
+  .nav-links .dropdown-menu a:hover { background: rgba(255,255,255,0.08); color: var(--amber); }
+
+  .nav-cta {
+    background: var(--amber) !important;
+    color: var(--forest) !important;
+    padding: 8px 18px !important;
+    font-weight: 700 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--rust) !important; color: var(--white) !important; }
+
+  .nav-social {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-left: 10px;
+  }
+  .nav-social a { color: var(--sand); font-size: 1.1rem; text-decoration: none; transition: color 0.2s; }
+  .nav-social a:hover { color: var(--amber); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--forest);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(160deg, rgba(10,20,10,0.1) 0%, rgba(10,20,10,0.7) 100%),
+      url('https://wildsidedoggear.com/cdn/shop/files/Golden_retriever_in_green_harness_SLC_Captial_Cherry_Blossom_Season_-1_83112bca-3369-4bd1-88ee-4c645724ab59.jpg?v=1772408259&width=1800') center/cover no-repeat;
+  }
+
+  /* Grain texture overlay */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px;
+    max-width: 720px;
+    animation: heroIn 1s ease both;
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 14px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(4rem, 9vw, 8rem);
+    line-height: 0.92;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    color: var(--amber);
+    font-style: normal;
+  }
+
+  .hero-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.15rem;
+    color: var(--sand);
+    max-width: 480px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--amber);
+    color: var(--forest);
+    padding: 14px 32px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--rust); color: var(--white); transform: translateY(-2px); }
+
+  .btn-outline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.5);
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+
+  .hero-badge {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    background: var(--amber);
+    color: var(--forest);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    padding: 12px 18px;
+    text-align: center;
+    line-height: 1.2;
+    animation: heroIn 1.2s ease both;
+    z-index: 3;
+  }
+  .hero-badge strong { display: block; font-size: 1.6rem; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--pine);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+    color: var(--cream);
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .stat .num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.2rem;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+    display: block;
+  }
+  .stat .lbl {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--moss);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--forest);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 1.05rem;
+    color: #4a5a4a;
+    line-height: 1.65;
+    max-width: 540px;
+  }
+
+  /* ── PRODUCTS SECTION ── */
+  .products {
+    padding: 80px 40px;
+    background: var(--cream);
+  }
+
+  .products-header { margin-bottom: 50px; }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    background: var(--sand);
+  }
+
+  .product-card {
+    background: var(--cream);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .product-card:hover { z-index: 2; transform: scale(1.02); }
+
+  .product-card .thumb {
+    aspect-ratio: 1;
+    background: var(--sand);
+    overflow: hidden;
+    position: relative;
+  }
+  .product-card .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .product-card:hover .thumb img { transform: scale(1.08); }
+
+  .product-card .info {
+    padding: 18px 20px 22px;
+    border-top: 2px solid var(--sand);
+  }
+  .product-card .cat {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 4px;
+  }
+  .product-card .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--forest);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .product-card .desc {
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .product-card .arrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rust);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .product-card .arrow::after { content: '→'; }
+  .product-card:hover .arrow { color: var(--forest); }
+
+  /* ── WHY WILDSIDE ── */
+  .why {
+    background: var(--forest);
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .why::before {
+    content: 'WILDSIDE';
+    position: absolute;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 18vw;
+    color: rgba(255,255,255,0.03);
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    letter-spacing: 0.05em;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .why .section-title { color: var(--cream); }
+  .why .section-tag { color: var(--moss); }
+  .why .section-sub { color: #aaa; }
+
+  .why-features {
+    display: grid;
+    gap: 28px;
+    margin-top: 36px;
+  }
+  .why-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .why-feature .icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .why-feature h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .why-feature p {
+    font-size: 0.88rem;
+    color: #999;
+    line-height: 1.5;
+  }
+
+  .why-img {
+    position: relative;
+  }
+  .why-img img {
+    width: 100%;
+    display: block;
+    filter: saturate(0.8);
+  }
+  .why-img .badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--amber);
+    color: var(--forest);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    padding: 14px 20px;
+    max-width: 160px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .why-img .badge strong { font-size: 1.8rem; display: block; }
+
+  /* ── COLLECTIONS ── */
+  .collections {
+    padding: 80px 40px;
+    background: var(--sand);
+  }
+  .collections-header { margin-bottom: 50px; text-align: center; }
+  .collections-header .section-sub { margin: 0 auto; }
+
+  .coll-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .coll-grid .featured {
+    grid-column: span 2;
+  }
+
+  .coll-card {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    aspect-ratio: 4/3;
+    background: var(--pine);
+  }
+  .coll-card.featured { aspect-ratio: 8/5; }
+
+  .coll-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s, filter 0.6s;
+    filter: brightness(0.75) saturate(0.9);
+  }
+  .coll-card:hover img { transform: scale(1.06); filter: brightness(0.65) saturate(1.1); }
+
+  .coll-card .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 60%);
+  }
+
+  .coll-card .tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .coll-card .title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.9rem;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .coll-card.featured .title { font-size: 2.8rem; }
+  .coll-card .shop-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .coll-card:hover .shop-link { opacity: 1; }
+
+  /* ── BUNDLES ── */
+  .bundles {
+    padding: 80px 40px;
+    background: var(--cream);
+    text-align: center;
+  }
+  .bundles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 800px;
+    margin: 40px auto 0;
+  }
+  .bundle-card {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 36px 28px;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .bundle-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--amber);
+  }
+  .bundle-card:hover { transform: translateY(-4px); }
+  .bundle-card .bicon { font-size: 2.5rem; margin-bottom: 14px; }
+  .bundle-card h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.7rem;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .bundle-card p {
+    font-size: 0.88rem;
+    color: #aaa;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .bundle-card .cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial {
+    background: var(--rust);
+    padding: 80px 40px;
+    text-align: center;
+  }
+  .testimonial blockquote {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--white);
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+    max-width: 900px;
+    margin: 0 auto 24px;
+  }
+  .testimonial blockquote em {
+    color: var(--sand);
+    font-style: normal;
+  }
+  .testimonial .attribution {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .stars {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+  }
+
+  /* ── PROMO BAND ── */
+  .promo-band {
+    background: var(--amber);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .promo-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--forest);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .promo-item .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--forest);
+    border-radius: 50%;
+  }
+
+  /* ── GUIDES ── */
+  .guides {
+    padding: 80px 40px;
+    background: var(--pine);
+  }
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-top: 50px;
+    background: rgba(0,0,0,0.2);
+  }
+  .guide-card {
+    background: var(--forest);
+    padding: 36px 28px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .guide-card:hover { background: #1e3a1e; }
+  .guide-card .gnum {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.5rem;
+    color: rgba(255,255,255,0.07);
+    position: absolute;
+    top: 16px; right: 20px;
+    letter-spacing: -0.02em;
+  }
+  .guide-card .gicon { font-size: 1.8rem; margin-bottom: 14px; }
+  .guide-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .guide-card p { font-size: 0.85rem; color: #aaa; line-height: 1.5; }
+  .guides .section-title { color: var(--cream); }
+  .guides .section-tag { color: var(--moss); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: var(--sand);
+    padding: 60px 40px 30px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+
+  .footer-brand .logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.2rem;
+    color: var(--cream);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    display: block;
+    text-decoration: none;
+  }
+  .footer-brand p {
+    font-size: 0.88rem;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    max-width: 280px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 14px;
+  }
+  .social-links a {
+    width: 38px;
+    height: 38px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1rem;
+    color: #aaa;
+    transition: all 0.2s;
+  }
+  .social-links a:hover { border-color: var(--amber); color: var(--amber); }
+
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 0.88rem;
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    border-top: 1px solid #222;
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom p {
+    font-size: 0.78rem;
+    color: #555;
+  }
+  .footer-bottom a { color: #555; text-decoration: none; }
+  .footer-bottom a:hover { color: var(--amber); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 60px 24px; }
+    .hero-badge { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .coll-grid { grid-template-columns: 1fr; }
+    .coll-grid .featured { grid-column: span 1; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .stats-bar { gap: 30px; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 3.8rem; }
+    .products { padding: 50px 20px; }
+    .why, .collections, .bundles, .guides, .testimonial { padding: 50px 20px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .promo-band { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  🔥 Back in stock: <a href="https://wildsidedoggear.com/collections/national-park-collection">National Park styles going fast</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+  Free shipping over $75
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="https://wildsidedoggear.com/" class="nav-logo">
+    <span class="paw">🐾</span> Wildside Dog Gear
+  </a>
+  <ul class="nav-links">
+    <li class="dropdown">
+      <a href="#">Shop by Product ▾</a>
+      <div class="dropdown-menu">
+        <a href="https://wildsidedoggear.com/collections/wildside-dog-collars">All Dog Collars</a>
+        <a href="https://wildsidedoggear.com/collections/durable-dog-collars">Rust-Proof Collars</a>
+        <a href="https://wildsidedoggear.com/collections/comfort-padded-dog-collars">Padded Dog Collars</a>
+        <a href="https://wildsidedoggear.com/collections/click-n-go-harness-1">Dog Harnesses</a>
+        <a href="https://wildsidedoggear.com/collections/leash">Dog Leashes</a>
+        <a href="https://wildsidedoggear.com/collections/accessories">Accessories</a>
+        <a href="https://wildsidedoggear.com/collections/waterproof-stickers">Stickers</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <a href="#">Bundles ▾</a>
+      <div class="dropdown-menu">
+        <a href="https://wildsidedoggear.com/collections/dog-harness-and-leash-sets">Harness, Leash & Collar Sets</a>
+        <a href="https://wildsidedoggear.com/collections/dog-leash-collar-set">Rust Proof Collar & Leash Sets</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <a href="#">Collections ▾</a>
+      <div class="dropdown-menu">
+        <a href="https://wildsidedoggear.com/collections/the-great-national-parks-collection">National Park</a>
+        <a href="https://wildsidedoggear.com/collections/memories-of-jib-collection">Memories of Jib</a>
+        <a href="https://wildsidedoggear.com/collections/best-sellers">Best Sellers</a>
+        <a href="https://wildsidedoggear.com/collections/sale-collection">Last Chance ⭐️</a>
+      </div>
+    </li>
+    <li><a href="https://wildsidedoggear.com/pages/about-us">About Us</a></li>
+    <li><a href="https://wildsidedoggear.com/collections/best-sellers" class="nav-cta">Shop Now</a></li>
+  </ul>
+  <div class="nav-social">
+    <a href="https://www.instagram.com/wildsidedoggear/" target="_blank" rel="noopener" title="Instagram">📸</a>
+    <a href="https://www.facebook.com/wildsidedoggear" target="_blank" rel="noopener" title="Facebook">📘</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-badge">
+    <strong>9,900+</strong> 5-Star<br>Reviews
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Built for real dogs · Built to last</div>
+    <h1>Dog Gear<br>That Can <em>Keep Up</em></h1>
+    <p class="hero-sub">From the backyard to the backcountry. Collars, harnesses, and leashes built to hold up to real adventures — backed by a lifetime warranty.</p>
+    <div class="hero-btns">
+      <a href="https://wildsidedoggear.com/collections/click-n-go-harness-with-handle" class="btn-primary">Shop Harnesses</a>
+      <a href="https://wildsidedoggear.com/collections/best-sellers" class="btn-outline">Best Sellers</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><span class="num">9,900+</span><span class="lbl">5-Star Reviews</span></div>
+  <div class="stat"><span class="num">∞</span><span class="lbl">Lifetime Warranty</span></div>
+  <div class="stat"><span class="num">7+</span><span class="lbl">Years of Lasting Gear</span></div>
+  <div class="stat"><span class="num">FREE</span><span class="lbl">Shipping over $75</span></div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <div class="section-tag">Shop by Product</div>
+    <h2 class="section-title">Gear for Every Adventure</h2>
+    <p class="section-sub">Marine-grade hardware. Lifetime warranty. Styles that go from the trail to the town.</p>
+  </div>
+
+  <div class="product-grid">
+    <a href="https://wildsidedoggear.com/collections/wildside-dog-collars" class="product-card">
+      <div class="thumb">
+        <img src="https://wildsidedoggear.com/cdn/shop/files/rust_proof_beach_dog_collars_durable_dog_collars.jpg?v=1770746606&width=600" alt="Dog Collars" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="cat">Signature</div>
+        <div class="name">Dog Collars</div>
+        <div class="desc">Rust-proof marine-grade hardware. Never replace again.</div>
+        <div class="arrow">Shop Collars</div>
+      </div>
+    </a>
+    <a href="https://wildsidedoggear.com/collections/click-n-go-harness-1" class="product-card">
+      <div class="thumb">
+        <img src="https://wildsidedoggear.com/cdn/shop/files/Golden_retriever_in_green_harness_SLC_Captial_Cherry_Blossom_Season_-1_83112bca-3369-4bd1-88ee-4c645724ab59.jpg?v=1772408259&width=600" alt="Dog Harnesses" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="cat">Click-N-Go</div>
+        <div class="name">Dog Harnesses</div>
+        <div class="desc">Easy on, secure fit. Perfect for active pups who hate harness time.</div>
+        <div class="arrow">Shop Harnesses</div>
+      </div>
+    </a>
+    <a href="https://wildsidedoggear.com/collections/leash" class="product-card">
+      <div class="thumb" style="background:#c8d4b8; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:5rem;">🦮</span>
+      </div>
+      <div class="info">
+        <div class="cat">Everyday & Hands-Free</div>
+        <div class="name">Dog Leashes</div>
+        <div class="desc">Standard, hands-free crossbody, and adventure-ready styles.</div>
+        <div class="arrow">Shop Leashes</div>
+      </div>
+    </a>
+    <a href="https://wildsidedoggear.com/collections/accessories" class="product-card">
+      <div class="thumb" style="background:#d4c8b8; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:5rem;">🎒</span>
+      </div>
+      <div class="info">
+        <div class="cat">Add-ons</div>
+        <div class="name">Accessories & Stickers</div>
+        <div class="desc">Waterproof stickers, extras, and gear add-ons for the adventure dog.</div>
+        <div class="arrow">Shop Accessories</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- WHY WILDSIDE -->
+<section class="why" id="about">
+  <div class="why-grid">
+    <div>
+      <div class="section-tag">Why Wildside?</div>
+      <h2 class="section-title">The Problem With Most Dog Collars</h2>
+      <p class="section-sub">Pet store collars rust in months. Hardware breaks when you need it most. You're tired of replacing the same gear and wasting money.</p>
+      <div class="why-features">
+        <div class="why-feature">
+          <div class="icon">⚓</div>
+          <div>
+            <h3>Rust-Proof Marine-Grade Hardware</h3>
+            <p>The same hardware used on boats — never corrodes, never fails on a walk, a swim, or a decade of use.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="icon">🛡️</div>
+          <div>
+            <h3>Lifetime Warranty</h3>
+            <p>We stand behind every product we make. If it fails, we replace it. Simple as that.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="icon">🏔️</div>
+          <div>
+            <h3>Built for Real Adventures</h3>
+            <p>Designed for dogs who hike, swim, run, and get into everything — not just the backyard.</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <a href="https://wildsidedoggear.com/collections/durable-dog-collars" class="btn-primary">See Rust-Proof Collars</a>
+    </div>
+    <div class="why-img">
+      <img src="https://wildsidedoggear.com/cdn/shop/files/rust_proof_beach_dog_collars_durable_dog_collars.jpg?v=1770746606&width=700" alt="Wildside durable dog collar">
+      <div class="badge"><strong>7</strong>Years with the same collar</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="collections" id="collections">
+  <div class="collections-header">
+    <div class="section-tag">Shop by Collection</div>
+    <h2 class="section-title">Find Your Dog's Style</h2>
+    <p class="section-sub">From National Parks to seasonal drops — every collection tells a story worth wearing.</p>
+  </div>
+
+  <div class="coll-grid">
+    <a href="https://wildsidedoggear.com/collections/the-great-national-parks-collection" class="coll-card featured">
+      <img src="https://wildsidedoggear.com/cdn/shop/files/Utah_National_Parks_hands-free_cross_body_dog_leash_with_rust-proof_carabiners_and_adjustable_webbing.jpg?v=1768933126&width=900" alt="National Park Collection" loading="lazy">
+      <div class="overlay">
+        <div class="tag">Limited – Back in Stock</div>
+        <div class="title">National Park Collection</div>
+        <div class="shop-link">Shop Now →</div>
+      </div>
+    </a>
+
+    <a href="https://wildsidedoggear.com/collections/best-sellers" class="coll-card">
+      <img src="https://wildsidedoggear.com/cdn/shop/files/Golden_retriever_in_green_harness_SLC_Captial_Cherry_Blossom_Season_-1_83112bca-3369-4bd1-88ee-4c645724ab59.jpg?v=1772408259&width=600" alt="Best Sellers" loading="lazy">
+      <div class="overlay">
+        <div class="tag">Most Loved</div>
+        <div class="title">Best Sellers</div>
+        <div class="shop-link">Shop Now →</div>
+      </div>
+    </a>
+
+    <a href="https://wildsidedoggear.com/collections/memories-of-jib-collection" class="coll-card">
+      <img src="https://wildsidedoggear.com/cdn/shop/files/1Q1A9318.jpg?v=1762465063&width=600" alt="Memories of Jib" loading="lazy">
+      <div class="overlay">
+        <div class="tag">Special Edition</div>
+        <div class="title">Memories of Jib</div>
+        <div class="shop-link">Shop Now →</div>
+      </div>
+    </a>
+
+    <a href="https://wildsidedoggear.com/collections/sale-collection" class="coll-card">
+      <div style="background: linear-gradient(135deg,#2d1a0a,#5c2a0a); width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:5rem;">⭐️</span>
+      </div>
+      <div class="overlay">
+        <div class="tag">While Supplies Last</div>
+        <div class="title">Last Chance Sale</div>
+        <div class="shop-link">Shop Now →</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- BUNDLES -->
+<section class="bundles" id="bundles">
+  <div class="section-tag" style="text-align:center">Save More</div>
+  <h2 class="section-title">Bundles & Sets</h2>
+  <p class="section-sub" style="margin:0 auto">Get the full matching setup — collar, harness, and leash — at a better price.</p>
+
+  <div class="bundles-grid">
+    <a href="https://wildsidedoggear.com/collections/dog-harness-and-leash-sets" class="bundle-card">
+      <div class="bicon">🐕‍🦺</div>
+      <h3>Harness, Leash & Collar Sets</h3>
+      <p>The complete adventure kit. Everything matches, everything lasts.</p>
+      <div class="cta">Shop Sets →</div>
+    </a>
+    <a href="https://wildsidedoggear.com/collections/dog-leash-collar-set" class="bundle-card">
+      <div class="bicon">🔗</div>
+      <h3>Rust Proof Collar & Leash Sets</h3>
+      <p>Matching rust-proof hardware from collar to leash clip. Built to last together.</p>
+      <div class="cta">Shop Sets →</div>
+    </a>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <blockquote>"I've had this collar for <em>7 years</em> — it still looks brand new."</blockquote>
+  <div class="attribution">— Verified Customer &nbsp;·&nbsp; One of 9,900+ five-star reviews</div>
+  <br><br>
+  <a href="https://wildsidedoggear.com/collections/best-sellers" class="btn-primary" style="background:var(--white); color:var(--rust);">Shop Best Sellers</a>
+</section>
+
+<!-- PROMO BAND -->
+<div class="promo-band">
+  <div class="promo-item"><span class="dot"></span> Free Shipping over $75</div>
+  <div class="promo-item"><span class="dot"></span> Lifetime Warranty on Every Order</div>
+  <div class="promo-item"><span class="dot"></span> 9,900+ Five-Star Reviews</div>
+  <div class="promo-item"><span class="dot"></span> Marine-Grade Hardware</div>
+</div>
+
+<!-- GUIDES -->
+<section class="guides" id="guides">
+  <div class="section-tag">Free Resources</div>
+  <h2 class="section-title">Know Your Gear</h2>
+
+  <div class="guides-grid">
+    <a href="https://wildsidedoggear.com/pages/free-dog-harness-fit-guide" class="guide-card">
+      <div class="gnum">01</div>
+      <div class="gicon">📐</div>
+      <h3>Perfect Fit Harness Guide</h3>
+      <p>Does your dog hate their harness? Probably a fit issue. Get the free guide.</p>
+    </a>
+    <a href="https://wildsidedoggear.com/pages/wildside-care-guide" class="guide-card">
+      <div class="gnum">02</div>
+      <div class="gicon">🧼</div>
+      <h3>Dog Gear Care Guide</h3>
+      <p>How to clean and maintain your gear so it genuinely lasts years.</p>
+    </a>
+    <a href="https://wildsidedoggear.com/blogs/news/exposing-the-truth-why-waterproof-dog-collars-are-lying-to" class="guide-card">
+      <div class="gnum">03</div>
+      <div class="gicon">🔎</div>
+      <h3>Rust-Proof vs Waterproof</h3>
+      <p>The truth about why "waterproof" collars still rust — and what to get instead.</p>
+    </a>
+    <a href="https://wildsidedoggear.com/pages/become-a-wildside-product-tester" class="guide-card">
+      <div class="gnum">04</div>
+      <div class="gicon">🐾</div>
+      <h3>Become a Product Tester</h3>
+      <p>Limited spots to test new gear and share honest, real-world feedback.</p>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="https://wildsidedoggear.com/" class="logo">🐾 Wildside Dog Gear</a>
+      <p>Durable dog collars, harnesses & leashes for everyday use and thrilling adventures. From National Parks to mountain-inspired styles.</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/wildsidedoggear/" target="_blank" rel="noopener" title="Instagram">📸</a>
+        <a href="https://www.facebook.com/wildsidedoggear" target="_blank" rel="noopener" title="Facebook">📘</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://wildsidedoggear.com/collections/wildside-dog-collars">Dog Collars</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/durable-dog-collars">Rust-Proof Collars</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/comfort-padded-dog-collars">Padded Collars</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/click-n-go-harness-1">Dog Harnesses</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/leash">Dog Leashes</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/accessories">Accessories</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/waterproof-stickers">Stickers</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="https://wildsidedoggear.com/collections/the-great-national-parks-collection">National Park</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/memories-of-jib-collection">Memories of Jib</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/best-sellers">Best Sellers</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/dog-harness-and-leash-sets">Harness & Leash Sets</a></li>
+        <li><a href="https://wildsidedoggear.com/collections/sale-collection">Last Chance ⭐️</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://wildsidedoggear.com/pages/about-us">About Us</a></li>
+        <li><a href="https://wildsidedoggear.com/pages/wildside-care-guide">Gear Care Guide</a></li>
+        <li><a href="https://wildsidedoggear.com/pages/free-dog-harness-fit-guide">Harness Fit Guide</a></li>
+        <li><a href="https://wildsidedoggear.com/pages/become-a-wildside-product-tester">Product Testers</a></li>
+        <li><a href="https://wildsidedoggear.com/blogs/news/exposing-the-truth-why-waterproof-dog-collars-are-lying-to">Blog</a></li>
+        <li><a href="https://wildsidedoggear.com/customer_authentication/redirect?locale=en&region_country=US">Log In</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 Wildside Dog Gear · All rights reserved</p>
+    <p>
+      <a href="https://wildsidedoggear.com/">wildsidedoggear.com</a> &nbsp;·&nbsp;
+      <a href="https://www.instagram.com/wildsidedoggear/" target="_blank">Instagram</a> &nbsp;·&nbsp;
+      <a href="https://www.facebook.com/wildsidedoggear" target="_blank">Facebook</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
