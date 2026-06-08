@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valerina · Salón de Belleza</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream:   #f9f4ee;
+      --blush:   #e8c4b0;
+      --rose:    #c47a6a;
+      --deep:    #3a1f1a;
+      --muted:   #8a6a62;
+      --gold:    #b8956a;
+      --light:   #f2e8e0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--deep);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .4;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 2rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, #e8d0c4 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, #d4a898 0%, transparent 60%),
+        var(--cream);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+    }
+
+    /* floating petals */
+    .petal {
+      position: absolute;
+      border-radius: 50% 0 50% 0;
+      opacity: .12;
+      animation: drift linear infinite;
+    }
+    .p1 { width:60px;height:60px;background:var(--rose);top:10%;left:8%;animation-duration:18s;animation-delay:-3s; }
+    .p2 { width:40px;height:40px;background:var(--gold);top:25%;right:10%;animation-duration:22s;animation-delay:-8s; }
+    .p3 { width:80px;height:80px;background:var(--blush);top:55%;left:5%;animation-duration:26s;animation-delay:-12s; }
+    .p4 { width:30px;height:30px;background:var(--rose);top:70%;right:15%;animation-duration:20s;animation-delay:-5s; }
+    .p5 { width:50px;height:50px;background:var(--gold);top:40%;left:90%;animation-duration:24s;animation-delay:-9s; }
+
+    @keyframes drift {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translateY(-30px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      font-size: .75rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      animation: fadeUp .8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: .95;
+      letter-spacing: -.02em;
+      color: var(--deep);
+      animation: fadeUp .9s .1s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose);
+      display: block;
+    }
+
+    .hero-sub {
+      margin-top: 1.2rem;
+      font-size: .9rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: fadeUp 1s .2s ease both;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 2.5rem auto;
+      animation: fadeUp 1s .3s ease both;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 380px;
+      line-height: 1.6;
+      animation: fadeUp 1s .35s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 1s .45s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .85rem 2rem;
+      border-radius: 0;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      font-size: .75rem;
+      text-decoration: none;
+      transition: all .3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--deep);
+      color: var(--cream);
+    }
+    .btn-primary:hover {
+      background: var(--rose);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(196,122,106,.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--deep);
+      border: 1px solid var(--deep);
+    }
+    .btn-outline:hover {
+      background: var(--deep);
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+    }
+    .btn-whatsapp:hover {
+      background: #1da851;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,211,102,.35);
+    }
+
+    .btn-insta {
+      background: linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      color: #fff;
+    }
+    .btn-insta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(220,39,67,.4);
+    }
+
+    .btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── SERVICES ── */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: .7rem;
+      letter-spacing: .6em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--deep);
+      margin-bottom: 3rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--rose); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+    }
+
+    .service-card {
+      background: var(--light);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--rose);
+      transition: height .4s ease;
+    }
+
+    .service-card:hover { background: #f0e4dc; }
+    .service-card:hover::before { height: 100%; }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--deep);
+      margin-bottom: .5rem;
+    }
+
+    .service-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT BAND ── */
+    .about-band {
+      background: var(--deep);
+      color: var(--cream);
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-band::before {
+      content: 'Belleza';
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18vw;
+      font-style: italic;
+      color: rgba(255,255,255,.03);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: -.02em;
+    }
+
+    .about-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .about-inner .section-label { color: var(--gold); }
+
+    .about-inner .section-title { color: var(--cream); }
+    .about-inner .section-title em { color: var(--blush); }
+
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: rgba(249,244,238,.7);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 6rem 2rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 70% 50% at 30% 100%, #e8d0c4 0%, transparent 60%),
+        var(--cream);
+    }
+
+    .contact-inner { max-width: 700px; margin: 0 auto; }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 2.5rem;
+      width: 100%;
+      max-width: 380px;
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      letter-spacing: .1em;
+      font-size: .85rem;
+      text-transform: uppercase;
+      transition: all .3s;
+      justify-content: center;
+    }
+
+    .contact-link svg { width:22px;height:22px;fill:currentColor;flex-shrink:0; }
+
+    .cl-whatsapp {
+      background: #25d366; color:#fff;
+    }
+    .cl-whatsapp:hover {
+      background:#1da851;
+      transform:translateY(-3px);
+      box-shadow:0 12px 32px rgba(37,211,102,.3);
+    }
+
+    .cl-instagram {
+      background: linear-gradient(135deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);
+      color:#fff;
+    }
+    .cl-instagram:hover {
+      transform:translateY(-3px);
+      box-shadow:0 12px 32px rgba(220,39,67,.3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep);
+      color: rgba(249,244,238,.4);
+      padding: 2.5rem;
+      text-align: center;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    footer span { color: var(--rose); }
+
+    /* ── FLOATING WHATSAPP ── */
+    .fab-whatsapp {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+      z-index: 1000;
+      transition: transform .3s, box-shadow .3s;
+      text-decoration: none;
+    }
+    .fab-whatsapp:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(37,211,102,.5);
+    }
+    .fab-whatsapp svg { width:28px;height:28px;fill:#fff; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:600px){
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 300px; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="petal p5"></div>
+
+    <p class="hero-eyebrow">Salón de Belleza · Vera, Almería</p>
+    <h1 class="hero-title">
+      Valerina
+      <em>Salón de Belleza</em>
+    </h1>
+    <p class="hero-sub">Peluquería &amp; Estética</p>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Donde cada detalle importa y tu belleza es nuestra pasión.</p>
+
+    <div class="hero-ctas">
+      <a href="https://wa.me/34600000000" target="_blank" rel="noopener" class="btn btn-whatsapp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Reservar cita
+      </a>
+      <a href="https://www.instagram.com/valerina.salondebelleza" target="_blank" rel="noopener" class="btn btn-insta">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Síguenos
+      </a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="reveal">
+      <p class="section-label">Nuestros servicios</p>
+      <h2 class="section-title">Todo lo que<br><em>necesitas</em></h2>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-icon">✂️</span>
+        <p class="service-name">Corte &amp; Peinado</p>
+        <p class="service-desc">Cortes a medida, ondulados, alisados y peinados para cada ocasión especial.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎨</span>
+        <p class="service-name">Color &amp; Mechas</p>
+        <p class="service-desc">Tintes, mechas, balayage y técnicas avanzadas de coloración con productos de primera.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💅</span>
+        <p class="service-name">Manicura &amp; Pedicura</p>
+        <p class="service-desc">Uñas en gel, semipermanente, nail art y cuidado completo de manos y pies.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">✨</span>
+        <p class="service-name">Tratamientos Faciales</p>
+        <p class="service-desc">Limpiezas, hidratación profunda y tratamientos personalizados para tu piel.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">👁️</span>
+        <p class="service-name">Pestañas &amp; Cejas</p>
+        <p class="service-desc">Extensiones, lifting, tinte de pestañas y perfilado de cejas.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌿</span>
+        <p class="service-name">Depilación</p>
+        <p class="service-desc">Depilación con cera, hilo y tratamientos suaves para todo tipo de piel.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT BAND -->
+  <div class="about-band">
+    <div class="about-inner reveal">
+      <p class="section-label">Sobre nosotras</p>
+      <h2 class="section-title">Belleza con <em>alma</em></h2>
+      <p class="about-text">
+        En Valerina creemos que la belleza es una experiencia, no solo un resultado.
+        Nuestro equipo está formado por profesionales apasionadas con años de experiencia,
+        dedicadas a realzar tu belleza natural con mimo y dedicación en cada visita.
+      </p>
+      <a href="https://www.instagram.com/valerina.salondebelleza" target="_blank" rel="noopener" class="btn btn-insta">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Ver nuestro trabajo en Instagram
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section">
+    <div class="contact-inner reveal">
+      <p class="section-label">Contáctanos</p>
+      <h2 class="section-title">Pide tu <em>cita</em></h2>
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.8;max-width:420px;margin:0 auto;">
+        Estamos encantadas de atenderte. Escríbenos por WhatsApp o visita nuestro
+        perfil de Instagram para ver nuestras últimas creaciones y novedades.
+      </p>
+      <div class="contact-links">
+        <a href="https://wa.me/34600000000" target="_blank" rel="noopener" class="contact-link cl-whatsapp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp · Reservar cita
+        </a>
+        <a href="https://www.instagram.com/valerina.salondebelleza" target="_blank" rel="noopener" class="contact-link cl-instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram · @valerina.salondebelleza
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>Valerina Salón de Belleza</span> · Vera, Almería · Todos los derechos reservados</p>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/34600000000" target="_blank" rel="noopener" class="fab-whatsapp" title="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
