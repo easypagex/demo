@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mohana Vera Playa — Restaurante</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:   #f5ede0;
+      --cream:  #fdf8f2;
+      --ember:  #c0392b;
+      --gold:   #b8860b;
+      --char:   #1a1208;
+      --smoke:  #5a4e3c;
+      --sea:    #2e6b7e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      background: var(--cream);
+      color: var(--char);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(26,18,8,.72) 0%, rgba(192,57,43,.38) 100%),
+        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+    }
+
+    .logo-badge {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      animation: fadeDown .9s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: .02em;
+      animation: fadeDown .9s .15s ease both;
+    }
+
+    .hero h1 span { color: var(--gold); font-style: italic; }
+
+    .hero .sub {
+      margin-top: .9rem;
+      font-size: clamp(.85rem, 2.2vw, 1.05rem);
+      font-weight: 300;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.8);
+      animation: fadeDown .9s .3s ease both;
+    }
+
+    .hero-tags {
+      margin-top: 1.8rem;
+      display: flex; gap: .7rem; flex-wrap: wrap; justify-content: center;
+      animation: fadeDown .9s .45s ease both;
+    }
+    .tag {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.3);
+      color: #fff;
+      padding: .35rem .9rem;
+      border-radius: 2rem;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .hero-ctas {
+      margin-top: 2.5rem;
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      animation: fadeDown .9s .6s ease both;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.8rem;
+      border-radius: .3rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+    .btn-ember  { background: var(--ember); color: #fff; }
+    .btn-ig     { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af); color: #fff; }
+    .btn-wa     { background: #25d366; color: #fff; }
+    .btn-outline { background: transparent; border: 2px solid rgba(255,255,255,.6); color: #fff; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; max-width: 960px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .72rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: .6rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+      line-height: 1.2;
+      color: var(--char);
+    }
+    h2 em { color: var(--gold); }
+
+    .divider {
+      width: 48px; height: 3px;
+      background: var(--ember);
+      margin: 1.2rem 0 2rem;
+      border-radius: 2px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 680px;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--smoke);
+      margin-bottom: 1rem;
+    }
+
+    .about-img {
+      border-radius: 1rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 12px 16px 48px rgba(26,18,8,.18);
+    }
+    .about-img img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+    .about-img::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(192,57,43,.15), transparent);
+      z-index: 1;
+    }
+
+    /* ── ESPECIALIDADES ── */
+    .esp-section { background: var(--sand); border-radius: 1.5rem; padding: 4rem 2rem; max-width: 100%; }
+    .esp-section > * { max-width: 960px; margin-left: auto; margin-right: auto; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.4rem;
+      margin-top: 2.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: .8rem;
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      box-shadow: 0 4px 18px rgba(26,18,8,.07);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,18,8,.13); }
+    .card .icon { font-size: 2.2rem; margin-bottom: .8rem; display: block; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: .4rem; }
+    .card p { font-size: .85rem; color: var(--smoke); line-height: 1.6; }
+
+    /* ── CONTACTO ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.4rem;
+      margin-top: 2.5rem;
+    }
+    .contact-card {
+      background: var(--char);
+      color: #fff;
+      border-radius: .9rem;
+      padding: 1.8rem 1.5rem;
+      display: flex; flex-direction: column; gap: .6rem;
+    }
+    .contact-card .c-icon { font-size: 1.6rem; }
+    .contact-card .c-label { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+    .contact-card .c-value { font-size: 1rem; font-weight: 600; }
+    .contact-card a { color: inherit; text-decoration: none; }
+
+    /* ── SOCIAL CTA ── */
+    .social-bar {
+      background: linear-gradient(135deg, var(--ember), #8b1a10);
+      border-radius: 1.2rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #fff;
+      margin: 0 1.5rem 5rem;
+    }
+    .social-bar h2 { color: #fff; font-family: 'Playfair Display', serif; }
+    .social-bar p { margin: .8rem 0 2rem; opacity: .85; font-size: .95rem; }
+    .social-bar .btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--char);
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .8rem;
+      letter-spacing: .08em;
+    }
+    footer strong { color: rgba(255,255,255,.9); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity:0; transform:translateY(-22px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(26,18,8,.0);
+      backdrop-filter: blur(0px);
+      transition: background .3s, backdrop-filter .3s;
+    }
+    nav.scrolled {
+      background: rgba(26,18,8,.88);
+      backdrop-filter: blur(12px);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 1.1rem;
+      letter-spacing: .06em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-size: .75rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* scroll reveal */
+    .reveal { opacity:0; transform:translateY(30px); transition: opacity .7s, transform .7s; }
+    .reveal.visible { opacity:1; transform:none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-brand" href="#">Mohana Vera Playa</a>
+  <div class="nav-links">
+    <a href="#sobre">Nosotros</a>
+    <a href="#carta">Carta</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/34678642856" target="_blank" rel="noopener" class="btn btn-wa" style="padding:.4rem 1rem;font-size:.72rem;">📲 Reservar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="logo-badge">🥩</div>
+  <h1>Mohana<br/><span>Vera Playa</span></h1>
+  <p class="sub">Restaurante · Primera línea de playa · Vera, Almería</p>
+  <div class="hero-tags">
+    <span class="tag">🥩 Carnes a la brasa</span>
+    <span class="tag">🥘 Cocina mediterránea</span>
+    <span class="tag">🌊 Frente al mar</span>
+    <span class="tag">🇦🇷 Cocina argentina</span>
+  </div>
+  <div class="hero-ctas">
+    <a href="https://wa.me/34678642856" target="_blank" rel="noopener" class="btn btn-wa">📲 WhatsApp Reservas</a>
+    <a href="https://www.instagram.com/mohanaveraplaya/" target="_blank" rel="noopener" class="btn btn-ig">📸 Instagram</a>
+    <a href="#sobre" class="btn btn-outline">Ver más ↓</a>
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section id="sobre">
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p class="section-label">Quiénes somos</p>
+      <h2>Sabores de <em>Argentina</em> con alma mediterránea</h2>
+      <div class="divider"></div>
+      <p>Somos un restaurante ubicado en primera línea de playa en Vera Playa, Almería, donde el Mediterráneo se convierte en el escenario perfecto para disfrutar de una cocina única que fusiona la tradición argentina con los mejores ingredientes del levante español.</p>
+      <p>Especialistas en carnes a la brasa, nuestros cortes son seleccionados con mimo y cocinados al punto exacto que merezcan. El olor al fuego, la brisa del mar y una buena compañía: así entendemos nosotros la gastronomía.</p>
+      <a href="https://wa.me/34678642856" target="_blank" rel="noopener" class="btn btn-ember" style="margin-top:1rem;">Hacer una reserva</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<div class="esp-section">
+  <div id="carta" class="reveal" style="padding:0 1.5rem;">
+    <p class="section-label">Lo que nos define</p>
+    <h2>Nuestras <em>Especialidades</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="cards reveal" style="padding:0 1.5rem;">
+    <div class="card">
+      <span class="icon">🔥</span>
+      <h3>Carnes a la Brasa</h3>
+      <p>Cortes argentinos y nacionales seleccionados, cocinados en brasa de leña al punto perfecto.</p>
+    </div>
+    <div class="card">
+      <span class="icon">🥘</span>
+      <h3>Cocina Mediterránea</h3>
+      <p>Platos frescos de temporada con el mejor producto local de la costa almeriense.</p>
+    </div>
+    <div class="card">
+      <span class="icon">🦞</span>
+      <h3>Pescados y Mariscos</h3>
+      <p>Del mar a la mesa. Producto fresco directo del Mediterráneo preparado con sencillez y sabor.</p>
+    </div>
+    <div class="card">
+      <span class="icon">🌅</span>
+      <h3>Terraza Frente al Mar</h3>
+      <p>Come con el Mediterráneo de fondo. La mejor mesa siempre tiene vistas al mar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="reveal">
+    <p class="section-label">Encuéntranos</p>
+    <h2>Contacto & <em>Reservas</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-card">
+      <span class="c-icon">📍</span>
+      <span class="c-label">Dirección</span>
+      <span class="c-value">Calle Delfín s/n<br/>Vera Playa, Almería</span>
+    </div>
+    <div class="contact-card">
+      <span class="c-icon">📲</span>
+      <span class="c-label">WhatsApp / Reservas</span>
+      <span class="c-value"><a href="https://wa.me/34678642856">678 64 28 56</a></span>
+    </div>
+    <div class="contact-card">
+      <span class="c-icon">📞</span>
+      <span class="c-label">Teléfono restaurante</span>
+      <span class="c-value"><a href="tel:+34950131883">950 13 18 83</a></span>
+    </div>
+    <div class="contact-card">
+      <span class="c-icon">✉️</span>
+      <span class="c-label">Email</span>
+      <span class="c-value"><a href="mailto:mohanaplaya@gmail.com">mohanaplaya@gmail.com</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL CTA -->
+<div class="social-bar reveal">
+  <h2>Síguenos y reserva tu mesa</h2>
+  <p>Descubre nuestros platos del día, eventos especiales y momentos únicos en Instagram. Para reservas, escríbenos directamente por WhatsApp.</p>
+  <div class="btns">
+    <a href="https://www.instagram.com/mohanaveraplaya/" target="_blank" rel="noopener" class="btn btn-ig">
+      📸 @mohanaveraplaya
+    </a>
+    <a href="https://wa.me/34678642856" target="_blank" rel="noopener" class="btn btn-wa">
+      💬 WhatsApp 678 64 28 56
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Mohana Vera Playa</strong> · Restaurante · Calle Delfín s/n, Vera Playa, Almería</p>
+  <p style="margin-top:.4rem;">Cocina argentina y mediterránea · Especialistas en carnes · Primera línea de playa</p>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
