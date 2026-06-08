@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maktüb Vera Playa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sand: #f5e6c8;
+      --ocean: #1a6b7c;
+      --deep: #0d3d47;
+      --coral: #e85d3a;
+      --sun: #f2a53a;
+      --foam: #e8f4f6;
+      --dark: #0a1f24;
+      --text: #1c3a40;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--dark);
+      color: var(--sand);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(to bottom, rgba(10,31,36,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(2px);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--sun);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--sand);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--sun);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--deep) 0%, #0a2830 40%, #0d1a1d 100%);
+    }
+
+    .hero-bg-waves {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 110%, rgba(26,107,124,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(242,165,58,0.12) 0%, transparent 60%);
+    }
+
+    /* animated wave lines */
+    .wave-lines {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      overflow: hidden;
+    }
+
+    .wave-lines svg {
+      position: absolute;
+      bottom: 0;
+      width: 200%;
+      animation: waveMove 8s linear infinite;
+      opacity: 0.15;
+    }
+
+    .wave-lines svg:nth-child(2) {
+      animation-delay: -4s;
+      opacity: 0.08;
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: var(--sand);
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-title .accent {
+      color: var(--sun);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      margin-top: 2rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(245,230,200,0.65);
+      letter-spacing: 0.05em;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2rem;
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      font-family: 'Space Mono', monospace;
+      color: var(--foam);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 3rem;
+      animation: fadeUp 0.8s 0.6s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 0.25rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--coral);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #d44a28;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,93,58,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--sand);
+      border: 1px solid rgba(245,230,200,0.3);
+    }
+    .btn-secondary:hover {
+      background: rgba(245,230,200,0.08);
+      border-color: rgba(245,230,200,0.6);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.4;
+      animation: fadeUp 1s 1s ease both;
+    }
+
+    .scroll-hint span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--sand), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.3); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS SHARED ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(232,93,58,0.3);
+      max-width: 80px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── ABOUT ── */
+    #nosotros {
+      background: linear-gradient(180deg, var(--dark) 0%, #0f2830 100%);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(245,230,200,0.75);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card {
+      background: linear-gradient(135deg, rgba(26,107,124,0.25), rgba(13,61,71,0.4));
+      border: 1px solid rgba(26,107,124,0.3);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--sun);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,230,200,0.5);
+      margin-top: 0.4rem;
+    }
+
+    .about-badge {
+      position: absolute;
+      top: -1.5rem;
+      right: -1.5rem;
+      width: 100px;
+      height: 100px;
+      background: var(--coral);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.5;
+      font-weight: 700;
+      animation: rotateBadge 12s linear infinite;
+    }
+
+    @keyframes rotateBadge {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── SERVICES ── */
+    #servicios {
+      background: #0f2830;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 0.75rem;
+      padding: 2.2rem 1.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(26,107,124,0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(26,107,124,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      color: var(--sand);
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: rgba(245,230,200,0.55);
+    }
+
+    /* ── CONTACT ── */
+    #contacto {
+      background: linear-gradient(180deg, #0f2830 0%, var(--dark) 100%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .contact-info p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(245,230,200,0.7);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      border-radius: 0.6rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      color: var(--sand);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .contact-link:hover {
+      transform: translateX(4px);
+    }
+
+    .contact-link.whatsapp {
+      background: rgba(37,211,102,0.1);
+      border-color: rgba(37,211,102,0.25);
+    }
+
+    .contact-link.whatsapp:hover {
+      background: rgba(37,211,102,0.18);
+      border-color: rgba(37,211,102,0.5);
+    }
+
+    .contact-link.instagram {
+      background: rgba(225,48,108,0.08);
+      border-color: rgba(225,48,108,0.2);
+    }
+
+    .contact-link.instagram:hover {
+      background: rgba(225,48,108,0.15);
+      border-color: rgba(225,48,108,0.45);
+    }
+
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.4rem;
+    }
+
+    .link-icon.wa { background: #25d366; }
+    .link-icon.ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    .link-text strong {
+      display: block;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .link-text span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: rgba(245,230,200,0.5);
+    }
+
+    .contact-map-placeholder {
+      background: rgba(26,107,124,0.1);
+      border: 1px solid rgba(26,107,124,0.2);
+      border-radius: 1rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .map-icon { font-size: 3rem; opacity: 0.6; }
+
+    .map-address {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,230,200,0.5);
+      line-height: 1.8;
+    }
+
+    .map-address strong {
+      display: block;
+      color: var(--sun);
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--dark);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--sun);
+    }
+
+    .footer-copy {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,230,200,0.3);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .footer-social a:hover {
+      border-color: var(--sun);
+      transform: translateY(-2px);
+    }
+
+    /* ── FLOATING WHATSAPP ── */
+    .float-wa {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+      text-decoration: none;
+      animation: waPulse 3s ease-in-out infinite;
+      transition: transform 0.2s;
+    }
+
+    .float-wa:hover { transform: scale(1.1); }
+
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 8px 32px rgba(37,211,102,0.7); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-badge { display: none; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero-cta { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Maktüb</div>
+    <ul class="nav-links">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-waves"></div>
+    <div class="wave-lines">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 60 C150 20, 350 100, 600 60 C850 20, 1050 100, 1200 60 L1200 120 L0 120Z" fill="#1a6b7c"/>
+        <path d="M0 80 C200 40, 400 110, 600 80 C800 50, 1000 110, 1200 80 L1200 120 L0 120Z" fill="#0d3d47" opacity="0.7"/>
+      </svg>
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 60 C150 20, 350 100, 600 60 C850 20, 1050 100, 1200 60 L1200 120 L0 120Z" fill="#1a6b7c"/>
+        <path d="M0 80 C200 40, 400 110, 600 80 C800 50, 1000 110, 1200 80 L1200 120 L0 120Z" fill="#0d3d47" opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">✦ Vera Playa, Almería ✦</p>
+      <h1 class="hero-title">Maktüb<br><span class="accent">Vera Playa</span></h1>
+      <p class="hero-subtitle">Foodtruck · Cocktail Bar · Escuela de Surf</p>
+      <div class="hero-tags">
+        <span class="tag">🍔 Foodtruck</span>
+        <span class="tag">🍹 Cocktail Bar</span>
+        <span class="tag">🏄 Paddle Surf</span>
+        <span class="tag">🧘 SUP Yoga</span>
+        <span class="tag">🛹 Surfskate</span>
+      </div>
+      <div class="hero-cta">
+        <a href="https://wa.me/34690912871" target="_blank" class="btn btn-primary">
+          📱 WhatsApp
+        </a>
+        <a href="https://www.instagram.com/maktubveraplaya/" target="_blank" class="btn btn-secondary">
+          📸 Instagram
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="container">
+      <p class="section-label">Quiénes somos</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title">Tu rincón<br>favorito en<br>la playa</h2>
+          <br>
+          <p>Maktüb es mucho más que un restaurante: es un espacio de vida en primera línea de playa en Vera Playa. Aquí el mar, la gastronomía y el deporte se unen para crear una experiencia única.</p>
+          <p>Disfruta de nuestras hamburguesas artesanales, cócteles creativos y una ambiente relajado con los pies en la arena. Y si quieres más, únete a nuestras clases de Paddle Surf, SUP Yoga o Surfskate.</p>
+          <a href="https://wa.me/34690912871" target="_blank" class="btn btn-primary" style="margin-top: 1rem; display: inline-flex;">
+            Reservar ahora
+          </a>
+        </div>
+        <div class="about-visual">
+          <div class="about-card">
+            <div class="stat">
+              <div class="stat-number">🍔</div>
+              <div class="stat-label">FoodTruck</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">🍹</div>
+              <div class="stat-label">Cocktail Bar</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">🏄</div>
+              <div class="stat-label">Paddle Surf</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">🧘</div>
+              <div class="stat-label">SUP Yoga</div>
+            </div>
+          </div>
+          <div class="about-badge">
+            <span>🌊</span>
+            <span>Vera<br>Playa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="container">
+      <p class="section-label">Qué ofrecemos</p>
+      <h2 class="section-title">Nuestros servicios</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">🍔</span>
+          <div class="service-name">FoodTruck</div>
+          <p class="service-desc">Hamburguesas artesanales, bocadillos y platos frescos preparados al momento. Sabor auténtico con los mejores ingredientes.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🍹</span>
+          <div class="service-name">Cocktail Bar</div>
+          <p class="service-desc">Cócteles creativos y refrescos para todos los gustos. El bar perfecto para disfrutar del atardecer con los pies en la arena.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🏄‍♂️</span>
+          <div class="service-name">Escuela Paddle Surf</div>
+          <p class="service-desc">Clases de Paddle Surf para todos los niveles. Equipamiento incluido. ¡Descubre el placer de deslizarte sobre las olas!</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🧘‍♀️</span>
+          <div class="service-name">SUP Yoga</div>
+          <p class="service-desc">Combina yoga y paddle surf en una experiencia única sobre el agua. Equilibrio, bienestar y naturaleza en perfecta armonía.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🛹</span>
+          <div class="service-name">Surfskate</div>
+          <p class="service-desc">Practica surfskate en tierra firme y mejora tu técnica de surf. Clases y alquiler de tablas disponible para todos los niveles.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🌅</span>
+          <div class="service-name">Ambiente Naturista</div>
+          <p class="service-desc">Un espacio acogedor y respetuoso en el corazón de Vera Playa, donde todos son bienvenidos a disfrutar de la libertad del mar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <p class="section-label">Encuéntranos</p>
+      <h2 class="section-title">Visítanos<br>o escríbenos</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Estamos en Vera Playa esperándote. Escríbenos por WhatsApp para reservas o consultas, o síguenos en Instagram para ver nuestras últimas novedades.</p>
+          <div class="contact-links">
+            <a href="https://wa.me/34690912871" target="_blank" class="contact-link whatsapp">
+              <div class="link-icon wa">💬</div>
+              <div class="link-text">
+                <strong>WhatsApp</strong>
+                <span>+34 690 91 28 71</span>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/maktubveraplaya/" target="_blank" class="contact-link instagram">
+              <div class="link-icon ig">📸</div>
+              <div class="link-text">
+                <strong>Instagram</strong>
+                <span>@maktubveraplaya</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-map-placeholder">
+          <div class="map-icon">📍</div>
+          <div class="map-address">
+            <strong>Maktüb Vera Playa</strong>
+            Avenida del Mediterráneo<br>
+            Vera Playa, Almería<br>
+            Andalucía, España
+          </div>
+          <a href="https://maps.google.com/?q=Maktub+Vera+Playa+Almeria" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.65rem;">
+            Ver en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Maktüb</div>
+    <div class="footer-copy">© 2025 Maktüb Vera Playa · Almería</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/maktubveraplaya/" target="_blank" title="Instagram">📸</a>
+      <a href="https://wa.me/34690912871" target="_blank" title="WhatsApp">💬</a>
+    </div>
+  </footer>
+
+  <!-- FLOATING WA BUTTON -->
+  <a href="https://wa.me/34690912871" target="_blank" class="float-wa" title="Contactar por WhatsApp">
+    💬
+  </a>
+
+</body>
+</html>
