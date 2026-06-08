@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VaVa Yoga · Salud & Bienestar · Vera, Almería</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage:   #7a9e7e;
+    --dust:   #c8b89a;
+    --cream:  #f5f0e8;
+    --deep:   #2b2d2f;
+    --purple: #8b7ca8;
+    --warm:   #e8ddd0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(122,158,126,0.2);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; letter-spacing: .12em;
+    color: var(--sage); text-decoration: none;
+  }
+  .logo span { color: var(--purple); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: .82rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--deep); text-decoration: none; font-weight: 500;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--sage); }
+  .nav-cta {
+    background: var(--sage); color: #fff !important;
+    padding: .45rem 1.2rem; border-radius: 2rem;
+  }
+  .nav-cta:hover { background: var(--purple) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; place-items: center;
+    position: relative; overflow: hidden;
+    padding: 7rem 2rem 4rem;
+    background: 
+      radial-gradient(ellipse 60% 55% at 80% 30%, rgba(139,124,168,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 70%, rgba(122,158,126,.15) 0%, transparent 65%),
+      var(--cream);
+  }
+  .hero-inner { text-align: center; max-width: 780px; animation: fadeUp .9s ease both; }
+  .hero-eyebrow {
+    font-size: .78rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 1.4rem; font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--deep); margin-bottom: 1.6rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--purple); }
+  .hero-sub {
+    font-size: 1.05rem; color: #5a5e62; line-height: 1.8;
+    max-width: 520px; margin: 0 auto 2.8rem; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .8rem 2rem; border-radius: 3rem; font-size: .85rem;
+    letter-spacing: .12em; text-transform: uppercase; font-weight: 500;
+    text-decoration: none; transition: all .3s; cursor: pointer;
+  }
+  .btn-primary { background: var(--sage); color: #fff; }
+  .btn-primary:hover { background: #5c8460; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(122,158,126,.35); }
+  .btn-wa { background: #25d366; color: #fff; }
+  .btn-wa:hover { background: #1da850; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.35); }
+  .btn-outline { border: 1.5px solid var(--purple); color: var(--purple); }
+  .btn-outline:hover { background: var(--purple); color: #fff; transform: translateY(-2px); }
+
+  .mandala {
+    position: absolute; right: -120px; top: 50%; transform: translateY(-50%);
+    width: 500px; height: 500px; opacity: .06;
+    animation: spin 60s linear infinite;
+  }
+  .mandala2 {
+    position: absolute; left: -80px; bottom: 5%;
+    width: 300px; height: 300px; opacity: .05;
+    animation: spin 80s linear infinite reverse;
+  }
+
+  /* ── STRIP ── */
+  .strip {
+    background: var(--deep); color: #fff;
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 0; overflow: hidden;
+  }
+  .strip-item {
+    padding: 1.1rem 2.5rem; font-size: .75rem;
+    letter-spacing: .22em; text-transform: uppercase;
+    border-right: 1px solid rgba(255,255,255,.12);
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .strip-item:last-child { border-right: none; }
+  .strip-dot { width: 6px; height: 6px; background: var(--sage); border-radius: 50%; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: .72rem; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--sage); font-weight: 500; margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.2;
+    color: var(--deep); margin-bottom: 1.4rem;
+  }
+  .section-title em { font-style: italic; color: var(--purple); }
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--sage), var(--purple));
+    margin: 0 0 2rem; border-radius: 2px;
+  }
+
+  /* ── SERVICES GRID ── */
+  .services { background: var(--warm); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .card {
+    background: var(--cream); border-radius: 1.2rem;
+    padding: 2.2rem 1.8rem;
+    transition: transform .3s, box-shadow .3s;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--sage), var(--purple));
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(43,45,47,.1); }
+  .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 600; margin-bottom: .7rem; color: var(--deep);
+  }
+  .card p { font-size: .9rem; color: #666; line-height: 1.7; font-weight: 300; }
+  .card-list { list-style: none; margin-top: .8rem; }
+  .card-list li { font-size: .83rem; color: #777; padding: .25rem 0; padding-left: 1rem; position: relative; }
+  .card-list li::before { content: '—'; position: absolute; left: 0; color: var(--sage); }
+
+  /* ── TEAM ── */
+  .team-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 2rem; margin-top: 3rem;
+  }
+  .team-card {
+    background: var(--warm); border-radius: 1.2rem;
+    padding: 2.2rem 1.8rem; text-align: center;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .team-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(43,45,47,.08); }
+  .avatar {
+    width: 90px; height: 90px; border-radius: 50%; margin: 0 auto 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, var(--sage), var(--purple));
+  }
+  .team-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; margin-bottom: .4rem;
+  }
+  .team-role {
+    font-size: .75rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 1rem; font-weight: 500;
+  }
+  .team-card p { font-size: .88rem; color: #666; line-height: 1.7; font-weight: 300; }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    background: var(--deep); color: #fff; text-align: center;
+  }
+  .quote-section blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem); font-style: italic;
+    font-weight: 300; line-height: 1.5; max-width: 750px; margin: 0 auto;
+    color: rgba(255,255,255,.92);
+  }
+  .quote-attr {
+    margin-top: 1.5rem; font-size: .78rem; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--sage);
+  }
+
+  /* ── SHOP ── */
+  .shop-tags { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.8rem; }
+  .tag {
+    padding: .5rem 1.2rem; border-radius: 2rem;
+    font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--warm); color: var(--deep); font-weight: 500;
+    border: 1px solid rgba(122,158,126,.3);
+  }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--warm); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start; margin-top: 3rem;
+  }
+  .contact-info p { font-size: .95rem; color: #555; line-height: 1.9; font-weight: 300; margin-bottom: 1.5rem; }
+  .contact-detail {
+    display: flex; align-items: center; gap: .8rem;
+    margin-bottom: 1rem; font-size: .9rem; color: var(--deep);
+  }
+  .contact-detail .ic { font-size: 1.2rem; }
+  .social-row { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,.6);
+    text-align: center; padding: 2.5rem 2rem;
+    font-size: .78rem; letter-spacing: .1em;
+  }
+  footer a { color: var(--sage); text-decoration: none; }
+
+  /* ── ANIM ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes spin {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to   { transform: translateY(-50%) rotate(360deg); }
+  }
+  .mandala2 { animation-name: spin2; }
+  @keyframes spin2 {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .mandala, .mandala2 { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Va<span>Va</span> Yoga</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#tienda">Tienda</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="https://wa.me/34642314316" target="_blank" class="nav-cta">WhatsApp</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- decorative circles -->
+  <svg class="mandala" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="95" stroke="#7a9e7e" stroke-width="1"/>
+    <circle cx="100" cy="100" r="75" stroke="#8b7ca8" stroke-width=".8"/>
+    <circle cx="100" cy="100" r="55" stroke="#7a9e7e" stroke-width="1.2"/>
+    <circle cx="100" cy="100" r="35" stroke="#8b7ca8" stroke-width=".8"/>
+    <line x1="5" y1="100" x2="195" y2="100" stroke="#7a9e7e" stroke-width=".6"/>
+    <line x1="100" y1="5" x2="100" y2="195" stroke="#7a9e7e" stroke-width=".6"/>
+    <line x1="29" y1="29" x2="171" y2="171" stroke="#8b7ca8" stroke-width=".6"/>
+    <line x1="171" y1="29" x2="29" y2="171" stroke="#8b7ca8" stroke-width=".6"/>
+    <circle cx="100" cy="5" r="3" fill="#7a9e7e"/>
+    <circle cx="100" cy="195" r="3" fill="#7a9e7e"/>
+    <circle cx="5" cy="100" r="3" fill="#8b7ca8"/>
+    <circle cx="195" cy="100" r="3" fill="#8b7ca8"/>
+  </svg>
+  <svg class="mandala2" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="95" stroke="#7a9e7e" stroke-width="1"/>
+    <circle cx="100" cy="100" r="65" stroke="#8b7ca8" stroke-width=".8"/>
+    <circle cx="100" cy="100" r="35" stroke="#7a9e7e" stroke-width="1"/>
+    <line x1="5" y1="100" x2="195" y2="100" stroke="#8b7ca8" stroke-width=".6"/>
+    <line x1="100" y1="5" x2="100" y2="195" stroke="#8b7ca8" stroke-width=".6"/>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Tu Centro en Vera, Almería</p>
+    <h1>Salud, <em>Bienestar</em><br>y Alma</h1>
+    <p class="hero-sub">Yoga · Masajes terapéuticos · Sanación energética · Reiki · Cristales · Tarot · Danza</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/34642314316?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20clase%20o%20terapia" class="btn btn-wa" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Reservar ahora
+      </a>
+      <a href="https://www.instagram.com/vava.yoga/" class="btn btn-outline" target="_blank">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+      <a href="#servicios" class="btn btn-outline" style="border-color:var(--dust); color:var(--deep);">
+        Descubrir más ↓
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><span class="strip-dot"></span>Yoga para todos los niveles</div>
+  <div class="strip-item"><span class="strip-dot"></span>Masajes terapéuticos</div>
+  <div class="strip-item"><span class="strip-dot"></span>Reiki & Sanación con Cristales</div>
+  <div class="strip-item"><span class="strip-dot"></span>Danza Latina</div>
+  <div class="strip-item"><span class="strip-dot"></span>Tarot</div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="services">
+  <div class="container">
+    <p class="section-label reveal">Lo que ofrecemos</p>
+    <h2 class="section-title reveal">Nuestros <em>Servicios</em></h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="max-width:580px; color:#555; font-size:.95rem; line-height:1.8; font-weight:300;">
+      En VaVa Yoga creemos que el bienestar integral nace de la unión de diversas disciplinas. Combinamos yoga, nutrición, sanación energética y danza para guiarte hacia una vida más plena y consciente.
+    </p>
+    <div class="services-grid">
+      <div class="card reveal">
+        <div class="card-icon">🧘</div>
+        <h3>Yoga & Danza</h3>
+        <p>Clases adaptadas a todos los niveles y edades. El movimiento como medicina.</p>
+        <ul class="card-list">
+          <li>Ashtanga · Yin · Vinyasa</li>
+          <li>Hatha · Chair Yoga</li>
+          <li>Clases de Danza Latina</li>
+          <li>Yoga en la playa (programa Winter Beaches)</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🤲</div>
+        <h3>Masajes Terapéuticos</h3>
+        <p>Libera tensión, alivia el dolor y restaura tu energía con nuestros masajes especializados.</p>
+        <ul class="card-list">
+          <li>Deep Tissue · Miofascial</li>
+          <li>Bambú caliente · Piedras calientes</li>
+          <li>Aromaterapia · Thai · Ayurvédico</li>
+          <li>Facial de lujo · No quirúrgico</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">✨</div>
+        <h3>Sanación Energética</h3>
+        <p>Trabajamos el nivel emocional y espiritual con terapias de profunda transformación.</p>
+        <ul class="card-list">
+          <li>Reiki tradicional & con cristales</li>
+          <li>Limpieza energética de espacios</li>
+          <li>Meditaciones únicas</li>
+          <li>Hipnoterapia aplicada</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🔮</div>
+        <h3>Tarot & Nutrición</h3>
+        <p>Orientación para el alma y el cuerpo, con lecturas de tarot y asesoría nutricional.</p>
+        <ul class="card-list">
+          <li>Lecturas de Tarot (presencial u online)</li>
+          <li>Consulta de nutrición holística</li>
+          <li>Medicina Complementaria</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="container">
+    <blockquote class="reveal">
+      "El autocuidado sagrado es el acto consciente de volver a ti misma; a tu respiración, a tu cuerpo, a tu ritmo interior."
+    </blockquote>
+    <p class="quote-attr reveal">— VaVa Yoga, Vera</p>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="container">
+    <p class="section-label reveal">Las personas detrás</p>
+    <h2 class="section-title reveal">Nuestro <em>Equipo</em></h2>
+    <div class="divider reveal"></div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="avatar">🌿</div>
+        <h3>Ashlí Miréla</h3>
+        <p class="team-role">Yoga · Nutrición · Chair Yoga</p>
+        <p>E-RYT 200 · YACEP · Grado en Medicina Complementaria. Desde 2012 enseña que el yoga y la alimentación son medicina. Especializada en el cuerpo que envejece y la recuperación de lesiones.</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="avatar">🔮</div>
+        <h3>Darío Martín</h3>
+        <p class="team-role">Reiki · Cristales · Tarot</p>
+        <p>Maestro Reiki (método Usui), miembro acreditado de OCN-FENACO y la Federación Española de Reiki. Combina sanación con cristales e hipnoterapia en experiencias profundamente transformadoras.</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="avatar">💃</div>
+        <h3>Barbarito Montagne</h3>
+        <p class="team-role">Danza Latina · Coreografía</p>
+        <p>Más de 40 años de experiencia como bailarín, coreógrafo y director artístico. Graduado en Danza Moderna y Folklore en Cuba. Imparte talleres de danza latina, incluyendo en el Centro de Mayores San Cleofás.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIENDA -->
+<section id="tienda" style="background: var(--warm);">
+  <div class="container">
+    <p class="section-label reveal">Dentro del estudio</p>
+    <h2 class="section-title reveal">El <em>Emporio</em> del Bosque Encantado</h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="max-width:560px; color:#555; line-height:1.8; font-size:.95rem; font-weight:300;">
+      Nuestra tienda esotérica dentro del estudio, donde encontrarás todo lo que necesitas para continuar tu práctica y bienestar en casa.
+    </p>
+    <div class="shop-tags reveal">
+      <span class="tag">🔮 Cristales & Péndulos</span>
+      <span class="tag">🪄 Varitas & Incienso</span>
+      <span class="tag">🃏 Cartas Angel & Tarot</span>
+      <span class="tag">📿 Pulseras energéticas</span>
+      <span class="tag">🌹 Aceites esenciales</span>
+      <span class="tag">🧼 Jabones artesanales</span>
+      <span class="tag">📖 Diarios de cuero artesanal</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contact">
+  <div class="container">
+    <p class="section-label reveal">Estamos aquí para ti</p>
+    <h2 class="section-title reveal"><em>Contáctanos</em></h2>
+    <div class="divider reveal"></div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p>Ven a relajarte, toma un té, recibe un tratamiento, o simplemente a charlar. En VaVa Yoga siempre preguntamos: <em style="color:var(--sage)">"¿Cómo podemos ayudarte?"</em></p>
+        <div class="contact-detail">
+          <span class="ic">📍</span>
+          <span>Calle Juan Anglada 18, Local B-2A<br>Residencial Vera-Mar, 04620 Vera, Almería</span>
+        </div>
+        <div class="contact-detail">
+          <span class="ic">📱</span>
+          <a href="tel:+34642314316" style="color:var(--deep); text-decoration:none;">+34 642 314 316</a>
+        </div>
+        <div class="social-row">
+          <a href="https://wa.me/34642314316?text=Hola%2C%20me%20gustar%C3%ADa%20reservar" class="btn btn-wa" target="_blank">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://www.instagram.com/vava.yoga/" class="btn btn-outline" target="_blank" style="border-color:var(--purple); color:var(--purple);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            @vava.yoga
+          </a>
+        </div>
+      </div>
+      <div class="reveal" style="border-radius:1.2rem; overflow:hidden; box-shadow: 0 12px 40px rgba(43,45,47,.1);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d788.5!2d-1.8574!3d37.2467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6525e2b3dde0fd%3A0x1!2sCalle%20Juan%20Anglada%2018%2C%20Vera%2C%20Almer%C3%ADa!5e0!3m2!1ses!2ses!4v1700000000000"
+          width="100%" height="320" style="border:0; display:block;" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:rgba(255,255,255,.8); margin-bottom:.8rem; font-weight:300; letter-spacing:.1em;">VaVa Yoga · Salud & Bienestar</p>
+  <p>Vera, Almería, España &nbsp;·&nbsp; <a href="tel:+34642314316">+34 642 314 316</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/vava.yoga/" target="_blank">@vava.yoga</a></p>
+  <p style="margin-top:.8rem; font-size:.7rem; opacity:.5;">© 2025 VaVa Yoga · Tu Centro de Salud y Bienestar</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+
+  // Stagger cards
+  document.querySelectorAll('.services-grid .card, .team-grid .team-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+</script>
+</body>
+</html>
