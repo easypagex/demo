@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vet Care Vera Plaza – Veterinary Clinic, Vera Playa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #fdfaf5;
+    --sage: #7a9b76;
+    --sage-dark: #4e6b4b;
+    --sage-light: #b5cdb2;
+    --terracotta: #c07a52;
+    --sand: #d4b896;
+    --ink: #1e2a1e;
+    --mid: #5a6b55;
+    --light-text: #8a9986;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(253,250,245,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(122,155,118,0.15);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(30,42,30,0.08); }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: var(--sage-dark);
+    font-weight: 700; letter-spacing: -0.02em; text-decoration: none;
+  }
+  .nav-logo span { color: var(--terracotta); font-style: italic; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--mid);
+    font-size: 0.875rem; font-weight: 500;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    transition: color 0.2s; position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--terracotta);
+    transform: scaleX(0); transition: transform 0.25s;
+  }
+  .nav-links a:hover { color: var(--sage-dark); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--sage-dark); color: white !important;
+    padding: 0.55rem 1.3rem; border-radius: 2rem;
+    font-size: 0.8rem !important; transition: background 0.2s !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--terracotta) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 500; margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--terracotta); }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 1.5rem;
+  }
+  h1 em { color: var(--sage-dark); font-style: italic; }
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75; color: var(--mid);
+    max-width: 440px; margin-bottom: 2.5rem; font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--sage-dark); color: white;
+    padding: 0.85rem 2rem; border-radius: 3rem;
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: all 0.25s; letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,122,82,0.3); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1.5px solid var(--sage); color: var(--sage-dark);
+    padding: 0.85rem 2rem; border-radius: 3rem;
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--sage-dark); background: rgba(78,107,75,0.06); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 3.5rem;
+    padding-top: 3rem; border-top: 1px solid rgba(122,155,118,0.2);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--sage-dark); font-weight: 700; line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--light-text); margin-top: 0.3rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* Hero right — decorative panel (no images) */
+  .hero-right {
+    position: relative; background: var(--cream);
+    overflow: hidden; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 1.5rem;
+    padding: 5rem 3rem 4rem;
+  }
+  .hero-right::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(122,155,118,0.18) 0%, transparent 65%);
+  }
+  .hero-pet-icons {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.25rem; width: 100%; max-width: 340px; position: relative;
+  }
+  .pet-icon-card {
+    background: white; border-radius: 16px;
+    padding: 2rem 1rem; text-align: center;
+    box-shadow: 0 8px 24px rgba(30,42,30,0.07);
+    font-size: 2.8rem; line-height: 1;
+    transition: transform 0.3s;
+    animation: fadeUp 0.7s ease both;
+  }
+  .pet-icon-card:nth-child(1) { animation-delay: 0.1s; }
+  .pet-icon-card:nth-child(2) { animation-delay: 0.25s; margin-top: 1.5rem; }
+  .pet-icon-card:nth-child(3) { animation-delay: 0.4s; margin-top: -1.5rem; }
+  .pet-icon-card:nth-child(4) { animation-delay: 0.55s; }
+  .pet-icon-card:hover { transform: translateY(-4px); }
+  .pet-icon-card span { display: block; font-size: 0.7rem; color: var(--light-text); margin-top: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+  .emergency-badge {
+    position: relative;
+    background: var(--terracotta); color: white;
+    padding: 0.75rem 1.5rem; border-radius: 2rem;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; white-space: nowrap;
+    display: flex; align-items: center; gap: 0.5rem;
+    box-shadow: 0 8px 24px rgba(192,122,82,0.35);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 24px rgba(192,122,82,0.35); }
+    50% { box-shadow: 0 8px 36px rgba(192,122,82,0.6); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 6rem; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 500; margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--terracotta); }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.15; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 1rem;
+  }
+  h2 em { font-style: italic; color: var(--sage-dark); }
+
+  /* ── ABOUT ── */
+  #about {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+    background: var(--cream);
+  }
+  /* Decorative block replacing the photo */
+  .about-visual {
+    background: var(--sage-dark); border-radius: 20px;
+    padding: 3.5rem; color: white;
+    display: flex; flex-direction: column; gap: 2rem;
+    box-shadow: 0 24px 64px rgba(30,42,30,0.15);
+    position: relative; overflow: hidden;
+  }
+  .about-visual::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .about-visual-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; line-height: 1.2; font-weight: 400;
+  }
+  .about-visual-title em { font-style: italic; color: var(--sand); }
+  .about-stat-row { display: flex; gap: 2rem; }
+  .about-stat { flex: 1; }
+  .about-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 700; color: var(--sand); line-height: 1;
+  }
+  .about-stat .lbl { font-size: 0.75rem; opacity: 0.65; margin-top: 0.3rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .about-lang-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .lang-tag {
+    background: rgba(255,255,255,0.12); border-radius: 2rem;
+    padding: 0.35rem 0.9rem; font-size: 0.8rem; letter-spacing: 0.04em;
+  }
+  .about-address {
+    font-size: 0.85rem; opacity: 0.7; line-height: 1.6;
+    border-top: 1px solid rgba(255,255,255,0.12); padding-top: 1.5rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.8; color: var(--mid); font-weight: 300; margin-bottom: 1.2rem;
+  }
+  .about-features {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;
+  }
+  .feature-pill {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.6rem 1rem; border-radius: 0.5rem;
+    background: rgba(122,155,118,0.1);
+    font-size: 0.85rem; color: var(--sage-dark); font-weight: 500;
+  }
+  .feature-pill::before { content: '✓'; color: var(--sage); font-weight: 700; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--warm-white); }
+  .services-header { max-width: 520px; margin-bottom: 3.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card {
+    padding: 2rem; border-radius: 16px;
+    border: 1px solid rgba(122,155,118,0.15);
+    background: white; transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(122,155,118,0.06) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(30,42,30,0.1); border-color: transparent; }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--cream); display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.25rem;
+  }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.6rem; color: var(--ink); }
+  .service-card p { font-size: 0.875rem; line-height: 1.7; color: var(--mid); font-weight: 300; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-top: 1rem; font-size: 0.8rem; color: var(--sage-dark);
+    text-decoration: none; font-weight: 500; letter-spacing: 0.03em; transition: gap 0.2s;
+  }
+  .service-link:hover { gap: 0.6rem; color: var(--terracotta); }
+
+  /* ── TEAM ── */
+  #team { background: var(--cream); }
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .team-card {
+    background: white; border-radius: 16px;
+    padding: 2rem 1.5rem; text-align: center;
+    border: 1px solid rgba(122,155,118,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(30,42,30,0.09); }
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--sage-dark); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    margin: 0 auto 1.2rem; font-style: italic;
+  }
+  .team-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); margin-bottom: 0.3rem; }
+  .team-card .role { font-size: 0.78rem; color: var(--terracotta); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .team-card p { font-size: 0.82rem; line-height: 1.6; color: var(--light-text); }
+
+  /* ── HOURS ── */
+  #hours {
+    background: var(--sage-dark); color: white;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  #hours .section-label { color: var(--sage-light); }
+  #hours .section-label::before { background: var(--sage-light); }
+  #hours h2 { color: white; }
+  #hours h2 em { color: var(--sand); }
+  .hours-table { margin-top: 2rem; }
+  .hours-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem;
+  }
+  .hours-row:last-child { border: none; }
+  .hours-day { font-weight: 500; color: var(--sage-light); }
+  .hours-time { color: rgba(255,255,255,0.8); }
+  .contact-block { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .contact-item h4 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; margin-bottom: 0.2rem; }
+  .contact-item a, .contact-item p { color: white; text-decoration: none; font-size: 1rem; font-weight: 400; transition: color 0.2s; }
+  .contact-item a:hover { color: var(--sand); }
+  .emergency-section {
+    margin-top: 2.5rem; padding: 1.5rem;
+    background: rgba(192,122,82,0.2); border-radius: 12px;
+    border: 1px solid rgba(192,122,82,0.4);
+  }
+  .emergency-section h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--sand); margin-bottom: 0.4rem; }
+  .emergency-section a { color: white; text-decoration: none; font-size: 1.25rem; font-weight: 700; }
+  .emergency-section p { font-size: 0.8rem; opacity: 0.7; margin-top: 0.25rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.6);
+    padding: 2.5rem 6rem;
+    display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;
+  }
+  footer a { color: var(--sage-light); text-decoration: none; }
+  footer a:hover { color: white; }
+  .footer-social { display: flex; gap: 1rem; align-items: center; }
+  .social-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7) !important;
+    padding: 0.4rem 0.9rem; border-radius: 2rem; font-size: 0.8rem; transition: background 0.2s;
+  }
+  .social-btn:hover { background: rgba(255,255,255,0.15) !important; color: white !important; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 320px; }
+    .hero-left { padding: 3rem 2rem; }
+    section { padding: 4rem 2rem; }
+    #about, #hours { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="https://www.vetcareveraplaza.com" class="nav-logo" target="_blank">Vet Care <span>Vera Plaza</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#hours">Contact</a></li>
+    <li><a href="https://www.vetcareveraplaza.com/contact" target="_blank" class="nav-cta">Book Appointment</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Vera Playa, Almería · Est. 2019</div>
+    <h1>Caring for your<br><em>beloved pets</em><br>in Vera Playa</h1>
+    <p class="hero-desc">A modern veterinary clinic conveniently located next to the Consum supermarket. Compassionate, multilingual care for dogs, cats, rabbits, rodents, birds and more.</p>
+    <div class="hero-actions">
+      <a href="https://www.vetcareveraplaza.com/contact" target="_blank" class="btn-primary">Book Appointment →</a>
+      <a href="https://www.vetcareveraplaza.com/services" target="_blank" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Languages</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Emergency Line</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pet-icons">
+      <div class="pet-icon-card">🐶<span>Dogs</span></div>
+      <div class="pet-icon-card">🐱<span>Cats</span></div>
+      <div class="pet-icon-card">🐰<span>Rabbits</span></div>
+      <div class="pet-icon-card">🐦<span>Birds</span></div>
+    </div>
+    <a href="tel:0034699290088" class="emergency-badge">
+      🚨 Emergency: 699 290 088
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-visual-title">A clinic built on<br><em>compassion &amp; expertise</em></div>
+    <div class="about-stat-row">
+      <div class="about-stat">
+        <div class="num">30+</div>
+        <div class="lbl">Years of veterinary care</div>
+      </div>
+      <div class="about-stat">
+        <div class="num">3</div>
+        <div class="lbl">Languages spoken</div>
+      </div>
+    </div>
+    <div>
+      <div class="lbl" style="opacity:0.5;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem;">We speak</div>
+      <div class="about-lang-row">
+        <span class="lang-tag">🇪🇸 Español</span>
+        <span class="lang-tag">🇬🇧 English</span>
+        <span class="lang-tag">🇳🇱 Nederlands</span>
+      </div>
+    </div>
+    <div class="about-address">
+      📍 Av. Ciudad de Valencia Local C9/10<br>
+      Vera Plaza Center, Vera Playa<br>
+      Next to Consum supermarket
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="section-label">Our Practice</div>
+    <h2>Where your pet<br>comes <em>first</em></h2>
+    <p>Welcome to Vet Care Vera Plaza — conveniently located near the Consum supermarket in Vera Playa, with ample parking including an emergency space (yellow cross).</p>
+    <p>We combine the latest technology with traditional veterinary techniques, in a soothing environment designed to minimise waiting and stress for your pets. We operate by appointment to keep our waiting area calm.</p>
+    <p>We are proud to be a <strong>cat-friendly practice</strong> with separated areas for dogs and cats throughout the clinic.</p>
+    <div class="about-features">
+      <div class="feature-pill">Cat-Friendly Clinic</div>
+      <div class="feature-pill">Digital X-Ray & Ultrasound</div>
+      <div class="feature-pill">In-House Laboratory</div>
+      <div class="feature-pill">Dog Grooming Salon</div>
+      <div class="feature-pill">Laser Therapy</div>
+      <div class="feature-pill">Pet Shop Onsite</div>
+    </div>
+    <br>
+    <a href="https://www.vetcareveraplaza.com/ourpractice" target="_blank" class="btn-outline">Learn More →</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div class="section-label">What We Offer</div>
+    <h2>Comprehensive <em>veterinary</em> services</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🩺</div>
+      <h3>Health Examinations</h3>
+      <p>Thorough full-body check-ups in a stress-free environment. Separate areas for dogs and cats, by appointment only.</p>
+      <a href="https://www.vetcareveraplaza.com/services" target="_blank" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🦷</div>
+      <h3>Dental Care & X-Ray</h3>
+      <p>Digital dental X-rays and professional cleanings. We treat cats, dogs, rabbits, guinea pigs and ferrets.</p>
+      <a href="https://www.vetcareveraplaza.com/services" target="_blank" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📡</div>
+      <h3>X-Ray & Ultrasound</h3>
+      <p>Digital radiology and non-invasive ultrasound for accurate diagnostics of soft tissue structures.</p>
+      <a href="https://www.vetcareveraplaza.com/services" target="_blank" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💉</div>
+      <h3>Preventive Health Care</h3>
+      <p>Vaccinations, anti-parasitic treatment and nutritional advice for pups, kittens and adult pets.</p>
+      <a href="https://www.vetcareveraplaza.com/preventivehealthcare" target="_blank" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔬</div>
+      <h3>In-House Laboratory</h3>
+      <p>Blood, stool and urine tests with Idexx equipment. External analyses via Idexx Barcelona.</p>
+      <a href="https://www.vetcareveraplaza.com/services" target="_blank" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔦</div>
+      <h3>Laser Therapy</h3>
+      <p>Non-invasive, painless and drug-free treatment for a wide range of conditions — can be combined with existing treatments.</p>
+      <a href="https://www.vetcareveraplaza.com/lasertherapyen" target="_blank" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏥</div>
+      <h3>Surgery & Hospitalisation</h3>
+      <p>Soft tissue and orthopaedic surgery. Separate recovery areas for dogs, cats and exotic pets. Quarantine room available.</p>
+      <a href="https://www.vetcareveraplaza.com/services" target="_blank" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🐾</div>
+      <h3>Microchipping</h3>
+      <p>Mandatory municipality registration, microchipping and official ID tags in compliance with Spanish law.</p>
+      <a href="https://www.vetcareveraplaza.com/services" target="_blank" class="service-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✂️</div>
+      <h3>Dog Grooming</h3>
+      <p>Our separate grooming salon (open since 2022) offers cutting, stripping and ozone therapy for animals with skin issues.</p>
+      <a href="https://www.vetcareveraplaza.com/services" target="_blank" class="service-link">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-label">The People Behind the Care</div>
+  <h2>Meet our <em>team</em></h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">AJ</div>
+      <h3>Aert Jorna</h3>
+      <div class="role">Veterinary Surgeon</div>
+      <p>30+ years of experience. Specialist in dogs, cats, rabbits, rodents, ferrets and birds.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:var(--terracotta)">MV</div>
+      <h3>Mario Vicente Caparros</h3>
+      <div class="role">Veterinary Surgeon</div>
+      <p>Veterinarian since 2015, working at the clinic since January 2023.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:var(--mid)">CH</div>
+      <h3>Cindy Houben</h3>
+      <div class="role">Office Manager</div>
+      <p>Manages the day-to-day business of the clinic, pet store and grooming service.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:var(--sage)">MG</div>
+      <h3>María Del Mar Gallardo</h3>
+      <div class="role">Veterinary Assistant</div>
+      <p>Passionate about animal care, especially dental procedures.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:var(--terracotta)">CB</div>
+      <h3>Camila Bustos</h3>
+      <div class="role">Veterinary Assistant</div>
+      <p>Animal lover dedicated to helping pets recover and thrive.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:var(--mid)">LM</div>
+      <h3>Laura Montejar Ortega</h3>
+      <div class="role">Dog Groomer & Vet Assistant</div>
+      <p>Expert groomer and veterinary technical assistant with a lifelong passion for animals.</p>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:2.5rem;">
+    <a href="https://www.vetcareveraplaza.com/ourteam" target="_blank" class="btn-outline">Meet the full team →</a>
+  </div>
+</section>
+
+<!-- HOURS & CONTACT -->
+<section id="hours">
+  <div>
+    <div class="section-label">When to Find Us</div>
+    <h2>Opening <em>hours</em></h2>
+    <div class="hours-table">
+      <div class="hours-row"><span class="hours-day">Monday – Friday</span><span class="hours-time">10:00–14:00 &amp; 17:00–19:00</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00–12:00</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">Closed</span></div>
+    </div>
+    <div class="emergency-section">
+      <h3>🚨 After-hours Emergency</h3>
+      <a href="tel:0034699290088">699 290 088</a>
+      <p>We have a 24/7 emergency service</p>
+    </div>
+  </div>
+  <div>
+    <div class="section-label">Get in Touch</div>
+    <h2>Find us in<br><em>Vera Playa</em></h2>
+    <div class="contact-block">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h4>Address</h4>
+          <p>Av. Ciudad de Valencia Local C9/10<br>Vera Plaza Center, Vera Playa<br><em style="opacity:0.6;font-size:0.85rem">Next to Consum supermarket</em></p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h4>Telephone</h4>
+          <a href="tel:0034950775102">950 775 102</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:info@vetcareveraplaza.com">info@vetcareveraplaza.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <h4>Official Website</h4>
+          <a href="https://www.vetcareveraplaza.com" target="_blank">www.vetcareveraplaza.com</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <a href="https://www.vetcareveraplaza.com/contact" target="_blank" class="btn-primary">Request an Appointment →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    © 2025 Vet Care Vera Plaza · Av. Ciudad de Valencia C9/10, Vera Playa ·
+    <a href="https://www.vetcareveraplaza.com/privacy-policy" target="_blank">Privacy Policy</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/Vetcare-vera-plaza-100249044829129/" target="_blank" class="social-btn">📘 Facebook</a>
+    <a href="mailto:info@vetcareveraplaza.com" class="social-btn">✉️ Email Us</a>
+    <a href="https://www.vetcareveraplaza.com" target="_blank" class="social-btn">🌐 Official Site</a>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+</body>
+</html>
