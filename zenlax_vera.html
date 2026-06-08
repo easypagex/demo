@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenlax · Masajes & Bienestar · Vera, Almería</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #f5ede0;
+      --sand2:   #ede0cc;
+      --stone:   #c4aa8a;
+      --earth:   #7a5c3e;
+      --deep:    #2d1f12;
+      --sage:    #7a8c72;
+      --white:   #fdfaf6;
+      --text:    #3a2c1e;
+      --accent:  #b5845a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: var(--deep);
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(181,132,90,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 80%, rgba(122,92,62,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 100% 100% at 50% 0%, rgba(196,170,138,0.08) 0%, transparent 50%);
+      animation: bgBreath 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgBreath {
+      from { opacity: 0.7; }
+      to   { opacity: 1; }
+    }
+
+    /* Organic blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .blob-1 { width: 600px; height: 600px; background: var(--stone); top: -200px; left: -150px; animation: float 12s ease-in-out infinite; }
+    .blob-2 { width: 400px; height: 400px; background: var(--sage); bottom: -100px; right: -100px; animation: float 10s ease-in-out infinite reverse; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-40px) rotate(8deg); }
+    }
+
+    /* Decorative circles */
+    .deco-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(196,170,138,0.15);
+      pointer-events: none;
+    }
+    .ring-1 { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation: spin 40s linear infinite; }
+    .ring-2 { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation: spin 60s linear infinite reverse; }
+    .ring-3 { width: 320px; height: 320px; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(20deg); border-color: rgba(122,140,114,0.12); animation: spin 30s linear infinite; }
+
+    @keyframes spin {
+      from { transform: translate(-50%,-50%) rotate(0deg); }
+      to   { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center;
+      animation: heroIn 1.4s cubic-bezier(.16,1,.3,1) both;
+    }
+
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-tagline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 1.5rem;
+      animation: heroIn 1.4s .15s cubic-bezier(.16,1,.3,1) both;
+    }
+
+    .hero-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 14vw, 9rem);
+      font-weight: 300;
+      letter-spacing: -.01em;
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: .3rem;
+      animation: heroIn 1.4s .05s cubic-bezier(.16,1,.3,1) both;
+    }
+
+    .hero-logo span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-location {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--stone);
+      letter-spacing: .12em;
+      margin-bottom: 3rem;
+      animation: heroIn 1.4s .25s cubic-bezier(.16,1,.3,1) both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: heroIn 1.4s .4s cubic-bezier(.16,1,.3,1) both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-decoration: none;
+      transition: all .3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #a06640; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(181,132,90,.35); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(196,170,138,.4);
+      color: var(--sand);
+    }
+    .btn-outline:hover { background: rgba(196,170,138,.1); transform: translateY(-2px); }
+
+    .btn-wa {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-wa:hover { background: #1dbc5a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,.3); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      color: rgba(196,170,138,.4);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      animation: heroIn 1.4s .8s cubic-bezier(.16,1,.3,1) both;
+    }
+
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(196,170,138,.4), transparent);
+      animation: scrollDown 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollDown {
+      0%,100% { transform: scaleY(1); opacity: 1; }
+      50%      { transform: scaleY(.5); opacity: .4; }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: transparent;
+      transition: background .4s ease, backdrop-filter .4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(45,31,18,.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--sand);
+      text-decoration: none;
+    }
+    .nav-brand span { color: var(--accent); font-style: italic; }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,.7);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--sand); }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 7rem 1.5rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .72rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* ─── SOBRE NOSOTROS ─── */
+    #sobre {
+      background: var(--white);
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      position: relative;
+    }
+
+    .sobre-img-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--sand2);
+      border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-img-frame::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 40%, rgba(181,132,90,.25), transparent 60%);
+    }
+
+    .sobre-emoji { position: relative; z-index: 1; }
+
+    .sobre-badge {
+      position: absolute;
+      bottom: -1rem; right: -1rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.4rem;
+      border-radius: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      box-shadow: 0 8px 30px rgba(181,132,90,.3);
+    }
+
+    .sobre-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #5a4535;
+      margin-bottom: 1.2rem;
+    }
+
+    .sobre-valores {
+      display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;
+    }
+
+    .valor {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      color: var(--accent);
+    }
+
+    .valor-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* ─── SERVICIOS ─── */
+    #servicios {
+      background: var(--sand);
+    }
+
+    .servicios-header { text-align: center; margin-bottom: 4rem; }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .servicio-card {
+      background: var(--white);
+      border-radius: 1.5rem;
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+      cursor: default;
+    }
+
+    .servicio-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--stone));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+    }
+
+    .servicio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(122,92,62,.12); }
+    .servicio-card:hover::before { transform: scaleX(1); }
+
+    .servicio-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .servicio-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--deep);
+      margin-bottom: .6rem;
+    }
+
+    .servicio-desc {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: #7a6454;
+    }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      background: var(--deep);
+      padding: 5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(181,132,90,.12), transparent);
+    }
+
+    .cta-band h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--sand);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .cta-band h2 em { font-style: italic; color: var(--accent); }
+
+    .cta-band p {
+      font-size: 1rem;
+      color: rgba(245,237,224,.6);
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .cta-band .hero-ctas { position: relative; }
+
+    /* ─── CONTACTO ─── */
+    #contacto { background: var(--white); }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 580px;
+    }
+
+    .contacto-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--deep);
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--sand);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-text strong {
+      display: block;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .2rem;
+    }
+
+    .contact-text a, .contact-text span {
+      font-size: .95rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .contact-text a:hover { color: var(--accent); }
+
+    /* Social links */
+    .social-links {
+      display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .7rem 1.4rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all .3s ease;
+    }
+
+    .social-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+    }
+    .social-ig:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(220,39,67,.3); }
+
+    .social-wa {
+      background: #25D366;
+      color: #fff;
+    }
+    .social-wa:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,.3); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--deep);
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--sand);
+      margin-bottom: .5rem;
+    }
+    .footer-logo span { color: var(--accent); font-style: italic; }
+
+    .footer-sub {
+      font-size: .78rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(196,170,138,.5);
+      margin-bottom: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: .8rem;
+      color: rgba(245,237,224,.4);
+      text-decoration: none;
+      letter-spacing: .05em;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--stone); }
+
+    .footer-copy {
+      font-size: .75rem;
+      color: rgba(196,170,138,.3);
+      letter-spacing: .05em;
+    }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .sobre-grid, .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .sobre-visual { order: -1; }
+      .sobre-img-frame { max-width: 280px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-brand">Zen<span>lax</span></a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="deco-ring ring-1"></div>
+    <div class="deco-ring ring-2"></div>
+    <div class="deco-ring ring-3"></div>
+
+    <div class="hero-content">
+      <p class="hero-tagline">Masajes &amp; Bienestar</p>
+      <h1 class="hero-logo">Zen<span>lax</span></h1>
+      <p class="hero-location">Vera, Almería</p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/34603404179" class="btn btn-wa" target="_blank" rel="noopener">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Reservar cita
+        </a>
+        <a href="https://www.instagram.com/zenlax_vera/" class="btn btn-outline" target="_blank" rel="noopener">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Descubrir</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-visual reveal">
+          <div class="sobre-img-frame">
+            <span class="sobre-emoji">🧘</span>
+          </div>
+          <div class="sobre-badge">Vera, Almería</div>
+        </div>
+        <div class="sobre-text reveal">
+          <p class="section-label">Nuestra filosofía</p>
+          <h2 class="section-title">El arte de <em>sanar</em><br>cuerpo y mente</h2>
+          <p>En Zenlax creemos que el bienestar auténtico nace del equilibrio entre cuerpo y mente. Nuestros tratamientos están diseñados para ofrecerte un espacio de descanso profundo, donde cada sesión es una experiencia personalizada adaptada a tus necesidades.</p>
+          <p>Ubicados en Vera, Almería, combinamos técnicas tradicionales orientales con métodos terapéuticos modernos para brindarte los mejores resultados en cada visita.</p>
+          <div class="sobre-valores">
+            <span class="valor"><span class="valor-dot"></span>Profesionalidad</span>
+            <span class="valor"><span class="valor-dot"></span>Personalización</span>
+            <span class="valor"><span class="valor-dot"></span>Bienestar real</span>
+            <span class="valor"><span class="valor-dot"></span>Ambiente zen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="container">
+      <div class="servicios-header reveal">
+        <p class="section-label">Lo que ofrecemos</p>
+        <h2 class="section-title">Nuestros <em>tratamientos</em></h2>
+      </div>
+      <div class="servicios-grid">
+        <div class="servicio-card reveal">
+          <span class="servicio-icon">💆‍♀️</span>
+          <h3 class="servicio-name">Masaje Relajante</h3>
+          <p class="servicio-desc">Técnica suave de effleurage y petrissage que alivia la tensión acumulada y proporciona una relajación profunda de todo el cuerpo.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon">🙌</span>
+          <h3 class="servicio-name">Masaje Descontracturante</h3>
+          <p class="servicio-desc">Tratamiento específico para contracturas musculares. Presión profunda y trabajos de fricción para liberar tensión crónica.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon">🤲</span>
+          <h3 class="servicio-name">Masaje a 4 Manos</h3>
+          <p class="servicio-desc">Una experiencia única con dos terapeutas trabajando en perfecta sincronía para una relajación máxima e inigualable.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon">🫧</span>
+          <h3 class="servicio-name">Ventosas</h3>
+          <p class="servicio-desc">Técnica milenaria de drenaje y descongestión tisular que mejora la circulación y alivia dolores musculares en profundidad.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon">🌿</span>
+          <h3 class="servicio-name">Aromaterapia</h3>
+          <p class="servicio-desc">Masaje combinado con aceites esenciales naturales que potencian los efectos terapéuticos y estimulan los sentidos.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon">✨</span>
+          <h3 class="servicio-name">Tratamiento Personalizado</h3>
+          <p class="servicio-desc">Valoramos individualmente cada caso para diseñar la sesión perfecta para ti. Consulta sin compromiso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>¿Lista/o para tu momento <em>zen</em>?</h2>
+    <p>Reserva tu cita fácilmente por WhatsApp o síguenos en Instagram</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/34603404179" class="btn btn-wa" target="_blank" rel="noopener">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        603 404 179
+      </a>
+      <a href="https://www.instagram.com/zenlax_vera/" class="btn btn-outline" target="_blank" rel="noopener">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @zenlax_vera
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <div class="contacto-grid">
+        <div class="reveal">
+          <p class="section-label">Encuéntranos</p>
+          <h2 class="section-title">Contacto &amp;<br><em>Reservas</em></h2>
+          <div class="contacto-info">
+            <h3>Estamos aquí para ti</h3>
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div class="contact-text">
+                <strong>Ubicación</strong>
+                <span>Vera, Almería, España</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📱</div>
+              <div class="contact-text">
+                <strong>WhatsApp / Teléfono</strong>
+                <a href="https://wa.me/34603404179">603 404 179</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📸</div>
+              <div class="contact-text">
+                <strong>Instagram</strong>
+                <a href="https://www.instagram.com/zenlax_vera/" target="_blank" rel="noopener">@zenlax_vera</a>
+              </div>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/zenlax_vera/" class="social-btn social-ig" target="_blank" rel="noopener">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Síguenos en Instagram
+            </a>
+            <a href="https://wa.me/34603404179" class="social-btn social-wa" target="_blank" rel="noopener">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp 603 404 179
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Zen<span>lax</span></div>
+    <p class="footer-sub">Masajes &amp; Bienestar · Vera, Almería</p>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/zenlax_vera/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/34603404179" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2025 Zenlax · Vera, Almería</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
