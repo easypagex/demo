@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fina Esteban · Pilates</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:    #7aad8c;
+    --coral:   #e8725a;
+    --lilac:   #c5aee0;
+    --cream:   #fdf6ee;
+    --gold:    #d4a94a;
+    --dark:    #2a2420;
+    --soft:    #f5ede3;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(253,246,238,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(122,173,140,0.2);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+  }
+  .logo span { color: var(--coral); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--dark); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--coral); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    overflow: hidden;
+  }
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 4rem 3rem 4rem 5rem;
+  }
+  .eyebrow {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--sage);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.08;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--coral);
+  }
+  .hero-sub {
+    font-size: 1.05rem; font-weight: 300; line-height: 1.7;
+    color: #5a4e47; max-width: 42ch; margin-bottom: 2.5rem;
+  }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px; font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .btn-coral  { background: var(--coral); color: #fff; }
+  .btn-sage   { background: var(--sage);  color: #fff; }
+  .btn-wa     { background: #25d366; color: #fff; }
+  .btn-outline {
+    border: 2px solid var(--dark); color: var(--dark); background: transparent;
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--lilac) 0%, var(--sage) 60%, var(--coral) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-circles {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .circle {
+    position: absolute; border-radius: 50%;
+    opacity: 0.18;
+  }
+  .c1 { width: 420px; height: 420px; background: #fff; top: -80px; right: -60px; }
+  .c2 { width: 260px; height: 260px; background: var(--gold); bottom: 60px; left: 30px; }
+  .c3 { width: 120px; height: 120px; background: var(--coral); top: 55%; right: 15%; }
+
+  .pose-art {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+  }
+  .pose-svg {
+    width: 220px; filter: drop-shadow(0 20px 40px rgba(42,36,32,0.25));
+    animation: breathe 4s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+  }
+  .tagline-pill {
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(6px);
+    border-radius: 50px; padding: 0.6rem 1.4rem;
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.05rem; color: var(--dark); letter-spacing: 0.02em;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--soft);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; min-height: 480px;
+  }
+  .about-color {
+    background: linear-gradient(160deg, var(--sage) 0%, var(--lilac) 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 3rem;
+  }
+  .about-quote {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.9rem; color: #fff; line-height: 1.4; text-align: center;
+    max-width: 28ch;
+  }
+  .about-quote cite {
+    display: block; font-size: 0.9rem; font-style: normal;
+    margin-top: 1rem; opacity: 0.8; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .about-text {
+    padding: 4rem 3.5rem; display: flex; flex-direction: column; justify-content: center;
+  }
+  .section-label {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--coral); margin-bottom: 1rem;
+  }
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; line-height: 1.2; margin-bottom: 1.2rem;
+  }
+  .about-text p {
+    font-size: 1rem; line-height: 1.75; color: #5a4e47;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 6rem 5rem;
+    background: var(--cream);
+  }
+  .services-header { text-align: center; margin-bottom: 3.5rem; }
+  .services-header h2 {
+    font-family: 'Playfair Display', serif; font-size: 2.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .services-header p { font-size: 1rem; color: #7a6e67; max-width: 50ch; margin: 0 auto; }
+
+  .cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .card {
+    border-radius: 20px; padding: 2.2rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+  .card-1 { background: var(--lilac); }
+  .card-2 { background: var(--sage); }
+  .card-3 { background: var(--coral); }
+  .card-icon {
+    font-size: 2.4rem; margin-bottom: 1rem; display: block;
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    color: #fff; margin-bottom: 0.7rem;
+  }
+  .card p { font-size: 0.93rem; color: rgba(255,255,255,0.9); line-height: 1.65; }
+  .card-tag {
+    display: inline-block; margin-top: 1.2rem;
+    background: rgba(255,255,255,0.25); color: #fff;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; border-radius: 50px; padding: 0.35rem 0.9rem;
+  }
+
+  /* ── BENEFITS ── */
+  .benefits {
+    background: var(--dark); color: #fff;
+    padding: 6rem 5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .benefits h2 {
+    font-family: 'Playfair Display', serif; font-size: 2.6rem;
+    line-height: 1.2; margin-bottom: 1.5rem;
+  }
+  .benefits h2 span { color: var(--gold); font-style: italic; }
+  .benefits p { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); }
+  .benefit-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+  }
+  .benefit-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 1.4rem;
+    transition: background 0.2s;
+  }
+  .benefit-item:hover { background: rgba(255,255,255,0.1); }
+  .benefit-icon { font-size: 1.6rem; margin-bottom: 0.5rem; display: block; }
+  .benefit-item h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.3rem; color: #fff; }
+  .benefit-item p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: linear-gradient(135deg, var(--coral) 0%, var(--lilac) 50%, var(--sage) 100%);
+    padding: 6rem 5rem;
+    text-align: center;
+    color: #fff;
+  }
+  .contact h2 {
+    font-family: 'Playfair Display', serif; font-size: 3rem;
+    margin-bottom: 0.7rem; line-height: 1.15;
+  }
+  .contact p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2.5rem; }
+  .contact .btn-group { justify-content: center; }
+  .btn-white { background: #fff; color: var(--dark); font-weight: 600; }
+  .btn-white-outline {
+    border: 2px solid rgba(255,255,255,0.7); color: #fff; background: transparent;
+  }
+  .phone-display {
+    margin-top: 2rem;
+    font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic;
+    opacity: 0.9;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,0.5);
+    padding: 2rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.82rem;
+  }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  footer a:hover { color: #fff; }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff;
+  }
+  .footer-logo span { color: var(--coral); }
+
+  /* ── SOCIAL FLOAT ── */
+  .social-float {
+    position: fixed; right: 1.5rem; bottom: 2rem;
+    display: flex; flex-direction: column; gap: 0.7rem; z-index: 200;
+  }
+  .social-btn {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 1.35rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .social-btn:hover { transform: scale(1.12); box-shadow: 0 8px 28px rgba(0,0,0,0.28); }
+  .ig-btn {
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+  }
+  .wa-btn { background: #25d366; color: #fff; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { min-height: 340px; }
+    .hero-text { padding: 3rem 2rem; }
+    .about { grid-template-columns: 1fr; }
+    .about-color { min-height: 280px; }
+    .services { padding: 4rem 2rem; }
+    .cards { grid-template-columns: 1fr; }
+    .benefits { grid-template-columns: 1fr; padding: 4rem 2rem; }
+    .contact { padding: 4rem 2rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Fina Esteban <span>·</span> Pilates</div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Pilates · Movimiento · Bienestar</p>
+    <h1>Tu cuerpo en <em>equilibrio</em>, tu mente en calma</h1>
+    <p class="hero-sub">Clases de Pilates personalizadas para mejorar tu postura, ganar fuerza interior y sentirte bien en cada movimiento.</p>
+    <div class="btn-group">
+      <a href="https://wa.me/34696894852?text=Hola%20Fina%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Pilates" class="btn btn-coral" target="_blank">
+        💬 Reserva una clase
+      </a>
+      <a href="https://www.instagram.com/finaestebanpilates" class="btn btn-outline" target="_blank">
+        Ver Instagram
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-circles">
+      <div class="circle c1"></div>
+      <div class="circle c2"></div>
+      <div class="circle c3"></div>
+    </div>
+    <div class="pose-art">
+      <!-- Pilates figure SVG -->
+      <svg class="pose-svg" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body -->
+        <ellipse cx="100" cy="50" rx="22" ry="22" fill="white" opacity="0.95"/>
+        <!-- Torso -->
+        <path d="M85 70 Q100 140 115 70" stroke="white" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.95"/>
+        <!-- Arms raised - Pilates hundred pose -->
+        <line x1="85" y1="90" x2="40" y2="110" stroke="white" stroke-width="9" stroke-linecap="round" opacity="0.95"/>
+        <line x1="115" y1="90" x2="160" y2="110" stroke="white" stroke-width="9" stroke-linecap="round" opacity="0.95"/>
+        <!-- Legs stretched -->
+        <line x1="92" y1="138" x2="70" y2="210" stroke="white" stroke-width="9" stroke-linecap="round" opacity="0.95"/>
+        <line x1="108" y1="138" x2="130" y2="210" stroke="white" stroke-width="9" stroke-linecap="round" opacity="0.95"/>
+        <!-- Feet -->
+        <line x1="70" y1="210" x2="54" y2="218" stroke="white" stroke-width="7" stroke-linecap="round" opacity="0.9"/>
+        <line x1="130" y1="210" x2="146" y2="218" stroke="white" stroke-width="7" stroke-linecap="round" opacity="0.9"/>
+        <!-- Decorative circles -->
+        <circle cx="40" cy="110" r="8" fill="white" opacity="0.5"/>
+        <circle cx="160" cy="110" r="8" fill="white" opacity="0.5"/>
+      </svg>
+      <div class="tagline-pill">«El movimiento es vida»</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre-mi">
+  <div class="about-color">
+    <blockquote class="about-quote">
+      "El Pilates no cambia solo tu cuerpo, cambia tu manera de habitarlo."
+      <cite>— Fina Esteban</cite>
+    </blockquote>
+  </div>
+  <div class="about-text">
+    <p class="section-label">Sobre mí</p>
+    <h2>Instructora apasionada del movimiento consciente</h2>
+    <p>Soy Fina Esteban, instructora de Pilates con formación especializada y años de experiencia acompañando a personas de todos los niveles. Creo en un método adaptado a ti: a tu cuerpo, tu ritmo y tus objetivos.<br><br>Cada sesión es un espacio para reconectar contigo mismo, mejorar tu postura y descubrir la fuerza que ya tienes dentro.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="services-header">
+    <p class="section-label">Lo que ofrezco</p>
+    <h2>Clases para cada persona</h2>
+    <p>Desde principiantes hasta practicantes avanzados, cada clase está diseñada para ti.</p>
+  </div>
+  <div class="cards">
+    <div class="card card-1">
+      <span class="card-icon">🧘‍♀️</span>
+      <h3>Pilates Individual</h3>
+      <p>Sesiones totalmente personalizadas, adaptadas a tus objetivos y tu nivel. Atención exclusiva para progresar más rápido y con seguridad.</p>
+      <span class="card-tag">Clases privadas</span>
+    </div>
+    <div class="card card-2">
+      <span class="card-icon">👯‍♀️</span>
+      <h3>Grupos Reducidos</h3>
+      <p>La energía del grupo con la atención del instructor. Clases dinámicas, motivadoras y con corrección personalizada en cada movimiento.</p>
+      <span class="card-tag">Máx. 6 personas</span>
+    </div>
+    <div class="card card-3">
+      <span class="card-icon">💻</span>
+      <h3>Clases Online</h3>
+      <p>Practica Pilates desde casa, a tu horario. Sesiones en directo y material descargable para no perder el ritmo desde cualquier lugar.</p>
+      <span class="card-tag">Desde casa</span>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div>
+    <h2>Por qué el Pilates <span>transforma</span></h2>
+    <p>No es solo ejercicio. Es una práctica que reequilibra el cuerpo desde dentro, mejora la calidad del movimiento y cuida la salud a largo plazo.</p>
+  </div>
+  <div class="benefit-list">
+    <div class="benefit-item">
+      <span class="benefit-icon">🦴</span>
+      <h4>Mejora postural</h4>
+      <p>Corrige desequilibrios y alivia dolores de espalda.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">💪</span>
+      <h4>Fuerza profunda</h4>
+      <p>Activa el core y los músculos estabilizadores.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">🧠</span>
+      <h4>Mente tranquila</h4>
+      <p>Concentración y respiración que alivian el estrés.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">🌿</span>
+      <h4>Movilidad</h4>
+      <p>Mayor flexibilidad y amplitud de movimiento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <p class="section-label" style="color:rgba(255,255,255,0.8)">¿Empezamos?</p>
+  <h2>Da el primer paso<br>hacia tu bienestar</h2>
+  <p>Escríbeme por WhatsApp o sígueme en Instagram para ver mis clases y novedades.</p>
+  <div class="btn-group">
+    <a href="https://wa.me/34696894852?text=Hola%20Fina%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20clases%20de%20Pilates"
+       class="btn btn-white" target="_blank">
+      📱 WhatsApp · 696 894 852
+    </a>
+    <a href="https://www.instagram.com/finaestebanpilates"
+       class="btn btn-white-outline" target="_blank">
+      📸 @finaestebanpilates
+    </a>
+  </div>
+  <p class="phone-display">o llámame: 696 894 852</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Fina Esteban <span>·</span> Pilates</div>
+  <div>
+    <a href="https://www.instagram.com/finaestebanpilates" target="_blank">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/34696894852" target="_blank">WhatsApp</a>
+  </div>
+  <div>© 2025 Fina Esteban Pilates</div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="social-float">
+  <a href="https://www.instagram.com/finaestebanpilates" class="social-btn ig-btn" target="_blank" title="Instagram">
+    📸
+  </a>
+  <a href="https://wa.me/34696894852?text=Hola%20Fina%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20clases%20de%20Pilates" class="social-btn wa-btn" target="_blank" title="WhatsApp">
+    💬
+  </a>
+</div>
+
+</body>
+</html>
