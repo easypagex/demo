@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUAN — Moda en Vera & Garrucha</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #F0EDE6;
+    --sand-dark: #D8D2C6;
+    --ink: #1A1714;
+    --ink-soft: #4A4540;
+    --accent: #8B6F4E;
+    --accent-light: #C4A882;
+    --white: #FAFAF8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--ink);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.4s;
+  }
+  header.scrolled {
+    background: rgba(26,23,20,0.92);
+    backdrop-filter: blur(8px);
+    padding: 1rem 2.5rem;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  nav { display: flex; gap: 2rem; align-items: center; }
+  nav a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sand-dark);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 2.5rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 30%, rgba(26,23,20,0.7) 70%, var(--ink) 100%),
+      linear-gradient(135deg, #2a2420 0%, #1a1714 40%, #3d2e22 100%);
+  }
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    position: relative;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+  .hero-title em { font-style: italic; color: var(--accent-light); }
+  .hero-sub {
+    position: relative;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--sand-dark);
+    letter-spacing: 0.04em;
+    max-width: 380px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+  .hero-ctas {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.8rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-light);
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.06);
+  }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: var(--accent);
+    padding: 0.75rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 18s linear infinite;
+  }
+  .marquee-track span {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    padding: 0 2rem;
+  }
+  .marquee-track span::before {
+    content: '✦';
+    margin-right: 2rem;
+    opacity: 0.6;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 2.5rem; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1.2rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--accent-light); }
+
+  /* SOBRE NOSOTROS */
+  .about {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .about-text p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--sand-dark);
+    margin-bottom: 1.2rem;
+  }
+  .about-card {
+    background: linear-gradient(145deg, #2d2620, #1f1b17);
+    border: 1px solid rgba(196,168,130,0.2);
+    border-radius: 4px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+  }
+  .about-card .big-l {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.35;
+    display: block;
+  }
+  .about-card .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent-light);
+    margin-top: -1.5rem;
+  }
+  .stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
+  .stat { flex: 1; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--white);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  /* COLECCIONES */
+  .colecciones-section { background: #131110; }
+  .colecciones-header { max-width: 1100px; margin: 0 auto 3rem; }
+  .colecciones-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .col-card {
+    border: 1px solid rgba(196,168,130,0.15);
+    border-radius: 4px;
+    padding: 2.5rem 2rem 2rem;
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .col-card:hover {
+    border-color: rgba(196,168,130,0.4);
+    background: rgba(255,255,255,0.04);
+    transform: translateY(-3px);
+  }
+  .col-icon {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .col-season {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    display: block;
+  }
+  .col-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .col-desc {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .col-link {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    transition: gap 0.2s;
+  }
+  .col-card:hover .col-link { gap: 0.7rem; }
+
+  /* UBICACIONES */
+  .ubicaciones-section { background: var(--ink); }
+  .ubicaciones-inner { max-width: 1100px; margin: 0 auto; }
+  .tiendas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .tienda-card {
+    border: 1px solid rgba(196,168,130,0.15);
+    border-radius: 4px;
+    padding: 2.5rem;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .tienda-card:hover {
+    border-color: rgba(196,168,130,0.35);
+    background: rgba(255,255,255,0.04);
+  }
+  .tienda-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .tienda-ciudad {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+  .tienda-dir {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+  .tienda-horario {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--accent-light);
+  }
+
+  /* CTA CONTACTO */
+  .cta-section {
+    background: #131110;
+    text-align: center;
+    padding: 7rem 2.5rem;
+  }
+  .cta-inner { max-width: 600px; margin: 0 auto; }
+  .cta-inner .section-title { margin-bottom: 1rem; }
+  .cta-inner p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.06em;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    header { padding: 1.2rem 1.5rem; }
+    header.scrolled { padding: 0.9rem 1.5rem; }
+    nav { display: none; }
+    .hero { padding: 0 1.5rem 5rem; }
+    section { padding: 4rem 1.5rem; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { display: none; }
+    .colecciones-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .tiendas-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; padding: 2.5rem 1.5rem; }
+    .footer-links { justify-content: center; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <a href="#" class="logo">LUAN</a>
+  <nav>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#colecciones">Colecciones</a>
+    <a href="#tiendas">Tiendas</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <p class="hero-eyebrow">Moda — Vera &amp; Garrucha</p>
+  <h1 class="hero-title">
+    Moda<br>
+    con <em>carácter</em><br>
+    del sur
+  </h1>
+  <p class="hero-sub">
+    Prendas cuidadas, estilo personal. Descubre nuestra selección en el corazón de Almería.
+  </p>
+  <div class="hero-ctas">
+    <a href="https://www.instagram.com/luan__vera" target="_blank" rel="noopener" class="btn btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      Ver en Instagram
+    </a>
+    <a href="https://wa.me/34950393380" target="_blank" rel="noopener" class="btn btn-outline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Nueva Temporada</span>
+    <span>Vera · Almería</span>
+    <span>Garrucha · Costa</span>
+    <span>Moda Mujer</span>
+    <span>Moda Hombre</span>
+    <span>Accesorios</span>
+    <span>Nueva Temporada</span>
+    <span>Vera · Almería</span>
+    <span>Garrucha · Costa</span>
+    <span>Moda Mujer</span>
+    <span>Moda Hombre</span>
+    <span>Accesorios</span>
+  </div>
+</div>
+
+<!-- SOBRE NOSOTROS -->
+<section id="nosotros">
+  <div class="about">
+    <div class="about-text reveal">
+      <p class="section-label">Sobre nosotros</p>
+      <h2 class="section-title">Una tienda,<br><em>dos ciudades</em></h2>
+      <p>En LUAN creemos que la moda es una conversación entre quien la lleva y quien la crea. Seleccionamos marcas y prendas que hablan con autenticidad, pensando en el estilo de vida del litoral andaluz.</p>
+      <p>Presente en Vera y Garrucha, somos el espacio donde encontrar looks para el día a día y para los momentos especiales del Mediterráneo.</p>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Tiendas</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">+500</span>
+          <span class="stat-label">Seguidores IG</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Estilo propio</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal reveal-delay-2">
+      <div class="about-card">
+        <span class="big-l">L</span>
+        <p class="tagline">Moda con alma del sur</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLECCIONES -->
+<section id="colecciones" class="colecciones-section">
+  <div class="colecciones-header reveal">
+    <p class="section-label">Lo que encontrarás</p>
+    <h2 class="section-title">Colecciones<br><em>de temporada</em></h2>
+  </div>
+  <div class="colecciones-grid">
+    <div class="col-card reveal">
+      <span class="col-icon">♀</span>
+      <span class="col-season">Primavera · Verano</span>
+      <p class="col-name">Mujer</p>
+      <p class="col-desc">Vestidos, blusas, pantalones y más. Prendas pensadas para el verano mediterráneo con estilo propio.</p>
+      <a href="https://www.instagram.com/luan__vera" target="_blank" rel="noopener" class="col-link">Ver en Instagram →</a>
+    </div>
+    <div class="col-card reveal reveal-delay-1">
+      <span class="col-icon">♂</span>
+      <span class="col-season">Temporada actual</span>
+      <p class="col-name">Hombre</p>
+      <p class="col-desc">Camisas, bermudas, polos y calzado. Looks frescos y cómodos para el día a día en la costa.</p>
+      <a href="https://www.instagram.com/luan__vera" target="_blank" rel="noopener" class="col-link">Ver en Instagram →</a>
+    </div>
+    <div class="col-card reveal reveal-delay-2">
+      <span class="col-icon">✦</span>
+      <span class="col-season">Complementos</span>
+      <p class="col-name">Accesorios</p>
+      <p class="col-desc">Bolsos, cinturones, bisutería y detalles que completan cada look con personalidad.</p>
+      <a href="https://www.instagram.com/luan__vera" target="_blank" rel="noopener" class="col-link">Ver en Instagram →</a>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 3rem; max-width: 1100px; margin-left: auto; margin-right: auto;">
+    <a href="https://www.instagram.com/luan__vera" target="_blank" rel="noopener" class="btn btn-outline reveal">
+      Ver todas las novedades en Instagram →
+    </a>
+  </div>
+</section>
+
+<!-- TIENDAS -->
+<section id="tiendas" class="ubicaciones-section">
+  <div class="ubicaciones-inner">
+    <div class="reveal">
+      <p class="section-label">Dónde encontrarnos</p>
+      <h2 class="section-title">Nuestras<br><em>tiendas</em></h2>
+    </div>
+    <div class="tiendas-grid">
+      <div class="tienda-card reveal reveal-delay-1">
+        <span class="tienda-num">01</span>
+        <p class="tienda-ciudad">Vera</p>
+        <p class="tienda-dir">Centro de Vera<br>Almería, Andalucía</p>
+        <p class="tienda-horario">Lun – Sáb · Consultar horario</p>
+      </div>
+      <div class="tienda-card reveal reveal-delay-2">
+        <span class="tienda-num">02</span>
+        <p class="tienda-ciudad">Garrucha</p>
+        <p class="tienda-dir">Garrucha<br>Almería, Andalucía</p>
+        <p class="tienda-horario">Lun – Sáb · Consultar horario</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA CONTACTO -->
+<section id="contacto" class="cta-section">
+  <div class="cta-inner reveal">
+    <p class="section-label">Contacto</p>
+    <h2 class="section-title">¿Tienes alguna<br><em>pregunta?</em></h2>
+    <p>Escríbenos por Instagram o WhatsApp y te respondemos con mucho gusto. También puedes pasarte por cualquiera de nuestras tiendas.</p>
+    <div class="cta-buttons">
+      <a href="https://www.instagram.com/luan__vera" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @luan__vera
+      </a>
+      <a href="https://wa.me/34950393380" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        +34 950 393 380
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">LUAN</a>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/luan__vera" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://wa.me/34950393380" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="#tiendas">Tiendas</a>
+    <a href="#colecciones">Colecciones</a>
+  </div>
+  <p class="footer-copy">© 2025 LUAN · Vera &amp; Garrucha</p>
+</footer>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
