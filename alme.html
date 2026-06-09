@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Total Clean® Almería – Limpieza de Tapizados a Domicilio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul:     #0A1C3B;
+      --cyan:     #00C9E0;
+      --cyan-lt:  #E0F9FC;
+      --blanco:   #FFFFFF;
+      --gris:     #F5F6F8;
+      --texto:    #1A1A2E;
+      --suave:    #6B7280;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--texto);
+      background: var(--blanco);
+      overflow-x: hidden;
+    }
+
+    /* ── STICKY BAR ── */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      background: var(--azul);
+    }
+    .sticky-bar a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 10px;
+      color: var(--blanco);
+      text-decoration: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .sticky-bar a.wa  { background: #25D366; }
+    .sticky-bar a.wa:hover  { background: #1ebe5d; }
+    .sticky-bar a.ig  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+    .sticky-bar a.ig:hover { filter: brightness(1.1); }
+    .sticky-bar svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      background: var(--azul);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 100px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 110%, rgba(0,201,224,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(0,201,224,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,201,224,0.12);
+      border: 1px solid rgba(0,201,224,0.35);
+      color: var(--cyan);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 8vw, 5.5rem);
+      font-weight: 800;
+      color: var(--blanco);
+      line-height: 1.05;
+      max-width: 760px;
+      margin-bottom: 22px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--cyan);
+      display: block;
+    }
+    .hero p {
+      color: rgba(255,255,255,0.65);
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      max-width: 480px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cyan);
+      color: var(--azul);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,201,224,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,201,224,0.5); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: var(--blanco);
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--cyan); background: rgba(0,201,224,0.08); }
+    .btn-primary svg, .btn-outline svg { width: 18px; height: 18px; }
+
+    /* scroll chevron */
+    .hero-scroll {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.3);
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--gris);
+      padding: 48px 24px 56px;
+    }
+    .stats-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .stat {
+      background: var(--blanco);
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .stat:first-child { border-radius: 16px 0 0 16px; }
+    .stat:last-child  { border-radius: 0 16px 16px 0; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--azul);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--cyan); }
+    .stat-label {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: var(--suave);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── SERVICIOS ── */
+    .servicios {
+      padding: 80px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--azul);
+      line-height: 1.15;
+      margin-bottom: 48px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--gris);
+      border-radius: 20px;
+      padding: 32px 24px;
+      border: 1.5px solid transparent;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transition: transform 0.25s;
+      transform-origin: left;
+    }
+    .card:hover { border-color: var(--cyan); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,201,224,0.12); }
+    .card:hover::after { transform: scaleX(1); }
+    .card-icon {
+      width: 52px; height: 52px;
+      background: var(--cyan-lt);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.5rem;
+    }
+    .card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 0.85rem;
+      color: var(--suave);
+      line-height: 1.6;
+    }
+
+    /* ── POR QUÉ ── */
+    .porque {
+      background: var(--azul);
+      padding: 80px 24px;
+      color: var(--blanco);
+    }
+    .porque-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .porque .section-label { color: var(--cyan); }
+    .porque .section-title { color: var(--blanco); margin-bottom: 28px; }
+    .porque-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .porque-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.55;
+    }
+    .porque-list li::before {
+      content: '';
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--cyan);
+      flex-shrink: 0;
+      margin-top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230A1C3B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 8 7 12 13 5'/%3E%3C/svg%3E");
+      background-size: 60%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .porque-visual {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(0,201,224,0.25);
+      border-radius: 24px;
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .pv-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .pv-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--cyan);
+      line-height: 1;
+      min-width: 56px;
+    }
+    .pv-text strong {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      color: var(--blanco);
+      margin-bottom: 2px;
+    }
+    .pv-text span {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .pv-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); }
+
+    /* ── PROCESO ── */
+    .proceso {
+      padding: 80px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+    .pasos::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 28px; right: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan) 0%, transparent 100%);
+    }
+    .paso {
+      padding: 0 16px 0 0;
+      position: relative;
+    }
+    .paso-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--azul);
+      color: var(--blanco);
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .paso:first-child .paso-num { background: var(--cyan); color: var(--azul); }
+    .paso h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 6px;
+    }
+    .paso p { font-size: 0.82rem; color: var(--suave); line-height: 1.55; }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      background: linear-gradient(135deg, #00C9E0 0%, #0058CC 100%);
+      padding: 80px 24px 120px;
+      text-align: center;
+      color: var(--blanco);
+    }
+    .cta-final h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .cta-final p {
+      font-size: 1rem;
+      opacity: 0.85;
+      max-width: 400px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .cta-final .btn-primary {
+      background: var(--blanco);
+      color: var(--azul);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+    }
+    .cta-final .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,0.3); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--azul);
+      padding: 28px 24px 80px;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.78rem;
+    }
+    footer a { color: var(--cyan); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .stats-inner { grid-template-columns: 1fr; gap: 2px; }
+      .stat:first-child { border-radius: 16px 16px 0 0; }
+      .stat:last-child  { border-radius: 0 0 16px 16px; }
+      .porque-inner { grid-template-columns: 1fr; gap: 40px; }
+      .pasos::before { display: none; }
+      .pasos { gap: 28px; }
+      .sticky-bar a span.label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HERO ─────────────────────────── -->
+<section class="hero">
+  <div class="hero-badge"><span></span> Total Clean® · Almería</div>
+  <h1>Tu sofá,<em>como el primer día.</em></h1>
+  <p>Limpieza e impermeabilización profesional de tapicerías, sofás, colchones y alfombras — a domicilio, en Almería.</p>
+  <div class="hero-ctas">
+    <a class="btn-primary" href="https://wa.me/34661471191?text=Hola!%20Me%20gustaría%20pedir%20presupuesto%20para%20limpieza%20de%20tapizado." target="_blank" rel="noopener">
+      <!-- WhatsApp icon -->
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.526 5.855L0 24l6.335-1.501A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.028-1.379l-.36-.214-3.754.888.939-3.655-.235-.376A9.818 9.818 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+      Pedir presupuesto
+    </a>
+    <a class="btn-outline" href="https://www.instagram.com/totalclean.almeria" target="_blank" rel="noopener">
+      <!-- Instagram icon -->
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Ver en Instagram
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ─── STATS ─────────────────────────── -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">+220<span>🏆</span></div>
+      <div class="stat-label">Franquicias Total Clean</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">A domicilio, sin desplazamientos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">★<span>5</span></div>
+      <div class="stat-label">Satisfacción garantizada</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICIOS ─────────────────────── -->
+<section class="servicios" id="servicios">
+  <div class="section-label">Nuestros servicios</div>
+  <h2 class="section-title">Lo limpiamos todo,<br>donde tú estés.</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🛋️</div>
+      <h3>Sofás y sillones</h3>
+      <p>Limpieza profunda de tejidos y cuero, eliminando manchas, ácaros y bacterias acumuladas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛏️</div>
+      <h3>Colchones</h3>
+      <p>Higienización y desinfección especializada para asegurar un descanso libre de alérgenos.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🪑</div>
+      <h3>Tapicerías y sillas</h3>
+      <p>Puffs, sillas de comedor, mecedoras y cualquier tapizado del hogar o negocio.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌀</div>
+      <h3>Alfombras y moquetas</h3>
+      <p>Lavado a fondo con secado rápido para alfombras de cualquier tamaño y material.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>Impermeabilización</h3>
+      <p>Protección duradera frente a líquidos y manchas en sofás, colchones y tapizados.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚤</div>
+      <h3>Barcos y vehículos</h3>
+      <p>Tratamiento profesional de tapicerías náuticas y de automoción con productos especializados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── POR QUÉ ELEGIRNOS ──────────────── -->
+<section class="porque" id="porque">
+  <div class="porque-inner">
+    <div>
+      <div class="section-label">Por qué Total Clean</div>
+      <h2 class="section-title">Resultados<br>que se notan.</h2>
+      <ul class="porque-list">
+        <li>Productos biodegradables y exclusivos, seguros para niños y mascotas</li>
+        <li>Equipos de alta tecnología para una limpieza eficaz y sin daños</li>
+        <li>Nos desplazamos a tu domicilio sin coste adicional en Almería</li>
+        <li>Secado rápido: sin esperas, sin molestias</li>
+        <li>Franquicia con más de 220 unidades y años de experiencia</li>
+        <li>Presupuesto gratuito y sin compromiso</li>
+      </ul>
+    </div>
+    <div class="porque-visual">
+      <div class="pv-item">
+        <div class="pv-num">1h</div>
+        <div class="pv-text">
+          <strong>Tiempo medio de servicio</strong>
+          <span>Rápido y eficaz, en tu propio hogar</span>
+        </div>
+      </div>
+      <hr class="pv-divider"/>
+      <div class="pv-item">
+        <div class="pv-num">0€</div>
+        <div class="pv-text">
+          <strong>Presupuesto sin compromiso</strong>
+          <span>Llámanos o escríbenos por WhatsApp</span>
+        </div>
+      </div>
+      <hr class="pv-divider"/>
+      <div class="pv-item">
+        <div class="pv-num">Bio</div>
+        <div class="pv-text">
+          <strong>Productos biodegradables</strong>
+          <span>Respetuosos con tu familia y el planeta</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESO ───────────────────────── -->
+<section class="proceso" id="proceso">
+  <div class="section-label">Cómo funciona</div>
+  <h2 class="section-title">Reserva en 3 pasos.</h2>
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-num">01</div>
+      <h4>Contacta</h4>
+      <p>Escríbenos por WhatsApp o Instagram. Cuéntanos qué necesitas limpiar.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">02</div>
+      <h4>Recibe tu presupuesto</h4>
+      <p>Te enviamos un presupuesto personalizado, gratuito y sin compromiso.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">03</div>
+      <h4>¡Listo!</h4>
+      <p>Acordamos el día y hora. Nuestro técnico va a tu domicilio en Almería.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">04</div>
+      <h4>Disfruta</h4>
+      <p>Tus tapizados quedan impecables, con protección incluida si la solicitas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA FINAL ─────────────────────── -->
+<section class="cta-final">
+  <h2>¿Listo para renovar tu hogar?</h2>
+  <p>Pide tu presupuesto ahora — es gratis y sin compromiso. Atendemos toda la provincia de Almería.</p>
+  <a class="btn-primary" href="https://wa.me/34661471191?text=Hola!%20Quiero%20pedir%20presupuesto%20para%20limpieza%20de%20tapizados." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.526 5.855L0 24l6.335-1.501A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.028-1.379l-.36-.214-3.754.888.939-3.655-.235-.376A9.818 9.818 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+    Escribir por WhatsApp
+  </a>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────── -->
+<footer>
+  <p>Total Clean® Almería · 📍 Almería, España · 📲 <a href="tel:+34661471191">661 47 11 91</a></p>
+  <p style="margin-top:6px">
+    <a href="https://www.instagram.com/totalclean.almeria" target="_blank" rel="noopener">@totalclean.almeria</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/34661471191" target="_blank" rel="noopener">WhatsApp</a>
+  </p>
+  <p style="margin-top:12px; opacity:0.5">© 2025 Total Clean® Almería · Franquicia oficial</p>
+</footer>
+
+<!-- ─── STICKY BAR ────────────────────── -->
+<nav class="sticky-bar" aria-label="Contacto rápido">
+  <a class="wa" href="https://wa.me/34661471191?text=Hola!%20Me%20gustaría%20pedir%20presupuesto%20para%20limpieza%20de%20tapizado." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.526 5.855L0 24l6.335-1.501A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 01-5.028-1.379l-.36-.214-3.754.888.939-3.655-.235-.376A9.818 9.818 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+    <span class="label">WhatsApp</span>
+  </a>
+  <a class="ig" href="https://www.instagram.com/totalclean.almeria" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    <span class="label">Instagram</span>
+  </a>
+</nav>
+
+</body>
+</html>
