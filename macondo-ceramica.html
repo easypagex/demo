@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Macondo Cerámica · Barcelona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay:    #C1633A;
+      --sun:     #E8A830;
+      --jade:    #3A7D6E;
+      --indigo:  #2D3A6B;
+      --cream:   #FAF6EF;
+      --smoke:   #F0EAE0;
+      --ink:     #1C1712;
+      --white:   #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--indigo);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Precolumbian pattern overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(232,168,48,.08) 0, rgba(232,168,48,.08) 2px, transparent 0, transparent 50%),
+        repeating-linear-gradient(-45deg, rgba(193,99,58,.08) 0, rgba(193,99,58,.08) 2px, transparent 0, transparent 50%);
+      background-size: 28px 28px;
+    }
+
+    .hero-symbol {
+      font-size: clamp(3rem, 10vw, 6rem);
+      margin-bottom: 0.5rem;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sun);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(3rem, 10vw, 7rem);
+      color: var(--cream);
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      font-style: italic;
+      color: var(--sun);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(250,246,239,.7);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .tag {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--cream);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+    }
+
+    .tag.accent { background: var(--clay); border-color: var(--clay); }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+
+    .btn-primary  { background: var(--sun);   color: var(--ink); }
+    .btn-ig       { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+    .btn-wa       { background: #25D366; color: #fff; }
+    .btn-outline  { background: transparent; border: 2px solid rgba(255,255,255,.4); color: var(--cream); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(250,246,239,.4);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── STRIP ── */
+    .strip {
+      background: var(--clay);
+      color: var(--cream);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .strip-inner {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 1.5rem; }
+
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #3a342b;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-art {
+      position: relative;
+      height: 420px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--indigo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pot-svg { width: 220px; height: 220px; }
+
+    .color-blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.35;
+      filter: blur(40px);
+    }
+
+    .blob-1 { width: 200px; height: 200px; background: var(--sun);  top: -40px; right: -40px; }
+    .blob-2 { width: 160px; height: 160px; background: var(--clay); bottom: -20px; left: -20px; }
+    .blob-3 { width: 120px; height: 120px; background: var(--jade); top: 50%; right: 30px; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--smoke); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.1); }
+
+    .card-1::after { background: var(--clay); }
+    .card-2::after { background: var(--sun); }
+    .card-3::after { background: var(--jade); }
+    .card-4::after { background: var(--indigo); }
+
+    .card-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .card p { font-size: 0.95rem; line-height: 1.65; color: #5a5040; }
+
+    /* ── PRECOLUMBIAN ── */
+    .precolumbian {
+      background: var(--indigo);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .precolumbian .section-label { color: var(--sun); }
+
+    .precolumbian .section-title { color: var(--cream); }
+
+    .precolumbian p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      color: rgba(250,246,239,.75);
+    }
+
+    .pattern-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+
+    .glyph {
+      width: 80px; height: 80px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+    }
+
+    /* ── LOCATION ── */
+    .location { background: var(--cream); }
+
+    .location-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .map-box {
+      background: var(--indigo);
+      border-radius: 20px;
+      overflow: hidden;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .map-box iframe {
+      width: 100%; height: 100%; border: 0;
+      border-radius: 20px;
+    }
+
+    .address-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border-left: 5px solid var(--clay);
+    }
+
+    .address-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .address-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #3a342b;
+    }
+
+    .address-line .icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+    /* ── CONTACT ── */
+    .contact-strip {
+      background: var(--sun);
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .contact-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-strip p { color: rgba(28,23,18,.7); margin-bottom: 2rem; font-size: 1.05rem; }
+
+    .contact-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(250,246,239,.5);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--sun); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .about-grid, .location-inner { grid-template-columns: 1fr; }
+      .about-art { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-symbol">🏺</div>
+  <p class="hero-eyebrow">✺ Barcelona · Travessera de Gràcia ✺</p>
+  <h1>Macondo<br><span>Cerámica</span></h1>
+  <p class="hero-sub">Un espacio vivo donde la arcilla se convierte en experiencia, arte y comunidad.</p>
+
+  <div class="hero-tags">
+    <span class="tag accent">Cerámica Precolombina</span>
+    <span class="tag">Clases & Talleres</span>
+    <span class="tag">Eventos Empresariales</span>
+    <span class="tag">Team Building</span>
+    <span class="tag">Coworking</span>
+  </div>
+
+  <div class="cta-group">
+    <a href="https://linktr.ee/macondo.ceramica" target="_blank" class="btn btn-primary">
+      📅 Reservar ahora
+    </a>
+    <a href="https://www.instagram.com/macondo.ceramica" target="_blank" class="btn btn-ig">
+      <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+    <a href="https://wa.me/34624585210" target="_blank" class="btn btn-wa">
+      <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Explorar</span>
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ═══════════ MARQUEE STRIP ═══════════ -->
+<div class="strip">
+  <div class="strip-inner">
+    ✺ CERÁMICA PRECOLOMBINA &nbsp;·&nbsp; CLASES &nbsp;·&nbsp; COWORKING &nbsp;·&nbsp; TEAM BUILDING &nbsp;·&nbsp; EVENTOS EMPRESARIALES &nbsp;·&nbsp; BARCELONA &nbsp;·&nbsp; CERÁMICA PRECOLOMBINA &nbsp;·&nbsp; CLASES &nbsp;·&nbsp; COWORKING &nbsp;·&nbsp; TEAM BUILDING &nbsp;·&nbsp; EVENTOS EMPRESARIALES &nbsp;·&nbsp; BARCELONA &nbsp;·&nbsp;
+  </div>
+</div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">¿Quiénes somos?</p>
+        <h2 class="section-title">Donde la arcilla cobra vida</h2>
+        <p>Macondo Cerámica es un espacio creativo en el corazón de Barcelona dedicado al arte de la cerámica con raíces en las tradiciones precolombinas de América Latina.</p>
+        <p>Ofrecemos clases abiertas a todos los niveles, talleres temáticos, espacios de coworking para ceramistas y experiencias únicas de team building para empresas que buscan conectar a sus equipos de forma auténtica.</p>
+        <p>Cada pieza que sale de nuestro taller lleva consigo siglos de historia y la energía de quien la moldeó.</p>
+      </div>
+      <div class="about-art">
+        <div class="color-blob blob-1"></div>
+        <div class="color-blob blob-2"></div>
+        <div class="color-blob blob-3"></div>
+        <!-- Hand-drawn style SVG pot -->
+        <svg class="pot-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Pot body -->
+          <ellipse cx="100" cy="155" rx="55" ry="12" fill="#2D3A6B" opacity=".6"/>
+          <path d="M55 100 Q45 130 45 145 Q45 165 100 165 Q155 165 155 145 Q155 130 145 100 Z" fill="#C1633A"/>
+          <!-- Belly highlight -->
+          <path d="M60 115 Q58 135 60 148" stroke="#E8A830" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+          <!-- Neck -->
+          <rect x="78" y="68" width="44" height="34" rx="8" fill="#A84F2C"/>
+          <!-- Rim -->
+          <ellipse cx="100" cy="68" rx="26" ry="7" fill="#E8A830"/>
+          <!-- Precolumbian pattern on body -->
+          <rect x="68" y="118" width="8" height="8" rx="1" fill="#E8A830" opacity=".7"/>
+          <rect x="82" y="118" width="8" height="8" rx="1" fill="#3A7D6E" opacity=".7"/>
+          <rect x="96" y="118" width="8" height="8" rx="1" fill="#E8A830" opacity=".7"/>
+          <rect x="110" y="118" width="8" height="8" rx="1" fill="#3A7D6E" opacity=".7"/>
+          <rect x="124" y="118" width="8" height="8" rx="1" fill="#E8A830" opacity=".7"/>
+          <!-- Handles -->
+          <path d="M55 110 Q35 120 38 140 Q40 150 55 148" stroke="#A84F2C" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <path d="M145 110 Q165 120 162 140 Q160 150 145 148" stroke="#A84F2C" stroke-width="6" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="services">
+  <div class="container">
+    <p class="section-label">Lo que ofrecemos</p>
+    <h2 class="section-title">Nuestras experiencias</h2>
+    <div class="cards">
+      <div class="card card-1">
+        <div class="card-icon">🎨</div>
+        <h3>Clases de cerámica</h3>
+        <p>Desde principiantes hasta avanzados. Aprende técnicas tradicionales e innova con tu propio estilo en un ambiente cálido y creativo.</p>
+      </div>
+      <div class="card card-2">
+        <div class="card-icon">🏺</div>
+        <h3>Cerámica Precolombina</h3>
+        <p>Talleres especiales centrados en las técnicas y estéticas de las culturas originarias de América. Un viaje entre historia y arcilla.</p>
+      </div>
+      <div class="card card-3">
+        <div class="card-icon">🤝</div>
+        <h3>Team Building</h3>
+        <p>Eventos empresariales únicos donde los equipos crean juntos, se desconectan del trabajo y se reconectan entre sí.</p>
+      </div>
+      <div class="card card-4">
+        <div class="card-icon">💻</div>
+        <h3>Coworking creativo</h3>
+        <p>Un espacio de trabajo compartido para ceramistas y artistas. Comparte horno, herramientas y la energía de una comunidad creativa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRECOLUMBIAN ═══════════ -->
+<section class="precolumbian">
+  <div class="container">
+    <p class="section-label">Nuestra raíz</p>
+    <h2 class="section-title">Herencia Precolombina</h2>
+    <p>Las culturas originarias de América desarrollaron durante milenios técnicas de cerámica que son patrimonio de la humanidad. En Macondo las mantenemos vivas, las enseñamos y las reinterpretamos con ojos contemporáneos.</p>
+    <a href="https://linktr.ee/macondo.ceramica" target="_blank" class="btn btn-primary">Ver todos los talleres</a>
+    <div class="pattern-row">
+      <div class="glyph">𓂀</div>
+      <div class="glyph">🌀</div>
+      <div class="glyph">◈</div>
+      <div class="glyph">⬡</div>
+      <div class="glyph">☽</div>
+      <div class="glyph">✦</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LOCATION ═══════════ -->
+<section class="location">
+  <div class="container">
+    <div class="location-inner">
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.823!2d2.1508!3d41.3988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2e6e2e2e2e2%3A0x0!2sTravessera+de+Gr%C3%A0cia+182%2C+Barcelona!5e0!3m2!1ses!2ses!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div class="address-card">
+        <h3>Visítanos</h3>
+        <div class="address-line">
+          <span class="icon">📍</span>
+          <span>Travessera de Gràcia 182<br>Barcelona, España 08012</span>
+        </div>
+        <div class="address-line">
+          <span class="icon">📱</span>
+          <a href="https://wa.me/34624585210" style="color:inherit; text-decoration:none;">+34 624 58 52 10</a>
+        </div>
+        <div class="address-line">
+          <span class="icon">📸</span>
+          <a href="https://www.instagram.com/macondo.ceramica" target="_blank" style="color:inherit;">@macondo.ceramica</a>
+        </div>
+        <div class="address-line">
+          <span class="icon">🔗</span>
+          <a href="https://linktr.ee/macondo.ceramica" target="_blank" style="color:inherit;">linktr.ee/macondo.ceramica</a>
+        </div>
+        <br>
+        <a href="https://wa.me/34624585210" target="_blank" class="btn btn-wa" style="display:inline-flex;">
+          <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar mensaje
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA STRIP ═══════════ -->
+<div class="contact-strip">
+  <h2>¿Lista/o para ensuciarte las manos? 🤲</h2>
+  <p>Reserva tu experiencia o escríbenos para saber más sobre nuestros talleres y eventos.</p>
+  <div class="contact-btns">
+    <a href="https://linktr.ee/macondo.ceramica" target="_blank" class="btn btn-primary">📅 Reservar aquí</a>
+    <a href="https://wa.me/34624585210" target="_blank" class="btn btn-wa">
+      <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      +34 624 58 52 10
+    </a>
+    <a href="https://www.instagram.com/macondo.ceramica" target="_blank" class="btn btn-ig">
+      <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <p>© 2025 Macondo Cerámica · Travessera de Gràcia 182, Barcelona 08012 · <a href="https://wa.me/34624585210">+34 624 58 52 10</a></p>
+  <p style="margin-top:.5rem;">Hecho con 🏺 y mucha arcilla</p>
+</footer>
+
+</body>
+</html>
