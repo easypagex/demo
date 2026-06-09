@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eva Espino Cerámica – Taller en Córdoba</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --clay:    #C4714A;
+    --sage:    #7A8C6E;
+    --cream:   #F5EDE0;
+    --celadon: #9BB5C0;
+    --earth:   #6B4F3A;
+    --ochre:   #D4A847;
+    --sand:    #E8D5B7;
+    --white:   #FDFAF6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--earth);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--cream);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-blobs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%;
+    opacity: 0.55;
+    animation: morph 10s ease-in-out infinite alternate;
+  }
+  .blob-1 { width: 520px; height: 480px; background: var(--clay);    top: -80px;  right: -120px; animation-delay: 0s;   opacity: 0.30; }
+  .blob-2 { width: 380px; height: 360px; background: var(--celadon); bottom: -60px; left: -80px;  animation-delay: 3s;   opacity: 0.35; }
+  .blob-3 { width: 260px; height: 240px; background: var(--ochre);   top: 40%;    right: 22%;    animation-delay: 6s;   opacity: 0.25; }
+  .blob-4 { width: 180px; height: 200px; background: var(--sage);    top: 20%;    left: 28%;     animation-delay: 1.5s; opacity: 0.28; }
+
+  @keyframes morph {
+    0%   { border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%; transform: rotate(0deg) scale(1); }
+    50%  { border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; transform: rotate(4deg) scale(1.04); }
+    100% { border-radius: 55% 45% 65% 35% / 40% 65% 35% 60%; transform: rotate(-3deg) scale(0.97); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 6vw;
+    max-width: 700px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+    border: 1.5px solid var(--clay);
+    border-radius: 999px;
+    padding: 0.35em 1em;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    line-height: 1.05;
+    color: var(--earth);
+    margin-bottom: 1.4rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--clay);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #7A5E4A;
+    max-width: 480px;
+    margin-bottom: 2.4rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.85em 1.8em;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+  .btn-clay {
+    background: var(--clay);
+    color: #fff;
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--clay);
+    border: 2px solid var(--clay);
+  }
+  .btn-wa {
+    background: #25D366;
+    color: #fff;
+  }
+  .btn-ig {
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #fff;
+  }
+
+  /* ── STRIP ── */
+  .strip {
+    background: var(--clay);
+    color: #fff;
+    padding: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .strip-inner {
+    display: inline-block;
+    animation: ticker 22s linear infinite;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 6rem 6vw;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    color: var(--earth);
+    margin-bottom: 1.6rem;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 720px) {
+    .about { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .about-visual {
+    position: relative;
+    height: 420px;
+  }
+
+  .clay-circle {
+    position: absolute;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+  .cc1 { width: 340px; height: 340px; background: var(--sand);    top: 30px;  left: 0;    animation-delay: 0s; }
+  .cc2 { width: 200px; height: 200px; background: var(--celadon); top: 0;     left: 180px; animation-delay: 1.5s; opacity: 0.7; }
+  .cc3 { width: 120px; height: 120px; background: var(--ochre);   bottom: 40px; left: 220px; animation-delay: 3s; opacity: 0.65; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-12px); }
+  }
+
+  .pot-svg {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #7A5E4A;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ── CURSOS ── */
+  .cursos-bg {
+    background: var(--cream);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.6rem;
+    margin-top: 2.4rem;
+  }
+
+  .card {
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    transition: transform 0.25s;
+  }
+  .card:hover { transform: translateY(-4px); }
+
+  .card-icon {
+    font-size: 2.4rem;
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    margin-bottom: 0.4rem;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--earth);
+  }
+
+  .card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #7A5E4A;
+  }
+
+  .card-a { background: #fff; }
+  .card-b { background: var(--clay); color: #fff; }
+  .card-b h3, .card-b p { color: #fff; }
+  .card-b .card-icon { background: rgba(255,255,255,0.2); }
+  .card-c { background: var(--sage); }
+  .card-c h3, .card-c p { color: #fff; }
+  .card-c .card-icon { background: rgba(255,255,255,0.2); }
+  .card-d { background: var(--celadon); }
+  .card-d h3, .card-d p { color: var(--earth); }
+  .card-d .card-icon { background: rgba(255,255,255,0.3); }
+
+  /* ── PROCESS ── */
+  .process {
+    background: var(--earth);
+    color: var(--cream);
+  }
+  .process .section-title { color: var(--cream); }
+  .process .eyebrow { color: var(--ochre); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.6rem;
+    margin-top: 2.8rem;
+  }
+
+  .step {
+    text-align: center;
+    padding: 1.6rem 1rem;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--clay);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .step h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--sand);
+  }
+
+  .step p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #B89F8A;
+  }
+
+  /* ── GALERÍA PLACEHOLDER ── */
+  .galeria-bg {
+    background: var(--sand);
+  }
+
+  .mosaic {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 280px 180px;
+    gap: 12px;
+    margin-top: 2.4rem;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+    .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; }
+    .mosaic-big { grid-column: 1 / -1; }
+  }
+
+  .mosaic-cell {
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mosaic-big { grid-row: 1 / 3; }
+
+  .m1 { background: #D4956A; }
+  .m2 { background: #9BB5C0; }
+  .m3 { background: #C4A07A; }
+  .m4 { background: #7A8C6E; }
+  .m5 { background: #D4A847; }
+
+  .mosaic-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    background: rgba(0,0,0,0.25);
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--cream);
+    text-align: center;
+  }
+
+  .contact .section-title { margin-bottom: 0.8rem; }
+
+  .contact p {
+    font-size: 1.05rem;
+    color: #7A5E4A;
+    margin-bottom: 2.4rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  .contact-card {
+    border-radius: 20px;
+    padding: 1.6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    min-width: 180px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: #fff;
+  }
+  .contact-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
+
+  .contact-card .cc-icon { font-size: 2rem; }
+  .contact-card .cc-title { font-weight: 500; font-size: 1rem; }
+  .contact-card .cc-sub { font-size: 0.82rem; opacity: 0.85; }
+
+  .cc-wa { background: #25D366; }
+  .cc-ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+  .cc-map { background: var(--clay); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--earth);
+    color: var(--sand);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--ochre); text-decoration: none; }
+
+  /* ── DECORATIVE DOTS ── */
+  .dots {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.4rem;
+  }
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .d1 { background: var(--clay); }
+  .d2 { background: var(--ochre); }
+  .d3 { background: var(--sage); }
+  .d4 { background: var(--celadon); }
+</style>
+</head>
+<body>
+
+<!-- ──── HERO ──── -->
+<section class="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+  </div>
+  <div class="hero-content">
+    <div class="dots">
+      <div class="dot d1"></div><div class="dot d2"></div>
+      <div class="dot d3"></div><div class="dot d4"></div>
+    </div>
+    <span class="tag">✦ Handmade · Córdoba, España</span>
+    <h1>Eva Espino<br><em>Cerámica</em></h1>
+    <p>Piezas únicas moldeadas a mano en un taller vivo. Cursos mensuales y talleres monográficos en el corazón de Córdoba.</p>
+    <div class="hero-ctas">
+      <a href="https://www.instagram.com/evaespinoceramica/" target="_blank" class="btn btn-ig">
+        📸 Instagram
+      </a>
+      <a href="https://wa.me/34670927612" target="_blank" class="btn btn-wa">
+        💬 WhatsApp
+      </a>
+      <a href="#cursos" class="btn btn-outline">Ver cursos</a>
+    </div>
+  </div>
+</section>
+
+<!-- ──── TICKER ──── -->
+<div class="strip">
+  <span class="strip-inner">
+    ✦ Cerámica Artesanal &nbsp;&nbsp;&nbsp; ✦ Hecha a Mano &nbsp;&nbsp;&nbsp; ✦ Taller en Córdoba &nbsp;&nbsp;&nbsp; ✦ Cursos Mensuales &nbsp;&nbsp;&nbsp; ✦ Talleres Monográficos &nbsp;&nbsp;&nbsp; ✦ #TallerCeramicaEnCordoba &nbsp;&nbsp;&nbsp; ✦ Cerámica Artesanal &nbsp;&nbsp;&nbsp; ✦ Hecha a Mano &nbsp;&nbsp;&nbsp; ✦ Taller en Córdoba &nbsp;&nbsp;&nbsp; ✦ Cursos Mensuales &nbsp;&nbsp;&nbsp; ✦ Talleres Monográficos &nbsp;&nbsp;&nbsp; ✦ #TallerCeramicaEnCordoba &nbsp;&nbsp;&nbsp;
+  </span>
+</div>
+
+<!-- ──── SOBRE EVA ──── -->
+<section class="section about">
+  <div class="about-visual">
+    <div class="clay-circle cc1"></div>
+    <div class="clay-circle cc2"></div>
+    <div class="clay-circle cc3"></div>
+    <svg class="pot-svg" width="180" height="220" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Pot body -->
+      <ellipse cx="90" cy="200" rx="62" ry="14" fill="#9B6B45" opacity="0.5"/>
+      <path d="M40 160 Q28 110 35 70 Q50 30 90 24 Q130 30 145 70 Q152 110 140 160 Q120 180 90 182 Q60 180 40 160Z" fill="#C4714A"/>
+      <!-- Rim -->
+      <ellipse cx="90" cy="60" rx="42" ry="12" fill="#D4956A"/>
+      <!-- Neck -->
+      <path d="M60 60 Q65 40 90 36 Q115 40 120 60" fill="#B86040"/>
+      <!-- Highlight -->
+      <ellipse cx="72" cy="95" rx="12" ry="30" fill="rgba(255,255,255,0.18)" transform="rotate(-15 72 95)"/>
+      <!-- Dots deco -->
+      <circle cx="90" cy="130" r="4" fill="#F5EDE0" opacity="0.7"/>
+      <circle cx="78" cy="145" r="3" fill="#F5EDE0" opacity="0.5"/>
+      <circle cx="102" cy="145" r="3" fill="#F5EDE0" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <div class="about-text">
+    <span class="eyebrow">Sobre el taller</span>
+    <h2 class="section-title">Arcilla que<br>cobra vida</h2>
+    <p>Eva Espino lleva años trabajando la cerámica artesanal en su taller de Córdoba, un espacio donde el tiempo se mide en tornadas y el olor a tierra húmeda impregna cada rincón.</p>
+    <p>Cada pieza es un diálogo entre la mano y la arcilla: única, imperfecta a propósito, llena de carácter. Jarras, cuencos, esculturas — todo forjado sin prisa.</p>
+    <a href="https://www.instagram.com/evaespinoceramica/" target="_blank" class="btn btn-clay" style="margin-top:0.8rem">Ver galería en Instagram</a>
+  </div>
+</section>
+
+<!-- ──── CURSOS ──── -->
+<section id="cursos" class="section cursos-bg">
+  <span class="eyebrow">Lo que ofrezco</span>
+  <h2 class="section-title">Cursos &amp; Talleres</h2>
+  <div class="cards">
+
+    <div class="card card-a">
+      <div class="card-icon" style="background:var(--sand)">🏺</div>
+      <h3>Curso Mensual</h3>
+      <p>Clases regulares a lo largo del mes para aprender técnicas de torneado, modelado manual y acabados. Ideal para principiantes y niveles medios.</p>
+    </div>
+
+    <div class="card card-b">
+      <div class="card-icon">🔥</div>
+      <h3>Taller Monográfico</h3>
+      <p>Sesiones intensivas de un solo día focalizadas en una técnica concreta: pinceladas decorativas, esmaltes, texturas o construcción de figuras.</p>
+    </div>
+
+    <div class="card card-c">
+      <div class="card-icon">🌿</div>
+      <h3>Taller Iniciación</h3>
+      <p>Tu primer contacto con la arcilla. Una tarde para descubrir si la cerámica es lo tuyo sin compromisos, con todo el material incluido.</p>
+    </div>
+
+    <div class="card card-d">
+      <div class="card-icon">🎁</div>
+      <h3>Bono Regalo</h3>
+      <p>Regala una experiencia única. Perfecta para cumpleaños, San Valentín o cualquier momento especial. Contacta por WhatsApp para recibirlo.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ──── PROCESO ──── -->
+<section class="section process">
+  <span class="eyebrow">Cómo trabajamos</span>
+  <h2 class="section-title">Del barro a la<br>pieza terminada</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Amasado</h4>
+      <p>La arcilla se prepara a mano para eliminar burbujas de aire y lograr una textura uniforme.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Modelado</h4>
+      <p>Torno o modelado manual: cada técnica tiene su ritmo y su magia particular.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Secado</h4>
+      <p>Las piezas reposan y se secan lentamente para no agrietarse antes del horno.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Bizcocho</h4>
+      <p>Primera cocción a 900 °C que convierte la arcilla en cerámica para siempre.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <h4>Esmaltado</h4>
+      <p>Se aplican colores y texturas que el fuego transformará en superficies únicas.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <h4>Cocción final</h4>
+      <p>El horno a 1240 °C revela la pieza definitiva, siempre una pequeña sorpresa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──── GALERÍA VISUAL ──── -->
+<section class="section galeria-bg">
+  <span class="eyebrow">Galería</span>
+  <h2 class="section-title">Piezas del taller</h2>
+  <div class="mosaic">
+    <div class="mosaic-cell m1 mosaic-big">
+      <svg width="120" height="160" viewBox="0 0 120 160" fill="none">
+        <ellipse cx="60" cy="145" rx="42" ry="10" fill="rgba(0,0,0,0.2)"/>
+        <path d="M25 110 Q18 75 22 45 Q35 12 60 10 Q85 12 98 45 Q102 75 95 110 Q80 130 60 132 Q40 130 25 110Z" fill="rgba(255,255,255,0.35)"/>
+        <ellipse cx="60" cy="38" rx="28" ry="8" fill="rgba(255,255,255,0.25)"/>
+      </svg>
+      <span class="mosaic-label">Jarras artesanales</span>
+    </div>
+    <div class="mosaic-cell m2">
+      <svg width="80" height="70" viewBox="0 0 80 70" fill="none">
+        <ellipse cx="40" cy="50" rx="34" ry="16" fill="rgba(255,255,255,0.3)"/>
+        <path d="M8 35 Q12 10 40 8 Q68 10 72 35 Q70 55 40 58 Q10 55 8 35Z" fill="rgba(255,255,255,0.25)"/>
+      </svg>
+      <span class="mosaic-label">Cuencos</span>
+    </div>
+    <div class="mosaic-cell m3">
+      <svg width="60" height="80" viewBox="0 0 60 80" fill="none">
+        <rect x="18" y="10" width="24" height="55" rx="4" fill="rgba(255,255,255,0.3)"/>
+        <rect x="14" y="60" width="32" height="8" rx="3" fill="rgba(255,255,255,0.25)"/>
+      </svg>
+      <span class="mosaic-label">Esculturas</span>
+    </div>
+    <div class="mosaic-cell m4">
+      <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+        <circle cx="40" cy="30" r="24" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="40" cy="30" r="16" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="40" cy="30" r="8"  fill="rgba(255,255,255,0.15)"/>
+      </svg>
+      <span class="mosaic-label">Platos y fuentes</span>
+    </div>
+    <div class="mosaic-cell m5">
+      <svg width="70" height="90" viewBox="0 0 70 90" fill="none">
+        <path d="M20 70 Q15 50 18 30 Q24 10 35 8 Q46 10 52 30 Q55 50 50 70 Q42 82 35 83 Q28 82 20 70Z" fill="rgba(255,255,255,0.3)"/>
+        <ellipse cx="35" cy="26" rx="16" ry="5" fill="rgba(255,255,255,0.2)"/>
+      </svg>
+      <span class="mosaic-label">Vasijas</span>
+    </div>
+  </div>
+  <p style="margin-top:1.6rem;font-size:0.9rem;color:#7A5E4A;text-align:center">
+    Sigue <a href="https://www.instagram.com/evaespinoceramica/" target="_blank" style="color:var(--clay);font-weight:500">@evaespinoceramica</a> en Instagram para ver las últimas piezas y novedades del taller 🏺
+  </p>
+</section>
+
+<!-- ──── CONTACTO ──── -->
+<section class="section contact">
+  <span class="eyebrow">Reservas &amp; Consultas</span>
+  <h2 class="section-title">¿Te apuntas<br>al taller?</h2>
+  <p>Escríbeme por WhatsApp o Instagram para reservar tu plaza, preguntar fechas o encargar una pieza personalizada.</p>
+  <div class="contact-links">
+    <a href="https://wa.me/34670927612" target="_blank" class="contact-card cc-wa">
+      <span class="cc-icon">💬</span>
+      <span class="cc-title">WhatsApp</span>
+      <span class="cc-sub">670 927 612</span>
+    </a>
+    <a href="https://www.instagram.com/evaespinoceramica/" target="_blank" class="contact-card cc-ig">
+      <span class="cc-icon">📸</span>
+      <span class="cc-title">Instagram</span>
+      <span class="cc-sub">@evaespinoceramica</span>
+    </a>
+    <a href="https://maps.google.com/?q=Córdoba,España" target="_blank" class="contact-card cc-map">
+      <span class="cc-icon">📍</span>
+      <span class="cc-title">Ubicación</span>
+      <span class="cc-sub">Córdoba, España</span>
+    </a>
+  </div>
+</section>
+
+<!-- ──── FOOTER ──── -->
+<footer>
+  <p>© 2025 Eva Espino Cerámica · Córdoba, España · Hecho a mano con 🧡</p>
+  <p style="margin-top:0.4rem">
+    <a href="https://www.instagram.com/evaespinoceramica/" target="_blank">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/34670927612" target="_blank">WhatsApp 670 927 612</a>
+  </p>
+</footer>
+
+</body>
+</html>
