@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sally Hambleton – Flores Creative Director</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush:    #F2C4C4;
+      --rose:     #D96B7B;
+      --peony:    #B33F5A;
+      --sage:     #8BAF8C;
+      --leaf:     #4A7C59;
+      --cream:    #FDF6F0;
+      --gold:     #C9A84C;
+      --ink:      #1E1414;
+      --soft:     #7A5C5C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 30%, #F7DADA 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, #D4EAD4 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, #FDF0E0 0%, transparent 70%),
+        var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 5rem 6rem 5rem 7rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Petal decorations */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(217,107,123,.18);
+      top: -80px; right: -80px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      border: 1px solid rgba(139,175,140,.25);
+      bottom: 60px; left: 40px;
+    }
+
+    .hero-text { position: relative; z-index: 2; }
+
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.4rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 6vw, 5.4rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: .6rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--peony);
+    }
+
+    .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--soft);
+      margin-bottom: 2.4rem;
+      line-height: 1.5;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-bottom: 2.8rem;
+    }
+    .badge {
+      background: white;
+      border: 1px solid var(--blush);
+      border-radius: 999px;
+      padding: .35rem 1rem;
+      font-size: .78rem;
+      color: var(--soft);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .badge-icon { font-size: 1rem; }
+
+    .cta-group { display: flex; flex-wrap: wrap; gap: .9rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      border-radius: 999px;
+      padding: .75rem 1.7rem;
+      font-size: .88rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose), var(--peony));
+      color: white;
+    }
+    .btn-wa {
+      background: #25D366;
+      color: white;
+    }
+    .btn-outline {
+      background: white;
+      border: 1.5px solid var(--rose);
+      color: var(--peony);
+    }
+
+    /* Floral illustration area */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .floral-ring {
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F9E0E0 0%, #F0EDD8 40%, #D4EAD4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(179,63,90,.12), 0 4px 20px rgba(0,0,0,.05);
+    }
+
+    .floral-emoji {
+      font-size: 7rem;
+      filter: drop-shadow(0 4px 8px rgba(179,63,90,.2));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(-3deg); }
+      50%      { transform: translateY(-12px) rotate(3deg); }
+    }
+
+    /* Orbiting petals */
+    .petal {
+      position: absolute;
+      font-size: 2rem;
+      animation: orbit linear infinite;
+    }
+    .petal:nth-child(1) { animation-duration: 14s; top: -8px; left: 50%; }
+    .petal:nth-child(2) { animation-duration: 18s; animation-delay: -6s; bottom: 20px; right: -10px; }
+    .petal:nth-child(3) { animation-duration: 22s; animation-delay: -12s; left: -10px; top: 50%; }
+    .petal:nth-child(4) { animation-duration: 16s; animation-delay: -4s; bottom: -10px; left: 40%; }
+
+    @keyframes orbit {
+      0%   { transform: rotate(0deg)   translateX(200px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+    }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: linear-gradient(90deg, var(--peony), var(--rose), var(--peony));
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: .82rem;
+      letter-spacing: .06em;
+    }
+    .info-strip span { display: flex; align-items: center; gap: .4rem; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 7rem; }
+
+    .section-label {
+      font-size: .7rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: .8rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1.6rem;
+    }
+    h2 em { font-style: italic; color: var(--peony); }
+
+    /* ── SERVICES ── */
+    .services { background: white; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+      margin-top: 2.5rem;
+    }
+
+    .card {
+      background: var(--cream);
+      border-radius: 1.4rem;
+      padding: 2.2rem 2rem;
+      border: 1px solid rgba(217,107,123,.12);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(242,196,196,.2), transparent 60%);
+      pointer-events: none;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(179,63,90,.1); }
+
+    .card-icon { font-size: 2.6rem; margin-bottom: 1rem; }
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: .6rem;
+      color: var(--peony);
+    }
+    .card p { font-size: .88rem; color: var(--soft); line-height: 1.65; }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .flower-tile {
+      width: 120px; height: 120px;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      animation: floatTile ease-in-out infinite;
+    }
+    .flower-tile:nth-child(odd)  { animation-duration: 5s; }
+    .flower-tile:nth-child(even) { animation-duration: 7s; animation-delay: -2s; }
+    @keyframes floatTile {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    .ft1 { background: #FDEAEA; }
+    .ft2 { background: #EAF5EA; }
+    .ft3 { background: #FEFAE5; }
+    .ft4 { background: #EAF0FE; }
+    .ft5 { background: #FDEAEA; }
+    .ft6 { background: #FDE9F4; }
+
+    .stat-pair {
+      display: flex;
+      gap: 2.5rem;
+      margin: 2rem 0;
+    }
+    .stat { }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--peony);
+      line-height: 1;
+    }
+    .stat-lbl { font-size: .78rem; color: var(--soft); margin-top: .2rem; }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: linear-gradient(135deg, #2A1418 0%, #3D1F26 50%, #1E2A1A 100%);
+      color: white;
+      text-align: center;
+      padding: 5rem 4rem;
+    }
+
+    .contact h2 { color: white; }
+    .contact h2 em { color: var(--blush); }
+    .contact .subtitle { color: rgba(255,255,255,.6); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; margin-bottom: 2.5rem; }
+
+    .contact-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .contact-item {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 1rem;
+      padding: 1.4rem 2rem;
+      min-width: 200px;
+    }
+    .contact-item .ci-label { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--blush); margin-bottom: .4rem; }
+    .contact-item .ci-value { font-size: .95rem; color: white; line-height: 1.5; }
+
+    .contact-ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 1.8rem;
+      font-size: .78rem;
+    }
+    footer a { color: var(--blush); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 4rem 2rem 3rem; text-align: center; }
+      .hero-visual { display: none; }
+      .hero-badges { justify-content: center; }
+      .cta-group { justify-content: center; }
+      section { padding: 3.5rem 1.5rem; }
+      .cards { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .info-strip { gap: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .floral-emoji, .petal, .flower-tile { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">🌸 Flores · Madrid · Luxury Events</p>
+    <h1>Sally<br><em>Hambleton</em></h1>
+    <p class="subtitle">Flores Creative Director<br>+20 años creando momentos únicos</p>
+
+    <div class="hero-badges">
+      <span class="badge"><span class="badge-icon">⏰</span> L–V: 10:00 – 19:00 h</span>
+      <span class="badge"><span class="badge-icon">📍</span> Gabriel Lobo 10, Madrid 28002</span>
+      <span class="badge"><span class="badge-icon">🌐</span> Online 24 horas</span>
+    </div>
+
+    <div class="cta-group">
+      <a href="https://www.instagram.com/sallyhambleton/" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @sallyhambleton
+      </a>
+      <a href="https://wa.me/34652187188" target="_blank" rel="noopener" class="btn btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+      <a href="tel:+34915624709" class="btn btn-outline">📞 915 624 709</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="floral-ring">
+      <span class="petal">🌸</span>
+      <span class="petal">🌺</span>
+      <span class="petal">🌼</span>
+      <span class="petal">🌹</span>
+      <span class="floral-emoji">💐</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── INFO STRIP ── -->
+<div class="info-strip">
+  <span>🕐 Lunes a Viernes: 10 – 19 h</span>
+  <span>🚫 Sábado &amp; Domingo: cerrado</span>
+  <span>🌐 Pedidos online: 24 horas</span>
+  <span>📍 Gabriel Lobo 10, Madrid 28002</span>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="services">
+  <p class="section-label">Lo que hacemos</p>
+  <h2>Arte floral con <em>alma</em></h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">💍</div>
+      <h3>Bodas &amp; Eventos</h3>
+      <p>Decoraciones florales de lujo para los momentos más especiales. Más de 20 años diseñando experiencias únicas e irrepetibles.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌹</div>
+      <h3>Ramos a Medida</h3>
+      <p>Cada ramo cuenta una historia. Diseñados a mano con flores seleccionadas y una mirada creativa que hace la diferencia.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏢</div>
+      <h3>Floral para Empresas</h3>
+      <p>Ambientación y suscripciones florales para espacios corporativos, hoteles y restaurantes de alto nivel.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎁</div>
+      <h3>Regalos &amp; Sorpresas</h3>
+      <p>Composiciones especiales para cumpleaños, aniversarios y celebraciones. Entrega en Madrid y pedidos online 24 h.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌿</div>
+      <h3>Decoración Floral</h3>
+      <p>Instalaciones florales para escaparates, restaurantes y espacios privados. Un toque de naturaleza con estilo editorial.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <h3>Pedidos Online</h3>
+      <p>Tienda disponible las 24 horas. Realiza tu pedido por web, teléfono o WhatsApp y recíbelo en Madrid.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about">
+  <div class="about-text">
+    <p class="section-label">Sobre Sally</p>
+    <h2>Creatividad que<br><em>florece</em> con el tiempo</h2>
+    <p style="color:var(--soft); line-height:1.8; margin-bottom:1.5rem;">
+      Con más de dos décadas dedicadas al arte floral, Sally Hambleton es referente en Madrid del diseño con flores de lujo. Su visión mezcla lo natural, lo artístico y lo efímero para crear composiciones que emocionan.
+    </p>
+    <p style="color:var(--soft); line-height:1.8;">
+      Desde su floristería en el barrio de Salamanca, dirige proyectos únicos para bodas, eventos corporativos y espacios de alta gama.
+    </p>
+    <div class="stat-pair">
+      <div class="stat">
+        <div class="stat-num">+20</div>
+        <div class="stat-lbl">años de experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-lbl">flores con alma</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24h</div>
+        <div class="stat-lbl">tienda online</div>
+      </div>
+    </div>
+    <div class="cta-group">
+      <a href="https://www.instagram.com/sallyhambleton/" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Ver Instagram
+      </a>
+    </div>
+  </div>
+
+  <div class="about-visual">
+    <div class="flower-tile ft1">🌸</div>
+    <div class="flower-tile ft2">🌿</div>
+    <div class="flower-tile ft3">🌼</div>
+    <div class="flower-tile ft4">💜</div>
+    <div class="flower-tile ft5">🌺</div>
+    <div class="flower-tile ft6">🌹</div>
+    <div class="flower-tile ft2">🍃</div>
+    <div class="flower-tile ft3">🌻</div>
+    <div class="flower-tile ft1">🌷</div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact">
+  <p class="section-label" style="color:var(--blush);">Contacto</p>
+  <h2>Hablemos de tu <em>próximo</em> evento</h2>
+  <p class="subtitle">Estamos encantadas de escucharte</p>
+
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="ci-label">📞 Teléfono</div>
+      <div class="ci-value"><a href="tel:+34915624709" style="color:white;text-decoration:none;">915 624 709</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-label">💬 WhatsApp</div>
+      <div class="ci-value"><a href="https://wa.me/34652187188" target="_blank" rel="noopener" style="color:white;text-decoration:none;">652 187 188</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-label">📍 Dirección</div>
+      <div class="ci-value">Gabriel Lobo 10<br>Madrid 28002</div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-label">⏰ Horario</div>
+      <div class="ci-value">Lun – Vie: 10 – 19 h<br>Sáb &amp; Dom: cerrado</div>
+    </div>
+  </div>
+
+  <div class="contact-ctas">
+    <a href="https://wa.me/34652187188" target="_blank" rel="noopener" class="btn btn-wa" style="font-size:.95rem; padding:.85rem 2rem;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Escribir por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/sallyhambleton/" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:.95rem; padding:.85rem 2rem;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      Seguir en Instagram
+    </a>
+    <a href="tel:+34915624709" class="btn btn-outline" style="border-color:rgba(255,255,255,.3); color:white; font-size:.95rem; padding:.85rem 2rem;">
+      📞 Llamar ahora
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 Sally Hambleton · Flores Creative Director · Gabriel Lobo 10, Madrid 28002 ·
+    <a href="https://www.instagram.com/sallyhambleton/" target="_blank" rel="noopener">@sallyhambleton</a>
+  </p>
+</footer>
+
+</body>
+</html>
