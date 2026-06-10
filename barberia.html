@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbería Top Madrid — Calle Monteleon 11</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #0a0a0a;
+    --cream:   #f5f0e8;
+    --red:     #e63027;
+    --gold:    #c9a84c;
+    --white:   #ffffff;
+    --gray:    #1c1c1c;
+    --ig:      #e1306c;
+    --wa:      #25d366;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 2rem 1.5rem;
+    overflow: hidden;
+    background: var(--black);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(201,168,76,.18) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(230,48,39,.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .pole {
+    font-size: clamp(5rem, 18vw, 13rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    user-select: none;
+    animation: spinPole 8s linear infinite;
+    display: inline-block;
+    margin-bottom: .5rem;
+  }
+
+  @keyframes spinPole { to { transform: rotate(360deg); } }
+
+  .hero-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(.65rem, 2vw, .85rem);
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4.5rem, 18vw, 12rem);
+    line-height: .92;
+    color: var(--white);
+    text-shadow: 0 0 80px rgba(201,168,76,.25);
+    margin-bottom: .3rem;
+  }
+
+  .hero-title span {
+    color: var(--red);
+    display: block;
+  }
+
+  .hero-tagline {
+    font-size: clamp(.95rem, 2.5vw, 1.2rem);
+    color: rgba(245,240,232,.7);
+    max-width: 480px;
+    margin: 1.2rem auto 2.4rem;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  /* ── BOTONES CTA ── */
+  .cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .85rem 2rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .18s, box-shadow .18s;
+    letter-spacing: .04em;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+    font-size: 1.05rem;
+    padding: 1rem 2.4rem;
+  }
+
+  .btn-wa {
+    background: var(--wa);
+    color: #fff;
+  }
+
+  .btn-ig {
+    background: linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    color: #fff;
+  }
+
+  /* ── HORARIO STRIP ── */
+  .hours-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.4rem 1.5rem;
+    background: var(--gray);
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .hours-item {
+    text-align: center;
+  }
+
+  .hours-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .25rem;
+  }
+
+  .hours-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    letter-spacing: .05em;
+  }
+
+  /* ── SERVICIOS ── */
+  .section {
+    padding: 5rem 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    color: var(--white);
+    text-align: center;
+    margin-bottom: .4rem;
+    letter-spacing: .04em;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--gold);
+    font-size: .85rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .service-card {
+    background: var(--gray);
+    border: 1px solid rgba(201,168,76,.2);
+    border-radius: 6px;
+    padding: 1.6rem 1.4rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s, transform .2s;
+  }
+  .service-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+  }
+
+  .service-icon { font-size: 2rem; margin-bottom: .8rem; }
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: .4rem;
+    letter-spacing: .04em;
+  }
+  .service-desc {
+    font-size: .88rem;
+    color: rgba(245,240,232,.6);
+    line-height: 1.5;
+  }
+
+  /* ── DIRECCIÓN ── */
+  .location-section {
+    background: var(--gray);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .address-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    color: var(--gold);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: .05em;
+  }
+
+  .map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .7rem 1.6rem;
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: .9rem;
+    text-decoration: none;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: background .2s, color .2s;
+    margin-top: .5rem;
+  }
+  .map-btn:hover { background: var(--gold); color: var(--black); }
+
+  /* ── BOTTOM CTA ── */
+  .bottom-cta {
+    padding: 5rem 1.5rem;
+    text-align: center;
+    background:
+      linear-gradient(180deg, var(--black) 0%, #110505 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bottom-cta::before {
+    content: '💈';
+    font-size: 22rem;
+    opacity: .04;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .bottom-cta .section-title { margin-bottom: 1rem; }
+  .bottom-cta p {
+    color: rgba(245,240,232,.65);
+    max-width: 400px;
+    margin: 0 auto 2.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,.15);
+  }
+
+  footer p {
+    font-size: .8rem;
+    color: rgba(245,240,232,.35);
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── FLOATING BUTTONS ── */
+  .float-btns {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    z-index: 100;
+  }
+
+  .float-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,.5);
+    transition: transform .18s, box-shadow .18s;
+  }
+  .float-btn:hover { transform: scale(1.12); box-shadow: 0 8px 30px rgba(0,0,0,.6); }
+  .float-wa  { background: var(--wa); }
+  .float-ig  { background: linear-gradient(135deg, #f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 480px) {
+    .cta-group { flex-direction: column; align-items: center; }
+    .btn { width: 100%; max-width: 320px; justify-content: center; }
+    .float-btns { bottom: 1rem; right: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING -->
+<div class="float-btns">
+  <a class="float-btn float-wa" href="https://wa.me/34643962736" target="_blank" title="WhatsApp">💬</a>
+  <a class="float-btn float-ig" href="https://www.instagram.com/barberiatopmadrid/" target="_blank" title="Instagram">📷</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="pole">💈</div>
+  <p class="hero-eyebrow">Madrid · Calle Monteleon 11</p>
+  <h1 class="hero-title">Barbería<span>Top</span></h1>
+  <p class="hero-tagline">No seguimos tendencias. Las creamos.</p>
+  <div class="cta-group">
+    <a class="btn btn-gold" href="https://wa.me/34643962736?text=Hola,%20quiero%20reservar%20cita%20en%20Barber%C3%ADa%20Top" target="_blank">
+      📅 Reserva tu cita ahora
+    </a>
+    <a class="btn btn-wa" href="https://wa.me/34643962736" target="_blank">
+      💬 WhatsApp
+    </a>
+    <a class="btn btn-ig" href="https://www.instagram.com/barberiatopmadrid/" target="_blank">
+      📷 Instagram
+    </a>
+  </div>
+</section>
+
+<!-- HORARIOS -->
+<div class="hours-strip">
+  <div class="hours-item">
+    <div class="hours-label">Lunes — Sábado</div>
+    <div class="hours-val">10:00 — 20:00</div>
+  </div>
+  <div class="hours-item">
+    <div class="hours-label">Domingo</div>
+    <div class="hours-val">11:00 — 18:30</div>
+  </div>
+  <div class="hours-item">
+    <div class="hours-label">Teléfono</div>
+    <div class="hours-val"><a href="tel:+34643962736" style="color:inherit;text-decoration:none;">643 96 27 36</a></div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section class="section">
+  <p class="section-sub reveal">Lo que hacemos</p>
+  <h2 class="section-title reveal">Nuestros Servicios</h2>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">✂️</div>
+      <div class="service-name">Corte de Cabello</div>
+      <div class="service-desc">Cortes clásicos y modernos adaptados a tu estilo. Precisión en cada tijera.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🪒</div>
+      <div class="service-name">Arreglo de Barba</div>
+      <div class="service-desc">Perfilado, degradado y afeitado con navaja. La barba perfecta, siempre.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">💈</div>
+      <div class="service-name">Corte + Barba</div>
+      <div class="service-desc">El pack completo. Sal de aquí sintiéndote otro — pero mejor.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🧴</div>
+      <div class="service-name">Tratamientos</div>
+      <div class="service-desc">Hidratación, keratina y productos premium para cabello y barba.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">👑</div>
+      <div class="service-name">Diseño de Líneas</div>
+      <div class="service-desc">Degradados, líneas y efectos. Para los que quieren diferenciarse.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🎨</div>
+      <div class="service-name">Color & Mechas</div>
+      <div class="service-desc">Desde mechas sutiles hasta transformaciones completas de color.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECCIÓN -->
+<div class="location-section reveal">
+  <p class="section-sub" style="margin-bottom:.8rem;">Encuéntranos</p>
+  <div class="address-big">Calle Monteleon, 11<br>Madrid</div>
+  <a class="map-btn" href="https://www.google.com/maps/search/Calle+Monteleon+11+Madrid" target="_blank">
+    📍 Ver en Google Maps
+  </a>
+</div>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta">
+  <h2 class="section-title reveal">¿Listo para el cambio?</h2>
+  <p class="reveal">Reserva en segundos por WhatsApp. Sin esperas, sin complicaciones.</p>
+  <div class="cta-group">
+    <a class="btn btn-gold" href="https://wa.me/34643962736?text=Hola,%20quiero%20reservar%20cita%20en%20Barber%C3%ADa%20Top" target="_blank">
+      📅 Reservar por WhatsApp
+    </a>
+    <a class="btn btn-ig" href="https://www.instagram.com/barberiatopmadrid/" target="_blank">
+      📷 Ver nuestro trabajo
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Barbería Top Madrid &nbsp;·&nbsp;
+    <a href="tel:+34643962736">643 96 27 36</a> &nbsp;·&nbsp;
+    Calle Monteleon 11, Madrid &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/barberiatopmadrid/" target="_blank">@barberiatopmadrid</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
