@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Lovers Madrid · Peluquería Canina</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #F4C430;
+    --hot-pink: #FF4F8B;
+    --sky: #3ABDE8;
+    --mint: #4DD9AC;
+    --dark: #1A1A2E;
+    --cream: #FFF9F0;
+    --orange: #FF7A3D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--hot-pink) 0%, var(--mustard) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* floating paw prints */
+  .paw {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.18;
+    animation: floatPaw 6s ease-in-out infinite;
+  }
+  .paw:nth-child(1)  { top: 8%;  left: 5%;  animation-delay: 0s;   font-size: 2.8rem; }
+  .paw:nth-child(2)  { top: 15%; right: 8%; animation-delay: 1.2s; font-size: 1.8rem; }
+  .paw:nth-child(3)  { top: 55%; left: 3%;  animation-delay: 2.4s; font-size: 3rem;   }
+  .paw:nth-child(4)  { top: 70%; right: 5%; animation-delay: 0.8s; font-size: 2.2rem; }
+  .paw:nth-child(5)  { top: 85%; left: 20%; animation-delay: 3s;   font-size: 1.6rem; }
+  .paw:nth-child(6)  { top: 30%; right: 20%;animation-delay: 1.8s; font-size: 2.5rem; }
+
+  @keyframes floatPaw {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50%       { transform: translateY(-18px) rotate(10deg); }
+  }
+
+  .dog-emoji {
+    font-size: 6rem;
+    display: block;
+    margin-bottom: 1rem;
+    animation: bounce 1.6s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-14px); }
+  }
+
+  .hero h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    color: #fff;
+    line-height: 1.05;
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--dark); }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 28px rgba(0,0,0,0.25); }
+  .btn-wa  { background: #25D366; color: #fff; }
+  .btn-ig  { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+  .btn-tel { background: var(--sky); color: #fff; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .scroll-hint span { animation: arrowBounce 1.2s ease-in-out infinite; }
+  @keyframes arrowBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: var(--cream);
+  }
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.4rem;
+  }
+  .section-sub {
+    color: #666;
+    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    border-radius: 24px 24px 0 0;
+  }
+  .card:nth-child(1)::before { background: var(--hot-pink); }
+  .card:nth-child(2)::before { background: var(--sky); }
+  .card:nth-child(3)::before { background: var(--mint); }
+  .card:nth-child(4)::before { background: var(--mustard); }
+
+  .card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(0,0,0,0.13); }
+
+  .card-icon { font-size: 3rem; margin-bottom: 0.8rem; display: block; }
+  .card h3 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .card p  { font-size: 0.95rem; color: #666; line-height: 1.6; }
+
+  /* ── LOCATION ── */
+  .location-section {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--mint) 100%);
+    padding: 5rem 2rem;
+    text-align: center;
+    color: #fff;
+  }
+  .location-section .section-title { color: #fff; }
+  .location-section .section-sub   { color: rgba(255,255,255,0.85); }
+
+  .location-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    padding: 1.2rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 2rem;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--dark);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .contact-section .section-title { color: var(--mustard); }
+  .contact-section .section-sub   { color: #aaa; }
+
+  .phone-row {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+  .phone-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.07);
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 50px;
+    padding: 0.7rem 1.5rem;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .phone-chip:hover { background: rgba(255,255,255,0.14); border-color: var(--mustard); }
+
+  .social-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111;
+    color: #555;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+  }
+  footer span { color: var(--hot-pink); }
+
+  @media (max-width: 480px) {
+    .btn { padding: 0.8rem 1.4rem; font-size: 1rem; }
+    .location-box { font-size: 1rem; padding: 1rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+
+  <span class="dog-emoji">🐩</span>
+
+  <h1>Dog Lovers<br><span>Madrid</span></h1>
+  <p class="hero-sub">✂️ Peluquería Canina &amp; Complementos · El Retiro, Madrid</p>
+
+  <div class="cta-row">
+    <a href="https://wa.me/34640824354" target="_blank" rel="noopener" class="btn btn-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://www.instagram.com/dogloversmadrid/" target="_blank" rel="noopener" class="btn btn-ig">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="tel:+34640824354" class="btn btn-tel">
+      📞 Pide tu cita
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>▼</span>
+    Descubre más
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services">
+  <h2 class="section-title">🐶 Nuestros Servicios</h2>
+  <p class="section-sub">Todo lo que tu peludo necesita en un solo lugar</p>
+  <div class="cards">
+    <div class="card">
+      <span class="card-icon">✂️</span>
+      <h3>Corte &amp; Estilo</h3>
+      <p>Peluquería profesional adaptada a la raza y carácter de tu perro.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🛁</span>
+      <h3>Baño &amp; Secado</h3>
+      <p>Productos de primera calidad para un pelaje brillante y suave.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">💅</span>
+      <h3>Uñas &amp; Cuidado</h3>
+      <p>Corte de uñas, limpieza de oídos y cuidado dental.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🎀</span>
+      <h3>Complementos</h3>
+      <p>Collares, correas, ropa y accesorios con mucho estilo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOCATION ── -->
+<section class="location-section">
+  <h2 class="section-title">📍 ¿Dónde estamos?</h2>
+  <p class="section-sub">En el corazón verde de Madrid</p>
+  <div class="location-box">
+    🗺️ El Retiro, Madrid
+  </div>
+  <br>
+  <a href="https://maps.google.com/?q=El+Retiro+Madrid" target="_blank" rel="noopener" class="btn" style="background:rgba(255,255,255,0.25);color:#fff;border:2px solid rgba(255,255,255,0.5);backdrop-filter:blur(8px);">
+    Cómo llegar →
+  </a>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section">
+  <h2 class="section-title">☎️ Reserva tu cita</h2>
+  <p class="section-sub">¡Te estamos esperando con los brazos abiertos y las tijeras listas!</p>
+
+  <div class="phone-row">
+    <a href="tel:+34640824354" class="phone-chip">📱 640 824 354</a>
+    <a href="tel:+34910732230" class="phone-chip">☎️ 910 732 230</a>
+  </div>
+
+  <div class="social-row">
+    <a href="https://wa.me/34640824354" target="_blank" rel="noopener" class="btn btn-wa">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp · 640 824 354
+    </a>
+    <a href="https://www.instagram.com/dogloversmadrid/" target="_blank" rel="noopener" class="btn btn-ig">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @dogloversmadrid
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>🐾 Dog Lovers Madrid · El Retiro, Madrid · <span>¡Te dejaremos huella!</span> 🐾</p>
+</footer>
+
+</body>
+</html>
