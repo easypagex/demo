@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImperioPets – Spa & Peluquería Canina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bubble: #FFF5F9;
+      --rose:   #F7557A;
+      --peach:  #FF8C69;
+      --lemon:  #FFE066;
+      --mint:   #6FDFC8;
+      --violet: #A78BFA;
+      --dark:   #1E1030;
+      --text:   #3B2A4E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bubble);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 24px 80px;
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 25%, #e8d5ff 55%, #c5f0e8 100%);
+      overflow: hidden;
+    }
+
+    /* Bubble decorations */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: .35;
+    }
+    .hero::before {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, var(--lemon), var(--peach));
+      top: -100px; left: -120px;
+    }
+    .hero::after {
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, var(--mint), var(--violet));
+      bottom: -80px; right: -80px;
+    }
+
+    .paw-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--rose);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--dark);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 span {
+      -webkit-text-fill-color: transparent;
+      background: linear-gradient(90deg, var(--rose), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text);
+      margin: 16px 0 36px;
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 15px 28px;
+      border-radius: 99px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+
+    .btn-booksy {
+      background: linear-gradient(135deg, var(--rose), var(--peach));
+      color: #fff;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-instagram {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+    }
+
+    /* Paw prints floating */
+    .paws {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .paw {
+      position: absolute;
+      font-size: 1.8rem;
+      opacity: .12;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-10deg); }
+      50%       { transform: translateY(-18px) rotate(10deg); }
+    }
+
+    /* ===== SERVICES ===== */
+    .section {
+      padding: 72px 24px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 48px;
+      color: var(--dark);
+    }
+    .section-title em {
+      font-style: normal;
+      -webkit-text-fill-color: transparent;
+      background: linear-gradient(90deg, var(--rose), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 36px 24px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(167,139,250,.15);
+      transition: transform .2s, box-shadow .2s;
+      border-top: 5px solid transparent;
+    }
+    .service-card:nth-child(1) { border-color: var(--rose); }
+    .service-card:nth-child(2) { border-color: var(--peach); }
+    .service-card:nth-child(3) { border-color: var(--mint); }
+    .service-card:nth-child(4) { border-color: var(--violet); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(167,139,250,.25); }
+
+    .service-icon { font-size: 3rem; margin-bottom: 14px; display: block; }
+    .service-card h3 { font-size: 1.15rem; font-weight: 900; margin-bottom: 8px; color: var(--dark); }
+    .service-card p  { font-size: .9rem; color: #6b7280; line-height: 1.6; }
+
+    /* ===== INFO STRIP ===== */
+    .info-strip {
+      background: linear-gradient(135deg, var(--dark), #3B1E6E);
+      color: #fff;
+      padding: 56px 24px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .info-icon {
+      width: 54px; height: 54px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .i-rose   { background: var(--rose); }
+    .i-peach  { background: var(--peach); }
+    .i-mint   { background: var(--mint); }
+    .i-lemon  { background: var(--lemon); }
+    .i-violet { background: var(--violet); }
+
+    .info-label { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .6; }
+    .info-value { font-size: 1.05rem; font-weight: 700; }
+    .info-value a { color: #fff; text-decoration: none; }
+    .info-value a:hover { text-decoration: underline; }
+
+    /* ===== HORARIO ===== */
+    .schedule-section {
+      background: linear-gradient(135deg, #fce4ec 0%, #e8d5ff 100%);
+      padding: 72px 24px;
+    }
+    .schedule-card {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 28px;
+      padding: 40px 32px;
+      box-shadow: 0 8px 40px rgba(167,139,250,.2);
+      text-align: center;
+    }
+    .schedule-card .emoji { font-size: 3rem; margin-bottom: 16px; display: block; }
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px dashed #e5d6ff;
+      font-size: 1.05rem;
+    }
+    .schedule-row:last-child { border-bottom: none; }
+    .schedule-row .turn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+    .schedule-row .time {
+      background: var(--violet);
+      color: #fff;
+      font-weight: 900;
+      font-size: .9rem;
+      padding: 5px 14px;
+      border-radius: 99px;
+    }
+
+    /* ===== CTA BOTTOM ===== */
+    .cta-bottom {
+      background: linear-gradient(135deg, var(--rose), var(--violet));
+      padding: 72px 24px;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-bottom h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    .cta-bottom p { font-size: 1.1rem; opacity: .9; margin-bottom: 36px; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 24px;
+      font-size: .85rem;
+    }
+    footer strong { color: rgba(255,255,255,.85); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <!-- Floating paws -->
+  <div class="paws">
+    <span class="paw" style="top:12%;left:8%;animation-delay:0s">🐾</span>
+    <span class="paw" style="top:30%;right:7%;animation-delay:1.5s">🐾</span>
+    <span class="paw" style="bottom:20%;left:15%;animation-delay:3s">🐾</span>
+    <span class="paw" style="bottom:35%;right:18%;animation-delay:2s">🐾</span>
+    <span class="paw" style="top:55%;left:40%;animation-delay:4s">🐾</span>
+  </div>
+
+  <div class="paw-badge" style="position:relative;z-index:1">🐩 Pet Service · Madrid</div>
+
+  <h1 style="position:relative;z-index:1">
+    Imperio<span>Pets</span><br/>
+    <span style="font-size:.55em;background:linear-gradient(90deg,#F7557A,#6FDFC8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+      Spa & Peluquería Canina
+    </span>
+  </h1>
+
+  <p class="hero-sub" style="position:relative;z-index:1">
+    Mimos, estilo y bienestar para tu perro 🐶✨<br/>
+    Tu mascota merece lo mejor.
+  </p>
+
+  <div class="cta-group">
+    <a href="https://imperiopets.booksy.com" target="_blank" class="btn btn-booksy">
+      📅 Reservar cita
+    </a>
+    <a href="https://wa.me/34636823676" target="_blank" class="btn btn-whatsapp">
+      💬 WhatsApp
+    </a>
+    <a href="https://www.instagram.com/imperiopets2024/" target="_blank" class="btn btn-instagram">
+      📸 Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ===== SERVICIOS ===== -->
+<section class="section reveal">
+  <h2 class="section-title">Nuestros <em>Servicios</em></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🧼</span>
+      <h3>Baño & Secado</h3>
+      <p>Productos premium para una piel sana y un pelaje brillante y suave.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✂️</span>
+      <h3>Corte & Estilismo</h3>
+      <p>Cortes a medida según la raza y el estilo que más le favorezca a tu peque.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">💅</span>
+      <h3>Manicura Canina</h3>
+      <p>Recorte y lima de uñas para que caminen cómodos y seguros.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🐩</span>
+      <h3>Spa Completo</h3>
+      <p>Tratamiento integral: baño, perfume, lazo y cuidado especial de orejas y ojos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INFO STRIP ===== -->
+<div class="info-strip reveal">
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="info-icon i-rose">📍</div>
+      <span class="info-label">Dirección</span>
+      <span class="info-value">
+        <a href="https://maps.app.goo.gl/pmuaeioCCnF2jQbs9" target="_blank">
+          Calle Méndez Álvaro, 24<br/>Madrid
+        </a>
+      </span>
+    </div>
+    <div class="info-item">
+      <div class="info-icon i-peach">☎️</div>
+      <span class="info-label">Teléfono fijo</span>
+      <span class="info-value"><a href="tel:911535037">911 535 037</a></span>
+    </div>
+    <div class="info-item">
+      <div class="info-icon i-mint">📱</div>
+      <span class="info-label">Móvil</span>
+      <span class="info-value"><a href="tel:671942541">671 942 541</a></span>
+    </div>
+    <div class="info-item">
+      <div class="info-icon i-lemon">💬</div>
+      <span class="info-label">WhatsApp</span>
+      <span class="info-value"><a href="https://wa.me/34636823676" target="_blank">636 823 676</a></span>
+    </div>
+    <div class="info-item">
+      <div class="info-icon i-violet">📅</div>
+      <span class="info-label">Reservas online</span>
+      <span class="info-value">
+        <a href="https://imperiopets.booksy.com" target="_blank">imperiopets.booksy.com</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HORARIO ===== -->
+<section class="schedule-section reveal">
+  <h2 class="section-title">Nuestro <em>Horario</em></h2>
+  <div class="schedule-card">
+    <span class="emoji">🕐</span>
+    <div class="schedule-row">
+      <div class="turn">🌤️ Mañana</div>
+      <span class="time">10:00 – 14:00</span>
+    </div>
+    <div class="schedule-row">
+      <div class="turn">🌆 Tarde</div>
+      <span class="time">16:00 – 20:00</span>
+    </div>
+    <p style="margin-top:24px;font-size:.9rem;color:#9ca3af;">
+      Lunes a Sábado · Cierre al mediodía 🐾
+    </p>
+  </div>
+</section>
+
+<!-- ===== CTA BOTTOM ===== -->
+<section class="cta-bottom reveal">
+  <h2>¿Listo para el SPA? 🐶✨</h2>
+  <p>Reserva fácil y rápido en línea o escríbenos por WhatsApp</p>
+  <div class="cta-group">
+    <a href="https://imperiopets.booksy.com" target="_blank" class="btn" style="background:#fff;color:var(--rose);">
+      📅 Reservar en Booksy
+    </a>
+    <a href="https://wa.me/34636823676" target="_blank" class="btn" style="background:#25D366;color:#fff;">
+      💬 Escribir por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/imperiopets2024/" target="_blank" class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.4);">
+      📸 Ver en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <strong>ImperioPets</strong> · Calle Méndez Álvaro 24, Madrid ·
+  <a href="tel:911535037" style="color:rgba(255,255,255,.6)">911 535 037</a> ·
+  <a href="https://www.instagram.com/imperiopets2024/" target="_blank" style="color:rgba(255,255,255,.6)">@imperiopets2024</a>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
