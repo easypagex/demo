@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun & Surf Spain – Marbella</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ocean:   #0A2540;
+      --teal:    #00C9C8;
+      --sand:    #F5E6C8;
+      --coral:   #FF6B47;
+      --white:   #FFFFFF;
+      --light:   #E8F6F6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ocean);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(to bottom, rgba(10,37,64,.92), transparent);
+      backdrop-filter: blur(4px);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: .08em;
+      color: var(--teal);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--white); text-decoration: none; font-size: .85rem;
+      letter-spacing: .08em; text-transform: uppercase; font-weight: 600;
+      opacity: .85; transition: opacity .2s, color .2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--teal); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0A2540 0%, #0E3D6B 45%, #0A2F52 100%);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    /* Sun glow */
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,180,50,.18) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes pulse {
+      0%,100% { transform: translateX(-50%) scale(1); opacity: .7; }
+      50%      { transform: translateX(-50%) scale(1.12); opacity: 1; }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,201,200,.15);
+      border: 1px solid rgba(0,201,200,.45);
+      color: var(--teal);
+      font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      padding: .45rem 1.1rem; border-radius: 50px; margin-bottom: 1.4rem;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.8rem, 12vw, 9rem);
+      line-height: .95;
+      letter-spacing: .04em;
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--teal) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: .5rem;
+    }
+    .hero-sub {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.4rem, 5vw, 3rem);
+      color: var(--coral);
+      letter-spacing: .18em;
+      margin-bottom: 1.4rem;
+    }
+    .hero p {
+      max-width: 540px; font-size: 1.05rem; line-height: 1.7;
+      color: rgba(255,255,255,.78); margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      padding: .85rem 2rem; border-radius: 50px;
+      font-weight: 700; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-coral   { background: var(--coral); color: #fff; box-shadow: 0 6px 24px rgba(255,107,71,.4); }
+    .btn-teal    { background: var(--teal);  color: #0A2540; box-shadow: 0 6px 24px rgba(0,201,200,.35); }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.4); }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* wave divider */
+    .wave { display: block; width: 100%; line-height: 0; }
+
+    /* ── ACTIVITIES ── */
+    .activities {
+      background: var(--sand);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .section-label {
+      font-size: .78rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: .7rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 7vw, 4.5rem);
+      color: var(--ocean); letter-spacing: .04em;
+      margin-bottom: 1rem;
+    }
+    .section-intro {
+      max-width: 560px; margin: 0 auto 3.5rem;
+      color: rgba(10,37,64,.72); font-size: 1rem; line-height: 1.75;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem; max-width: 1100px; margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.4rem 2rem;
+      box-shadow: 0 8px 32px rgba(10,37,64,.10);
+      transition: transform .25s, box-shadow .25s;
+      text-align: left;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(10,37,64,.15); }
+    .card-icon {
+      font-size: 2.8rem; margin-bottom: 1.2rem;
+      display: block;
+    }
+    .card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: .06em; color: var(--ocean);
+      margin-bottom: .5rem;
+    }
+    .card p { color: rgba(10,37,64,.68); font-size: .92rem; line-height: 1.65; }
+    .card-accent { display: inline-block; width: 40px; height: 4px; border-radius: 2px; margin-top: 1.2rem; }
+
+    /* ── VIBES ── */
+    .vibes {
+      background: linear-gradient(135deg, #0E3D6B 0%, #0A2540 100%);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .vibes .section-title { color: #fff; }
+    .vibes .section-intro  { color: rgba(255,255,255,.68); }
+
+    .vibes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.4rem; max-width: 1000px; margin: 0 auto;
+    }
+    .vibe-item {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px; padding: 2rem 1.4rem;
+      transition: background .25s;
+    }
+    .vibe-item:hover { background: rgba(0,201,200,.13); }
+    .vibe-item span { font-size: 2.4rem; display: block; margin-bottom: .8rem; }
+    .vibe-item h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: .06em; color: var(--teal);
+      margin-bottom: .4rem;
+    }
+    .vibe-item p { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.55; }
+
+    /* ── LOCATION ── */
+    .location-section {
+      background: var(--sand);
+      padding: 6rem 2rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .location-section .section-title { color: var(--ocean); }
+    .location-section .section-intro  { color: rgba(10,37,64,.7); }
+    .map-embed {
+      width: 100%; max-width: 780px;
+      height: 340px; border-radius: 20px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(10,37,64,.18);
+      margin-bottom: 1.5rem;
+    }
+    .map-embed iframe { width: 100%; height: 100%; border: 0; }
+    .address-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--ocean); color: #fff;
+      padding: .7rem 1.6rem; border-radius: 50px;
+      font-size: .88rem; font-weight: 600;
+    }
+
+    /* ── CONNECT ── */
+    .connect {
+      background: linear-gradient(135deg, #FF6B47 0%, #FF9A7B 100%);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .connect .section-title { color: #fff; }
+    .connect .section-intro  { color: rgba(255,255,255,.82); }
+
+    .social-links {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: .7rem;
+      padding: 1rem 2.2rem; border-radius: 50px;
+      font-weight: 700; font-size: .92rem; letter-spacing: .05em;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+    }
+    .social-btn:hover { transform: translateY(-4px); }
+    .social-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .btn-instagram {
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color: #fff; box-shadow: 0 8px 28px rgba(131,58,180,.45);
+    }
+    .btn-whatsapp {
+      background: #25D366; color: #fff;
+      box-shadow: 0 8px 28px rgba(37,211,102,.45);
+    }
+    .btn-facebook {
+      background: #1877F2; color: #fff;
+      box-shadow: 0 8px 28px rgba(24,119,242,.45);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060F1B;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: rgba(255,255,255,.38);
+      font-size: .8rem;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-trident { font-size: 2rem; display: block; margin-bottom: .5rem; }
+
+    /* scrollreveal helper */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 640px) {
+      nav { padding: .8rem 1.2rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Sun &amp; Surf 🔱</a>
+    <ul class="nav-links">
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#vibes">Our Vibes</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🌊 Marbella, Spain · International Crew</div>
+    <h1>Sun &amp; Surf</h1>
+    <div class="hero-sub">🔱 Spain</div>
+    <p>An international crew passionate about surfing, Stand Up Paddling, and healthy living — right on the sun-drenched coast of Marbella.</p>
+    <div class="hero-ctas">
+      <a href="#activities" class="btn btn-coral">🏄 Discover Activities</a>
+      <a href="#connect" class="btn btn-teal">📲 Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- Wave divider -->
+  <svg class="wave" viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#F5E6C8;">
+    <path d="M0,60 C240,0 480,90 720,50 C960,10 1200,80 1440,40 L1440,90 L0,90 Z" fill="#0A2540"/>
+  </svg>
+
+  <!-- ACTIVITIES -->
+  <section class="activities" id="activities">
+    <p class="section-label reveal">What We Do</p>
+    <h2 class="section-title reveal">Ride. Paddle. Live Well.</h2>
+    <p class="section-intro reveal">From crashing waves to glassy flat water, we live for the ocean in all its moods. Join us for lessons, sessions, and community on the Costa del Sol.</p>
+    <div class="cards">
+      <div class="card reveal">
+        <span class="card-icon">🏄‍♂️</span>
+        <h3>Surfing</h3>
+        <p>Whether you're dropping in for the first time or chasing bigger sets, our crew welcomes all levels. Feel the rush of the Atlantic on Marbella's finest breaks.</p>
+        <div class="card-accent" style="background:var(--teal);"></div>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🚣‍♀️</span>
+        <h3>Stand Up Paddling</h3>
+        <p>Glide across calm Mediterranean coves or push through open-water adventures on a SUP board. The perfect workout wrapped in stunning coastal scenery.</p>
+        <div class="card-accent" style="background:var(--coral);"></div>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🥑</span>
+        <h3>Healthy Living</h3>
+        <p>Good vibes demand good fuel. We champion a lifestyle built around movement, whole food, sunshine, and community — ocean therapy included.</p>
+        <div class="card-accent" style="background:#FFB830;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave divider -->
+  <svg class="wave" viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#0E3D6B;">
+    <path d="M0,40 C360,100 720,0 1080,60 C1260,90 1380,20 1440,50 L1440,0 L0,0 Z" fill="#F5E6C8"/>
+  </svg>
+
+  <!-- VIBES -->
+  <section class="vibes" id="vibes">
+    <p class="section-label reveal" style="color:var(--teal);">The Sun &amp; Surf Way</p>
+    <h2 class="section-title reveal">Our Vibes</h2>
+    <p class="section-intro reveal">An international family united by saltwater, sunshine, and the stoke of being alive on the Costa del Sol.</p>
+    <div class="vibes-grid">
+      <div class="vibe-item reveal">
+        <span>🌍</span>
+        <h4>International Crew</h4>
+        <p>Surfers, paddlers, and adventurers from all corners of the globe — all calling Marbella home.</p>
+      </div>
+      <div class="vibe-item reveal">
+        <span>☀️</span>
+        <h4>Sun &amp; Warmth</h4>
+        <p>320+ days of sunshine. The Costa del Sol isn't a backdrop — it's part of who we are.</p>
+      </div>
+      <div class="vibe-item reveal">
+        <span>🌊</span>
+        <h4>Ocean Soul</h4>
+        <p>The sea is our gym, our meditation, our happy place. Every session is a reset.</p>
+      </div>
+      <div class="vibe-item reveal">
+        <span>🫶</span>
+        <h4>Community First</h4>
+        <p>From dawn patrol to after-session acai bowls — we do it together.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave divider -->
+  <svg class="wave" viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#F5E6C8;">
+    <path d="M0,50 C300,10 600,80 900,40 C1100,15 1300,70 1440,30 L1440,90 L0,90 Z" fill="#0E3D6B"/>
+  </svg>
+
+  <!-- LOCATION -->
+  <section class="location-section" id="location">
+    <p class="section-label reveal">Find Us</p>
+    <h2 class="section-title reveal">Marbella, Spain 🌴</h2>
+    <p class="section-intro reveal">We're based in the beautiful Urbanización Real de Zaragoza, Marbella — where the mountains meet the Mediterranean.</p>
+    <div class="map-embed reveal">
+      <iframe
+        src="https://maps.google.com/maps?q=Urbanizaci%C3%B3n+Real+de+Zaragoza%2C+Marbella%2C+Spain+29604&output=embed"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Sun and Surf Spain Location">
+      </iframe>
+    </div>
+    <div class="address-pill reveal">
+      📍 Urbanización Real de Zaragoza, Marbella, Spain 29604
+    </div>
+  </section>
+
+  <!-- Wave divider -->
+  <svg class="wave" viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#FF6B47;">
+    <path d="M0,30 C480,90 960,0 1440,60 L1440,0 L0,0 Z" fill="#F5E6C8"/>
+  </svg>
+
+  <!-- CONNECT -->
+  <section class="connect" id="connect">
+    <p class="section-label reveal" style="color:rgba(255,255,255,.75);">Get In Touch</p>
+    <h2 class="section-title reveal">Join The Crew 🔱</h2>
+    <p class="section-intro reveal">Follow us for daily doses of ocean life, book a session, or just say hola. We'd love to surf with you.</p>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/sunandsurfspain/" target="_blank" rel="noopener" class="social-btn btn-instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a href="https://wa.me/34663653624" target="_blank" rel="noopener" class="social-btn btn-whatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp: 663 653 624
+      </a>
+      <a href="https://www.facebook.com/sunandsurfstanduppaddle/" target="_blank" rel="noopener" class="social-btn btn-facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-trident">🔱</span>
+    <p>© 2024 <strong>Sun &amp; Surf Spain</strong> · Marbella, Spain 🇪🇸</p>
+    <p style="margin-top:.4rem;">
+      <a href="https://www.instagram.com/sunandsurfspain/" target="_blank">Instagram</a> ·
+      <a href="https://www.facebook.com/sunandsurfstanduppaddle/" target="_blank">Facebook</a> ·
+      <a href="https://wa.me/34663653624" target="_blank">WhatsApp</a>
+    </p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
