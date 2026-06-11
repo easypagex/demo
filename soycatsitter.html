@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>soycatsitter – Rocío • Cuidadora de Gatos 🐱</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum:   #2D1B4E;
+      --coral:  #FF6B6B;
+      --yellow: #FFD93D;
+      --mint:   #6BCB77;
+      --blue:   #4D96FF;
+      --cream:  #FFF8F0;
+      --white:  #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background: var(--plum);
+      color: var(--cream);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── Floating paws background ── */
+    .paw-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .paw-bg span {
+      position: absolute;
+      font-size: 1.6rem;
+      opacity: 0.07;
+      animation: drift linear infinite;
+      user-select: none;
+    }
+
+    @keyframes drift {
+      0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 0.07; }
+      90%  { opacity: 0.07; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── Main layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.2rem 4rem;
+    }
+
+    /* ── Avatar ring ── */
+    .avatar-wrap {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin-bottom: 1.4rem;
+    }
+    .avatar-ring {
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: conic-gradient(var(--coral), var(--yellow), var(--mint), var(--blue), var(--coral));
+      animation: spin 5s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .avatar-inner {
+      position: relative;
+      z-index: 1;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--plum);
+      border: 4px solid var(--plum);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      line-height: 1;
+    }
+
+    /* ── Name + handle ── */
+    .handle {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.3rem;
+    }
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 7vw, 2.8rem);
+      color: var(--white);
+      text-align: center;
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+    }
+    .role {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--coral);
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+
+    /* ── Badge row ── */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      justify-content: center;
+      margin-bottom: 1.6rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .badge-yellow  { background: var(--yellow); color: var(--plum); }
+    .badge-mint    { background: var(--mint);   color: var(--plum); }
+    .badge-blue    { background: var(--blue);   color: var(--white); }
+    .badge-coral   { background: var(--coral);  color: var(--white); }
+
+    /* ── Stat counter ── */
+    .stat-card {
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 1.1rem 2rem;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      backdrop-filter: blur(6px);
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+      margin-top: 0.2rem;
+    }
+
+    /* ── Alert banner ── */
+    .agenda-banner {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(135deg, var(--coral), #e84393);
+      border-radius: 16px;
+      padding: 0.9rem 1.3rem;
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 6px 24px rgba(255,107,107,0.35);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.02); }
+    }
+    .agenda-banner .flag { font-size: 1.3rem; }
+
+    /* ── Link buttons ── */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      width: 100%;
+      max-width: 420px;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .link-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .link-btn:active { transform: translateY(0); }
+
+    .btn-instagram {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+    }
+    .btn-links {
+      background: linear-gradient(135deg, var(--yellow), #f7b731);
+      color: var(--plum);
+    }
+    .btn-wa {
+      background: linear-gradient(135deg, var(--mint), #27ae60);
+      color: #fff;
+    }
+
+    .btn-icon { font-size: 1.3rem; }
+
+    /* ── Divider ── */
+    .divider {
+      width: 100%;
+      max-width: 420px;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 1.6rem 0;
+    }
+
+    /* ── About blurb ── */
+    .about {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 1.3rem 1.5rem;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: rgba(255,248,240,0.85);
+      margin-bottom: 1.6rem;
+    }
+    .about strong { color: var(--yellow); }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 2rem;
+      font-size: 0.78rem;
+      color: rgba(255,248,240,0.35);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (prefers-reduced-motion: reduce) {
+      .avatar-ring, .paw-bg span, .agenda-banner { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating paw background -->
+<div class="paw-bg" id="pawBg"></div>
+
+<div class="page">
+
+  <!-- Avatar -->
+  <div class="avatar-wrap">
+    <div class="avatar-ring"></div>
+    <div class="avatar-inner">🐱</div>
+  </div>
+
+  <!-- Identity -->
+  <p class="handle">@soycatsitter</p>
+  <h1 class="name">Rocío</h1>
+  <p class="role">Cuidadora de Gatos 🐱</p>
+
+  <!-- Badges -->
+  <div class="badges">
+    <span class="badge badge-mint">🎓 Certificada</span>
+    <span class="badge badge-blue">📍 Zaragoza</span>
+    <span class="badge badge-yellow">🇦🇷 Próximamente Argentina</span>
+    <span class="badge badge-coral">⭐ Profesional</span>
+  </div>
+
+  <!-- Big stat -->
+  <div class="stat-card">
+    <div class="stat-number">+185</div>
+    <div class="stat-label">😻 Gatos felices cuidados</div>
+  </div>
+
+  <!-- Agenda closed banner -->
+  <div class="agenda-banner">
+    <span class="flag">🇦🇷</span> 🚫 AGENDA CERRADA en Zaragoza
+    <br/>¡Muchas gracias por la confianza! 🥰
+  </div>
+
+  <!-- Link buttons -->
+  <div class="links">
+    <a
+      class="link-btn btn-instagram"
+      href="https://www.instagram.com/soycatsitter/"
+      target="_blank" rel="noopener"
+    >
+      <span class="btn-icon">📸</span> Sígueme en Instagram
+    </a>
+
+    <a
+      class="link-btn btn-links"
+      href="https://zez.am/soycatsitter"
+      target="_blank" rel="noopener"
+    >
+      <span class="btn-icon">🐾</span> Todos mis links / Reservas
+    </a>
+
+    <a
+      class="link-btn btn-wa"
+      href="https://www.instagram.com/soycatsitter/"
+      target="_blank" rel="noopener"
+    >
+      <span class="btn-icon">💌</span> Contáctame
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- About -->
+  <div class="about">
+    Soy <strong>Catsitter Profesional Certificada</strong> especializada en el
+    cuidado exclusivo de gatos. Tu minino merece la mejor atención
+    mientras estás fuera — en su propio hogar, con mimo y sin estrés. 🏡🐾
+  </div>
+
+  <footer>© 2026 soycatsitter · Rocío · Zaragoza, España</footer>
+</div>
+
+<script>
+  // Generate floating paw/cat emojis
+  const container = document.getElementById('pawBg');
+  const symbols = ['🐾','🐾','🐱','🐾','🐾','😺','🐾'];
+  for (let i = 0; i < 22; i++) {
+    const el = document.createElement('span');
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.bottom = '-2rem';
+    el.style.fontSize = (1.2 + Math.random() * 1.8) + 'rem';
+    const dur = 12 + Math.random() * 18;
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay = (Math.random() * dur * -1) + 's';
+    container.appendChild(el);
+  }
+</script>
+</body>
+</html>
