@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MascoTay – Tienda para Mascotas · Marbella</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint:    #3ECFB2;
+    --coral:   #FF6B6B;
+    --sun:     #FFD166;
+    --sky:     #4ECDC4;
+    --purple:  #A78BFA;
+    --cream:   #FFF9F0;
+    --dark:    #1A1A2E;
+    --text:    #333355;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, #FFD166 0%, #FF6B6B 40%, #A78BFA 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: rgba(255,255,255,.12);
+    border-radius: 50%;
+    top: -200px; right: -200px;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: rgba(255,255,255,.08);
+    border-radius: 50%;
+    bottom: -150px; left: -100px;
+    animation: float 6s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-30px); }
+  }
+
+  .paws-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    font-size: 2rem;
+    opacity: .15;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .paws-bg span {
+    position: absolute;
+    animation: drift linear infinite;
+  }
+
+  @keyframes drift {
+    from { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    to   { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+
+  .logo-area { position: relative; z-index: 1; }
+
+  .logo-icon {
+    font-size: 5rem;
+    display: block;
+    margin-bottom: .5rem;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,.2));
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+  }
+
+  .logo-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: #fff;
+    text-shadow: 4px 4px 0 rgba(0,0,0,.15);
+    letter-spacing: 2px;
+  }
+  .logo-title span { color: var(--sun); }
+
+  .tagline {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: rgba(255,255,255,.92);
+    margin: 1rem 0 2rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .85rem 1.8rem;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.25); }
+
+  .btn-wa  { background: #25D366; color: #fff; }
+  .btn-ig  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+  .btn-wa:hover { background: #1da851; }
+
+  /* ── WAVE ─────────────────────────────────────── */
+  .wave {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -2px;
+  }
+  .wave svg { display: block; }
+
+  /* ── CARDS GRID ───────────────────────────────── */
+  .section {
+    padding: 4rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--dark);
+  }
+  .section-title span { color: var(--coral); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    transition: transform .25s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 10px 36px rgba(0,0,0,.13); }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    border-radius: 24px 24px 0 0;
+  }
+  .card:nth-child(1)::before { background: var(--coral); }
+  .card:nth-child(2)::before { background: var(--mint); }
+  .card:nth-child(3)::before { background: var(--sun); }
+  .card:nth-child(4)::before { background: var(--purple); }
+
+  .card-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: .5rem;
+  }
+  .card p { font-size: .95rem; line-height: 1.6; color: #666; }
+
+  /* ── HORARIO ──────────────────────────────────── */
+  .hours-section {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--purple) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #fff;
+  }
+  .hours-section .section-title { color: #fff; }
+  .hours-section .section-title span { color: var(--sun); }
+
+  .hours-grid {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hour-pill {
+    background: rgba(255,255,255,.2);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,.35);
+    border-radius: 20px;
+    padding: 1.2rem 2rem;
+    min-width: 200px;
+  }
+  .hour-pill .day {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    margin-bottom: .4rem;
+  }
+  .hour-pill .time { font-size: 1.1rem; font-weight: 700; }
+
+  /* ── CONTACTO ─────────────────────────────────── */
+  .contact-section {
+    background: var(--cream);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .contact-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    font-size: 1rem;
+    transition: transform .2s, box-shadow .2s;
+    min-width: 200px;
+    justify-content: center;
+  }
+  .contact-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,.14); }
+  .contact-card.wa  { border-left: 5px solid #25D366; }
+  .contact-card.ig  { border-left: 5px solid #e6683c; }
+  .contact-card.map { border-left: 5px solid var(--sky); }
+
+  .contact-card .ci { font-size: 1.6rem; }
+
+  /* ── ADDRESS BANNER ───────────────────────────── */
+  .address-banner {
+    background: var(--dark);
+    color: rgba(255,255,255,.85);
+    text-align: center;
+    padding: 1.4rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+  }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  footer {
+    background: #12122A;
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: .85rem;
+  }
+  footer a { color: var(--mint); text-decoration: none; }
+
+  /* ── RESPONSIVE ───────────────────────────────── */
+  @media (max-width: 480px) {
+    .hero-cta { flex-direction: column; align-items: center; }
+    .btn { width: 100%; max-width: 280px; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAWS BACKGROUND -->
+<section class="hero">
+  <div class="paws-bg" id="pawsBg"></div>
+
+  <div class="logo-area">
+    <span class="logo-icon">🐾</span>
+    <h1 class="logo-title">Masco<span>Tay</span></h1>
+    <p class="tagline">𝘛𝘰𝘥𝘰 𝘭𝘰 𝘲𝘶𝘦 𝘵𝘶 𝘮𝘢𝘴𝘤𝘰𝘵𝘢 𝘮𝘦𝘳𝘦𝘤𝘦 🐾🤍</p>
+    <div class="hero-cta">
+      <a class="btn btn-wa"
+         href="https://wa.me/34634407019"
+         target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp: 634 407 019
+      </a>
+      <a class="btn btn-ig"
+         href="https://www.instagram.com/mascotay.petshop/"
+         target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#FFF9F0"/>
+  </svg>
+</div>
+
+<!-- SERVICIOS -->
+<section class="section">
+  <h2 class="section-title">¿Qué ofrecemos? <span>🛒</span></h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🦴</div>
+      <h3>Alimentación</h3>
+      <p>Piensos, snacks y complementos para perros y gatos de todas las razas y edades.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧸</div>
+      <h3>Juguetes & Accesorios</h3>
+      <p>Todo lo que tu peludo necesita para jugar, dormir y pasear feliz.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛵</div>
+      <h3>Entrega a Domicilio</h3>
+      <p>Llevamos tu pedido hasta la puerta de casa. Rápido y cómodo.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>Pedidos por WhatsApp</h3>
+      <p>Consulta disponibilidad y haz tu pedido al momento desde el móvil.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIO -->
+<section class="hours-section">
+  <h2 class="section-title">🕒 Horario <span>de apertura</span></h2>
+  <div class="hours-grid">
+    <div class="hour-pill">
+      <div class="day">Lunes – Viernes</div>
+      <div class="time">10:00 – 14:00</div>
+      <div class="time">17:00 – 21:00</div>
+    </div>
+    <div class="hour-pill">
+      <div class="day">Sábado</div>
+      <div class="time">10:00 – 14:00</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact-section">
+  <h2 class="section-title">Encuéntranos <span>🐾</span></h2>
+  <div class="contact-links">
+    <a class="contact-card wa"
+       href="https://wa.me/34634407019"
+       target="_blank" rel="noopener">
+      <span class="ci">💬</span>
+      <div>
+        <div>WhatsApp</div>
+        <div style="font-size:.85rem;font-weight:400;color:#666">634 407 019</div>
+      </div>
+    </a>
+    <a class="contact-card ig"
+       href="https://www.instagram.com/mascotay.petshop/"
+       target="_blank" rel="noopener">
+      <span class="ci">📸</span>
+      <div>
+        <div>Instagram</div>
+        <div style="font-size:.85rem;font-weight:400;color:#666">@mascotay.petshop</div>
+      </div>
+    </a>
+    <a class="contact-card map"
+       href="https://maps.google.com/?q=Calle+de+la+paz+1,+Marbella"
+       target="_blank" rel="noopener">
+      <span class="ci">📍</span>
+      <div>
+        <div>Cómo llegar</div>
+        <div style="font-size:.85rem;font-weight:400;color:#666">Marbella, 29601</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ADDRESS BANNER -->
+<div class="address-banner">
+  📍 Calle de la Paz 1, Marbella, España 29601
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 MascoTay · Tienda para mascotas ·
+    <a href="https://www.instagram.com/mascotay.petshop/" target="_blank">@mascotay.petshop</a>
+  </p>
+</footer>
+
+<script>
+  // Animating paw emojis in background
+  const container = document.getElementById('pawsBg');
+  const emojis = ['🐾','🐶','🐱','🐰','🐹','🦜','🐠'];
+  for (let i = 0; i < 18; i++) {
+    const span = document.createElement('span');
+    span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    const left = Math.random() * 100;
+    const delay = Math.random() * 12;
+    const dur = 8 + Math.random() * 8;
+    const size = 1 + Math.random() * 1.5;
+    span.style.cssText = `
+      left:${left}%;
+      bottom:-3rem;
+      font-size:${size}rem;
+      animation-duration:${dur}s;
+      animation-delay:-${delay}s;
+    `;
+    container.appendChild(span);
+  }
+</script>
+</body>
+</html>
