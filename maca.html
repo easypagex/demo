@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maca Nails — Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink:     #F472B6;
+    --hot:      #EC4899;
+    --lilac:    #C084FC;
+    --purple:   #A855F7;
+    --peach:    #FCA5A5;
+    --coral:    #FB7185;
+    --cream:    #FFF1F7;
+    --dark:     #1a0a14;
+    --mid:      #4a1040;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fce4f3 0%, #f3d4ff 40%, #ffd6e7 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* floating blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.45;
+    animation: drift 8s ease-in-out infinite alternate;
+  }
+  .blob-1 { width: 320px; height: 320px; background: var(--pink);   top: -80px;  left: -80px;  animation-delay: 0s; }
+  .blob-2 { width: 260px; height: 260px; background: var(--lilac);  bottom: -60px; right: -60px; animation-delay: 2s; }
+  .blob-3 { width: 180px; height: 180px; background: var(--peach);  top: 50%;  left: 60%;    animation-delay: 4s; }
+
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(20px, 20px) scale(1.08); }
+  }
+
+  .hero-emoji {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+    animation: bounce 2.5s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-12px); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--hot), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.4rem;
+    position: relative;
+  }
+
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--mid);
+    opacity: 0.8;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
+
+  .btn-wa {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+  }
+  .btn-ig {
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(220,39,67,0.35);
+  }
+
+  /* ── SERVICES ── */
+  .section {
+    padding: 5rem 1.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-line {
+    width: 60px;
+    height: 4px;
+    border-radius: 99px;
+    margin: 0 auto 3rem;
+    background: linear-gradient(90deg, var(--hot), var(--purple));
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 2.2rem 1.8rem;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(200,0,100,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--pink), var(--lilac));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(200,0,100,0.14);
+  }
+
+  .card-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--mid);
+    margin-bottom: 0.5rem;
+  }
+  .card p {
+    font-size: 0.9rem;
+    color: #7a4060;
+    line-height: 1.5;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: linear-gradient(135deg, var(--hot) 0%, var(--purple) 100%);
+    color: #fff;
+    text-align: center;
+  }
+
+  .about .section-title { color: #fff; }
+  .about .section-line { background: rgba(255,255,255,0.5); }
+
+  .about-text {
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    opacity: 0.92;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .tag {
+    background: rgba(255,255,255,0.2);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(6px);
+  }
+
+  /* ── CONTACT ── */
+  .contact { text-align: center; }
+
+  .contact-cards {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 4px 24px rgba(200,0,100,0.1);
+    text-decoration: none;
+    color: var(--dark);
+    transition: transform 0.22s, box-shadow 0.22s;
+    min-width: 160px;
+  }
+  .contact-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(200,0,100,0.18); }
+  .contact-card .cc-icon { font-size: 2.5rem; }
+  .contact-card .cc-label { font-weight: 500; font-size: 0.95rem; color: var(--mid); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.85rem;
+  }
+  footer span { color: var(--pink); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding-bottom: 3rem; }
+    .btn { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-emoji">💅🏼</div>
+  <h1>Maca Nails</h1>
+  <p class="hero-sub">Manicure &amp; Pedicure · Madrid · A domicilio</p>
+
+  <div class="cta-group">
+    <a class="btn btn-wa" href="https://wa.me/34652535227" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.118 1.524 5.847L.057 23.571a.5.5 0 0 0 .614.614l5.724-1.467A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 0 1-5.003-1.37l-.36-.214-3.724.955.974-3.633-.234-.373A9.818 9.818 0 1 1 12 21.818z"/></svg>
+      WhatsApp
+    </a>
+    <a class="btn btn-ig" href="https://www.instagram.com/maca_naillss/" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section reveal">
+  <h2 class="section-title">Servicios 💖</h2>
+  <div class="section-line"></div>
+  <div class="services-grid">
+    <div class="card">
+      <div class="card-icon">💅🏼</div>
+      <h3>Manicura</h3>
+      <p>Esmaltado semipermanente, nail art, acrílico y gel. Uñas perfectas que duran semanas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🦶🏼</div>
+      <h3>Pedicura</h3>
+      <p>Cuidado completo de tus pies, esmaltado y exfoliación. Paso a paso para que te sientas renovada.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🩷</div>
+      <h3>Lifting de Pestañas</h3>
+      <p>Rizadas, curvadas y definidas sin extensiones. Efecto natural que dura hasta 8 semanas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <h3>A Domicilio</h3>
+      <p>Voy a tu casa en Madrid. Comodidad total, sin desplazamientos ni esperas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about reveal">
+  <h2 class="section-title">Sobre Maca</h2>
+  <div class="section-line"></div>
+  <p class="about-text">
+    Soy Maca, emprendedora madrileña apasionada por el mundo de la belleza. Me especializo en manicura y pedicura a domicilio, y en lifting de pestañas. Mi objetivo es que cada cliente se sienta especial y preciosa sin salir de casa.
+  </p>
+  <div class="tags">
+    <span class="tag">#uñasmadrid</span>
+    <span class="tag">#domiciliouñas</span>
+    <span class="tag">#acrilicnails</span>
+    <span class="tag">#pedicure</span>
+    <span class="tag">#nuevanumancia</span>
+    <span class="tag">#lifting</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact reveal">
+  <h2 class="section-title">Contáctame 🌸</h2>
+  <div class="section-line"></div>
+  <p style="color:#7a4060; margin-bottom:2.5rem; font-size:1.05rem;">¿Lista para lucir unas uñas espectaculares? Escríbeme y reservamos tu cita.</p>
+
+  <div class="contact-cards">
+    <a class="contact-card" href="https://wa.me/34652535227" target="_blank" rel="noopener">
+      <span class="cc-icon">💬</span>
+      <span class="cc-label">WhatsApp</span>
+      <span style="font-size:0.82rem;color:#aaa;">+34 652 535 227</span>
+    </a>
+    <a class="contact-card" href="https://www.instagram.com/maca_naillss/" target="_blank" rel="noopener">
+      <span class="cc-icon">📸</span>
+      <span class="cc-label">Instagram</span>
+      <span style="font-size:0.82rem;color:#aaa;">@maca_naillss</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Hecho con <span>♥</span> para Maca Nails · Madrid
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => io.observe(r));
+</script>
+</body>
+</html>
