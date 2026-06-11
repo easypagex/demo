@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Núria · Catsitter a Barcelona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #FFF8F0;
+      --coral:   #FF6B6B;
+      --peach:   #FFB347;
+      --lavender:#C9B1FF;
+      --mint:    #7EDCB5;
+      --sky:     #74C7EC;
+      --dark:    #1E1A2E;
+      --mid:     #5A4D6B;
+      --light:   #F7EEF8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 2rem 4rem;
+      position: relative;
+      background: linear-gradient(160deg, #FFF0FB 0%, #FFF8D6 40%, #E8F9FF 100%);
+      overflow: hidden;
+    }
+
+    /* floating paw prints */
+    .hero::before {
+      content: '🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      font-size: 1.6rem;
+      line-height: 4rem;
+      letter-spacing: 3rem;
+      opacity: 0.07;
+      word-break: break-all;
+      pointer-events: none;
+    }
+
+    .cat-emoji {
+      font-size: 5rem;
+      animation: float 3s ease-in-out infinite;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--dark);
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--coral), var(--peach));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--mid);
+      margin-top: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .location-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      background: white;
+      border: 2px solid var(--lavender);
+      border-radius: 2rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      color: var(--mid);
+      font-weight: 500;
+      box-shadow: 0 4px 16px rgba(201,177,255,0.25);
+    }
+
+    .langs {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.8rem;
+    }
+
+    .lang-badge {
+      background: var(--dark);
+      color: white;
+      border-radius: 0.5rem;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .lang-badge.ca { background: #FF6B6B; }
+    .lang-badge.es { background: #FFB347; }
+    .lang-badge.en { background: #7EDCB5; color: var(--dark); }
+    .lang-badge.de { background: #74C7EC; color: var(--dark); }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 2.5rem;
+      background: linear-gradient(135deg, var(--coral), var(--peach));
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.05rem;
+      padding: 0.85rem 2rem;
+      border-radius: 3rem;
+      box-shadow: 0 6px 24px rgba(255,107,107,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255,107,107,0.5);
+    }
+
+    /* Instagram SVG icon inline */
+    .ig-icon { width: 1.3em; height: 1.3em; vertical-align: middle; }
+
+    /* ─── SERVICES ─── */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--mid);
+      font-weight: 300;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(30,26,46,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-top: 4px solid transparent;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(30,26,46,0.12);
+    }
+    .card:nth-child(1) { border-top-color: var(--coral); }
+    .card:nth-child(2) { border-top-color: var(--peach); }
+    .card:nth-child(3) { border-top-color: var(--mint); }
+    .card:nth-child(4) { border-top-color: var(--lavender); }
+
+    .card-icon { font-size: 2.8rem; margin-bottom: 1rem; display: block; }
+    .card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--dark); }
+    .card p { font-size: 0.95rem; color: var(--mid); line-height: 1.6; font-weight: 300; }
+
+    /* ─── WHY ME ─── */
+    .why-strip {
+      background: linear-gradient(135deg, var(--dark) 0%, #2D2045 100%);
+      color: white;
+      padding: 5rem 2rem;
+    }
+
+    .why-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .why-strip .section-title { color: white; }
+    .why-strip .section-sub   { color: rgba(255,255,255,0.6); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .why-item { text-align: center; }
+    .why-item .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .why-item:nth-child(1) .num { color: var(--coral); }
+    .why-item:nth-child(2) .num { color: var(--peach); }
+    .why-item:nth-child(3) .num { color: var(--mint); }
+    .why-item:nth-child(4) .num { color: var(--lavender); }
+
+    .why-item p { font-size: 0.95rem; color: rgba(255,255,255,0.75); font-weight: 300; line-height: 1.5; }
+
+    /* ─── AREA ─── */
+    .area-section {
+      background: var(--light);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .area-map {
+      display: inline-block;
+      margin-top: 2rem;
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem 2.5rem;
+      box-shadow: 0 4px 24px rgba(30,26,46,0.08);
+      font-size: 1.1rem;
+      color: var(--mid);
+      font-weight: 400;
+    }
+
+    .area-map strong { color: var(--dark); font-weight: 600; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--peach);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    footer .footer-cat { font-size: 1.4rem; margin-bottom: 0.5rem; display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="cat-emoji">🐱</span>
+    <h1>Núria<br/><span>Catsitter</span></h1>
+    <p class="tagline">Cura professional per als teus gats · a Barcelona</p>
+
+    <div class="location-pill">📍 Gràcia, Barcelona</div>
+
+    <div class="langs">
+      <span class="lang-badge ca">Català</span>
+      <span class="lang-badge es">Castellano</span>
+      <span class="lang-badge en">English</span>
+      <span class="lang-badge de">Deutsch</span>
+    </div>
+
+    <a class="cta-btn" href="https://www.instagram.com/nuria.catsitter/" target="_blank" rel="noopener">
+      <svg class="ig-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+      </svg>
+      @nuria.catsitter
+    </a>
+  </section>
+
+  <!-- SERVICES -->
+  <div class="section">
+    <h2 class="section-title">Serveis 🐾</h2>
+    <p class="section-sub">Tot el que el teu gat necessita mentre tu no hi ets</p>
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon">🏠</span>
+        <h3>Visites a casa</h3>
+        <p>Em desplaço al teu domicili perquè el teu gat es quedi en el seu entorn familiar i còmode.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌙</span>
+        <h3>Estades nocturnes</h3>
+        <p>Dormo a casa teva perquè el teu gat no passi la nit sol ni tingui estrès de separació.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎾</span>
+        <h3>Jocs i estimulació</h3>
+        <p>Sessions de joc actiu i enriquiment ambiental per mantenir el teu gat feliç i estimulat.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📸</span>
+        <h3>Actualitzacions</h3>
+        <p>Fotos i vídeos del teu gat perquè puguis estar tranquil·la on siguis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY ME -->
+  <div class="why-strip">
+    <div class="why-inner">
+      <h2 class="section-title">Per què triar-me?</h2>
+      <p class="section-sub">Experiència, amor i professionalitat</p>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="num">💛</div>
+          <p>Amant dels gats de tota la vida, amb experiència real en la seva cura</p>
+        </div>
+        <div class="why-item">
+          <div class="num">🌍</div>
+          <p>Atenció en 4 idiomes: català, castellà, anglès i alemany</p>
+        </div>
+        <div class="why-item">
+          <div class="num">📍</div>
+          <p>Basada al barri de Gràcia, Barcelona — propera i accessible</p>
+        </div>
+        <div class="why-item">
+          <div class="num">📱</div>
+          <p>Comunicació constant amb actualitzacions i fotos del teu gat</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AREA -->
+  <div class="area-section">
+    <h2 class="section-title">Zona de servei</h2>
+    <p class="section-sub">Cobertura al cor de Barcelona</p>
+    <div class="area-map">
+      <div style="font-size:2.5rem;margin-bottom:0.8rem;">🗺️</div>
+      <strong>Gràcia</strong> · Eixample · Sant Gervasi<br/>
+      <span style="font-size:0.9rem;color:#aaa;margin-top:0.4rem;display:block;">Consulta disponibilitat per altres zones</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-cat">🐈</span>
+    <p>Núria · Catsitter professional a Barcelona</p>
+    <p style="margin-top:0.5rem;">
+      <a href="https://www.instagram.com/nuria.catsitter/" target="_blank" rel="noopener">
+        📷 @nuria.catsitter
+      </a>
+    </p>
+    <p style="margin-top:1rem;font-size:0.8rem;opacity:0.4;">Gràcia, Barcelona · Fet amb 🧡</p>
+  </footer>
+
+</body>
+</html>
