@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justine | Ibiza Boat Rental & Villa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean:   #0077B6;
+    --sky:     #48CAE4;
+    --coral:   #FF6B6B;
+    --gold:    #FFD166;
+    --sand:    #FFF8EE;
+    --deep:    #03045E;
+    --white:   #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* ── STICKY BAR ── */
+  .sticky-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 32px;
+    background: rgba(3, 4, 94, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .sticky-bar .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .sticky-bar .ctas {
+    display: flex; gap: 12px;
+  }
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 20px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: .88rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,.45); }
+  .btn-ig {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 20px;
+    background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: .88rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-ig:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(220,39,67,.45); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 24px 60px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      linear-gradient(180deg,
+        #03045E 0%,
+        #0077B6 40%,
+        #48CAE4 70%,
+        #90E0EF 88%,
+        #FFF8EE 100%);
+  }
+  /* animated waves */
+  .wave-layer {
+    position: absolute; bottom: 0; left: -20%; width: 140%;
+    height: 220px; z-index: 1; opacity: .6;
+  }
+  .wave-layer.w2 { bottom: 30px; opacity: .4; animation: waveShift 8s ease-in-out infinite alternate; }
+  .wave-layer.w3 { bottom: 55px; opacity: .25; animation: waveShift 12s ease-in-out infinite alternate-reverse; }
+  @keyframes waveShift { from { transform: translateX(0); } to { transform: translateX(5%); } }
+
+  /* floating sparkles */
+  .sparkles { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+  .sparkle {
+    position: absolute; border-radius: 50%;
+    background: var(--gold); opacity: 0;
+    animation: sparkle 4s ease-in-out infinite;
+  }
+  @keyframes sparkle {
+    0%   { opacity: 0; transform: translateY(0) scale(0); }
+    50%  { opacity: .9; transform: translateY(-30px) scale(1); }
+    100% { opacity: 0; transform: translateY(-60px) scale(0); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 780px; }
+
+  .hero-eyebrow {
+    display: inline-block;
+    padding: 6px 18px;
+    border: 1.5px solid rgba(255,255,255,.5);
+    border-radius: 50px;
+    color: rgba(255,255,255,.9);
+    font-size: .8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    backdrop-filter: blur(6px);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 7vw, 5.5rem);
+    line-height: 1.1;
+    color: var(--white);
+    text-shadow: 0 4px 30px rgba(0,0,0,.3);
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,.88);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 34px;
+    background: var(--coral);
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 8px 28px rgba(255,107,107,.45);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(255,107,107,.55); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 34px;
+    background: rgba(255,255,255,.15);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,.5);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+    transition: background .2s, transform .2s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,.25); transform: translateY(-3px); }
+
+  /* scroll hint */
+  .scroll-hint {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,.6); font-size: .75rem; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .scroll-hint .arrow { width: 22px; height: 22px; border-right: 2px solid rgba(255,255,255,.5); border-bottom: 2px solid rgba(255,255,255,.5); transform: rotate(45deg); animation: bounce 1.6s ease infinite; }
+  @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(6px)} }
+
+  /* ── SERVICES ── */
+  .section { padding: 90px 24px; }
+  .section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--deep);
+    margin-bottom: 12px;
+  }
+  .section-sub {
+    text-align: center;
+    color: #5a6a8a;
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 56px;
+    line-height: 1.7;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .card {
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    padding: 44px 32px 36px;
+    color: #fff;
+    transition: transform .3s;
+  }
+  .card:hover { transform: translateY(-8px); }
+
+  .card.boat   { background: linear-gradient(145deg, #0077B6, #03045E); }
+  .card.villa  { background: linear-gradient(145deg, #FF6B6B, #c0392b); }
+  .card.insider{ background: linear-gradient(145deg, #FFD166, #f39c12); }
+  .card.more   { background: linear-gradient(145deg, #48CAE4, #0096C7); }
+
+  .card-icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .card p { font-size: .93rem; line-height: 1.65; opacity: .9; }
+
+  .card-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: rgba(255,255,255,.2);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: .72rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+  }
+
+  /* ── WHY JUSTINE ── */
+  .why-section {
+    background: linear-gradient(135deg, #03045E 0%, #0077B6 100%);
+    color: #fff;
+    padding: 90px 24px;
+    text-align: center;
+  }
+  .why-section .section-title { color: var(--gold); }
+  .why-section .section-sub   { color: rgba(255,255,255,.75); }
+
+  .pillars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .pillar {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 18px;
+    padding: 28px 30px;
+    flex: 1 1 220px;
+    backdrop-filter: blur(8px);
+    transition: background .2s;
+  }
+  .pillar:hover { background: rgba(255,255,255,.18); }
+  .pillar .icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .pillar h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 6px; }
+  .pillar p  { font-size: .88rem; opacity: .8; line-height: 1.6; }
+
+  /* ── QUOTE BAND ── */
+  .quote-band {
+    background: var(--gold);
+    padding: 60px 24px;
+    text-align: center;
+  }
+  .quote-band blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+    font-style: italic;
+    color: var(--deep);
+    max-width: 780px;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+  .quote-band cite {
+    display: block;
+    margin-top: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: .85rem;
+    color: rgba(3,4,94,.6);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background: #fff; padding: 90px 24px; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 36px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .step {
+    text-align: center;
+    position: relative;
+  }
+  .step-num {
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, var(--coral), #ff8c42);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 auto 16px;
+    box-shadow: 0 6px 20px rgba(255,107,107,.4);
+  }
+  .step h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 6px; color: var(--deep); }
+  .step p  { font-size: .88rem; color: #5a6a8a; line-height: 1.6; }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD166 50%, #48CAE4 100%);
+    padding: 90px 24px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    color: #fff;
+    text-shadow: 0 3px 14px rgba(0,0,0,.2);
+    margin-bottom: 14px;
+  }
+  .cta-section p {
+    color: rgba(255,255,255,.9);
+    font-size: 1.1rem;
+    margin-bottom: 36px;
+    max-width: 480px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta-wa {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 38px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,.2);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-cta-wa:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,.3); }
+  .btn-cta-ig {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 38px;
+    background: rgba(255,255,255,.25);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,.6);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+    transition: background .2s, transform .2s;
+  }
+  .btn-cta-ig:hover { background: rgba(255,255,255,.38); transform: translateY(-3px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,.6);
+    text-align: center;
+    padding: 36px 24px;
+    font-size: .83rem;
+    line-height: 1.8;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .sticky-bar { padding: 12px 16px; }
+    .sticky-bar .logo { font-size: 1rem; }
+    .btn-wa, .btn-ig { padding: 8px 14px; font-size: .78rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY BAR -->
+<nav class="sticky-bar">
+  <span class="logo">✦ Justine Ibiza</span>
+  <div class="ctas">
+    <a class="btn-wa" href="https://wa.me/34607140152" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a class="btn-ig" href="https://www.instagram.com/ibiza.with.justine/" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- sparkles -->
+  <div class="sparkles" id="sparkles"></div>
+
+  <!-- waves -->
+  <svg class="wave-layer" viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="rgba(72,202,228,0.5)" d="M0,160L60,149.3C120,139,240,117,360,128C480,139,600,181,720,192C840,203,960,181,1080,165.3C1200,149,1320,139,1380,133.3L1440,128L1440,220L0,220Z"/>
+  </svg>
+  <svg class="wave-layer w2" viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="rgba(144,224,239,0.4)" d="M0,192L80,176C160,160,320,128,480,133.3C640,139,800,181,960,181.3C1120,181,1280,139,1360,117.3L1440,96L1440,220L0,220Z"/>
+  </svg>
+  <svg class="wave-layer w3" viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="rgba(255,248,238,0.5)" d="M0,128L60,138.7C120,149,240,171,360,160C480,149,600,107,720,101.3C840,96,960,128,1080,149.3C1200,171,1320,181,1380,186.7L1440,192L1440,220L0,220Z"/>
+  </svg>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow">✦ Ibiza · Spain ✦</span>
+    <h1>Your <em>local</em> guide<br>to the real Ibiza</h1>
+    <p>Private boat rentals, exclusive villas, and insider access to the most authentic corners of the White Island.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://wa.me/34607140152" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book now
+      </a>
+      <a class="btn-secondary" href="https://www.instagram.com/ibiza.with.justine/" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Follow on Instagram
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>discover</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <h2 class="section-title">Ibiza Experiences</h2>
+  <p class="section-sub">Everything you need to experience the island authentically, with Justine as your local insider.</p>
+  <div class="cards">
+    <div class="card boat">
+      <span class="card-badge">Most popular</span>
+      <span class="card-icon">⛵️</span>
+      <h3>Private Boat Rental</h3>
+      <p>Sail through Ibiza's most crystal-clear coves on your own private boat. Custom routes, snorkelling, and magical sunsets.</p>
+    </div>
+    <div class="card villa">
+      <span class="card-badge">Premium</span>
+      <span class="card-icon">🏡</span>
+      <h3>Villas & Accommodation</h3>
+      <p>A handpicked selection of villas and unique stays so your time in Ibiza is as special as you deserve.</p>
+    </div>
+    <div class="card insider">
+      <span class="card-icon">✨</span>
+      <h3>Local Insider Guide</h3>
+      <p>Discover the real Ibiza: secret beaches, authentic restaurants, and tourist-free sunsets. Justine knows every corner of the island.</p>
+    </div>
+    <div class="card more">
+      <span class="card-icon">🌊</span>
+      <h3>More Experiences</h3>
+      <p>Dinners on the water, trips to Formentera, tailor-made plans… Ask about everything Justine can arrange for you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY JUSTINE -->
+<section class="why-section">
+  <h2 class="section-title">Why Justine?</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.75);max-width:500px;margin:0 auto 52px;">Because she knows Ibiza like no one else. Not an agency — a real person who lives and breathes this island.</p>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="icon">🗺️</div>
+      <h4>Local Knowledge</h4>
+      <p>Years of living in Ibiza means she knows the hidden spots tourists never find.</p>
+    </div>
+    <div class="pillar">
+      <div class="icon">🤝</div>
+      <h4>Personal Touch</h4>
+      <p>Direct, no-middleman attention. Your experience is unique and tailored to exactly what you're looking for.</p>
+    </div>
+    <div class="pillar">
+      <div class="icon">⭐</div>
+      <h4>Guaranteed Quality</h4>
+      <p>Only the best: boats in perfect condition and villas cared for down to the last detail.</p>
+    </div>
+    <div class="pillar">
+      <div class="icon">📲</div>
+      <h4>Fast Response</h4>
+      <p>Reach out on WhatsApp or Instagram and hear back within minutes. Easy, fast, no hassle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-band">
+  <blockquote>
+    "Your local guide to the real Ibiza — beyond the tourist trail"
+    <cite>— Justine · Ibiza Insider ✨</cite>
+  </blockquote>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="book">
+  <h2 class="section-title">How to Book</h2>
+  <p class="section-sub">Three simple steps and your Ibiza adventure is ready.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Get in Touch</h4>
+      <p>Message us on WhatsApp or Instagram DM with your dates and what you'd love to experience.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Personalise</h4>
+      <p>Justine puts together a bespoke proposal with routes, options, and clear pricing.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Enjoy!</h4>
+      <p>We confirm the booking and all you have to do is show up and enjoy the real Ibiza.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <h2>Ready to experience Ibiza? 🌅</h2>
+  <p>Message Justine today and start planning the experience you've always wanted on the White Island.</p>
+  <div class="cta-btns">
+    <a class="btn-cta-wa" href="https://wa.me/34607140152" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Message on WhatsApp
+    </a>
+    <a class="btn-cta-ig" href="https://www.instagram.com/ibiza.with.justine/" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      DM on Instagram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">✦ Justine Ibiza</span>
+  <p>Private boat rental · Villas · Exclusive experiences</p>
+  <p>📱 <a href="https://wa.me/34607140152">+34 607 140 152</a> &nbsp;|&nbsp;
+     📸 <a href="https://www.instagram.com/ibiza.with.justine/" target="_blank">@ibiza.with.justine</a></p>
+  <p style="margin-top:14px;font-size:.75rem;opacity:.5;">© 2025 Justine Ibiza · Designed with ❤️ for the White Island</p>
+</footer>
+
+<script>
+  // generate sparkles
+  const container = document.getElementById('sparkles');
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    const size = Math.random() * 5 + 3;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*80+10}%;
+      animation-delay:${Math.random()*5}s;
+      animation-duration:${3+Math.random()*4}s;
+    `;
+    container.appendChild(s);
+  }
+
+  // scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.card, .pillar, .step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
