@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio 044 — Taller de Cerámica en Barcelona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay:    #C4603A;
+      --cobalt:  #2D5BE3;
+      --sage:    #7A9E7E;
+      --cream:   #F5EFE3;
+      --mud:     #1A1410;
+      --sand:    #E8D8C0;
+      --yellow:  #F0C040;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--mud);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--mud);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900; font-size: 1.3rem;
+      color: var(--cream); letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--clay); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--sand); text-decoration: none;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--clay); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--mud);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background texture dots */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(196,96,58,0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem 3rem 4rem 4rem;
+      position: relative; z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--clay);
+      color: white;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.4rem 0.9rem; border-radius: 100px;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+
+    .hero h1 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--clay);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--sand);
+      line-height: 1.6;
+      max-width: 400px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 100px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+
+    .btn-whatsapp { background: #25D366; color: white; }
+    .btn-instagram { background: var(--cobalt); color: white; }
+
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+
+    /* Spinning wheel SVG */
+    .wheel-wrap {
+      position: relative; width: 360px; height: 360px;
+    }
+    .wheel-outer {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      border: 3px solid rgba(196,96,58,0.3);
+      position: absolute;
+      animation: spin 18s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin-rev { to { transform: rotate(-360deg); } }
+
+    .wheel-mid {
+      width: 68%; height: 68%;
+      border-radius: 50%;
+      border: 3px solid rgba(122,158,126,0.4);
+      position: absolute;
+      top: 16%; left: 16%;
+      animation: spin-rev 12s linear infinite;
+    }
+    .wheel-inner {
+      width: 36%; height: 36%;
+      border-radius: 50%;
+      background: var(--clay);
+      position: absolute;
+      top: 32%; left: 32%;
+      display: flex; align-items: center; justify-content: center;
+      animation: spin 6s linear infinite;
+    }
+    .wheel-inner span {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900; font-size: 1.4rem;
+      color: white; letter-spacing: -0.04em;
+    }
+
+    /* Decorative blobs */
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(60px); pointer-events: none;
+    }
+    .blob-1 {
+      width: 300px; height: 300px;
+      background: rgba(196,96,58,0.25);
+      top: -80px; right: -60px;
+    }
+    .blob-2 {
+      width: 200px; height: 200px;
+      background: rgba(122,158,126,0.2);
+      bottom: 60px; right: 100px;
+    }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--clay);
+      padding: 1rem 2rem;
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: center; gap: 2rem;
+    }
+    .info-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: white; font-size: 0.9rem; font-weight: 600;
+    }
+    .info-item .icon { font-size: 1.1rem; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900; font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .lead { font-size: 1.05rem; color: #555; line-height: 1.7; max-width: 560px; }
+
+    /* ── DISCIPLINES ── */
+    .disciplines { background: var(--cream); }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .card {
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card-torno { background: var(--clay); color: white; }
+    .card-modelado { background: var(--cobalt); color: white; }
+    .card-workshop { background: var(--sage); color: white; }
+    .card-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+    .card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900; font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .card p { font-size: 0.95rem; line-height: 1.6; opacity: 0.9; }
+    .card-num {
+      position: absolute; bottom: 1.2rem; right: 1.5rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900; font-size: 3.5rem;
+      opacity: 0.12; line-height: 1;
+    }
+
+    /* ── FEATURES ── */
+    .features { background: var(--mud); }
+    .features h2, .features .lead { color: var(--cream); }
+    .features .section-label { color: var(--yellow); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .feat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+    }
+    .feat-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .feat-title {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 1rem;
+      color: var(--cream); margin-bottom: 0.3rem;
+    }
+    .feat-desc { font-size: 0.85rem; color: #aaa; line-height: 1.5; }
+
+    /* ── LOCATION ── */
+    .location { background: var(--sand); }
+    .location-flex {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+    .map-placeholder {
+      background: var(--mud);
+      border-radius: 20px;
+      height: 320px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-placeholder:hover { transform: scale(1.02); }
+    .map-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(196,96,58,0.3), rgba(45,91,227,0.3));
+    }
+    .map-icon { font-size: 3rem; position: relative; z-index: 1; }
+    .map-text {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 1rem;
+      color: white; text-align: center;
+      position: relative; z-index: 1; padding: 0 1rem;
+    }
+    .map-sub { color: var(--sand); font-size: 0.85rem; position: relative; z-index: 1; }
+
+    .location-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .loc-row { display: flex; gap: 1rem; align-items: flex-start; }
+    .loc-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--clay); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .loc-label {
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: #888; margin-bottom: 0.2rem;
+    }
+    .loc-value { font-weight: 600; font-size: 1rem; line-height: 1.4; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--cobalt);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .cta-section h2 { color: white; margin-bottom: 0.8rem; }
+    .cta-section .lead { color: rgba(255,255,255,0.8); margin: 0 auto 2.5rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: white; color: var(--cobalt); }
+    .btn-outline-white {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline-white:hover { border-color: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--mud);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    footer .logo {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900; font-size: 1.6rem;
+      color: var(--cream); letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    footer .logo span { color: var(--clay); }
+    footer .tagline { color: #888; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a {
+      color: #888; text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--clay); }
+    .footer-copy { margin-top: 1.5rem; font-size: 0.78rem; color: #555; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 3rem 1.5rem; }
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .location-flex { grid-template-columns: 1fr; }
+      .info-strip { gap: 0.8rem; }
+      .info-item { font-size: 0.8rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wheel-outer, .wheel-mid, .wheel-inner { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Studio <span>044</span></div>
+    <ul class="nav-links">
+      <li><a href="#disciplinas">Disciplinas</a></li>
+      <li><a href="#info">El Taller</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="#contacto">Reservar</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="hero-left">
+      <span class="hero-eyebrow">✨ Barcelona · Eixample</span>
+      <h1>Crea con<br/>tus <em>manos</em></h1>
+      <p class="hero-sub">
+        Taller de cerámica en el corazón de Barcelona.
+        Aprende torno, modelado y técnicas artesanales en un espacio
+        abierto, creativo y pet-friendly. 🐶
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-whatsapp"
+           href="https://wa.me/34685065306?text=Hola!%20Me%20gustaría%20reservar%20un%20taller%20en%20Studio%20044"
+           target="_blank" rel="noopener">
+          📱 Reservar por WhatsApp
+        </a>
+        <a class="btn btn-instagram"
+           href="https://www.instagram.com/studio044.ceramica/"
+           target="_blank" rel="noopener">
+          📸 Instagram
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="wheel-wrap">
+        <div class="wheel-outer"></div>
+        <div class="wheel-mid"></div>
+        <div class="wheel-inner"><span>044</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-item"><span class="icon">📅</span> Martes a Sábado</div>
+    <div class="info-item"><span class="icon">🕐</span> 12:00 – 20:00</div>
+    <div class="info-item"><span class="icon">📍</span> Carrer de Valencia 436, Barcelona</div>
+    <div class="info-item"><span class="icon">🐶</span> Pet-friendly</div>
+    <div class="info-item"><span class="icon">📞</span> 685 06 53 06</div>
+  </div>
+
+  <!-- DISCIPLINES -->
+  <section class="disciplines" id="disciplinas">
+    <div class="section-inner">
+      <span class="section-label">Lo que hacemos</span>
+      <h2>Tres formas de<br/>conectar con la arcilla</h2>
+      <p class="lead">
+        Desde principiantes hasta ceramistas avanzados, tenemos el taller perfecto para ti.
+      </p>
+      <div class="cards-grid">
+        <div class="card card-torno">
+          <div class="card-icon">🌀</div>
+          <h3>Torno</h3>
+          <p>Aprende a centrar, abrir y elevar arcilla en el torno de alfarero. La técnica más hipnótica de la cerámica.</p>
+          <div class="card-num">01</div>
+        </div>
+        <div class="card card-modelado">
+          <div class="card-icon">🤲</div>
+          <h3>Modelado</h3>
+          <p>Construye formas libres con tus manos. Rollos, placas, pellizcos — sin límites para la imaginación.</p>
+          <div class="card-num">02</div>
+        </div>
+        <div class="card card-workshop">
+          <div class="card-icon">🎨</div>
+          <h3>Workshops</h3>
+          <p>Talleres temáticos, sesiones especiales y experiencias grupales para toda ocasión — cumpleaños, team-building y más.</p>
+          <div class="card-num">03</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="info">
+    <div class="section-inner">
+      <span class="section-label">El espacio</span>
+      <h2>Un taller hecho<br/>para crear</h2>
+      <p class="lead">Todo lo que necesitas para sumergirte en la cerámica, en un ambiente cálido y acogedor.</p>
+      <div class="features-grid">
+        <div class="feat">
+          <div class="feat-icon">🏺</div>
+          <div class="feat-title">Materiales incluidos</div>
+          <div class="feat-desc">Arcilla, herramientas y esmaltes. Solo trae ganas de ensuciarte las manos.</div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🔥</div>
+          <div class="feat-title">Horno propio</div>
+          <div class="feat-desc">Cocemos tus piezas en nuestro horno para que te las lleves terminadas a casa.</div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🐶</div>
+          <div class="feat-title">Pet-friendly</div>
+          <div class="feat-desc">Tu mascota es bienvenida. Crea acompañado de tu mejor amigo peludo.</div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">👶</div>
+          <div class="feat-title">Todos los niveles</div>
+          <div class="feat-desc">Sin experiencia previa necesaria. Aprenderás desde cero con nuestros guías.</div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">📅</div>
+          <div class="feat-title">Horario amplio</div>
+          <div class="feat-desc">De martes a sábado, de 12h a 20h. Encuentra el turno que encaje contigo.</div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🎁</div>
+          <div class="feat-title">Experiencias regalo</div>
+          <div class="feat-desc">Regala una sesión única. Perfecta para cualquier ocasión especial.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location" id="ubicacion">
+    <div class="section-inner">
+      <span class="section-label">Dónde estamos</span>
+      <h2>Ven a vernos</h2>
+      <div class="location-flex">
+
+        <a class="map-placeholder"
+           href="https://maps.google.com/?q=Carrer+de+Valencia+436+Barcelona"
+           target="_blank" rel="noopener">
+          <div class="map-icon">🗺️</div>
+          <div class="map-text">Carrer de Valencia 436<br/>Barcelona 08013</div>
+          <div class="map-sub">Abrir en Google Maps →</div>
+        </a>
+
+        <div class="location-info">
+          <div class="loc-row">
+            <div class="loc-icon">📍</div>
+            <div>
+              <div class="loc-label">Dirección</div>
+              <div class="loc-value">Carrer de Valencia 436<br/>08013 Barcelona, España</div>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">🕐</div>
+            <div>
+              <div class="loc-label">Horario</div>
+              <div class="loc-value">Martes a Sábado<br/>12:00 – 20:00 h</div>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📞</div>
+            <div>
+              <div class="loc-label">Teléfono / WhatsApp</div>
+              <div class="loc-value">
+                <a href="https://wa.me/34685065306" style="color:var(--clay);text-decoration:none;font-weight:700;">
+                  685 06 53 06
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="loc-icon">📸</div>
+            <div>
+              <div class="loc-label">Instagram</div>
+              <div class="loc-value">
+                <a href="https://www.instagram.com/studio044.ceramica/"
+                   target="_blank" rel="noopener"
+                   style="color:var(--cobalt);text-decoration:none;font-weight:700;">
+                  @studio044.ceramica
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contacto">
+    <h2>¿Listo para crear?</h2>
+    <p class="lead">Reserva tu plaza por WhatsApp o síguenos en Instagram para ver las últimas creaciones del taller.</p>
+    <div class="cta-buttons">
+      <a class="btn btn-white"
+         href="https://wa.me/34685065306?text=Hola!%20Me%20gustaría%20reservar%20un%20taller%20en%20Studio%20044"
+         target="_blank" rel="noopener">
+        📱 Reservar por WhatsApp
+      </a>
+      <a class="btn btn-outline-white"
+         href="https://www.instagram.com/studio044.ceramica/"
+         target="_blank" rel="noopener">
+        📸 Ver Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">Studio <span>044</span></div>
+    <div class="tagline">Taller de Cerámica · Barcelona</div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/studio044.ceramica/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/34685065306" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://maps.google.com/?q=Carrer+de+Valencia+436+Barcelona" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="footer-copy">© 2025 Studio 044 · Carrer de Valencia 436, Barcelona</div>
+  </footer>
+
+</body>
+</html>
