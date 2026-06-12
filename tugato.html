@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tu Gato en Buenas Manos · Eva Catsitter Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rosa:    #F76E9A;
+      --lila:    #C97EC4;
+      --menta:   #5CC8A8;
+      --amarillo:#FFD166;
+      --azul:    #5B9CF6;
+      --crema:   #FFF8F0;
+      --texto:   #2C1A2E;
+      --gris:    #7A6A7D;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FFD6E8 0%, #E8D5FF 40%, #D0F0E8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(247,110,154,.18) 0%, transparent 50%),
+        radial-gradient(circle at 85% 70%, rgba(91,156,246,.18) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(92,200,168,.15) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-paw {
+      font-size: clamp(3.5rem, 10vw, 6rem);
+      animation: float 3.5s ease-in-out infinite;
+      display: inline-block;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 4px 12px rgba(247,110,154,.3));
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(-5deg); }
+      50%       { transform: translateY(-14px) rotate(5deg); }
+    }
+
+    .badge-madrid {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--lila);
+      box-shadow: 0 2px 12px rgba(201,126,196,.25);
+      margin-bottom: 20px;
+      letter-spacing: .04em;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      line-height: 1.1;
+      color: var(--texto);
+      max-width: 700px;
+    }
+
+    .hero h1 span { color: var(--rosa); }
+
+    .hero-subtitle {
+      margin-top: 18px;
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      color: var(--gris);
+      max-width: 520px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .cta-group {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border-radius: 999px;
+      padding: 14px 30px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      box-shadow: 0 4px 16px rgba(37,211,102,.4);
+    }
+
+    .btn-instagram {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      box-shadow: 0 4px 16px rgba(220,39,67,.35);
+    }
+
+    .btn-facebook {
+      background: linear-gradient(135deg, #1877F2, #0D5FD6);
+      color: white;
+      box-shadow: 0 4px 16px rgba(24,119,242,.4);
+    }
+
+    /* ── DECORATIVE CATS ── */
+    .cat-deco {
+      position: absolute;
+      font-size: 2.2rem;
+      opacity: .25;
+      pointer-events: none;
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .cat-deco:nth-child(1) { top: 8%; left: 6%;  animation-delay: 0s; }
+    .cat-deco:nth-child(2) { top: 15%; right: 8%; animation-delay: 1.2s; }
+    .cat-deco:nth-child(3) { bottom: 18%; left: 10%; animation-delay: 2.1s; }
+    .cat-deco:nth-child(4) { bottom: 12%; right: 5%; animation-delay: .7s; }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0) rotate(-8deg); }
+      50%       { transform: translateY(-12px) rotate(8deg); }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 80px 24px; }
+    .container { max-width: 1060px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      text-align: center;
+      margin-bottom: 48px;
+      line-height: 1.2;
+    }
+
+    /* ── QUIÉN ES EVA ── */
+    .about { background: white; }
+    .about-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 48px;
+    }
+    .about-emoji {
+      font-size: 9rem;
+      line-height: 1;
+      flex-shrink: 0;
+      filter: drop-shadow(0 6px 18px rgba(247,110,154,.3));
+    }
+    .about-text { flex: 1; min-width: 260px; }
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      margin-bottom: 16px;
+      color: var(--lila);
+    }
+    .about-text p {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--gris);
+      margin-bottom: 14px;
+    }
+    .highlight-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFF0F7;
+      color: var(--rosa);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: .88rem;
+      font-weight: 700;
+      margin: 4px 4px 4px 0;
+    }
+
+    /* ── SERVICIOS ── */
+    .servicios { background: linear-gradient(160deg, #FFF0F7 0%, #EEF4FF 100%); }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.07);
+      transition: transform .25s, box-shadow .25s;
+      border-top: 5px solid transparent;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,.12); }
+    .card:nth-child(1) { border-color: var(--rosa); }
+    .card:nth-child(2) { border-color: var(--menta); }
+    .card:nth-child(3) { border-color: var(--amarillo); }
+    .card:nth-child(4) { border-color: var(--azul); }
+    .card:nth-child(5) { border-color: var(--lila); }
+    .card-icon { font-size: 2.6rem; margin-bottom: 14px; }
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--texto);
+    }
+    .card p { font-size: .97rem; line-height: 1.65; color: var(--gris); }
+
+    /* ── POR QUÉ EVA ── */
+    .porque { background: white; }
+    .razones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 28px;
+      text-align: center;
+    }
+    .razon {
+      padding: 28px 20px;
+      border-radius: 16px;
+      background: var(--crema);
+    }
+    .razon-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .razon:nth-child(1) .razon-num { color: var(--rosa); }
+    .razon:nth-child(2) .razon-num { color: var(--menta); }
+    .razon:nth-child(3) .razon-num { color: var(--amarillo); }
+    .razon:nth-child(4) .razon-num { color: var(--azul); }
+    .razon h4 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+    .razon p  { font-size: .9rem; color: var(--gris); line-height: 1.5; }
+
+    /* ── FRANJA COLORIDA ── */
+    .franja {
+      background: linear-gradient(135deg, var(--rosa), var(--lila), var(--azul));
+      padding: 64px 24px;
+      text-align: center;
+      color: white;
+    }
+    .franja h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 14px;
+    }
+    .franja p {
+      font-size: 1.1rem;
+      opacity: .9;
+      max-width: 540px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    /* ── CONTACTO ── */
+    .contacto { background: var(--crema); }
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .contacto-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: white;
+      border-radius: 14px;
+      padding: 18px 22px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      text-decoration: none;
+      color: var(--texto);
+      font-weight: 700;
+      font-size: .97rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .contacto-item:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+    .contacto-item span:first-child { font-size: 1.7rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--texto);
+      color: rgba(255,255,255,.65);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: .88rem;
+    }
+    footer strong { color: white; }
+    footer a { color: var(--amarillo); text-decoration: none; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .about-inner { flex-direction: column; text-align: center; }
+      .about-emoji { font-size: 6rem; }
+    }
+
+    /* ── ICON SVGs inline ── */
+    .icon-wa  { width:22px; height:22px; fill:white; flex-shrink:0; }
+    .icon-ig  { width:22px; height:22px; fill:white; flex-shrink:0; }
+    .icon-fb  { width:22px; height:22px; fill:white; flex-shrink:0; }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <!-- Gatos decorativos -->
+  <span class="cat-deco">🐱</span>
+  <span class="cat-deco">😺</span>
+  <span class="cat-deco">🐾</span>
+  <span class="cat-deco">😸</span>
+
+  <div class="badge-madrid">📍 Madrid</div>
+  <div class="hero-paw">🐾</div>
+  <h1>Tu Gato en<br/><span>Buenas Manos</span></h1>
+  <p class="hero-subtitle">Cuidado profesional de gatos a domicilio en Madrid.<br/>Porque tu felino merece lo mejor cuando tú no estás.</p>
+
+  <div class="cta-group">
+    <a href="https://wa.me/34611142679" class="btn btn-whatsapp" target="_blank" rel="noopener">
+      <svg class="icon-wa" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.112 1.528 5.837L.057 23.943l6.308-1.455A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.015-1.375l-.36-.213-3.733.861.888-3.638-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://www.instagram.com/tugatoenbuenasmanos/" class="btn btn-instagram" target="_blank" rel="noopener">
+      <svg class="icon-ig" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.facebook.com/tugato" class="btn btn-facebook" target="_blank" rel="noopener">
+      <svg class="icon-fb" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.885v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
+</section>
+
+<!-- ══ QUIÉN ES EVA ══════════════════════════════════════ -->
+<section class="about">
+  <div class="container">
+    <div class="about-inner reveal">
+      <div class="about-emoji">😺</div>
+      <div class="about-text">
+        <h2>Hola, soy Eva 👋</h2>
+        <p>Soy catsitter profesional con años de experiencia cuidando gatos en Madrid. Mi misión es que tu felino esté feliz, seguro y tranquilo en su propio hogar mientras tú estás fuera, ya sea de viaje, trabajo o simplemente necesitas ayuda.</p>
+        <p>Cada gato tiene su propia personalidad, sus rutinas y sus caprichos. Me adapto a cada uno con paciencia, amor y profesionalidad.</p>
+        <div style="margin-top:16px;">
+          <span class="highlight-pill">🐾 Catsitter certificada</span>
+          <span class="highlight-pill">🏠 Servicio a domicilio</span>
+          <span class="highlight-pill">📍 Madrid</span>
+          <span class="highlight-pill">❤️ Amante de los gatos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICIOS ═══════════════════════════════════════ -->
+<section class="servicios">
+  <div class="container">
+    <h2 class="section-title reveal">¿Qué hago por tu gato? 🐱</h2>
+    <div class="cards-grid">
+      <div class="card reveal">
+        <div class="card-icon">🍽️</div>
+        <h3>Alimentación y agua</h3>
+        <p>Me aseguro de que tu gato tenga su comida y agua frescas a las horas que necesita, respetando su dieta habitual.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🏠</div>
+        <h3>Visitas a domicilio</h3>
+        <p>Tu gato se queda cómodo en su hogar. Yo vengo a visitarle, jugar con él y asegurarme de que está bien.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🩺</div>
+        <h3>Seguimiento de salud</h3>
+        <p>Observo cualquier cambio de comportamiento o salud y te informo al momento. Tranquilidad total para ti.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🎾</div>
+        <h3>Juego y estimulación</h3>
+        <p>Sesiones de juego y cariño para que tu gato no se aburra ni se estrese durante tu ausencia.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">📸</div>
+        <h3>Actualizaciones diarias</h3>
+        <p>Recibirás fotos y mensajes para ver cómo está tu peludo. ¡Sin sorpresas desagradables!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ POR QUÉ EVA ════════════════════════════════════ -->
+<section class="porque">
+  <div class="container">
+    <h2 class="section-title reveal">¿Por qué elegirme? ✨</h2>
+    <div class="razones">
+      <div class="razon reveal">
+        <div class="razon-num">🐱</div>
+        <h4>Solo gatos</h4>
+        <p>Me especializo exclusivamente en gatos. Los entiendo, los quiero y sé leer su lenguaje.</p>
+      </div>
+      <div class="razon reveal">
+        <div class="razon-num">🏡</div>
+        <h4>En su casa</h4>
+        <p>Sin jaulas ni sitios desconocidos. Tu gato en su territorio, sin estrés.</p>
+      </div>
+      <div class="razon reveal">
+        <div class="razon-num">📱</div>
+        <h4>Comunicación total</h4>
+        <p>Siempre localizable por WhatsApp. Te informo de todo en tiempo real.</p>
+      </div>
+      <div class="razon reveal">
+        <div class="razon-num">❤️</div>
+        <h4>Con amor</h4>
+        <p>Lo que hago no es solo un trabajo. Es vocación. Cada gato recibe toda mi atención.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FRANJA CTA ═══════════════════════════════════════ -->
+<div class="franja">
+  <h2>¿Tu gato en buenas manos?<br/>Cuéntame todo 🐾</h2>
+  <p>Escríbeme sin compromiso. Estudiamos juntos lo que mejor se adapta a las necesidades de tu felino.</p>
+  <div class="cta-group">
+    <a href="https://wa.me/34611142679" class="btn btn-whatsapp" target="_blank" rel="noopener">
+      <svg class="icon-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.112 1.528 5.837L.057 23.943l6.308-1.455A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.015-1.375l-.36-.213-3.733.861.888-3.638-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      Escríbeme por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- ══ CONTACTO ══════════════════════════════════════════ -->
+<section class="contacto">
+  <div class="container">
+    <h2 class="section-title reveal">Contáctame 📬</h2>
+    <div class="contacto-grid">
+      <a href="https://wa.me/34611142679" class="contacto-item reveal" target="_blank" rel="noopener">
+        <span>💬</span>
+        <div>
+          <div style="color:var(--gris);font-size:.78rem;font-weight:600;">WhatsApp</div>
+          <div>611 142 679</div>
+        </div>
+      </a>
+      <a href="tel:+34611142679" class="contacto-item reveal">
+        <span>📞</span>
+        <div>
+          <div style="color:var(--gris);font-size:.78rem;font-weight:600;">Teléfono</div>
+          <div>611 142 679</div>
+        </div>
+      </a>
+      <a href="mailto:tugatoenbuenasmanos@gmail.com" class="contacto-item reveal">
+        <span>📧</span>
+        <div>
+          <div style="color:var(--gris);font-size:.78rem;font-weight:600;">Email</div>
+          <div style="font-size:.88rem;">tugatoenbuenasmanos@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/tugatoenbuenasmanos/" class="contacto-item reveal" target="_blank" rel="noopener">
+        <span>📷</span>
+        <div>
+          <div style="color:var(--gris);font-size:.78rem;font-weight:600;">Instagram</div>
+          <div>@tugatoenbuenasmanos</div>
+        </div>
+      </a>
+      <a href="https://www.facebook.com/tugato" class="contacto-item reveal" target="_blank" rel="noopener">
+        <span>🔵</span>
+        <div>
+          <div style="color:var(--gris);font-size:.78rem;font-weight:600;">Facebook</div>
+          <div>facebook.com/tugato</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer>
+  <p>🐾 <strong>Tu Gato en Buenas Manos</strong> · Eva Catsitter Profesional · Madrid</p>
+  <p style="margin-top:8px;">
+    <a href="https://wa.me/34611142679">WhatsApp</a> ·
+    <a href="https://www.instagram.com/tugatoenbuenasmanos/">Instagram</a> ·
+    <a href="https://www.facebook.com/tugato">Facebook</a>
+  </p>
+  <p style="margin-top:12px;font-size:.82rem;">Hecho con ❤️ para los gatos de Madrid</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
