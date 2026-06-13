@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guardería Gatos Helena · Hotel Felino Barcelona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa:    #FF6EB4;
+    --lila:    #C084FC;
+    --menta:   #34D399;
+    --melon:   #FDBA74;
+    --cielo:   #67E8F9;
+    --crema:   #FFF7ED;
+    --oscuro:  #1E1035;
+    --blanco:  #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--crema);
+    color: var(--oscuro);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem 4rem;
+    background: linear-gradient(145deg, #FF6EB4 0%, #C084FC 45%, #67E8F9 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(253,186,116,.45) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(52,211,153,.35) 0%, transparent 55%);
+  }
+
+  .pawprints {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .paw {
+    position: absolute;
+    font-size: clamp(1.2rem, 3vw, 2.2rem);
+    opacity: .18;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-18px) rotate(8deg); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.25);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255,255,255,.6);
+    border-radius: 999px;
+    padding: .45rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: .04em;
+    margin-bottom: 1.6rem;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 800;
+    line-height: .95;
+    color: #fff;
+    text-shadow: 0 4px 32px rgba(30,16,53,.18);
+    position: relative;
+    margin-bottom: 1.4rem;
+    letter-spacing: -.02em;
+  }
+
+  .hero h1 span {
+    display: block;
+    color: var(--melon);
+    text-shadow: 0 2px 16px rgba(253,186,116,.5);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255,255,255,.92);
+    max-width: 520px;
+    line-height: 1.6;
+    position: relative;
+    margin-bottom: 2.4rem;
+  }
+
+  .hero-emojis {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    letter-spacing: .15em;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .85rem 1.8rem;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn:hover { transform: translateY(-3px); }
+
+  .btn-primary {
+    background: var(--oscuro);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(30,16,53,.35);
+  }
+
+  .btn-primary:hover { box-shadow: 0 14px 36px rgba(30,16,53,.45); }
+
+  .btn-outline {
+    background: rgba(255,255,255,.22);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,.7);
+    backdrop-filter: blur(6px);
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,.35); }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .4rem;
+    color: rgba(255,255,255,.7);
+    font-size: .78rem;
+    letter-spacing: .05em;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 5rem 1.5rem; }
+
+  .container { max-width: 960px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.4rem;
+    letter-spacing: -.02em;
+  }
+
+  /* ─── SOBRE HELENA ─── */
+  .sobre {
+    background: var(--oscuro);
+    color: #fff;
+  }
+
+  .sobre .section-label { color: var(--rosa); }
+  .sobre .section-title { color: #fff; }
+
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 2.5rem;
+  }
+
+  .sobre-text p {
+    color: rgba(255,255,255,.78);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .sobre-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pill-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+    padding: 1rem 1.4rem;
+    transition: background .2s;
+  }
+
+  .pill-card:hover { background: rgba(255,255,255,.12); }
+
+  .pill-icon {
+    font-size: 1.7rem;
+    flex-shrink: 0;
+  }
+
+  .pill-text {
+    font-size: .95rem;
+    color: rgba(255,255,255,.85);
+    line-height: 1.4;
+  }
+
+  .pill-text strong {
+    display: block;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: .15rem;
+  }
+
+  /* ─── SERVICIOS ─── */
+  .servicios { background: var(--crema); }
+  .servicios .section-label { color: var(--lila); }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+
+  .card {
+    border-radius: 20px;
+    padding: 2rem 1.6rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+
+  .card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(30,16,53,.14); }
+
+  .card-1 { background: linear-gradient(135deg, #FF6EB4, #C084FC); color: #fff; }
+  .card-2 { background: linear-gradient(135deg, #C084FC, #67E8F9); color: #fff; }
+  .card-3 { background: linear-gradient(135deg, #34D399, #67E8F9); color: var(--oscuro); }
+  .card-4 { background: linear-gradient(135deg, #FDBA74, #FF6EB4); color: #fff; }
+
+  .card-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+
+  .card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: .6rem;
+    line-height: 1.2;
+  }
+
+  .card p {
+    font-size: .9rem;
+    line-height: 1.6;
+    opacity: .88;
+  }
+
+  /* ─── VALORES ─── */
+  .valores {
+    background: linear-gradient(135deg, #FF6EB4 0%, #C084FC 60%, #67E8F9 100%);
+    text-align: center;
+  }
+
+  .valores .section-label { color: rgba(255,255,255,.75); }
+  .valores .section-title { color: #fff; }
+
+  .valores-sub {
+    color: rgba(255,255,255,.88);
+    font-size: 1.05rem;
+    max-width: 560px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .valores-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .valor-chip {
+    background: rgba(255,255,255,.2);
+    border: 1.5px solid rgba(255,255,255,.55);
+    border-radius: 999px;
+    padding: .7rem 1.4rem;
+    color: #fff;
+    font-size: 1rem;
+    backdrop-filter: blur(6px);
+    transition: background .2s;
+  }
+
+  .valor-chip:hover { background: rgba(255,255,255,.35); }
+
+  /* ─── UBICACIÓN ─── */
+  .ubicacion { background: #fff; }
+  .ubicacion .section-label { color: var(--menta); }
+
+  .ubicacion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 2.5rem;
+  }
+
+  .ubicacion-text p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .map-box {
+    background: linear-gradient(135deg, #e0f2fe, #ddd6fe);
+    border-radius: 20px;
+    aspect-ratio: 4/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: .8rem;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-box::before {
+    content: '📍';
+    font-size: 3.5rem;
+    display: block;
+  }
+
+  .map-box p {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--oscuro);
+  }
+
+  .map-box span {
+    font-size: .9rem;
+    color: #666;
+  }
+
+  /* ─── CTA FINAL ─── */
+  .cta-final {
+    background: var(--oscuro);
+    text-align: center;
+    padding: 6rem 1.5rem;
+  }
+
+  .cta-final .section-title { color: #fff; }
+
+  .cta-final p {
+    color: rgba(255,255,255,.72);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .cta-final .btn-rosa {
+    background: linear-gradient(135deg, var(--rosa), var(--lila));
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(255,110,180,.4);
+  }
+
+  .cta-final .btn-rosa:hover { box-shadow: 0 14px 40px rgba(255,110,180,.55); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0f0824;
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: .85rem;
+  }
+
+  footer a { color: var(--rosa); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ─── REVEAL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .sobre-grid,
+    .ubicacion-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .sobre-visual { order: -1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAWPRINT BG -->
+<section class="hero">
+  <div class="pawprints">
+    <span class="paw" style="top:8%;left:5%;animation-delay:0s">🐾</span>
+    <span class="paw" style="top:15%;left:88%;animation-delay:.8s">🐾</span>
+    <span class="paw" style="top:70%;left:12%;animation-delay:1.4s">🐾</span>
+    <span class="paw" style="top:60%;left:80%;animation-delay:.4s">🐾</span>
+    <span class="paw" style="top:40%;left:3%;animation-delay:2s">🐾</span>
+    <span class="paw" style="top:85%;left:70%;animation-delay:1.1s">🐾</span>
+    <span class="paw" style="top:30%;left:92%;animation-delay:1.7s">🐾</span>
+    <span class="paw" style="top:90%;left:30%;animation-delay:.3s">🐾</span>
+  </div>
+
+  <div class="hero-badge">📍 Eixample · Barcelona</div>
+
+  <h1>
+    Hotel<br>
+    <span>Felino</span>
+    Helena
+  </h1>
+
+  <div class="hero-emojis">😻 🐱 🏠 💗 🪷</div>
+
+  <p class="hero-sub">
+    Guardería y hotel para gatos con amor, respeto y psicología felina.<br>
+    Tu gato merece el mejor cuidado mientras estás fuera.
+  </p>
+
+  <div class="cta-group">
+    <a href="https://www.instagram.com/guarderia_gatos_helena/" target="_blank" rel="noopener" class="btn btn-primary">
+      📸 Instagram
+    </a>
+    <a href="https://beacons.ai/guarderia.gatos.helena" target="_blank" rel="noopener" class="btn btn-outline">
+      🔗 Todos los enlaces
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>✦</span>
+    <span>DESCUBRE MÁS</span>
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- SOBRE HELENA -->
+<section class="sobre">
+  <div class="container">
+    <p class="section-label reveal">Quién soy</p>
+    <h2 class="section-title reveal">Soy Helena,<br>catsitter profesional 🐈</h2>
+
+    <div class="sobre-grid">
+      <div class="sobre-text reveal">
+        <p>
+          Me llamo Helena y soy catsitter profesional formada por
+          <strong style="color:var(--rosa)">@aspiranteagato</strong>.
+          Mi misión es que tu gato se sienta en casa — porque literalmente está en casa: la mía.
+        </p>
+        <p>
+          Cuido a cada felino con respeto, amor y empatía, entendiendo su lenguaje y sus necesidades únicas.
+          No somos una jaula ni un almacén: somos un hogar felino donde cada gato importa de verdad.
+        </p>
+        <p>
+          También trabajo con <strong style="color:var(--lila)">Flores de Bach</strong> y
+          <strong style="color:var(--menta)">psicología felina</strong> para el bienestar emocional de tu michi. 🌸
+        </p>
+        <br>
+        <a href="https://www.instagram.com/guarderia_gatos_helena/" target="_blank" rel="noopener" class="btn btn-primary" style="display:inline-flex">
+          Ver mi Instagram 📸
+        </a>
+      </div>
+
+      <div class="sobre-visual reveal">
+        <div class="pill-card">
+          <span class="pill-icon">🎓</span>
+          <div class="pill-text">
+            <strong>Formación profesional</strong>
+            Formada por @aspiranteagato
+          </div>
+        </div>
+        <div class="pill-card">
+          <span class="pill-icon">🪷</span>
+          <div class="pill-text">
+            <strong>Flores de Bach</strong>
+            Para el equilibrio emocional felino
+          </div>
+        </div>
+        <div class="pill-card">
+          <span class="pill-icon">🧠</span>
+          <div class="pill-text">
+            <strong>Psicología Felina</strong>
+            Entendemos el comportamiento de tu gato
+          </div>
+        </div>
+        <div class="pill-card">
+          <span class="pill-icon">🏠</span>
+          <div class="pill-text">
+            <strong>Ambiente hogareño</strong>
+            Tu gato no está en una jaula, está en casa
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios">
+  <div class="container">
+    <p class="section-label reveal">Qué ofrezco</p>
+    <h2 class="section-title reveal">Servicios para<br>tu peludo favorito</h2>
+
+    <div class="cards-grid">
+      <div class="card card-1 reveal">
+        <div class="card-icon">🏠</div>
+        <h3>Hotel Felino</h3>
+        <p>Tu gato se queda en mi casa con todo el confort, atención y cariño que merece. Nada de jaulas.</p>
+      </div>
+      <div class="card card-2 reveal">
+        <div class="card-icon">😽</div>
+        <h3>Guardería Diurna</h3>
+        <p>Para esos días en que necesitas que alguien cuide a tu michi mientras tú trabajas o tienes planes.</p>
+      </div>
+      <div class="card card-3 reveal">
+        <div class="card-icon">🪷</div>
+        <h3>Flores de Bach</h3>
+        <p>Tratamiento con esencias florales para gatos con estrés, ansiedad u otros desequilibrios emocionales.</p>
+      </div>
+      <div class="card card-4 reveal">
+        <div class="card-icon">🐱</div>
+        <h3>Psicología Felina</h3>
+        <p>Asesoramiento y acompañamiento basado en el comportamiento natural del gato para mejorar su bienestar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section class="valores">
+  <div class="container">
+    <p class="section-label reveal">Mi filosofía</p>
+    <h2 class="section-title reveal">Cuidar con el corazón 💗</h2>
+    <p class="valores-sub reveal">
+      Cada gato tiene su carácter, sus miedos y sus manías. Aquí los respetamos todos.
+      Trabajamos desde la calma, el afecto y el conocimiento felino.
+    </p>
+
+    <div class="valores-row reveal">
+      <div class="valor-chip">🐾 Respeto</div>
+      <div class="valor-chip">💗 Amor</div>
+      <div class="valor-chip">🌿 Empatía</div>
+      <div class="valor-chip">🎓 Profesionalismo</div>
+      <div class="valor-chip">🏠 Ambiente seguro</div>
+      <div class="valor-chip">🪷 Bienestar emocional</div>
+      <div class="valor-chip">🧠 Psicología felina</div>
+      <div class="valor-chip">😺 Cero jaulas</div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="ubicacion">
+  <div class="container">
+    <p class="section-label reveal">Dónde estamos</p>
+    <h2 class="section-title reveal">En el corazón<br>del Eixample 🗺️</h2>
+
+    <div class="ubicacion-grid">
+      <div class="ubicacion-text reveal">
+        <p>
+          El Hotel Felino Helena está ubicado en el <strong>Eixample, Barcelona</strong> —
+          uno de los barrios más tranquilos y bien conectados de la ciudad.
+        </p>
+        <p>
+          La ubicación exacta se facilita al reservar para garantizar la privacidad y seguridad
+          de todos los gatos que cuido.
+        </p>
+        <p>¿Quieres saber más o reservar una plaza?</p>
+        <br>
+        <a href="https://beacons.ai/guarderia.gatos.helena" target="_blank" rel="noopener" class="btn btn-primary">
+          🔗 Contactar ahora
+        </a>
+      </div>
+
+      <div class="map-box reveal">
+        <p>Eixample</p>
+        <span>Barcelona, España</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <p class="section-label reveal" style="color:var(--rosa)">¿Listo para reservar?</p>
+    <h2 class="section-title reveal">Tu gato lo merece 😻</h2>
+    <p class="reveal">
+      Entra en mi Instagram o visita mi página de enlaces para consultar disponibilidad,
+      precios y todo lo que necesitas saber.
+    </p>
+    <div class="cta-group reveal">
+      <a href="https://www.instagram.com/guarderia_gatos_helena/" target="_blank" rel="noopener" class="btn btn-rosa">
+        📸 Instagram de Helena
+      </a>
+      <a href="https://beacons.ai/guarderia.gatos.helena" target="_blank" rel="noopener" class="btn btn-outline">
+        🔗 beacons.ai
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    🐈 Guardería Gatos Helena · Hotel Felino · Eixample, Barcelona ·
+    <a href="https://www.instagram.com/guarderia_gatos_helena/" target="_blank">@guarderia_gatos_helena</a>
+  </p>
+  <p style="margin-top:.4rem">
+    <a href="https://beacons.ai/guarderia.gatos.helena" target="_blank">beacons.ai/guarderia.gatos.helena</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
