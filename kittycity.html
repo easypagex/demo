@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitty City Cat Sitter — Portland, OR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink: #FF5C8A;
+    --hot-pink: #FF2E63;
+    --turquoise: #2EC4B6;
+    --sun: #FFD23F;
+    --purple: #8E54E9;
+    --cream: #FFF8EF;
+    --plum: #2C1A3D;
+    --grass: #4CD964;
+    --shadow: rgba(44,26,61,0.18);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family:'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--plum);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .logo, .btn, .nav-links a{
+    font-family:'Baloo 2', cursive;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 16px 6%;
+    background: var(--cream);
+    border-bottom: 4px solid var(--plum);
+  }
+
+  .logo{
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--plum);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .logo span{ font-size: 1.8rem; }
+
+  .nav-links{
+    display:flex;
+    gap: 28px;
+    list-style:none;
+  }
+
+  .nav-links a{
+    text-decoration:none;
+    color: var(--plum);
+    font-weight: 600;
+    font-size: 1.05rem;
+    position:relative;
+    transition: color .2s;
+  }
+
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:-6px;
+    width:0%; height:4px;
+    background: var(--hot-pink);
+    border-radius: 4px;
+    transition: width .25s ease;
+  }
+
+  .nav-links a:hover{ color: var(--hot-pink); }
+  .nav-links a:hover::after{ width:100%; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height: 92vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 60px 6% 100px;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--hot-pink) 45%, var(--sun) 100%);
+    overflow: hidden;
+    color: white;
+  }
+
+  .hero::before, .hero::after{
+    content:'';
+    position:absolute;
+    border-radius:50%;
+    opacity:.25;
+  }
+
+  .hero::before{
+    width: 380px; height: 380px;
+    background: var(--turquoise);
+    top: -120px; left: -100px;
+  }
+
+  .hero::after{
+    width: 280px; height: 280px;
+    background: var(--sun);
+    bottom: -90px; right: -60px;
+  }
+
+  .hero-content{
+    position:relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero .eyebrow{
+    display:inline-block;
+    background: var(--plum);
+    color: var(--sun);
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: .95rem;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+    box-shadow: 0 6px 0 var(--shadow);
+  }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    line-height: 1.1;
+    text-shadow: 4px 4px 0 var(--plum);
+    margin-bottom: 18px;
+  }
+
+  .hero p{
+    font-size: 1.25rem;
+    font-weight: 600;
+    max-width: 540px;
+    margin: 0 auto 34px;
+    text-shadow: 2px 2px 0 rgba(44,26,61,0.35);
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    background: var(--turquoise);
+    color: var(--plum);
+    border: 4px solid var(--plum);
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration:none;
+    box-shadow: 6px 6px 0 var(--plum);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+
+  .btn:hover{
+    transform: translate(-3px,-3px);
+    box-shadow: 9px 9px 0 var(--plum);
+  }
+
+  .btn.secondary{ background: var(--sun); }
+
+  /* floating paws */
+  .paws{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+  }
+
+  .paw{
+    position:absolute;
+    font-size: 2.4rem;
+    opacity:.4;
+    animation: float 7s ease-in-out infinite;
+  }
+
+  @keyframes float{
+    0%, 100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-30px) rotate(15deg); }
+  }
+
+  /* ---------- PAW DIVIDER ---------- */
+  .paw-divider{
+    display:flex;
+    justify-content:center;
+    gap: 36px;
+    background: var(--plum);
+    padding: 18px 0;
+    font-size: 1.6rem;
+    color: var(--sun);
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{
+    padding: 90px 6%;
+  }
+
+  .section-title{
+    text-align:center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 14px;
+  }
+
+  .section-sub{
+    text-align:center;
+    max-width: 600px;
+    margin: 0 auto 56px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #5a4570;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    background: var(--turquoise);
+    color: var(--plum);
+  }
+
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items:center;
+  }
+
+  .about-card{
+    background: var(--cream);
+    border: 4px solid var(--plum);
+    border-radius: 28px;
+    padding: 36px;
+    box-shadow: 10px 10px 0 var(--plum);
+  }
+
+  .about-card h3{
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+    color: var(--hot-pink);
+  }
+
+  .about-card p{
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .stat-row{
+    display:flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .stat{
+    background: var(--cream);
+    border: 4px solid var(--plum);
+    border-radius: 22px;
+    padding: 22px;
+    flex: 1;
+    min-width: 130px;
+    text-align:center;
+    box-shadow: 8px 8px 0 var(--purple);
+  }
+
+  .stat .num{
+    font-family:'Baloo 2', cursive;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--hot-pink);
+    display:block;
+  }
+
+  .stat .label{
+    font-weight: 700;
+    font-size: .95rem;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services{
+    background: var(--cream);
+  }
+
+  .service-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1150px;
+    margin: 0 auto;
+  }
+
+  .service-card{
+    border-radius: 24px;
+    padding: 32px 26px;
+    color: white;
+    border: 4px solid var(--plum);
+    box-shadow: 8px 8px 0 var(--plum);
+    transition: transform .2s ease, box-shadow .2s ease;
+    cursor: default;
+  }
+
+  .service-card:hover{
+    transform: translate(-4px,-4px) rotate(-1deg);
+    box-shadow: 12px 12px 0 var(--plum);
+  }
+
+  .service-card .icon{
+    font-size: 2.6rem;
+    display:block;
+    margin-bottom: 14px;
+  }
+
+  .service-card h3{
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .service-card p{
+    font-size: .98rem;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+
+  .c1{ background: var(--hot-pink); }
+  .c2{ background: var(--purple); }
+  .c3{ background: var(--turquoise); color: var(--plum); }
+  .c4{ background: var(--sun); color: var(--plum); }
+  .c5{ background: var(--grass); color: var(--plum); }
+  .c6{ background: var(--pink); }
+
+  /* ---------- WHY ---------- */
+  .why{
+    background: var(--purple);
+    color: white;
+    text-align:center;
+  }
+
+  .why .section-sub{ color: #f0e6ff; }
+
+  .why-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap: 28px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .why-item{
+    background: rgba(255,255,255,0.12);
+    border: 3px dashed var(--sun);
+    border-radius: 20px;
+    padding: 26px;
+    flex: 1;
+    min-width: 200px;
+    max-width: 240px;
+  }
+
+  .why-item .icon{ font-size: 2.2rem; margin-bottom: 10px; display:block;}
+  .why-item h3{ font-size: 1.2rem; margin-bottom: 6px; }
+  .why-item p{ font-size: .92rem; font-weight: 600; }
+
+  /* ---------- GALLERY / INSTAGRAM ---------- */
+  .insta{
+    background: linear-gradient(135deg, var(--sun), var(--pink) 60%, var(--turquoise));
+    text-align:center;
+  }
+
+  .insta-card{
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 5px solid var(--plum);
+    border-radius: 28px;
+    padding: 50px 40px;
+    box-shadow: 12px 12px 0 var(--plum);
+  }
+
+  .insta-card .icon{
+    font-size: 3.4rem;
+    margin-bottom: 10px;
+    display:block;
+  }
+
+  .insta-card h2{
+    margin-bottom: 12px;
+  }
+
+  .insta-card p{
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 28px;
+  }
+
+  .handle{
+    display:inline-block;
+    background: var(--plum);
+    color: var(--sun);
+    border-radius: 999px;
+    padding: 8px 22px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    font-family:'Baloo 2', cursive;
+  }
+
+  .insta-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 26px 0 34px;
+  }
+
+  .insta-grid .tile{
+    aspect-ratio: 1/1;
+    border-radius: 16px;
+    border: 3px solid var(--plum);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 2.2rem;
+  }
+
+  .t1{ background: var(--hot-pink); }
+  .t2{ background: var(--turquoise); }
+  .t3{ background: var(--sun); }
+  .t4{ background: var(--grass); }
+  .t5{ background: var(--purple); color: white; }
+  .t6{ background: var(--pink); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--plum);
+    color: var(--cream);
+    text-align:center;
+    padding: 50px 6% 30px;
+  }
+
+  footer h3{
+    font-size: 1.6rem;
+    color: var(--sun);
+    margin-bottom: 12px;
+  }
+
+  footer .footer-links{
+    display:flex;
+    justify-content:center;
+    gap: 24px;
+    margin: 18px 0 26px;
+    flex-wrap:wrap;
+  }
+
+  footer a{
+    color: var(--cream);
+    text-decoration:none;
+    font-weight: 700;
+    border-bottom: 3px solid var(--turquoise);
+    padding-bottom: 2px;
+  }
+
+  footer a:hover{ color: var(--sun); border-color: var(--sun); }
+
+  footer .copy{
+    font-size: .85rem;
+    opacity: .65;
+    margin-top: 20px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 850px){
+    .about-grid{ grid-template-columns: 1fr; }
+    .nav-links{ display:none; }
+    .insta-grid{ grid-template-columns: repeat(3,1fr); }
+  }
+
+  @media (max-width: 480px){
+    .insta-card{ padding: 36px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .paw{ animation: none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span>🐾</span> Kitty City Cat Sitter</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#instagram">Instagram</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="paws">
+    <span class="paw" style="top:15%; left:8%; animation-delay:0s;">🐾</span>
+    <span class="paw" style="top:65%; left:18%; animation-delay:1.5s;">🐾</span>
+    <span class="paw" style="top:25%; left:85%; animation-delay:.8s;">🐾</span>
+    <span class="paw" style="top:75%; left:80%; animation-delay:2.2s;">🐾</span>
+    <span class="paw" style="top:45%; left:50%; animation-delay:1s;">🐾</span>
+  </div>
+  <div class="hero-content">
+    <span class="eyebrow">PORTLAND, OREGON 🌧️🌿</span>
+    <h1>Happy Cats. Happy Humans. Happy City.</h1>
+    <p>Kitty City Cat Sitter keeps your furbabies fed, played with, and purring while you're away — right in their own cozy home.</p>
+    <a class="btn" href="https://www.instagram.com/kittycity_catsitter/" target="_blank" rel="noopener">📸 DM us on Instagram</a>
+  </div>
+</header>
+
+<div class="paw-divider">
+  <span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span>
+</div>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>Meet Your Cat's New Favorite Person</h3>
+      <p>Kitty City Cat Sitter is a Portland-based in-home cat sitting service. We know that cats do best in their own territory — surrounded by their favorite napping spots, scratching posts, and smells.</p>
+      <p>Whether you're heading out for a weekend trip or a long vacation, we'll pop by to feed, play, scoop, and snuggle (if they're feeling social) so your kitty's routine stays exactly as they like it.</p>
+      <p>Send a DM on Instagram to chat about dates, your cat's needs, and how we can help!</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat">
+        <span class="num">🏙️</span>
+        <span class="label">Portland Based</span>
+      </div>
+      <div class="stat">
+        <span class="num">🐱</span>
+        <span class="label">Cats Only, Cat Lover</span>
+      </div>
+      <div class="stat">
+        <span class="num">📲</span>
+        <span class="label">Easy DM Booking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <h2 class="section-title">What We Do</h2>
+  <p class="section-sub">Every visit is built around your cat's routine — here's a peek at the kinds of care we offer.</p>
+  <div class="service-grid">
+    <div class="service-card c1">
+      <span class="icon">🍽️</span>
+      <h3>Feeding Visits</h3>
+      <p>Fresh food, fresh water, and a clean bowl — just like you'd do it, on your schedule.</p>
+    </div>
+    <div class="service-card c2">
+      <span class="icon">🧹</span>
+      <h3>Litter Box Cleaning</h3>
+      <p>Scooping and tidying so your cat always has a clean, comfy spot to go.</p>
+    </div>
+    <div class="service-card c3">
+      <span class="icon">🧶</span>
+      <h3>Playtime & Cuddles</h3>
+      <p>Toys, wand chases, and lap time for cats who want company while you're out.</p>
+    </div>
+    <div class="service-card c4">
+      <span class="icon">💊</span>
+      <h3>Medication & Special Care</h3>
+      <p>Comfortable with pills, insulin, and senior or special-needs kitties.</p>
+    </div>
+    <div class="service-card c5">
+      <span class="icon">🌿</span>
+      <h3>Plant & Home Check-ins</h3>
+      <p>Water the plants, grab the mail, and make sure everything's just as you left it.</p>
+    </div>
+    <div class="service-card c6">
+      <span class="icon">📷</span>
+      <h3>Photo & Video Updates</h3>
+      <p>Cute pics and videos sent your way so you can see your cat is happy and well.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <h2 class="section-title">Why Pet Parents Pick Kitty City</h2>
+  <p class="section-sub">Because cats deserve someone who actually gets them.</p>
+  <div class="why-grid">
+    <div class="why-item">
+      <span class="icon">🏡</span>
+      <h3>Home Sweet Home</h3>
+      <p>No stressful carriers or unfamiliar boarding — your cat stays right where they're comfiest.</p>
+    </div>
+    <div class="why-item">
+      <span class="icon">😻</span>
+      <h3>Genuine Cat Person</h3>
+      <p>Cats are the whole focus, not an afterthought between dog walks.</p>
+    </div>
+    <div class="why-item">
+      <span class="icon">💬</span>
+      <h3>Easy Communication</h3>
+      <p>Quick replies and friendly updates — message anytime on Instagram.</p>
+    </div>
+    <div class="why-item">
+      <span class="icon">🗺️</span>
+      <h3>Local to Portland</h3>
+      <p>Familiar with PDX neighborhoods and happy to chat about your area.</p>
+    </div>
+  </div>
+</section>
+
+<section class="insta" id="instagram">
+  <div class="insta-card">
+    <span class="icon">🐾💌</span>
+    <h2>Let's Talk About Your Cat!</h2>
+    <p>Ready to book a sit, ask a question, or just show off a photo of your cat? Our Instagram DMs are always open.</p>
+    <span class="handle">@kittycity_catsitter</span>
+    <div class="insta-grid">
+      <div class="tile t1">🐱</div>
+      <div class="tile t2">🧶</div>
+      <div class="tile t3">🍽️</div>
+      <div class="tile t4">🌿</div>
+      <div class="tile t5">😻</div>
+      <div class="tile t6">📷</div>
+    </div>
+    <a class="btn secondary" href="https://www.instagram.com/kittycity_catsitter/" target="_blank" rel="noopener">Visit @kittycity_catsitter on Instagram</a>
+  </div>
+</section>
+
+<footer>
+  <h3>Kitty City Cat Sitter</h3>
+  <p>In-home cat sitting for Portland, Oregon furbabies.</p>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/kittycity_catsitter/" target="_blank" rel="noopener">Instagram</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+  </div>
+  <p class="copy">Made with 🐾 for cat lovers. DM for cat sitting inquiries.</p>
+</footer>
+
+</body>
+</html>
