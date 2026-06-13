@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catsitting by Inês — Cuidamos do teu gato em tua casa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral:   #FF6B6B;
+      --lilac:   #C084FC;
+      --gold:    #FBBF24;
+      --mint:    #34D399;
+      --sky:     #60A5FA;
+      --cream:   #FFFBF5;
+      --dark:    #1E1B2E;
+      --mid:     #4B4569;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,251,245,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(192,132,252,0.15);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--coral); }
+    .nav-cta {
+      background: var(--coral);
+      color: #fff;
+      border: none; border-radius: 100px;
+      padding: 0.6rem 1.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .nav-cta:hover { background: #e05555; transform: scale(1.04); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 7rem 1.5rem 4rem;
+      background: linear-gradient(145deg, #fff0f0 0%, #f5e8ff 40%, #e8f4ff 100%);
+      position: relative; overflow: hidden;
+    }
+
+    /* floating blobs */
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(60px); opacity: 0.35; pointer-events: none;
+    }
+    .blob-1 { width: 400px; height: 400px; background: var(--coral); top: -100px; left: -120px; }
+    .blob-2 { width: 350px; height: 350px; background: var(--lilac); bottom: -80px; right: -100px; }
+    .blob-3 { width: 250px; height: 250px; background: var(--gold); top: 40%; left: 60%; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #fff;
+      border: 2px solid var(--lilac);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--mid);
+      margin-bottom: 1.8rem;
+      animation: fadeDown 0.7s ease both;
+    }
+    .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); display: inline-block; }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+      animation: fadeUp 0.8s 0.1s ease both;
+      max-width: 760px;
+    }
+    .hero h1 .highlight-coral { color: var(--coral); }
+    .hero h1 .highlight-lilac { color: var(--lilac); }
+
+    .hero-sub {
+      margin-top: 1.4rem;
+      font-size: 1.15rem;
+      color: var(--mid);
+      line-height: 1.65;
+      max-width: 500px;
+      animation: fadeUp 0.8s 0.25s ease both;
+    }
+
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      margin-top: 2.4rem;
+      animation: fadeUp 0.8s 0.38s ease both;
+    }
+    .btn-primary {
+      background: var(--coral); color: #fff;
+      padding: 0.9rem 2rem; border-radius: 100px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 24px rgba(255,107,107,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(255,107,107,0.5); }
+    .btn-secondary {
+      background: #fff; color: var(--dark);
+      padding: 0.9rem 2rem; border-radius: 100px;
+      font-weight: 600; font-size: 1rem;
+      text-decoration: none; border: 2px solid rgba(75,69,105,0.2);
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-secondary:hover { border-color: var(--lilac); transform: translateY(-3px); }
+
+    .hero-img-wrap {
+      position: relative;
+      margin-top: 3.5rem;
+      animation: fadeUp 0.9s 0.5s ease both;
+    }
+    .hero-img-inner {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid #fff;
+      box-shadow: 0 12px 40px rgba(192,132,252,0.35);
+      background: linear-gradient(135deg, var(--lilac), var(--coral));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+    }
+    .paw-ring {
+      position: absolute; inset: -18px;
+      border-radius: 50%;
+      border: 3px dashed rgba(192,132,252,0.4);
+      animation: spin 18s linear infinite;
+    }
+
+    /* ── PAW DIVIDER ── */
+    .paw-divider {
+      text-align: center; font-size: 1.5rem;
+      letter-spacing: 0.5rem;
+      padding: 1.2rem 0;
+      color: var(--lilac);
+      opacity: 0.6;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 5rem 1.5rem; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--dark);
+    }
+    .section-title em { color: var(--lilac); font-style: normal; }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: var(--dark);
+      padding: 1.6rem 1.5rem;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 2.5rem;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem; font-weight: 500;
+    }
+    .trust-item span.icon { font-size: 1.2rem; }
+
+    /* ── SERVICES ── */
+    .services { background: #fff; }
+    .services-inner { max-width: 1000px; margin: 0 auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .service-card {
+      border-radius: 20px; padding: 2rem 1.6rem;
+      border: 2px solid transparent;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+    .sc-1 { background: #FFF3F3; border-color: #FFCECE; }
+    .sc-2 { background: #F5EEFF; border-color: #DDB6FF; }
+    .sc-3 { background: #EEFFF7; border-color: #A7F3D0; }
+    .sc-4 { background: #FFF8E7; border-color: #FDE68A; }
+    .service-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+    .service-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem; font-weight: 800; color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+    .service-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.6; }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: linear-gradient(135deg, #F5EEFF 0%, #EEFBFF 100%); }
+    .how-inner { max-width: 800px; margin: 0 auto; }
+    .steps { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.8rem; }
+    .step {
+      display: flex; gap: 1.4rem; align-items: flex-start;
+      background: #fff; border-radius: 16px; padding: 1.6rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      opacity: 0; transform: translateX(-30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .step.visible { opacity: 1; transform: translateX(0); }
+    .step-num {
+      min-width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      color: #fff; flex-shrink: 0;
+    }
+    .sn-1 { background: var(--coral); }
+    .sn-2 { background: var(--lilac); }
+    .sn-3 { background: var(--mint); }
+    .sn-4 { background: var(--gold); }
+    .step h4 { font-weight: 700; color: var(--dark); margin-bottom: 0.3rem; font-size: 1.05rem; }
+    .step p { color: var(--mid); font-size: 0.95rem; line-height: 1.6; }
+
+    /* ── AREA ── */
+    .area { background: #fff; }
+    .area-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .area-map-box {
+      background: linear-gradient(135deg, #F5EEFF, #FFE8F0);
+      border-radius: 24px; padding: 3rem 2rem;
+      text-align: center;
+      border: 2px solid rgba(192,132,252,0.25);
+    }
+    .area-map-box .map-emoji { font-size: 5rem; margin-bottom: 1rem; }
+    .area-map-box h3 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.4rem; color: var(--dark); margin-bottom: 0.4rem;
+    }
+    .area-map-box p { color: var(--mid); font-size: 0.95rem; }
+    .area-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; justify-content: center; }
+    .area-tag {
+      background: #fff; border: 2px solid var(--lilac);
+      border-radius: 100px; padding: 0.35rem 0.9rem;
+      font-size: 0.85rem; font-weight: 600; color: var(--mid);
+    }
+    @media(max-width: 680px) {
+      .area-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ── WHY ── */
+    .why { background: var(--dark); color: #fff; }
+    .why-inner { max-width: 960px; margin: 0 auto; }
+    .why .section-label { color: var(--gold); }
+    .why .section-title { color: #fff; }
+    .why .section-title em { color: var(--gold); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .why-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px; padding: 1.6rem;
+      transition: background 0.2s;
+    }
+    .why-card:hover { background: rgba(255,255,255,0.12); }
+    .why-card .wi { font-size: 2rem; margin-bottom: 0.8rem; }
+    .why-card h4 { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: #fff; }
+    .why-card p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    /* ── CERT ── */
+    .cert {
+      background: linear-gradient(135deg, var(--coral) 0%, var(--lilac) 100%);
+      padding: 4rem 1.5rem; text-align: center; color: #fff;
+    }
+    .cert-box {
+      display: inline-flex; flex-direction: column; align-items: center;
+      background: rgba(255,255,255,0.15); border-radius: 24px;
+      padding: 2.5rem 3rem; border: 2px solid rgba(255,255,255,0.3);
+      max-width: 480px;
+    }
+    .cert-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .cert h2 {
+      font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800;
+      margin-bottom: 0.7rem;
+    }
+    .cert p { font-size: 0.95rem; line-height: 1.65; opacity: 0.9; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--cream); padding: 6rem 1.5rem;
+      text-align: center;
+    }
+    .cta-section .section-title { margin-bottom: 0.8rem; }
+    .cta-sub { color: var(--mid); font-size: 1.05rem; margin-bottom: 2.5rem; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-green {
+      background: #25D366; color: #fff;
+      padding: 0.9rem 2rem; border-radius: 100px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+      transition: transform 0.2s;
+    }
+    .btn-green:hover { transform: translateY(-3px); }
+    .btn-inst {
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      color: #fff;
+      padding: 0.9rem 2rem; border-radius: 100px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      box-shadow: 0 6px 20px rgba(131,58,180,0.35);
+      transition: transform 0.2s;
+    }
+    .btn-inst:hover { transform: translateY(-3px); }
+    .btn-price {
+      background: var(--gold); color: var(--dark);
+      padding: 0.9rem 2rem; border-radius: 100px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      box-shadow: 0 6px 20px rgba(251,191,36,0.35);
+      transition: transform 0.2s;
+    }
+    .btn-price:hover { transform: translateY(-3px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.55);
+      text-align: center; padding: 2rem 1.5rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--lilac); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, .paw-ring { animation: none !important; transition: none !important; }
+      .step, .reveal { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🐈‍⬛ Catsitting <span>by Inês</span></div>
+    <a href="https://forms.gle/zCxkQhZQmR1VvNgt9" target="_blank" class="nav-cta">Reservar agora</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="badge"><span class="dot"></span> Certificada &amp; com experiência em Porto</div>
+
+    <h1>O teu gato <span class="highlight-coral">feliz e seguro</span><br/>na <span class="highlight-lilac">sua própria casa</span></h1>
+
+    <p class="hero-sub">
+      Cuidamos do teu gato no conforto e na tranquilidade do lar que ele conhece e adora — sem stress de transportes nem ambientes desconhecidos.
+    </p>
+
+    <div class="hero-btns">
+      <a href="https://forms.gle/zCxkQhZQmR1VvNgt9" target="_blank" class="btn-primary">🐾 Reservar — novos clientes</a>
+      <a href="https://forms.gle/2znavWAThvKxWoLf7" target="_blank" class="btn-secondary">🔁 Já sou cliente</a>
+    </div>
+
+    <div class="hero-img-wrap">
+      <div class="paw-ring"></div>
+      <div class="hero-img-inner">🐈‍⬛</div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item"><span class="icon">🎓</span> Catsitter certificada</div>
+    <div class="trust-item"><span class="icon">🏡</span> Cuidado em tua casa</div>
+    <div class="trust-item"><span class="icon">📍</span> Porto e arredores</div>
+    <div class="trust-item"><span class="icon">📸</span> Atualizações com fotos</div>
+    <div class="trust-item"><span class="icon">❤️</span> Amor garantido</div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="services-inner">
+      <div class="reveal">
+        <span class="section-label">O que faço</span>
+        <h2 class="section-title">Serviços <em>com carinho</em></h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card sc-1 reveal">
+          <div class="service-emoji">🏠</div>
+          <h3>Visitas domiciliárias</h3>
+          <p>Visito o teu gato em casa, na hora combinada. Alimentação, brincadeira, miminhos e limpeza da caixa de areia incluídos.</p>
+        </div>
+        <div class="service-card sc-2 reveal">
+          <div class="service-emoji">🌙</div>
+          <h3>Pernoita em tua casa</h3>
+          <p>Fico a dormir em tua casa para que o teu gato nunca esteja sozinho durante a noite. Máximo conforto para ele.</p>
+        </div>
+        <div class="service-card sc-3 reveal">
+          <div class="service-emoji">💊</div>
+          <h3>Administração de medicação</h3>
+          <p>Experiência com gatos que precisam de medicação diária. Cuidado e atenção redobrada para gatinhos com necessidades especiais.</p>
+        </div>
+        <div class="service-card sc-4 reveal">
+          <div class="service-emoji">📱</div>
+          <h3>Relatórios com fotos</h3>
+          <p>Recebes atualizações com fotos e vídeos para ficares descansado onde quer que estejas. O teu gatinho em direto!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="paw-divider">🐾 🐾 🐾 🐾 🐾</div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="how-inner">
+      <div class="reveal">
+        <span class="section-label">Como funciona</span>
+        <h2 class="section-title">Simples e <em>sem complicações</em></h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num sn-1">1</div>
+          <div>
+            <h4>Preenche o formulário</h4>
+            <p>Clica em "Reservar agora" e preenche os teus dados e os do teu gatinho. Rápido e fácil.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num sn-2">2</div>
+          <div>
+            <h4>Visita de apresentação</h4>
+            <p>Marcamos uma visita prévia (gratuita) para eu conhecer o teu gato no ambiente dele e perceber todas as suas rotinas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num sn-3">3</div>
+          <div>
+            <h4>Tudo alinhado, partes descansado</h4>
+            <p>Combinamos horários, entregas de chave e instruções especiais. Podes viajar com total tranquilidade.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num sn-4">4</div>
+          <div>
+            <h4>Atualizações em tempo real</h4>
+            <p>Durante a tua ausência recebes fotos e mensagens para veres como o teu gatinho está. Nunca mais te preocupes!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREA -->
+  <section class="area">
+    <div class="area-inner">
+      <div class="reveal">
+        <span class="section-label">Zona de cobertura</span>
+        <h2 class="section-title">Porto e <em>arredores</em></h2>
+        <p style="color: var(--mid); margin-top: 1rem; line-height: 1.7; font-size: 0.97rem;">
+          Presto serviço no Porto e em vários concelhos limítrofes. Tens dúvidas se a tua zona está coberta? Envia-me uma mensagem e verificamos juntos!
+        </p>
+      </div>
+      <div class="area-map-box reveal">
+        <div class="map-emoji">🗺️</div>
+        <h3>📍 Porto e arredores</h3>
+        <p>Zona metropolitana do Porto</p>
+        <div class="area-tags">
+          <span class="area-tag">Porto</span>
+          <span class="area-tag">Matosinhos</span>
+          <span class="area-tag">Gaia</span>
+          <span class="area-tag">Maia</span>
+          <span class="area-tag">Gondomar</span>
+          <span class="area-tag">Ermesinde</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="why-inner">
+      <div class="reveal">
+        <span class="section-label">Porquê escolher-me</span>
+        <h2 class="section-title">Porque o teu gato <em>merece o melhor</em></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="wi">🎓</div>
+          <h4>Certificada</h4>
+          <p>Formação profissional em catsitting. Não é só amor pelos gatos — é também conhecimento e responsabilidade.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="wi">🏡</div>
+          <h4>Em casa dele</h4>
+          <p>Os gatos são animais territoriais. Ficarem no seu espaço elimina o stress causado por transportes e ambientes novos.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="wi">📸</div>
+          <h4>Total transparência</h4>
+          <p>Fotos e vídeos todos os dias. Sabes sempre como o teu companheiro está, onde quer que estejas.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="wi">💛</div>
+          <h4>Paixão genuína</h4>
+          <p>Adoro gatos de verdade. O teu felino vai receber atenção, miminhos e brincadeiras como se fosse meu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERT -->
+  <section class="cert">
+    <div class="cert-box reveal">
+      <div class="cert-icon">🎓</div>
+      <h2>Catsitter certificada</h2>
+      <p>Tenho formação certificada em cuidados e comportamento felino. O teu gato está em mãos de quem sabe o que faz — e ama cada momento com eles.</p>
+    </div>
+  </section>
+
+  <!-- PREÇÁRIO -->
+  <section style="background: #fff; padding: 4rem 1.5rem; text-align: center;">
+    <div class="reveal">
+      <span class="section-label">Preços</span>
+      <h2 class="section-title" style="margin-bottom: 1rem;">Consulta o <em>preçário 2026</em></h2>
+      <p style="color: var(--mid); max-width: 420px; margin: 0 auto 2rem; line-height: 1.65;">
+        Preços transparentes e acessíveis. Consulta o nosso preçário atualizado para 2026.
+      </p>
+      <a href="https://drive.google.com/file/d/1LbiAd-cbEp4jmX27y-axr5m10fAJ2PzG/view?usp=sharing" target="_blank" class="btn-price">📄 Ver preçário 2026</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <span class="section-label reveal">Vamos lá!</span>
+    <h2 class="section-title reveal">Pronto para <em>reservar</em>?</h2>
+    <p class="cta-sub reveal">Escolhe a opção que se aplica a ti e vamos tratar de tudo para que o teu gato fique em óptimas mãos.</p>
+    <div class="cta-btns reveal">
+      <a href="https://forms.gle/zCxkQhZQmR1VvNgt9" target="_blank" class="btn-primary">🐾 Sou novo cliente</a>
+      <a href="https://forms.gle/2znavWAThvKxWoLf7" target="_blank" class="btn-secondary">🔁 Já sou cliente</a>
+    </div>
+    <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" class="reveal">
+      <a href="https://www.instagram.com/catsittingbyines/" target="_blank" class="btn-inst">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a href="https://linktr.ee/catsittingbyines" target="_blank" class="btn-secondary">🔗 Todos os links</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>🐈‍⬛ <strong>Catsitting by Inês</strong> — Porto e arredores</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="https://www.instagram.com/catsittingbyines/" target="_blank">Instagram</a> &nbsp;·&nbsp;
+      <a href="https://linktr.ee/catsittingbyines" target="_blank">Linktree</a> &nbsp;·&nbsp;
+      <a href="https://drive.google.com/file/d/1LbiAd-cbEp4jmX27y-axr5m10fAJ2PzG/view?usp=sharing" target="_blank">Preçário 2026</a>
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.78rem; opacity: 0.5;">© 2026 Catsitting by Inês · Feito com 🐾 e muito amor</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal, .step').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
