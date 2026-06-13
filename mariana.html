@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariana Raimond · Pet Sitter Lisboa</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #FF6B6B;
+    --yellow: #FFD93D;
+    --mint: #6BCB77;
+    --blue: #4D96FF;
+    --plum: #2D1B69;
+    --white: #FFF8F0;
+    --dark: #1A1A2E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--plum);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px 80px;
+    overflow: hidden;
+  }
+
+  .hero-blobs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+  }
+  .blob-1 { width: 420px; height: 420px; background: var(--coral); top: -120px; left: -100px; }
+  .blob-2 { width: 360px; height: 360px; background: var(--yellow); top: 40%; right: -80px; }
+  .blob-3 { width: 300px; height: 300px; background: var(--mint); bottom: -60px; left: 30%; }
+  .blob-4 { width: 250px; height: 250px; background: var(--blue); top: 10%; right: 20%; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--yellow);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    line-height: 0.95;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  .hero h1 span.accent-coral { color: var(--coral); }
+  .hero h1 span.accent-yellow { color: var(--yellow); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin: 24px auto 40px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+
+  .btn-primary { background: var(--coral); color: #fff; }
+  .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+  .hero-paws {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    z-index: 2;
+    opacity: 0.3;
+    font-size: 22px;
+    letter-spacing: 6px;
+  }
+
+  /* ── ZONES ── */
+  .zones {
+    background: var(--yellow);
+    padding: 24px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .zone-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--plum);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 100px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 80px 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media (max-width: 680px) {
+    .about { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--plum);
+    border-radius: 28px;
+    padding: 48px 36px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card::before {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    background: var(--coral);
+    border-radius: 50%;
+    top: -60px; right: -60px;
+    opacity: 0.4;
+  }
+
+  .about-emoji {
+    font-size: 80px;
+    display: block;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-title {
+    color: var(--yellow);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  .floating-stat {
+    position: absolute;
+    background: #fff;
+    border-radius: 16px;
+    padding: 12px 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: float 3s ease-in-out infinite;
+  }
+  .floating-stat span.big { font-size: 1.6rem; font-family: 'Syne', sans-serif; color: var(--coral); }
+
+  .stat-1 { bottom: -16px; left: -20px; animation-delay: 0s; }
+  .stat-2 { top: -16px; right: -16px; animation-delay: 1.5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .about-text h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--plum);
+  }
+
+  .about-text p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+
+  .values-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .value-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--dark);
+  }
+
+  .value-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    background: var(--dark);
+    padding: 80px 24px;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: var(--yellow);
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: 48px;
+    color: #fff;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    border-radius: 24px;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); }
+
+  .service-card.c1 { background: var(--coral); }
+  .service-card.c2 { background: var(--blue); }
+  .service-card.c3 { background: var(--mint); }
+  .service-card.c4 { background: var(--yellow); }
+
+  .service-icon { font-size: 48px; display: block; margin-bottom: 16px; }
+
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--plum);
+    margin-bottom: 8px;
+  }
+  .service-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(29,27,65,0.8);
+    font-weight: 500;
+  }
+
+  /* ── TRUST ── */
+  .trust {
+    padding: 80px 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .trust .section-label { color: var(--coral); }
+  .trust .section-title { color: var(--plum); }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .trust-card {
+    border-radius: 20px;
+    padding: 32px 20px;
+    text-align: center;
+  }
+
+  .trust-card.t1 { background: #FFF0F0; }
+  .trust-card.t2 { background: #F0F7FF; }
+  .trust-card.t3 { background: #F0FFF4; }
+  .trust-card.t4 { background: #FFFBF0; }
+
+  .trust-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.8rem;
+    color: var(--plum);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .trust-label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+  }
+
+  /* ── RAINBOW BANNER ── */
+  .rainbow-banner {
+    background: linear-gradient(90deg, var(--coral), var(--yellow), var(--mint), var(--blue), var(--coral));
+    background-size: 200% 100%;
+    animation: rainbow 4s linear infinite;
+    padding: 20px 24px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  @keyframes rainbow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+
+  .rainbow-banner p {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--plum);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── AREAS ── */
+  .areas {
+    background: var(--plum);
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .areas .section-title { color: #fff; }
+  .areas .section-label { color: var(--mint); }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .area-card {
+    border-radius: 20px;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .area-card.a1 { background: var(--coral); }
+  .area-card.a2 { background: var(--yellow); }
+  .area-card.a3 { background: var(--mint); }
+
+  .area-card .area-icon { font-size: 44px; display: block; margin-bottom: 12px; }
+
+  .area-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--plum);
+    margin-bottom: 6px;
+  }
+
+  .area-card p {
+    font-size: 13px;
+    color: rgba(29,27,65,0.75);
+    font-weight: 500;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 80px 24px;
+    text-align: center;
+    background: var(--white);
+  }
+
+  .cta-box {
+    max-width: 580px;
+    margin: 0 auto;
+    background: var(--plum);
+    border-radius: 32px;
+    padding: 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::after {
+    content: '🐾';
+    position: absolute;
+    font-size: 160px;
+    bottom: -30px;
+    right: -20px;
+    opacity: 0.06;
+  }
+
+  .cta-box h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .cta-box p {
+    color: rgba(255,255,255,0.7);
+    font-size: 16px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .ig-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 36px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ig-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(220,39,67,0.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  footer a { color: var(--coral); text-decoration: none; }
+  footer strong { color: #fff; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── PRIDE BADGE ── */
+  .pride-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin-top: 16px;
+    position: relative;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+  </div>
+
+  <div class="hero-badge">🐾 Pet Sitter de Confiança em Lisboa</div>
+
+  <h1>
+    Cuidado<br>
+    <span class="accent-coral">com amor</span><br>
+    <span class="accent-yellow">para o teu pet</span>
+  </h1>
+
+  <p class="hero-sub">
+    Mariana Raimond cuida do teu companheiro como se fosse da família — com carinho, responsabilidade e atenção personalizada.
+  </p>
+
+  <div class="hero-cta">
+    <a href="https://www.instagram.com/marianaraimond.petsitter/" target="_blank" class="btn btn-primary">
+      📲 Falar com a Mariana
+    </a>
+    <a href="#servicos" class="btn btn-secondary">
+      Ver serviços ↓
+    </a>
+  </div>
+
+  <div class="pride-badge">🏳️‍🌈 Espaço seguro e acolhedor para todos</div>
+
+  <div class="hero-paws">🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾</div>
+</section>
+
+<!-- ZONES -->
+<div class="zones">
+  <div class="zone-tag">📍 Lisboa</div>
+  <div class="zone-tag">📍 Sintra</div>
+  <div class="zone-tag">📍 Cascais</div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-visual reveal">
+    <div class="about-card">
+      <span class="about-emoji">🐶</span>
+      <div class="about-name">Mariana Raimond</div>
+      <div class="about-title">Pet Sitter Profissional · Lisboa</div>
+    </div>
+    <div class="floating-stat stat-1">
+      <span class="big">100+</span>
+      famílias satisfeitas
+    </div>
+    <div class="floating-stat stat-2">
+      ⭐ Confiança garantida
+    </div>
+  </div>
+
+  <div class="about-text reveal">
+    <h2>A pessoa certa para o teu pet</h2>
+    <p>
+      A Mariana é uma pet sitter dedicada que oferece cuidados personalizados e cheios de amor. Cada animal é tratado de forma única, respeitando a sua personalidade e rotinas.
+    </p>
+    <p>
+      Mais de 100 famílias em Lisboa, Sintra e Cascais já confiam no seu trabalho — e os seus pets também adoram!
+    </p>
+
+    <div class="values-list">
+      <div class="value-item">
+        <div class="value-dot" style="background:#FFE8E8;">❤️</div>
+        Cuidado personalizado para cada animal
+      </div>
+      <div class="value-item">
+        <div class="value-dot" style="background:#E8F4FF;">🛡️</div>
+        Confiança e segurança garantidas
+      </div>
+      <div class="value-item">
+        <div class="value-dot" style="background:#E8FFE8;">📸</div>
+        Atualizações com fotos e vídeos
+      </div>
+      <div class="value-item">
+        <div class="value-dot" style="background:#FFF8E8;">🏳️‍🌈</div>
+        Ambiente amigável e inclusivo
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicos">
+  <div class="section-label">O que ofereço</div>
+  <h2 class="section-title">Serviços de Pet Sitting</h2>
+
+  <div class="services-grid">
+    <div class="service-card c1 reveal">
+      <span class="service-icon">🏠</span>
+      <h3>Hospedagem em Casa</h3>
+      <p>O teu pet fica confortável e bem tratado numa casa cheia de amor enquanto tu estás fora.</p>
+    </div>
+    <div class="service-card c2 reveal">
+      <span class="service-icon">🦮</span>
+      <h3>Passeios Diários</h3>
+      <p>Passeios personalizados, seguros e divertidos para o teu cão explorar Lisboa.</p>
+    </div>
+    <div class="service-card c3 reveal">
+      <span class="service-icon">🏡</span>
+      <h3>Visitas a Domicílio</h3>
+      <p>A Mariana vai a casa do teu pet para alimentar, brincar e dar toda a atenção necessária.</p>
+    </div>
+    <div class="service-card c4 reveal">
+      <span class="service-icon">🌙</span>
+      <h3>Cuidado Noturno</h3>
+      <p>Pernoita com o teu pet para que ele nunca fique sozinho à noite.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST NUMBERS -->
+<section class="trust">
+  <div class="section-label">Em números</div>
+  <h2 class="section-title">Confiança que fala por si</h2>
+
+  <div class="trust-grid">
+    <div class="trust-card t1 reveal">
+      <span class="trust-num">100+</span>
+      <div class="trust-label">Famílias satisfeitas</div>
+    </div>
+    <div class="trust-card t2 reveal">
+      <span class="trust-num">3</span>
+      <div class="trust-label">Áreas cobertas</div>
+    </div>
+    <div class="trust-card t3 reveal">
+      <span class="trust-num">🐾</span>
+      <div class="trust-label">Cuidado personalizado</div>
+    </div>
+    <div class="trust-card t4 reveal">
+      <span class="trust-num">❤️</span>
+      <div class="trust-label">Amor em cada visita</div>
+    </div>
+  </div>
+</section>
+
+<!-- RAINBOW BANNER -->
+<div class="rainbow-banner">
+  <p>🐾 Pets felizes • Donos tranquilos • Cuidados com amor 🐾</p>
+</div>
+
+<!-- AREAS -->
+<section class="areas">
+  <div class="section-label">Cobertura geográfica</div>
+  <h2 class="section-title">Onde atuo</h2>
+
+  <div class="areas-grid">
+    <div class="area-card a1 reveal">
+      <span class="area-icon">🏙️</span>
+      <h3>Lisboa</h3>
+      <p>Capital cheia de vida e pets para cuidar</p>
+    </div>
+    <div class="area-card a2 reveal">
+      <span class="area-icon">🏰</span>
+      <h3>Sintra</h3>
+      <p>Palácio, natureza e animaizinhos felizes</p>
+    </div>
+    <div class="area-card a3 reveal">
+      <span class="area-icon">🌊</span>
+      <h3>Cascais</h3>
+      <p>Mar, brisa e muito amor para o teu pet</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-box reveal">
+    <h2>Pronto para marcar?</h2>
+    <p>Envia uma mensagem direta no Instagram para verificar disponibilidade e tratar do teu amigo peludo.</p>
+    <a href="https://www.instagram.com/marianaraimond.petsitter/" target="_blank" class="ig-btn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
+      </svg>
+      @marianaraimond.petsitter
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Mariana Raimond · Pet Sitter</strong></p>
+  <p>📍 Lisboa · Sintra · Cascais &nbsp;|&nbsp; 🐾 Cuidados personalizados</p>
+  <p style="margin-top:8px;">
+    <a href="https://www.instagram.com/marianaraimond.petsitter/" target="_blank">Instagram: @marianaraimond.petsitter</a>
+  </p>
+  <p style="margin-top:12px; font-size:11px; opacity:0.4;">© 2025 Mariana Raimond Pet Sitter · Todos os direitos reservados</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * i);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
