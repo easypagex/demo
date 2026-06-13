@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CatSitter Gothenburg — Cat Boarding Since 2021</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lime:   #C8F135;
+    --coral:  #FF5E5E;
+    --sky:    #56C6FF;
+    --violet: #9B5FFF;
+    --peach:  #FFB27A;
+    --mint:   #4FFFC8;
+    --ink:    #0D0D0D;
+    --cream:  #FFF8F0;
+    --white:  #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(155,95,255,.45) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 10% 80%, rgba(86,198,255,.35) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 35% at 50% 50%, rgba(255,94,94,.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* floating paw prints */
+  .paws {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .paw {
+    position: absolute;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    opacity: .08;
+    animation: drift 18s ease-in-out infinite;
+  }
+  .paw:nth-child(1)  { top: 10%; left:  5%; animation-delay: 0s;   animation-duration: 20s; }
+  .paw:nth-child(2)  { top: 25%; left: 88%; animation-delay: 3s;   animation-duration: 17s; }
+  .paw:nth-child(3)  { top: 55%; left: 15%; animation-delay: 6s;   animation-duration: 22s; }
+  .paw:nth-child(4)  { top: 70%; left: 75%; animation-delay: 1.5s; animation-duration: 19s; }
+  .paw:nth-child(5)  { top: 85%; left: 40%; animation-delay: 9s;   animation-duration: 16s; }
+  .paw:nth-child(6)  { top:  5%; left: 55%; animation-delay: 4s;   animation-duration: 21s; }
+  .paw:nth-child(7)  { top: 40%; left: 60%; animation-delay: 7s;   animation-duration: 18s; }
+  .paw:nth-child(8)  { top: 90%; left: 20%; animation-delay: 2s;   animation-duration: 24s; }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0,0) rotate(0deg); }
+    33%       { transform: translate(12px,-20px) rotate(15deg); }
+    66%       { transform: translate(-10px,14px) rotate(-10deg); }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 2rem;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--white);
+    letter-spacing: .02em;
+  }
+  .nav-logo span { color: var(--lime); }
+
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem; font-weight: 500;
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--lime); }
+
+  /* ── HERO CONTENT ── */
+  .hero-content {
+    position: relative; z-index: 5;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    gap: 1.8rem;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 99px;
+    padding: .4rem 1rem;
+    font-size: .8rem; color: var(--lime);
+    letter-spacing: .08em; text-transform: uppercase; font-weight: 600;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    font-weight: 800; line-height: .95;
+    color: var(--white);
+    max-width: 900px;
+  }
+  .hero-title .accent-lime   { color: var(--lime); }
+  .hero-title .accent-coral  { color: var(--coral); }
+  .hero-title .accent-sky    { color: var(--sky); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    color: rgba(255,255,255,.65);
+    max-width: 540px; line-height: 1.6;
+  }
+
+  .hero-ctas {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--lime); color: var(--ink);
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1rem; padding: .9rem 2.2rem;
+    border-radius: 99px; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,241,53,.4); }
+
+  .btn-secondary {
+    background: transparent; color: var(--white);
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 1rem; padding: .9rem 2.2rem;
+    border: 1.5px solid rgba(255,255,255,.3);
+    border-radius: 99px; text-decoration: none;
+    transition: border-color .2s, background .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-secondary:hover { border-color: var(--sky); background: rgba(86,198,255,.08); }
+
+  /* hero scroll hint */
+  .hero-scroll {
+    position: relative; z-index: 5;
+    padding-bottom: 2rem;
+    display: flex; justify-content: center;
+  }
+  .scroll-line {
+    width: 1px; height: 56px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+    animation: scrollpulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollpulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+  /* ── STATS STRIP ── */
+  .stats {
+    background: var(--lime);
+    padding: 1.4rem 2rem;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 2.5rem 3.5rem;
+  }
+  .stat {
+    display: flex; align-items: baseline; gap: .5rem;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800; color: var(--ink);
+  }
+  .stat-label {
+    font-size: .85rem; font-weight: 500; color: rgba(13,13,13,.65);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 1.5rem; }
+
+  .container { max-width: 1060px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: .75rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 800; line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-body {
+    font-size: 1.05rem; line-height: 1.75;
+    color: #444;
+    max-width: 620px;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--ink); }
+  .services .section-title { color: var(--white); }
+  .services .section-eyebrow { color: var(--lime); }
+  .services .section-body { color: rgba(255,255,255,.6); }
+
+  .cards {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .card {
+    border-radius: 20px;
+    padding: 2rem 1.6rem;
+    position: relative; overflow: hidden;
+    transition: transform .25s;
+  }
+  .card:hover { transform: translateY(-4px); }
+
+  .card-1 { background: var(--violet); }
+  .card-2 { background: var(--coral); }
+  .card-3 { background: var(--sky); }
+  .card-4 { background: var(--mint); }
+
+  .card-icon { font-size: 2.4rem; margin-bottom: 1rem; display: block; }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--ink); margin-bottom: .6rem;
+  }
+  .card-1 .card-title { color: var(--white); }
+  .card-2 .card-title { color: var(--white); }
+
+  .card-desc {
+    font-size: .9rem; line-height: 1.6;
+    color: rgba(0,0,0,.65);
+  }
+  .card-1 .card-desc { color: rgba(255,255,255,.75); }
+  .card-2 .card-desc { color: rgba(255,255,255,.8); }
+
+  /* ── ABOUT ── */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-visual {
+    background: linear-gradient(135deg, var(--violet) 0%, var(--coral) 100%);
+    border-radius: 28px;
+    aspect-ratio: 4/5;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem;
+    position: relative; overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 30%, rgba(255,255,255,.15), transparent 60%);
+  }
+  .about-emoji { font-size: 6rem; filter: drop-shadow(0 8px 24px rgba(0,0,0,.3)); }
+  .about-tagline {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.1rem; color: var(--white);
+    text-align: center; padding: 0 2rem;
+    line-height: 1.3;
+  }
+  .since-badge {
+    background: var(--lime); color: var(--ink);
+    font-weight: 700; font-size: .85rem;
+    border-radius: 99px; padding: .35rem 1rem;
+    letter-spacing: .04em;
+  }
+
+  .about .section-eyebrow { color: var(--violet); }
+
+  .highlight-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: .75rem; }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: .75rem;
+    font-size: .97rem; line-height: 1.5; color: #333;
+  }
+  .hi-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem;
+  }
+  .dot-v { background: var(--violet); }
+  .dot-c { background: var(--coral); }
+  .dot-s { background: var(--sky); }
+  .dot-m { background: var(--mint); }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: #F0F7FF; }
+  .how .section-eyebrow { color: var(--coral); }
+
+  .steps {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .step {
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: .75rem;
+  }
+
+  .step-num {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+    color: var(--ink);
+  }
+  .step:nth-child(1) .step-num { background: var(--lime); }
+  .step:nth-child(2) .step-num { background: var(--peach); }
+  .step:nth-child(3) .step-num { background: var(--sky); }
+  .step:nth-child(4) .step-num { background: var(--mint); }
+
+  .step-icon { font-size: 2rem; }
+  .step-title {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem;
+  }
+  .step-desc { font-size: .88rem; color: #555; line-height: 1.55; }
+
+  /* connector line */
+  .steps-wrap { position: relative; }
+
+  /* ── TRUST ── */
+  .trust { background: var(--violet); }
+  .trust .section-eyebrow { color: var(--lime); }
+  .trust .section-title { color: var(--white); }
+
+  .reviews {
+    margin-top: 3rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.2rem;
+  }
+  .review {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 16px; padding: 1.6rem;
+  }
+  .review-stars { color: var(--lime); font-size: 1rem; letter-spacing: .1em; margin-bottom: .75rem; }
+  .review-text { color: rgba(255,255,255,.85); font-size: .93rem; line-height: 1.6; margin-bottom: 1rem; }
+  .review-author { color: rgba(255,255,255,.5); font-size: .8rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--ink);
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 1.5rem;
+    padding: 7rem 1.5rem;
+  }
+  .cta-section .section-title { color: var(--white); }
+  .cta-section .section-eyebrow { color: var(--coral); }
+  .cta-body { font-size: 1.1rem; color: rgba(255,255,255,.6); max-width: 500px; line-height: 1.6; }
+
+  .cta-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+  .btn-rover {
+    background: var(--coral); color: var(--white);
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.05rem; padding: 1rem 2.4rem;
+    border-radius: 99px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: .5rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-rover:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,94,94,.4); }
+
+  .btn-ig {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: var(--white);
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.05rem; padding: 1rem 2.4rem;
+    border-radius: 99px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: .5rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-ig:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(253,29,29,.3); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080808;
+    padding: 2.5rem 2rem;
+    display: flex; flex-wrap: wrap; align-items: center;
+    justify-content: space-between; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--lime); }
+  .footer-copy { font-size: .8rem; color: rgba(255,255,255,.35); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: .82rem; color: rgba(255,255,255,.45);
+    text-decoration: none; transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--lime); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-visual { aspect-ratio: 1/1; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="paws" aria-hidden="true">
+    <span class="paw">🐾</span><span class="paw">🐱</span><span class="paw">🐾</span>
+    <span class="paw">😺</span><span class="paw">🐾</span><span class="paw">🐱</span>
+    <span class="paw">🐾</span><span class="paw">😸</span>
+  </div>
+
+  <nav>
+    <div class="nav-logo">≽ܫ≼ <span>CatSitter</span> Gothenburg</div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#how">How It Works</a>
+      <a href="#book">Book Now</a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-badge">🐱 Göteborg's Favourite Cat Boarding</div>
+    <h1 class="hero-title">
+      Your cat<br>
+      <span class="accent-lime">deserves</span> a<br>
+      <span class="accent-coral">home</span> away<br>
+      from <span class="accent-sky">home.</span>
+    </h1>
+    <p class="hero-sub">
+      Professional, loving cat boarding in the heart of Göteborg. Trusted since 2021 — because your cat is family.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://r.rover.com/4ntnaF?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" class="btn-primary">🐾 Book on Rover</a>
+      <a href="https://www.instagram.com/catsitter_gothenburg/" target="_blank" class="btn-secondary">📸 See Our Cats</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll"><div class="scroll-line"></div></div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<div class="stats">
+  <div class="stat"><span class="stat-num">2021</span><span class="stat-label">Serving Göteborg since</span></div>
+  <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Cat lovers here</span></div>
+  <div class="stat"><span class="stat-num">𓃠</span><span class="stat-label">Every cat is special</span></div>
+  <div class="stat"><span class="stat-num">⭐⭐⭐⭐⭐</span><span class="stat-label">Rated on Rover</span></div>
+</div>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="services" id="services">
+  <div class="container">
+    <p class="section-eyebrow reveal">What we offer</p>
+    <h2 class="section-title reveal">Every kind of cat care,<br>covered.</h2>
+    <p class="section-body reveal">From overnight boarding to daily drop-in visits — your cat gets professional care, comfort, and lots of love.</p>
+
+    <div class="cards">
+      <div class="card card-1 reveal">
+        <span class="card-icon">🏠</span>
+        <div class="card-title">Cat Boarding</div>
+        <div class="card-desc">Your cat stays in a cosy home environment in Göteborg — not a cage, never a kennel. Full board with personal attention.</div>
+      </div>
+      <div class="card card-2 reveal">
+        <span class="card-icon">🌟</span>
+        <div class="card-title">Cat Sitting</div>
+        <div class="card-desc">We come to your home and take care of your cat on their turf. Feeding, playtime, cuddles — whatever your cat needs.</div>
+      </div>
+      <div class="card card-3 reveal">
+        <span class="card-icon">📸</span>
+        <div class="card-title">Daily Photo Updates</div>
+        <div class="card-desc">Miss your cat? We send photos and updates so you always know your furry family member is happy and thriving.</div>
+      </div>
+      <div class="card card-4 reveal">
+        <span class="card-icon">🐱</span>
+        <div class="card-title">Multi-Cat Families</div>
+        <div class="card-desc">Got more than one cat? No problem. We welcome pairs and groups — bonded cats should never be separated.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-emoji">𓃠</div>
+        <div class="about-tagline">Where every cat<br>is the main character.</div>
+        <div class="since-badge">Cat Boarding Since 2021</div>
+      </div>
+      <div class="reveal">
+        <p class="section-eyebrow">About Us</p>
+        <h2 class="section-title">We're cat people.<br>Full stop.</h2>
+        <p class="section-body">
+          Based in Göteborg, we've been the city's trusted cat boarding choice since 2021. We know cats aren't just pets — they're family. That's why we treat every visit like a little holiday for your cat, not just a service.
+        </p>
+        <div class="highlight-list">
+          <div class="highlight-item">
+            <div class="hi-dot dot-v">🐾</div>
+            <span>Home-based boarding — never a kennel or cage. Your cat roams freely.</span>
+          </div>
+          <div class="highlight-item">
+            <div class="hi-dot dot-c">🌟</div>
+            <span>Years of experience with cats of all personalities, from shy to social butterflies.</span>
+          </div>
+          <div class="highlight-item">
+            <div class="hi-dot dot-s">📍</div>
+            <span>Located in Göteborg — short travel, low stress for your cat and for you.</span>
+          </div>
+          <div class="highlight-item">
+            <div class="hi-dot dot-m">🛡️</div>
+            <span>Fully covered through Rover — peace of mind built into every booking.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section class="how" id="how">
+  <div class="container">
+    <p class="section-eyebrow reveal">Simple process</p>
+    <h2 class="section-title reveal">Booking is easy.</h2>
+    <p class="section-body reveal">Four steps and your cat is in good hands. We handle everything through Rover for safe, secure bookings.</p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-icon">🔍</div>
+        <div class="step-title">Find Us on Rover</div>
+        <div class="step-desc">Click the Rover link, find our profile, and check availability for your dates.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-icon">💬</div>
+        <div class="step-title">Message Us</div>
+        <div class="step-desc">Tell us about your cat — personality, diet, quirks. The more we know, the better.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-icon">🤝</div>
+        <div class="step-title">Meet & Greet</div>
+        <div class="step-desc">We meet your cat before the stay to make sure everyone is comfortable and happy.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div class="step-icon">😻</div>
+        <div class="step-title">Relax & Travel</div>
+        <div class="step-desc">Go enjoy your trip. We'll send daily photos so you know your cat is living their best life.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TRUST / REVIEWS ═══════════ -->
+<section class="trust" id="trust">
+  <div class="container">
+    <p class="section-eyebrow reveal">Happy cat parents</p>
+    <h2 class="section-title reveal">What they say about us.</h2>
+
+    <div class="reviews">
+      <div class="review reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"My cat Miso absolutely loved staying here. I got daily photos and came back to a happy, relaxed cat. Will definitely book again!"</div>
+        <div class="review-author">— Anna K., Göteborg</div>
+      </div>
+      <div class="review reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Finally found a cat sitter I fully trust. Our two cats were treated like royalty. The booking through Rover made everything so easy."</div>
+        <div class="review-author">— Lars & Emma, Göteborg</div>
+      </div>
+      <div class="review reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"My nervous cat usually hates new places, but the updates I received showed her completely relaxed and curious. Incredible care."</div>
+        <div class="review-author">— Sofia M., Göteborg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-section" id="book">
+  <p class="section-eyebrow reveal">Ready to book?</p>
+  <h2 class="section-title reveal">Your cat's next<br>adventure starts here.</h2>
+  <p class="cta-body reveal">Book through Rover for secure payments and peace of mind, or follow us on Instagram to see our daily cat content from Göteborg.</p>
+  <div class="cta-buttons reveal">
+    <a href="https://r.rover.com/4ntnaF?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" class="btn-rover">🐾 Book on Rover</a>
+    <a href="https://www.instagram.com/catsitter_gothenburg/" target="_blank" class="btn-ig">📸 Follow on Instagram</a>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-logo">≽ܫ≼ <span>CatSitter</span> Gothenburg</div>
+  <div class="footer-copy">© 2025 CatSitter Gothenburg · Göteborg, Sweden</div>
+  <div class="footer-links">
+    <a href="https://r.rover.com/4ntnaF?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank">Rover</a>
+    <a href="https://www.instagram.com/catsitter_gothenburg/" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
