@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Britta Z. – Cat Sitter Hamburg-Hoheluft</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral:   #FF6B6B;
+    --yellow:  #FFE045;
+    --mint:    #5ECDA0;
+    --lavender:#B98FE8;
+    --sky:     #5BB8F5;
+    --cream:   #FFF8F0;
+    --ink:     #1A1A2E;
+    --soft:    #F9F1FF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FFE045 0%, #FF6B6B 40%, #B98FE8 75%, #5BB8F5 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Floating paw prints background */
+  .hero::before {
+    content: '🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾 🐾';
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.12;
+    word-spacing: 3rem;
+    line-height: 5rem;
+    width: 200%;
+    top: 0; left: -50%;
+    transform: rotate(-15deg);
+    pointer-events: none;
+    white-space: pre-wrap;
+  }
+
+  .hero-badge {
+    background: white;
+    color: var(--coral);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.4rem;
+    border-radius: 99px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 900;
+    color: white;
+    line-height: 0.95;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--yellow);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: rgba(255,255,255,0.92);
+    margin: 1.2rem 0 2.5rem;
+    max-width: 540px;
+    line-height: 1.5;
+  }
+
+  .hero-stars {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-rating {
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 0.85rem 2rem;
+    border-radius: 99px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+  .btn-white  { background: white; color: var(--coral); }
+  .btn-dark   { background: var(--ink); color: white; }
+  .btn-mint   { background: var(--mint); color: white; }
+  .btn-lavender { background: var(--lavender); color: white; }
+
+  /* Wave divider */
+  .wave {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -2px;
+  }
+  .wave svg { display: block; width: 100%; }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 5rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 680px) { .about { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  .about-photo {
+    position: relative;
+  }
+
+  .about-photo img {
+    width: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+    aspect-ratio: 1;
+    display: block;
+    box-shadow: 12px 12px 0 var(--yellow), 20px 20px 0 var(--coral);
+  }
+
+  .about-photo .badge-float {
+    position: absolute;
+    bottom: -1.2rem;
+    right: -1rem;
+    background: var(--mint);
+    color: white;
+    border-radius: 16px;
+    padding: 0.8rem 1.2rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  /* ── SERVICES ── */
+  .services-section {
+    background: var(--ink);
+    color: white;
+    padding: 5rem 1.5rem;
+  }
+
+  .services-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .services-inner .section-title { color: white; }
+  .services-inner .section-label { color: var(--yellow); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .service-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); }
+
+  .service-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .service-card h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .service-card p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.6; }
+
+  /* ── REVIEWS ── */
+  .reviews-section {
+    padding: 5rem 1.5rem;
+    background: var(--soft);
+  }
+
+  .reviews-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+    text-align: left;
+  }
+
+  .review-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border-top: 4px solid;
+  }
+
+  .review-card:nth-child(1) { border-color: var(--coral); }
+  .review-card:nth-child(2) { border-color: var(--mint); }
+  .review-card:nth-child(3) { border-color: var(--lavender); }
+  .review-card:nth-child(4) { border-color: var(--sky); }
+
+  .review-stars { color: #FFB800; font-size: 1rem; margin-bottom: 0.8rem; }
+  .review-text { color: #333; line-height: 1.65; font-size: 0.97rem; margin-bottom: 1.2rem; font-style: italic; }
+  .review-author { font-weight: 700; font-size: 0.88rem; color: #666; }
+
+  /* ── STATS ── */
+  .stats-bar {
+    background: var(--yellow);
+    padding: 3rem 1.5rem;
+  }
+
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .stat { flex: 1; min-width: 150px; }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label { color: #444; font-size: 0.9rem; margin-top: 0.3rem; font-weight: 500; }
+
+  /* ── BOOK ── */
+  .book-section {
+    padding: 5rem 1.5rem;
+    background: white;
+  }
+
+  .book-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .book-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+
+  .book-card {
+    border-radius: 20px;
+    padding: 2rem;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .book-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+
+  .book-card.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .book-card.catinaflat { background: linear-gradient(135deg, #5ECDA0, #3bb58a); }
+  .book-card.rover      { background: linear-gradient(135deg, #5BB8F5, #2a97e8); }
+
+  .book-card-icon { font-size: 3rem; }
+  .book-card h3 { font-family: 'Fraunces', serif; font-size: 1.3rem; }
+  .book-card p { font-size: 0.9rem; opacity: 0.9; line-height: 1.5; }
+  .book-card span {
+    background: rgba(255,255,255,0.25);
+    border-radius: 99px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: auto;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  footer a { color: var(--yellow); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  .cat-divider {
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 1rem;
+    padding: 1rem;
+    color: var(--lavender);
+  }
+
+  /* animations */
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  .float { animation: float 3s ease-in-out infinite; }
+
+  @media (max-width: 480px) {
+    .cta-group { flex-direction: column; align-items: center; }
+    .btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🐱 Hamburg · Hoheluft</div>
+  <h1>Your cats<em>deserve the best.</em></h1>
+  <p class="hero-sub">Professional, loving cat sitting at your home — so your furry family stays happy, safe & comfortable while you're away.</p>
+  <div class="hero-stars">⭐⭐⭐⭐⭐</div>
+  <p class="hero-rating">5.0 stars · 21 reviews · 96% response rate</p>
+  <div class="cta-group">
+    <a href="https://www.instagram.com/katzensitter_at_home/" target="_blank" class="btn btn-white">📸 Instagram</a>
+    <a href="https://catinaflat.de/members/britta-z-hanseartig-in-hoheluft/" target="_blank" class="btn btn-dark">🐾 Book via Cat in a Flat</a>
+    <a href="https://www.rover.com/promos/brittz52935" target="_blank" class="btn btn-mint">🏡 Book via Rover</a>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,90 1080,-10 1440,40 L1440,80 L0,80 Z" fill="#FFF8F0"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-photo">
+    <img src="https://www.rover.com/cf-image-cdn/remote-ciaf2/profiles/7c4ece5d-78b8-4340-a0dc-07956cbb8e53.jpg?width=450&height=450&quality=70&fit=cover" alt="Britta Ziegler – Katzensitterin Hamburg" />
+    <div class="badge-float">😽 Daily photos<br>& updates</div>
+  </div>
+  <div class="about-text">
+    <p class="section-label">Who I am</p>
+    <h2 class="section-title">Hi, I'm Britta — lifelong cat lover 🐈‍⬛</h2>
+    <p>After a long career in graphic design, I now work from home in Hamburg-Hoheluft — which means I'm always available to visit your cats, no matter the time of day.</p>
+    <p>I've lived with cats my whole life, so I know their needs inside out: feeding, grooming, play, spotting early signs of illness, and giving them the quality time they deserve.</p>
+    <p>I also water your plants, empty the mailbox, open windows to air out the space, and handle small household tasks — a true all-round care package so you can focus on your trip without a single worry.</p>
+    <div class="cta-group" style="margin-top:1.5rem; justify-content:flex-start;">
+      <a href="https://www.instagram.com/katzensitter_at_home/" target="_blank" class="btn btn-lavender" style="font-size:0.9rem; padding: 0.7rem 1.5rem;">📸 Follow on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-num">5.0★</div><div class="stat-label">Average rating</div></div>
+    <div class="stat"><div class="stat-num">21</div><div class="stat-label">Happy reviews</div></div>
+    <div class="stat"><div class="stat-num">96%</div><div class="stat-label">Response rate</div></div>
+    <div class="stat"><div class="stat-num">5×</div><div class="stat-label">Repeat clients</div></div>
+    <div class="stat"><div class="stat-num">&lt;30'</div><div class="stat-label">Reply time</div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="services-inner">
+    <p class="section-label">What I offer</p>
+    <h2 class="section-title">Everything your cats need 😽</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🍽️</div>
+        <h3>Feeding & Care</h3>
+        <p>Proper feeding, fresh water, litter box cleaning, and grooming — all done with love and attention.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎾</div>
+        <h3>Play & Cuddles</h3>
+        <p>Extended visits beyond the 20-min minimum — I stay until your cat is truly content and relaxed.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📸</div>
+        <h3>Daily Photo Updates</h3>
+        <p>You receive a status report with photos every day so you can relax and enjoy your time away.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🪴</div>
+        <h3>Home Care Extras</h3>
+        <p>Watering plants, collecting mail, airing rooms, receiving packages — a worry-free package.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏥</div>
+        <h3>Emergency Stays</h3>
+        <p>Hospital stays or unexpected situations — I'm also available for short-notice bookings.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔑</div>
+        <h3>Free Intro Meeting</h3>
+        <p>We meet beforehand for a free consultation and key handover, so everyone feels comfortable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="reviews-inner">
+    <p class="section-label">What clients say</p>
+    <h2 class="section-title">5 stars every single time ⭐</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Our cats had a wonderful sitter and playmate in Britta — they were totally relaxed when we got back from our trip. We will book you again and Cosmo & Lilly are already looking forward to it!"</p>
+        <div class="review-author">Johanna J. · June 2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Britta was a real stroke of luck for our two tomcats. They didn't seem to miss us at all — they were perfectly cared for. And we got beautiful pictures regularly. Highly recommended!"</p>
+        <div class="review-author">Anne H. · May 2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Everything was great! Britta took care of both cats so lovingly and sent daily updates. Happy to book again!"</p>
+        <div class="review-author">Alina K. · April 2025</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"All great, as always!"</p>
+        <div class="review-author">Ada M. · August 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cat-divider">😸 🐾 😸 🐾 😸</div>
+
+<!-- BOOK -->
+<section class="book-section">
+  <div class="book-inner">
+    <p class="section-label">Ready to book?</p>
+    <h2 class="section-title">Find me on your favourite platform</h2>
+    <p style="color:#555; max-width:520px; margin:0 auto; line-height:1.7;">You can reach me on Instagram for a quick hello, or book directly through Cat in a Flat or Rover — both platforms are verified and safe.</p>
+    <div class="book-cards">
+      <a href="https://www.instagram.com/katzensitter_at_home/" target="_blank" class="book-card instagram">
+        <div class="book-card-icon">📸</div>
+        <h3>Instagram</h3>
+        <p>@katzensitter_at_home — cat photos, updates & DMs welcome!</p>
+        <span>Follow & Message →</span>
+      </a>
+      <a href="https://catinaflat.de/members/britta-z-hanseartig-in-hoheluft/" target="_blank" class="book-card catinaflat">
+        <div class="book-card-icon">🐱</div>
+        <h3>Cat in a Flat</h3>
+        <p>Book securely with vet cost reimbursement & 24/7 customer support.</p>
+        <span>View Profile →</span>
+      </a>
+      <a href="https://www.rover.com/promos/brittz52935" target="_blank" class="book-card rover">
+        <div class="book-card-icon">🏡</div>
+        <h3>Rover</h3>
+        <p>Trusted platform for pet sitting — identity-verified sitters, easy scheduling.</p>
+        <span>Book on Rover →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🐾 Britta Ziegler — Katzensitterin Hamburg-Hoheluft</p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://www.instagram.com/katzensitter_at_home/" target="_blank">Instagram</a> ·
+    <a href="https://catinaflat.de/members/britta-z-hanseartig-in-hoheluft/" target="_blank">Cat in a Flat</a> ·
+    <a href="https://www.rover.com/promos/brittz52935" target="_blank">Rover</a>
+  </p>
+  <p style="margin-top:1rem; font-size:0.8rem;">Made with 😽 for the cats of Hamburg</p>
+</footer>
+
+</body>
+</html>
