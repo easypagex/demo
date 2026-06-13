@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holly | Full-Time Pet Person 🐾</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sunshine:#FFD23F;
+    --coral:#FF6B6B;
+    --bubblegum:#FF8FB1;
+    --sky:#4ECDC4;
+    --grass:#8AC926;
+    --grape:#9D4EDD;
+    --cream:#FFF8EE;
+    --ink:#3A2E2C;
+    --paw:#5C4033;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* ===== Background paw print trail ===== */
+  .paw-trail{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .paw{
+    position:absolute;
+    font-size:2.5rem;
+    opacity:0.10;
+    animation:wander linear infinite;
+    color:var(--paw);
+  }
+  @keyframes wander{
+    0%{ transform: translateY(110vh) rotate(0deg); }
+    100%{ transform: translateY(-15vh) rotate(360deg); }
+  }
+
+  /* ===== Confetti dots ===== */
+  .dot{
+    position:absolute;
+    border-radius:50%;
+    opacity:0.5;
+    animation:float 12s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(20px,-30px) scale(1.15); }
+  }
+
+  /* ===== Container ===== */
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:560px;
+    margin:0 auto;
+    padding:40px 20px 80px;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    text-align:center;
+    padding:30px 0 20px;
+    position:relative;
+  }
+
+  .blob{
+    width:150px;
+    height:150px;
+    margin:0 auto 20px;
+    border-radius:42% 58% 65% 35% / 45% 45% 55% 55%;
+    background:linear-gradient(135deg, var(--coral), var(--bubblegum) 50%, var(--sunshine));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:4.5rem;
+    box-shadow: 0 12px 30px -10px rgba(255,107,107,0.55);
+    animation: jiggle 6s ease-in-out infinite;
+  }
+
+  @keyframes jiggle{
+    0%,100%{ border-radius:42% 58% 65% 35% / 45% 45% 55% 55%; transform: rotate(0deg); }
+    33%{ border-radius:58% 42% 35% 65% / 55% 55% 45% 45%; transform: rotate(3deg); }
+    66%{ border-radius:50% 50% 58% 42% / 42% 58% 50% 50%; transform: rotate(-3deg); }
+  }
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--grass);
+    color:white;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:0.78rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:14px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+  }
+
+  h1{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:2.6rem;
+    line-height:1.05;
+    background: linear-gradient(90deg, var(--coral), var(--grape), var(--sky));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:8px;
+  }
+
+  .handle{
+    font-weight:700;
+    color:var(--grape);
+    font-size:1.1rem;
+    margin-bottom:14px;
+  }
+
+  .tagline{
+    font-size:1.05rem;
+    line-height:1.6;
+    color:var(--ink);
+    max-width:420px;
+    margin:0 auto 6px;
+  }
+
+  .tagline .tag-em{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    color:var(--coral);
+  }
+
+  /* ===== IG button (hero) ===== */
+  .ig-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:18px;
+    padding:12px 28px;
+    border-radius:999px;
+    background:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+    color:white;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    text-decoration:none;
+    box-shadow: 0 10px 25px -10px rgba(214,41,118,0.6);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .ig-btn:hover{
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 28px -10px rgba(214,41,118,0.75);
+  }
+  .ig-btn svg{ width:22px; height:22px; flex-shrink:0; }
+
+  /* ===== Section heading ===== */
+  .section-title{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:1.4rem;
+    text-align:center;
+    margin: 50px 0 22px;
+    color:var(--ink);
+    position:relative;
+  }
+  .section-title span{
+    background:var(--cream);
+    padding:0 14px;
+    position:relative;
+    z-index:1;
+  }
+  .section-title::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:50%;
+    height:3px;
+    background: repeating-linear-gradient(90deg, var(--sunshine) 0 10px, transparent 10px 20px);
+    border-radius:3px;
+  }
+
+  /* ===== Links ===== */
+  .links{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .link-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:18px 22px;
+    border-radius:20px;
+    text-decoration:none;
+    color:white;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:1.1rem;
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 8px 0 rgba(0,0,0,0.08);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .link-card:hover{
+    transform: translate(-2px,-4px) rotate(-0.5deg);
+    box-shadow: 0 12px 0 rgba(0,0,0,0.08);
+  }
+  .link-card:active{
+    transform: translate(0,0);
+    box-shadow: 0 3px 0 rgba(0,0,0,0.08);
+  }
+
+  .link-icon{
+    flex-shrink:0;
+    width:46px; height:46px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.5rem;
+  }
+  .link-icon svg{ width:24px; height:24px; }
+
+  .link-text small{
+    display:block;
+    font-family:'Quicksand', sans-serif;
+    font-weight:500;
+    font-size:0.8rem;
+    opacity:0.85;
+    margin-top:2px;
+    text-transform:none;
+    letter-spacing:0.3px;
+  }
+
+  .link-arrow{
+    margin-left:auto;
+    font-size:1.3rem;
+    opacity:0.7;
+    transition: transform .2s ease;
+  }
+  .link-card:hover .link-arrow{ transform: translateX(5px); }
+
+  .c-linktree{ background:linear-gradient(135deg, var(--grass), #5bb324); }
+  .c-youtube{ background:linear-gradient(135deg, #FF6B6B, #ff3d3d); }
+  .c-coffee{ background:linear-gradient(135deg, var(--sunshine), #ffb238); color:var(--ink); }
+  .c-coffee .link-icon{ background:rgba(58,46,44,0.12); }
+  .c-tiktok{ background:linear-gradient(135deg, #2d2d2d, #00f2ea 130%); }
+  .c-email{ background:linear-gradient(135deg, var(--sky), #38a89d); }
+
+  /* ===== Critter strip ===== */
+  .critters{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    font-size:2.2rem;
+    margin:40px 0 10px;
+    flex-wrap:wrap;
+  }
+  .critters span{
+    display:inline-block;
+    animation: bob 3s ease-in-out infinite;
+  }
+  .critters span:nth-child(2){ animation-delay:0.3s; }
+  .critters span:nth-child(3){ animation-delay:0.6s; }
+  .critters span:nth-child(4){ animation-delay:0.9s; }
+  .critters span:nth-child(5){ animation-delay:1.2s; }
+  .critters span:nth-child(6){ animation-delay:1.5s; }
+  @keyframes bob{
+    0%,100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-10px) rotate(8deg); }
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    text-align:center;
+    margin-top:50px;
+    padding-top:30px;
+    border-top: 3px dashed rgba(157,78,221,0.25);
+    font-size:0.9rem;
+    color:#8a7c79;
+  }
+  footer a{
+    color:var(--grape);
+    font-weight:700;
+    text-decoration:none;
+  }
+  footer .heart{
+    color:var(--coral);
+    display:inline-block;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.25); }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:420px){
+    h1{ font-size:2.1rem; }
+    .blob{ width:120px; height:120px; font-size:3.6rem; }
+    .link-card{ padding:15px 16px; font-size:1rem; }
+  }
+
+  /* ===== Reduced motion ===== */
+  @media (prefers-reduced-motion: reduce){
+    *, .paw, .blob, .dot, .critters span, footer .heart{
+      animation: none !important;
+    }
+    .link-card:hover{ transform:none; }
+  }
+
+  /* Focus visibility */
+  a:focus-visible{
+    outline: 3px solid var(--grape);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Decorative background paw trail -->
+<div class="paw-trail" aria-hidden="true" id="pawTrail"></div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="blob">🐶</div>
+    <div class="badge">🐾 Full-Time Pet Person</div>
+    <h1>Hi, I'm Holly!</h1>
+    <p class="handle">@holly_astbury</p>
+    <p class="tagline">
+      Daily life with animals of <span class="tag-em">all</span> kinds —
+      from waggy walks to chaotic feeding times.
+      <br>
+      If pets are your people, you're going to feel right at home here. 🐾
+    </p>
+
+    <a class="ig-btn" href="https://www.instagram.com/holly_astbury/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.63.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.67 4.77-4.92 4.92-1.25.06-1.63.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.25-.07-1.63-.07-4.81s.01-3.56.07-4.81C2.36 3.96 3.88 2.42 7.15 2.27 8.4 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-2.43.11-3.49 1.19-3.6 3.6-.06 1.24-.07 1.6-.07 4.74s.01 3.5.07 4.74c.11 2.41 1.16 3.49 3.6 3.6 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c2.44-.11 3.49-1.19 3.6-3.6.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.11-2.41-1.17-3.49-3.6-3.6-1.24-.06-1.6-.07-4.74-.07zm0 3.07a5.13 5.13 0 1 1 0 10.26 5.13 5.13 0 0 1 0-10.26zm0 8.46a3.33 3.33 0 1 0 0-6.66 3.33 3.33 0 0 0 0 6.66zm6.54-8.66a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+      Follow on Instagram
+    </a>
+  </header>
+
+  <!-- LINKS -->
+  <section aria-label="Where to find Holly">
+    <h2 class="section-title"><span>Find Me Everywhere 🐕</span></h2>
+
+    <div class="links">
+
+      <a class="link-card c-linktree" href="https://l.instagram.com/?u=https%3A%2F%2Flinktr.ee%2FHolsPets%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGn3Ivaxfs1AkBXfFTRvT1OMG8QhrEBqpFBr5NfDoOiSC9a1PoegSmgUEd2-8M_aem_Pi6M2wSq1tvA4TFTDCQ_TA&e=AUDNz0ImecljH2x9iE2tYcUMFZlWdw3jgxuXQ2jCyaWu6KgzGz-AjiAONvpH3uyFStp7QIUZKUbyiln6svwOFopA3hlWQ2cS3mmr8LvgEJfofPeHWkKHgWvnvD5sIl4aQz43XCw" target="_blank" rel="noopener">
+        <div class="link-icon">🌳</div>
+        <div class="link-text">
+          All My Links
+          <small>linktr.ee/HolsPets</small>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a class="link-card c-youtube" href="https://www.youtube.com/@hollyastbury" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        </div>
+        <div class="link-text">
+          Watch on YouTube
+          <small>@hollyastbury — videos &amp; vlogs</small>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a class="link-card c-tiktok" href="https://www.tiktok.com/@holly_astbury" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M16.6 5.82a4.28 4.28 0 0 1-.31-.45 5.7 5.7 0 0 1-.86-2.27h-3v12.9a2.9 2.9 0 1 1-2.05-2.77V10.2a6.04 6.04 0 1 0 5.05 5.95V9.43a8.16 8.16 0 0 0 4.76 1.52V7.86a4.85 4.85 0 0 1-3.59-2.04z"/></svg>
+        </div>
+        <div class="link-text">
+          Watch on TikTok
+          <small>@holly_astbury — daily pet clips</small>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a class="link-card c-coffee" href="https://buymeacoffee.com/holspets" target="_blank" rel="noopener">
+        <div class="link-icon">☕</div>
+        <div class="link-text">
+          Buy Me a Coffee
+          <small>Support the pack — every bit helps!</small>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a class="link-card c-email" href="mailto:hollypetpetson@gmail.com">
+        <div class="link-icon">✉️</div>
+        <div class="link-text">
+          Say Hello
+          <small>hollypetpetson@gmail.com</small>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Critters strip -->
+  <div class="critters" aria-hidden="true">
+    <span>🐶</span><span>🐱</span><span>🐹</span><span>🐰</span><span>🐢</span><span>🦜</span>
+  </div>
+
+  <footer>
+    <p>Made with <span class="heart">❤️</span> for fellow pet people.</p>
+    <p style="margin-top:6px;">
+      Come say hi on <a href="https://www.instagram.com/holly_astbury/" target="_blank" rel="noopener">Instagram</a>
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  // Generate floating paw prints + confetti dots in the background
+  (function(){
+    const trail = document.getElementById('pawTrail');
+    const colors = ['#FF6B6B','#FFD23F','#4ECDC4','#9D4EDD','#8AC926','#FF8FB1'];
+    const total = 14;
+
+    for(let i=0;i<total;i++){
+      const paw = document.createElement('div');
+      paw.className = 'paw';
+      paw.textContent = '🐾';
+      paw.style.left = Math.random()*100 + 'vw';
+      paw.style.fontSize = (1.5 + Math.random()*2.5) + 'rem';
+      paw.style.animationDuration = (18 + Math.random()*20) + 's';
+      paw.style.animationDelay = (Math.random()*-30) + 's';
+      trail.appendChild(paw);
+    }
+
+    for(let i=0;i<18;i++){
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      const size = 6 + Math.random()*14;
+      dot.style.width = size+'px';
+      dot.style.height = size+'px';
+      dot.style.left = Math.random()*100 + 'vw';
+      dot.style.top = Math.random()*100 + 'vh';
+      dot.style.background = colors[Math.floor(Math.random()*colors.length)];
+      dot.style.animationDuration = (8 + Math.random()*10) + 's';
+      dot.style.animationDelay = (Math.random()*-10) + 's';
+      trail.appendChild(dot);
+    }
+  })();
+</script>
+
+</body>
+</html>
