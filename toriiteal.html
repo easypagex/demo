@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tori's Boutique Cat Boarding · Vancouver</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal:    #1ABFBF;
+    --coral:   #FF6B6B;
+    --lemon:   #FFE66D;
+    --lilac:   #C77DFF;
+    --mint:    #A8EDCE;
+    --peach:   #FFBFA3;
+    --navy:    #0D1B2A;
+    --cream:   #FFFDF7;
+    --mid:     #F4F0FF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0D1B2A 0%, #1a2f47 40%, #0f3460 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(26,191,191,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(199,125,255,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 50% 90%, rgba(255,107,107,0.12) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  /* floating paw prints */
+  .paw {
+    position: absolute;
+    font-size: 1.4rem;
+    opacity: 0.12;
+    animation: floatPaw 8s ease-in-out infinite;
+  }
+  .paw:nth-child(1)  { top:  8%; left: 10%; animation-delay: 0s;   font-size: 2rem; }
+  .paw:nth-child(2)  { top: 20%; left: 85%; animation-delay: 1.5s; }
+  .paw:nth-child(3)  { top: 65%; left:  5%; animation-delay: 3s;   font-size: 1rem; }
+  .paw:nth-child(4)  { top: 75%; left: 90%; animation-delay: 0.8s; font-size: 1.8rem; }
+  .paw:nth-child(5)  { top: 40%; left: 92%; animation-delay: 2.2s; font-size: 1.1rem; }
+  .paw:nth-child(6)  { top: 55%; left:  2%; animation-delay: 4s;   font-size: 2.2rem; }
+
+  @keyframes floatPaw {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50%       { transform: translateY(-18px) rotate(10deg); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.6rem;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-cat {
+    font-size: clamp(5rem, 16vw, 10rem);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+    filter: drop-shadow(0 0 30px rgba(26,191,191,0.4));
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.6rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: #fff;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--teal), var(--mint));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255,255,255,0.72);
+    margin-top: 1rem;
+    max-width: 480px;
+    line-height: 1.6;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .stars-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .stars-row .stars { color: var(--lemon); font-size: 1.3rem; letter-spacing: 0.05em; }
+  .stars-row .count { color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500; }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    justify-content: center;
+    margin-top: 2.2rem;
+    animation: fadeUp 0.7s 0.5s ease both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.25); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal), #0fa0a0);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(26,191,191,0.4);
+  }
+  .btn-outline {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    backdrop-filter: blur(8px);
+  }
+  .btn-coral {
+    background: linear-gradient(135deg, var(--coral), #e04f4f);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+  }
+  .btn-lilac {
+    background: linear-gradient(135deg, var(--lilac), #a855f7);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(199,125,255,0.4);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    animation: fadeUp 1s 1s ease both;
+  }
+  .scroll-hint span { animation: bounce 1.8s ease infinite; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+  /* ── COLORFUL BANNER ── */
+  .color-band {
+    display: flex;
+    overflow: hidden;
+  }
+  .color-band div {
+    flex: 1;
+    height: 7px;
+  }
+  .cb1 { background: var(--teal); }
+  .cb2 { background: var(--coral); }
+  .cb3 { background: var(--lemon); }
+  .cb4 { background: var(--lilac); }
+  .cb5 { background: var(--mint); }
+  .cb6 { background: var(--peach); }
+
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 1.5rem; }
+  .container { max-width: 1060px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--mid);
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  .about-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .about-card {
+    border-radius: 20px;
+    padding: 1.8rem 1.4rem;
+    text-align: center;
+  }
+  .about-card .icon { font-size: 2.4rem; margin-bottom: 0.6rem; }
+  .about-card .label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--navy);
+    opacity: 0.7;
+  }
+  .about-card .value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-top: 0.25rem;
+  }
+
+  .ac1 { background: linear-gradient(135deg, #d1f9f9, #a8edce); }
+  .ac2 { background: linear-gradient(135deg, #ffe5e5, #ffd6c0); }
+  .ac3 { background: linear-gradient(135deg, #f3e0ff, #e8d5ff); grid-column: span 2; display: flex; gap: 1rem; align-items: center; text-align: left; }
+  .ac3 .icon { flex-shrink: 0; }
+
+  .about-text .section-label { color: var(--teal); }
+  .about-text p {
+    margin-top: 1.2rem;
+    color: rgba(13,27,42,0.72);
+    line-height: 1.75;
+    font-size: 1.02rem;
+  }
+  .about-text p strong { color: var(--navy); font-weight: 600; }
+
+  /* ── WHY TORI ── */
+  .why { background: var(--cream); }
+  .why-header { text-align: center; margin-bottom: 3rem; }
+  .why-header .section-label { color: var(--coral); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.4rem;
+  }
+
+  .why-card {
+    border-radius: 22px;
+    padding: 2rem 1.6rem;
+    transition: transform 0.2s;
+  }
+  .why-card:hover { transform: translateY(-5px); }
+  .why-card .icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+  .why-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .why-card p { font-size: 0.92rem; color: rgba(13,27,42,0.68); line-height: 1.65; }
+
+  .wc1 { background: linear-gradient(145deg, #e0fbfb, #c5f5e8); }
+  .wc2 { background: linear-gradient(145deg, #fff0f0, #ffe4d4); }
+  .wc3 { background: linear-gradient(145deg, #f8f0ff, #eedcff); }
+  .wc4 { background: linear-gradient(145deg, #fffbe0, #fff3b0); }
+  .wc5 { background: linear-gradient(145deg, #e0f2ff, #c8e8ff); }
+  .wc6 { background: linear-gradient(145deg, #ffe8f0, #ffd6e8); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2f47 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonials::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(26,191,191,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .testimonials-header { text-align: center; margin-bottom: 3rem; }
+  .testimonials-header .section-label { color: var(--lemon); }
+  .testimonials-header .section-title { color: #fff; }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.4rem;
+  }
+  .review-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 1.8rem;
+    backdrop-filter: blur(12px);
+    transition: transform 0.2s, background 0.2s;
+  }
+  .review-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.11);
+  }
+  .review-stars { color: var(--lemon); font-size: 1rem; margin-bottom: 0.8rem; }
+  .review-text {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 1rem;
+  }
+  .review-author {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--mint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .rover-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.8rem;
+    padding: 1.2rem 2rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .rover-badge .big-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--lemon);
+    line-height: 1;
+  }
+  .rover-badge .badge-text { color: rgba(255,255,255,0.8); font-size: 0.92rem; line-height: 1.5; }
+  .rover-badge .badge-text strong { color: #fff; display: block; font-size: 1rem; }
+
+  /* ── BOOKING ── */
+  .booking {
+    background: var(--cream);
+  }
+  .booking-header { text-align: center; margin-bottom: 3rem; }
+  .booking-header .section-label { color: var(--lilac); }
+
+  .booking-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .booking-card {
+    border-radius: 22px;
+    padding: 2.2rem 1.8rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    transition: transform 0.2s;
+  }
+  .booking-card:hover { transform: translateY(-5px); }
+  .booking-card .icon { font-size: 2.8rem; }
+  .booking-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+  .booking-card p { font-size: 0.9rem; color: rgba(13,27,42,0.65); line-height: 1.6; }
+
+  .bc1 { background: linear-gradient(145deg, #d1f9f9, #a8edce); }
+  .bc2 { background: linear-gradient(145deg, #fff0f0, #ffd6c0); }
+  .bc3 { background: linear-gradient(145deg, #f5e8ff, #e8d0ff); }
+
+  /* ── CONNECT ── */
+  .connect {
+    background: linear-gradient(135deg, #f4f0ff, #ffe8f4);
+    text-align: center;
+  }
+  .connect .section-label { color: var(--lilac); }
+  .connect .section-title { margin-bottom: 0.8rem; }
+  .connect p { color: rgba(13,27,42,0.65); font-size: 1rem; margin-bottom: 2rem; max-width: 460px; margin-left: auto; margin-right: auto; }
+  .connect-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .about-inner { grid-template-columns: 1fr; }
+    .about-visual { order: -1; }
+    .ac3 { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+  <span class="paw">🐾</span>
+
+  <div class="hero-badge">✨ Boutique Cat Boarding · Vancouver, BC</div>
+  <div class="hero-cat">🐱</div>
+  <h1>Your cat deserves<br><span>the coziest stay</span></h1>
+  <p class="hero-sub">Calm, cozy, small-group care from Tori — where your feline friend feels right at home.</p>
+
+  <div class="stars-row">
+    <span class="stars">★★★★★</span>
+    <span class="count">58 five-star reviews on Rover</span>
+  </div>
+
+  <div class="hero-ctas">
+    <a href="https://calendly.com/toriteal/drop-off-appointment" target="_blank" class="btn btn-primary">📅 Book a Drop-Off</a>
+    <a href="https://www.rover.com/promos/toric00704" target="_blank" class="btn btn-coral">🐾 View on Rover</a>
+    <a href="https://en.pawshake.ca/sitter/EU_v8CfZ9ZfZXH" target="_blank" class="btn btn-lilac">🐾 View on Pawshake</a>
+    <a href="https://www.instagram.com/toriiteal/" target="_blank" class="btn btn-outline">📸 Instagram</a>
+  </div>
+
+  <div class="scroll-hint">scroll<span>▼</span></div>
+</section>
+
+<div class="color-band">
+  <div class="cb1"></div><div class="cb2"></div><div class="cb3"></div>
+  <div class="cb4"></div><div class="cb5"></div><div class="cb6"></div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text reveal">
+        <div class="section-label">About Tori</div>
+        <h2 class="section-title">Small group. Big love. Happy cats.</h2>
+        <p>Hi, I'm <strong>Tori</strong> — a dedicated cat boarding host based in Vancouver. My home is a <strong>calm, cozy retreat</strong> designed with cats in mind: quiet corners, enrichment, and gentle routines that keep even anxious kitties comfortable.</p>
+        <p>I keep groups intentionally <strong>small</strong> so every guest gets real attention — not just a bowl of food and a quick glance. Your cat is family. I treat them that way.</p>
+        <div style="margin-top: 2rem;">
+          <a href="https://calendly.com/toriteal/drop-off-appointment" target="_blank" class="btn btn-primary">📅 Schedule Drop-Off</a>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-card ac1">
+          <div class="icon">⭐</div>
+          <div class="label">Rover Rating</div>
+          <div class="value">5.0 / 5</div>
+        </div>
+        <div class="about-card ac2">
+          <div class="icon">📝</div>
+          <div class="label">Reviews</div>
+          <div class="value">58 ★★★★★</div>
+        </div>
+        <div class="about-card ac3">
+          <div class="icon">🏡</div>
+          <div>
+            <div class="label">Setting</div>
+            <div class="value" style="font-size:1.2rem;">Boutique home boarding — never a kennel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY TORI ── -->
+<section class="why">
+  <div class="container">
+    <div class="why-header reveal">
+      <div class="section-label">Why Choose Tori</div>
+      <h2 class="section-title">Everything your cat needs. Nothing they don't.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card wc1 reveal">
+        <span class="icon">🏠</span>
+        <h3>Boutique Home Setting</h3>
+        <p>A real home environment — not a facility. Soft beds, window perches, and plenty of hiding spots for shy cats.</p>
+      </div>
+      <div class="why-card wc2 reveal">
+        <span class="icon">👥</span>
+        <h3>Small Group Only</h3>
+        <p>Intentionally limited guests so each cat gets individual attention, play, and one-on-one cuddles.</p>
+      </div>
+      <div class="why-card wc3 reveal">
+        <span class="icon">🧘</span>
+        <h3>Calm & Stress-Free</h3>
+        <p>A quiet, low-stress atmosphere tailored to cats — no barking dogs, no hectic noise, just peace.</p>
+      </div>
+      <div class="why-card wc4 reveal">
+        <span class="icon">📸</span>
+        <h3>Regular Updates</h3>
+        <p>You'll never wonder how your cat is doing. Expect sweet photos and updates throughout the stay.</p>
+      </div>
+      <div class="why-card wc5 reveal">
+        <span class="icon">💬</span>
+        <h3>Trusted on Rover & Pawshake</h3>
+        <p>58 five-star Rover reviews from happy cat parents who keep coming back again and again.</p>
+      </div>
+      <div class="why-card wc6 reveal">
+        <span class="icon">❤️</span>
+        <h3>Genuine Cat Love</h3>
+        <p>This isn't just a side gig — it's a calling. Your cat will feel the difference from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <div class="section-label">What Cat Parents Say</div>
+      <h2 class="section-title">Straight from the reviews</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Tori was absolutely wonderful with our cat. We got regular updates and photos, and our kitty came home happy and relaxed. We'll definitely be booking again!"</p>
+        <div class="review-author">— Happy cat parent, Rover</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I was nervous leaving my cat for the first time but Tori made it so easy. The small group setting really makes a difference — my anxious boy was totally at ease."</p>
+        <div class="review-author">— Vancouver cat owner, Rover</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Cozy, calm, and caring — everything you want for your cat. Tori clearly loves what she does and it shows. Highly recommend to any cat parent in Vancouver!"</p>
+        <div class="review-author">— Repeat client, Rover</div>
+      </div>
+    </div>
+    <div class="rover-badge reveal">
+      <div class="big-num">58</div>
+      <div class="badge-text">
+        <strong>Five-Star Reviews on Rover</strong>
+        Read them all and book directly on Rover
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOKING ── -->
+<section class="booking">
+  <div class="container">
+    <div class="booking-header reveal">
+      <div class="section-label">Ready to Book?</div>
+      <h2 class="section-title">Three easy ways to get started</h2>
+    </div>
+    <div class="booking-options">
+      <div class="booking-card bc1 reveal">
+        <div class="icon">📅</div>
+        <h3>Schedule Drop-Off</h3>
+        <p>Pick a drop-off time that works for you through Calendly — quick and easy.</p>
+        <a href="https://calendly.com/toriteal/drop-off-appointment" target="_blank" class="btn btn-primary" style="margin-top:0.8rem;">Book on Calendly</a>
+      </div>
+      <div class="booking-card bc2 reveal">
+        <div class="icon">🐾</div>
+        <h3>Book on Rover</h3>
+        <p>View Tori's full profile, read all 58 reviews, and book securely through Rover.</p>
+        <a href="https://www.rover.com/promos/toric00704" target="_blank" class="btn btn-coral" style="margin-top:0.8rem;">Open Rover Profile</a>
+      </div>
+      <div class="booking-card bc3 reveal">
+        <div class="icon">🌿</div>
+        <h3>Book on Pawshake</h3>
+        <p>Also available on Pawshake — another trusted platform for pet care bookings.</p>
+        <a href="https://en.pawshake.ca/sitter/EU_v8CfZ9ZfZXH" target="_blank" class="btn btn-lilac" style="margin-top:0.8rem;">Open Pawshake Profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONNECT ── -->
+<section class="connect">
+  <div class="container">
+    <div class="section-label reveal">Stay Connected</div>
+    <h2 class="section-title reveal">Follow along on Instagram</h2>
+    <p class="reveal">See the cutest cat guests, cozy moments, and Vancouver vibes — follow <strong>@toriiteal</strong> for daily adorableness. 🐾</p>
+    <div class="connect-ctas reveal">
+      <a href="https://www.instagram.com/toriiteal/" target="_blank" class="btn btn-lilac">📸 @toriiteal on Instagram</a>
+      <a href="https://calendly.com/toriteal/drop-off-appointment" target="_blank" class="btn btn-primary">📅 Book a Spot Today</a>
+    </div>
+  </div>
+</section>
+
+<div class="color-band">
+  <div class="cb5"></div><div class="cb4"></div><div class="cb3"></div>
+  <div class="cb2"></div><div class="cb1"></div><div class="cb6"></div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>🐱 Tori's Boutique Cat Boarding · Vancouver, BC</p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://www.instagram.com/toriiteal/" target="_blank">Instagram</a> &nbsp;·&nbsp;
+    <a href="https://www.rover.com/promos/toric00704" target="_blank">Rover</a> &nbsp;·&nbsp;
+    <a href="https://en.pawshake.ca/sitter/EU_v8CfZ9ZfZXH" target="_blank">Pawshake</a> &nbsp;·&nbsp;
+    <a href="https://calendly.com/toriteal/drop-off-appointment" target="_blank">Book a Drop-Off</a>
+  </p>
+  <p style="margin-top:0.8rem; font-size:0.78rem; opacity:0.5;">Made with 💜 for happy cats everywhere</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
