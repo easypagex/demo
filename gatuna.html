@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gatuna Matata 🐱 Niñeras de Animales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lila:    #b97fd4;
+      --lila-d:  #8a4fb5;
+      --rosa:    #f472b6;
+      --amarillo:#fde047;
+      --verde:   #4ade80;
+      --celeste: #38bdf8;
+      --naranja: #fb923c;
+      --blanco:  #fff;
+      --texto:   #2d1b4e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #fdf4ff;
+      color: var(--texto);
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #c084fc 0%, #f472b6 35%, #fb923c 65%, #fde047 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .paw-float {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.15;
+      animation: flotar 6s ease-in-out infinite;
+    }
+    .paw-float:nth-child(1) { top: 8%; left: 5%; animation-delay: 0s; }
+    .paw-float:nth-child(2) { top: 15%; right: 8%; animation-delay: 1s; font-size: 2rem; }
+    .paw-float:nth-child(3) { bottom: 20%; left: 10%; animation-delay: 2s; font-size: 2.5rem; }
+    .paw-float:nth-child(4) { bottom: 30%; right: 5%; animation-delay: 1.5s; }
+    .paw-float:nth-child(5) { top: 50%; left: 2%; animation-delay: 3s; font-size: 1.8rem; }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50%       { transform: translateY(-18px) rotate(5deg); }
+    }
+
+    .logo-emoji {
+      font-size: 5rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+      animation: latido 2s ease-in-out infinite;
+    }
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.08); }
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      color: var(--blanco);
+      text-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .hero .tagline {
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      font-weight: 700;
+      color: var(--blanco);
+      margin: 1rem 0 0.5rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    }
+
+    .hero .ubicacion {
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.2);
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .emojis-row {
+      font-size: 2rem;
+      letter-spacing: 0.3rem;
+      margin-bottom: 2.5rem;
+      animation: flotar 4s ease-in-out infinite;
+    }
+
+    .btn-reserva {
+      display: inline-block;
+      background: var(--blanco);
+      color: var(--lila-d);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.4rem;
+      padding: 1rem 2.5rem;
+      border-radius: 99px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin: 0.4rem;
+    }
+    .btn-reserva:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+
+    .btn-ig {
+      display: inline-block;
+      background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+      color: var(--blanco);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.4rem;
+      padding: 1rem 2.5rem;
+      border-radius: 99px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin: 0.4rem;
+    }
+    .btn-ig:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    /* ─── WAVE ─── */
+    .wave { display: block; width: 100%; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 4rem 1.5rem; }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── SERVICIOS ─── */
+    .servicios { background: #fff; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+
+    .card .icon { font-size: 3rem; margin-bottom: 0.8rem; }
+    .card h3 { font-family: 'Fredoka One', cursive; font-size: 1.3rem; margin-bottom: 0.4rem; }
+    .card p  { font-size: 0.95rem; font-weight: 600; color: #5b4170; }
+
+    .card-1 { background: linear-gradient(135deg, #fde68a, #fbbf24); }
+    .card-2 { background: linear-gradient(135deg, #a5f3fc, #38bdf8); }
+    .card-3 { background: linear-gradient(135deg, #d9f99d, #4ade80); }
+    .card-4 { background: linear-gradient(135deg, #fbcfe8, #f472b6); }
+    .card-5 { background: linear-gradient(135deg, #ddd6fe, #a78bfa); }
+
+    /* ─── QUIÉNES ─── */
+    .quienes {
+      background: linear-gradient(160deg, #fdf4ff 0%, #e0e7ff 100%);
+    }
+
+    .quienes-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quienes-inner p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.8;
+      color: #4b3272;
+      margin-bottom: 1rem;
+    }
+
+    .nombres {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .nombre-chip {
+      background: linear-gradient(135deg, var(--lila), var(--rosa));
+      color: #fff;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      padding: 0.5rem 1.4rem;
+      border-radius: 99px;
+      box-shadow: 0 3px 12px rgba(185,127,212,0.4);
+    }
+
+    /* ─── POR QUÉ NOSOTRAS ─── */
+    .porque { background: #fff; }
+
+    .razones {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .razon {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: #fdf4ff;
+      border-radius: 18px;
+      padding: 1.2rem 1.5rem;
+      border-left: 5px solid var(--lila);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--texto);
+      box-shadow: 0 2px 10px rgba(185,127,212,0.12);
+    }
+    .razon .ri { font-size: 1.8rem; flex-shrink: 0; }
+
+    /* ─── CTA ─── */
+    .cta {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899, #f97316);
+      text-align: center;
+      padding: 5rem 1.5rem;
+      color: #fff;
+    }
+    .cta h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    }
+    .cta p {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+    }
+
+    .btn-cta-blanco {
+      display: inline-block;
+      background: #fff;
+      color: #7c3aed;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      padding: 1rem 3rem;
+      border-radius: 99px;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin: 0.5rem;
+    }
+    .btn-cta-blanco:hover {
+      transform: translateY(-5px) scale(1.04);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--texto);
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    footer a { color: var(--lila); text-decoration: none; }
+    footer .footer-emojis { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+    @media (max-width: 480px) {
+      .btn-reserva, .btn-ig { display: block; max-width: 280px; margin: 0.4rem auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="paw-float">🐾</span>
+  <span class="paw-float">🐱</span>
+  <span class="paw-float">🐾</span>
+  <span class="paw-float">🐱</span>
+  <span class="paw-float">💜</span>
+
+  <div class="logo-emoji">🐱</div>
+  <h1>Gatuna Matata</h1>
+  <p class="tagline">Niñeras de Animales con mucho amor 💜</p>
+  <p class="ubicacion">📍 Rosario, Santa Fe</p>
+  <div class="emojis-row">🐕 🐇 🐥 🐢 🐱</div>
+
+  <div>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX3l411ejY5YXvK6gJ30FXpeAbQakgVsdyzpe3jffnXR7cfQ/viewform" target="_blank" class="btn-reserva">
+      ✨ ¡Reservá ahora!
+    </a>
+    <a href="https://www.instagram.com/gatuna.matata" target="_blank" class="btn-ig">
+      📸 Instagram
+    </a>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+</svg>
+
+<!-- SERVICIOS -->
+<section class="servicios">
+  <h2 class="section-title" style="color: var(--lila-d);">¿Qué hacemos? 🐾</h2>
+  <div class="cards-grid">
+    <div class="card card-1">
+      <div class="icon">🐱</div>
+      <h3>Cuidado de Gatos</h3>
+      <p>¡Nuestra especialidad! Tu gatito en manos expertas y amorosas.</p>
+    </div>
+    <div class="card card-2">
+      <div class="icon">🏠</div>
+      <h3>En Tu Hogar</h3>
+      <p>Cuidamos a tus mascotas en la comodidad de su propio espacio.</p>
+    </div>
+    <div class="card card-3">
+      <div class="icon">🐕</div>
+      <h3>Perros y Más</h3>
+      <p>También cuidamos perros, conejos, pollitos y tortugas.</p>
+    </div>
+    <div class="card card-4">
+      <div class="icon">💊</div>
+      <h3>Atención Personalizada</h3>
+      <p>Seguimiento, fotos y actualizaciones para que estés tranquila/o.</p>
+    </div>
+    <div class="card card-5">
+      <div class="icon">🐇</div>
+      <h3>Mascotas Especiales</h3>
+      <p>Experiencia con animales de todo tipo: ¡cada uno merece amor!</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE 2 -->
+<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:#fff;">
+  <path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="#fdf4ff"/>
+</svg>
+
+<!-- QUIÉNES SOMOS -->
+<section class="quienes">
+  <div class="quienes-inner">
+    <h2 class="section-title" style="color: var(--lila-d);">¿Quiénes somos? 💜</h2>
+    <p>
+      Somos <strong>Chiari</strong> y <strong>Breny</strong>, dos amantes de los animales
+      con vocación y experiencia en el cuidado de mascotas. Creamos <strong>Gatuna Matata</strong>
+      para que vos puedas ausentarte tranquila/o sabiendo que tu peludo favorito está
+      recibiendo todo el amor que merece. 🐾
+    </p>
+    <p>
+      Nos especializamos en gatos, pero abrimos nuestro corazón (y nuestras puertas)
+      a perros, conejos, pollitos, tortugas y mucho más. ¡Cada mascota es única y la tratamos como tal!
+    </p>
+    <div class="nombres">
+      <span class="nombre-chip">@chiaripidone 🌸</span>
+      <span class="nombre-chip">@breny.d 💜</span>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE 3 -->
+<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:#fdf4ff;">
+  <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+</svg>
+
+<!-- POR QUÉ NOSOTRAS -->
+<section class="porque">
+  <h2 class="section-title" style="color: var(--rosa);">¿Por qué elegirnos? 🌟</h2>
+  <div class="razones">
+    <div class="razon"><span class="ri">🐱</span><span>Especializadas en gatos y con mucha experiencia en todas las razas.</span></div>
+    <div class="razon"><span class="ri">🏡</span><span>El cuidado se da en el hogar de tu mascota, sin estrés ni cambios de ambiente.</span></div>
+    <div class="razon"><span class="ri">📸</span><span>Te mandamos fotos y actualizaciones para que estés siempre al tanto.</span></div>
+    <div class="razon"><span class="ri">💜</span><span>Tratamos a cada animal con amor genuino, como si fuera nuestro.</span></div>
+    <div class="razon"><span class="ri">📍</span><span>Estamos en Rosario, Santa Fe, listas para ayudarte cuando nos necesitás.</span></div>
+    <div class="razon"><span class="ri">🐾</span><span>Aceptamos perros, gatos, conejos, pollitos, tortugas ¡y más!</span></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>¡Tu mascota merece lo mejor! 🐾✨</h2>
+  <p>Reservá fácil y rápido o seguinos en Instagram para ver a todos nuestros peludos clientes</p>
+  <div>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdX3l411ejY5YXvK6gJ30FXpeAbQakgVsdyzpe3jffnXR7cfQ/viewform" target="_blank" class="btn-cta-blanco">
+      📋 Completar Formulario de Reserva
+    </a>
+    <a href="https://www.instagram.com/gatuna.matata" target="_blank" class="btn-cta-blanco" style="color:#ee2a7b;">
+      📸 Seguirnos en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-emojis">🐱🐾💜🐾🐱</div>
+  <p><strong>Gatuna Matata</strong> — Niñeras de Animales</p>
+  <p>📍 Rosario, Santa Fe &nbsp;|&nbsp; <a href="https://www.instagram.com/gatuna.matata" target="_blank">@gatuna.matata</a></p>
+  <p style="margin-top:0.5rem; opacity:0.6;">Por @chiaripidone y @breny.d 💜</p>
+</footer>
+
+</body>
+</html>
