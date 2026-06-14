@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gloria Lucero · Terapeuta Holística Espiritual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violet:    #7C3AED;
+      --fuchsia:   #D946EF;
+      --rose:      #FB7185;
+      --amber:     #FBBF24;
+      --teal:      #2DD4BF;
+      --indigo:    #4F46E5;
+      --cream:     #FFF8F0;
+      --dark:      #1A0033;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #3B0764 0%, #6D28D9 35%, #DB2777 70%, #F97316 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* floating orbs */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .45;
+    }
+    .hero::before {
+      width: 420px; height: 420px;
+      background: var(--teal);
+      top: -120px; right: -80px;
+    }
+    .hero::after {
+      width: 350px; height: 350px;
+      background: var(--amber);
+      bottom: -100px; left: -60px;
+    }
+
+    .hero-avatar {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      border: 5px solid rgba(255,255,255,.7);
+      background: linear-gradient(135deg, var(--fuchsia), var(--amber));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 72px;
+      margin-bottom: 28px;
+      box-shadow: 0 0 60px rgba(251,191,36,.5);
+      position: relative; z-index: 1;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(251,191,36,.4); }
+      50%       { box-shadow: 0 0 80px rgba(251,191,36,.8), 0 0 120px rgba(217,70,239,.4); }
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      position: relative; z-index: 1;
+      text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .hero-tagline {
+      font-size: clamp(.95rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,.88);
+      font-weight: 300;
+      letter-spacing: .04em;
+      margin-bottom: 36px;
+      max-width: 560px;
+      position: relative; z-index: 1;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--violet);
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(0,0,0,.25);
+      transition: transform .2s, box-shadow .2s;
+      position: relative; z-index: 1;
+    }
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    }
+    .hero-cta svg { width: 22px; height: 22px; }
+
+    /* ── SECTION WRAPPER ── */
+    section {
+      padding: 72px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--fuchsia);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--dark);
+    }
+
+    /* ── SOBRE GLORIA ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 680px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #3D1466;
+      margin-bottom: 16px;
+    }
+
+    .about-badge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .badge {
+      border-radius: 20px;
+      padding: 22px 18px;
+      text-align: center;
+      color: #fff;
+      font-weight: 600;
+      font-size: .92rem;
+      line-height: 1.4;
+      box-shadow: 0 6px 24px rgba(0,0,0,.15);
+      transition: transform .2s;
+    }
+    .badge:hover { transform: scale(1.04); }
+    .badge .icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+
+    .badge-1 { background: linear-gradient(135deg, #7C3AED, #D946EF); }
+    .badge-2 { background: linear-gradient(135deg, #DB2777, #F97316); }
+    .badge-3 { background: linear-gradient(135deg, #0891B2, #2DD4BF); }
+    .badge-4 { background: linear-gradient(135deg, #D97706, #FBBF24); color: #1A0033; }
+
+    /* ── SERVICIOS ── */
+    .servicios-bg {
+      background: linear-gradient(160deg, #F3E8FF 0%, #FDE7F3 50%, #FFF0E0 100%);
+      border-radius: 32px;
+      padding: 64px 40px;
+      margin: 0 auto;
+      max-width: 1100px;
+    }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .servicio-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 22px;
+      box-shadow: 0 4px 20px rgba(124,58,237,.1);
+      border-top: 5px solid transparent;
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .servicio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(124,58,237,.18);
+    }
+    .servicio-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--grad);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .s1 { --grad: linear-gradient(90deg, #7C3AED, #D946EF); border-top-color: #7C3AED; }
+    .s2 { --grad: linear-gradient(90deg, #DB2777, #F97316); border-top-color: #DB2777; }
+    .s3 { --grad: linear-gradient(90deg, #0891B2, #2DD4BF); border-top-color: #0891B2; }
+    .s4 { --grad: linear-gradient(90deg, #D97706, #FBBF24); border-top-color: #D97706; }
+    .s5 { --grad: linear-gradient(90deg, #059669, #34D399); border-top-color: #059669; }
+    .s6 { --grad: linear-gradient(90deg, #DC2626, #FB7185); border-top-color: #DC2626; }
+
+    .servicio-card .s-icon { font-size: 2.4rem; margin-bottom: 14px; display: block; }
+    .servicio-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .servicio-card p { font-size: .9rem; color: #5B3A8A; line-height: 1.6; }
+
+    /* ── WAVE DIVIDER ── */
+    .wave { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .wave svg { display: block; }
+
+    /* ── FRASE DESTACADA ── */
+    .quote-section {
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #C026D3 100%);
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-section::before {
+      content: '✦';
+      position: absolute; font-size: 300px;
+      opacity: .05; top: -80px; left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+    }
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      color: #fff;
+      max-width: 760px;
+      margin: 0 auto 20px;
+      line-height: 1.5;
+      position: relative; z-index: 1;
+    }
+    .quote-section cite {
+      color: var(--amber);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .08em;
+      position: relative; z-index: 1;
+    }
+
+    /* ── INSTAGRAM CTA ── */
+    .ig-section {
+      padding: 80px 24px;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .ig-section p {
+      font-size: 1.1rem;
+      color: #5B3A8A;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 16px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(131,58,180,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .ig-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 44px rgba(131,58,180,.55);
+    }
+    .ig-btn svg { width: 26px; height: 26px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: .88rem;
+    }
+    footer strong { color: var(--fuchsia); }
+
+    /* ── FLOATING DOTS DECORATION ── */
+    .dots {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden;
+    }
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .12;
+      animation: float 12s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-30px) scale(1.08); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Decorative floating dots -->
+<div class="dots" aria-hidden="true">
+  <div class="dot" style="width:80px;height:80px;background:#D946EF;top:10%;left:5%;animation-delay:0s;"></div>
+  <div class="dot" style="width:50px;height:50px;background:#FBBF24;top:30%;right:8%;animation-delay:2s;"></div>
+  <div class="dot" style="width:100px;height:100px;background:#2DD4BF;top:55%;left:2%;animation-delay:4s;"></div>
+  <div class="dot" style="width:60px;height:60px;background:#FB7185;top:75%;right:5%;animation-delay:6s;"></div>
+</div>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-avatar" aria-hidden="true">🌸</div>
+  <h1>Gloria <em>Lucero</em></h1>
+  <p class="hero-tagline">
+    Terapeuta Holística Espiritual · Coach Bioemocional Cuántico<br>
+    Profesora de Yoga · Meditación · Pilates &amp; Yoga Aéreo · Bailarina 🩰 · Modelo
+  </p>
+  <a href="https://www.instagram.com/glorial_terapeuta" target="_blank" rel="noopener" class="hero-cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+    Seguir en Instagram
+  </a>
+</header>
+
+<!-- ── SOBRE GLORIA ── -->
+<section>
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="section-label">✦ Sobre Gloria</span>
+      <h2>Un camino de sanación integral</h2>
+      <p>
+        Gloria Lucero es una terapeuta holística espiritual con una profunda vocación por acompañar a las personas en su proceso de transformación interior. Su enfoque integra el bienestar del cuerpo, la mente y el alma.
+      </p>
+      <p>
+        Con años de formación y práctica en diversas disciplinas, Gloria combina herramientas energéticas, movimiento consciente y coaching cuántico para guiar a sus consultantes hacia una vida más plena y equilibrada.
+      </p>
+    </div>
+    <div class="about-badge-grid">
+      <div class="badge badge-1"><span class="icon">🧘</span>Yoga &amp; Meditación</div>
+      <div class="badge badge-2"><span class="icon">💫</span>Coach Bioemocional</div>
+      <div class="badge badge-3"><span class="icon">🌊</span>Pilates &amp; Yoga Aéreo</div>
+      <div class="badge badge-4"><span class="icon">🩰</span>Bailarina &amp; Modelo</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICIOS ── -->
+<div style="padding: 0 24px; max-width:1148px; margin: 0 auto;">
+  <div class="servicios-bg">
+    <span class="section-label">✦ Mis Servicios</span>
+    <h2>¿En qué puedo acompañarte?</h2>
+    <div class="servicios-grid">
+      <div class="servicio-card s1">
+        <span class="s-icon">🔮</span>
+        <h3>Terapia Holística Espiritual</h3>
+        <p>Sesiones personalizadas que integran cuerpo, mente y espíritu para una sanación profunda y duradera.</p>
+      </div>
+      <div class="servicio-card s2">
+        <span class="s-icon">⚡</span>
+        <h3>Coach Bioemocional Cuántico</h3>
+        <p>Identificación y transformación de bloqueos emocionales y patrones inconscientes que limitan tu potencial.</p>
+      </div>
+      <div class="servicio-card s3">
+        <span class="s-icon">🧘</span>
+        <h3>Clases de Yoga</h3>
+        <p>Práctica de yoga para todos los niveles que une flexibilidad, fuerza y conexión interior.</p>
+      </div>
+      <div class="servicio-card s4">
+        <span class="s-icon">🌿</span>
+        <h3>Meditación Guiada</h3>
+        <p>Técnicas de meditación para calmar la mente, reducir el estrés y expandir la conciencia.</p>
+      </div>
+      <div class="servicio-card s5">
+        <span class="s-icon">🎋</span>
+        <h3>Pilates</h3>
+        <p>Trabajo corporal consciente para fortalecer el centro, mejorar la postura y reconectar con el cuerpo.</p>
+      </div>
+      <div class="servicio-card s6">
+        <span class="s-icon">🌺</span>
+        <h3>Yoga Aéreo</h3>
+        <p>Experiencia transformadora en el aire que combina yoga, danza y acrobacia en telas suspendidas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- wave -->
+<div class="wave">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#4F46E5"/>
+  </svg>
+</div>
+
+<!-- ── QUOTE ── -->
+<div class="quote-section">
+  <blockquote>
+    "Sanar no es volver a ser quien eras,<br>es descubrir quien siempre fuiste."
+  </blockquote>
+  <cite>— Gloria Lucero</cite>
+</div>
+
+<div class="wave" style="transform: rotate(180deg); margin-top:-2px;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#4F46E5"/>
+  </svg>
+</div>
+
+<!-- ── INSTAGRAM ── -->
+<div class="ig-section">
+  <span class="section-label">✦ Conectá conmigo</span>
+  <h2>Seguime en Instagram</h2>
+  <p>
+    En mi perfil de Instagram comparto reflexiones, tips de bienestar, clases, meditaciones y mucho más. ¡Te espero allí para acompañarte en tu camino!
+  </p>
+  <a href="https://www.instagram.com/glorial_terapeuta" target="_blank" rel="noopener" class="ig-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+    @glorial_terapeuta
+  </a>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 <strong>Gloria Lucero</strong> · Terapeuta Holística Espiritual · Todos los derechos reservados</p>
+  <p style="margin-top:8px;">
+    <a href="https://www.instagram.com/glorial_terapeuta" target="_blank" rel="noopener" style="color:var(--fuchsia);text-decoration:none;">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="https://voguea.com.ar/gloria-lucero" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none;">voguea.com.ar/gloria-lucero</a>
+  </p>
+</footer>
+
+</body>
+</html>
