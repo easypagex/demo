@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ikigai Holistic Care · Natalia Baena</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:    #F5C842;
+      --rose:    #E8607A;
+      --violet:  #8B5CF6;
+      --teal:    #2DD4BF;
+      --saffron: #F97316;
+      --cream:   #FFF8F0;
+      --ink:     #1A1028;
+      --soft:    #F3EAF8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(255,248,240,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139,92,246,.15);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      background: linear-gradient(90deg, var(--rose), var(--violet));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--ink);
+      font-size: .9rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--violet); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Blobs */
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(70px); opacity: .35; pointer-events: none;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--violet); top: -100px; left: -150px; animation: drift 10s ease-in-out infinite alternate; }
+    .blob-2 { width: 400px; height: 400px; background: var(--rose);   bottom: -80px; right: -100px; animation: drift 13s ease-in-out infinite alternate-reverse; }
+    .blob-3 { width: 300px; height: 300px; background: var(--teal);   top: 40%;  left: 60%; animation: drift 8s ease-in-out infinite alternate; }
+    .blob-4 { width: 250px; height: 250px; background: var(--gold);   top: 20%;  left: 20%; animation: drift 11s ease-in-out infinite alternate-reverse; }
+
+    @keyframes drift { to { transform: translate(30px, 20px) scale(1.05); } }
+
+    .hero-eyebrow {
+      font-size: .85rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--violet); font-weight: 500; margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.1;
+      position: relative; z-index: 1;
+    }
+    .hero h1 em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 50%, var(--saffron) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      max-width: 560px; margin: 1.5rem auto 0;
+      font-size: 1.15rem; line-height: 1.7; color: #4a3f5c;
+      position: relative; z-index: 1;
+    }
+    .hero-location {
+      margin-top: 1rem; font-size: .9rem; color: #7c6d8a;
+      position: relative; z-index: 1;
+    }
+    .hero-location span { color: var(--rose); font-weight: 600; }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      justify-content: center; margin-top: 2.5rem;
+      position: relative; z-index: 1;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.8rem; border-radius: 999px;
+      font-size: .95rem; font-weight: 600;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose), var(--violet));
+      color: #fff;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--violet);
+      color: var(--violet);
+    }
+    .btn-outline:hover { background: var(--violet); color: #fff; }
+
+    /* ── IKIGAI CIRCLE ── */
+    .ikigai-section {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: var(--soft);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: .5rem;
+    }
+    .section-sub { color: #6b5e7c; max-width: 500px; margin: 0 auto 3rem; line-height: 1.7; }
+
+    .ikigai-diagram {
+      display: flex; align-items: center; justify-content: center;
+      position: relative; width: 340px; height: 340px; margin: 0 auto 3rem;
+    }
+    .circle {
+      position: absolute; width: 200px; height: 200px;
+      border-radius: 50%; mix-blend-mode: multiply;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 600; text-align: center;
+      padding: 1rem; color: #fff; line-height: 1.4;
+      transition: transform .3s;
+    }
+    .circle:hover { transform: scale(1.06); }
+    .c1 { background: rgba(232,96,122,.75); top: 0;   left: 50%; transform: translateX(-50%); }
+    .c2 { background: rgba(139,92,246,.75); bottom: 0; left: 50%; transform: translateX(-50%); }
+    .c3 { background: rgba(45,212,191,.75);  top: 50%; left: 0;   transform: translateY(-50%); }
+    .c4 { background: rgba(245,200,66,.75);  top: 50%; right: 0;  transform: translateY(-50%); }
+    .c1:hover { transform: translateX(-50%) scale(1.06); }
+    .c2:hover { transform: translateX(-50%) scale(1.06); }
+    .c3:hover { transform: translateY(-50%) scale(1.06); }
+    .c4:hover { transform: translateY(-50%) scale(1.06); }
+    .ikigai-center {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 80px; height: 80px; border-radius: 50%;
+      background: white; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; font-weight: 700; text-align: center;
+      color: var(--ink); line-height: 1.3;
+      box-shadow: 0 0 0 4px white, 0 0 0 6px var(--gold);
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 5rem 2rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .services .section-title, .services .section-sub { text-align: center; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      border-radius: 20px; padding: 2rem;
+      position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+      color: #fff;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.18); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: .6rem; }
+    .card p  { font-size: .9rem; line-height: 1.7; opacity: .92; }
+    .card-quiro  { background: linear-gradient(145deg, #E8607A, #c94560); }
+    .card-reiki  { background: linear-gradient(145deg, #8B5CF6, #6033c9); }
+    .card-corp   { background: linear-gradient(145deg, #2DD4BF, #17a598); }
+    .card-women  { background: linear-gradient(145deg, #F97316, #d95d08); }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 5rem 2rem;
+      background: linear-gradient(160deg, #fce4ec 0%, #ede7f6 50%, #e0f7fa 100%);
+    }
+    .about-inner {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .about-inner .section-title { margin-bottom: 1.2rem; }
+    .about-inner p {
+      font-size: 1.05rem; line-height: 1.9; color: #3d3050;
+      margin-bottom: 1rem;
+    }
+    .about-tags { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-top: 1.5rem; }
+    .tag {
+      padding: .45rem 1.1rem; border-radius: 999px; font-size: .82rem; font-weight: 600;
+    }
+    .tag-rose    { background: #fce4ec; color: var(--rose); }
+    .tag-violet  { background: #ede7f6; color: var(--violet); }
+    .tag-teal    { background: #e0f7fa; color: #0d8a80; }
+    .tag-gold    { background: #fff8e1; color: #c89000; }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      padding: 5rem 2rem; text-align: center;
+      background: var(--ink);
+    }
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2.8rem);
+      font-style: italic;
+      line-height: 1.45;
+      max-width: 780px; margin: 0 auto;
+      background: linear-gradient(135deg, var(--gold), var(--rose), var(--violet), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .quote-section cite {
+      display: block; margin-top: 1.5rem;
+      color: #a89bb8; font-size: .9rem; letter-spacing: .1em; text-transform: uppercase;
+    }
+
+    /* ── LINKS ── */
+    .links-section {
+      padding: 5rem 2rem; text-align: center;
+    }
+    .links-section .section-title { margin-bottom: 2rem; }
+    .social-links {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      justify-content: center;
+    }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: .7rem;
+      padding: 1rem 2rem; border-radius: 16px;
+      text-decoration: none; font-weight: 600; font-size: 1rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .social-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+    .social-btn svg { width: 22px; height: 22px; fill: currentColor; }
+    .btn-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+    .btn-linktree  { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #1a1028; }
+    .btn-web       { background: linear-gradient(135deg, var(--violet), var(--rose)); color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 2rem; text-align: center;
+      background: var(--ink); color: #7c6d8a;
+      font-size: .85rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .ikigai-diagram { width: 280px; height: 280px; }
+      .circle { width: 165px; height: 165px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Ikigai Holistic Care</div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#filosofia">Filosofía</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+
+    <p class="hero-eyebrow">✨ Terapia Holística · Barcelona</p>
+    <h1>Tu camino hacia<br><em>el bienestar integral</em></h1>
+    <p class="hero-sub">Quiromasaje, Reiki y Terapias Energéticas que conectan cuerpo, mente y espíritu. Un espacio de cuidado real para ti.</p>
+    <p class="hero-location">📍 <span>Travessera de Gràcia 88</span> · Barcelona</p>
+
+    <div class="hero-cta">
+      <a href="https://linktr.ee/ikigaiholisticcare" target="_blank" class="btn btn-primary">✨ Reservar sesión</a>
+      <a href="https://www.instagram.com/ikigai_holistic_care" target="_blank" class="btn btn-outline">Ver Instagram</a>
+    </div>
+  </section>
+
+  <!-- IKIGAI DIAGRAM -->
+  <section class="ikigai-section" id="filosofia">
+    <h2 class="section-title">La filosofía <em style="font-style:italic;color:var(--rose);">Ikigai</em></h2>
+    <p class="section-sub">Ikigai es el arte japonés de encontrar tu razón de ser: la intersección perfecta entre lo que amas, lo que el mundo necesita, lo que te da sustento y lo que sabes hacer.</p>
+
+    <div class="ikigai-diagram">
+      <div class="circle c1">Lo que<br><strong>amas</strong></div>
+      <div class="circle c2">Lo que el<br>mundo<br><strong>necesita</strong></div>
+      <div class="circle c3">Lo que<br>te da<br><strong>vida</strong></div>
+      <div class="circle c4">Lo que<br><strong>sabes</strong><br>hacer bien</div>
+      <div class="ikigai-center">Tu<br>Ikigai</div>
+    </div>
+
+    <p style="color:#6b5e7c;max-width:480px;margin:0 auto;line-height:1.8;">Cada sesión está diseñada para acercarte a ese centro: ese estado de equilibrio y propósito que es tu <strong>esencia</strong>.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="servicios">
+    <h2 class="section-title">Servicios</h2>
+    <p class="section-sub">Terapias pensadas para cada persona, en cada momento de su camino.</p>
+    <div class="cards">
+      <div class="card card-quiro">
+        <div class="card-icon">🖐️</div>
+        <h3>Quiromasaje</h3>
+        <p>Técnicas manuales terapéuticas para liberar tensiones musculares, mejorar la circulación y restaurar el equilibrio físico de tu cuerpo.</p>
+      </div>
+      <div class="card card-reiki">
+        <div class="card-icon">🔮</div>
+        <h3>Reiki</h3>
+        <p>Canalización de energía universal para armonizar tus centros energéticos, reducir el estrés y activar tu capacidad natural de sanación.</p>
+      </div>
+      <div class="card card-corp">
+        <div class="card-icon">🏢</div>
+        <h3>Wellness Corporativo</h3>
+        <p>Programas de bienestar para equipos y empresas. Sesiones presenciales o in-company que cuidan la salud emocional de tus colaboradores.</p>
+      </div>
+      <div class="card card-women">
+        <div class="card-icon">🌸</div>
+        <h3>Encuentros para Mujeres</h3>
+        <p>Espacios de conexión femenina con <strong>@pulso.experiencia</strong>. Círculos de mujeres, rituales y vivencias transformadoras en comunidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="sobre-mi">
+    <div class="about-inner">
+      <h2 class="section-title">Hola, soy <em style="color:var(--rose);font-style:italic;">Natalia</em> 💜</h2>
+      <p>Soy terapeuta holística certificada en Quiromasaje y Reiki, con una profunda vocación por acompañar a las personas en su proceso de autoconocimiento y bienestar.</p>
+      <p>Creo que el cuerpo habla, que la energía fluye y que cada persona lleva en sí misma la capacidad de sanar. Mi trabajo es crear el espacio para que eso suceda.</p>
+      <p>En Barcelona, en <strong>Travessera de Gràcia 88</strong>, te recibo con un ambiente cálido, seguro e íntimo. También me muevo a empresas para sesiones de Wellness Corporativo.</p>
+      <div class="about-tags">
+        <span class="tag tag-rose">🌹 Quiromasaje</span>
+        <span class="tag tag-violet">✨ Reiki</span>
+        <span class="tag tag-teal">🌿 Holística</span>
+        <span class="tag tag-gold">🔆 Wellness</span>
+        <span class="tag tag-rose">🌸 Círculos de mujeres</span>
+        <span class="tag tag-violet">💜 Energías</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <blockquote>"Cuando el cuerpo descansa, el alma habla."</blockquote>
+    <cite>— Filosofía Ikigai Holistic Care</cite>
+  </section>
+
+  <!-- SOCIAL LINKS -->
+  <section class="links-section" id="contacto">
+    <h2 class="section-title">Encuéntrame aquí</h2>
+    <p class="section-sub" style="margin-bottom:2rem;">Reserva tu sesión, sigue mi contenido o explora todos mis servicios en un solo lugar.</p>
+    <div class="social-links">
+
+      <a class="social-btn btn-instagram" href="https://www.instagram.com/ikigai_holistic_care" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @ikigai_holistic_care
+      </a>
+
+      <a class="social-btn btn-linktree" href="https://linktr.ee/ikigaiholisticcare" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.953 15.066c-.08.163-.08.324-.08.486C7.873 17.39 9.307 19 11.113 19c1.806 0 3.24-1.61 3.24-3.448 0-.162 0-.323-.08-.486H7.953zm3.16-5.217l-4.49-3.64 1.337-1.648 3.153 2.558 3.154-2.558 1.336 1.647-4.49 3.64zm0 0"/></svg>
+        Linktree · Todos los links
+      </a>
+
+      <a class="social-btn btn-web" href="https://ikigaiholisticcare.my.canva.site/" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 2c1.07 0 2.23.5 3.3 2H8.7C9.77 4.5 10.93 4 12 4zm-5.5 4h11a8 8 0 0 1 .4 1.5H6.1A8 8 0 0 1 6.5 8zm-.4 3.5h11.8a8 8 0 0 1-.1 1.5H6.2a8 8 0 0 1-.1-1.5zm.4 3h11a8 8 0 0 1-.4 1.5H6.9A8 8 0 0 1 6.5 14.5zm1.7 3h7.6C14.76 19.2 13.4 20 12 20c-1.4 0-2.76-.8-3.8-2.5z" fill="white"/></svg>
+        Sitio web oficial
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>💜 <strong style="color:#c9b8d8;">Ikigai Holistic Care</strong> · Natalia Baena · Terapeuta Holística</p>
+    <p style="margin-top:.5rem;">📍 Travessera de Gràcia 88 · Barcelona &nbsp;|&nbsp; <a href="https://www.instagram.com/ikigai_holistic_care" target="_blank">Instagram</a> · <a href="https://linktr.ee/ikigaiholisticcare" target="_blank">Linktree</a></p>
+    <p style="margin-top:.8rem;font-size:.8rem;color:#5c4e6a;">Encuentros para mujeres con <a href="https://www.instagram.com/pulso.experiencia" target="_blank">@pulso.experiencia</a></p>
+  </footer>
+
+</body>
+</html>
