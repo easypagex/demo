@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Respiro Holístico – Cuerpo & Alma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rosa:    #E8529A;
+      --magenta: #C0186F;
+      --violeta: #7B2FBE;
+      --lavanda: #B67BDE;
+      --verde:   #2DBF8A;
+      --turquesa:#1ABCB5;
+      --dorado:  #F5C842;
+      --crema:   #FFF8F2;
+      --oscuro:  #1A0A2E;
+      --blanco:  #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--oscuro);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #7B2FBE 0%, #C0186F 40%, #E8529A 70%, #F5C842 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* burbujas decorativas */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: .18;
+    }
+    .hero::before {
+      width: 520px; height: 520px;
+      background: var(--turquesa);
+      top: -140px; left: -120px;
+    }
+    .hero::after {
+      width: 380px; height: 380px;
+      background: var(--dorado);
+      bottom: -100px; right: -80px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.25);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .4rem 1.1rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,.45);
+      margin-bottom: 1.4rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.08;
+      text-shadow: 0 4px 24px rgba(0,0,0,.25);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--dorado);
+    }
+
+    .hero-sub {
+      margin-top: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,.9);
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .85rem 1.9rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.22); }
+
+    .btn-whatsapp {
+      background: var(--verde);
+      color: #fff;
+    }
+    .btn-insta {
+      background: #fff;
+      color: var(--magenta);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.7);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.6);
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      z-index: 2;
+    }
+    .scroll-hint span {
+      display: block;
+      width: 2px;
+      height: 38px;
+      background: rgba(255,255,255,.4);
+      border-radius: 2px;
+      animation: scrollPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: .3; transform: scaleY(1); }
+      50%      { opacity: 1;  transform: scaleY(.6); }
+    }
+
+    /* ── SERVICIOS ────────────────────────────────────────── */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      text-align: center;
+      margin-bottom: .5rem;
+    }
+
+    .section-lead {
+      text-align: center;
+      color: #666;
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      font-size: 1.05rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .card {
+      border-radius: 22px;
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s;
+    }
+    .card:hover { transform: translateY(-6px); }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.08);
+      border-radius: inherit;
+    }
+
+    .card-1 { background: linear-gradient(135deg, var(--violeta), var(--rosa)); }
+    .card-2 { background: linear-gradient(135deg, var(--turquesa), var(--verde)); }
+    .card-3 { background: linear-gradient(135deg, var(--magenta), var(--violeta)); }
+    .card-4 { background: linear-gradient(135deg, var(--dorado) 0%, #E8529A 100%); }
+
+    .card-icon {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      margin-bottom: .6rem;
+    }
+
+    .card p {
+      font-size: .92rem;
+      opacity: .88;
+      line-height: 1.55;
+    }
+
+    /* ── UBICACIÓN ────────────────────────────────────────── */
+    .location-band {
+      background: linear-gradient(120deg, var(--violeta) 0%, var(--magenta) 100%);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .location-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      margin-bottom: .8rem;
+    }
+
+    .location-band p {
+      font-size: 1.05rem;
+      opacity: .9;
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .location-icon {
+      font-size: 2.8rem;
+      margin-bottom: .8rem;
+    }
+
+    /* ── CONTACTO ─────────────────────────────────────────── */
+    .contact {
+      background: var(--oscuro);
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+
+    .contact .section-title { color: #fff; }
+    .contact .section-lead  { color: rgba(255,255,255,.55); }
+
+    .contact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      justify-content: center;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      flex: 1 1 240px;
+      min-width: 220px;
+    }
+
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--lavanda);
+      font-size: 1.1rem;
+      margin-bottom: .5rem;
+    }
+
+    .contact-card p {
+      color: rgba(255,255,255,.65);
+      font-size: .88rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .wa-icon { font-size: 2rem; margin-bottom: .7rem; display: block; }
+
+    /* ── INSTAGRAM BAND ──────────────────────────────────── */
+    .ig-band {
+      background: linear-gradient(90deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%);
+      padding: 2.8rem 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .ig-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      margin-bottom: .6rem;
+    }
+
+    .ig-band p {
+      opacity: .88;
+      margin-bottom: 1.6rem;
+      font-size: 1rem;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      background: #0E0618;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: rgba(255,255,255,.35);
+      font-size: .82rem;
+    }
+
+    footer span { color: var(--rosa); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 520px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .btn { width: 90%; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-hint span { animation: none; }
+      .card, .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <span class="hero-badge">✦ Bienestar Integral ✦</span>
+    <h1>Respiro<br><em>Holístico</em></h1>
+    <p class="hero-sub">Terapias para el cuerpo y el alma.<br>Peluquería · Masajes · Reiki · Drenaje linfático</p>
+
+    <div class="hero-ctas">
+      <a href="https://wa.me/56920561842" target="_blank" rel="noopener" class="btn btn-whatsapp">
+        💬 Masajes / Drenaje linfático
+      </a>
+      <a href="https://wa.me/56933994121" target="_blank" rel="noopener" class="btn btn-whatsapp">
+        💬 Peluquería Holística
+      </a>
+      <a href="https://www.instagram.com/respiro.holistico" target="_blank" rel="noopener" class="btn btn-insta">
+        📸 Instagram
+      </a>
+    </div>
+
+    <div class="scroll-hint">
+      Descubre más
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ── SERVICIOS ─────────────────────────────────────────── -->
+  <section class="section" style="background: var(--crema);">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-lead">Cada sesión es un viaje hacia tu bienestar más profundo.</p>
+
+    <div class="services-grid">
+      <div class="card card-1">
+        <span class="card-icon">✂️</span>
+        <h3>Peluquería Holística</h3>
+        <p>Cortes, coloración y cuidado capilar con productos naturales y una mirada integral de tu imagen y energía.</p>
+      </div>
+      <div class="card card-2">
+        <span class="card-icon">💆</span>
+        <h3>Masajes Terapéuticos</h3>
+        <p>Técnicas de relajación y descontractura que alivian tensiones, restauran el equilibrio y revitalizan tu cuerpo.</p>
+      </div>
+      <div class="card card-3">
+        <span class="card-icon">🌊</span>
+        <h3>Drenaje Linfático</h3>
+        <p>Estimulación suave del sistema linfático para eliminar toxinas, reducir inflamación y mejorar la circulación.</p>
+      </div>
+      <div class="card card-4">
+        <span class="card-icon">✨</span>
+        <h3>Reiki</h3>
+        <p>Canalización de energía universal para equilibrar tus chakras, aliviar el estrés y promover la sanación interior.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── UBICACIÓN ─────────────────────────────────────────── -->
+  <div class="location-band">
+    <div class="location-icon">📍</div>
+    <h2>¿Dónde encontrarnos?</h2>
+    <p>
+      CCP Lomas San Sebastián 1145<br>
+      Strip Valle Blanco, Local N° 9<br><br>
+      <strong>¡Escríbenos por WhatsApp para agendar tu hora!</strong>
+    </p>
+  </div>
+
+  <!-- ── CONTACTO ───────────────────────────────────────────── -->
+  <section class="contact">
+    <h2 class="section-title">Agenda tu sesión</h2>
+    <p class="section-lead">Elige el servicio que necesitas y contáctanos directamente por WhatsApp.</p>
+
+    <div class="contact-cards">
+      <div class="contact-card">
+        <span class="wa-icon">🌿</span>
+        <h3>Masajes &amp; Drenaje Linfático</h3>
+        <p>Reserva tu sesión de bienestar corporal</p>
+        <a href="https://wa.me/56920561842" target="_blank" rel="noopener" class="btn btn-whatsapp" style="font-size:.9rem; padding:.7rem 1.4rem;">
+          💬 +56 9 2056 1842
+        </a>
+      </div>
+      <div class="contact-card">
+        <span class="wa-icon">🌸</span>
+        <h3>Peluquería Holística</h3>
+        <p>Reserva tu cita de cuidado capilar integral</p>
+        <a href="https://wa.me/56933994121" target="_blank" rel="noopener" class="btn btn-whatsapp" style="font-size:.9rem; padding:.7rem 1.4rem;">
+          💬 +56 9 3399 4121
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INSTAGRAM ──────────────────────────────────────────── -->
+  <section class="ig-band">
+    <h2>Síguenos en Instagram</h2>
+    <p>Inspírate con nuestros trabajos, tips de bienestar y novedades.</p>
+    <a href="https://www.instagram.com/respiro.holistico" target="_blank" rel="noopener" class="btn btn-insta">
+      📸 @respiro.holistico
+    </a>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <p>© 2025 <span>Respiro Holístico</span> · Terapias para el cuerpo y el alma · Hecho con 💜</p>
+  </footer>
+
+</body>
+</html>
