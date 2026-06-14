@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrea Aguirre | Terapeuta Coach Holística</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --morado:   #2D1B69;
+      --fucsia:   #FF2D78;
+      --dorado:   #FFD700;
+      --turquesa: #00E5CC;
+      --coral:    #FF6B35;
+      --lila:     #B388FF;
+      --blanco:   #FAFAFA;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--morado);
+      color: var(--blanco);
+      overflow-x: hidden;
+    }
+
+    /* ── CANVAS DE PARTÍCULAS ── */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(45,27,105,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--fucsia);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      background: linear-gradient(90deg, var(--dorado), var(--turquesa));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--lila);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--dorado); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 3rem;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Gradiente de fondo animado */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(255,45,120,0.25) 0%, transparent 55%),
+                  radial-gradient(ellipse at 70% 80%, rgba(0,229,204,0.2) 0%, transparent 55%),
+                  radial-gradient(ellipse at 50% 50%, rgba(179,136,255,0.15) 0%, transparent 70%);
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+    @keyframes pulseGlow {
+      from { opacity: 0.7; }
+      to   { opacity: 1; }
+    }
+
+    /* Mandala SVG giratorio */
+    .mandala-wrap {
+      position: relative;
+      width: 260px; height: 260px;
+      margin-bottom: 2rem;
+    }
+    .mandala-outer {
+      animation: spinSlow 20s linear infinite;
+      transform-origin: center;
+    }
+    .mandala-inner {
+      animation: spinSlow 12s linear infinite reverse;
+      transform-origin: center;
+    }
+    @keyframes spinSlow {
+      to { transform: rotate(360deg); }
+    }
+    .avatar-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--fucsia), var(--morado), var(--turquesa));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4.5rem;
+      box-shadow: 0 0 40px rgba(255,45,120,0.6), 0 0 80px rgba(0,229,204,0.3);
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--turquesa);
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--blanco) 0%, var(--dorado) 50%, var(--fucsia) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--lila);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+    .hero-frase {
+      max-width: 540px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(250,250,250,0.85);
+      margin-bottom: 2.5rem;
+    }
+    .hero-frase strong { color: var(--dorado); }
+
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-wa {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      box-shadow: 0 6px 30px rgba(37,211,102,0.45);
+    }
+    .btn-wa:hover { box-shadow: 0 10px 40px rgba(37,211,102,0.65); }
+
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      box-shadow: 0 6px 30px rgba(220,39,67,0.45);
+    }
+    .btn-ig:hover { box-shadow: 0 10px 40px rgba(220,39,67,0.65); }
+
+    /* ── SECCIÓN GENÉRICA ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 1.5rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--turquesa);
+      border-top: 2px solid var(--turquesa);
+      padding-top: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── SOBRE MÍ ── */
+    .sobre {
+      background: linear-gradient(180deg, rgba(45,27,105,0) 0%, rgba(179,56,200,0.12) 100%);
+    }
+    .sobre .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .sobre-text p { line-height: 1.9; color: rgba(250,250,250,0.85); margin-bottom: 1rem; }
+    .sobre-text p strong { color: var(--fucsia); }
+    .sobre-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-left: 4px solid var(--fucsia);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pill:nth-child(2) { border-left-color: var(--dorado); }
+    .pill:nth-child(3) { border-left-color: var(--turquesa); }
+    .pill:nth-child(4) { border-left-color: var(--coral); }
+    .pill:hover { background: rgba(255,255,255,0.1); transform: translateX(6px); }
+    .pill-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .pill-text strong { display: block; font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .pill-text span { font-size: 0.8rem; color: rgba(250,250,250,0.6); }
+
+    /* ── SERVICIOS ── */
+    .servicios {
+      background: rgba(0,229,204,0.04);
+      border-top: 1px solid rgba(0,229,204,0.15);
+      border-bottom: 1px solid rgba(0,229,204,0.15);
+    }
+    .servicios .section-title { text-align: center; }
+    .servicios .section-label { display: block; text-align: center; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.09);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .card-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+      color: var(--dorado);
+    }
+    .card p { font-size: 0.9rem; line-height: 1.7; color: rgba(250,250,250,0.75); }
+    .card-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(255,45,120,0.2);
+      border: 1px solid rgba(255,45,120,0.4);
+      color: var(--fucsia);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+    }
+
+    /* ── FRASE CENTRAL ── */
+    .frase-central {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,45,120,0.15), rgba(0,229,204,0.1));
+      border-top: 1px solid rgba(255,45,120,0.25);
+      border-bottom: 1px solid rgba(0,229,204,0.25);
+    }
+    .frase-central blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2.8rem);
+      font-style: italic;
+      line-height: 1.4;
+      background: linear-gradient(135deg, var(--dorado), var(--fucsia), var(--turquesa));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      max-width: 800px;
+      margin: 0 auto 1rem;
+    }
+    .frase-central cite {
+      font-size: 0.85rem;
+      color: rgba(250,250,250,0.5);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      text-align: center;
+      padding-bottom: 6rem;
+    }
+    .cta .section-title { margin-bottom: 1rem; }
+    .cta p { color: rgba(250,250,250,0.7); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.8rem;
+      color: rgba(250,250,250,0.35);
+    }
+    footer a { color: var(--lila); text-decoration: none; }
+    footer a:hover { color: var(--dorado); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .sobre .container { grid-template-columns: 1fr; gap: 2.5rem; }
+      nav { padding: 0.8rem 1rem; }
+      .nav-links { gap: 0.8rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">✨ Andrea Holística</span>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre Mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="mandala-wrap">
+    <!-- Mandala SVG -->
+    <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+      <g class="mandala-outer" transform-origin="130 130">
+        <circle cx="130" cy="130" r="125" fill="none" stroke="#FF2D78" stroke-width="1" stroke-dasharray="8 6" opacity="0.6"/>
+        <circle cx="130" cy="130" r="112" fill="none" stroke="#FFD700" stroke-width="0.8" stroke-dasharray="4 8" opacity="0.4"/>
+        <g transform-origin="130 130">
+          <line x1="130" y1="5" x2="130" y2="255" stroke="#00E5CC" stroke-width="0.6" opacity="0.3"/>
+          <line x1="5" y1="130" x2="255" y2="130" stroke="#00E5CC" stroke-width="0.6" opacity="0.3"/>
+          <line x1="22" y1="22" x2="238" y2="238" stroke="#B388FF" stroke-width="0.6" opacity="0.3"/>
+          <line x1="238" y1="22" x2="22" y2="238" stroke="#B388FF" stroke-width="0.6" opacity="0.3"/>
+        </g>
+        <!-- 8 pétalo externo -->
+        <g>
+          <ellipse cx="130" cy="50" rx="10" ry="25" fill="none" stroke="#FF2D78" stroke-width="1.2" opacity="0.7" transform="rotate(0 130 130)"/>
+          <ellipse cx="130" cy="50" rx="10" ry="25" fill="none" stroke="#FF2D78" stroke-width="1.2" opacity="0.7" transform="rotate(45 130 130)"/>
+          <ellipse cx="130" cy="50" rx="10" ry="25" fill="none" stroke="#FF2D78" stroke-width="1.2" opacity="0.7" transform="rotate(90 130 130)"/>
+          <ellipse cx="130" cy="50" rx="10" ry="25" fill="none" stroke="#FF2D78" stroke-width="1.2" opacity="0.7" transform="rotate(135 130 130)"/>
+          <ellipse cx="130" cy="50" rx="10" ry="25" fill="none" stroke="#FFD700" stroke-width="1.2" opacity="0.7" transform="rotate(180 130 130)"/>
+          <ellipse cx="130" cy="50" rx="10" ry="25" fill="none" stroke="#FFD700" stroke-width="1.2" opacity="0.7" transform="rotate(225 130 130)"/>
+          <ellipse cx="130" cy="50" rx="10" ry="25" fill="none" stroke="#FFD700" stroke-width="1.2" opacity="0.7" transform="rotate(270 130 130)"/>
+          <ellipse cx="130" cy="50" rx="10" ry="25" fill="none" stroke="#FFD700" stroke-width="1.2" opacity="0.7" transform="rotate(315 130 130)"/>
+        </g>
+      </g>
+      <g class="mandala-inner" transform-origin="130 130">
+        <circle cx="130" cy="130" r="85" fill="none" stroke="#B388FF" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="130" cy="130" r="70" fill="none" stroke="#00E5CC" stroke-width="1" stroke-dasharray="6 4" opacity="0.5"/>
+        <!-- 6 pétalo interno -->
+        <g>
+          <ellipse cx="130" cy="75" rx="8" ry="20" fill="none" stroke="#00E5CC" stroke-width="1.5" opacity="0.8" transform="rotate(0 130 130)"/>
+          <ellipse cx="130" cy="75" rx="8" ry="20" fill="none" stroke="#00E5CC" stroke-width="1.5" opacity="0.8" transform="rotate(60 130 130)"/>
+          <ellipse cx="130" cy="75" rx="8" ry="20" fill="none" stroke="#00E5CC" stroke-width="1.5" opacity="0.8" transform="rotate(120 130 130)"/>
+          <ellipse cx="130" cy="75" rx="8" ry="20" fill="none" stroke="#B388FF" stroke-width="1.5" opacity="0.8" transform="rotate(180 130 130)"/>
+          <ellipse cx="130" cy="75" rx="8" ry="20" fill="none" stroke="#B388FF" stroke-width="1.5" opacity="0.8" transform="rotate(240 130 130)"/>
+          <ellipse cx="130" cy="75" rx="8" ry="20" fill="none" stroke="#B388FF" stroke-width="1.5" opacity="0.8" transform="rotate(300 130 130)"/>
+        </g>
+      </g>
+      <!-- Centro estático -->
+      <circle cx="130" cy="130" r="50" fill="rgba(45,27,105,0.9)"/>
+      <circle cx="130" cy="130" r="48" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.8"/>
+    </svg>
+    <div class="avatar-ring">🔮</div>
+  </div>
+
+  <p class="hero-tagline">Terapeuta · Coach · Motivational Speaker</p>
+  <h1>Andrea Aguirre</h1>
+  <p class="hero-subtitle">Espiritualidad sin anestesia 🔥</p>
+  <p class="hero-frase">
+    Vinimos a <strong>VIVIR</strong> y ser <strong>HUMANOS</strong><br>
+    para poder así <strong>Despertar Juntos ✨♥️</strong>
+  </p>
+
+  <div class="btn-group">
+    <a class="btn btn-wa" href="https://wa.me/51970856920?utm_source=web&utm_medium=site" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Sesión por WhatsApp
+    </a>
+    <a class="btn btn-ig" href="https://www.instagram.com/andreaholistica.oficial" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Seguir en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <div class="sobre-text reveal">
+      <span class="section-label">Sobre Mí</span>
+      <h2 class="section-title">Guía en tu<br><em style="color:var(--fucsia)">despertar espiritual</em></h2>
+      <p>Soy <strong>Andrea Aguirre</strong>, Terapeuta Coach Holística y Motivational Speaker. Mi misión es acompañarte a reconectar con tu ser esencial, sanar desde adentro y vivir una vida auténtica y plena.</p>
+      <p>Creo profundamente que <strong>vinimos a vivir y ser humanos</strong> en toda la extensión de la palabra — con nuestras sombras, nuestras luces, nuestras heridas y nuestra grandeza. Ese es el camino al despertar.</p>
+      <p>Ofrezco sesiones online para todo el mundo, acompañándote con herramientas holísticas, coaching y espiritualidad práctica — <strong>sin anestesia</strong>, desde el corazón.</p>
+    </div>
+    <div class="sobre-visual reveal">
+      <div class="pill">
+        <span class="pill-icon">🌍</span>
+        <div class="pill-text">
+          <strong>Internacional</strong>
+          <span>Sesiones online para todo el mundo</span>
+        </div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon">💛</span>
+        <div class="pill-text">
+          <strong>Coach Holística Certificada</strong>
+          <span>Mente, cuerpo, alma y espíritu</span>
+        </div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon">🎤</span>
+        <div class="pill-text">
+          <strong>Motivational Speaker</strong>
+          <span>Conferencias y talleres transformadores</span>
+        </div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon">🔥</span>
+        <div class="pill-text">
+          <strong>Espiritualidad Real</strong>
+          <span>Sin máscaras, sin anestesia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <span class="section-label">Lo que ofrezco</span>
+    <h2 class="section-title reveal">Servicios</h2>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="card-icon">🔮</div>
+        <h3>Sesión Individual</h3>
+        <p>Un espacio sagrado y confidencial donde exploramos tus bloqueos, heridas y potencial. Terapia integrativa con herramientas holísticas personalizadas.</p>
+        <span class="card-tag">Online · WhatsApp</span>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">✨</div>
+        <h3>Coaching Espiritual</h3>
+        <p>Procesos de transformación profunda para reconectar con tu propósito de vida, sanar relaciones y activar tu versión más elevada.</p>
+        <span class="card-tag">Programa intensivo</span>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🎤</div>
+        <h3>Talleres & Conferencias</h3>
+        <p>Encuentros grupales presenciales y virtuales donde el despertar colectivo ocurre a través del diálogo honesto y la experiencia compartida.</p>
+        <span class="card-tag">Grupos · Empresas</span>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">💫</div>
+        <h3>Acompañamiento Continuo</h3>
+        <p>Seguimiento personalizado mensual para quienes están en un proceso de cambio profundo y necesitan sostén constante en su camino.</p>
+        <span class="card-tag">Mensual · Internacional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRASE -->
+<section class="frase-central">
+  <div class="container reveal">
+    <blockquote>"Despertar no es llegar a un lugar perfecto. Es atreverse a estar presente en este, exactamente como eres."</blockquote>
+    <cite>— Andrea Aguirre</cite>
+  </div>
+</section>
+
+<!-- CTA CONTACTO -->
+<section class="cta" id="contacto">
+  <div class="container reveal">
+    <span class="section-label">Conectemos</span>
+    <h2 class="section-title">¿Lista para<br><em style="color:var(--turquesa)">despertar juntas?</em></h2>
+    <p>Agenda tu sesión online hoy. Estoy aquí para acompañarte en tu proceso de sanación y transformación, desde cualquier parte del mundo.</p>
+    <div class="btn-group">
+      <a class="btn btn-wa" href="https://wa.me/51970856920?utm_source=web&utm_medium=site" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a class="btn btn-ig" href="https://www.instagram.com/andreaholistica.oficial" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>✨ &copy; 2025 Andrea Aguirre · Terapeuta Coach Holística · Todos los derechos reservados</p>
+  <p style="margin-top:0.4rem">
+    <a href="https://www.instagram.com/andreaholistica.oficial" target="_blank">@andreaholistica.oficial</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/51970856920" target="_blank">+51 970 856 920</a>
+  </p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+/* === PARTÍCULAS === */
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+const COLORS = ['#FF2D78','#FFD700','#00E5CC','#B388FF','#FF6B35','#ffffff'];
+
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+function randomParticle() {
+  return {
+    x: Math.random() * W,
+    y: Math.random() * H,
+    r: Math.random() * 2.5 + 0.5,
+    dx: (Math.random() - 0.5) * 0.4,
+    dy: (Math.random() - 0.5) * 0.4,
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    alpha: Math.random() * 0.5 + 0.1,
+    pulse: Math.random() * Math.PI * 2,
+  };
+}
+for (let i = 0; i < 120; i++) particles.push(randomParticle());
+
+function drawParticles() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.pulse += 0.02;
+    const a = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = a;
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+    if (p.x < 0 || p.x > W) p.dx *= -1;
+    if (p.y < 0 || p.y > H) p.dy *= -1;
+  });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+/* === SCROLL REVEAL === */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
