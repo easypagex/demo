@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reiki Martha – Sanación, Energía & Sabiduría</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --magenta: #C2185B;
+    --magenta-light: #F8BBD9;
+    --magenta-dark: #880E4F;
+    --violeta: #7B1FA2;
+    --violeta-light: #E1BEE7;
+    --violeta-dark: #4A148C;
+    --turquesa: #00897B;
+    --turquesa-light: #B2DFDB;
+    --dorado: #F9A825;
+    --dorado-light: #FFF9C4;
+    --naranja: #E64A19;
+    --crema: #FFF8F0;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--crema);
+    color: #2d1b3e;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4A148C 0%, #7B1FA2 30%, #C2185B 65%, #E64A19 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06) 0%, transparent 50%);
+  }
+
+  .mandala {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FFF9C4 0%, #F9A825 40%, #C2185B 70%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 60px rgba(249,168,37,0.6), 0 0 120px rgba(194,24,91,0.3);
+    animation: pulso 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes pulso {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(249,168,37,0.6), 0 0 120px rgba(194,24,91,0.3); }
+    50% { transform: scale(1.06); box-shadow: 0 0 80px rgba(249,168,37,0.8), 0 0 160px rgba(194,24,91,0.5); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .hero h1 span {
+    color: var(--dorado);
+  }
+
+  .hero .tagline {
+    margin-top: 1rem;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    color: rgba(255,255,255,0.88);
+    max-width: 520px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .chip {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    padding: 0.45rem 1.1rem;
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .btn-ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2.2rem;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-ig:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  /* ── WAVE ── */
+  .wave-divider {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .wave-divider svg {
+    display: block;
+    width: 100%;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 5rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 0.4rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--violeta-dark);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── SOBRE MÍ ── */
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 650px) {
+    .sobre-grid { grid-template-columns: 1fr; }
+  }
+
+  .avatar-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--violeta-light), var(--magenta-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.5rem;
+    box-shadow: 0 8px 40px rgba(123,31,162,0.2);
+    border: 4px solid #fff;
+    margin: 0 auto;
+  }
+
+  .sobre-texto p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #3d2050;
+    margin-bottom: 1rem;
+  }
+
+  /* ── SERVICIOS ── */
+  .servicios-bg {
+    background: linear-gradient(160deg, var(--violeta-dark) 0%, var(--magenta-dark) 100%);
+    padding: 5rem 0;
+  }
+
+  .servicios-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .servicios-inner .section-label { color: var(--dorado); }
+  .servicios-inner .section-title { color: #fff; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,255,255,0.2);
+    border-radius: 1.5rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.25s, background 0.25s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.18);
+  }
+
+  .card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dorado);
+    margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
+  }
+
+  /* ── NUMEROLOGÍA ── */
+  .numeros-strip {
+    background: var(--dorado-light);
+    border-top: 4px solid var(--dorado);
+    border-bottom: 4px solid var(--dorado);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .numeros-strip .section-title { color: var(--violeta-dark); }
+
+  .numeros-fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .num-burbuja {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .num-burbuja:nth-child(9n+1) { background: var(--magenta); }
+  .num-burbuja:nth-child(9n+2) { background: var(--violeta); }
+  .num-burbuja:nth-child(9n+3) { background: var(--turquesa); }
+  .num-burbuja:nth-child(9n+4) { background: var(--naranja); }
+  .num-burbuja:nth-child(9n+5) { background: #1565C0; }
+  .num-burbuja:nth-child(9n+6) { background: #2E7D32; }
+  .num-burbuja:nth-child(9n+7) { background: #6D4C41; }
+  .num-burbuja:nth-child(9n+8) { background: #00838F; }
+  .num-burbuja:nth-child(9n+0) { background: var(--magenta-dark); }
+
+  .numeros-strip p {
+    max-width: 620px;
+    margin: 0 auto 2rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--violeta-dark);
+  }
+
+  /* ── CITA ── */
+  .cita-section {
+    text-align: center;
+    padding: 5rem 1.5rem;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .cita-section blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    font-style: italic;
+    color: var(--violeta-dark);
+    line-height: 1.5;
+    position: relative;
+    padding: 0 2rem;
+  }
+
+  .cita-section blockquote::before {
+    content: '\201C';
+    position: absolute;
+    left: -0.2rem;
+    top: -0.4rem;
+    font-size: 5rem;
+    color: var(--magenta-light);
+    font-style: normal;
+    line-height: 1;
+  }
+
+  .cita-section cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--magenta);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  /* ── INSTAGRAM ── */
+  .ig-section {
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    padding: 5rem 1.5rem;
+    text-align: center;
+  }
+
+  .ig-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #fff;
+    margin-bottom: 0.8rem;
+  }
+
+  .ig-section p {
+    color: rgba(255,255,255,0.88);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-ig-grande {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: #fff;
+    color: #cc2366;
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+
+  .btn-ig-grande:hover { transform: scale(1.04); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--violeta-dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  footer a {
+    color: var(--dorado);
+    text-decoration: none;
+  }
+
+  /* ── FLORES DECORATIVAS ── */
+  .flores {
+    pointer-events: none;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+  }
+
+  .flor {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.07;
+  }
+
+  .flor1 { width: 300px; height: 300px; background: #fff; top: -80px; left: -80px; }
+  .flor2 { width: 200px; height: 200px; background: var(--dorado); bottom: 40px; right: -60px; }
+  .flor3 { width: 150px; height: 150px; background: var(--turquesa-light); top: 40%; left: 5%; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="flores">
+    <div class="flor flor1"></div>
+    <div class="flor flor2"></div>
+    <div class="flor flor3"></div>
+  </div>
+  <div class="mandala">🌸</div>
+  <h1>Reiki <span>Martha</span></h1>
+  <p class="tagline">Martha Jaspe — Sanadora del alma, maestra de palabras, guía de los números.</p>
+  <div class="hero-chips">
+    <span class="chip">✨ Reiki</span>
+    <span class="chip">📚 Castellano &amp; Literatura</span>
+    <span class="chip">🔢 Numerología</span>
+    <span class="chip">🌿 Sanación Popular</span>
+    <span class="chip">🏛️ Latín</span>
+  </div>
+  <a href="https://www.instagram.com/reiki_martha" target="_blank" rel="noopener" class="btn-ig">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+    Sígueme en Instagram
+  </a>
+</header>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:linear-gradient(135deg,#4A148C,#E64A19);">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFF8F0"/>
+  </svg>
+</div>
+
+<!-- SOBRE MÍ -->
+<section>
+  <div class="sobre-grid">
+    <div>
+      <div class="avatar-circle">🌺</div>
+    </div>
+    <div class="sobre-texto">
+      <p class="section-label">Quién soy</p>
+      <h2 class="section-title">Martha Jaspe</h2>
+      <p>Soy profesora de Castellano, Literatura y Latín, con una larga trayectoria acompañando a estudiantes a descubrir la belleza del lenguaje y la sabiduría de los textos clásicos.</p>
+      <p>Mi camino también me llevó a explorar las artes del alma: practico y transmito el <strong>Reiki</strong> como herramienta de equilibrio energético, y la <strong>Numerología</strong> como mapa del destino personal. Además, soy <strong>Sanadora Popular</strong>, integrando saberes tradicionales para el bienestar profundo.</p>
+      <p>Creo en la conexión entre la mente, el cuerpo y el espíritu, y en que cada persona lleva dentro de sí la semilla de su propia sanación. 🌿</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<div class="servicios-bg">
+  <div class="servicios-inner">
+    <p class="section-label">Lo que ofrezco</p>
+    <h2 class="section-title">Mis Servicios</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🙌</span>
+        <h3>Sesiones de Reiki</h3>
+        <p>Canal de energía universal para restablecer el equilibrio y la armonía en tu ser.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔢</span>
+        <h3>Numerología</h3>
+        <p>Descubre los mensajes ocultos en tu fecha de nacimiento y tu nombre.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌿</span>
+        <h3>Sanación Popular</h3>
+        <p>Remedios y rituales del saber ancestral para el bienestar del cuerpo y el alma.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📖</span>
+        <h3>Clases de Lengua &amp; Literatura</h3>
+        <p>Profesora de Castellano, Literatura y Latín con vocación y pasión por el lenguaje.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NUMEROLOGÍA -->
+<div class="numeros-strip">
+  <p class="section-label" style="color:var(--magenta);">Los números hablan</p>
+  <h2 class="section-title">El Poder de la Numerología</h2>
+  <p>Cada número esconde un vibración única que moldea nuestra personalidad, nuestros ciclos y nuestro propósito de vida. Déjate guiar por la sabiduría de los números.</p>
+  <div class="numeros-fila">
+    <div class="num-burbuja">1</div>
+    <div class="num-burbuja">2</div>
+    <div class="num-burbuja">3</div>
+    <div class="num-burbuja">4</div>
+    <div class="num-burbuja">5</div>
+    <div class="num-burbuja">6</div>
+    <div class="num-burbuja">7</div>
+    <div class="num-burbuja">8</div>
+    <div class="num-burbuja">9</div>
+  </div>
+</div>
+
+<!-- CITA -->
+<div class="cita-section">
+  <blockquote>
+    El Reiki no cura enfermedades; ayuda a las personas a sanar a sí mismas.
+  </blockquote>
+  <cite>— Filosofía Reiki</cite>
+</div>
+
+<!-- INSTAGRAM CTA -->
+<div class="ig-section">
+  <h2>✨ Encuéntrame en Instagram</h2>
+  <p>Comparto reflexiones, rituales, curiosidades de numerología y mucha energía positiva cada día.</p>
+  <a href="https://www.instagram.com/reiki_martha" target="_blank" rel="noopener" class="btn-ig-grande">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+    @reiki_martha
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Reiki Martha · Martha Jaspe &nbsp;|&nbsp; <a href="https://www.instagram.com/reiki_martha" target="_blank" rel="noopener">Instagram: @reiki_martha</a></p>
+  <p style="margin-top:0.4rem; font-size:0.8rem;">Hecho con 💜 y luz</p>
+</footer>
+
+</body>
+</html>
