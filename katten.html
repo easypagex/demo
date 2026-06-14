@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katten Pet Sitting 𓃦𓃠 — Buenos Aires</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:    #FF6BB5;
+      --yellow:  #FFD93D;
+      --mint:    #4ECDC4;
+      --lavender:#A78BFA;
+      --coral:   #FF6B6B;
+      --sky:     #74C7FF;
+      --cream:   #FFF9F0;
+      --dark:    #1A1A2E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      background: rgba(255,249,240,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 3px solid var(--pink);
+    }
+    .nav-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--pink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-weight: 700; font-size: .9rem;
+      color: var(--dark); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--pink); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FF6BB5 0%, #FFD93D 35%, #4ECDC4 70%, #A78BFA 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='rgba(255,255,255,0.15)'/%3E%3C/svg%3E") repeat;
+    }
+    .hero-badge {
+      background: white;
+      color: var(--pink);
+      font-weight: 800; font-size: .85rem;
+      padding: 6px 18px; border-radius: 999px;
+      margin-bottom: 20px;
+      display: inline-block;
+      letter-spacing: .05em;
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      color: white;
+      line-height: 1;
+      text-shadow: 4px 4px 0 rgba(0,0,0,.12);
+      margin-bottom: 12px;
+    }
+    .hero-emoji { font-size: clamp(2rem, 6vw, 4rem); }
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,.95);
+      font-weight: 700;
+      max-width: 540px;
+      margin: 16px auto 36px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,.1);
+    }
+    .hero-cta {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 1rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.2); }
+    .btn-white  { background: white; color: var(--pink); }
+    .btn-dark   { background: var(--dark); color: white; }
+
+    .floating-pets {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+    }
+    .fp {
+      position: absolute;
+      font-size: 2.5rem;
+      animation: floatPet 6s ease-in-out infinite;
+    }
+    .fp:nth-child(1) { top: 15%; left: 8%;  animation-delay: 0s; }
+    .fp:nth-child(2) { top: 25%; right: 10%; animation-delay: 1s; }
+    .fp:nth-child(3) { bottom: 20%; left: 12%; animation-delay: 2s; }
+    .fp:nth-child(4) { bottom: 30%; right: 8%; animation-delay: .5s; }
+    .fp:nth-child(5) { top: 60%; left: 5%;   animation-delay: 1.5s; }
+    .fp:nth-child(6) { top: 10%; right: 25%; animation-delay: 3s; }
+
+    @keyframes floatPet {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50%       { transform: translateY(-18px) rotate(5deg); }
+    }
+
+    /* ── WAVE ── */
+    .wave { display: block; line-height: 0; }
+    .wave svg { width: 100%; height: 80px; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 80px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: .8rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .lead {
+      font-size: 1.1rem; font-weight: 600;
+      max-width: 600px;
+      color: #444; margin-bottom: 48px;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: white; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--pink), var(--lavender));
+      border-radius: 32px;
+      min-height: 340px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8rem;
+      position: relative; overflow: hidden;
+    }
+    .about-visual::after {
+      content: '𓃠';
+      position: absolute; bottom: 16px; right: 20px;
+      font-size: 3rem; opacity: .4;
+    }
+    .about p { font-size: 1.05rem; color: #555; line-height: 1.7; margin-bottom: 16px; }
+    .press-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--yellow); color: var(--dark);
+      font-weight: 800; font-size: .9rem;
+      padding: 10px 20px; border-radius: 12px;
+      text-decoration: none; margin-top: 8px;
+      transition: transform .2s;
+    }
+    .press-link:hover { transform: translateY(-2px); }
+
+    /* ── SERVICES ── */
+    .services { background: var(--cream); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .service-card {
+      border-radius: 24px; padding: 36px 28px;
+      text-align: center;
+      transition: transform .25s;
+    }
+    .service-card:hover { transform: translateY(-6px); }
+    .service-card .icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .service-card h3 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; margin-bottom: 10px; }
+    .service-card p { font-size: .95rem; color: #555; line-height: 1.6; }
+    .sc1 { background: linear-gradient(135deg, #FFE8F0, #FFD6E8); }
+    .sc2 { background: linear-gradient(135deg, #E8FFF9, #C8F7EF); }
+    .sc3 { background: linear-gradient(135deg, #FFF8D6, #FFECB3); }
+    .sc4 { background: linear-gradient(135deg, #EDE8FF, #D8CEFC); }
+
+    /* ── PETS CAROUSEL ── */
+    .pets-section { background: linear-gradient(135deg, var(--mint) 0%, var(--sky) 100%); }
+    .pets-section h2, .pets-section .section-label { color: white; }
+    .pets-section .lead { color: rgba(255,255,255,.9); }
+    .pets-row {
+      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+    }
+    .pet-chip {
+      background: white;
+      border-radius: 999px;
+      padding: 12px 28px;
+      font-weight: 800; font-size: 1rem;
+      display: inline-flex; align-items: center; gap: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    }
+
+    /* ── WHY US ── */
+    .why { background: white; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; }
+    .why-item { text-align: center; }
+    .why-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 16px;
+    }
+    .wi1 { background: var(--pink); }
+    .wi2 { background: var(--yellow); }
+    .wi3 { background: var(--mint); }
+    .wi4 { background: var(--lavender); }
+    .why-item h3 { font-family: 'Fredoka One', cursive; font-size: 1.2rem; margin-bottom: 8px; }
+    .why-item p { font-size: .9rem; color: #666; line-height: 1.6; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--coral), var(--pink), var(--lavender));
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-band h2 { color: white; font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 16px; }
+    .cta-band p { color: rgba(255,255,255,.9); font-size: 1.1rem; margin-bottom: 36px; font-weight: 600; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--dark); color: white; text-align: center; }
+    .contact h2 { color: var(--yellow); }
+    .contact .lead { color: rgba(255,255,255,.7); margin: 0 auto 48px; }
+    .contact-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .contact-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 16px 28px; border-radius: 16px;
+      font-weight: 800; font-size: 1rem;
+      text-decoration: none; transition: transform .2s;
+    }
+    .contact-link:hover { transform: translateY(-3px); }
+    .cl-ig   { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+    .cl-fb   { background: #1877F2; color: white; }
+    .cl-mail { background: var(--yellow); color: var(--dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111120; color: rgba(255,255,255,.4);
+      text-align: center; padding: 24px;
+      font-size: .85rem;
+    }
+    footer span { color: var(--pink); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">𓃦 Katten</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="floating-pets" aria-hidden="true">
+    <span class="fp">🐶</span>
+    <span class="fp">🐱</span>
+    <span class="fp">🐰</span>
+    <span class="fp">🐹</span>
+    <span class="fp">🌸</span>
+    <span class="fp">💖</span>
+  </div>
+  <span class="hero-badge">📍 Buenos Aires, Argentina 🇦🇷</span>
+  <h1>Katten<br>Pet Sitting</h1>
+  <div class="hero-emoji">𓃦 𓃠</div>
+  <p>In-home care for your non-human companions — with all the love they deserve 🩷</p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn btn-white">📆 Book a visit</a>
+    <a href="https://www.instagram.com/katten_pet_sitting" target="_blank" rel="noopener" class="btn btn-dark">Instagram ↗</a>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,90 1080,0 1440,50 L1440,80 L0,80 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual" aria-hidden="true">𓃦</div>
+      <div class="reveal">
+        <p class="section-label" style="color:var(--pink)">Who we are</p>
+        <h2>Care that feels like home</h2>
+        <p>At Katten Pet Sitting we come to <em>your</em> home, so your companions stay in their comfort zone — no crates, no stress, no strangers' houses. Every visit is packed with attention, play, and genuine affection.</p>
+        <p>We believe every pet — whether they have four paws, floppy ears, or tiny whiskers — deserves to feel safe and loved even when their humans are away.</p>
+        <a class="press-link" href="https://www.pagina12.com.ar/437215-vacaciones-de-invierno-que-hacer-con-las-mascotas-si-nos-vam" target="_blank" rel="noopener">
+          📰 As seen in Página/12 ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <p class="section-label reveal" style="color:var(--lavender)">What we do</p>
+    <h2 class="reveal">Our services</h2>
+    <p class="lead reveal">All care is provided at your home — your pet's favourite place on the planet.</p>
+    <div class="services-grid">
+      <div class="service-card sc1 reveal">
+        <div class="icon">🏠</div>
+        <h3>In-Home Visits</h3>
+        <p>We come to your home for feeding, play, cuddles and a quick health check. Your pet never has to leave their comfort zone.</p>
+      </div>
+      <div class="service-card sc2 reveal">
+        <div class="icon">🌙</div>
+        <h3>Overnight Stays</h3>
+        <p>We sleep over so your companion is never truly alone. Perfect for anxious pets or multi-animal households.</p>
+      </div>
+      <div class="service-card sc3 reveal">
+        <div class="icon">🐾</div>
+        <h3>Dog Walking</h3>
+        <p>Daily strolls through Buenos Aires streets packed with sniffs, sights and social encounters for your pup.</p>
+      </div>
+      <div class="service-card sc4 reveal">
+        <div class="icon">💊</div>
+        <h3>Medication & Special Care</h3>
+        <p>We handle medication schedules, special diets and senior or post-surgery care with patience and precision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PETS -->
+<section class="pets-section">
+  <div class="container" style="text-align:center">
+    <p class="section-label reveal">We care for</p>
+    <h2 class="reveal">Every companion welcome</h2>
+    <p class="lead reveal" style="margin:0 auto 40px">Dogs, cats, rabbits, hamsters — we love them all equally.</p>
+    <div class="pets-row reveal">
+      <div class="pet-chip">🐶 Dogs</div>
+      <div class="pet-chip">🐱 Cats</div>
+      <div class="pet-chip">🐰 Rabbits</div>
+      <div class="pet-chip">🐹 Hamsters</div>
+      <div class="pet-chip">🐦 Birds</div>
+      <div class="pet-chip">🐠 Fish</div>
+      <div class="pet-chip">🦎 Reptiles</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="container">
+    <p class="section-label reveal" style="color:var(--coral); text-align:center">Why Katten</p>
+    <h2 class="reveal" style="text-align:center">Love in every visit</h2>
+    <div class="why-grid" style="margin-top:48px">
+      <div class="why-item reveal">
+        <div class="why-icon wi1">🏡</div>
+        <h3>At your home</h3>
+        <p>No travel stress. Your pet stays in their own space with their own smells and toys.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon wi2">📸</div>
+        <h3>Photo updates</h3>
+        <p>You'll receive pictures and updates so you can relax knowing they're happy.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon wi3">📆</div>
+        <h3>Open schedule</h3>
+        <p>Our calendar is always open. Reach out and we'll find a time that works for you.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon wi4">🩷</div>
+        <h3>Genuine love</h3>
+        <p>We don't just babysit — we genuinely love your animals as if they were our own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2 class="reveal">Going somewhere? 🏕</h2>
+  <p class="reveal">Your companion deserves the best care while you're away.<br>Book a visit today — your calendar is waiting!</p>
+  <div class="reveal">
+    <a href="mailto:kattenpet@gmail.com" class="btn btn-white" style="font-size:1.1rem">💌 Get in touch</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <p class="section-label reveal" style="color:var(--mint)">Reach us</p>
+    <h2 class="reveal">Let's connect</h2>
+    <p class="lead reveal">We're based in Buenos Aires and ready to meet your companions. Drop us a line anytime!</p>
+    <div class="contact-links">
+      <a class="contact-link cl-ig reveal" href="https://www.instagram.com/katten_pet_sitting" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @katten_pet_sitting
+      </a>
+      <a class="contact-link cl-fb reveal" href="https://www.facebook.com/kattenpetsitting" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+      <a class="contact-link cl-mail reveal" href="mailto:kattenpet@gmail.com">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        kattenpet@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made with <span>🩷</span> in Buenos Aires &nbsp;·&nbsp; © 2024 Katten Pet Sitting &nbsp;·&nbsp; <span>𓃦 𓃠</span></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
