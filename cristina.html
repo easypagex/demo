@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cristina · Terapeuta Holística · Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde:    #2D6A4F;
+      --verde-luz:#52B788;
+      --lavanda:  #C9B8E8;
+      --lila:     #9B72CF;
+      --dorado:   #E8C87A;
+      --rosa:     #F2A7BB;
+      --crema:    #FDF6EC;
+      --texto:    #2C2C2C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--texto);
+      background: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 40%, #52B788 70%, #C9B8E8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* partículas flotantes */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.18;
+      animation: flotar linear infinite;
+    }
+
+    @keyframes flotar {
+      0%   { transform: translateY(110vh) scale(0.5); opacity: 0; }
+      10%  { opacity: 0.18; }
+      90%  { opacity: 0.18; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* mandala SVG */
+    .mandala-wrap {
+      width: 220px;
+      height: 220px;
+      margin-bottom: 2rem;
+      animation: girar 28s linear infinite;
+      filter: drop-shadow(0 0 20px rgba(201,184,232,0.6));
+    }
+    @keyframes girar { to { transform: rotate(360deg); } }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      color: #fff;
+      line-height: 1.15;
+      text-shadow: 0 2px 18px rgba(0,0,0,0.3);
+      margin-bottom: 0.6rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--dorado);
+    }
+
+    .hero .subtitulo {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .badge-ubicacion {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      border-radius: 50px;
+      padding: 0.45rem 1.2rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(6px);
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      letter-spacing: 0.04em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    }
+    .btn-ig:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+
+    /* flecha scroll */
+    .scroll-arrow {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.65);
+      font-size: 1.8rem;
+      animation: rebote 1.8s ease-in-out infinite;
+    }
+    @keyframes rebote {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* ── ONDA ── */
+    .onda { display: block; width: 100%; line-height: 0; }
+
+    /* ── SECCIÓN SERVICIOS ── */
+    .servicios {
+      background: var(--crema);
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .seccion-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 0.5rem;
+    }
+    .seccion-subtitulo {
+      color: #666;
+      font-size: 1.05rem;
+      margin-bottom: 3.5rem;
+      font-weight: 300;
+    }
+
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tarjeta {
+      border-radius: 20px;
+      padding: 2.2rem 1.6rem;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .tarjeta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      background: radial-gradient(circle at 30% 30%, #fff, transparent 70%);
+    }
+    .tarjeta:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14); }
+
+    .tarjeta-1 { background: linear-gradient(145deg, #2D6A4F, #52B788); color: #fff; }
+    .tarjeta-2 { background: linear-gradient(145deg, #7B4FA0, #C9B8E8); color: #fff; }
+    .tarjeta-3 { background: linear-gradient(145deg, #C0392B, #F2A7BB); color: #fff; }
+    .tarjeta-4 { background: linear-gradient(145deg, #B7860B, #E8C87A); color: #fff; }
+
+    .tarjeta .emoji { font-size: 2.8rem; margin-bottom: 1rem; display: block; }
+    .tarjeta h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+    .tarjeta p { font-size: 0.93rem; line-height: 1.6; opacity: 0.93; }
+
+    /* ── SECCIÓN BIENESTAR ── */
+    .bienestar {
+      background: linear-gradient(160deg, #9B72CF 0%, #C9B8E8 50%, #F2A7BB 100%);
+      padding: 5rem 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .bienestar .seccion-titulo { color: #fff; }
+    .bienestar .seccion-subtitulo { color: rgba(255,255,255,0.82); }
+
+    .lista-beneficios {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 860px;
+      margin: 0 auto 3rem;
+    }
+
+    .beneficio {
+      background: rgba(255,255,255,0.22);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50px;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.95rem;
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── CITA / FRASE ── */
+    .cita-bloque {
+      background: var(--verde);
+      color: #fff;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .cita-bloque blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-style: italic;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.5;
+      color: var(--dorado);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+    }
+    .cita-bloque cite {
+      display: block;
+      margin-top: 1.2rem;
+      font-style: normal;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── INSTAGRAM DESTACADO ── */
+    .instagram-sec {
+      background: var(--crema);
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+
+    .ig-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+    }
+    .ig-card::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 27px;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      z-index: -1;
+    }
+
+    .ig-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2D6A4F, #C9B8E8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      margin: 0 auto 1.2rem;
+    }
+
+    .ig-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .ig-card .ig-handle {
+      color: var(--lila);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .ig-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.8rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(135deg, #1B4332, #2D6A4F);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 3rem 1.5rem;
+      font-size: 0.9rem;
+    }
+    footer .footer-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--dorado);
+      margin-bottom: 0.5rem;
+    }
+    footer a { color: var(--lavanda); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer .separador { margin: 0.6rem 0; color: rgba(255,255,255,0.2); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .mandala-wrap { width: 160px; height: 160px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mandala-wrap { animation: none; }
+      .particle { animation: none; display: none; }
+      .scroll-arrow { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- Partículas flotantes -->
+  <div class="particle" style="width:60px;height:60px;background:var(--lavanda);left:8%;animation-duration:12s;animation-delay:0s;"></div>
+  <div class="particle" style="width:35px;height:35px;background:var(--dorado);left:22%;animation-duration:16s;animation-delay:3s;"></div>
+  <div class="particle" style="width:80px;height:80px;background:var(--rosa);left:55%;animation-duration:14s;animation-delay:1.5s;"></div>
+  <div class="particle" style="width:45px;height:45px;background:#fff;left:75%;animation-duration:11s;animation-delay:5s;"></div>
+  <div class="particle" style="width:25px;height:25px;background:var(--verde-luz);left:88%;animation-duration:18s;animation-delay:2s;"></div>
+  <div class="particle" style="width:55px;height:55px;background:var(--dorado);left:40%;animation-duration:13s;animation-delay:7s;"></div>
+
+  <!-- Mandala SVG -->
+  <div class="mandala-wrap">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="100" cy="100" r="95" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      <circle cx="100" cy="100" r="70" stroke="rgba(201,184,232,0.5)" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="45" stroke="rgba(232,200,122,0.6)" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="18" fill="rgba(232,200,122,0.35)" stroke="rgba(232,200,122,0.7)" stroke-width="1.5"/>
+      <!-- pétalos exteriores -->
+      <g stroke="rgba(201,184,232,0.7)" stroke-width="1.2">
+        <ellipse cx="100" cy="22" rx="9" ry="18" transform="rotate(0 100 100)"/>
+        <ellipse cx="100" cy="22" rx="9" ry="18" transform="rotate(45 100 100)"/>
+        <ellipse cx="100" cy="22" rx="9" ry="18" transform="rotate(90 100 100)"/>
+        <ellipse cx="100" cy="22" rx="9" ry="18" transform="rotate(135 100 100)"/>
+        <ellipse cx="100" cy="22" rx="9" ry="18" transform="rotate(180 100 100)"/>
+        <ellipse cx="100" cy="22" rx="9" ry="18" transform="rotate(225 100 100)"/>
+        <ellipse cx="100" cy="22" rx="9" ry="18" transform="rotate(270 100 100)"/>
+        <ellipse cx="100" cy="22" rx="9" ry="18" transform="rotate(315 100 100)"/>
+      </g>
+      <!-- pétalos medios -->
+      <g stroke="rgba(232,200,122,0.65)" stroke-width="1.2">
+        <ellipse cx="100" cy="46" rx="6" ry="12" transform="rotate(22.5 100 100)"/>
+        <ellipse cx="100" cy="46" rx="6" ry="12" transform="rotate(67.5 100 100)"/>
+        <ellipse cx="100" cy="46" rx="6" ry="12" transform="rotate(112.5 100 100)"/>
+        <ellipse cx="100" cy="46" rx="6" ry="12" transform="rotate(157.5 100 100)"/>
+        <ellipse cx="100" cy="46" rx="6" ry="12" transform="rotate(202.5 100 100)"/>
+        <ellipse cx="100" cy="46" rx="6" ry="12" transform="rotate(247.5 100 100)"/>
+        <ellipse cx="100" cy="46" rx="6" ry="12" transform="rotate(292.5 100 100)"/>
+        <ellipse cx="100" cy="46" rx="6" ry="12" transform="rotate(337.5 100 100)"/>
+      </g>
+      <!-- diamante central -->
+      <polygon points="100,76 115,100 100,124 85,100" stroke="rgba(255,255,255,0.55)" stroke-width="1" fill="rgba(255,255,255,0.08)"/>
+      <circle cx="100" cy="100" r="5" fill="rgba(255,255,255,0.8)"/>
+    </svg>
+  </div>
+
+  <h1>Cristina<br/><em>Terapeuta Holística</em></h1>
+  <p class="subtitulo">Masaje Holístico &amp; Bienestar Integral</p>
+  <div class="badge-ubicacion">📍 Madrid</div>
+
+  <a class="btn-ig" href="https://www.instagram.com/cristinaterapeutaholistic" target="_blank" rel="noopener">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    Sígueme en Instagram
+  </a>
+
+  <div class="scroll-arrow">↓</div>
+</section>
+
+<!-- onda decorativa -->
+<svg class="onda" viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,40 C360,80 1080,0 1440,40 L1440,70 L0,70 Z" fill="#FDF6EC"/>
+</svg>
+
+<!-- ══ SERVICIOS ═════════════════════════════════ -->
+<section class="servicios">
+  <h2 class="seccion-titulo" style="color:var(--verde);">Lo que ofrezco</h2>
+  <p class="seccion-subtitulo">Terapias para reconectar cuerpo, mente y espíritu</p>
+
+  <div class="tarjetas">
+    <div class="tarjeta tarjeta-1">
+      <span class="emoji">🌿</span>
+      <h3>Masaje Holístico</h3>
+      <p>Un masaje que va más allá del cuerpo físico, liberando tensiones acumuladas y restaurando tu equilibrio natural.</p>
+    </div>
+    <div class="tarjeta tarjeta-2">
+      <span class="emoji">✨</span>
+      <h3>Liberación Emocional</h3>
+      <p>Acompaño el proceso de soltar bloqueos emocionales que se manifiestan en el cuerpo, creando espacio para el bienestar.</p>
+    </div>
+    <div class="tarjeta tarjeta-3">
+      <span class="emoji">🫀</span>
+      <h3>Bienestar Integral</h3>
+      <p>Sesiones personalizadas que integran diferentes técnicas holísticas adaptadas a tus necesidades únicas.</p>
+    </div>
+    <div class="tarjeta tarjeta-4">
+      <span class="emoji">🧘</span>
+      <h3>Reconexión Contigo</h3>
+      <p>Un espacio seguro para escuchar a tu cuerpo, reducir el estrés y recuperar la energía vital que te pertenece.</p>
+    </div>
+  </div>
+</section>
+
+<!-- onda -->
+<svg class="onda" viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,30 C480,70 960,0 1440,30 L1440,70 L0,70 Z" fill="#9B72CF" opacity="0.15"/>
+  <path d="M0,40 C360,10 1080,65 1440,40 L1440,70 L0,70 Z" fill="#9B72CF" opacity="0.25"/>
+  <path d="M0,55 C720,20 1080,70 1440,55 L1440,70 L0,70 Z" fill="#C9B8E8"/>
+</svg>
+
+<!-- ══ BIENESTAR ══════════════════════════════════ -->
+<section class="bienestar">
+  <h2 class="seccion-titulo">¿Qué vas a sentir?</h2>
+  <p class="seccion-subtitulo">Beneficios que miles de personas ya experimentan</p>
+
+  <div class="lista-beneficios">
+    <span class="beneficio">🌸 Reducción del estrés</span>
+    <span class="beneficio">💜 Alivio de la tensión muscular</span>
+    <span class="beneficio">✨ Claridad mental</span>
+    <span class="beneficio">🌿 Equilibrio emocional</span>
+    <span class="beneficio">💫 Energía renovada</span>
+    <span class="beneficio">🫶 Mayor conexión contigo</span>
+    <span class="beneficio">🌙 Mejor calidad de sueño</span>
+    <span class="beneficio">🌈 Sensación de ligereza</span>
+    <span class="beneficio">🔮 Liberación de bloqueos</span>
+    <span class="beneficio">🌺 Paz interior</span>
+  </div>
+
+  <a class="btn-ig" href="https://www.instagram.com/cristinaterapeutaholistic" target="_blank" rel="noopener"
+     style="background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.6);backdrop-filter:blur(8px);">
+    Ver más en Instagram ✨
+  </a>
+</section>
+
+<!-- onda -->
+<svg class="onda" viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,55 C720,10 1080,70 1440,55 L1440,0 L0,0 Z" fill="#C9B8E8"/>
+  <path d="M0,40 C360,75 1080,5 1440,40 L1440,0 L0,0 Z" fill="var(--verde)" opacity="0.15"/>
+  <path d="M0,25 C480,60 960,0 1440,25 L1440,0 L0,0 Z" fill="var(--verde)" opacity="0.35"/>
+  <path d="M0,10 C720,45 1080,0 1440,10 L1440,0 L0,0 Z" fill="var(--verde)"/>
+</svg>
+
+<!-- ══ CITA ═══════════════════════════════════════ -->
+<section class="cita-bloque">
+  <blockquote>
+    "El cuerpo recuerda todo lo que la mente intenta olvidar. La sanación empieza cuando aprendemos a escucharlo."
+  </blockquote>
+  <cite>— Cristina, Terapeuta Holística</cite>
+</section>
+
+<!-- onda -->
+<svg class="onda" viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,10 C480,60 960,5 1440,40 L1440,70 L0,70 Z" fill="var(--crema)"/>
+</svg>
+
+<!-- ══ INSTAGRAM ══════════════════════════════════ -->
+<section class="instagram-sec">
+  <h2 class="seccion-titulo" style="color:var(--lila);">Encuéntrame en Instagram</h2>
+  <p class="seccion-subtitulo">Contenido sobre bienestar, tips holísticos y mucho más</p>
+
+  <div class="ig-card">
+    <div class="ig-avatar">🌿</div>
+    <h3>Cristina</h3>
+    <p class="ig-handle">@cristinaterapeutaholistic</p>
+    <p>Masaje Holístico y Bienestar Integral en Madrid. Libera estrés, tensión y bloqueos emocionales. Acompañándote hacia tu mejor versión. 🌿✨</p>
+    <a class="btn-ig" href="https://www.instagram.com/cristinaterapeutaholistic" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Seguir en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════ -->
+<footer>
+  <div class="footer-nombre">Cristina · Terapeuta Holística</div>
+  <p>🌿 Masaje Holístico &amp; Bienestar Integral · <strong>📍 Madrid</strong></p>
+  <div class="separador">────────────────</div>
+  <p>
+    <a href="https://www.instagram.com/cristinaterapeutaholistic" target="_blank" rel="noopener">@cristinaterapeutaholistic</a>
+    &nbsp;·&nbsp; Instagram
+  </p>
+  <div class="separador">────────────────</div>
+  <p style="font-size:0.8rem; margin-top:0.4rem;">✨ Libera estrés, tensión y bloqueos emocionales ✨</p>
+</footer>
+
+</body>
+</html>
