@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aradia 🌜 Alma Consciente 🌛 Terapias Holísticas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --violet: #7C5CBF;
+    --violet-light: #B89AE8;
+    --violet-pale: #EDE4FF;
+    --rose: #D4607A;
+    --rose-light: #F0A3B5;
+    --rose-pale: #FDEEF2;
+    --amber: #D98C3A;
+    --amber-light: #F2C07A;
+    --amber-pale: #FEF5E6;
+    --teal: #3A9B8C;
+    --teal-light: #7ECFC5;
+    --teal-pale: #E4F7F5;
+    --gold: #C9A84C;
+    --cream: #FDF9F4;
+    --deep: #2C1F3E;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(253,249,244,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(124,92,191,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--violet);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--deep);
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--violet); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-orbs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+  }
+
+  .orb-1 { width: 500px; height: 500px; background: var(--violet-light); top: -100px; left: -150px; }
+  .orb-2 { width: 400px; height: 400px; background: var(--rose-light); top: 100px; right: -120px; }
+  .orb-3 { width: 350px; height: 350px; background: var(--amber-light); bottom: -80px; left: 50%; transform: translateX(-50%); }
+
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+  .hero-moon { font-size: 3.5rem; margin-bottom: 1rem; animation: floatMoon 4s ease-in-out infinite; }
+
+  @keyframes floatMoon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 1.2rem;
+    opacity: 0.9;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--deep);
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--violet);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--rose);
+    margin-bottom: 2rem;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--deep);
+    opacity: 0.75;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--violet);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.85rem 1.8rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 20px rgba(124,92,191,0.3);
+  }
+
+  .btn-primary:hover { background: #6749aa; transform: translateY(-2px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--deep);
+    text-decoration: none;
+    padding: 0.85rem 1.8rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1.5px solid rgba(44,31,62,0.25);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--violet); background: var(--violet-pale); }
+
+  /* STARS DIVIDER */
+  .stars-divider {
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 1.2rem;
+    opacity: 0.4;
+    letter-spacing: 0.5rem;
+  }
+
+  /* SECTION GENERAL */
+  section { padding: 5rem 1.5rem; }
+
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-title em { font-style: italic; }
+
+  .section-intro {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    opacity: 0.7;
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  /* SOBRE MÍ */
+  #sobre-mi { background: linear-gradient(135deg, var(--violet-pale) 0%, var(--rose-pale) 100%); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-portrait {
+    position: relative;
+  }
+
+  .portrait-circle {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--violet-light), var(--rose-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(124,92,191,0.25);
+  }
+
+  .about-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    background: var(--amber);
+    color: #fff;
+    border-radius: 50px;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(217,140,58,0.35);
+  }
+
+  .about-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+    color: var(--deep);
+  }
+
+  .about-text h2 em { font-style: italic; color: var(--violet); }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.85;
+    opacity: 0.75;
+    margin-bottom: 1rem;
+  }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .tag {
+    background: rgba(124,92,191,0.12);
+    color: var(--violet);
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(124,92,191,0.2);
+  }
+
+  /* SERVICIOS */
+  #servicios { background: var(--cream); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(44,31,62,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+
+  .service-card.violet::before { background: linear-gradient(90deg, var(--violet), var(--violet-light)); }
+  .service-card.rose::before { background: linear-gradient(90deg, var(--rose), var(--rose-light)); }
+  .service-card.amber::before { background: linear-gradient(90deg, var(--amber), var(--amber-light)); }
+  .service-card.teal::before { background: linear-gradient(90deg, var(--teal), var(--teal-light)); }
+
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(44,31,62,0.12); }
+
+  .service-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--deep);
+  }
+
+  .service-card p { font-size: 0.9rem; line-height: 1.75; opacity: 0.65; }
+
+  /* PROCESO */
+  #proceso { background: linear-gradient(180deg, var(--teal-pale) 0%, var(--violet-pale) 100%); }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 640px;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .step-num.v { background: var(--violet); }
+  .step-num.r { background: var(--rose); }
+  .step-num.a { background: var(--amber); }
+  .step-num.t { background: var(--teal); }
+
+  .step-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--deep);
+  }
+
+  .step-body p { font-size: 0.9rem; line-height: 1.75; opacity: 0.65; }
+
+  /* FRASES */
+  .quote-section {
+    background: var(--violet);
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-section::before, .quote-section::after {
+    content: '✦';
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.06;
+    color: #fff;
+  }
+
+  .quote-section::before { top: -20px; left: -20px; }
+  .quote-section::after { bottom: -20px; right: -20px; }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #fff;
+    max-width: 720px;
+    margin: 0 auto 1.2rem;
+    line-height: 1.4;
+  }
+
+  .quote-author {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+  }
+
+  /* CONTACTO */
+  #contacto { background: var(--cream); }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 700px;
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-card.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+  .contact-card.instagram { background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737); }
+
+  .contact-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.18); }
+
+  .contact-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+
+  .contact-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-card p { font-size: 0.85rem; opacity: 0.85; }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  footer .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 0.5rem;
+  }
+
+  /* DECORACIONES FLOTANTES */
+  .float-decoration {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.12;
+    font-size: 6rem;
+  }
+
+  .section-with-deco { position: relative; overflow: hidden; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    nav { padding: 1rem; }
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .portrait-circle { width: 220px; height: 220px; font-size: 5rem; }
+    .contact-cards { grid-template-columns: 1fr; max-width: 360px; }
+    .hero-ctas { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Aradia ✦ Alma Consciente</div>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre Belu</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero section-with-deco">
+  <div class="hero-bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-moon">🌜</div>
+    <p class="hero-eyebrow">Terapias Holísticas · Buenos Aires</p>
+    <h1 class="hero-title"><em>Aradia</em><br>Alma Consciente</h1>
+    <p class="hero-subtitle">Sanación desde adentro</p>
+    <p class="hero-desc">Sesiones energéticas y procesos personales para reconectar con tu interior, encontrar claridad y vivir con bienestar integral. 🌿</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/c/5491173852449" target="_blank" class="btn-primary">💬 Escribime por WhatsApp</a>
+      <a href="https://www.instagram.com/aradia.almaconsciente" target="_blank" class="btn-secondary">📷 Instagram</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-portrait">
+        <div class="portrait-circle">🌸</div>
+        <div class="about-badge">✨ Terapeuta Holística</div>
+      </div>
+      <div class="about-text">
+        <h2>Hola, soy <em>Belu</em></h2>
+        <p>Soy terapeuta holística y acompaño a las personas en su camino de autoconocimiento y expansión. Mi trabajo integra distintas herramientas energéticas y espirituales para abordar el bienestar desde una perspectiva completa: cuerpo, mente, emociones y alma.</p>
+        <p>Creo profundamente en el poder de cada ser para sanar y transformarse. Mi rol es ser guía y sostén en ese proceso tan único y sagrado.</p>
+        <div class="about-tags">
+          <span class="tag">🌿 Energía</span>
+          <span class="tag">🦋 Transformación</span>
+          <span class="tag">✨ Bienestar Integral</span>
+          <span class="tag">🌙 Alma</span>
+          <span class="tag">🌸 Acompañamiento</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-inner">
+    <p class="section-label" style="color: var(--violet);">Lo que ofrezco</p>
+    <h2 class="section-title">Mis <em>servicios</em> y terapias</h2>
+    <p class="section-intro">Cada sesión es un espacio sagrado y personalizado, diseñado para acompañarte exactamente donde estás hoy.</p>
+    <div class="services-grid">
+      <div class="service-card violet">
+        <div class="service-icon">⚡</div>
+        <h3>Sesiones Energéticas</h3>
+        <p>Trabajo con tu campo energético para liberar bloqueos, restaurar el flujo vital y reconectar con tu esencia más profunda.</p>
+      </div>
+      <div class="service-card rose">
+        <div class="service-icon">🌱</div>
+        <h3>Procesos Personales</h3>
+        <p>Un acompañamiento continuo y sostenido para atravesar etapas de cambio, obtener claridad y avanzar con propósito.</p>
+      </div>
+      <div class="service-card amber">
+        <div class="service-icon">🔮</div>
+        <h3>Conexión Interior</h3>
+        <p>Herramientas y prácticas para profundizar el vínculo contigo mismo, escuchar tu intuición y vivir con mayor presencia.</p>
+      </div>
+      <div class="service-card teal">
+        <div class="service-icon">🦋</div>
+        <h3>Bienestar Integral</h3>
+        <p>Abordamos tu bienestar en todas sus dimensiones: física, emocional, mental y espiritual, de manera armónica y holística.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="section-inner">
+    <p class="section-label" style="color: var(--teal);">¿Cómo funciona?</p>
+    <h2 class="section-title">Tu camino de <em>sanación</em></h2>
+    <p class="section-intro">Cada proceso es único. Te acompaño paso a paso, a tu ritmo, en un espacio de total confianza y contención.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num v">1</div>
+        <div class="step-body">
+          <h3>Primer contacto</h3>
+          <p>Nos conectamos por WhatsApp o Instagram para conocernos, entender qué estás buscando y ver si hay sintonía para trabajar juntos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num r">2</div>
+        <div class="step-body">
+          <h3>Sesión inicial</h3>
+          <p>Hacemos una primera sesión donde evaluamos tu estado energético, emocional y espiritual, y definimos el camino más adecuado para ti.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num a">3</div>
+        <div class="step-body">
+          <h3>Proceso de sanación</h3>
+          <p>Acompañamiento sostenido con sesiones energéticas, herramientas prácticas y guía personalizada para tu transformación real y profunda.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num t">4</div>
+        <div class="step-body">
+          <h3>Integración y expansión</h3>
+          <p>Consolidamos los cambios, celebramos los avances y seguimos expandiendo tu bienestar desde un lugar de mayor libertad y consciencia.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRASE -->
+<div class="quote-section">
+  <p class="quote-text">"La sanación más profunda comienza cuando te atreves a mirar hacia adentro con amor y sin juicio."</p>
+  <p class="quote-author">— Aradia · Alma Consciente 🌿</p>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <p class="section-label" style="color: var(--rose);">Estoy aquí para vos</p>
+    <h2 class="section-title">¡<em>Conectemos</em>!</h2>
+    <p class="section-intro">El primer paso es el más importante. Escríbeme cuando quieras, con total libertad. Estoy aquí para acompañarte. 💜</p>
+    <div class="contact-cards">
+      <a href="https://wa.me/c/5491173852449" target="_blank" class="contact-card whatsapp">
+        <div class="contact-icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Reservá tu sesión o consultá lo que necesites. Te respondo a la brevedad.</p>
+      </a>
+      <a href="https://www.instagram.com/aradia.almaconsciente" target="_blank" class="contact-card instagram">
+        <div class="contact-icon">📷</div>
+        <h3>Instagram</h3>
+        <p>Seguime y encontrá contenido sobre bienestar, energía y consciencia.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🌜 Aradia · Alma Consciente 🌛</div>
+  <p>Terapias Holísticas · Belu · Buenos Aires, Argentina</p>
+  <p style="margin-top: 0.5rem; opacity: 0.4; font-size: 0.75rem;">💜 Hecho con amor para acompañar tu camino interior</p>
+</footer>
+
+</body>
+</html>
