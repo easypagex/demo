@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sandra Sarria – Terapeuta & Coach Holística</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violet:    #7B3FA0;
+      --magenta:   #C2379B;
+      --gold:      #F0A500;
+      --teal:      #2ABFB5;
+      --rose:      #F76E8D;
+      --cream:     #FDF8F2;
+      --dark:      #1E1030;
+      --text:      #3A2850;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #1E1030 0%, #3D1060 40%, #7B3FA0 75%, #C2379B 100%);
+    }
+
+    /* floating mandalas */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: .18;
+      animation: pulse 6s ease-in-out infinite alternate;
+    }
+    .hero::before {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+      top: -150px; right: -150px;
+    }
+    .hero::after {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--teal) 0%, transparent 70%);
+      bottom: -150px; left: -150px;
+      animation-delay: 3s;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1) rotate(0deg); }
+      to   { transform: scale(1.15) rotate(20deg); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.3);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 7px 20px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+
+    /* Mandala SVG */
+    .mandala {
+      width: 190px; height: 190px;
+      margin: 0 auto 32px;
+      animation: spin 30s linear infinite;
+      filter: drop-shadow(0 0 28px rgba(240,165,0,.5));
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hero h1 span {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      font-size: .6em;
+      color: var(--gold);
+      letter-spacing: .04em;
+      margin-top: 4px;
+    }
+
+    .hero-tagline {
+      color: rgba(255,255,255,.85);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 540px;
+      margin: 20px auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #e07e00);
+      color: #fff;
+    }
+    .btn-teal {
+      background: linear-gradient(135deg, var(--teal), #1a8f87);
+      color: #fff;
+    }
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+    }
+
+    /* ── CHAKRA STRIP ──────────────────────────────────────── */
+    .chakra-strip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      height: 8px;
+    }
+    .chakra-strip span {
+      flex: 1;
+      height: 100%;
+    }
+
+    /* ── SECTION SHARED ────────────────────────────────────── */
+    section { padding: 80px 24px; }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #5a4070;
+      max-width: 640px;
+    }
+
+    /* ── SOBRE MÍ ──────────────────────────────────────────── */
+    .about {
+      background: #fff;
+    }
+    .about-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-visual {
+      display: flex;
+      justify-content: center;
+    }
+    .aura-circle {
+      position: relative;
+      width: 280px;
+      height: 280px;
+    }
+    .aura-circle::before, .aura-circle::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+    }
+    .aura-circle::before {
+      background: conic-gradient(
+        var(--rose) 0deg,
+        var(--magenta) 60deg,
+        var(--violet) 120deg,
+        var(--teal) 180deg,
+        var(--gold) 240deg,
+        var(--rose) 360deg
+      );
+      animation: spin 12s linear infinite;
+    }
+    .aura-circle::after {
+      inset: 10px;
+      background: #fff;
+    }
+    .aura-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      text-align: center;
+      padding: 30px;
+    }
+    .aura-inner .big-emoji { font-size: 3rem; line-height: 1; margin-bottom: 8px; }
+    .aura-inner p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--violet);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 680px) {
+      .about-inner { grid-template-columns: 1fr; }
+      .aura-circle { width: 220px; height: 220px; }
+    }
+
+    /* ── SERVICIOS ─────────────────────────────────────────── */
+    .services { background: var(--cream); }
+    .services-inner { max-width: 1060px; margin: 0 auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 28px;
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(123,63,160,.15); }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+    }
+    .card:nth-child(1)::before { background: linear-gradient(90deg, var(--violet), var(--magenta)); }
+    .card:nth-child(2)::before { background: linear-gradient(90deg, var(--teal), #6de9b6); }
+    .card:nth-child(3)::before { background: linear-gradient(90deg, var(--gold), var(--rose)); }
+    .card:nth-child(4)::before { background: linear-gradient(90deg, var(--rose), var(--magenta)); }
+    .card:nth-child(5)::before { background: linear-gradient(90deg, var(--magenta), var(--violet)); }
+    .card:nth-child(6)::before { background: linear-gradient(90deg, #6de9b6, var(--teal)); }
+
+    .card-icon { font-size: 2.6rem; margin-bottom: 18px; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    .card p { font-size: .9rem; color: #6a5580; line-height: 1.7; }
+
+    /* ── PILARES ────────────────────────────────────────────── */
+    .pillars {
+      background: linear-gradient(135deg, #1E1030 0%, #4a1a7a 50%, #7B3FA0 100%);
+      color: #fff;
+    }
+    .pillars-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .pillars .section-label { color: var(--gold); }
+    .pillars .section-title { color: #fff; }
+    .pillars-trio {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+    .pillar {
+      flex: 1;
+      min-width: 180px;
+      max-width: 220px;
+    }
+    .pillar-ring {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      font-weight: 700;
+      position: relative;
+    }
+    .pillar:nth-child(1) .pillar-ring { background: radial-gradient(circle, #f76e8d 0%, #c2379b 100%); }
+    .pillar:nth-child(2) .pillar-ring { background: radial-gradient(circle, #2ABFB5 0%, #1a7a75 100%); }
+    .pillar:nth-child(3) .pillar-ring { background: radial-gradient(circle, #F0A500 0%, #c07a00 100%); }
+    .pillar h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .pillar p { font-size: .88rem; color: rgba(255,255,255,.75); line-height: 1.65; }
+
+    /* ── QUOTE ──────────────────────────────────────────────── */
+    .quote-section {
+      background: linear-gradient(135deg, var(--magenta), var(--rose));
+      padding: 70px 24px;
+      text-align: center;
+    }
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3.5vw, 2.3rem);
+      color: #fff;
+      max-width: 780px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .quote-section cite {
+      display: block;
+      margin-top: 22px;
+      font-family: 'Nunito', sans-serif;
+      font-style: normal;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+    }
+
+    /* ── CONTACTO ───────────────────────────────────────────── */
+    .contact {
+      background: #fff;
+      text-align: center;
+    }
+    .contact-inner { max-width: 700px; margin: 0 auto; }
+    .contact .section-label { color: var(--teal); }
+    .contact-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: .82rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(30,16,48,.88);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+    }
+    nav .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-style: italic;
+      text-decoration: none;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    nav .nav-links a {
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      transition: color .2s;
+    }
+    nav .nav-links a:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      nav .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Sandra Sarria</a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre Mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Rotating mandala SVG -->
+  <svg class="mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="100" cy="100" r="96" fill="none" stroke="#F0A500" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <circle cx="100" cy="100" r="80" fill="none" stroke="#2ABFB5" stroke-width="1"/>
+    <circle cx="100" cy="100" r="60" fill="none" stroke="#C2379B" stroke-width="1.5"/>
+    <circle cx="100" cy="100" r="40" fill="none" stroke="#F0A500" stroke-width="1"/>
+    <circle cx="100" cy="100" r="18" fill="#7B3FA0" opacity=".6"/>
+    <!-- petals -->
+    <g opacity=".7">
+      <ellipse cx="100" cy="52" rx="10" ry="28" fill="#F76E8D"/>
+      <ellipse cx="100" cy="148" rx="10" ry="28" fill="#F76E8D"/>
+      <ellipse cx="52" cy="100" rx="28" ry="10" fill="#2ABFB5"/>
+      <ellipse cx="148" cy="100" rx="28" ry="10" fill="#2ABFB5"/>
+      <ellipse cx="67" cy="67" rx="10" ry="28" fill="#F0A500" transform="rotate(-45 67 67)"/>
+      <ellipse cx="133" cy="67" rx="10" ry="28" fill="#F0A500" transform="rotate(45 133 67)"/>
+      <ellipse cx="67" cy="133" rx="10" ry="28" fill="#C2379B" transform="rotate(45 67 133)"/>
+      <ellipse cx="133" cy="133" rx="10" ry="28" fill="#C2379B" transform="rotate(-45 133 133)"/>
+    </g>
+    <circle cx="100" cy="100" r="12" fill="#F0A500"/>
+  </svg>
+
+  <div class="hero-badge">✨ Terapeuta &amp; Coach Holística ✨</div>
+
+  <h1>Sandra Sarria
+    <span>Equilibra tu Cuerpo, Mente y Espíritu</span>
+  </h1>
+
+  <p class="hero-tagline">
+    Acompaño tu camino hacia el bienestar integral con amor, presencia y herramientas transformadoras. 
+    Juntas activamos tu potencial y reconectas con tu luz interior.
+  </p>
+
+  <div class="hero-ctas">
+    <a class="btn btn-gold"
+       href="https://wa.me/573126488842?text=Hola%20Sandra%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20servicios"
+       target="_blank" rel="noopener">
+      <!-- WhatsApp icon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      WhatsApp
+    </a>
+    <a class="btn btn-ig"
+       href="https://www.instagram.com/sandra.sarria.holistica"
+       target="_blank" rel="noopener">
+      <!-- IG icon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+</section>
+
+<!-- CHAKRA STRIP -->
+<div class="chakra-strip" aria-hidden="true">
+  <span style="background:#ff0000"></span>
+  <span style="background:#ff7700"></span>
+  <span style="background:#ffdd00"></span>
+  <span style="background:#00cc44"></span>
+  <span style="background:#0088ff"></span>
+  <span style="background:#4400cc"></span>
+  <span style="background:#9900cc"></span>
+</div>
+
+<!-- SOBRE MÍ -->
+<section class="about" id="sobre-mi">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="aura-circle">
+        <div class="aura-inner">
+          <div class="big-emoji">🌸</div>
+          <p>"Tu transformación<br/>empieza desde adentro"</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="section-label" style="color:var(--magenta)">Quién Soy</p>
+      <h2 class="section-title">Sandra Sarria<br/>Coach &amp; Terapeuta Holística</h2>
+      <p class="section-body">
+        Soy Sandra Sarria, guía de transformación interior con una visión integrada del ser humano. 
+        Mi misión es acompañarte en el proceso de reconectar con tu esencia, equilibrar tus energías 
+        y despertar todo tu potencial.
+      </p>
+      <br/>
+      <p class="section-body">
+        Con formación como <strong>Neuroentrenadora</strong>, <strong>Neuroconsteladora</strong> y 
+        <strong>Maestra Reiki</strong>, combino herramientas de neurociencia, constelaciones 
+        familiares y sanación energética para ofrecer un acompañamiento verdaderamente holístico.
+      </p>
+      <br/>
+      <p class="section-body">
+        Cada sesión es un espacio sagrado de amor, respeto y crecimiento donde tú eres lo más 
+        importante. 🌟
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <blockquote>
+    "Cuando cuerpo, mente y espíritu se alinean, la vida fluye con abundancia, paz y propósito."
+  </blockquote>
+  <cite>— Sandra Sarria, Terapeuta Holística</cite>
+</div>
+
+<!-- SERVICIOS -->
+<section class="services" id="servicios">
+  <div class="services-inner">
+    <p class="section-label" style="color:var(--violet)">Lo Que Ofrezco</p>
+    <h2 class="section-title">Servicios &amp; Terapias</h2>
+    <p class="section-body">Un abanico de herramientas transformadoras diseñadas para nutrir cada dimensión de tu ser.</p>
+    <div class="services-grid">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Neuroentrenamiento</h3>
+        <p>Reprograma patrones mentales limitantes usando las últimas herramientas de neurociencia aplicada para activar tu cerebro al máximo.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌳</div>
+        <h3>Neuroconstelaciones</h3>
+        <p>Sana heridas transgeneracionales y libera dinámicas familiares que ya no te pertenecen. Reconecta con tu lugar de amor en el sistema.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✋</div>
+        <h3>Maestra Reiki</h3>
+        <p>Canalización de energía vital para armonizar tus chakras, liberar bloqueos y restaurar el flujo natural de tu fuerza interior.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Coaching Holístico</h3>
+        <p>Sesiones de acompañamiento personalizadas para definir metas con sentido, superar obstáculos y construir la vida que mereces.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💫</div>
+        <h3>Motivación &amp; Inspiración</h3>
+        <p>Talleres y charlas que encienden tu chispa interior, impulsan tu autoestima y te reconectan con tu propósito de vida más profundo.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>Guía Espiritual</h3>
+        <p>Un camino de exploración interior, meditación y consciencia plena que te conecta con lo más sagrado de tu ser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section class="pillars">
+  <div class="pillars-inner">
+    <p class="section-label">La Trinidad del Bienestar</p>
+    <h2 class="section-title">Cuerpo · Mente · Espíritu</h2>
+    <div class="pillars-trio">
+      <div class="pillar">
+        <div class="pillar-ring">💪</div>
+        <h4>Cuerpo</h4>
+        <p>Tu templo sagrado. Trabajamos la energía física, la vitalidad y la conexión con tus sensaciones para que te sientas radiante.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-ring">🧘</div>
+        <h4>Mente</h4>
+        <p>Libera creencias limitantes, activa nuevos patrones neuronales y cultiva una mente en paz, clara y enfocada.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-ring">🕊️</div>
+        <h4>Espíritu</h4>
+        <p>Reconecta con tu esencia divina, encuentra tu propósito y expande tu consciencia hacia una vida con sentido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="contact-inner">
+    <p class="section-label" style="color:var(--teal)">Estoy Aquí Para Ti</p>
+    <h2 class="section-title">Comencemos Tu Proceso</h2>
+    <p class="section-body" style="margin: 0 auto; text-align: center;">
+      Cada gran transformación comienza con un primer paso. 
+      Contáctame y juntas diseñamos el camino que tu alma está pidiendo.
+    </p>
+    <div class="contact-ctas">
+      <a class="btn btn-gold"
+         href="https://wa.me/573126488842?text=Hola%20Sandra%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20servicios"
+         target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a class="btn btn-ig"
+         href="https://www.instagram.com/sandra.sarria.holistica"
+         target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        Ver Instagram
+      </a>
+    </div>
+
+    <!-- info cards -->
+    <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-top:48px;">
+      <div style="background:linear-gradient(135deg,#f0fffe,#d4f5f2); border-radius:16px; padding:24px 32px; text-align:center; min-width:200px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">📱</div>
+        <p style="font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-bottom:4px;">WhatsApp</p>
+        <p style="font-weight:700; color:var(--dark);">+57 312 648 8842</p>
+      </div>
+      <div style="background:linear-gradient(135deg,#fff0f8,#ffd6ee); border-radius:16px; padding:24px 32px; text-align:center; min-width:200px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">📸</div>
+        <p style="font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--magenta); margin-bottom:4px;">Instagram</p>
+        <p style="font-weight:700; color:var(--dark);">@sandra.sarria.holistica</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>✨ Hecho con amor para tu transformación ✨</p>
+  <p style="margin-top:8px;">
+    © 2025 Sandra Sarria · Terapeuta &amp; Coach Holística ·
+    <a href="https://www.instagram.com/sandra.sarria.holistica" target="_blank" rel="noopener">@sandra.sarria.holistica</a>
+  </p>
+</footer>
+
+</body>
+</html>
