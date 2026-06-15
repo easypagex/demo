@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>•SARITA• TATTOO• — ese.tattoos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Grotesk:wght@300;400;600&family=Permanent+Marker&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0d0a0b;
+      --cream:     #f5efe6;
+      --magenta:   #e0177a;
+      --violet:    #7c2adb;
+      --gold:      #f4b942;
+      --teal:      #00c9b1;
+      --coral:     #ff5c5c;
+      --white:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 30%, rgba(124,42,219,.55) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 80% 70%, rgba(224,23,122,.45) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 55% 10%, rgba(0,201,177,.3) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    /* animated ink blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .35;
+      animation: drift 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    .blob-1 { width: 420px; height: 420px; background: var(--magenta); top: -80px; left: -100px; animation-delay: 0s; }
+    .blob-2 { width: 320px; height: 320px; background: var(--violet); bottom: -60px; right: -80px; animation-delay: -3s; }
+    .blob-3 { width: 200px; height: 200px; background: var(--teal); top: 40%; left: 60%; animation-delay: -5s; }
+
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .fleur { font-size: 2.2rem; letter-spacing: .4rem; color: var(--gold); margin-bottom: .5rem; }
+
+    .hero h1 {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(3.5rem, 13vw, 8rem);
+      line-height: .95;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 40%, var(--magenta) 70%, var(--violet) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(224,23,122,.5));
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      color: var(--teal);
+      letter-spacing: .12rem;
+      margin-top: .8rem;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 1.6rem;
+      padding: .45rem 1.4rem;
+      border: 2px solid var(--gold);
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .2rem;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: 2.4rem;
+      padding: 1rem 2.4rem;
+      background: linear-gradient(135deg, var(--magenta), var(--violet));
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 999px;
+      letter-spacing: .06rem;
+      box-shadow: 0 0 30px rgba(224,23,122,.6), 0 0 60px rgba(124,42,219,.3);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .cta-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 50px rgba(224,23,122,.8), 0 0 90px rgba(124,42,219,.5); }
+    .cta-btn svg { width: 22px; height: 22px; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      color: rgba(245,239,230,.4);
+      font-size: .7rem;
+      letter-spacing: .15rem;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+    .scroll-hint::after { content: '▼'; font-size: .9rem; }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 5rem 1.5rem; max-width: 960px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .72rem;
+      letter-spacing: .25rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: .8rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── ABOUT ── */
+    #sobre {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) { #sobre { grid-template-columns: 1fr; } }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .tattoo-icon-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1rem;
+    }
+
+    .icon-card {
+      aspect-ratio: 1;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform .25s;
+    }
+    .icon-card:hover { transform: scale(1.08) rotate(-2deg); }
+
+    .ic1 { background: linear-gradient(135deg, var(--magenta), var(--violet)); }
+    .ic2 { background: linear-gradient(135deg, var(--teal), var(--violet)); }
+    .ic3 { background: linear-gradient(135deg, var(--gold), var(--coral)); }
+    .ic4 { background: linear-gradient(135deg, var(--violet), var(--magenta)); }
+    .ic5 { background: linear-gradient(135deg, var(--coral), var(--gold)); }
+    .ic6 { background: linear-gradient(135deg, #00c9b1, #0d89ff); }
+
+    .about-text .section-label { color: var(--magenta); }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(245,239,230,.8);
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, var(--gold), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* ── SERVICIOS ── */
+    #servicios { text-align: center; }
+    #servicios .section-label { color: var(--teal); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.4rem;
+      margin-top: 2.5rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 20px;
+      padding: 2rem 1.4rem;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, border-color .25s;
+    }
+    .card:hover { transform: translateY(-6px); border-color: rgba(244,185,66,.4); }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      opacity: .25;
+    }
+    .card:nth-child(1)::before { background: var(--magenta); }
+    .card:nth-child(2)::before { background: var(--teal); }
+    .card:nth-child(3)::before { background: var(--gold); }
+
+    .card-emoji { font-size: 2.4rem; margin-bottom: .8rem; display: block; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: .5rem; }
+    .card p { font-size: .88rem; line-height: 1.65; color: rgba(245,239,230,.65); }
+
+    /* ── UBICACIÓN ── */
+    #ubicacion { text-align: center; }
+    #ubicacion .section-label { color: var(--coral); }
+
+    .location-box {
+      margin-top: 2.4rem;
+      background: linear-gradient(135deg, rgba(124,42,219,.2), rgba(224,23,122,.15));
+      border: 1px solid rgba(244,185,66,.25);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .location-box .pin { font-size: 3rem; }
+    .location-box strong { font-size: 1.3rem; color: var(--gold); }
+    .location-box span { font-size: .95rem; color: rgba(245,239,230,.7); }
+
+    .shop-link {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px dashed var(--teal);
+      transition: color .2s;
+    }
+    .shop-link:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── CITAS ── */
+    #citas { text-align: center; }
+    #citas .section-label { color: var(--violet); }
+
+    #citas p { color: rgba(245,239,230,.75); font-size: 1rem; line-height: 1.7; max-width: 520px; margin: 0 auto 2rem; }
+
+    .cita-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      border: 2px solid var(--magenta);
+      color: var(--magenta);
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: .95rem;
+      transition: background .2s, color .2s, transform .2s;
+    }
+    .btn-outline:hover { background: var(--magenta); color: var(--white); transform: scale(1.04); }
+    .btn-outline.teal { border-color: var(--teal); color: var(--teal); }
+    .btn-outline.teal:hover { background: var(--teal); color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+      color: rgba(245,239,230,.3);
+      font-size: .8rem;
+      letter-spacing: .08rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer .heart { color: var(--magenta); font-style: normal; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(244,185,66,.3), transparent);
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      background: linear-gradient(90deg, var(--magenta), var(--violet), var(--teal), var(--gold), var(--magenta));
+      padding: .6rem 0;
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 18s linear infinite;
+      gap: 2rem;
+    }
+    .marquee-track span {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .18rem;
+      text-transform: uppercase;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="hero-content">
+      <p class="fleur">⚜️ ⚜️ ⚜️</p>
+      <h1>SARITA<br>TATTOO</h1>
+      <p class="hero-sub">Tatuadora · Madrid</p>
+      <span class="badge">ese.tattoos</span>
+      <br/>
+      <a class="cta-btn" href="https://www.instagram.com/ese.tattoos" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        Sígueme en Instagram
+      </a>
+    </div>
+    <div class="scroll-hint">Explorar</div>
+  </div>
+
+  <!-- ══ MARQUEE ══ -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>✦ Tatuajes</span><span>✦ Arte en piel</span><span>✦ Cuadritos de mascotas</span><span>✦ Madrid</span>
+      <span>✦ Diseños únicos</span><span>✦ Tinta con alma</span><span>✦ San Sebastián de los Reyes</span><span>✦ Karma Shop</span>
+      <!-- duplicate for seamless loop -->
+      <span>✦ Tatuajes</span><span>✦ Arte en piel</span><span>✦ Cuadritos de mascotas</span><span>✦ Madrid</span>
+      <span>✦ Diseños únicos</span><span>✦ Tinta con alma</span><span>✦ San Sebastián de los Reyes</span><span>✦ Karma Shop</span>
+    </div>
+  </div>
+
+  <!-- ══ SOBRE MÍ ══ -->
+  <section id="sobre">
+    <div class="about-visual">
+      <div class="tattoo-icon-grid">
+        <div class="icon-card ic1">🐾</div>
+        <div class="icon-card ic2">🌹</div>
+        <div class="icon-card ic3">⚡</div>
+        <div class="icon-card ic4">🐶</div>
+        <div class="icon-card ic5">✨</div>
+        <div class="icon-card ic6">🖤</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <p class="section-label">⚜️ Sobre mí</p>
+      <h2>Hola, soy <span class="highlight">Sarita</span></h2>
+      <p>
+        Soy tatuadora y llevo la tinta en la sangre. Mi estudio está en <strong>Tattoo Karma Shop</strong>, donde cada diseño nace de una conversación, una emoción y mucho corazón.
+      </p>
+      <p>
+        Especializada en <span class="highlight">cuadritos de mascotas</span> — porque tu peludito merece vivir para siempre en tu piel. ✨🐶
+      </p>
+      <p>
+        Pide cita por mensaje directo en Instagram o WhatsApp y hablamos de tu idea.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ══ SERVICIOS ══ -->
+  <section id="servicios">
+    <p class="section-label">✦ Lo que hago</p>
+    <h2>Servicios</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="card-emoji">🐶</span>
+        <h3>Retratos de Mascotas</h3>
+        <p>Cuadritos hiperrealistas o ilustrados de tu perro, gato o cualquier compañero peludo. El regalo más emotivo.</p>
+      </div>
+      <div class="card">
+        <span class="card-emoji">🌸</span>
+        <h3>Diseños Personalizados</h3>
+        <p>Tatuajes únicos adaptados a tu historia, tu cuerpo y tu estilo. Desde fineline hasta blackwork.</p>
+      </div>
+      <div class="card">
+        <span class="card-emoji">⚜️</span>
+        <h3>Consulta de Diseño</h3>
+        <p>¿Tienes una idea pero no sabes cómo plasmarla? Hablamos, bosquejamos y lo convertimos en arte.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ══ UBICACIÓN ══ -->
+  <section id="ubicacion">
+    <p class="section-label">📍 Dónde estoy</p>
+    <h2>Encuéntrame en<br/><span class="highlight">Tattoo Karma Shop</span></h2>
+    <div class="location-box">
+      <span class="pin">📍</span>
+      <strong>San Sebastián de los Reyes · Madrid</strong>
+      <span>Estudio de tatuajes, piercings y láser</span>
+      <a class="shop-link" href="https://www.instagram.com/tattookarmashop/" target="_blank" rel="noopener">@tattookarmashop en Instagram →</a>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ══ CITAS ══ -->
+  <section id="citas">
+    <p class="section-label">🖤 Reserva</p>
+    <h2>Pide tu cita</h2>
+    <p>Escríbeme por mensaje directo en Instagram o por WhatsApp a través del estudio. Cuéntame tu idea y empezamos a crearla juntos.</p>
+    <div class="cita-btns">
+      <a class="cta-btn" href="https://www.instagram.com/ese.tattoos" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        DM en Instagram
+      </a>
+      <a class="btn-outline teal" href="https://www.instagram.com/tattookarmashop/" target="_blank" rel="noopener">
+        🏠 Ir al Estudio
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <p>Hecho con <em class="heart">♥</em> · <a href="https://www.instagram.com/ese.tattoos" target="_blank" rel="noopener">@ese.tattoos</a> · Madrid 2025</p>
+    <p style="margin-top:.5rem; opacity:.5;">Tattoo Karma Shop · San Sebastián de los Reyes</p>
+  </footer>
+
+</body>
+</html>
