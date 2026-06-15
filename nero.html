@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NERO TATTOOS® — Línea Fina · Anime · Láser · Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --bone: #f0ebe2;
+    --gold: #e8b84b;
+    --magenta: #e8196e;
+    --cyan: #00d9f5;
+    --violet: #7c3aed;
+    --red: #ff2d55;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--bone);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,184,75,0.2);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    background: linear-gradient(90deg, var(--gold), var(--magenta));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    color: var(--bone); text-decoration: none;
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.7; transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 60%, rgba(124,58,237,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 80% 30%, rgba(232,25,110,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 55% 80%, rgba(0,217,245,0.15) 0%, transparent 55%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.07;
+    background-image:
+      linear-gradient(rgba(232,184,75,0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,184,75,0.6) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem; justify-content: center;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; width: 3rem; height: 1px; background: var(--gold); opacity: 0.5;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 18vw, 14rem);
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.2em;
+  }
+  .title-nero {
+    display: block;
+    background: linear-gradient(135deg, var(--bone) 0%, var(--gold) 50%, var(--magenta) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .title-tattoos {
+    display: block;
+    -webkit-text-stroke: 2px var(--bone);
+    -webkit-text-fill-color: transparent;
+    opacity: 0.7;
+  }
+
+  .hero-registered {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem; color: var(--gold);
+    vertical-align: super; -webkit-text-fill-color: var(--gold);
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-weight: 300; letter-spacing: 0.06em;
+    color: rgba(240,235,226,0.75);
+    max-width: 38rem; margin: 1.5rem auto 2.5rem;
+    line-height: 1.6;
+  }
+  .hero-tagline strong { color: var(--cyan); font-weight: 500; }
+
+  /* locations badges */
+  .locations {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .loc-badge {
+    display: flex; align-items: center; gap: 0.4rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(232,184,75,0.3);
+    border-radius: 2rem; padding: 0.45rem 1.1rem;
+    font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .loc-badge span { font-size: 1rem; }
+
+  /* CTA buttons */
+  .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 2rem; border-radius: 0.3rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer; border: none;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--magenta), var(--violet));
+    color: #fff;
+    box-shadow: 0 0 24px rgba(232,25,110,0.4);
+  }
+  .btn-primary:hover { box-shadow: 0 0 36px rgba(232,25,110,0.6); }
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+  }
+  .btn-secondary:hover { background: rgba(232,184,75,0.1); }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em;
+    color: rgba(240,235,226,0.4); text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 3rem;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--magenta); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.95; letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── SERVICIOS ── */
+  #servicios { background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.06); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .service-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.75rem; padding: 2rem;
+    transition: transform 0.25s, border-color 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .card-linea::before  { background: linear-gradient(90deg, var(--cyan), var(--violet)); }
+  .card-anime::before  { background: linear-gradient(90deg, var(--magenta), var(--red)); }
+  .card-laser::before  { background: linear-gradient(90deg, var(--gold), var(--magenta)); }
+  .card-barber::before { background: linear-gradient(90deg, var(--violet), var(--cyan)); }
+
+  .service-card:hover { transform: translateY(-4px); border-color: rgba(232,184,75,0.25); }
+  .service-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 0.05em; margin-bottom: 0.5rem;
+  }
+  .service-desc {
+    font-size: 0.88rem; line-height: 1.65;
+    color: rgba(240,235,226,0.65);
+  }
+
+  /* ── ESTILO / FIRMA ── */
+  #estilo {
+    background:
+      radial-gradient(ellipse 70% 70% at 80% 50%, rgba(124,58,237,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 10% 60%, rgba(0,217,245,0.1) 0%, transparent 55%);
+  }
+  .style-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  @media(max-width:720px){ .style-layout { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .style-text p {
+    font-size: 1.05rem; line-height: 1.75;
+    color: rgba(240,235,226,0.75); margin-bottom: 1.2rem;
+  }
+  .style-text strong { color: var(--cyan); }
+
+  .style-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .ink-block {
+    border-radius: 0.5rem; padding: 1.5rem;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    aspect-ratio: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; letter-spacing: 0.08em;
+  }
+  .ink-a { background: linear-gradient(135deg, #1a0533, var(--violet)); }
+  .ink-b { background: linear-gradient(135deg, #1a0020, var(--magenta)); }
+  .ink-c { background: linear-gradient(135deg, #001a22, var(--cyan)); color: var(--ink); }
+  .ink-d { background: linear-gradient(135deg, #1a1200, var(--gold)); color: var(--ink); }
+
+  /* ── BARBER ── */
+  #barber {
+    background: rgba(124,58,237,0.06);
+    border-top: 1px solid rgba(124,58,237,0.2);
+    border-bottom: 1px solid rgba(124,58,237,0.2);
+  }
+  .barber-inner {
+    display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
+  }
+  .barber-icon { font-size: 5rem; }
+  .barber-text { flex: 1; min-width: 260px; }
+  .barber-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; color: var(--violet); margin-bottom: 0.5rem;
+  }
+  .barber-text p {
+    font-size: 0.95rem; line-height: 1.7;
+    color: rgba(240,235,226,0.7);
+  }
+  .barber-link {
+    display: inline-block; margin-top: 1rem;
+    color: var(--gold); font-size: 0.82rem; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    border-bottom: 1px solid rgba(232,184,75,0.3);
+    padding-bottom: 2px; transition: border-color 0.2s;
+  }
+  .barber-link:hover { border-color: var(--gold); }
+
+  /* ── CONTACTO / CTA FINAL ── */
+  #contacto {
+    text-align: center;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(232,25,110,0.2) 0%, transparent 65%);
+  }
+  #contacto .section-title { color: var(--bone); }
+  #contacto .section-title em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--gold), var(--magenta));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .contacto-sub {
+    font-size: 1rem; color: rgba(240,235,226,0.6);
+    margin-bottom: 2.5rem; max-width: 36rem; margin-left: auto; margin-right: auto;
+    line-height: 1.65;
+  }
+  .contacto-links {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;
+  }
+  .social-pill {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    padding: 0.85rem 1.8rem; border-radius: 3rem;
+    font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .social-pill:hover { transform: translateY(-2px); }
+  .pill-ig {
+    background: linear-gradient(135deg, #f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(220,39,67,0.35);
+  }
+  .pill-ig:hover { box-shadow: 0 0 32px rgba(220,39,67,0.55); }
+  .pill-linktree {
+    background: #39e09b;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px rgba(57,224,155,0.3);
+  }
+  .pill-linktree:hover { box-shadow: 0 0 32px rgba(57,224,155,0.5); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 2rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em;
+    color: rgba(240,235,226,0.3); text-transform: uppercase;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em;
+    background: linear-gradient(90deg, var(--gold), var(--magenta));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap { overflow: hidden; border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.015); }
+  .marquee-track {
+    display: flex; gap: 0;
+    animation: marquee 22s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 1.2rem;
+    padding: 1.1rem 2.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(240,235,226,0.5);
+  }
+  .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--magenta); }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  @media(max-width:600px){
+    nav { padding: 0.8rem 1rem; }
+    .nav-links { display: none; }
+    .cta-group { flex-direction: column; align-items: center; }
+    .contacto-links { flex-direction: column; align-items: center; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NERO TATTOOS®</div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#estilo">Estilo</a>
+    <a href="#barber">Barbería</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Madrid · Barrio Salamanca · Getafe Centro</div>
+    <h1 class="hero-title">
+      <span class="title-nero">NERO<span class="hero-registered">®</span></span>
+      <span class="title-tattoos">TATTOOS</span>
+    </h1>
+    <p class="hero-tagline">
+      La mejor <strong>línea fina y anime</strong> de Madrid.<br>
+      Tatuajes, láser y barbería en el corazón de la ciudad.
+    </p>
+    <div class="locations">
+      <div class="loc-badge"><span>📍</span>Barrio Salamanca</div>
+      <div class="loc-badge"><span>📍</span>Getafe Centro</div>
+    </div>
+    <div class="cta-group">
+      <a href="https://www.instagram.com/nero.tattoos" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Ver en Instagram
+      </a>
+      <a href="https://linktr.ee/nero.tattoos" target="_blank" rel="noopener" class="btn btn-secondary">
+        Todos los Links →
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Descubrir
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">Línea Fina <span class="dot"></span></div>
+    <div class="marquee-item">Anime <span class="dot"></span></div>
+    <div class="marquee-item">Láser <span class="dot"></span></div>
+    <div class="marquee-item">Barbería <span class="dot"></span></div>
+    <div class="marquee-item">Barrio Salamanca <span class="dot"></span></div>
+    <div class="marquee-item">Getafe Centro <span class="dot"></span></div>
+    <div class="marquee-item">Nero Tattoos® <span class="dot"></span></div>
+    <div class="marquee-item">Línea Fina <span class="dot"></span></div>
+    <div class="marquee-item">Anime <span class="dot"></span></div>
+    <div class="marquee-item">Láser <span class="dot"></span></div>
+    <div class="marquee-item">Barbería <span class="dot"></span></div>
+    <div class="marquee-item">Barrio Salamanca <span class="dot"></span></div>
+    <div class="marquee-item">Getafe Centro <span class="dot"></span></div>
+    <div class="marquee-item">Nero Tattoos® <span class="dot"></span></div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-inner">
+    <p class="section-label reveal">Lo que hacemos</p>
+    <h2 class="section-title reveal reveal-delay-1">Nuestros<br>Servicios</h2>
+    <div class="services-grid">
+      <div class="service-card card-linea reveal reveal-delay-1">
+        <div class="service-icon">✏️</div>
+        <div class="service-name">Línea Fina</div>
+        <p class="service-desc">Trazos precisos, delicados y eternos. Especialidad de la casa: el arte de la línea más pura en tu piel.</p>
+      </div>
+      <div class="service-card card-anime reveal reveal-delay-2">
+        <div class="service-icon">⚡</div>
+        <div class="service-name">Anime & Ilustración</div>
+        <p class="service-desc">Desde personajes icónicos hasta fanart personalizado. Llevamos tu serie favorita a otro nivel.</p>
+      </div>
+      <div class="service-card card-laser reveal reveal-delay-3">
+        <div class="service-icon">🔆</div>
+        <div class="service-name">Eliminación Láser</div>
+        <p class="service-desc">¿Ese tatuaje ya no te representa? Lo borramos. Tecnología de precisión para una segunda oportunidad.</p>
+      </div>
+      <div class="service-card card-barber reveal reveal-delay-4">
+        <div class="service-icon">💈</div>
+        <div class="service-name">Barbería</div>
+        <p class="service-desc">Cortes y arreglos de barba de nivel en <strong style="color:var(--violet)">@nero.barbershop_</strong>. Tu look, completo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTILO -->
+<section id="estilo">
+  <div class="section-inner">
+    <div class="style-layout">
+      <div class="style-text reveal">
+        <p class="section-label">Nuestra firma</p>
+        <h2 class="section-title">Arte que<br>dura para<br>siempre</h2>
+        <p>En Nero Tattoos llevamos la <strong>línea fina</strong> a su máxima expresión: cada trazo es intencional, cada composición cuenta una historia.</p>
+        <p>Ya sea tu primer tatuaje o el décimo, tratamos cada diseño como una obra única. Sin plantillas, sin atajos.</p>
+        <p>Dos estudios en Madrid — <strong>Barrio Salamanca</strong> y <strong>Getafe Centro</strong> — para que siempre tengas a Nero cerca.</p>
+      </div>
+      <div class="style-visual reveal reveal-delay-2">
+        <div class="ink-block ink-a">FINO</div>
+        <div class="ink-block ink-b">ANIME</div>
+        <div class="ink-block ink-c">LÁSER</div>
+        <div class="ink-block ink-d">ARTE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BARBER -->
+<section id="barber">
+  <div class="section-inner">
+    <div class="barber-inner">
+      <div class="barber-icon reveal">💈</div>
+      <div class="barber-text reveal reveal-delay-1">
+        <p class="section-label">Hermano de estudio</p>
+        <h3>NERO BARBERSHOP</h3>
+        <p>Tatuajes y barba bajo el mismo techo (casi). Nuestro espacio de barbería <strong>@nero.barbershop_</strong> completa la experiencia: salís del estudio tatuados y con el corte listo.</p>
+        <a href="https://www.instagram.com/nero.barbershop_" target="_blank" rel="noopener" class="barber-link">
+          Ver @nero.barbershop_ en Instagram →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <p class="section-label reveal">Pide tu cita</p>
+    <h2 class="section-title reveal reveal-delay-1">¿Listo para tu<br><em>próximo tatuaje?</em></h2>
+    <p class="contacto-sub reveal reveal-delay-2">Escríbenos por Instagram o visita todos nuestros links para reservar, ver portfolio y más.</p>
+    <div class="contacto-links reveal reveal-delay-3">
+      <a href="https://www.instagram.com/nero.tattoos" target="_blank" rel="noopener" class="social-pill pill-ig">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        @nero.tattoos
+      </a>
+      <a href="https://linktr.ee/nero.tattoos" target="_blank" rel="noopener" class="social-pill pill-linktree">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7.953 15.066c-.08.163-.08.324-.08.486.08.517.528.893 1.052.893.324 0 .648-.163.813-.406l1.215-1.946v4.252c0 .243.081.486.244.648.163.242.487.404.812.404.324 0 .648-.162.813-.404.162-.163.243-.406.243-.648V14.09l1.215 1.946c.163.243.487.406.812.406.163 0 .325-.081.487-.162.325-.163.568-.406.568-.73.081-.244.081-.487-.081-.73l-2.592-4.172h2.672c.325 0 .649-.162.813-.404.162-.163.243-.406.243-.649s-.081-.486-.243-.648c-.163-.242-.487-.404-.812-.404H13.94V7.11c0-.244-.081-.487-.243-.65-.163-.242-.487-.404-.812-.404-.244 0-.487.081-.65.244-.243.162-.405.405-.405.648v1.621H9.657c-.325 0-.648.162-.812.404-.163.163-.244.406-.244.649s.081.486.244.648c.162.242.487.404.812.404h2.754L9.82 14.66l-1.867-2.998z"/></svg>
+        Todos los Links
+      </a>
+    </div>
+    <div class="locations reveal reveal-delay-4">
+      <div class="loc-badge"><span>📍</span>Barrio Salamanca, Madrid</div>
+      <div class="loc-badge"><span>📍</span>Getafe Centro</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NERO TATTOOS®</div>
+  <div>Barrio Salamanca · Getafe Centro · Madrid</div>
+  <div>© 2025 Nero Tattoos</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
