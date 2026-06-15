@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Florencia Reyes Peña | UGC Creator & Terapeuta Holística</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral:   #FF6B6B;
+      --gold:    #FFD166;
+      --mint:    #06D6A0;
+      --lilac:   #C77DFF;
+      --sky:     #4CC9F0;
+      --dark:    #1A1A2E;
+      --offwhite:#FFF8F0;
+      --white:   #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--offwhite);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      background: linear-gradient(135deg, #FF6B6B 0%, #FFD166 30%, #06D6A0 60%, #4CC9F0 85%, #C77DFF 100%);
+      overflow: hidden;
+    }
+
+    /* animated blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.35;
+      filter: blur(60px);
+      animation: float 8s ease-in-out infinite;
+    }
+    .blob-1 { width: 420px; height: 420px; background: var(--coral);  top: -120px; left: -100px; animation-delay: 0s; }
+    .blob-2 { width: 300px; height: 300px; background: var(--lilac);  bottom: -80px; right: -60px; animation-delay: 3s; }
+    .blob-3 { width: 200px; height: 200px; background: var(--gold);   top: 40%; left: 60%; animation-delay: 1.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .avatar-ring {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--coral), var(--gold), var(--mint), var(--lilac));
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 40px rgba(255,255,255,0.5);
+    }
+    .avatar-ring .avatar-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 100px;
+      padding: 6px 20px;
+      margin-bottom: 20px;
+      position: relative; z-index: 1;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      position: relative; z-index: 1;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      margin-top: 18px;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.92);
+      max-width: 520px;
+      line-height: 1.7;
+      position: relative; z-index: 1;
+    }
+
+    .hero-location {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      position: relative; z-index: 1;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+      justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 30px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+    .btn-ig {
+      background: var(--white);
+      color: var(--dark);
+    }
+    .btn-wa {
+      background: #25D366;
+      color: var(--white);
+    }
+    .btn-mail {
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ── SCROLL ARROW ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      animation: bounce 2s ease-in-out infinite;
+      color: rgba(255,255,255,0.7);
+      font-size: 26px;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 24px; }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+      max-width: 640px;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .about .section-label { color: var(--coral); }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+      justify-content: center;
+    }
+    .tag {
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .tag-coral  { background: var(--coral); }
+    .tag-gold   { background: #e8a000; }
+    .tag-mint   { background: #04a87e; }
+    .tag-lilac  { background: var(--lilac); }
+    .tag-sky    { background: #2da8cc; }
+
+    /* ── SERVICES GRID ── */
+    .services {
+      background: var(--dark);
+      color: var(--white);
+      text-align: center;
+    }
+    .services .section-label { color: var(--gold); }
+    .services .section-body  { color: rgba(255,255,255,0.7); margin: 0 auto; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+      max-width: 1100px;
+      margin-left: auto; margin-right: auto;
+    }
+    .card {
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card-coral  { background: linear-gradient(135deg, #FF6B6B, #FF9F43); }
+    .card-mint   { background: linear-gradient(135deg, #06D6A0, #4CC9F0); }
+    .card-lilac  { background: linear-gradient(135deg, #C77DFF, #7B2FBE); }
+    .card-gold   { background: linear-gradient(135deg, #FFD166, #FF9F43); color: var(--dark); }
+
+    .card-icon { font-size: 40px; margin-bottom: 18px; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+    .card-gold h3 { color: var(--dark); }
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.88);
+    }
+    .card-gold p { color: rgba(26,26,46,0.75); }
+
+    /* ── WHY ME ── */
+    .why {
+      background: var(--offwhite);
+      text-align: center;
+    }
+    .why .section-label { color: var(--mint); }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .stat-box {
+      width: 200px;
+      padding: 32px 20px;
+      border-radius: 24px;
+      text-align: center;
+      color: var(--white);
+    }
+    .stat-box.c1 { background: var(--coral); }
+    .stat-box.c2 { background: var(--lilac); }
+    .stat-box.c3 { background: var(--mint);  }
+    .stat-box.c4 { background: var(--sky);   }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: linear-gradient(135deg, var(--lilac), var(--sky), var(--mint));
+      text-align: center;
+      color: var(--white);
+    }
+    .contact .section-title { color: var(--white); }
+    .contact .section-body  { color: rgba(255,255,255,0.9); margin: 0 auto 40px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer span { margin: 0 8px; }
+
+    /* ── WAVY DIVIDER ── */
+    .wave {
+      display: block;
+      width: 100%;
+      line-height: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .cta-group { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 320px; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <header class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="avatar-ring">
+      <div class="avatar-inner">🌸</div>
+    </div>
+
+    <div class="hero-eyebrow">✨ Bienvenida a mi mundo creativo</div>
+
+    <h1>Florencia<br><em>Reyes Peña</em></h1>
+
+    <p class="hero-sub">
+      Creadora de contenido UGC &amp; Terapeuta Holística.<br>
+      Elevo la imagen de marcas, amplifico su alcance y genero contenido auténtico alineado con su identidad.
+    </p>
+
+    <p class="hero-location">📍 Uruguay 🇺🇾</p>
+
+    <div class="cta-group">
+      <a href="https://www.instagram.com/flooooo69" target="_blank" class="btn btn-ig">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+      <a href="https://chat.whatsapp.com/LuqZ7UbLYRFFYY5est483q" target="_blank" class="btn btn-wa">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 1C5.919 1 1 5.919 1 11.998c0 2.101.549 4.079 1.509 5.793L1 23l5.335-1.487A10.954 10.954 0 0 0 11.998 23C18.077 23 23 18.081 23 12.002 23 5.921 18.077 1 11.998 1zm0 20.007a9.006 9.006 0 0 1-4.594-1.256l-.33-.196-3.167.883.844-3.086-.215-.346A9.006 9.006 0 0 1 3.007 12c0-4.963 4.029-8.992 8.992-8.992 4.962 0 8.991 4.029 8.991 8.992 0 4.962-4.029 8.992-8.992 8.992v.015z"/></svg>
+        Únete al grupo
+      </a>
+      <a href="mailto:florenciareyespena@outlook.es" class="btn btn-mail">
+        ✉️ Escribime
+      </a>
+    </div>
+
+    <div class="scroll-hint">↓</div>
+  </header>
+
+  <!-- ══ ABOUT ══ -->
+  <section class="about">
+    <div class="section-label">Sobre mí</div>
+    <h2 class="section-title">Creatividad con propósito</h2>
+    <p class="section-body">
+      Soy Florencia, creadora de contenido UGC y terapeuta holística desde Uruguay. Mi pasión es ayudar a marcas y empresas a brillar con contenido auténtico, estratégico y 100% alineado con su identidad. También integro el bienestar holístico como base de todo lo que creo.
+    </p>
+    <div class="tags">
+      <span class="tag tag-coral">📸 Fotografía &amp; Diseño</span>
+      <span class="tag tag-gold">🎬 Contenido UGC</span>
+      <span class="tag tag-mint">🌿 Terapia Holística</span>
+      <span class="tag tag-lilac">✨ Branding</span>
+      <span class="tag tag-sky">📱 Redes Sociales</span>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#1A1A2E"/></svg>
+
+  <!-- ══ SERVICES ══ -->
+  <section class="services">
+    <div class="section-label">¿Qué hago?</div>
+    <h2 class="section-title">Mis servicios</h2>
+    <p class="section-body">Trabajo con marcas que quieren conectar de forma genuina con su audiencia y elevar su presencia digital.</p>
+
+    <div class="cards">
+      <div class="card card-coral">
+        <div class="card-icon">📸</div>
+        <h3>Contenido UGC</h3>
+        <p>Produzco contenido visual auténtico (fotos &amp; videos) que convierte y conecta con tu audiencia ideal.</p>
+      </div>
+      <div class="card card-mint">
+        <div class="card-icon">🎯</div>
+        <h3>Estrategia de Marca</h3>
+        <p>Ayudo a definir y comunicar la identidad de tu marca de forma coherente en todas las plataformas digitales.</p>
+      </div>
+      <div class="card card-lilac">
+        <div class="card-icon">🌿</div>
+        <h3>Terapia Holística</h3>
+        <p>Sesiones de acompañamiento holístico para alinear tu energía personal y profesional con tus objetivos.</p>
+      </div>
+      <div class="card card-gold">
+        <div class="card-icon">🚀</div>
+        <h3>Amplificación de Alcance</h3>
+        <p>Genero estrategias para llegar a más personas y hacer crecer tu comunidad de forma orgánica y sostenible.</p>
+      </div>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#1A1A2E"><path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="#FFF8F0"/></svg>
+
+  <!-- ══ WHY ══ -->
+  <section class="why">
+    <div class="section-label">¿Por qué elegirme?</div>
+    <h2 class="section-title">Resultados que hablan</h2>
+    <p class="section-body" style="margin:0 auto;">Combino la autenticidad del contenido UGC con la intención del bienestar holístico para crear piezas que realmente resuenan.</p>
+
+    <div class="stats">
+      <div class="stat-box c1">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Contenido auténtico</div>
+      </div>
+      <div class="stat-box c2">
+        <div class="stat-num">UGC</div>
+        <div class="stat-label">Especialista certificada</div>
+      </div>
+      <div class="stat-box c3">
+        <div class="stat-num">🌿</div>
+        <div class="stat-label">Enfoque holístico</div>
+      </div>
+      <div class="stat-box c4">
+        <div class="stat-num">🇺🇾</div>
+        <div class="stat-label">Base en Uruguay</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section class="contact">
+    <div class="section-label" style="color:rgba(255,255,255,0.7)">¡Hablemos!</div>
+    <h2 class="section-title">Trabajemos juntos</h2>
+    <p class="section-body">
+      ¿Querés elevar la imagen de tu marca con contenido que realmente conecte? Estoy lista para escucharte y crear algo increíble.
+    </p>
+    <div class="cta-group">
+      <a href="https://www.instagram.com/flooooo69" target="_blank" class="btn btn-ig">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @flooooo69
+      </a>
+      <a href="https://chat.whatsapp.com/LuqZ7UbLYRFFYY5est483q" target="_blank" class="btn btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 1C5.919 1 1 5.919 1 11.998c0 2.101.549 4.079 1.509 5.793L1 23l5.335-1.487A10.954 10.954 0 0 0 11.998 23C18.077 23 23 18.081 23 12.002 23 5.921 18.077 1 11.998 1zm0 20.007a9.006 9.006 0 0 1-4.594-1.256l-.33-.196-3.167.883.844-3.086-.215-.346A9.006 9.006 0 0 1 3.007 12c0-4.963 4.029-8.992 8.992-8.992 4.962 0 8.991 4.029 8.991 8.992 0 4.962-4.029 8.992-8.992 8.992v.015z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:florenciareyespena@outlook.es" class="btn btn-mail">
+        ✉️ florenciareyespena@outlook.es
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <p>© 2025 Florencia Reyes Peña · Uruguay 🇺🇾
+      <span>·</span>
+      <a href="https://www.instagram.com/flooooo69" target="_blank">Instagram</a>
+      <span>·</span>
+      <a href="mailto:florenciareyespena@outlook.es">florenciareyespena@outlook.es</a>
+    </p>
+  </footer>
+
+</body>
+</html>
