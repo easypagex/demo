@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Javiera Pomies · Terapeuta Holística</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #E8627A;
+      --coral:   #F4956A;
+      --gold:    #F5C842;
+      --sage:    #7DBE94;
+      --sky:     #6BB8D4;
+      --lavender:#A78BCC;
+      --cream:   #FDF6EE;
+      --dark:    #2D2235;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #fce4ec 0%, #fff3e0 35%, #e8f5e9 65%, #e3f2fd 100%);
+    }
+
+    /* floating blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.45;
+      animation: drift 10s ease-in-out infinite alternate;
+    }
+    .blob-1 { width:420px; height:420px; background: var(--rose);    top:-120px; left:-100px; animation-delay:0s; }
+    .blob-2 { width:320px; height:320px; background: var(--gold);    top:60px;  right:-80px; animation-delay:2s; }
+    .blob-3 { width:380px; height:380px; background: var(--sky);     bottom:-80px; left:20%;  animation-delay:4s; }
+    .blob-4 { width:280px; height:280px; background: var(--lavender);bottom:30px; right:5%;  animation-delay:1s; }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(20px, 15px) scale(1.08); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--rose);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .4rem 1.1rem;
+      border-radius: 999px;
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.1;
+      color: var(--dark);
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: #5a4060;
+      margin-top: 1.2rem;
+      max-width: 520px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-location {
+      margin-top: 1rem;
+      font-size: .9rem;
+      color: var(--sage);
+      font-weight: 500;
+      letter-spacing: .06em;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-location::before { content: "📍 "; }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      justify-content: center;
+      margin-top: 2.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .85rem 1.9rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.15); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose), var(--coral));
+      color: #fff;
+    }
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+    }
+    .btn-instagram {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+    }
+
+    .btn svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+
+    /* scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      animation: bounce 2s ease-in-out infinite;
+      font-size: 1.5rem;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 1.5rem; }
+
+    .section-eyebrow {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 580px;
+      color: #4a3a55;
+    }
+
+    /* ── SERVICIOS ── */
+    #servicios { background: #fff; }
+    #servicios .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #servicios .section-eyebrow { color: var(--coral); }
+    #servicios .section-title   { margin: 0 auto 1rem; }
+    #servicios .section-body    { margin: 0 auto 3.5rem; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 2.2rem 1.8rem;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s;
+    }
+    .card:hover { transform: translateY(-6px); }
+
+    .card-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: .6rem;
+    }
+    .card p { font-size: .95rem; line-height: 1.65; opacity: .85; }
+
+    .card-1 { background: linear-gradient(145deg, #fce4ec, #f8bbd0); }
+    .card-2 { background: linear-gradient(145deg, #fff3e0, #ffe0b2); }
+    .card-3 { background: linear-gradient(145deg, #e8f5e9, #c8e6c9); }
+    .card-4 { background: linear-gradient(145deg, #e3f2fd, #bbdefb); }
+    .card-5 { background: linear-gradient(145deg, #ede7f6, #d1c4e9); }
+    .card-6 { background: linear-gradient(145deg, #fce4ec, #f8bbd0); }
+
+    /* ── ACERCA DE ── */
+    #acerca {
+      background: linear-gradient(135deg, #fdf2fb 0%, #f0faf4 100%);
+    }
+    #acerca .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    #acerca .section-eyebrow { color: var(--lavender); }
+
+    .acerca-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .acerca-orb {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--lavender), var(--sky));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      box-shadow: 0 20px 60px rgba(167,139,204,.4);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 20px 60px rgba(167,139,204,.4); }
+      50%      { box-shadow: 0 30px 80px rgba(167,139,204,.65); }
+    }
+
+    .pilares {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      margin-top: 2rem;
+    }
+    .pilar {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      font-size: .95rem;
+      color: #4a3a55;
+    }
+    .pilar-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── TALLERES ── */
+    #talleres { background: var(--dark); color: #f0e8fb; }
+    #talleres .inner {
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #talleres .section-eyebrow { color: var(--gold); }
+    #talleres .section-title { color: #fff; }
+    #talleres .section-body { color: #c9b8e0; margin: 0 auto 3rem; }
+
+    .taller-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+    .taller-item {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 1.8rem 1.4rem;
+      transition: background .2s;
+    }
+    .taller-item:hover { background: rgba(255,255,255,.13); }
+    .taller-item .icon { font-size: 2rem; margin-bottom: .8rem; }
+    .taller-item p { font-size: .95rem; color: #ddd0f0; line-height: 1.5; }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      background: linear-gradient(160deg, #fff3e0 0%, #fce4ec 50%, #e3f2fd 100%);
+      text-align: center;
+    }
+    #contacto .inner { max-width: 700px; margin: 0 auto; }
+    #contacto .section-eyebrow { color: var(--rose); }
+    #contacto .section-body { margin: 0 auto 2.5rem; }
+    #contacto .cta-group { margin-top: 0; }
+
+    .ubicacion-tags {
+      display: flex;
+      gap: .8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .ubicacion-tag {
+      background: rgba(125,190,148,.2);
+      border: 1px solid var(--sage);
+      color: #2a5e3a;
+      border-radius: 999px;
+      padding: .35rem 1rem;
+      font-size: .88rem;
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .85rem;
+    }
+    footer a { color: var(--rose); text-decoration: none; }
+    footer span { display: inline-block; margin: 0 .3rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      #acerca .inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .acerca-visual { order: -1; }
+      .acerca-orb { width: 200px; height: 200px; font-size: 5rem; }
+      section { padding: 3.5rem 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blob, .scroll-hint, .acerca-orb { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+
+  <span class="hero-badge">✨ Terapeuta Holística</span>
+  <h1>Javiera<br /><em>Pomies</em></h1>
+  <p class="hero-tagline">
+    Faciales, Autocuidado y Mindfulness para un bienestar integral que va más allá de la piel.
+  </p>
+  <p class="hero-location">Pigué / Carhué · Buenos Aires, Argentina</p>
+
+  <div class="cta-group">
+    <a href="https://wa.me/541140449202" target="_blank" rel="noopener" class="btn btn-whatsapp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://www.instagram.com/javiera_pomies" target="_blank" rel="noopener" class="btn btn-instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </div>
+
+  <div class="scroll-hint">↓</div>
+</section>
+
+<!-- ── SERVICIOS ── -->
+<section id="servicios">
+  <div class="inner">
+    <p class="section-eyebrow">Lo que ofrezco</p>
+    <h2 class="section-title">Experiencias para cuerpo, mente y alma</h2>
+    <p class="section-body">Cada sesión es un espacio seguro para reconectarte con vos misma, integrar el cuidado personal y florecer desde adentro.</p>
+
+    <div class="cards">
+      <div class="card card-1">
+        <div class="card-icon">🌸</div>
+        <h3>Faciales Holísticos</h3>
+        <p>Rituales de cuidado facial que combinan masajes, productos naturales y presencia plena para revitalizar tu piel y tu energía.</p>
+      </div>
+      <div class="card card-2">
+        <div class="card-icon">🧘</div>
+        <h3>Mindfulness</h3>
+        <p>Prácticas de atención consciente para habitar el momento presente, reducir el estrés y cultivar calma interior.</p>
+      </div>
+      <div class="card card-3">
+        <div class="card-icon">💆</div>
+        <h3>Autocuidado</h3>
+        <p>Sesiones personalizadas que te enseñan a nutrir tu bienestar a través de hábitos y rituales que se sostienen en el tiempo.</p>
+      </div>
+      <div class="card card-4">
+        <div class="card-icon">✨</div>
+        <h3>Terapia Holística</h3>
+        <p>Un enfoque integral que ve a la persona en su totalidad: cuerpo, emoción, mente y espíritu en equilibrio.</p>
+      </div>
+      <div class="card card-5">
+        <div class="card-icon">🌿</div>
+        <h3>Bienestar Integral</h3>
+        <p>Acompañamiento continuo para que el bienestar sea un estilo de vida, no solo un momento puntual.</p>
+      </div>
+      <div class="card card-6">
+        <div class="card-icon">🎯</div>
+        <h3>Sesiones Personalizadas</h3>
+        <p>Cada persona es única. Diseño cada encuentro según tus necesidades, ritmos y objetivos personales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACERCA DE ── -->
+<section id="acerca">
+  <div class="inner">
+    <div class="acerca-visual">
+      <div class="acerca-orb">🌺</div>
+    </div>
+    <div>
+      <p class="section-eyebrow" style="color: var(--lavender);">Sobre mí</p>
+      <h2 class="section-title">Una guía en tu camino al bienestar</h2>
+      <p class="section-body">
+        Soy Javiera Pomies, terapeuta holística apasionada por acompañar a las personas en su proceso de reconexión. Mi trabajo nace de la convicción de que el cuidado genuino transforma, y de que cada persona merece un espacio para florecer a su propio ritmo.
+      </p>
+      <div class="pilares">
+        <div class="pilar">
+          <div class="pilar-dot" style="background: var(--rose);"></div>
+          Presencia y escucha activa en cada encuentro
+        </div>
+        <div class="pilar">
+          <div class="pilar-dot" style="background: var(--coral);"></div>
+          Técnicas faciales integradas con enfoque holístico
+        </div>
+        <div class="pilar">
+          <div class="pilar-dot" style="background: var(--sage);"></div>
+          Mindfulness como herramienta de vida cotidiana
+        </div>
+        <div class="pilar">
+          <div class="pilar-dot" style="background: var(--lavender);"></div>
+          Acompañamiento personalizado y compasivo
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TALLERES ── -->
+<section id="talleres">
+  <div class="inner">
+    <p class="section-eyebrow">Encuentros grupales</p>
+    <h2 class="section-title" style="color:#fff;">Talleres & Experiencias</h2>
+    <p class="section-body">Espacios colectivos donde el bienestar se multiplica. Talleres vivenciales, retiros y encuentros pensados para aprender, sentir y conectar con otras.</p>
+    <div class="taller-grid">
+      <div class="taller-item">
+        <div class="icon">🌼</div>
+        <p>Talleres de autocuidado consciente</p>
+      </div>
+      <div class="taller-item">
+        <div class="icon">🕯️</div>
+        <p>Rituales de belleza holística</p>
+      </div>
+      <div class="taller-item">
+        <div class="icon">🌙</div>
+        <p>Círculos de meditación y presencia</p>
+      </div>
+      <div class="taller-item">
+        <div class="icon">🌱</div>
+        <p>Encuentros de bienestar integral</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section id="contacto">
+  <div class="inner">
+    <p class="section-eyebrow">Reservá tu espacio</p>
+    <h2 class="section-title">¿Empezamos juntas?</h2>
+    <p class="section-body">
+      Escribime por WhatsApp o seguime en Instagram para conocer disponibilidad, novedades y próximos talleres. Cada proceso comienza con un primer paso.
+    </p>
+    <div class="cta-group">
+      <a href="https://wa.me/541140449202" target="_blank" rel="noopener" class="btn btn-whatsapp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        +54 11 4044-9202
+      </a>
+      <a href="https://www.instagram.com/javiera_pomies" target="_blank" rel="noopener" class="btn btn-instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @javiera_pomies
+      </a>
+    </div>
+    <div class="ubicacion-tags">
+      <span class="ubicacion-tag">📍 Pigué</span>
+      <span class="ubicacion-tag">📍 Carhué</span>
+      <span class="ubicacion-tag">Buenos Aires, Argentina</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>
+    © 2026 Javiera Pomies · Terapeuta Holística
+    <span>·</span>
+    <a href="https://www.instagram.com/javiera_pomies" target="_blank" rel="noopener">@javiera_pomies</a>
+    <span>·</span>
+    <a href="https://wa.me/541140449202" target="_blank" rel="noopener">WhatsApp</a>
+  </p>
+</footer>
+
+</body>
+</html>
