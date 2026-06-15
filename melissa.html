@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melissa De Jesús · Coach de Bienestar 🌱</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral:   #FF6B6B;
+      --yellow:  #FFD93D;
+      --green:   #6BCB77;
+      --purple:  #C77DFF;
+      --blue:    #4ECDC4;
+      --cream:   #FFFDF7;
+      --dark:    #1A1A2E;
+      --text:    #2D2D2D;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0D0D2B 0%, #1A1A4E 50%, #0D2B2B 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.45;
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+    .orb-1 { width: 420px; height: 420px; background: var(--coral);  top: -120px; left: -100px; animation-delay: 0s; }
+    .orb-2 { width: 300px; height: 300px; background: var(--purple); top: 10%;   right: -80px; animation-delay: 2s; }
+    .orb-3 { width: 350px; height: 350px; background: var(--blue);   bottom: -80px; left: 30%; animation-delay: 4s; }
+    .orb-4 { width: 200px; height: 200px; background: var(--yellow); bottom: 10%; right: 10%; animation-delay: 1s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--yellow);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: #fff;
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero h1 .accent-coral  { color: var(--coral); }
+    .hero h1 .accent-yellow { color: var(--yellow); }
+    .hero h1 .accent-green  { color: var(--green); }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255,255,255,0.8);
+      max-width: 560px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-cta-group {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      border-radius: 100px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--coral), var(--yellow));
+      color: #fff;
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.5);
+      color: #fff;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      animation: bounce 2s infinite;
+      color: rgba(255,255,255,0.4);
+      font-size: 1.6rem;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* ── MANIFESTO STRIP ── */
+    .manifesto {
+      background: linear-gradient(90deg, var(--coral), var(--purple), var(--blue), var(--green));
+      padding: 1.2rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .manifesto-inner {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .manifesto-item { display: inline-block; padding: 0 2.5rem; }
+    .manifesto-dot { color: rgba(255,255,255,0.5); }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 6rem 1.5rem; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .center { text-align: center; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ── FOR YOU ── */
+    .for-you { background: var(--cream); }
+    .for-you .section-label { color: var(--purple); }
+    .for-you-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .card {
+      border-radius: 24px;
+      padding: 2rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .card p  { font-size: 0.95rem; line-height: 1.7; opacity: 0.85; }
+
+    .card-coral  { background: #FFF0F0; border-left: 5px solid var(--coral); }
+    .card-yellow { background: #FFFBE6; border-left: 5px solid var(--yellow); }
+    .card-green  { background: #EEFBF0; border-left: 5px solid var(--green); }
+    .card-purple { background: #F8F0FF; border-left: 5px solid var(--purple); }
+    .card-blue   { background: #E8FAFA; border-left: 5px solid var(--blue); }
+
+    /* ── PROCESS ── */
+    .process { background: var(--dark); color: #fff; }
+    .process .section-label { color: var(--yellow); }
+    .process h2 { color: #fff; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.3s;
+    }
+    .step:hover { background: rgba(255,255,255,0.1); }
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin: 0 auto 1.2rem;
+    }
+    .step-num-1 { background: var(--coral); color: #fff; }
+    .step-num-2 { background: var(--yellow); color: var(--dark); }
+    .step-num-3 { background: var(--green); color: #fff; }
+    .step-num-4 { background: var(--purple); color: #fff; }
+    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
+    .step p  { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    /* ── BENEFITS ── */
+    .benefits { background: linear-gradient(160deg, #FFF8E1 0%, #FFF0F5 100%); }
+    .benefits .section-label { color: var(--coral); }
+    .benefits-list {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 720px;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .benefit-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .benefit-text h4 { font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+    .benefit-text p  { font-size: 0.9rem; color: #666; line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #1A1A4E 0%, #2D1B69 50%, #0D3333 100%);
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '✨';
+      position: absolute;
+      font-size: 12rem;
+      opacity: 0.04;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .cta-section .section-label { color: var(--green); }
+    .cta-section h2 { color: #fff; max-width: 700px; margin: 0 auto 1rem; }
+    .cta-section p  { color: rgba(255,255,255,0.75); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .btn-big {
+      font-size: 1.15rem;
+      padding: 1.1rem 2.8rem;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: #fff;
+    }
+    .cta-note {
+      margin-top: 1.2rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── INSTAGRAM ── */
+    .instagram-section { background: #fff; text-align: center; }
+    .instagram-section .section-label { color: var(--purple); }
+    .insta-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045);
+      border-radius: 20px;
+      padding: 1.6rem 2.4rem;
+      color: #fff;
+      text-decoration: none;
+      margin-top: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      max-width: 420px;
+    }
+    .insta-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(131,58,180,0.4); }
+    .insta-icon { font-size: 2.5rem; }
+    .insta-text { text-align: left; }
+    .insta-text strong { display: block; font-size: 1.15rem; font-weight: 700; }
+    .insta-text span { font-size: 0.88rem; opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.85rem;
+    }
+    footer strong { color: rgba(255,255,255,0.8); }
+    footer .heart { color: var(--coral); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero-cta-group { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 320px; text-align: center; }
+      .insta-card { flex-direction: column; text-align: center; }
+      .insta-text { text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .orb, .manifesto-inner, .scroll-hint { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+
+  <span class="hero-badge">🌱 Coach de Bienestar</span>
+
+  <h1>
+    Nadie lo hará<br>
+    <span class="accent-coral">por ti.</span><br>
+    Pero yo<br>
+    <span class="accent-yellow">te acompaño</span><br>
+    a <span class="accent-green">lograrlo.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Ayudo a mujeres a crear <strong>hábitos saludables reales</strong> y a generar
+    ingresos como <strong>coaches de bienestar</strong>. Sin excusas. Con resultados.
+  </p>
+
+  <div class="hero-cta-group">
+    <a href="https://form.jotform.com/232157535143149" target="_blank" rel="noopener" class="btn btn-primary">
+      ✨ ¡Empieza aquí!
+    </a>
+    <a href="https://www.instagram.com/melisadjg/" target="_blank" rel="noopener" class="btn btn-secondary">
+      📸 Sígueme en Instagram
+    </a>
+  </div>
+
+  <div class="scroll-hint">↓</div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="manifesto" aria-hidden="true">
+  <div class="manifesto-inner">
+    <span class="manifesto-item">💫 Transforma tu vida</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">🌱 Hábitos que duran</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">💪 Tú puedes</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">🌸 Bienestar real</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">💰 Genera ingresos</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">🔥 Sin excusas</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">💫 Transforma tu vida</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">🌱 Hábitos que duran</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">💪 Tú puedes</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">🌸 Bienestar real</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">💰 Genera ingresos</span><span class="manifesto-dot">·</span>
+    <span class="manifesto-item">🔥 Sin excusas</span><span class="manifesto-dot">·</span>
+  </div>
+</div>
+
+<!-- ── PARA QUIÉN ── -->
+<section class="for-you">
+  <div class="container">
+    <div class="center">
+      <p class="section-label">¿Esto es para ti?</p>
+      <h2>Reconoces alguna de <br>estas situaciones…</h2>
+    </div>
+    <div class="for-you-grid">
+      <div class="card card-coral">
+        <div class="card-icon">😩</div>
+        <h3>Empiezas y no terminas</h3>
+        <p>Comienzas dietas, rutinas o proyectos con energía... y a los días lo abandonas todo.</p>
+      </div>
+      <div class="card card-yellow">
+        <div class="card-icon">⏰</div>
+        <h3>No tienes tiempo</h3>
+        <p>Sientes que el día no alcanza para cuidarte a ti misma. Siempre hay algo más urgente.</p>
+      </div>
+      <div class="card card-green">
+        <div class="card-icon">💸</div>
+        <h3>Quieres más ingresos</h3>
+        <p>Deseas generar dinero haciendo algo que te apasione y que tenga impacto positivo.</p>
+      </div>
+      <div class="card card-purple">
+        <div class="card-icon">🤯</div>
+        <h3>Demasiada información</h3>
+        <p>Hay tanto contenido que no sabes por dónde empezar ni qué realmente funciona.</p>
+      </div>
+      <div class="card card-blue">
+        <div class="card-icon">💔</div>
+        <h3>Te sientes sola en el proceso</h3>
+        <p>Necesitas apoyo, guía y una comunidad que entienda lo que estás viviendo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESO ── -->
+<section class="process">
+  <div class="container">
+    <div class="center">
+      <p class="section-label">Cómo funciona</p>
+      <h2>Un camino claro<br>hacia tu transformación</h2>
+    </div>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num step-num-1">1</div>
+        <h3>Conectamos</h3>
+        <p>Llena el formulario y cuéntame dónde estás hoy y hacia dónde quieres llegar.</p>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-2">2</div>
+        <h3>Diseñamos</h3>
+        <p>Creamos un plan de hábitos personalizado que se adapte a tu vida real.</p>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-3">3</div>
+        <h3>Accionamos</h3>
+        <p>Implementas los cambios con mi acompañamiento y el apoyo de la comunidad.</p>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-4">4</div>
+        <h3>Crecemos</h3>
+        <p>Consolidas resultados y, si lo deseas, empiezas a generar ingresos como coach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BENEFICIOS ── -->
+<section class="benefits">
+  <div class="container">
+    <p class="section-label">Lo que vas a lograr</p>
+    <h2>Tu nueva versión<br>ya existe. La encontramos.</h2>
+    <div class="benefits-list">
+      <div class="benefit-item">
+        <div class="benefit-icon">🥗</div>
+        <div class="benefit-text">
+          <h4>Hábitos de alimentación que disfrutes</h4>
+          <p>Sin dietas restrictivas ni culpas. Aprende a comer rico y de forma nutritiva.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🧘‍♀️</div>
+        <div class="benefit-text">
+          <h4>Movimiento que se vuelve parte de ti</h4>
+          <p>Rutinas realistas que puedas mantener a largo plazo, aunque tengas poco tiempo.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🧠</div>
+        <div class="benefit-text">
+          <h4>Mentalidad de crecimiento</h4>
+          <p>Desarrolla la disciplina y autoconfianza para no rendirte ante los obstáculos.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">💼</div>
+        <div class="benefit-text">
+          <h4>Negocio de bienestar desde cero</h4>
+          <p>Aprende a construir tu propia carrera como coach y generar ingresos reales.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🤝</div>
+        <div class="benefit-text">
+          <h4>Comunidad de mujeres que te impulsan</h4>
+          <p>No caminarás sola. Tendrás una red de apoyo que celebra tus victorias contigo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label">Da el primer paso</p>
+    <h2>¿Lista para crear la vida que mereces?</h2>
+    <p>
+      Nadie lo hará por ti — pero no tienes que hacerlo sola.
+      Llena el formulario ahora y empecemos juntas este viaje. 💫
+    </p>
+    <a href="https://form.jotform.com/232157535143149" target="_blank" rel="noopener" class="btn btn-big">
+      🌱 ¡Quiero empezar ahora!
+    </a>
+    <p class="cta-note">Es gratis · Sin compromisos · Solo 2 minutos</p>
+  </div>
+</section>
+
+<!-- ── INSTAGRAM ── -->
+<section class="instagram-section">
+  <div class="container">
+    <p class="section-label">Sígueme</p>
+    <h2>Únete a nuestra comunidad<br>en Instagram</h2>
+    <p style="color:#666; margin-top:0.5rem; max-width:480px; margin-left:auto; margin-right:auto;">
+      Tips diarios, motivación real y todo lo que necesitas para transformar tu bienestar. 🌸
+    </p>
+    <br>
+    <a href="https://www.instagram.com/melisadjg/" target="_blank" rel="noopener" class="insta-card">
+      <div class="insta-icon">📸</div>
+      <div class="insta-text">
+        <strong>@melisadjg</strong>
+        <span>Melissa De Jesús · Coach de Bienestar 🌱</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>Hecho con <span class="heart">♥</span> por <strong>Melissa De Jesús</strong> · Coach de Bienestar</p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://www.instagram.com/melisadjg/" style="color:rgba(255,255,255,0.5); text-decoration:none;" target="_blank">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="https://form.jotform.com/232157535143149" style="color:rgba(255,255,255,0.5); text-decoration:none;" target="_blank">Formulario de contacto</a>
+  </p>
+</footer>
+
+</body>
+</html>
