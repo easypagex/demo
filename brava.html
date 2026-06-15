@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRAVA TATTOO — Tres Cantos, Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #0d0d0d;
+      --cream:    #f5f0e8;
+      --magenta:  #e0196a;
+      --violet:   #7b2ff7;
+      --teal:     #00c9a7;
+      --gold:     #f5c518;
+      --orange:   #ff6b35;
+      --white:    #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 20% 30%, rgba(123,47,247,.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(224,25,106,.30) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 55% 10%, rgba(0,201,167,.20) 0%, transparent 55%);
+      animation: pulse 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      from { opacity: .7; }
+      to   { opacity: 1;  }
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--magenta);
+      color: var(--white);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 18vw, 14rem);
+      line-height: .88;
+      letter-spacing: .01em;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 35%, var(--magenta) 65%, var(--violet) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .3em;
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.8rem);
+      color: var(--teal);
+      margin-bottom: 2rem;
+      letter-spacing: .04em;
+    }
+
+    .hero-desc {
+      font-size: clamp(.9rem, 1.5vw, 1.05rem);
+      color: rgba(245,240,232,.7);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .06em;
+      text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.4); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--magenta), var(--violet));
+      color: var(--white);
+    }
+    .btn-ghost {
+      border: 2px solid rgba(245,240,232,.3);
+      color: var(--cream);
+      background: transparent;
+    }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+    .hero-scroll {
+      margin-top: 4rem;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,.35);
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+    .section-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(245,240,232,.72);
+      max-width: 600px;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: #111118; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .color-block {
+      border-radius: 16px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: .05em;
+      color: rgba(255,255,255,.85);
+    }
+
+    .cb1 { background: linear-gradient(135deg, var(--violet), var(--magenta)); }
+    .cb2 { background: linear-gradient(135deg, var(--teal), #0092ff); }
+    .cb3 { background: linear-gradient(135deg, var(--gold), var(--orange)); margin-top: 2rem; }
+    .cb4 { background: linear-gradient(135deg, var(--magenta), var(--orange)); margin-top: 2rem; }
+
+    .about .section-eyebrow { color: var(--teal); }
+    .about .section-title span { color: var(--magenta); }
+
+    /* ── SERVICES ── */
+    .services { background: var(--ink); }
+    .services .section-eyebrow { color: var(--gold); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s;
+    }
+    .service-card:hover { transform: translateY(-6px); }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: var(--border-grad);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .sc1 { background: linear-gradient(145deg,#1a0a2e,#0d0d0d); --border-grad: linear-gradient(135deg,var(--violet),var(--magenta)); }
+    .sc2 { background: linear-gradient(145deg,#001a16,#0d0d0d); --border-grad: linear-gradient(135deg,var(--teal),#0092ff); }
+    .sc3 { background: linear-gradient(145deg,#1a1000,#0d0d0d); --border-grad: linear-gradient(135deg,var(--gold),var(--orange)); }
+
+    .service-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: .5rem;
+    }
+    .service-desc { font-size: .9rem; line-height: 1.65; color: rgba(245,240,232,.65); }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 50%, var(--orange) 100%);
+      padding: 3rem 1.5rem;
+    }
+
+    .info-strip .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .info-item {
+      text-align: center;
+    }
+    .info-item .label {
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: .8;
+      margin-bottom: .4rem;
+    }
+    .info-item .value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      color: var(--white);
+    }
+
+    /* ── ARTIST ── */
+    .artist { background: #111118; }
+    .artist .section-eyebrow { color: var(--magenta); }
+
+    .artist-card {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .artist-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--violet), var(--magenta), var(--orange));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+
+    .artist-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--violet), var(--magenta));
+      z-index: -1;
+    }
+
+    .artist-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      background: linear-gradient(90deg, var(--gold), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .artist-role {
+      color: var(--teal);
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: .8rem;
+    }
+
+    .artist-bio {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(245,240,232,.7);
+      max-width: 500px;
+    }
+
+    /* ── BOOKING CTA ── */
+    .booking {
+      background: var(--ink);
+      text-align: center;
+    }
+    .booking .section-eyebrow { color: var(--teal); }
+    .booking .section-title {
+      background: linear-gradient(135deg, var(--gold), var(--orange), var(--magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .booking .section-body { margin: 0 auto 2.5rem; text-align: center; }
+
+    /* ── SOCIAL ── */
+    .social { background: #111118; text-align: center; }
+    .social .section-eyebrow { color: var(--gold); }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .social-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+
+    .btn-ig {
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color: var(--white);
+    }
+    .btn-fb {
+      background: #1877f2;
+      color: var(--white);
+    }
+
+    .social-icon { font-size: 1.3rem; }
+
+    /* ── MAP / LOCATION ── */
+    .location { background: var(--ink); }
+    .location .section-eyebrow { color: var(--violet); }
+
+    .location-box {
+      margin-top: 2.5rem;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid rgba(123,47,247,.4);
+    }
+
+    .location-map {
+      background: #1a0a2e;
+      padding: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .map-text h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .map-text p { color: rgba(245,240,232,.65); font-size: .95rem; line-height: 1.6; }
+    .map-text p strong { color: var(--teal); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060606;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: .8rem;
+      color: rgba(245,240,232,.3);
+      letter-spacing: .04em;
+    }
+    footer a { color: rgba(245,240,232,.5); text-decoration: none; }
+    footer a:hover { color: var(--teal); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { order: -1; grid-template-columns: 1fr 1fr; }
+      .cb3, .cb4 { margin-top: 0; }
+      .artist-card { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── DECORATIVE STRIPE ── */
+    .stripe {
+      height: 6px;
+      background: linear-gradient(90deg, var(--violet), var(--magenta), var(--orange), var(--gold), var(--teal), var(--violet));
+      background-size: 300% 100%;
+      animation: shimmer 4s linear infinite;
+    }
+    @keyframes shimmer { to { background-position: -300% center; } }
+  </style>
+</head>
+<body>
+
+  <!-- STRIPE TOP -->
+  <div class="stripe"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-badge">✨ Tatuajes alternativos · Tres Cantos</span>
+    <h1 class="hero-title">BRAVA<br>TATTOO</h1>
+    <p class="hero-sub">Tattoo & Piercing Shop — Tres Cantos, Madrid</p>
+    <p class="hero-desc">
+      Arte en tu piel con identidad propia. Tatuajes alternativos únicos,
+      realizados solo con <strong>cita previa</strong>. Contacta directamente
+      a tu artista por mensaje directo.
+    </p>
+    <div class="btn-group">
+      <a href="https://bkrxurs1uji.typeform.com/to/ulvdNkt4?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" rel="noopener" class="btn btn-primary">
+        📩 Pedir cita previa
+      </a>
+      <a href="#info" class="btn btn-ghost">
+        Ver más ↓
+      </a>
+    </div>
+    <p class="hero-scroll">↓ &nbsp; Descubre el estudio</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="info">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <p class="section-eyebrow" style="color:var(--teal)">Quiénes somos</p>
+          <h2 class="section-title">Arte <span>alternativo</span> con alma propia</h2>
+          <p class="section-body">
+            Brava Tattoo nació con una misión clara: dar vida a tatuajes que no se parecen
+            a ningún otro. En nuestro estudio de Tres Cantos trabajamos con estilos
+            alternativos, ilustración, neotrad y mucho más. Cada diseño es una colaboración
+            entre tú y tu artista.
+          </p>
+          <br>
+          <p class="section-body">
+            🌱 Usamos productos veganos y sostenibles. Cuidamos tu piel y el planeta
+            con el mismo respeto con el que cuidamos el arte.
+          </p>
+        </div>
+        <div class="about-visual">
+          <div class="color-block cb1">ARTE</div>
+          <div class="color-block cb2">PIEL</div>
+          <div class="color-block cb3">VIDA</div>
+          <div class="color-block cb4">BRAVA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="container">
+      <p class="section-eyebrow" style="color:var(--gold)">Lo que hacemos</p>
+      <h2 class="section-title">Servicios</h2>
+      <div class="services-grid">
+        <div class="service-card sc1">
+          <div class="service-icon">🖋️</div>
+          <p class="service-name">Tatuaje</p>
+          <p class="service-desc">Diseños alternativos, ilustración, blackwork, neotrad y estilos únicos adaptados a tu visión. Arte permanente a medida.</p>
+        </div>
+        <div class="service-card sc2">
+          <div class="service-icon">💎</div>
+          <p class="service-name">Piercing</p>
+          <p class="service-desc">Perforaciones con joyería de calidad, realizadas con máxima higiene y profesionalidad para que luzcan perfectas.</p>
+        </div>
+        <div class="service-card sc3">
+          <div class="service-icon">✏️</div>
+          <p class="service-name">Diseño personalizado</p>
+          <p class="service-desc">¿Tienes una idea en mente? Colaboramos contigo desde el boceto hasta el resultado final. Tu tatuaje, tu historia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="container">
+      <div class="info-item">
+        <p class="label">Modalidad</p>
+        <p class="value">Solo cita previa</p>
+      </div>
+      <div class="info-item">
+        <p class="label">Estilo</p>
+        <p class="value">Alternativo</p>
+      </div>
+      <div class="info-item">
+        <p class="label">Ubicación</p>
+        <p class="value">Tres Cantos, Madrid</p>
+      </div>
+      <div class="info-item">
+        <p class="label">Contacto</p>
+        <p class="value">MD en Instagram</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIST -->
+  <section class="artist">
+    <div class="container">
+      <p class="section-eyebrow">El artista</p>
+      <h2 class="section-title">Owner & Artista</h2>
+      <div class="artist-card">
+        <div class="artist-avatar">🎨</div>
+        <div>
+          <p class="artist-role">Fundador · Tatuador</p>
+          <h3 class="artist-name">@brobrochtattoo</h3>
+          <p class="artist-bio">
+            El alma creativa detrás de Brava Tattoo. Con una estética inconfundible
+            y un enfoque en diseños alternativos, Brobroch transforma cada sesión
+            en una experiencia única. Contáctale directamente en Instagram para
+            hablar sobre tu próximo tatuaje.
+          </p>
+          <br>
+          <a href="https://www.instagram.com/brobrochtattoo/" target="_blank" rel="noopener" class="btn btn-primary" style="display:inline-flex;margin-top:.5rem">
+            Ver su trabajo en IG →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking">
+    <div class="container">
+      <p class="section-eyebrow">¿Lista/o para tatuarte?</p>
+      <h2 class="section-title">Reserva tu cita</h2>
+      <p class="section-body">
+        Rellena el formulario con tu idea, zona del cuerpo y disponibilidad.
+        Tu artista se pondrá en contacto contigo para confirmar los detalles
+        y dar vida a tu tatuaje.
+      </p>
+      <a href="https://bkrxurs1uji.typeform.com/to/ulvdNkt4?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1rem;padding:1.1rem 2.8rem">
+        📩 Solicitar cita previa
+      </a>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section class="social">
+    <div class="container">
+      <p class="section-eyebrow">Síguenos</p>
+      <h2 class="section-title">Encuéntranos en redes</h2>
+      <p class="section-body" style="margin:0 auto 0">
+        Sigue nuestro trabajo, inspírate con los diseños más recientes
+        y contáctanos por mensaje directo en Instagram.
+      </p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/tattoobrava/" target="_blank" rel="noopener" class="social-btn btn-ig">
+          <span class="social-icon">📸</span> Instagram · @tattoobrava
+        </a>
+        <a href="https://www.facebook.com/brobroch" target="_blank" rel="noopener" class="social-btn btn-fb">
+          <span class="social-icon">📘</span> Facebook · brobroch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location">
+    <div class="container">
+      <p class="section-eyebrow" style="color:var(--violet)">Dónde estamos</p>
+      <h2 class="section-title">Visítanos</h2>
+      <div class="location-box">
+        <div class="location-map">
+          <div class="map-text">
+            <h3>Brava Tattoo Studio</h3>
+            <p>
+              <strong>📍 Dirección:</strong><br>
+              Sector Foresta 40<br>
+              Tres Cantos, Madrid 28760<br>
+              España
+            </p>
+            <br>
+            <p>
+              <strong>📩 Cita previa:</strong><br>
+              Contacta a tu artista por mensaje directo<br>
+              en Instagram antes de tu visita.
+            </p>
+          </div>
+          <a href="https://maps.google.com/?q=Sector+Foresta+40,+Tres+Cantos,+Madrid" target="_blank" rel="noopener" class="btn btn-primary">
+            🗺️ Abrir en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="stripe"></div>
+  <footer>
+    <p>
+      © 2025 <strong>Brava Tattoo</strong> · Tres Cantos, Madrid ·
+      <a href="https://www.instagram.com/tattoobrava/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://www.facebook.com/brobroch" target="_blank" rel="noopener">Facebook</a>
+    </p>
+    <p style="margin-top:.5rem">Diseñado con ✨ para el arte del tatuaje alternativo</p>
+  </footer>
+
+</body>
+</html>
