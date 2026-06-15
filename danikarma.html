@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dani Karma Tattoo — Realismo Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --bone: #f0ece3;
+    --crimson: #e8192c;
+    --gold: #f5a623;
+    --violet: #6a0dad;
+    --electric: #00d4ff;
+    --lime: #b8ff00;
+    --deep: #1a0a2e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    color: var(--bone);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+  }
+
+  /* ─── HERO ─────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+    background: var(--deep);
+  }
+
+  /* Diagonal color slashes — the signature element */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, transparent 55%, var(--crimson) 55%, var(--crimson) 60%, transparent 60%),
+      linear-gradient(115deg, transparent 62%, var(--gold) 62%, var(--gold) 64%, transparent 64%),
+      linear-gradient(115deg, transparent 66%, var(--violet) 66%, var(--violet) 67.5%, transparent 67.5%);
+    z-index: 0;
+    opacity: 0.85;
+  }
+
+  .hero-nav {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.18em;
+    color: var(--bone);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(240,236,227,0.65);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .hero-body {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 11rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--bone);
+    mix-blend-mode: normal;
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--crimson);
+    -webkit-text-stroke: 2px var(--crimson);
+  }
+
+  .hero-name em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--bone);
+    opacity: 0.35;
+  }
+
+  .hero-tagline {
+    margin-top: 2.5rem;
+    font-size: 1.05rem;
+    color: rgba(240,236,227,0.7);
+    line-height: 1.65;
+    max-width: 420px;
+    font-weight: 300;
+  }
+
+  .hero-tagline strong {
+    color: var(--electric);
+    font-weight: 700;
+  }
+
+  .hero-cta-row {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .btn:hover { transform: translateY(-3px); }
+
+  .btn-primary {
+    background: var(--crimson);
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(232,25,44,0.45);
+  }
+
+  .btn-primary:hover { box-shadow: 0 12px 40px rgba(232,25,44,0.6); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--bone);
+    border: 2px solid rgba(240,236,227,0.3);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-footer {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem 3rem;
+    display: flex;
+    gap: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .stat { display: flex; flex-direction: column; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(240,236,227,0.45);
+    margin-top: 0.2rem;
+  }
+
+  /* ─── INTRO STRIP ───────────────────────────────────── */
+  .strip {
+    background: var(--crimson);
+    padding: 1.1rem 3rem;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .strip-inner {
+    display: inline-flex;
+    gap: 3rem;
+    animation: marquee 18s linear infinite;
+  }
+
+  .strip-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: #fff;
+  }
+
+  .strip-dot {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.5rem;
+    vertical-align: middle;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── ABOUT ─────────────────────────────────────────── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+  }
+
+  .about-left {
+    background: var(--bone);
+    color: var(--ink);
+    padding: 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-left .section-eyebrow { color: var(--crimson); }
+
+  .about-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 1.8rem;
+    color: var(--ink);
+  }
+
+  .about-left p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #3a3a3a;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-right {
+    background: var(--deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+  }
+
+  /* Ink splash illustration */
+  .ink-splash {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ink-splash svg { width: 100%; height: 100%; }
+
+  .monogram {
+    position: relative;
+    z-index: 2;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11rem;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(245,166,35,0.6);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+
+  /* ─── SERVICES ──────────────────────────────────────── */
+  .services {
+    background: var(--ink);
+    padding: 7rem 3rem;
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .services-header .section-eyebrow { color: var(--lime); }
+
+  .services-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    letter-spacing: 0.04em;
+    color: var(--bone);
+    line-height: 1;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(255,255,255,0.06);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--ink);
+    padding: 3rem 2.5rem;
+    transition: background 0.25s;
+    cursor: default;
+  }
+
+  .service-card:hover { background: #161616; }
+
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.8rem;
+  }
+
+  .service-card:nth-child(1) h3 { color: var(--crimson); }
+  .service-card:nth-child(2) h3 { color: var(--gold); }
+  .service-card:nth-child(3) h3 { color: var(--violet); }
+  .service-card:nth-child(4) h3 { color: var(--electric); }
+  .service-card:nth-child(5) h3 { color: var(--lime); }
+  .service-card:nth-child(6) h3 { color: var(--crimson); }
+
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(240,236,227,0.55);
+  }
+
+  /* ─── PROCESS ───────────────────────────────────────── */
+  .process {
+    background: var(--deep);
+    padding: 7rem 3rem;
+  }
+
+  .process-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .process-header .section-eyebrow { color: var(--electric); }
+
+  .process-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--bone);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 2.5rem;
+    left: 12%;
+    right: 12%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--crimson), var(--gold), var(--violet), var(--electric));
+    z-index: 0;
+  }
+
+  .step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 1.5rem;
+    padding-top: 0;
+  }
+
+  .step-num {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    flex-shrink: 0;
+  }
+
+  .step:nth-child(1) .step-num { background: var(--crimson); }
+  .step:nth-child(2) .step-num { background: var(--gold); }
+  .step:nth-child(3) .step-num { background: var(--violet); }
+  .step:nth-child(4) .step-num { background: var(--electric); color: var(--ink); }
+
+  .step h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: var(--bone);
+    margin-bottom: 0.6rem;
+  }
+
+  .step p {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: rgba(240,236,227,0.5);
+  }
+
+  /* ─── CTA / BOOKING ─────────────────────────────────── */
+  .booking {
+    background: var(--crimson);
+    padding: 6rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .booking::before {
+    content: 'BOOK';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28vw;
+    color: rgba(0,0,0,0.12);
+    letter-spacing: -0.05em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .booking h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    color: #fff;
+    line-height: 0.95;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem;
+  }
+
+  .booking p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .booking-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-wa {
+    background: #fff;
+    color: var(--crimson);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+
+  .btn-wa:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.3); }
+
+  .btn-dark {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  /* ─── SOCIAL ─────────────────────────────────────────── */
+  .social-section {
+    background: var(--ink);
+    padding: 6rem 3rem;
+    text-align: center;
+  }
+
+  .social-section .section-eyebrow { color: var(--gold); margin-bottom: 1rem; }
+
+  .social-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--bone);
+    margin-bottom: 3rem;
+  }
+
+  .social-cards {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .social-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2.5rem;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    text-decoration: none;
+    color: var(--bone);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    flex: 1;
+    min-width: 200px;
+    justify-content: center;
+  }
+
+  .social-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .social-card.ig:hover {
+    border-color: var(--gold);
+    background: rgba(245,166,35,0.07);
+  }
+
+  .social-card.fb:hover {
+    border-color: var(--electric);
+    background: rgba(0,212,255,0.07);
+  }
+
+  .social-card svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .social-card.ig svg { fill: var(--gold); }
+  .social-card.fb svg { fill: var(--electric); }
+
+  /* ─── FOOTER ─────────────────────────────────────────── */
+  footer {
+    background: #060606;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--bone);
+    letter-spacing: 0.12em;
+  }
+
+  .footer-brand span { color: var(--crimson); }
+
+  .footer-info {
+    font-size: 0.75rem;
+    color: rgba(240,236,227,0.3);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .hero-nav { padding: 1.5rem; }
+    .nav-links { display: none; }
+    .hero-body { padding: 3rem 1.5rem; }
+    .hero-footer { padding: 1.5rem; gap: 2rem; }
+
+    .about { grid-template-columns: 1fr; }
+    .about-left { padding: 4rem 2rem; }
+    .about-right { min-height: 300px; }
+    .monogram { font-size: 7rem; }
+
+    .services { padding: 5rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+
+    .process { padding: 5rem 1.5rem; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .steps::before { display: none; }
+
+    .booking { padding: 4rem 1.5rem; }
+
+    .social-section { padding: 4rem 1.5rem; }
+
+    footer { flex-direction: column; text-align: center; }
+    .footer-info { text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .strip-inner { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section class="hero">
+  <nav class="hero-nav">
+    <a href="#" class="nav-logo">DK · Tattoo</a>
+    <ul class="nav-links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#servicios">Especialidades</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#contacto">Contactar</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-body">
+    <p class="hero-eyebrow">✦ Tatuador · Madrid · Realismo</p>
+    <h1 class="hero-name">
+      Dani<br>
+      <span>Karma</span><br>
+      <em>Tattoo</em>
+    </h1>
+    <p class="hero-tagline">
+      Realismo hiperpigmentado sobre la piel.<br>
+      Propietario de <strong>@tattookarmashop</strong>.<br>
+      Madrid. Book abierto — citas por WhatsApp.
+    </p>
+    <div class="hero-cta-row">
+      <a href="https://wa.me" class="btn btn-primary">📲 Pide tu cita</a>
+      <a href="https://www.instagram.com/danikarmatattoo" target="_blank" rel="noopener" class="btn btn-outline">Ver portfolio →</a>
+    </div>
+  </div>
+
+  <div class="hero-footer">
+    <div class="stat">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Diseños únicos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Realismo</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">MDR</span>
+      <span class="stat-label">Madrid</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ───────────────────────────────────────── -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">Realismo</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Madrid</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Book Abierto</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Karma Shop</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Citas por WhatsApp</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Dani Karma Tattoo</span>
+    <span class="strip-dot">◆</span>
+    <!-- duplicate for seamless loop -->
+    <span class="strip-item">Realismo</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Madrid</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Book Abierto</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Karma Shop</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Citas por WhatsApp</span>
+    <span class="strip-dot">◆</span>
+    <span class="strip-item">Dani Karma Tattoo</span>
+    <span class="strip-dot">◆</span>
+  </div>
+</div>
+
+<!-- ─── SOBRE MÍ ───────────────────────────────────────── -->
+<section class="about" id="sobre-mi">
+  <div class="about-left">
+    <p class="section-eyebrow">— Sobre el artista</p>
+    <h2>El arte no miente sobre la piel.</h2>
+    <p>
+      Soy Dani Karma, tatuador especializado en <strong>realismo</strong> con sede en Madrid. Mi trabajo busca capturar la profundidad, la textura y la emoción que hacen que un tatuaje sea algo más que una imagen.
+    </p>
+    <p>
+      Propietario de <strong>Tattoo Karma Shop</strong>, donde cada sesión es un proceso colaborativo: escucho tu idea, la interpreto y la transformo en algo permanente que te represente.
+    </p>
+    <p>
+      Book abierto. Las citas se gestionan por WhatsApp de forma personal y directa.
+    </p>
+    <a href="https://www.instagram.com/tattookarmashop" target="_blank" rel="noopener" style="color: var(--crimson); font-weight:700; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; margin-top:0.5rem;">
+      → @tattookarmashop
+    </a>
+  </div>
+  <div class="about-right">
+    <div class="ink-splash">
+      <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="gA" cx="40%" cy="40%">
+            <stop offset="0%" stop-color="#e8192c" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#e8192c" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="gB" cx="70%" cy="65%">
+            <stop offset="0%" stop-color="#6a0dad" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#6a0dad" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="gC" cx="50%" cy="80%">
+            <stop offset="0%" stop-color="#f5a623" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="600" height="600" fill="#1a0a2e"/>
+        <ellipse cx="240" cy="240" rx="280" ry="260" fill="url(#gA)"/>
+        <ellipse cx="400" cy="380" rx="240" ry="220" fill="url(#gB)"/>
+        <ellipse cx="300" cy="480" rx="200" ry="160" fill="url(#gC)"/>
+        <!-- decorative cross marks -->
+        <line x1="80" y1="80" x2="100" y2="80" stroke="#f5a623" stroke-width="1.5" opacity="0.4"/>
+        <line x1="90" y1="70" x2="90" y2="90" stroke="#f5a623" stroke-width="1.5" opacity="0.4"/>
+        <line x1="500" y1="120" x2="520" y2="120" stroke="#00d4ff" stroke-width="1.5" opacity="0.4"/>
+        <line x1="510" y1="110" x2="510" y2="130" stroke="#00d4ff" stroke-width="1.5" opacity="0.4"/>
+        <line x1="120" y1="490" x2="140" y2="490" stroke="#e8192c" stroke-width="1.5" opacity="0.4"/>
+        <line x1="130" y1="480" x2="130" y2="500" stroke="#e8192c" stroke-width="1.5" opacity="0.4"/>
+        <!-- diamond -->
+        <polygon points="300,150 318,168 300,186 282,168" fill="none" stroke="#f5a623" stroke-width="1.5" opacity="0.5"/>
+        <polygon points="300,420 330,450 300,480 270,450" fill="none" stroke="#6a0dad" stroke-width="1" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="monogram">DK</div>
+  </div>
+</section>
+
+<!-- ─── ESPECIALIDADES ────────────────────────────────── -->
+<section class="services" id="servicios">
+  <div class="services-header">
+    <p class="section-eyebrow">— Especialidades</p>
+    <h2>Lo que hago<br>con tu piel</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🎨</span>
+      <h3>Realismo en color</h3>
+      <p>Retratos, naturaleza y escenas con pigmentación vibrante y gradientes que imitan la fotografía.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🖤</span>
+      <h3>Realismo B&G</h3>
+      <p>Escala de grises con contrastes profundos. El clásico del realismo con impacto visual máximo.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">👤</span>
+      <h3>Retratos</h3>
+      <p>Capturamos el alma de una persona o animal. Precisión milimétrica en cada trazo facial.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌿</span>
+      <h3>Naturaleza & Flora</h3>
+      <p>Flores, plantas, fauna. Texturas orgánicas con detalles que parecen saltar de la piel.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⚡</span>
+      <h3>Cobertura de tatuajes</h3>
+      <p>Transformamos trabajos viejos o que ya no te representan en algo completamente nuevo.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✦</span>
+      <h3>Diseño personalizado</h3>
+      <p>Cada pieza parte de cero: tu historia, tu idea, convertida en arte permanente a medida.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESO ───────────────────────────────────────── -->
+<section class="process" id="proceso">
+  <div class="process-header">
+    <p class="section-eyebrow">— Cómo funciona</p>
+    <h2>De la idea al tatuaje</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Contacto</h4>
+      <p>Escríbeme por WhatsApp con tu idea, la zona del cuerpo y las referencias que tengas.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Consulta</h4>
+      <p>Valoramos el proyecto juntos y acordamos presupuesto, tamaño y estética.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Diseño</h4>
+      <p>Preparo el arte personalizado listo para tu sesión.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Sesión</h4>
+      <p>En Tattoo Karma Shop, Madrid. Cómodo, higiénico y con el máximo cuidado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BOOKING CTA ───────────────────────────────────── -->
+<section class="booking" id="contacto">
+  <h2>¿Listo para<br>tu tatuaje?</h2>
+  <p>Book abierto — escríbeme y hablamos</p>
+  <div class="booking-btns">
+    <a href="https://wa.me" class="btn btn-wa">📲 WhatsApp</a>
+    <a href="https://www.instagram.com/danikarmatattoo" target="_blank" rel="noopener" class="btn btn-dark">Instagram →</a>
+  </div>
+</section>
+
+<!-- ─── SOCIAL ────────────────────────────────────────── -->
+<section class="social-section">
+  <p class="section-eyebrow">— Encuéntrame en</p>
+  <h2>Redes sociales</h2>
+  <div class="social-cards">
+    <a href="https://www.instagram.com/danikarmatattoo" target="_blank" rel="noopener" class="social-card ig">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      @danikarmatattoo
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100070194486587" target="_blank" rel="noopener" class="social-card fb">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+      Facebook
+    </a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────── -->
+<footer>
+  <div class="footer-brand">Dani <span>Karma</span> Tattoo</div>
+  <div class="footer-info">
+    Madrid · Tattoo Karma Shop<br>
+    Citas por WhatsApp · Book abierto<br>
+    <span style="color:rgba(240,236,227,0.15);">Sponsor: @thunderlordpowerofficial · @tucremaparaeldolor</span>
+  </div>
+</footer>
+
+</body>
+</html>
