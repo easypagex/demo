@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jefferson Silva Tattoo · Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@300;400;600;700;900&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --magenta: #FF006E;
+      --gold: #FFD700;
+      --cyan: #00F5FF;
+      --purple: #9B5DE5;
+      --white: #F8F8F8;
+      --ink: #1a1a2e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── CANVAS PARTICLES ── */
+    #canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-logo {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 1.6rem;
+      background: linear-gradient(90deg, var(--magenta), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(255,0,110,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(0,245,255,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 80%, rgba(155,93,229,0.15) 0%, transparent 60%),
+        var(--black);
+      z-index: -1;
+    }
+
+    .hero-flag {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--white) 0%, var(--magenta) 40%, var(--gold) 70%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(255,0,110,0.5));
+    }
+
+    .hero-tattoo {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: clamp(2rem, 6vw, 5rem);
+      color: var(--gold);
+      letter-spacing: 8px;
+      text-shadow: 0 0 40px rgba(255,215,0,0.6);
+      margin-bottom: 2rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .tag {
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .tag-magenta {
+      background: rgba(255,0,110,0.15);
+      border: 1px solid var(--magenta);
+      color: var(--magenta);
+    }
+
+    .tag-cyan {
+      background: rgba(0,245,255,0.1);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+    }
+
+    .tag-gold {
+      background: rgba(255,215,0,0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+
+    .tag-purple {
+      background: rgba(155,93,229,0.15);
+      border: 1px solid var(--purple);
+      color: var(--purple);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-magenta {
+      background: var(--magenta);
+      color: white;
+      box-shadow: 0 0 30px rgba(255,0,110,0.4);
+    }
+
+    .btn-magenta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 50px rgba(255,0,110,0.7);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      box-shadow: 0 0 30px rgba(37,211,102,0.4);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 50px rgba(37,211,102,0.7);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0,245,255,0.2);
+    }
+
+    .btn-outline:hover {
+      background: var(--cyan);
+      color: var(--black);
+      box-shadow: 0 0 40px rgba(0,245,255,0.5);
+    }
+
+    /* ── SCROLL HINT ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(255,0,110,0.8), transparent);
+      animation: scrollDown 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 2.5rem;
+      line-height: 1.1;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: linear-gradient(135deg, rgba(155,93,229,0.06) 0%, rgba(0,245,255,0.04) 100%);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p strong {
+      color: var(--gold);
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      padding: 1.8rem;
+      border-radius: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--magenta), var(--cyan));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .stat-card:hover { transform: translateY(-5px); }
+
+    .stat-card-bg {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+    }
+
+    .stat-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.3rem;
+      position: relative;
+    }
+
+    /* ── ESTILOS ── */
+    #estilos {
+      background: var(--black);
+    }
+
+    .estilos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .estilo-card {
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+
+    .estilo-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .estilo-card.magenta {
+      background: linear-gradient(145deg, rgba(255,0,110,0.15), rgba(255,0,110,0.05));
+      border: 1px solid rgba(255,0,110,0.3);
+      box-shadow: 0 4px 30px rgba(255,0,110,0.1);
+    }
+
+    .estilo-card.magenta:hover {
+      box-shadow: 0 12px 50px rgba(255,0,110,0.3);
+    }
+
+    .estilo-card.cyan {
+      background: linear-gradient(145deg, rgba(0,245,255,0.1), rgba(0,245,255,0.03));
+      border: 1px solid rgba(0,245,255,0.25);
+      box-shadow: 0 4px 30px rgba(0,245,255,0.08);
+    }
+
+    .estilo-card.cyan:hover {
+      box-shadow: 0 12px 50px rgba(0,245,255,0.25);
+    }
+
+    .estilo-card.gold {
+      background: linear-gradient(145deg, rgba(255,215,0,0.12), rgba(255,215,0,0.03));
+      border: 1px solid rgba(255,215,0,0.25);
+      box-shadow: 0 4px 30px rgba(255,215,0,0.08);
+    }
+
+    .estilo-card.gold:hover {
+      box-shadow: 0 12px 50px rgba(255,215,0,0.25);
+    }
+
+    .estilo-card.purple {
+      background: linear-gradient(145deg, rgba(155,93,229,0.15), rgba(155,93,229,0.04));
+      border: 1px solid rgba(155,93,229,0.3);
+      box-shadow: 0 4px 30px rgba(155,93,229,0.1);
+    }
+
+    .estilo-card.purple:hover {
+      box-shadow: 0 12px 50px rgba(155,93,229,0.3);
+    }
+
+    .estilo-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .estilo-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .estilo-card.magenta .estilo-name { color: var(--magenta); }
+    .estilo-card.cyan .estilo-name { color: var(--cyan); }
+    .estilo-card.gold .estilo-name { color: var(--gold); }
+    .estilo-card.purple .estilo-name { color: var(--purple); }
+
+    .estilo-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+
+    /* ── PROCESO ── */
+    #proceso {
+      background: linear-gradient(180deg, rgba(255,0,110,0.04) 0%, var(--black) 100%);
+    }
+
+    .proceso-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      position: relative;
+    }
+
+    .step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .step:nth-child(1) .step-num { background: var(--magenta); box-shadow: 0 0 20px rgba(255,0,110,0.5); }
+    .step:nth-child(2) .step-num { background: var(--purple); box-shadow: 0 0 20px rgba(155,93,229,0.5); }
+    .step:nth-child(3) .step-num { background: var(--cyan); color: var(--black); box-shadow: 0 0 20px rgba(0,245,255,0.5); }
+    .step:nth-child(4) .step-num { background: var(--gold); color: var(--black); box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+
+    .step-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      background: linear-gradient(180deg, var(--black) 0%, rgba(0,245,255,0.05) 100%);
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .contact-box .section-title {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+    }
+
+    .contact-box p {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .contact-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .contact-ctas .btn {
+      min-width: 280px;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 1.2rem 2.5rem;
+    }
+
+    .phone-display {
+      margin-top: 2.5rem;
+      padding: 1.5rem 2.5rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: inline-block;
+    }
+
+    .phone-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.4rem;
+    }
+
+    .phone-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, var(--magenta), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.8rem;
+    }
+
+    footer span {
+      color: var(--magenta);
+    }
+
+    /* ── DIVIDER ── */
+    .neon-divider {
+      width: 60px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--magenta), var(--cyan));
+      margin-bottom: 2rem;
+      box-shadow: 0 0 12px rgba(255,0,110,0.5);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      opacity: 0.12;
+      animation: orb-drift 15s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: var(--magenta);
+      top: -100px; left: -100px;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 350px; height: 350px;
+      background: var(--cyan);
+      bottom: 10%; right: -100px;
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: var(--purple);
+      top: 50%; left: 40%;
+      animation-delay: -10s;
+    }
+
+    @keyframes orb-drift {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(40px, -30px); }
+      66% { transform: translate(-20px, 40px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GLOW ORBS -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- CANVAS PARTICLES -->
+  <canvas id="canvas"></canvas>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">JSilva</div>
+    <ul class="nav-links">
+      <li><a href="#about">Artista</a></li>
+      <li><a href="#estilos">Estilos</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#contacto">Citas</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-flag">🇨🇴</div>
+    <p class="hero-eyebrow">Madrid, España · Artista del Tatuaje</p>
+    <h1 class="hero-name">Jefferson Silva</h1>
+    <div class="hero-tattoo">Tattoo</div>
+
+    <div class="hero-tags">
+      <span class="tag tag-magenta">Realismo</span>
+      <span class="tag tag-cyan">Black & Grey</span>
+      <span class="tag tag-gold">Diseño Gráfico</span>
+      <span class="tag tag-purple">Arte Colombiano</span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="https://www.instagram.com/jsilvatattoo" target="_blank" class="btn btn-magenta">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Ver Instagram
+      </a>
+      <a href="https://wa.me/34634461647" target="_blank" class="btn btn-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp · 634 461 647
+      </a>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label">Sobre el artista</p>
+          <div class="neon-divider"></div>
+          <h2 class="section-title">Arte en la piel,<br>desde Colombia<br>hasta Madrid</h2>
+          <p>
+            <strong>Jefferson Silva</strong> es un artista colombiano 🇨🇴 afincado en Madrid que fusiona su formación en <strong>diseño gráfico</strong> con el arte del tatuaje. Cada pieza que crea es un proyecto visual completo: composición, contraste, narrativa.
+          </p>
+          <p>
+            Su especialidad es el <strong>realismo en black and grey</strong> — un estilo que exige dominio absoluto de la luz, la sombra y el detalle. El resultado: tatuajes que parecen grabados en plata sobre la piel.
+          </p>
+          <p>
+            Disponible para <strong>citas y asesorías personalizadas</strong>. Cada diseño es único, pensado exclusivamente para ti.
+          </p>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-card-bg"></div>
+            <div class="stat-number" style="color: var(--magenta);">B&G</div>
+            <div class="stat-label">Especialidad</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-bg"></div>
+            <div class="stat-number" style="color: var(--cyan);">🇨🇴</div>
+            <div class="stat-label">Origen</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-bg"></div>
+            <div class="stat-number" style="color: var(--gold); font-size: 1.5rem;">Madrid</div>
+            <div class="stat-label">Ubicación</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-bg"></div>
+            <div class="stat-number" style="color: var(--purple);">✦</div>
+            <div class="stat-label">Diseño único</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTILOS -->
+  <section id="estilos">
+    <div class="section-inner">
+      <p class="section-label">Lo que hago</p>
+      <div class="neon-divider"></div>
+      <h2 class="section-title">Estilos y especialidades</h2>
+
+      <div class="estilos-grid">
+        <div class="estilo-card magenta">
+          <span class="estilo-icon">🖤</span>
+          <div class="estilo-name">Black & Grey</div>
+          <p class="estilo-desc">La especialidad de Jefferson: tatuajes en escala de grises con profundidad cinematográfica, texturas fotorrealistas y transiciones de luz perfectas.</p>
+        </div>
+
+        <div class="estilo-card cyan">
+          <span class="estilo-icon">👁️</span>
+          <div class="estilo-name">Realismo</div>
+          <p class="estilo-desc">Retratos, animales, naturaleza — llevados a la piel con un nivel de detalle que desafía la percepción. El ojo no distingue foto de tatuaje.</p>
+        </div>
+
+        <div class="estilo-card gold">
+          <span class="estilo-icon">✏️</span>
+          <div class="estilo-name">Diseño gráfico</div>
+          <p class="estilo-desc">Formación como diseñador gráfico que eleva cada tatuaje: composición estudiada, tipografías, elementos gráficos y jerarquía visual en la piel.</p>
+        </div>
+
+        <div class="estilo-card purple">
+          <span class="estilo-icon">🎨</span>
+          <div class="estilo-name">Diseño a medida</div>
+          <p class="estilo-desc">Ningún diseño se repite. Jefferson trabaja contigo desde la idea hasta el boceto final, asegurando que tu tatuaje cuente tu historia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="proceso">
+    <div class="section-inner">
+      <p class="section-label">Cómo funciona</p>
+      <div class="neon-divider"></div>
+      <h2 class="section-title">Tu camino al tatuaje perfecto</h2>
+
+      <div class="proceso-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Consulta</div>
+          <p class="step-desc">Cuéntame tu idea, la zona del cuerpo, el tamaño. Por WhatsApp o Instagram.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Diseño</div>
+          <p class="step-desc">Creo un boceto personalizado basado en tu visión y mi criterio artístico.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Revisión</div>
+          <p class="step-desc">Ajustamos juntos hasta que el diseño sea exactamente lo que imaginas.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Sesión</div>
+          <p class="step-desc">El día de la cita, convertimos ese diseño en arte permanente en tu piel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="section-inner">
+      <div class="contact-box">
+        <p class="section-label">Reserva tu cita</p>
+        <div class="neon-divider" style="margin: 0 auto 2rem;"></div>
+        <h2 class="section-title">¿Listo para tatuarte?</h2>
+        <p>Escríbeme por WhatsApp o Instagram para agendar tu asesoría. Respondo personalmente a cada consulta.</p>
+
+        <div class="contact-ctas">
+          <a href="https://wa.me/34634461647?text=Hola%20Jefferson!%20Me%20interesa%20un%20tatuaje" target="_blank" class="btn btn-whatsapp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escribir por WhatsApp
+          </a>
+          <a href="https://www.instagram.com/jsilvatattoo" target="_blank" class="btn btn-magenta">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Ver portfolio en Instagram
+          </a>
+          <a href="tel:+34634461647" class="btn btn-outline">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.66A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"></path></svg>
+            Llamar: 634 461 647
+          </a>
+        </div>
+
+        <div class="phone-display">
+          <div class="phone-label">Teléfono · WhatsApp</div>
+          <div class="phone-number">634 461 647</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>Jefferson Silva Tattoo</span> · Madrid, España · 🇨🇴 Colombiano con arte</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="https://www.instagram.com/jsilvatattoo" target="_blank" style="color: rgba(255,255,255,0.3); text-decoration: none;">@jsilvatattoo</a>
+    </p>
+  </footer>
+
+  <script>
+    // ── PARTICLES ──
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const colors = ['#FF006E', '#00F5FF', '#FFD700', '#9B5DE5', '#ffffff'];
+    const particles = Array.from({ length: 60 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 2 + 0.5,
+      dx: (Math.random() - 0.5) * 0.4,
+      dy: -Math.random() * 0.6 - 0.2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: Math.random() * 0.6 + 0.2
+    }));
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + Math.floor(p.alpha * 255).toString(16).padStart(2, '0');
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+        if (p.x < -10 || p.x > canvas.width + 10) p.dx *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.estilo-card, .step, .stat-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
