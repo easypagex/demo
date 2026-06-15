@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ailin De Sanctis · Coach & Terapeuta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral:   #F4664A;
+      --gold:    #F5B942;
+      --sage:    #7BBF8E;
+      --lavend:  #A78BCA;
+      --sky:     #5BC4D1;
+      --cream:   #FDF6EC;
+      --ink:     #2B1F1A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, #fde68a55 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 90%, #c4b5fd55 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 70% 20%, #fca5a555 0%, transparent 50%),
+        var(--cream);
+      position: relative;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .35;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .blob-1 { width:400px;height:400px;background:var(--coral);top:-100px;left:-120px;animation-delay:0s; }
+    .blob-2 { width:300px;height:300px;background:var(--lavend);bottom:-80px;right:-80px;animation-delay:2s; }
+    .blob-3 { width:250px;height:250px;background:var(--gold);top:30%;right:5%;animation-delay:4s; }
+
+    @keyframes float {
+      from { transform: translateY(0) scale(1); }
+      to   { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-inner { position: relative; z-index: 2; max-width: 680px; }
+
+    .avatar-wrap {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      padding: 4px;
+      background: conic-gradient(var(--coral), var(--gold), var(--sage), var(--lavend), var(--sky), var(--coral));
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .avatar-img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--cream);
+    }
+
+    .avatar-emoji {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#fbbf24,#f97316);
+      border: 4px solid var(--cream);
+      display: grid;
+      place-items: center;
+      font-size: 4rem;
+    }
+
+    .eyebrow {
+      font-size: .8rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 500;
+      margin-bottom: .6rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 4.4rem);
+      line-height: 1.08;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--coral) 0%, var(--lavend) 60%, var(--sky) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #5a4a42;
+      max-width: 500px;
+      margin: 0 auto 2.2rem;
+    }
+
+    .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 1.8rem;
+      border-radius: 50px;
+      font-size: .95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px #0002; }
+
+    .btn-wa { background: #25D366; color: #fff; }
+    .btn-ig { background: linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7); color: #fff; }
+
+    /* ── STRIP ── */
+    .strip {
+      overflow: hidden;
+      padding: .8rem 0;
+      background: var(--ink);
+      color: #fff;
+      white-space: nowrap;
+    }
+    .strip-inner { display: inline-block; animation: ticker 22s linear infinite; }
+    .strip span { margin: 0 2rem; font-size: .9rem; letter-spacing: .04em; }
+
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; }
+
+    .section-label {
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .center { text-align: center; }
+    .max-720 { max-width: 720px; margin: 0 auto; }
+    .max-1100 { max-width: 1100px; margin: 0 auto; }
+
+    /* ── ABOUT ── */
+    .about { background: #fff; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .pill-cloud { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+
+    .pill {
+      padding: .4rem 1rem;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .big-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--coral);
+      padding: 2rem;
+      border-left: 5px solid var(--gold);
+      background: #fff9f0;
+      border-radius: 0 16px 16px 0;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--cream); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform .25s, box-shadow .25s;
+      border-top: 5px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px #0001; }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: .5rem;
+    }
+    .card p { font-size: .9rem; line-height: 1.65; color: #5a4a42; }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .25rem .8rem;
+      border-radius: 50px;
+      color: #fff;
+    }
+
+    /* ── RETREAT ── */
+    .retreat {
+      background: linear-gradient(135deg, #0d3b3e 0%, #1a5c5c 50%, #0d3b3e 100%);
+      color: #fff;
+      text-align: center;
+    }
+    .retreat h2 { color: var(--gold); }
+    .retreat p { color: #c8ede8; line-height: 1.7; }
+
+    .retreat-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0; }
+    .badge {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50px;
+      padding: .5rem 1.2rem;
+      font-size: .9rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── SOMA CLUB ── */
+    .soma { background: linear-gradient(135deg, #3b0764, #6b21a8, #a855f7); color: #fff; text-align: center; }
+    .soma h2 { color: #e9d5ff; }
+    .soma p { color: #d8b4fe; line-height: 1.7; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: #fff; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .testi {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 1.8rem;
+    }
+    .testi p { font-style: italic; line-height: 1.7; color: #4a3a32; margin-bottom: 1rem; }
+    .testi-name { font-weight: 600; font-size: .9rem; color: var(--coral); }
+    .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: .5rem; }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: conic-gradient(from 200deg at 50% 60%, var(--coral), var(--gold), var(--sage), var(--sky), var(--lavend), var(--coral));
+      text-align: center;
+      color: #fff;
+      padding: 6rem 1.5rem;
+    }
+    .contact h2 { color: #fff; text-shadow: 0 2px 20px #0004; }
+    .contact p { color: rgba(255,255,255,.85); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    .glass-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 1rem 2.2rem;
+      background: rgba(255,255,255,.22);
+      border: 2px solid rgba(255,255,255,.5);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .glass-btn:hover { background: rgba(255,255,255,.38); transform: scale(1.05); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .85rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── FLOATING WA ── */
+    .float-wa {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      width: 60px; height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 25px #25d36644;
+      text-decoration: none;
+      font-size: 1.8rem;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 8px 25px #25d36644; }
+      50% { box-shadow: 0 8px 40px #25d366aa; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blob, .strip-inner, .avatar-wrap, .float-wa { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating WhatsApp -->
+<a class="float-wa" href="https://wa.me/34671656258?text=Hola%20Ailu!%20Quiero%20info%20para%20sesiones%201:1" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-inner">
+    <div class="avatar-wrap" aria-hidden="true">
+      <div class="avatar-emoji">🌿</div>
+    </div>
+
+    <p class="eyebrow">Coach · Terapeuta · Profesora de Yoga</p>
+    <h1>Ailin De Sanctis</h1>
+    <p class="hero-sub">
+      Acompaño procesos de transformación personal integrando <strong>palabra y cuerpo</strong>. Sesiones de coaching, terapia somática y yoga para reconectar contigo misma/o.
+    </p>
+
+    <div class="cta-group">
+      <a class="btn btn-wa" href="https://wa.me/34671656258?text=Hola%20Ailu!%20Quiero%20info%20para%20sesiones%201:1" target="_blank" rel="noopener">
+        💬 WhatsApp
+      </a>
+      <a class="btn btn-ig" href="https://www.instagram.com/ailindesanctiscoach" target="_blank" rel="noopener">
+        📸 Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-inner">
+    <span>✨ Transformación personal</span>
+    <span>🧘🏼‍♀️ Yoga Hatha</span>
+    <span>💫 Terapia somática</span>
+    <span>🌊 Nida Retreats</span>
+    <span>🌿 Coaching holístico</span>
+    <span>🤍 Soma Club</span>
+    <span>🌎 Viaje a Brasil 2026</span>
+    <span>✨ Transformación personal</span>
+    <span>🧘🏼‍♀️ Yoga Hatha</span>
+    <span>💫 Terapia somática</span>
+    <span>🌊 Nida Retreats</span>
+    <span>🌿 Coaching holístico</span>
+    <span>🤍 Soma Club</span>
+    <span>🌎 Viaje a Brasil 2026</span>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about">
+  <div class="max-1100">
+    <div class="about-grid">
+      <div>
+        <p class="section-label" style="color:var(--lavend)">Sobre Ailu ✨</p>
+        <h2>Una guía para tu <em>camino interior</em></h2>
+        <p style="line-height:1.75;color:#5a4a42;margin-bottom:1rem;">
+          Soy Ailin, Holistic Coach y terapeuta certificada. Creo en que la transformación real sucede cuando conectamos mente, cuerpo y emoción. Por eso integro el coaching con la terapia somática y el yoga: herramientas que hablan el lenguaje de tu ser completo.
+        </p>
+        <p style="line-height:1.75;color:#5a4a42;">
+          Fundadora de <strong>Nida Retreats</strong>, creadora del <strong>Soma Club</strong> y docente de Hatha Yoga presencial. También escribo en Substack sobre lo que siento y aprendo en el camino.
+        </p>
+        <div class="pill-cloud">
+          <span class="pill" style="background:var(--coral)">🧠 Coaching</span>
+          <span class="pill" style="background:var(--lavend)">🫀 Terapia Somática</span>
+          <span class="pill" style="background:var(--sage)">🧘 Yoga Hatha</span>
+          <span class="pill" style="background:var(--sky)">🌊 Retiros</span>
+          <span class="pill" style="background:var(--gold);color:var(--ink)">✍️ Escritura</span>
+        </div>
+      </div>
+      <div>
+        <blockquote class="big-quote">
+          "Acompaño procesos de transformación personal y guío experiencias integrando palabra y cuerpo."
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services">
+  <div class="max-1100">
+    <div class="center">
+      <p class="section-label" style="color:var(--coral)">Lo que ofrezco</p>
+      <h2>Elige tu <em>camino</em></h2>
+    </div>
+
+    <div class="cards">
+
+      <a class="card" href="https://wa.me/34671656258?text=Hola%20Ailu!%20Quiero%20info%20para%20sesiones%201:1" target="_blank" rel="noopener" style="border-top-color:var(--coral)">
+        <div class="card-icon">🌸</div>
+        <h3>Sesiones 1:1</h3>
+        <p>Coaching y terapia somática individualizada. Un espacio seguro para explorar, soltar y crecer desde adentro hacia afuera.</p>
+        <span class="card-tag" style="background:var(--coral)">→ Reservar</span>
+      </a>
+
+      <a class="card" href="https://mesamessangha.my.canva.site/soma-club-virtual-membresia-yoga" target="_blank" rel="noopener" style="border-top-color:var(--lavend)">
+        <div class="card-icon">🤍</div>
+        <h3>Soma Club</h3>
+        <p>Membresía de yoga online. Clases de Hatha Yoga en vivo y en diferido para nutrir tu práctica donde estés.</p>
+        <span class="card-tag" style="background:var(--lavend)">→ Ver membresía</span>
+      </a>
+
+      <a class="card" href="https://wa.me/34671656258?text=Hola%20Ailu!%20Quiero%20hacer%20clases%20de%20yoga" target="_blank" rel="noopener" style="border-top-color:var(--sage)">
+        <div class="card-icon">🧘🏼‍♀️</div>
+        <h3>Hatha Yoga Presencial</h3>
+        <p>Clases de yoga en persona para conectar con tu cuerpo, la respiración y el momento presente.</p>
+        <span class="card-tag" style="background:var(--sage)">→ Consultar</span>
+      </a>
+
+      <a class="card" href="https://wa.me/34671656258?text=Hola%20Ailu!%20Quiero%20ir%20al%20workshop" target="_blank" rel="noopener" style="border-top-color:var(--gold)">
+        <div class="card-icon">🔬</div>
+        <h3>Laboratorio Somático</h3>
+        <p>Workshops experienciales donde cuerpo, movimiento y palabra se fusionan para abrir nuevos registros.</p>
+        <span class="card-tag" style="background:var(--gold);color:var(--ink)">→ Próxima fecha</span>
+      </a>
+
+      <a class="card" href="https://wa.me/34671656258?text=Hola%20Ailu!%20Quiero%20info%20para%20sesiones%201:1" target="_blank" rel="noopener" style="border-top-color:var(--sky)">
+        <div class="card-icon">🎤</div>
+        <h3>Charlas & Grupos</h3>
+        <p>Charlas para empresas, grupos y eventos. Bienestar integral y herramientas somáticas para colectivos.</p>
+        <span class="card-tag" style="background:var(--sky)">→ Contactar</span>
+      </a>
+
+      <a class="card" href="https://substack.com/@ailudesanctis" target="_blank" rel="noopener" style="border-top-color:var(--coral)">
+        <div class="card-icon">✍️</div>
+        <h3>Substack</h3>
+        <p>"Escribo y siento" — reflexiones desde el camino. Un espacio íntimo donde Ailu comparte su mundo interior.</p>
+        <span class="card-tag" style="background:var(--coral)">→ Leer</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── RETREAT ── -->
+<section class="retreat">
+  <div class="max-720">
+    <p class="section-label" style="color:var(--sky);letter-spacing:.2em">🌊 Nida Retreats · Viaje especial</p>
+    <h2>Brasil 2026 🇧🇷</h2>
+    <p>Una experiencia de transformación profunda en uno de los rincones más mágicos del mundo. Yoga, naturaleza, comunidad y presencia plena.</p>
+    <div class="retreat-badges">
+      <span class="badge">🌴 Naturaleza</span>
+      <span class="badge">🧘 Yoga diario</span>
+      <span class="badge">💫 Terapia grupal</span>
+      <span class="badge">🤝 Comunidad</span>
+      <span class="badge">🌊 Playa</span>
+    </div>
+    <a class="glass-btn" href="https://wa.me/34671656258?text=Hola%20Ailu!%20Quiero%20info%20para%20sumarme" target="_blank" rel="noopener">
+      💬 Quiero sumarme al viaje
+    </a>
+  </div>
+</section>
+
+<!-- ── SOMA CLUB ── -->
+<section class="soma">
+  <div class="max-720">
+    <p class="section-label" style="color:#c4b5fd;letter-spacing:.2em">🤍 Membresía online</p>
+    <h2>Soma Club</h2>
+    <p>Yoga en cualquier lugar del mundo. Accedé a clases de Hatha Yoga, contenido exclusivo y una comunidad de personas que, como vos, eligen cuidarse por dentro.</p>
+    <br>
+    <a class="glass-btn" href="https://mesamessangha.my.canva.site/soma-club-virtual-membresia-yoga" target="_blank" rel="noopener">
+      🌿 Ver membresía
+    </a>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials">
+  <div class="max-1100">
+    <div class="center">
+      <p class="section-label" style="color:var(--sage)">Voces del camino</p>
+      <h2>Lo que dicen quienes <em>ya dieron el paso</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>"Ailu tiene una capacidad única para sostener el proceso de manera gentil y profunda. Las sesiones con ella me ayudaron a reconectar con lo que realmente importa."</p>
+        <span class="testi-name">— María, sesiones 1:1</span>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>"El laboratorio somático fue una experiencia transformadora. Nunca imaginé que el cuerpo podía decir tanto. Muy recomendable."</p>
+        <span class="testi-name">— Sofía, Laboratorio Somático</span>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>"El Soma Club cambió mi práctica de yoga. Tener a Ailu acompañándome desde casa hace toda la diferencia. Su energía se siente a través de la pantalla."</p>
+        <span class="testi-name">— Laura, Soma Club</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact">
+  <div class="max-720">
+    <p class="section-label" style="color:rgba(255,255,255,.7);letter-spacing:.2em">¿Lista/o para empezar?</p>
+    <h2>Conectemos ✨</h2>
+    <p>Si sentís que es momento de explorar un proceso de cambio, estoy aquí para acompañarte. Escribime sin compromiso.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a class="glass-btn" href="https://wa.me/34671656258?text=Hola%20Ailu!%20Quiero%20info%20para%20sesiones%201:1" target="_blank" rel="noopener">
+        💬 Escribir por WhatsApp
+      </a>
+      <a class="glass-btn" href="https://www.instagram.com/ailindesanctiscoach" target="_blank" rel="noopener">
+        📸 Seguir en Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Ailin De Sanctis · Coach & Terapeuta ✨</p>
+  <p style="margin-top:.5rem;">
+    <a href="https://www.instagram.com/ailindesanctiscoach" target="_blank" rel="noopener">@ailindesanctiscoach</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/34671656258" target="_blank" rel="noopener">+34 671 656 258</a>
+    &nbsp;·&nbsp;
+    <a href="https://linktr.ee/ailindesanctis" target="_blank" rel="noopener">Linktree</a>
+  </p>
+</footer>
+
+</body>
+</html>
