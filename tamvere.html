@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TamVere | Coach de Bienestar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral:    #FF6B6B;
+      --gold:     #FFD166;
+      --mint:     #06D6A0;
+      --violet:   #8B5CF6;
+      --sky:      #38BDF8;
+      --cream:    #FFF8F0;
+      --ink:      #1A1A2E;
+      --soft:     #F3E8FF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FFD166 0%, #FF6B6B 35%, #8B5CF6 70%, #38BDF8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 80%, rgba(6,214,160,.35) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(255,209,102,.4) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* floating blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .45;
+      pointer-events: none;
+      animation: float 7s ease-in-out infinite alternate;
+    }
+    .blob1 { width: 340px; height: 340px; background: #06D6A0; top: -80px; left: -80px; animation-delay: 0s; }
+    .blob2 { width: 260px; height: 260px; background: #FFD166; bottom: -60px; right: -60px; animation-delay: 2s; }
+    .blob3 { width: 180px; height: 180px; background: #FF6B6B; top: 40%; right: 5%; animation-delay: 4s; }
+
+    @keyframes float {
+      from { transform: translateY(0) scale(1); }
+      to   { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.25);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,.5);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .4rem 1.1rem;
+      border-radius: 999px;
+      margin-bottom: 1.6rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.0;
+      position: relative;
+      text-shadow: 0 4px 24px rgba(0,0,0,.18);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero-sub {
+      margin-top: 1.4rem;
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,.92);
+      max-width: 560px;
+      line-height: 1.65;
+      position: relative;
+    }
+
+    .hero-cta {
+      margin-top: 2.4rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.22); }
+
+    .btn-white {
+      background: #fff;
+      color: var(--violet);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.7);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; }
+
+    .container { max-width: 860px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: .8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-body {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: #3a3a55;
+      max-width: 640px;
+    }
+
+    /* ── FRASE GRANDE ── */
+    .quote-section {
+      background: var(--ink);
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-style: italic;
+      color: #fff;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    .quote-section blockquote span { color: var(--gold); }
+
+    /* ── CARDS ── */
+    .cards-section { background: var(--soft); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 18px rgba(139,92,246,.1);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(139,92,246,.18); }
+
+    .card-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      border-radius: 20px 20px 0 0;
+    }
+    .card:nth-child(1) .card-accent { background: var(--coral); }
+    .card:nth-child(2) .card-accent { background: var(--gold); }
+    .card:nth-child(3) .card-accent { background: var(--mint); }
+
+    .card-icon { font-size: 2.2rem; margin-bottom: .8rem; }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+
+    .card p { font-size: .97rem; color: #555; line-height: 1.65; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-section {
+      background: linear-gradient(135deg, var(--coral) 0%, var(--gold) 100%);
+      text-align: center;
+    }
+
+    .newsletter-section .section-label { color: rgba(255,255,255,.8); }
+    .newsletter-section .section-title { color: #fff; }
+    .newsletter-section .section-body { color: rgba(255,255,255,.9); margin: 0 auto 2rem; }
+
+    /* ── LINKS SECTION ── */
+    .links-section { background: #fff; }
+
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.1rem 1.4rem;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: transform .2s, box-shadow .2s;
+      color: var(--ink);
+    }
+    .link-card:hover { transform: translateX(6px); box-shadow: 4px 4px 20px rgba(0,0,0,.1); }
+
+    .link-card.instagram { background: linear-gradient(90deg, #f9ce34, #ee2a7b, #6228d7); color: #fff; }
+    .link-card.podcast   { background: linear-gradient(90deg, #1DB954, #191414); color: #fff; }
+    .link-card.newsletter { background: linear-gradient(90deg, var(--coral), var(--violet)); color: #fff; }
+    .link-card.umbral    { background: linear-gradient(90deg, var(--sky), var(--mint)); color: var(--ink); }
+
+    .link-icon { font-size: 1.6rem; flex-shrink: 0; }
+
+    .link-text { display: flex; flex-direction: column; }
+    .link-title { font-weight: 500; }
+    .link-desc  { font-size: .82rem; opacity: .85; font-weight: 300; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: .88rem;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── HEART PULSE ANIMATION ── */
+    .pulse { animation: pulse 1.8s ease-in-out infinite; display: inline-block; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.25); }
+    }
+
+    @media (max-width: 600px) {
+      .btn { padding: .75rem 1.5rem; font-size: .95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="hero-badge">✨ Coach de Bienestar</div>
+
+    <h1>
+      Tam<em>Vere</em>
+    </h1>
+
+    <p class="hero-sub">
+      El momento de reconectar con tu corazón y volverte creador/a responsable de tu vida es <strong>Ahora.</strong>
+    </p>
+
+    <div class="hero-cta">
+      <a href="https://optin.myperfit.com/subscribe/tamvere/oIiBQ0Pl" target="_blank" class="btn btn-white">
+        💌 Newsletter semanal
+      </a>
+      <a href="https://www.instagram.com/soytamvere/" target="_blank" class="btn btn-outline">
+        📸 Instagram
+      </a>
+    </div>
+  </header>
+
+  <!-- ── SOBRE TAM ── -->
+  <section>
+    <div class="container">
+      <p class="section-label">Sobre mí</p>
+      <h2 class="section-title">Te acompaño a salir<br>del automático</h2>
+      <p class="section-body">
+        Soy Tam Vere, coach de bienestar. Mi misión es acompañarte a soltar los patrones que ya no te sirven y construir una vida auténtica, llena de conexión y propósito. Porque vivir en piloto automático no es vivir: es sobrevivir.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── QUOTE ── -->
+  <div class="quote-section">
+    <blockquote>
+      "Salir del automático no es un lujo —<br>
+      es el acto más <span>valiente y amoroso</span><br>
+      que podés hacer por vos."
+    </blockquote>
+  </div>
+
+  <!-- ── CARDS ── -->
+  <section class="cards-section">
+    <div class="container">
+      <p class="section-label">Lo que hacemos juntos</p>
+      <h2 class="section-title">Un acompañamiento de verdad</h2>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-icon">🌱</div>
+          <h3>Reconectar con vos</h3>
+          <p>Exploramos juntos quién sos más allá del rol y el ruido. El punto de partida es siempre la honestidad con una misma.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-icon">💡</div>
+          <h3>Salir del piloto automático</h3>
+          <p>Identificamos los hábitos, creencias y patrones que te mantienen repitiendo lo mismo, y encontramos la salida.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-icon">🔥</div>
+          <h3>Crear tu vida auténtica</h3>
+          <p>Diseñamos una vida que te represente de verdad: con tus valores, tus deseos y tus propias reglas del juego.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEWSLETTER ── -->
+  <section class="newsletter-section">
+    <div class="container">
+      <p class="section-label">Newsletter</p>
+      <h2 class="section-title">💌 A corazón abierto</h2>
+      <p class="section-body">
+        Cada semana te escribo desde el fondo de mi corazón: reflexiones, herramientas y recordatorios para que sigas eligiéndote. Gratis. Sin filtros. Sin publicidad.
+      </p>
+      <a href="https://optin.myperfit.com/subscribe/tamvere/oIiBQ0Pl" target="_blank" class="btn btn-white">
+        Quiero recibirlo <span class="pulse">❤️</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── LINKS ── -->
+  <section class="links-section">
+    <div class="container">
+      <p class="section-label">Encontrame en</p>
+      <h2 class="section-title">Conectemos</h2>
+
+      <div class="links-list">
+        <a href="https://www.instagram.com/soytamvere/" target="_blank" class="link-card instagram">
+          <span class="link-icon">📸</span>
+          <span class="link-text">
+            <span class="link-title">Instagram · @soytamvere</span>
+            <span class="link-desc">Contenido diario sobre bienestar y vida auténtica</span>
+          </span>
+        </a>
+
+        <a href="https://open.spotify.com/show/2oLK9DQ9s8b7VpYSNmYKAq" target="_blank" class="link-card podcast">
+          <span class="link-icon">🎙️</span>
+          <span class="link-text">
+            <span class="link-title">Podcast · Mi voz para tu día</span>
+            <span class="link-desc">Escuchame en Spotify cuando más lo necesitás</span>
+          </span>
+        </a>
+
+        <a href="https://optin.myperfit.com/subscribe/tamvere/oIiBQ0Pl" target="_blank" class="link-card newsletter">
+          <span class="link-icon">💌</span>
+          <span class="link-text">
+            <span class="link-title">Newsletter · A corazón abierto</span>
+            <span class="link-desc">Reflexiones semanales directo a tu correo</span>
+          </span>
+        </a>
+
+        <a href="https://optin.myperfit.com/subscribe/tamvere/nKwoeW2b" target="_blank" class="link-card umbral">
+          <span class="link-icon">🚪</span>
+          <span class="link-text">
+            <span class="link-title">Umbral · Lista de espera</span>
+            <span class="link-desc">El próximo nivel del acompañamiento — anotate</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>
+      Hecho con <span class="pulse" style="color:var(--coral)">♥</span> para vos ·
+      <a href="https://www.instagram.com/soytamvere/" target="_blank">@soytamvere</a> ·
+      <a href="mailto:sertamvere@gmail.com">sertamvere@gmail.com</a>
+    </p>
+    <p style="margin-top:.5rem; font-size:.8rem; opacity:.5;">© 2026 TamVere · Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
