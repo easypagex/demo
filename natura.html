@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NATURA Holistic Aruba | Janine Valecillos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --turquesa: #00B4D8;
+    --turquesa-deep: #0077A8;
+    --verde: #2D6A4F;
+    --verde-claro: #52B788;
+    --dorado: #F5A623;
+    --coral: #FF6B6B;
+    --lila: #C77DFF;
+    --crema: #FFF8F0;
+    --blanco: #ffffff;
+    --texto: #1a2e2a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, #0077A8 0%, #00B4D8 35%, #52B788 65%, #2D6A4F 100%);
+    padding: 2rem 1.5rem 6rem;
+  }
+
+  /* Animated wave SVG at bottom of hero */
+  .hero-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .hero-waves svg { display: block; width: 100%; height: 80px; }
+
+  /* Floating orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.18;
+    animation: float 8s ease-in-out infinite;
+  }
+  .orb-1 { width: 300px; height: 300px; background: var(--dorado); top: -60px; left: -80px; animation-delay: 0s; }
+  .orb-2 { width: 200px; height: 200px; background: var(--coral); bottom: 80px; right: -50px; animation-delay: 2s; }
+  .orb-3 { width: 150px; height: 150px; background: var(--lila); top: 40%; left: 10%; animation-delay: 4s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  .hero-badge {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.4);
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    margin-bottom: 0.4rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--dorado);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,0.9);
+    font-weight: 300;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-location .pin { font-size: 1.1rem; }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+
+  .btn-primary { background: var(--dorado); color: #1a2e2a; }
+  .btn-white { background: #fff; color: var(--turquesa-deep); }
+  .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.6); }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 1.5rem; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #3a5a4a;
+    max-width: 650px;
+  }
+
+  /* ── SOBRE JANINE ── */
+  .sobre {
+    background: var(--blanco);
+  }
+
+  .sobre-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .sobre-photo {
+    position: relative;
+  }
+
+  .sobre-photo .frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+    background: linear-gradient(135deg, var(--turquesa) 0%, var(--verde-claro) 50%, var(--verde) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    overflow: hidden;
+  }
+
+  .sobre-photo .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sobre-deco {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--dorado);
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .sobre-photo .badge-rol {
+    position: absolute;
+    bottom: 20px;
+    left: -20px;
+    background: var(--coral);
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .pill {
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .pill-verde { background: #d8f3dc; color: var(--verde); }
+  .pill-turquesa { background: #caf0f8; color: var(--turquesa-deep); }
+  .pill-dorado { background: #fff0d0; color: #8a5e00; }
+  .pill-coral { background: #ffe4e4; color: #c0392b; }
+  .pill-lila { background: #f0d9ff; color: #7a1aad; }
+
+  /* ── SERVICIOS ── */
+  .servicios {
+    background: linear-gradient(135deg, #e8f9f5 0%, #fef9e7 50%, #fdecea 100%);
+  }
+
+  .servicios-header { text-align: center; margin-bottom: 3rem; }
+  .servicios-header .section-body { margin: 0 auto; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 2rem 1.8rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(0,0,0,0.12); }
+
+  .card-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 5px;
+  }
+
+  .card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    color: var(--texto);
+  }
+
+  .card p {
+    font-size: 0.92rem;
+    color: #5a7a6a;
+    line-height: 1.7;
+  }
+
+  /* ── RADISSON ── */
+  .radisson {
+    background: linear-gradient(160deg, var(--verde) 0%, var(--turquesa-deep) 100%);
+    color: #fff;
+    text-align: center;
+  }
+
+  .radisson .section-eyebrow { color: var(--dorado); }
+  .radisson .section-title { color: #fff; }
+  .radisson .section-body { color: rgba(255,255,255,0.85); margin: 0 auto 2.5rem; max-width: 600px; }
+
+  .radisson-stars {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1rem;
+    color: var(--dorado);
+  }
+
+  /* ── MENTORÍA ── */
+  .mentoria {
+    background: var(--blanco);
+  }
+
+  .mentoria-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .mentoria-box {
+    background: linear-gradient(135deg, #f0d9ff 0%, #caf0f8 100%);
+    border-radius: 28px;
+    padding: 2.5rem 2rem;
+  }
+
+  .mentoria-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--texto);
+  }
+
+  .beneficios-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .beneficios-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    color: #3a3a5a;
+    line-height: 1.5;
+  }
+
+  .beneficios-list li::before {
+    content: '✨';
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .mentoria-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .info-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--texto);
+  }
+
+  .info-chip .emoji { font-size: 1.2rem; }
+
+  .free-badge {
+    display: inline-block;
+    background: var(--verde-claro);
+    color: #fff;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── COMUNIDAD ── */
+  .comunidad {
+    background: linear-gradient(135deg, #fff0d0 0%, #ffe4e4 50%, #f0d9ff 100%);
+    text-align: center;
+  }
+
+  .comunidad .section-body { margin: 0 auto 2.5rem; }
+
+  .comunidad-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .com-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.4rem 1.8rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--texto);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  /* ── REDES ── */
+  .redes {
+    background: var(--texto);
+    text-align: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .redes .section-title { color: var(--crema); margin-bottom: 0.8rem; }
+  .redes .section-body { color: rgba(255,255,255,0.6); margin: 0 auto 2.5rem; }
+
+  .redes-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .red-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .red-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+
+  .red-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+  .red-facebook { background: #1877F2; color: #fff; }
+  .red-whatsapp { background: #25D366; color: #fff; }
+  .red-linktree { background: #43E660; color: #1a2e2a; }
+  .red-spotify { background: #1DB954; color: #fff; }
+
+  .red-btn svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.82rem;
+  }
+
+  footer span { color: var(--turquesa); }
+
+  /* ── WHATSAPP FLOTANTE ── */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    width: 62px;
+    height: 62px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse-wa 3s ease-in-out infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 35px rgba(37,211,102,0.6); }
+  .wa-float svg { width: 32px; height: 32px; fill: #fff; }
+
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 6px 40px rgba(37,211,102,0.8), 0 0 0 10px rgba(37,211,102,0.1); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .sobre-inner, .mentoria-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .sobre-photo .frame { aspect-ratio: 1/1; max-width: 280px; margin: 0 auto; }
+    section { padding: 3.5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/2977448463" target="_blank" rel="noopener" class="wa-float" title="Escríbeme por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-badge">🌴 Aruba · Caribe</div>
+  <h1>NATURA<br><em>Holistic</em></h1>
+  <p class="hero-sub">Terapias · Coaching · Yoga · Sanación</p>
+  <div class="hero-location">
+    <span class="pin">📍</span> Aruba, Caribe · Radisson Blu Aruba
+  </div>
+
+  <div class="hero-ctas">
+    <a href="https://wa.me/2977448463" target="_blank" class="btn btn-primary">
+      💬 Reservar sesión
+    </a>
+    <a href="https://linktr.ee/NaturaHolisticAruba" target="_blank" class="btn btn-white">
+      🔗 Todos los links
+    </a>
+    <a href="#servicios" class="btn btn-outline">
+      ✨ Ver servicios
+    </a>
+  </div>
+
+  <div class="hero-waves">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C150,80 350,0 600,40 C850,80 1050,0 1200,40 L1200,80 L0,80 Z" fill="#FFF8F0"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SOBRE JANINE -->
+<section class="sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-photo reveal">
+        <div class="frame">🌿</div>
+        <div class="sobre-deco"></div>
+        <div class="badge-rol">🌟 Terapeuta Holística</div>
+      </div>
+      <div class="reveal">
+        <p class="section-eyebrow" style="color:var(--verde)">Sobre mí</p>
+        <h2 class="section-title">Hola, soy<br>Janine Valecillos</h2>
+        <p class="section-body">
+          Soy Terapeuta Holística, Coach, Instructora de Yoga y Psicoterapeuta. Mi camino es acompañarte a reconectar con tu naturaleza más profunda — ese lugar donde la paz, la claridad y el poder creador ya existen dentro de ti.
+        </p>
+        <p class="section-body" style="margin-top:1rem">
+          Como <strong>Experience Host en el Radisson Blu Aruba</strong>, diseño experiencias únicas que combinan el poder del Caribe con prácticas ancestrales de sanación. Cada sesión es un espacio sagrado creado especialmente para ti.
+        </p>
+        <div class="pills">
+          <span class="pill pill-verde">🧘 Yoga</span>
+          <span class="pill pill-turquesa">💆 Terapia Holística</span>
+          <span class="pill pill-lila">🔮 Coaching Energético</span>
+          <span class="pill pill-coral">🌊 Sound Healing</span>
+          <span class="pill pill-dorado">🌿 Psicoterapia</span>
+          <span class="pill pill-verde">🎋 Ceremonias Sagradas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <div class="servicios-header reveal">
+      <p class="section-eyebrow" style="color:var(--coral)">Mis servicios</p>
+      <h2 class="section-title">Experiencias que transforman</h2>
+      <p class="section-body">Cada servicio está diseñado para elevar tu frecuencia vibracional y llevarte de vuelta a tu esencia.</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card reveal">
+        <div class="card-accent" style="background:linear-gradient(90deg,var(--turquesa),var(--verde-claro))"></div>
+        <span class="card-icon">🧘‍♀️</span>
+        <h3>Yoga & Meditación</h3>
+        <p>Clases personalizadas y grupales que unen el movimiento consciente con la respiración y la presencia. Yoga al atardecer caribeño, yoga en la playa y sesiones privadas.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-accent" style="background:linear-gradient(90deg,var(--coral),var(--dorado))"></div>
+        <span class="card-icon">🌸</span>
+        <h3>Masajes Holísticos</h3>
+        <p>Masajes terapéuticos que integran técnicas ancestrales con la intención curativa. Libera tensiones físicas y emocionales en un espacio de profunda relajación.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-accent" style="background:linear-gradient(90deg,var(--lila),var(--turquesa))"></div>
+        <span class="card-icon">🔔</span>
+        <h3>Sound Healing</h3>
+        <p>Baños de sonido con cuencos tibetanos, gongs y elementos de la naturaleza. Las vibraciones armonizan tus campos energéticos y disuelven bloqueos profundos.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-accent" style="background:linear-gradient(90deg,var(--verde),var(--turquesa-deep))"></div>
+        <span class="card-icon">🌙</span>
+        <h3>Ceremonias Sagradas</h3>
+        <p>Rituales de luna llena, cacao, y fuego. Espacios colectivos de sanación donde la comunidad se reúne para soltar, sanar y crear nuevos comienzos.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-accent" style="background:linear-gradient(90deg,var(--dorado),var(--coral))"></div>
+        <span class="card-icon">💫</span>
+        <h3>Mentoría Energética 1:1</h3>
+        <p>Sesiones individuales de coaching y psicoterapia holística para liberar emociones estancadas, elevar tu frecuencia y reconectar con tu poder creador.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-accent" style="background:linear-gradient(90deg,var(--lila),var(--coral))"></div>
+        <span class="card-icon">🌺</span>
+        <h3>Eventos Personalizados</h3>
+        <p>Retiros corporativos, celebraciones privadas y experiencias de bienestar diseñadas a medida para grupos, parejas y familias en el paraíso caribeño.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RADISSON BLU -->
+<section class="radisson">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Experience Host Oficial</p>
+      <div class="radisson-stars">★★★★★</div>
+      <h2 class="section-title">Radisson Blu Aruba</h2>
+      <p class="section-body">
+        Como Experience Host certificada del Radisson Blu Aruba, diseño experiencias holísticas exclusivas para huéspedes internacionales. Retiros de bienestar, sesiones de yoga al amanecer y ceremonias frente al Caribe — todo en uno de los hoteles más icónicos de la isla.
+      </p>
+      <a href="https://wa.me/2977448463" target="_blank" class="btn btn-primary">
+        🌴 Reservar experiencia en el Radisson
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORÍA 1:1 -->
+<section class="mentoria">
+  <div class="container">
+    <div class="mentoria-inner">
+      <div class="reveal">
+        <p class="section-eyebrow" style="color:var(--lila)">Mentoría Energética</p>
+        <h2 class="section-title">Despierta tu<br>Poder Creador</h2>
+        <p class="section-body">
+          Una sesión 1:1 diseñada para llevarte a un estado de alineación profunda. Trabajamos juntas en los niveles físico, emocional y energético para que puedas crear la vida que deseas desde un lugar de paz y abundancia.
+        </p>
+
+        <div class="mentoria-info" style="margin-top:1.5rem">
+          <div class="info-chip"><span class="emoji">📅</span> Primera llamada gratuita: 30 minutos</div>
+          <div class="info-chip"><span class="emoji">🌺</span> Sesión completa: 120 minutos</div>
+          <div class="info-chip"><span class="emoji">💻</span> Online o presencial en Aruba</div>
+          <div class="info-chip"><span class="emoji">📲</span> Seguimiento posterior vía WhatsApp</div>
+        </div>
+
+        <div style="margin-top:2rem">
+          <span class="free-badge">✨ Primera llamada GRATIS</span>
+        </div>
+
+        <div style="margin-top:1.5rem">
+          <a href="https://wa.me/2977448463" target="_blank" class="btn btn-primary">
+            💬 Reservar mi espacio
+          </a>
+        </div>
+      </div>
+
+      <div class="mentoria-box reveal">
+        <h3>Beneficios de la sesión</h3>
+        <ul class="beneficios-list">
+          <li>Recuperar claridad y enfoque interior</li>
+          <li>Liberar emociones estancadas y memorias limitantes</li>
+          <li>Elevar tu frecuencia vibracional</li>
+          <li>Reconectar con tu poder creador y la abundancia</li>
+          <li>Sentirte en paz, alineada y en armonía contigo misma</li>
+          <li>Herramientas prácticas para integrar en tu vida diaria</li>
+        </ul>
+
+        <div style="margin-top:2rem;padding:1.2rem;background:rgba(255,255,255,0.7);border-radius:16px">
+          <p style="font-size:0.9rem;color:#5a5a7a;font-style:italic;line-height:1.7">
+            "El universo ya te ha traído hasta aquí, y eso significa que tu energía está lista para expandirse." 🌟
+          </p>
+          <p style="margin-top:0.5rem;font-weight:800;font-size:0.85rem;color:var(--verde)">— Janine Valecillos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDAD ONLINE -->
+<section class="comunidad">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow" style="color:var(--coral)">Comunidad NATURA Online</p>
+      <h2 class="section-title">Adéntrate al mundo<br>de la Sanación</h2>
+      <p class="section-body">
+        Únete a nuestra comunidad online y recibe guías, meditaciones, rituales y contenido exclusivo para tu camino de expansión. La naturaleza y la sabiduría ancestral al alcance de tu mano.
+      </p>
+
+      <div class="comunidad-cards">
+        <div class="com-card">🎧 Meditaciones guiadas</div>
+        <div class="com-card">🌕 Rituales de luna</div>
+        <div class="com-card">📚 Guías de sanación</div>
+        <div class="com-card">🎵 Playlists Spotify</div>
+        <div class="com-card">🌱 Inspiración diaria</div>
+        <div class="com-card">👥 Comunidad viva</div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center">
+        <a href="https://pay.hotmart.com/V104394721K?off=5mq89x65" target="_blank" class="btn btn-primary">
+          🌺 Suscribirme a la Comunidad
+        </a>
+        <a href="https://naturayogaclub-pft.hotmart.host/captacion" target="_blank" class="btn" style="background:var(--verde);color:#fff">
+          📥 Descargar guía gratuita
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section class="redes">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow" style="color:var(--verde-claro);margin-bottom:0.8rem;font-size:0.75rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase">Sígueme</p>
+      <h2 class="section-title" style="color:var(--crema)">Conecta conmigo</h2>
+      <p class="section-body" style="color:rgba(255,255,255,0.6);margin:0 auto 2.5rem">
+        Encuentra inspiración, rituales, fotos y contenido de bienestar en mis redes. ¡La tribu NATURA te espera!
+      </p>
+
+      <div class="redes-links">
+        <a href="https://www.instagram.com/naturayogui/" target="_blank" class="red-btn red-instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @naturayogui
+        </a>
+        <a href="https://www.facebook.com/NaturaExperiencesbynaturayogui" target="_blank" class="red-btn red-facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+        <a href="https://wa.me/2977448463" target="_blank" class="red-btn red-whatsapp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://linktr.ee/NaturaHolisticAruba" target="_blank" class="red-btn red-linktree">
+          🔗 Linktree
+        </a>
+        <a href="https://open.spotify.com/user/31bbellodkagnaknzxgkvpqv7pdu" target="_blank" class="red-btn red-spotify">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Spotify
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 NATURA Holistic Aruba · Janine Valecillos Digier</p>
+  <p style="margin-top:0.4rem">Diseñado con 🌿 amor y luz · <span>naturayogui</span> · Aruba, Caribe</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
