@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reiki de Viaje – Agus & La Nave U</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rosa:    #F25CAE;
+      --violeta: #9B4DCA;
+      --turquesa:#1EC9C0;
+      --dorado:  #F5A623;
+      --verde:   #5CC85C;
+      --crema:   #FFF8F0;
+      --oscuro:  #1A0A2E;
+      --blanco:  #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--crema);
+      color: var(--oscuro);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #9B4DCA 0%, #F25CAE 40%, #1EC9C0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* decorative blobs */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .hero::before {
+      width: 520px; height: 520px;
+      background: var(--dorado);
+      top: -120px; left: -140px;
+    }
+    .hero::after {
+      width: 400px; height: 400px;
+      background: var(--verde);
+      bottom: -100px; right: -100px;
+    }
+
+    .hero-emoji {
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      animation: float 4s ease-in-out infinite;
+      display: block;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      color: var(--blanco);
+      line-height: 1.1;
+      text-shadow: 0 3px 18px rgba(0,0,0,0.25);
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--dorado);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      color: rgba(255,255,255,0.92);
+      font-weight: 300;
+      max-width: 560px;
+      margin: 1.2rem auto 2.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+
+    .btn-ig   { background: var(--blanco); color: var(--violeta); }
+    .btn-wa   { background: #25D366;       color: var(--blanco); }
+
+    /* ── SERVICES ── */
+    .section {
+      padding: 5rem 2rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .section-lead {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3.5rem;
+      font-size: 1.05rem;
+    }
+
+    .services-bg {
+      background: var(--oscuro);
+    }
+    .services-bg .section-title { color: var(--blanco); }
+    .services-bg .section-lead  { color: rgba(255,255,255,0.6); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      border-radius: 22px;
+      padding: 2rem 1.6rem;
+      color: var(--blanco);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card::after {
+      content: '';
+      position: absolute;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      bottom: -40px; right: -30px;
+      pointer-events: none;
+    }
+
+    .card-1 { background: linear-gradient(135deg, #F25CAE, #9B4DCA); }
+    .card-2 { background: linear-gradient(135deg, #1EC9C0, #5CC85C); }
+    .card-3 { background: linear-gradient(135deg, #F5A623, #F25CAE); }
+    .card-4 { background: linear-gradient(135deg, #9B4DCA, #1EC9C0); }
+    .card-5 { background: linear-gradient(135deg, #5CC85C, #F5A623); }
+
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+    .card p { font-size: 0.92rem; line-height: 1.6; opacity: 0.92; }
+
+    /* ── ABOUT ── */
+    .about-bg { background: linear-gradient(160deg, #FFF0FB, #F0FFFC); }
+
+    .about-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-inner .big-emoji {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+    .about-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      color: var(--violeta);
+      margin-bottom: 1.2rem;
+    }
+    .about-inner p {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .pill {
+      padding: 0.45rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--blanco);
+    }
+    .p1 { background: var(--rosa); }
+    .p2 { background: var(--violeta); }
+    .p3 { background: var(--turquesa); }
+    .p4 { background: var(--dorado); }
+    .p5 { background: var(--verde); }
+
+    /* ── LOCATION ── */
+    .location-section {
+      background: linear-gradient(135deg, #F5A623 0%, #F25CAE 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--blanco);
+    }
+    .location-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+    .location-section p {
+      font-size: 1.1rem;
+      opacity: 0.93;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+    }
+    .location-badges {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .location-badge {
+      background: rgba(255,255,255,0.22);
+      border: 2px solid rgba(255,255,255,0.55);
+      border-radius: 999px;
+      padding: 0.55rem 1.4rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 5.5rem 2rem;
+      text-align: center;
+      background: var(--crema);
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--violeta);
+      margin-bottom: 0.8rem;
+    }
+    .cta-section p {
+      color: #666;
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .cta-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .btn-big { padding: 1rem 2.4rem; font-size: 1.1rem; }
+    .btn-big.btn-ig { border: 2px solid var(--violeta); }
+    .btn-big.btn-wa { background: #25D366; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--oscuro);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+    footer a { color: var(--rosa); text-decoration: none; }
+
+    /* rainbow divider */
+    .rainbow-bar {
+      height: 6px;
+      background: linear-gradient(90deg, #F25CAE, #9B4DCA, #1EC9C0, #5CC85C, #F5A623, #F25CAE);
+    }
+
+    @media (max-width: 600px) {
+      .hero-btns { flex-direction: column; align-items: center; }
+      .cta-btns  { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-emoji">🌸</span>
+    <h1>Reiki de <em>Viaje</em></h1>
+    <p class="hero-sub">
+      Sanación integral, movimiento vital y conexión ancestral con Agus y La Nave U.
+      Tu bienestar es el destino.
+    </p>
+    <div class="hero-btns">
+      <a class="btn btn-ig" href="https://www.instagram.com/reikideviaje/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @reikideviaje
+      </a>
+      <a class="btn btn-wa" href="https://wa.me/34658626988" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <div class="rainbow-bar"></div>
+
+  <!-- SERVICES -->
+  <section class="section services-bg">
+    <h2 class="section-title">✨ Nuestras Terapias</h2>
+    <p class="section-lead">Cada sesión es un viaje único hacia tu equilibrio</p>
+
+    <div class="cards">
+      <div class="card card-1">
+        <span class="card-icon">🙌🏽</span>
+        <h3>Masaje Integral</h3>
+        <p>Un abrazo para tu cuerpo. Técnicas integradas que alivian tensiones, liberan bloqueos y devuelven la fluidez a tu ser.</p>
+      </div>
+      <div class="card card-2">
+        <span class="card-icon">🙏🏻</span>
+        <h3>Reiki Usui</h3>
+        <p>Canalización de energía vital para restaurar el equilibrio físico, emocional y espiritual. Sesiones presenciales y online.</p>
+      </div>
+      <div class="card card-3">
+        <span class="card-icon">🔮</span>
+        <h3>Sanaciones Ancestrales</h3>
+        <p>Trabajamos con la memoria del linaje para sanar patrones heredados y abrir nuevos caminos de luz en tu historia.</p>
+      </div>
+      <div class="card card-4">
+        <span class="card-icon">💃🏽</span>
+        <h3>Movimiento Vital Expresivo</h3>
+        <p>El cuerpo que danza sana. Sesiones de movimiento consciente para liberar emociones, integrar experiencias y celebrar la vida.</p>
+      </div>
+      <div class="card card-5">
+        <span class="card-icon">🌈</span>
+        <h3>Magnified Healing®</h3>
+        <p>Sistema de sanación de quinta dimensión que activa la llama de 33 veces la Llama Violeta para una transformación profunda.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rainbow-bar"></div>
+
+  <!-- ABOUT -->
+  <section class="section about-bg">
+    <div class="about-inner">
+      <span class="big-emoji">🌸</span>
+      <h2>Hola, soy Agus</h2>
+      <p>
+        Junto a <strong>La Nave U</strong>, creamos espacios seguros y coloridos donde la sanación no es un destino, sino un viaje continuo. Nos apasiona acompañarte a reconectar con tu esencia más profunda a través de diferentes lenguajes terapéuticos.
+      </p>
+      <p>
+        Cada persona trae un universo único. Por eso combinamos distintas herramientas — el tacto, la energía, el movimiento y la transmisión ancestral — para crear una experiencia personalizada y transformadora.
+      </p>
+      <div class="pill-row">
+        <span class="pill p1">🌸 Holística</span>
+        <span class="pill p2">🔮 Espiritual</span>
+        <span class="pill p3">💧 Sanadora</span>
+        <span class="pill p4">✨ Transformadora</span>
+        <span class="pill p5">💃 Viva</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location-section">
+    <h2>📍 ¿Dónde nos encontramos?</h2>
+    <p>
+      Disponibles tanto de forma presencial en Barcelona como en sesiones online para acompañarte desde donde estés en el mundo.
+    </p>
+    <div class="location-badges">
+      <span class="location-badge">🌆 Barcelona</span>
+      <span class="location-badge">🌐 Online</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>¿Lista/o para el viaje? 🌟</h2>
+    <p>Escríbenos y encontramos juntos la terapia que mejor resuena contigo en este momento.</p>
+    <div class="cta-btns">
+      <a class="btn btn-ig btn-big" href="https://www.instagram.com/reikideviaje/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Síguenos en Instagram
+      </a>
+      <a class="btn btn-wa btn-big" href="https://wa.me/34658626988" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        +34 658 62 69 88
+      </a>
+    </div>
+  </section>
+
+  <div class="rainbow-bar"></div>
+
+  <footer>
+    <p>🌸 <strong style="color:white">Reiki de Viaje</strong> · Agus &amp; <a href="https://www.instagram.com/lanave.u/" target="_blank">@lanave.u</a></p>
+    <p>Barcelona &amp; Online · <a href="https://wa.me/34658626988">+34 658 62 69 88</a></p>
+    <p style="margin-top:0.8rem">Hecho con 💜 y mucha energía</p>
+  </footer>
+
+</body>
+</html>
