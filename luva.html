@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luva Healing — Reiki & Chakra Reset</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violet:   #7B4FBF;
+      --magenta:  #D63EA7;
+      --gold:     #F5A623;
+      --teal:     #2BBCB0;
+      --coral:    #FF6B6B;
+      --indigo:   #3B2D8F;
+      --cream:    #FFF8F0;
+      --white:    #FFFFFF;
+      --dark:     #1A0A2E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 40%, var(--magenta) 75%, var(--coral) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* floating orbs */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+    .hero::before { width: 420px; height: 420px; background: var(--gold); top: -100px; left: -120px; }
+    .hero::after  { width: 350px; height: 350px; background: var(--teal); bottom: -80px; right: -100px; animation-delay: 3s; }
+
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px, 20px) scale(1.08); } }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 0.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,0.88);
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.65;
+      margin: 1.2rem auto 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-flags { font-size: 1.4rem; margin-top: 0.6rem; }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+
+    .btn-primary { background: var(--gold); color: var(--dark); }
+    .btn-outline { background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.6); color: #fff; backdrop-filter: blur(6px); }
+
+    /* ── CHAKRAS STRIP ── */
+    .chakras {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      background: var(--dark);
+      padding: 1.2rem 1rem;
+    }
+
+    .chakra-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.2rem;
+    }
+
+    .chakra-dot span.circle {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: block;
+      box-shadow: 0 0 12px 4px currentColor;
+    }
+    .chakra-dot span.label {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 1.5rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title .accent { color: var(--violet); }
+
+    /* ── SERVICES ── */
+    .services { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      opacity: 0.12;
+      z-index: 0;
+    }
+
+    .service-card.c1 { background: linear-gradient(135deg, #7B4FBF22, #D63EA722); border: 2px solid var(--violet); }
+    .service-card.c2 { background: linear-gradient(135deg, #F5A62322, #FF6B6B22); border: 2px solid var(--gold); }
+    .service-card.c3 { background: linear-gradient(135deg, #2BBCB022, #3B2D8F22); border: 2px solid var(--teal); }
+
+    .service-icon { font-size: 2.4rem; margin-bottom: 1rem; display: block; }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--dark);
+    }
+
+    .service-card p { font-size: 0.92rem; line-height: 1.7; color: #444; }
+
+    /* ── ABOUT ── */
+    .about { background: linear-gradient(160deg, var(--cream) 0%, #f0e8ff 100%); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .about-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mandala {
+      width: 300px;
+      height: 300px;
+      position: relative;
+    }
+
+    .mandala-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid transparent;
+    }
+    .mandala-ring:nth-child(1) { inset: 0;   border-color: var(--violet); opacity: 0.8; animation: spin 20s linear infinite; }
+    .mandala-ring:nth-child(2) { inset: 20px; border-color: var(--magenta); border-style: dashed; opacity: 0.6; animation: spin 15s linear infinite reverse; }
+    .mandala-ring:nth-child(3) { inset: 45px; border-color: var(--gold); opacity: 0.7; animation: spin 25s linear infinite; }
+    .mandala-ring:nth-child(4) { inset: 70px; border-color: var(--teal); border-style: dashed; opacity: 0.5; animation: spin 18s linear infinite reverse; }
+    .mandala-ring:nth-child(5) { inset: 95px; border-color: var(--coral); opacity: 0.8; animation: spin 22s linear infinite; }
+
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .mandala-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+    }
+
+    .about-text p { font-size: 1rem; line-height: 1.8; color: #333; margin-bottom: 1rem; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+
+    .tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      background: var(--white);
+      border: 2px solid;
+    }
+
+    .tag.v { border-color: var(--violet); color: var(--violet); }
+    .tag.m { border-color: var(--magenta); color: var(--magenta); }
+    .tag.t { border-color: var(--teal); color: var(--teal); }
+    .tag.g { border-color: var(--gold); color: #b87c0a; }
+    .tag.c { border-color: var(--coral); color: #c04040; }
+
+    /* ── JOURNEY ── */
+    .journey { background: var(--dark); color: var(--white); text-align: center; }
+    .journey .section-title { color: var(--white); }
+    .journey .section-eyebrow { color: var(--gold); }
+
+    .journey-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .step {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 2rem 1.2rem;
+      position: relative;
+    }
+
+    .step-num {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin: 0 auto 1rem;
+    }
+
+    .step:nth-child(1) .step-num { background: var(--coral); color: #fff; }
+    .step:nth-child(2) .step-num { background: var(--gold); color: var(--dark); }
+    .step:nth-child(3) .step-num { background: var(--teal); color: #fff; }
+    .step:nth-child(4) .step-num { background: var(--violet); color: #fff; }
+    .step:nth-child(5) .step-num { background: var(--magenta); color: #fff; }
+    .step:nth-child(6) .step-num { background: #7ec8e3; color: var(--dark); }
+    .step:nth-child(7) .step-num { background: #fff; color: var(--dark); }
+
+    .step h4 { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 0.4rem; }
+    .step p { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* ── LANGUAGES ── */
+    .languages { background: var(--white); text-align: center; }
+
+    .lang-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; }
+
+    .lang-card {
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      min-width: 200px;
+      flex: 1;
+      max-width: 280px;
+    }
+
+    .lang-card.en { background: linear-gradient(135deg, var(--indigo), var(--violet)); color: #fff; }
+    .lang-card.es { background: linear-gradient(135deg, var(--coral), var(--gold)); color: #fff; }
+
+    .lang-flag { font-size: 3.5rem; margin-bottom: 0.8rem; display: block; }
+    .lang-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .lang-card p { font-size: 0.9rem; opacity: 0.85; }
+
+    /* ── BOOKING ── */
+    .booking {
+      background: linear-gradient(135deg, var(--magenta) 0%, var(--violet) 50%, var(--indigo) 100%);
+      text-align: center;
+      padding: 6rem 1.5rem;
+    }
+
+    .booking .section-title { color: #fff; }
+    .booking .section-eyebrow { color: var(--gold); }
+    .booking p { color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.82rem;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── SOCIAL LINK ── */
+    .instagram-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(90deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .instagram-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(220,39,67,0.45); }
+
+    /* ── SPARKLES animation ── */
+    .sparkle {
+      position: absolute;
+      pointer-events: none;
+      font-size: 1.2rem;
+      animation: sparkle-float 6s ease-in-out infinite;
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    @keyframes sparkle-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+      50%       { transform: translateY(-18px) rotate(20deg); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="sparkle" style="top:12%;left:8%;animation-delay:0s">✨</span>
+    <span class="sparkle" style="top:20%;right:10%;animation-delay:1.5s">🌟</span>
+    <span class="sparkle" style="top:70%;left:5%;animation-delay:2.5s">💫</span>
+    <span class="sparkle" style="top:75%;right:7%;animation-delay:0.8s">✨</span>
+
+    <div class="hero-badge">✨ Alternative &amp; Holistic Health Service</div>
+    <h1>Luva<br><em>Healing</em></h1>
+    <p class="hero-sub">
+      Reiki Master Teacher — guiding you to realign, restore, and radiate your highest energy.
+      <br>
+      <span class="hero-flags">🇦🇷 English &amp; Español</span>
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://linktr.ee/luvahealing" target="_blank" rel="noopener">
+        🌿 Book Your Session
+      </a>
+      <a class="btn btn-outline instagram-link" href="https://www.instagram.com/luva_healing/" target="_blank" rel="noopener">
+        📷 @luva_healing
+      </a>
+    </div>
+  </section>
+
+  <!-- CHAKRA STRIP -->
+  <div class="chakras">
+    <div class="chakra-dot"><span class="circle" style="background:#FF0000;color:#FF0000"></span><span class="label">Root</span></div>
+    <div class="chakra-dot"><span class="circle" style="background:#FF7F00;color:#FF7F00"></span><span class="label">Sacral</span></div>
+    <div class="chakra-dot"><span class="circle" style="background:#FFFF00;color:#FFFF00"></span><span class="label">Solar</span></div>
+    <div class="chakra-dot"><span class="circle" style="background:#00CC00;color:#00CC00"></span><span class="label">Heart</span></div>
+    <div class="chakra-dot"><span class="circle" style="background:#00BFFF;color:#00BFFF"></span><span class="label">Throat</span></div>
+    <div class="chakra-dot"><span class="circle" style="background:#4B0082;color:#4B0082"></span><span class="label">Third Eye</span></div>
+    <div class="chakra-dot"><span class="circle" style="background:#9400D3;color:#9400D3"></span><span class="label">Crown</span></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="container">
+      <p class="section-eyebrow">What I Offer</p>
+      <h2 class="section-title">Healing <span class="accent">Pathways</span></h2>
+      <div class="services-grid">
+        <div class="service-card c1">
+          <span class="service-icon">🤲</span>
+          <h3>1:1 Reiki Sessions</h3>
+          <p>Private energy-healing sessions tailored to your unique needs — in-person or distance healing to clear blockages and restore flow.</p>
+        </div>
+        <div class="service-card c2">
+          <span class="service-icon">🌈</span>
+          <h3>The Chakra Reset Journey</h3>
+          <p>A signature program to rebalance all seven energy centers, created to bring you back to clarity, peace, and vibrant wellbeing.</p>
+        </div>
+        <div class="service-card c3">
+          <span class="service-icon">🎓</span>
+          <h3>Reiki Certification Classes</h3>
+          <p>Become a Reiki practitioner yourself. Learn the ancient art of energy healing through structured, heart-centered certification programs.</p>
+        </div>
+        <div class="service-card c1">
+          <span class="service-icon">🌸</span>
+          <h3>Healing Events</h3>
+          <p>Group experiences, workshops, and live events designed to create community and collective healing energy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-visual">
+          <div class="mandala">
+            <div class="mandala-ring"></div>
+            <div class="mandala-ring"></div>
+            <div class="mandala-ring"></div>
+            <div class="mandala-ring"></div>
+            <div class="mandala-ring"></div>
+            <div class="mandala-center">🌺</div>
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="section-eyebrow">About Luva Healing</p>
+          <h2 class="section-title">Energy is <span class="accent">Everything</span></h2>
+          <p>Luva Healing is a space where ancient wisdom meets modern care. As a Reiki Master Teacher, my mission is to help you reconnect with your body's innate ability to heal itself — mind, spirit, and soul.</p>
+          <p>Whether you're navigating stress, seeking deeper spiritual connection, or want to share healing with others as a certified practitioner, there is a path here for you.</p>
+          <div class="tag-list">
+            <span class="tag v">Reiki Master Teacher</span>
+            <span class="tag m">Chakra Healing</span>
+            <span class="tag t">Distance Sessions</span>
+            <span class="tag g">Certification</span>
+            <span class="tag c">Holistic Wellness</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAKRA RESET JOURNEY -->
+  <section class="journey">
+    <div class="container">
+      <p class="section-eyebrow">Signature Program</p>
+      <h2 class="section-title">The Chakra Reset Journey ✨</h2>
+      <p style="color:rgba(255,255,255,0.7);max-width:500px;margin:0.8rem auto 0;font-size:1rem;line-height:1.7">
+        Seven chakras. Seven transformations. One journey back to yourself.
+      </p>
+      <div class="journey-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Root 🔴</h4>
+          <p>Ground &amp; stabilize your foundation of safety and security</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Sacral 🟠</h4>
+          <p>Unlock creativity, emotion and life-force energy</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Solar Plexus 🟡</h4>
+          <p>Ignite personal power, confidence, and will</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Heart 💚</h4>
+          <p>Open to love, compassion, and connection</p>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <h4>Throat 🔵</h4>
+          <p>Speak your truth with clarity and purpose</p>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <h4>Third Eye 💜</h4>
+          <p>Deepen intuition and expand inner vision</p>
+        </div>
+        <div class="step">
+          <div class="step-num">7</div>
+          <h4>Crown 🤍</h4>
+          <p>Connect to universal consciousness and divine light</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="languages">
+    <div class="container">
+      <p class="section-eyebrow">Sessions Available In</p>
+      <h2 class="section-title">Two <span class="accent">Languages</span>, One Heart</h2>
+      <div class="lang-cards">
+        <div class="lang-card en">
+          <span class="lang-flag">🇺🇸</span>
+          <h3>English</h3>
+          <p>Healing sessions, classes and events fully available in English for an international community.</p>
+        </div>
+        <div class="lang-card es">
+          <span class="lang-flag">🇦🇷</span>
+          <h3>Español</h3>
+          <p>Sesiones, clases y eventos también disponibles en español — desde Argentina con amor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING CTA -->
+  <section class="booking">
+    <div class="container">
+      <p class="section-eyebrow">Ready to Begin?</p>
+      <h2 class="section-title">Book Your Session Today 🌿</h2>
+      <p>Step into your healing journey. Whether it's your first Reiki session or your next level of certification, Luva Healing is here to guide you every step of the way.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center">
+        <a class="btn btn-primary" href="https://linktr.ee/luvahealing" target="_blank" rel="noopener">
+          🌿 Visit Linktree &amp; Book
+        </a>
+        <a class="btn btn-outline instagram-link" href="https://www.instagram.com/luva_healing/" target="_blank" rel="noopener">
+          📷 Follow on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>✨ <strong style="color:#fff">Luva Healing</strong> — Reiki Master Teacher &amp; Holistic Health Service</p>
+    <p style="margin-top:0.5rem">
+      <a href="https://www.instagram.com/luva_healing/" target="_blank" rel="noopener">@luva_healing on Instagram</a>
+      &nbsp;·&nbsp;
+      <a href="https://linktr.ee/luvahealing" target="_blank" rel="noopener">linktr.ee/luvahealing</a>
+    </p>
+    <p style="margin-top:0.8rem;font-size:0.75rem">Made with 💜 for healing &amp; light</p>
+  </footer>
+
+</body>
+</html>
