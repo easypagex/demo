@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Athena Bahri – Crystal Reiki Healer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violet:   #7B2D8B;
+      --fuchsia:  #D94FB4;
+      --gold:     #F5C842;
+      --teal:     #2EC4B6;
+      --rose:     #FF6FA8;
+      --lavender: #C3A7E8;
+      --cream:    #FFF8F2;
+      --ink:      #1A0A2E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── STARFIELD ── */
+    .starfield {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 20% 10%, #3b0f6a 0%, transparent 55%),
+                  radial-gradient(ellipse at 80% 80%, #0d2e5e 0%, transparent 55%),
+                  radial-gradient(ellipse at 50% 50%, #1a0a2e 0%, #0a0014 100%);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    .starfield.show { opacity: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 25%, #f9a8d420 0%, transparent 40%),
+        radial-gradient(circle at 85% 15%, #c084fc30 0%, transparent 40%),
+        radial-gradient(circle at 50% 90%, #67e8f920 0%, transparent 40%),
+        linear-gradient(160deg, #1a0a2e 0%, #3b0f6a 45%, #0d2e5e 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 55%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 40%, rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 75%, rgba(255,255,255,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 5%  90%, #f5c842cc 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 85%, #d94fb4cc 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 25% 35%, #2ec4b6cc 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* floating orbs */
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none;
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+    .orb1 { width: 320px; height: 320px; background: #7B2D8B55; top: -80px; left: -80px; }
+    .orb2 { width: 260px; height: 260px; background: #D94FB455; bottom: -60px; right: -60px; animation-delay: -3s; }
+    .orb3 { width: 200px; height: 200px; background: #2EC4B644; top: 40%; left: 60%; animation-delay: -5s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, -30px) scale(1.08); }
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25);
+      color: var(--gold); font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      padding: 6px 18px; border-radius: 40px; margin-bottom: 28px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      line-height: 1.1;
+      color: #fff;
+      position: relative; z-index: 1;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--gold), var(--rose), var(--lavender));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      margin-top: 22px;
+      font-size: clamp(.95rem, 2.2vw, 1.2rem);
+      color: rgba(255,255,255,.75);
+      max-width: 520px;
+      line-height: 1.7;
+      position: relative; z-index: 1;
+    }
+
+    .hero-cta {
+      margin-top: 38px;
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 30px; border-radius: 50px; font-size: 1rem; font-weight: 500;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--fuchsia), var(--violet));
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(217,79,180,.45);
+    }
+    .btn-primary:hover { box-shadow: 0 12px 36px rgba(217,79,180,.6); }
+
+    .btn-outline {
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.35);
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.15); }
+
+    .scroll-hint {
+      margin-top: 60px; color: rgba(255,255,255,.4);
+      font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+      position: relative; z-index: 1;
+    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ── SECTION BASE ── */
+    section { position: relative; z-index: 1; }
+
+    .section-label {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.2;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 100px 24px;
+      background: var(--cream);
+    }
+
+    .about-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .crystal-frame {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+      background: linear-gradient(135deg, #c3a7e8, #d94fb4, #2ec4b6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+      box-shadow: 0 20px 60px rgba(123,45,139,.3), inset 0 0 40px rgba(255,255,255,.15);
+      animation: morphBlob 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes morphBlob {
+      from { border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%; }
+      to   { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; }
+    }
+
+    .floating-gem {
+      position: absolute; font-size: 1.8rem;
+      animation: floatGem 4s ease-in-out infinite alternate;
+    }
+    .g1 { top: -10px; right: 10px; animation-delay: 0s; }
+    .g2 { bottom: 0; left: -10px; animation-delay: -1.5s; }
+    .g3 { top: 50%; right: -20px; animation-delay: -3s; }
+    @keyframes floatGem { from{transform:translateY(0)} to{transform:translateY(-12px)} }
+
+    .about-text .section-label { color: var(--violet); }
+    .about-text .section-title { color: var(--ink); margin-bottom: 20px; }
+    .about-text p { color: #4a3560; line-height: 1.8; margin-bottom: 14px; font-size: 1.05rem; }
+
+    .tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;
+    }
+    .tag {
+      padding: 6px 16px; border-radius: 30px; font-size: .82rem; font-weight: 500;
+    }
+    .tag-v { background: #f3e8ff; color: var(--violet); }
+    .tag-t { background: #ccfbf1; color: #0f766e; }
+    .tag-r { background: #fce7f3; color: #be185d; }
+    .tag-g { background: #fef9c3; color: #854d0e; }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 100px 24px;
+      background: linear-gradient(180deg, #1a0a2e 0%, #3b0f6a 50%, #1a0a2e 100%);
+    }
+
+    .services-header {
+      text-align: center; margin-bottom: 60px;
+    }
+    .services-header .section-label { color: var(--gold); }
+    .services-header .section-title { color: #fff; }
+
+    .cards {
+      max-width: 1050px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+    }
+
+    .card {
+      border-radius: 24px; padding: 36px 30px;
+      position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .card:hover { transform: translateY(-6px); }
+
+    .card::before {
+      content: ''; position: absolute; inset: 0; opacity: .12;
+      background: radial-gradient(circle at 30% 30%, #fff 0%, transparent 70%);
+    }
+
+    .card-a { background: linear-gradient(145deg, #7B2D8B, #4a1070); box-shadow: 0 12px 40px rgba(123,45,139,.4); }
+    .card-b { background: linear-gradient(145deg, #D94FB4, #a0238a); box-shadow: 0 12px 40px rgba(217,79,180,.4); }
+    .card-c { background: linear-gradient(145deg, #2EC4B6, #1a8f86); box-shadow: 0 12px 40px rgba(46,196,182,.4); }
+    .card-d { background: linear-gradient(145deg, #F5C842, #d4a820); box-shadow: 0 12px 40px rgba(245,200,66,.4); }
+
+    .card-icon { font-size: 2.8rem; margin-bottom: 18px; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; color: #fff; margin-bottom: 12px;
+    }
+    .card p { font-size: .92rem; color: rgba(255,255,255,.8); line-height: 1.7; }
+    .card-d h3, .card-d p { color: var(--ink); }
+    .card-d p { color: rgba(26,10,46,.75); }
+
+    /* ── FREE AURA RESET ── */
+    .aura {
+      padding: 100px 24px;
+      background: linear-gradient(135deg, #fdf4ff 0%, #f0fffe 50%, #fff8f2 100%);
+      text-align: center;
+    }
+
+    .aura-box {
+      max-width: 620px; margin: 0 auto;
+    }
+    .aura .section-label { color: var(--teal); }
+    .aura .section-title { color: var(--ink); margin-bottom: 18px; }
+    .aura p { color: #4a3560; line-height: 1.8; font-size: 1.05rem; margin-bottom: 32px; }
+
+    .aura-btn {
+      background: linear-gradient(135deg, var(--teal), #0ea5e9);
+      color: #fff; padding: 16px 40px; border-radius: 50px; font-size: 1.05rem;
+      font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+      box-shadow: 0 10px 32px rgba(46,196,182,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .aura-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 42px rgba(46,196,182,.55); }
+
+    /* ── SOCIAL ── */
+    .social {
+      padding: 100px 24px;
+      background: var(--ink);
+      text-align: center;
+    }
+
+    .social .section-title { color: #fff; margin-bottom: 14px; }
+    .social > p { color: rgba(255,255,255,.6); margin-bottom: 48px; font-size: 1.05rem; }
+
+    .social-links {
+      display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;
+    }
+
+    .social-card {
+      width: 180px; border-radius: 22px; padding: 28px 20px;
+      text-align: center; text-decoration: none;
+      transition: transform .25s, box-shadow .25s;
+      position: relative; overflow: hidden;
+    }
+    .social-card:hover { transform: translateY(-6px) scale(1.03); }
+    .social-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.1) 0%, transparent 100%);
+    }
+
+    .sc-insta { background: linear-gradient(145deg, #833ab4, #fd1d1d, #fcb045); box-shadow: 0 10px 30px rgba(253,29,29,.3); }
+    .sc-stan  { background: linear-gradient(145deg, #7B2D8B, #D94FB4); box-shadow: 0 10px 30px rgba(217,79,180,.35); }
+    .sc-fb    { background: linear-gradient(145deg, #1877f2, #0a4fa8); box-shadow: 0 10px 30px rgba(24,119,242,.35); }
+
+    .social-card-icon { font-size: 2.4rem; margin-bottom: 12px; display: block; }
+    .social-card span { display: block; font-size: .82rem; color: rgba(255,255,255,.85); font-weight: 500; letter-spacing: .04em; }
+    .social-card strong { display: block; color: #fff; font-size: 1rem; margin-top: 4px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0014;
+      padding: 40px 24px;
+      text-align: center;
+      color: rgba(255,255,255,.3);
+      font-size: .82rem;
+    }
+    footer a { color: var(--lavender); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── FLOATING NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(26,10,46,0);
+      transition: background .4s, box-shadow .4s, padding .4s;
+    }
+    nav.scrolled {
+      background: rgba(26,10,46,.85);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 2px 20px rgba(0,0,0,.4);
+      padding: 12px 32px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: #fff; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      color: rgba(255,255,255,.7); text-decoration: none;
+      font-size: .9rem; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .about-inner { grid-template-columns: 1fr; }
+      .about-visual { max-width: 260px; margin: 0 auto; }
+      .nav-links { display: none; }
+    }
+
+    /* ── SPARKLE ANIMATION on hero badge ── */
+    .spin { display: inline-block; animation: spin 6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">✨ Athena Bahri</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#aura">Free Gift</a>
+    <a href="#connect">Connect</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-badge">
+    <span class="spin">🌟</span> Crystal Reiki Healer &amp; Author <span class="spin">🌟</span>
+  </div>
+
+  <h1>
+    Release. Reset.<br/>
+    <span>Rise Into Your Light.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Reiki Master Athena Bahri helps you release blocked energy, ease anxiety and burnout,
+    and return to the vibrant, lighter version of yourself that's always been there.
+  </p>
+
+  <div class="hero-cta">
+    <a href="https://stan.store/crystalreikihealer" target="_blank" rel="noopener" class="btn btn-primary">
+      💜 Work with Athena
+    </a>
+    <a href="#aura" class="btn btn-outline">
+      ✨ Get Free Aura Reset
+    </a>
+  </div>
+
+  <div class="scroll-hint">↓ &nbsp; scroll to explore &nbsp; ↓</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="crystal-frame">🔮</div>
+      <span class="floating-gem g1">💎</span>
+      <span class="floating-gem g2">🌸</span>
+      <span class="floating-gem g3">✨</span>
+    </div>
+
+    <div class="about-text">
+      <p class="section-label">About Athena</p>
+      <h2 class="section-title">Renowned Crystal Reiki Healer &amp; Reiki Master</h2>
+      <p>
+        Athena Bahri is a certified Reiki Master with a gift for bridging the healing power of
+        crystals with intuitive energy work. She has helped hundreds of people find relief from
+        anxiety, burnout, and emotional overwhelm through gentle yet transformative sessions.
+      </p>
+      <p>
+        As an author and wellness guide, Athena brings warmth, depth, and compassion to every
+        healing space she creates — whether online or in person.
+      </p>
+      <div class="tags">
+        <span class="tag tag-v">Reiki Master</span>
+        <span class="tag tag-t">Crystal Healing</span>
+        <span class="tag tag-r">Author</span>
+        <span class="tag tag-g">She / Her</span>
+        <span class="tag tag-v">Anxiety Support</span>
+        <span class="tag tag-t">Burnout Recovery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <p class="section-label">How I Can Help</p>
+    <h2 class="section-title" style="color:#fff;">Healing &amp; Support Offerings</h2>
+  </div>
+
+  <div class="cards">
+    <div class="card card-a">
+      <div class="card-icon">🔮</div>
+      <h3>Crystal Reiki Sessions</h3>
+      <p>Deeply restorative energy sessions combining traditional Reiki with the amplifying power of healing crystals tailored to your needs.</p>
+    </div>
+
+    <div class="card card-b">
+      <div class="card-icon">🌸</div>
+      <h3>Anxiety &amp; Burnout Support</h3>
+      <p>Compassionate 1-on-1 guidance to help you release the weight of stress, reconnect with calm, and rebuild your inner resilience.</p>
+    </div>
+
+    <div class="card card-c">
+      <div class="card-icon">💫</div>
+      <h3>Energy Clearing</h3>
+      <p>Identify and dissolve blocked energy in your field, restoring natural flow so you can move through life feeling lighter and more aligned.</p>
+    </div>
+
+    <div class="card card-d">
+      <div class="card-icon">📖</div>
+      <h3>Books &amp; Resources</h3>
+      <p>Explore Athena's written works, digital guides, and resources designed to support your healing journey between sessions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FREE AURA RESET -->
+<section class="aura" id="aura">
+  <div class="aura-box">
+    <p class="section-label">✨ Free Gift</p>
+    <h2 class="section-title">Your Free Aura Reset Awaits</h2>
+    <p>
+      Feeling heavy, drained, or disconnected? Athena's signature <strong>Free Aura Reset</strong>
+      is a gentle, guided experience designed to clear your energetic field and help you feel
+      refreshed and restored — in just minutes.
+    </p>
+    <a href="https://stan.store/crystalreikihealer" target="_blank" rel="noopener" class="aura-btn">
+      🌊 Claim Your Free Aura Reset
+    </a>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social" id="connect">
+  <h2 class="section-title">Connect with Athena</h2>
+  <p>Follow along for daily energy insights, healing tips, and crystal wisdom.</p>
+
+  <div class="social-links">
+    <a href="https://www.instagram.com/crystalreikihealer/" target="_blank" rel="noopener" class="social-card sc-insta">
+      <span class="social-card-icon">📸</span>
+      <span>Follow on</span>
+      <strong>Instagram</strong>
+    </a>
+
+    <a href="https://stan.store/crystalreikihealer" target="_blank" rel="noopener" class="social-card sc-stan">
+      <span class="social-card-icon">🌟</span>
+      <span>Shop &amp; Book at</span>
+      <strong>Stan Store</strong>
+    </a>
+
+    <a href="https://www.facebook.com/crystalreikihealer1" target="_blank" rel="noopener" class="social-card sc-fb">
+      <span class="social-card-icon">💙</span>
+      <span>Join the community on</span>
+      <strong>Facebook</strong>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Athena Bahri · Crystal Reiki Healer &amp; Reiki Master</p>
+  <p style="margin-top:8px;">
+    <a href="https://www.instagram.com/crystalreikihealer/" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp;
+    <a href="https://stan.store/crystalreikihealer" target="_blank" rel="noopener">Stan Store</a> &nbsp;·&nbsp;
+    <a href="https://www.facebook.com/crystalreikihealer1" target="_blank" rel="noopener">Facebook</a>
+  </p>
+</footer>
+
+<script>
+  // Sticky nav on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+</body>
+</html>
