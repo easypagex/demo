@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset with Gem · Yoga & Breathwork in Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:    #7BAE7F;
+      --coral:   #F4845F;
+      --sun:     #F9C74F;
+      --lilac:   #C9B8E8;
+      --sky:     #90D7FF;
+      --cream:   #FFF9F0;
+      --dark:    #1C1C1C;
+      --mid:     #4A4A4A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #C9B8E8 0%, #90D7FF 35%, #7BAE7F 70%, #F4845F 100%);
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.45;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .blob-1 { width: 420px; height: 420px; background: var(--sun);   top: -100px; left: -120px; animation-delay: 0s; }
+    .blob-2 { width: 320px; height: 320px; background: var(--coral); bottom: -80px; right: -80px; animation-delay: 3s; }
+    .blob-3 { width: 260px; height: 260px; background: var(--sky);   top: 40%;  left: 60%;   animation-delay: 6s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    .hero-inner { position: relative; z-index: 2; max-width: 700px; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,0.6);
+      border-radius: 100px;
+      padding: .4rem 1.2rem;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: #fff;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      margin-bottom: .5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--sun);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,0.92);
+      font-weight: 300;
+      margin: 1rem 0 2.5rem;
+      line-height: 1.6;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: .9rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
+
+    .btn-primary { background: #fff; color: var(--coral); }
+    .btn-wa      { background: #25D366; color: #fff; }
+    .btn-ig      { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: var(--coral);
+      padding: .7rem 0;
+      white-space: nowrap;
+    }
+    .ticker {
+      display: inline-block;
+      animation: ticker 22s linear infinite;
+    }
+    .ticker span {
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0 2rem;
+    }
+    .ticker span::after { content: '✦'; margin-left: 2rem; opacity: .7; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 6rem 1.5rem; }
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .section-body { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 580px; }
+
+    /* ── WHAT I OFFER ── */
+    .offer { background: #fff; }
+    .offer-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 2.4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform .25s;
+    }
+    .card:hover { transform: translateY(-6px); }
+
+    .card-icon { font-size: 2.6rem; }
+    .card h3 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; }
+    .card p  { font-size:.95rem; color:var(--mid); line-height:1.7; }
+
+    .card-1 { background: linear-gradient(135deg,#C9B8E8 0%,#90D7FF 100%); }
+    .card-2 { background: linear-gradient(135deg,#F9C74F 0%,#F4845F 100%); }
+    .card-3 { background: linear-gradient(135deg,#7BAE7F 0%,#90D7FF 100%); }
+
+    .card .btn-card {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(4px);
+      border-radius: 100px;
+      padding: .55rem 1.4rem;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      width: fit-content;
+      transition: background .2s, transform .2s;
+    }
+    .card .btn-card:hover { background: rgba(255,255,255,.85); transform: scale(1.04); }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--cream);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .about-visual {
+      border-radius: 32px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg,var(--lilac),var(--sage));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    /* ── COMMUNITY ── */
+    .community {
+      background: linear-gradient(135deg,var(--sun) 0%,var(--coral) 100%);
+      text-align: center;
+    }
+    .community .section-title { color: #fff; }
+    .community .section-label { color: rgba(255,255,255,.8); }
+    .community .section-body  { color: rgba(255,255,255,.9); margin: 0 auto 2.5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: .9rem;
+    }
+    footer a { color: var(--sun); text-decoration: none; }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .about-inner { grid-template-columns: 1fr; }
+      .about-visual { aspect-ratio: 1/1; font-size: 5rem; }
+      section { padding: 4rem 1.2rem; }
+    }
+
+    .offer-header { text-align:center; max-width:600px; margin:0 auto 3.5rem; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-inner">
+    <div class="badge">🧘 Madrid · Yoga & Breathwork</div>
+    <h1>Reset<br>with <em>Gem</em></h1>
+    <p class="hero-sub">
+      Yoga & breathwork teacher and event host.<br>
+      1:1 sessions · Events · Community in Madrid
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://calendly.com/resetwithgem/1-1-breathwork-session" target="_blank">
+        🗓 Book a session
+      </a>
+      <a class="btn btn-wa" href="https://chat.whatsapp.com/Jj4L5Ehr1RUDwqQ5izxpT3" target="_blank">
+        💬 Join WhatsApp
+      </a>
+      <a class="btn btn-ig" href="https://www.instagram.com/resetwithgem/" target="_blank">
+        📸 Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span>Yoga</span><span>Breathwork</span><span>Madrid</span><span>Reset</span>
+    <span>Wellbeing</span><span>Community</span><span>Mindfulness</span><span>Gemma Thorley</span>
+    <span>Yoga</span><span>Breathwork</span><span>Madrid</span><span>Reset</span>
+    <span>Wellbeing</span><span>Community</span><span>Mindfulness</span><span>Gemma Thorley</span>
+  </div>
+</div>
+
+<!-- WHAT I OFFER -->
+<section class="offer">
+  <div class="offer-header">
+    <p class="section-label">What I offer</p>
+    <h2 class="section-title">Choose your path to reset</h2>
+  </div>
+  <div class="offer-grid">
+    <div class="card card-1">
+      <div class="card-icon">🌬️</div>
+      <h3>1:1 Yoga &<br>Breathwork Sessions</h3>
+      <p>Personalised Vinyasa yoga (75 min) or breathwork sessions tailored to your needs. Available in-person or via Zoom.</p>
+      <a class="btn-card" href="https://calendly.com/resetwithgem/1-1-breathwork-session" target="_blank">Book now →</a>
+    </div>
+    <div class="card card-2">
+      <div class="card-icon">✨</div>
+      <h3>Workshops &<br>Events in Madrid</h3>
+      <p>Group yoga + conscious breathwork events to lift the weight off your shoulders and connect with amazing people in Madrid.</p>
+      <a class="btn-card" href="https://www.meetup.com/es-ES/madrid-yoga-with-resetwithgem/" target="_blank">See events →</a>
+    </div>
+    <div class="card card-3">
+      <div class="card-icon">🎉</div>
+      <h3>Host an Event<br>with Me</h3>
+      <p>Want a wellbeing workshop for your team, company or group of friends? Let's talk and create something together.</p>
+      <a class="btn-card" href="https://chat.whatsapp.com/Jj4L5Ehr1RUDwqQ5izxpT3" target="_blank">Get in touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <div class="about-inner">
+    <div class="about-visual">🌿</div>
+    <div>
+      <p class="section-label">About Gemma</p>
+      <h2 class="section-title">Hey, I'm Gem 👋</h2>
+      <p class="section-body">
+        I'm a yoga and breathwork teacher based in Madrid. My mission is to help you
+        <strong>reset your body and mind</strong> through conscious movement and breath.
+      </p>
+      <br>
+      <p class="section-body">
+        I offer classes and workshops adapted to every person — whether you're a total beginner or
+        a seasoned practitioner, this is your safe space to let go, breathe, and reconnect.
+      </p>
+      <br>
+      <div class="cta-row" style="justify-content:flex-start;">
+        <a class="btn btn-ig" style="font-size:.9rem; padding:.7rem 1.5rem;"
+           href="https://www.instagram.com/resetwithgem/" target="_blank">
+          📸 Follow on Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community">
+  <p class="section-label">Free community</p>
+  <h2 class="section-title">Join the WhatsApp community 💬</h2>
+  <p class="section-body">
+    Get free access to wellbeing tips, event announcements, workshop dates and so much more.
+    A community of people who, just like you, want to genuinely take care of themselves!
+  </p>
+  <a class="btn" style="background:#fff; color:#25D366; font-size:1.1rem; padding:1rem 2.5rem;"
+     href="https://chat.whatsapp.com/Jj4L5Ehr1RUDwqQ5izxpT3" target="_blank">
+    💬 Join for free now
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/resetwithgem/" target="_blank">Instagram</a>
+    <a href="https://chat.whatsapp.com/Jj4L5Ehr1RUDwqQ5izxpT3" target="_blank">WhatsApp</a>
+    <a href="https://calendly.com/resetwithgem/1-1-breathwork-session" target="_blank">Book a session</a>
+    <a href="https://linktr.ee/resetwithgem" target="_blank">Linktree</a>
+  </div>
+  <p>© 2026 Reset with Gem · Gemma Thorley · Madrid 🌿</p>
+</footer>
+
+</body>
+</html>
