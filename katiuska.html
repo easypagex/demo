@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Mundo Reiki — Katiuska Dominguez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violet:   #2D1B69;
+      --indigo:   #5B2D8E;
+      --amber:    #F5A623;
+      --rose:     #F472B6;
+      --teal:     #14B8A6;
+      --cream:    #FDF6EC;
+      --gold:     #FFD700;
+      --text:     #1E1030;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(45, 27, 105, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.8rem 2rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--amber);
+      letter-spacing: 1px;
+    }
+    .nav-links a {
+      color: #e8d5ff;
+      text-decoration: none;
+      margin-left: 1.8rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0524 0%, #2D1B69 40%, #5B2D8E 75%, #8B1A6B 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Stars background */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,200,100,0.5) 1px, transparent 1px);
+      background-size: 60px 60px, 97px 97px;
+      background-position: 0 0, 30px 30px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    /* Mandala / chakra rings */
+    .mandala-wrap {
+      position: relative;
+      width: 260px; height: 260px;
+      margin: 0 auto 2.5rem;
+    }
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      animation: spin linear infinite;
+    }
+    .ring:nth-child(1) { inset: 0;          border-color: #FF0000 transparent;  animation-duration: 8s; }
+    .ring:nth-child(2) { inset: 20px;       border-color: #FF7F00 transparent;  animation-duration: 10s; animation-direction: reverse; }
+    .ring:nth-child(3) { inset: 40px;       border-color: #FFD700 transparent;  animation-duration: 12s; }
+    .ring:nth-child(4) { inset: 60px;       border-color: #00C853 transparent;  animation-duration: 9s;  animation-direction: reverse; }
+    .ring:nth-child(5) { inset: 80px;       border-color: #2979FF transparent;  animation-duration: 11s; }
+    .ring:nth-child(6) { inset: 100px;      border-color: #AA00FF transparent;  animation-duration: 7s;  animation-direction: reverse; }
+    .ring:nth-child(7) { inset: 120px;      border-color: #FF80AB transparent;  animation-duration: 13s; }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .mandala-center {
+      position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      filter: drop-shadow(0 0 16px rgba(255,215,0,0.9));
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1);   filter: drop-shadow(0 0 12px rgba(255,215,0,0.8)); }
+      50%      { transform: scale(1.1); filter: drop-shadow(0 0 28px rgba(255,215,0,1));   }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+    .hero h1 span { color: var(--amber); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #d4b8ff;
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.2rem;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .tag {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #f0e6ff;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 99px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--amber), #FF7A00);
+      color: #fff;
+    }
+    .btn-wa {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+    }
+    .btn-outline {
+      border: 2px solid var(--rose);
+      color: var(--rose);
+      background: transparent;
+    }
+    .btn-outline:hover { background: var(--rose); color: #fff; }
+
+    /* ── WAVE DIVIDER ── */
+    .wave { display: block; width: 100%; margin-bottom: -2px; }
+
+    /* ── ABOUT ── */
+    .about {
+      background: #fff;
+      padding: 5rem 2rem;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--violet);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-text p {
+      color: #4a3f6b;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-size: 1.02rem;
+    }
+    .about-visual {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lotus {
+      width: 280px; height: 280px;
+      background: linear-gradient(135deg, #f3e7ff, #fce4ec);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem;
+      box-shadow: 0 0 60px rgba(91,45,142,0.2), 0 0 120px rgba(244,114,182,0.15);
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0);    }
+      50%      { transform: translateY(-14px);}
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: linear-gradient(160deg, #f7f0ff 0%, #fce4f0 100%);
+      padding: 5rem 2rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(91,45,142,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+      border-top: 4px solid transparent;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(91,45,142,0.18); }
+    .card:nth-child(1) { border-color: #FF6B6B; }
+    .card:nth-child(2) { border-color: #F5A623; }
+    .card:nth-child(3) { border-color: #14B8A6; }
+    .card:nth-child(4) { border-color: #AA00FF; }
+    .card:nth-child(5) { border-color: #F472B6; }
+    .card:nth-child(6) { border-color: #2979FF; }
+    .card-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--violet);
+      margin-bottom: 0.6rem;
+    }
+    .card p { color: #6a5b8a; font-size: 0.9rem; line-height: 1.6; }
+
+    /* ── COURSES ── */
+    .courses {
+      background: var(--violet);
+      padding: 5rem 2rem;
+      color: #fff;
+    }
+    .courses .section-title { color: #fff; }
+    .courses .section-label { color: var(--amber); }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .course-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .course-card:hover { background: rgba(255,255,255,0.18); }
+    .course-card .ci { font-size: 2.4rem; margin-bottom: 0.8rem; }
+    .course-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--amber);
+      margin-bottom: 0.4rem;
+    }
+    .course-card p { font-size: 0.85rem; color: #d4b8ff; line-height: 1.5; }
+
+    /* ── CHANNELS ── */
+    .channels {
+      background: #fff;
+      padding: 5rem 2rem;
+    }
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .ch-card {
+      border-radius: 18px;
+      padding: 2rem 1.4rem;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    }
+    .ch-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .ch-card .chi { font-size: 2.6rem; }
+    .ch-card span { font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; }
+    .ch-card small { font-size: 0.78rem; opacity: 0.8; }
+    .ch-ig  { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+    .ch-wa  { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; }
+    .ch-yt  { background: linear-gradient(135deg, #FF0000, #cc0000); color: #fff; }
+    .ch-fb  { background: linear-gradient(135deg, #1877F2, #0d5fcc); color: #fff; }
+    .ch-web { background: linear-gradient(135deg, var(--indigo), var(--violet)); color: #fff; }
+
+    /* ── TESTIMONIAL BAND ── */
+    .quote-band {
+      background: linear-gradient(135deg, var(--rose), var(--amber));
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .quote-band blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-style: italic;
+      color: #fff;
+      max-width: 780px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .quote-band cite {
+      display: block;
+      margin-top: 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-style: normal;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: linear-gradient(135deg, #0f0524 0%, #2D1B69 60%, #5B2D8E 100%);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .cta-section h2 span { color: var(--amber); }
+    .cta-section p { color: #d4b8ff; font-size: 1.05rem; margin-bottom: 2.5rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0524;
+      color: #9b8abf;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--amber); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">✨ Mi Mundo Reiki</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#courses">Courses</a>
+    <a href="#connect">Connect</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="mandala-wrap">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="mandala-center">🌸</div>
+  </div>
+
+  <p class="hero-eyebrow">✨ Heal · Release · Transform ✨</p>
+  <h1>Welcome to<br/><span>Mi Mundo Reiki</span></h1>
+  <p class="hero-sub">
+    I'm <strong style="color:#fff">Katiuska Dominguez</strong> — Reiki Master & Holistic Therapist.
+    I help you release what no longer serves you and step into your highest energy.
+  </p>
+
+  <div class="hero-tags">
+    <span class="tag">💛 Anxiety Relief</span>
+    <span class="tag">🌀 Stress Release</span>
+    <span class="tag">💜 Emotional Blocks</span>
+    <span class="tag">🌟 Reiki Healing</span>
+    <span class="tag">🔮 Tarot & Angels</span>
+  </div>
+
+  <div class="hero-ctas">
+    <a class="btn btn-primary" href="#services">Explore My Work</a>
+    <a class="btn btn-wa" href="https://wa.me/19544796065" target="_blank">
+      💬 WhatsApp Me
+    </a>
+    <a class="btn btn-outline" href="https://www.instagram.com/mimundoreiki/" target="_blank">
+      📸 Follow on Instagram
+    </a>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#ffffff"/>
+</svg>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">About Katiuska</p>
+        <h2 class="section-title">Your Guide to Energetic Healing</h2>
+        <p>
+          With deep compassion and intuitive skill, Katiuska Dominguez guides individuals through the transformative power of Reiki and Holistic Therapy. Her mission is simple: help you release what holds you back and rediscover your natural state of peace and wholeness.
+        </p>
+        <p>
+          Whether you carry the weight of anxiety, chronic stress, or emotional blockages, Katiuska creates a safe, nurturing space where healing begins — session by session, breath by breath.
+        </p>
+        <p>
+          Certified as a Reiki Master and trained in Tarot & Angel guidance, she combines ancient energy traditions with heartfelt presence to support your journey.
+        </p>
+        <br/>
+        <a class="btn btn-primary" href="https://wa.me/19544796065" target="_blank" style="display:inline-flex">
+          💬 Book a Session
+        </a>
+      </div>
+      <div class="about-visual">
+        <div class="lotus">🌺</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:#fff">
+  <path d="M0,20 C480,60 960,0 1440,20 L1440,60 L0,60 Z" fill="#f7f0ff"/>
+</svg>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <p class="section-label">What I Offer</p>
+    <h2 class="section-title">Healing Services for Body, Mind & Soul</h2>
+    <div class="services-grid">
+
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>Reiki Healing</h3>
+        <p>Channel universal life energy to restore balance, relieve pain, and promote deep physical and emotional healing.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🧘</div>
+        <h3>Holistic Therapy</h3>
+        <p>An integrative approach that addresses the whole person — mind, body, spirit — to support lasting wellbeing.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💆</div>
+        <h3>Anxiety & Stress Relief</h3>
+        <p>Gentle, powerful techniques to calm your nervous system and dissolve the tension of everyday overwhelm.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💜</div>
+        <h3>Emotional Unblocking</h3>
+        <p>Release old patterns, wounds, and stuck emotions so you can move forward with clarity and lightness.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔮</div>
+        <h3>Tarot Readings</h3>
+        <p>Insightful tarot readings to illuminate your path, clarify decisions, and reconnect with your inner wisdom.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">👼</div>
+        <h3>Angel Guidance</h3>
+        <p>Connect with angelic energy and receive messages of love, support, and divine direction for your life.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:#f7f0ff">
+  <path d="M0,0 C720,60 1440,0 1440,0 L1440,60 L0,60 Z" fill="#2D1B69"/>
+</svg>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="container">
+    <p class="section-label">Learn & Grow</p>
+    <h2 class="section-title">Reiki Certification Courses</h2>
+    <p style="color:#d4b8ff; max-width:580px; line-height:1.7; margin-top:0.5rem;">
+      Ready to become a Reiki practitioner yourself? Katiuska offers comprehensive training from beginner to Master level — at your own pace, with personal guidance every step of the way.
+    </p>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="ci">🌱</div>
+        <h4>Reiki Level I</h4>
+        <p>Your first step into energy healing. Learn self-healing and the fundamentals of Reiki practice.</p>
+      </div>
+      <div class="course-card">
+        <div class="ci">🌿</div>
+        <h4>Reiki Level II</h4>
+        <p>Deepen your practice with sacred symbols and learn to send distance healing to others.</p>
+      </div>
+      <div class="course-card">
+        <div class="ci">🌳</div>
+        <h4>Reiki Level III</h4>
+        <p>Advanced techniques and deeper attunement to master healing energy flows.</p>
+      </div>
+      <div class="course-card">
+        <div class="ci">👑</div>
+        <h4>Reiki Master</h4>
+        <p>Achieve mastery and the ability to teach and attune others to Reiki energy.</p>
+      </div>
+      <div class="course-card">
+        <div class="ci">🔮</div>
+        <h4>Tarot Course</h4>
+        <p>Learn to read the tarot with confidence, intuition, and spiritual grounding.</p>
+      </div>
+      <div class="course-card">
+        <div class="ci">👼</div>
+        <h4>Angel Course</h4>
+        <p>Open your channel to angelic guidance and learn to work with angel messages and cards.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a class="btn btn-primary" href="https://wa.me/19544796065" target="_blank">💬 Ask About Courses</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<div class="quote-band">
+  <blockquote>
+    "Healing is not about fixing what is broken — it is about remembering what was always whole."
+    <cite>— Katiuska Dominguez · Mi Mundo Reiki</cite>
+  </blockquote>
+</div>
+
+<!-- CONNECT / CHANNELS -->
+<section class="channels" id="connect">
+  <div class="container">
+    <p class="section-label">Find Me Online</p>
+    <h2 class="section-title">Let's Connect</h2>
+    <p style="color:#6a5b8a; margin-top:0.5rem; line-height:1.7;">
+      Reach out for a session, ask a question, or simply follow along on the healing journey. I'd love to connect with you.
+    </p>
+    <div class="channels-grid">
+      <a class="ch-card ch-wa" href="https://wa.me/19544796065" target="_blank">
+        <span class="chi">💬</span>
+        <span>WhatsApp</span>
+        <small>+1 954-479-6065</small>
+      </a>
+      <a class="ch-card ch-ig" href="https://www.instagram.com/mimundoreiki/" target="_blank">
+        <span class="chi">📸</span>
+        <span>Instagram</span>
+        <small>@mimundoreiki</small>
+      </a>
+      <a class="ch-card ch-yt" href="https://www.youtube.com/@mimundoreiki" target="_blank">
+        <span class="chi">▶️</span>
+        <span>YouTube</span>
+        <small>@mimundoreiki</small>
+      </a>
+      <a class="ch-card ch-fb" href="https://www.facebook.com/mimundoreiki" target="_blank">
+        <span class="chi">👍</span>
+        <span>Facebook</span>
+        <small>mimundoreiki</small>
+      </a>
+      <a class="ch-card ch-web" href="https://sites.google.com/view/mimundoreiki" target="_blank">
+        <span class="chi">🌐</span>
+        <span>Website</span>
+        <small>Visit the site</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Begin Your<br/><span>Healing Journey?</span></h2>
+    <p>Take the first step. Reach out today and let's talk about how Reiki and holistic therapy can support you.</p>
+    <div class="cta-btns">
+      <a class="btn btn-primary" href="https://wa.me/19544796065" target="_blank">💬 Message on WhatsApp</a>
+      <a class="btn btn-outline" href="https://www.instagram.com/mimundoreiki/" target="_blank">📸 Follow on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong style="color:#e8d5ff">Mi Mundo Reiki</strong> · Katiuska Dominguez · All rights reserved</p>
+  <p style="margin-top:0.4rem">
+    <a href="https://wa.me/19544796065">WhatsApp</a> ·
+    <a href="https://www.instagram.com/mimundoreiki/">Instagram</a> ·
+    <a href="https://www.youtube.com/@mimundoreiki">YouTube</a> ·
+    <a href="https://www.facebook.com/mimundoreiki">Facebook</a>
+  </p>
+</footer>
+
+</body>
+</html>
