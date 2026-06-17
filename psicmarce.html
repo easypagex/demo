@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psic. Marce Cabrera — Psicoterapia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --magenta:  #E8298A;
+    --coral:    #FF6B6B;
+    --violet:   #9B59B6;
+    --lavender: #C39BD3;
+    --yellow:   #F9CA24;
+    --teal:     #1ABC9C;
+    --dark:     #2C1654;
+    --cream:    #FFF8F0;
+    --white:    #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── WAVES BACKGROUND ── */
+  .wave-bg {
+    position: fixed; inset: 0; z-index: -1; overflow: hidden;
+  }
+  .wave-bg svg { width: 100%; height: 100%; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 2px solid var(--lavender);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 2rem;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 1.3rem;
+    color: var(--magenta);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--violet); }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    color: var(--dark); transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--magenta); }
+  .nav-ig {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff; text-decoration: none; padding: 0.45rem 1.1rem;
+    border-radius: 50px; font-weight: 800; font-size: 0.85rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .nav-ig:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(220,39,67,.35); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 5rem 1.5rem 4rem;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--yellow); color: var(--dark);
+    font-weight: 800; font-size: 0.8rem; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 0.35rem 1.2rem;
+    border-radius: 50px; margin-bottom: 1.4rem;
+  }
+  .hero-avatar {
+    width: 148px; height: 148px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--magenta), var(--violet));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; margin: 0 auto 2rem;
+    box-shadow: 0 12px 40px rgba(232,41,138,.35);
+    border: 5px solid var(--white);
+    position: relative;
+  }
+  .hero-avatar::after {
+    content: ''; position: absolute; inset: -8px;
+    border-radius: 50%;
+    border: 3px dashed var(--lavender);
+    animation: spin 18s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 0.6rem;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--magenta);
+  }
+  .hero-sub {
+    font-size: 1.18rem; font-weight: 600;
+    color: var(--violet); margin-bottom: 0.5rem;
+  }
+  .hero-flag { font-size: 1.5rem; }
+  .hero-desc {
+    max-width: 560px; margin: 1.2rem auto 0;
+    font-size: 1.08rem; line-height: 1.7; color: #5a4570;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    justify-content: center; margin-top: 2.2rem;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--magenta), var(--coral));
+    color: #fff; padding: 0.85rem 2.2rem;
+    border-radius: 50px; font-weight: 800; font-size: 1rem;
+    text-decoration: none; transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 8px 24px rgba(232,41,138,.3);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(232,41,138,.4); }
+  .btn-secondary {
+    background: var(--white); color: var(--violet);
+    border: 2.5px solid var(--violet); padding: 0.85rem 2.2rem;
+    border-radius: 50px; font-weight: 800; font-size: 1rem;
+    text-decoration: none; transition: all .2s;
+  }
+  .btn-secondary:hover { background: var(--violet); color: #fff; }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; flex-wrap: wrap;
+    justify-content: center; margin-top: 3rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900; color: var(--magenta);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.82rem; font-weight: 700; color: #8c70aa; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 5rem 1.5rem; }
+  .section-tag {
+    display: inline-block; font-size: 0.78rem; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 0.3rem 1rem; border-radius: 50px; margin-bottom: 0.9rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 900;
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-lead { font-size: 1.05rem; line-height: 1.75; color: #6b5285; max-width: 600px; }
+
+  /* ── SERVICES ── */
+  #servicios { background: transparent; }
+  .services-header { text-align: center; margin-bottom: 3.5rem; }
+  .services-header .section-tag { background: var(--yellow); color: var(--dark); }
+  .services-header .section-title { color: var(--dark); }
+  .services-header .section-lead { margin: 0 auto; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.8rem; max-width: 1100px; margin: 0 auto;
+  }
+  .card {
+    border-radius: 24px; padding: 2.2rem 1.8rem;
+    position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+  .card-1 { background: linear-gradient(135deg, #FF6B6B, #E8298A); color: #fff; }
+  .card-2 { background: linear-gradient(135deg, #9B59B6, #6C3483); color: #fff; }
+  .card-3 { background: linear-gradient(135deg, #1ABC9C, #0E8A75); color: #fff; }
+  .card-4 { background: linear-gradient(135deg, #F9CA24, #F0932B); color: var(--dark); }
+
+  .card-icon { font-size: 2.8rem; margin-bottom: 1rem; display: block; }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem; font-weight: 700; margin-bottom: 0.7rem;
+  }
+  .card p { font-size: 0.96rem; line-height: 1.65; opacity: 0.93; }
+  .card-blob {
+    position: absolute; bottom: -30px; right: -30px;
+    width: 110px; height: 110px; border-radius: 50%;
+    background: rgba(255,255,255,.1);
+  }
+
+  /* ── ABOUT ── */
+  #sobre-mi {
+    background: linear-gradient(135deg, var(--violet) 0%, var(--magenta) 100%);
+    color: #fff; border-radius: 40px;
+    max-width: 1000px; margin: 0 auto 5rem;
+  }
+  #sobre-mi .section-tag { background: rgba(255,255,255,.25); color: #fff; }
+  #sobre-mi .section-title { color: #fff; }
+  #sobre-mi .section-lead { color: rgba(255,255,255,.9); max-width: 100%; }
+
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+  @media (max-width: 680px) { .about-inner { grid-template-columns: 1fr; } }
+
+  .about-visual {
+    display: flex; flex-direction: column; gap: 1rem; align-items: center;
+  }
+  .about-pill {
+    background: rgba(255,255,255,.2); backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255,255,255,.35);
+    border-radius: 50px; padding: 0.6rem 1.4rem;
+    font-weight: 700; font-size: 0.92rem; color: #fff;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .about-pill span { font-size: 1.2rem; }
+
+  /* ── MODALITIES ── */
+  #modalidades { text-align: center; }
+  #modalidades .section-tag { background: #C39BD3; color: var(--dark); }
+  #modalidades .section-title { color: var(--dark); margin: 0 auto 0.5rem; }
+  #modalidades .section-lead { margin: 0 auto 3rem; }
+
+  .modal-grid {
+    display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+    max-width: 900px; margin: 0 auto;
+  }
+  .modal-card {
+    flex: 1; min-width: 220px; max-width: 280px;
+    background: var(--white); border-radius: 20px;
+    padding: 2rem 1.5rem; text-align: center;
+    box-shadow: 0 6px 30px rgba(155,89,182,.12);
+    transition: transform .2s;
+    border-top: 5px solid transparent;
+  }
+  .modal-card:hover { transform: translateY(-5px); }
+  .modal-card.m1 { border-color: var(--magenta); }
+  .modal-card.m2 { border-color: var(--teal); }
+  .modal-card.m3 { border-color: var(--yellow); }
+  .modal-card.m4 { border-color: var(--violet); }
+  .modal-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+  .modal-card h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--dark); }
+  .modal-card p { font-size: 0.88rem; color: #7a6090; line-height: 1.6; }
+
+  /* ── CTA INSTAGRAM ── */
+  #instagram {
+    text-align: center; padding: 5rem 1.5rem;
+  }
+  .ig-box {
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-radius: 32px; padding: 4rem 2rem;
+    max-width: 700px; margin: 0 auto; color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .ig-box::before {
+    content: ''; position: absolute;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    top: -80px; left: -80px;
+  }
+  .ig-box::after {
+    content: ''; position: absolute;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,.06);
+    bottom: -60px; right: -40px;
+  }
+  .ig-icon { font-size: 3.5rem; margin-bottom: 1rem; display: block; position: relative; z-index: 1; }
+  .ig-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900;
+    margin-bottom: 0.8rem; position: relative; z-index: 1;
+  }
+  .ig-box p { font-size: 1.05rem; opacity: 0.92; margin-bottom: 2rem; position: relative; z-index: 1; }
+  .ig-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: #fff; color: #dc2743;
+    padding: 0.9rem 2.4rem; border-radius: 50px;
+    font-weight: 800; font-size: 1.05rem; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    position: relative; z-index: 1;
+    box-shadow: 0 6px 24px rgba(0,0,0,.2);
+  }
+  .ig-btn:hover { transform: scale(1.05); box-shadow: 0 10px 32px rgba(0,0,0,.3); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 2rem 1.5rem;
+    font-size: 0.85rem; color: #9b85b0; border-top: 1.5px solid #e8dff2;
+  }
+  footer a { color: var(--magenta); text-decoration: none; font-weight: 700; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    #sobre-mi { border-radius: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Animated background waves -->
+<div class="wave-bg">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FFF0FA"/>
+        <stop offset="100%" stop-color="#F0EAFF"/>
+      </linearGradient>
+    </defs>
+    <rect fill="url(#g1)" width="1440" height="900"/>
+    <ellipse cx="200" cy="150" rx="340" ry="260" fill="#F9CA2422" style="animation:blob1 12s ease-in-out infinite alternate"/>
+    <ellipse cx="1200" cy="300" rx="280" ry="200" fill="#E8298A18" style="animation:blob2 15s ease-in-out infinite alternate"/>
+    <ellipse cx="700" cy="700" rx="400" ry="220" fill="#9B59B614" style="animation:blob3 18s ease-in-out infinite alternate"/>
+    <style>
+      @keyframes blob1{to{cx:280;cy:220}}
+      @keyframes blob2{to{cx:1100;cy:200}}
+      @keyframes blob3{to{cx:750;cy:760}}
+    </style>
+  </svg>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Psic. <span>Marce</span> Cabrera</div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#modalidades">Modalidades</a></li>
+  </ul>
+  <a href="https://www.instagram.com/psic.marcecabrera/" target="_blank" rel="noopener" class="nav-ig">
+    📷 Instagram
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🇲🇽 Psicología con propósito</div>
+  <div class="hero-avatar">🌸</div>
+  <p class="hero-sub">Mtra. en Terapia Sistémica · <span class="hero-flag">🇲🇽</span></p>
+  <h1><em>Psic.</em> Marce<br>Cabrera</h1>
+  <p class="hero-desc">
+    Acompañamiento psicoterapéutico con más de 15 años de experiencia. Especialista en terapia individual, de pareja y familiar. Presencial y en línea.
+  </p>
+  <div class="hero-ctas">
+    <a href="https://www.instagram.com/psic.marcecabrera/" target="_blank" rel="noopener" class="btn-primary">Contáctame en Instagram</a>
+    <a href="#servicios" class="btn-secondary">Ver servicios</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">+15</div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Tipos de terapia</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">💻</div>
+      <div class="stat-label">En línea & presencial</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="services-header reveal">
+    <div class="section-tag">✨ Lo que ofrezco</div>
+    <h2 class="section-title">Terapia a tu medida</h2>
+    <p class="section-lead">Cada proceso terapéutico es único. Te acompaño desde el enfoque sistémico, donde tú eres el experto de tu propia vida.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="card card-1 reveal">
+      <span class="card-icon">🧘‍♀️</span>
+      <h3>Terapia Individual</h3>
+      <p>Un espacio seguro y confidencial para explorar tus emociones, superar bloqueos y reconectar contigo mismo. Te acompaño en cada paso de tu proceso.</p>
+      <div class="card-blob"></div>
+    </div>
+    <div class="card card-2 reveal">
+      <span class="card-icon">💑</span>
+      <h3>Terapia de Pareja</h3>
+      <p>Mejora la comunicación, sana heridas y fortalece el vínculo. La terapia sistémica trabaja la relación como un sistema vivo y en constante evolución.</p>
+      <div class="card-blob"></div>
+    </div>
+    <div class="card card-3 reveal">
+      <span class="card-icon">👨‍👩‍👧‍👦</span>
+      <h3>Terapia Familiar</h3>
+      <p>Las familias son sistemas complejos. Trabajamos juntos para mejorar la dinámica familiar, resolver conflictos y construir relaciones más sanas.</p>
+      <div class="card-blob"></div>
+    </div>
+    <div class="card card-4 reveal">
+      <span class="card-icon">🎓</span>
+      <h3>Enfoque Sistémico</h3>
+      <p>Con maestría en terapia sistémica, comprendo el contexto y las redes de relaciones que influyen en tu bienestar. Un enfoque humanista y científico.</p>
+      <div class="card-blob"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="sobre-mi">
+  <div class="about-inner">
+    <div>
+      <div class="section-tag">💫 Sobre mí</div>
+      <h2 class="section-title">Hola, soy Marce 👋</h2>
+      <p class="section-lead">
+        Soy Maestra en Terapia Sistémica con más de 15 años acompañando a personas, parejas y familias en procesos de cambio y crecimiento. Mi práctica está basada en la escucha empática, el respeto y la confianza de que cada persona tiene los recursos para transformar su vida.<br><br>
+        Atiendo de forma presencial y en línea, para que puedas recibir apoyo sin importar dónde estés.
+      </p>
+    </div>
+    <div class="about-visual reveal">
+      <div class="about-pill"><span>🇲🇽</span> México</div>
+      <div class="about-pill"><span>✨</span> +15 años de experiencia</div>
+      <div class="about-pill"><span>🎓</span> Mtra. en Terapia Sistémica</div>
+      <div class="about-pill"><span>💻</span> Sesiones en línea disponibles</div>
+      <div class="about-pill"><span>🤝</span> Presencial & virtual</div>
+      <div class="about-pill"><span>❤️</span> Individual · Pareja · Familia</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALITIES -->
+<section id="modalidades">
+  <div class="reveal">
+    <div class="section-tag">🌈 Modalidades</div>
+    <h2 class="section-title">¿Cómo trabajamos?</h2>
+    <p class="section-lead">Adapto el proceso a tus necesidades y posibilidades. La terapia es para todas las personas.</p>
+  </div>
+  <div class="modal-grid">
+    <div class="modal-card m1 reveal">
+      <div class="modal-icon">🏠</div>
+      <h4>Presencial</h4>
+      <p>Sesiones cara a cara en un ambiente cálido, cómodo y totalmente confidencial.</p>
+    </div>
+    <div class="modal-card m2 reveal">
+      <div class="modal-icon">💻</div>
+      <h4>En Línea</h4>
+      <p>Terapia desde la comodidad de tu hogar, desde cualquier lugar del mundo.</p>
+    </div>
+    <div class="modal-card m3 reveal">
+      <div class="modal-icon">📅</div>
+      <h4>Sesiones Flexibles</h4>
+      <p>Horarios adaptados a tu agenda para que nada te impida cuidar tu salud mental.</p>
+    </div>
+    <div class="modal-card m4 reveal">
+      <div class="modal-icon">🔒</div>
+      <h4>Confidencialidad Total</h4>
+      <p>Tu proceso es privado y seguro. Todo lo que compartes queda entre nosotras.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM CTA -->
+<section id="instagram" class="reveal">
+  <div class="ig-box">
+    <span class="ig-icon">📲</span>
+    <h2>Sígueme en Instagram</h2>
+    <p>Contenido sobre salud mental, herramientas terapéuticas y reflexiones para tu bienestar emocional. ¡Te espero!</p>
+    <a href="https://www.instagram.com/psic.marcecabrera/" target="_blank" rel="noopener" class="ig-btn">
+      📷 @psic.marcecabrera
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Psic. Marce Cabrera · Mtra. en Terapia Sistémica 🇲🇽</p>
+  <p style="margin-top:0.4rem;">
+    <a href="https://www.instagram.com/psic.marcecabrera/" target="_blank" rel="noopener">Instagram: @psic.marcecabrera</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => io.observe(r));
+</script>
+</body>
+</html>
