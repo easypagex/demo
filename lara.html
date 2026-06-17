@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lara Ferreiro · Psicóloga Madrid & Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa:    #F45B8A;
+    --malva:   #C45BAD;
+    --lavanda: #8B6FCE;
+    --azul:    #5B8AF4;
+    --coral:   #FF7E5F;
+    --crema:   #FDF6F0;
+    --negro:   #1A1025;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--crema);
+    color: var(--negro);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #F45B8A 0%, #C45BAD 35%, #8B6FCE 65%, #5B8AF4 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 70%);
+  }
+
+  /* floating blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+    animation: float 8s ease-in-out infinite;
+  }
+  .blob-1 { width:320px; height:320px; background:#FF7E5F; top:-80px; left:-80px; animation-delay:0s; }
+  .blob-2 { width:260px; height:260px; background:#F45B8A; bottom:-60px; right:-60px; animation-delay:3s; }
+  .blob-3 { width:180px; height:180px; background:#5B8AF4; top:40%; left:5%; animation-delay:5s; }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    backdrop-filter: blur(8px);
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    position: relative;
+    max-width: 800px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    color: rgba(255,255,255,0.88);
+    font-weight: 300;
+    margin-top: 20px;
+    max-width: 560px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 40px;
+    position: relative;
+  }
+
+  .btn-primary {
+    background: #fff;
+    color: var(--malva);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 16px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+
+  .btn-ghost {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.5);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(6px);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.28); transform: translateY(-3px); }
+
+  .scroll-arrow {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.6);
+    font-size: 1.6rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* ─── RECONOCIMIENTOS ─── */
+  .recognitions {
+    background: var(--negro);
+    padding: 28px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+  }
+  .rec-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    font-weight: 400;
+  }
+  .rec-item strong { color: #fff; font-weight: 600; }
+  .rec-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rosa); flex-shrink: 0; }
+
+  /* ─── SECCIONES ─── */
+  section { padding: 88px 24px; }
+
+  .container { max-width: 1060px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--malva);
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--negro);
+  }
+
+  /* ─── SOBRE MÍ ─── */
+  .about {
+    background: #fff;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #444;
+    margin-top: 20px;
+  }
+  .about-text p + p { margin-top: 14px; }
+
+  .about-visual {
+    background: linear-gradient(145deg, #F45B8A, #8B6FCE);
+    border-radius: 32px;
+    padding: 48px 36px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.88rem; opacity: 0.85; margin-top: 4px; }
+  .stat-divider { height: 1px; background: rgba(255,255,255,0.3); }
+
+  /* ─── ESPECIALIDADES ─── */
+  .specialties { background: var(--crema); }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 20px 20px 0 0;
+  }
+  .card:nth-child(1)::before { background: var(--rosa); }
+  .card:nth-child(2)::before { background: var(--malva); }
+  .card:nth-child(3)::before { background: var(--lavanda); }
+  .card:nth-child(4)::before { background: var(--azul); }
+  .card:nth-child(5)::before { background: var(--coral); }
+  .card:nth-child(6)::before { background: var(--rosa); }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
+
+  .card-emoji { font-size: 2rem; margin-bottom: 14px; }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .card p { font-size: 0.9rem; color: #666; line-height: 1.6; }
+
+  /* ─── MODALIDADES ─── */
+  .modalities { background: linear-gradient(135deg, #8B6FCE 0%, #5B8AF4 100%); }
+  .modalities .section-label { color: rgba(255,255,255,0.7); }
+  .modalities .section-title { color: #fff; }
+
+  .mod-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .mod-card {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 36px 32px;
+    color: #fff;
+    backdrop-filter: blur(8px);
+  }
+  .mod-icon { font-size: 2.4rem; margin-bottom: 16px; }
+  .mod-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+  .mod-card p { font-size: 0.95rem; opacity: 0.85; line-height: 1.65; }
+
+  /* ─── LIBRO ─── */
+  .book { background: #fff; }
+  .book-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .book-cover {
+    width: 220px;
+    background: linear-gradient(160deg, #F45B8A 0%, #C45BAD 50%, #8B6FCE 100%);
+    border-radius: 12px;
+    aspect-ratio: 2/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    color: #fff;
+    box-shadow: 12px 20px 48px rgba(196,91,173,0.35);
+    flex-shrink: 0;
+  }
+  .book-cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+  .book-cover-sub { font-size: 0.8rem; opacity: 0.8; margin-top: 10px; }
+  .book-text p { font-size: 1.05rem; line-height: 1.75; color: #444; margin-top: 16px; }
+  .pill-tag {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--rosa), var(--malva));
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-top: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ─── MEDIA ─── */
+  .media { background: var(--crema); }
+  .media-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 44px;
+  }
+  .media-pill {
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    padding: 12px 26px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--negro);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .media-pill:hover { border-color: var(--malva); color: var(--malva); }
+
+  /* ─── CONTACTO ─── */
+  .contact {
+    background: linear-gradient(135deg, #F45B8A 0%, #C45BAD 40%, #8B6FCE 100%);
+    text-align: center;
+  }
+  .contact .section-label { color: rgba(255,255,255,0.75); }
+  .contact .section-title { color: #fff; margin-bottom: 16px; }
+  .contact-sub { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 44px; }
+
+  .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 44px;
+  }
+  .contact-chip {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 100px;
+    padding: 14px 28px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .contact-chip:hover { background: rgba(255,255,255,0.3); transform: translateY(-3px); }
+
+  .cta-group { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+
+  .btn-white {
+    background: #fff;
+    color: var(--malva);
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 18px 42px;
+    border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--negro);
+    padding: 32px 24px;
+    text-align: center;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.85rem;
+  }
+  footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  footer a:hover { color: var(--rosa); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 720px) {
+    .about-grid, .mod-grid, .book-grid { grid-template-columns: 1fr; gap: 36px; }
+    .book-cover { width: 160px; }
+    .book-grid { justify-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="badge">
+    💎 Psicóloga Referente España · ABC Bienestar
+  </div>
+
+  <h1>Tu bienestar<br><em>es posible.</em></h1>
+
+  <p class="hero-sub">Psicología individual, de pareja y familiar en Madrid y Online. Especialista en autoestima, ansiedad, relaciones y crecimiento personal.</p>
+
+  <div class="hero-ctas">
+    <a href="tel:+34611042621" class="btn-primary">📞 611 042 621</a>
+    <a href="https://www.instagram.com/psicologa_laraferreiro/" target="_blank" rel="noopener" class="btn-ghost">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </div>
+
+  <div class="scroll-arrow">↓</div>
+</section>
+
+<!-- ─── RECONOCIMIENTOS ─── -->
+<div class="recognitions">
+  <div class="rec-item"><span class="rec-dot"></span> Elegida por <strong>ABC Bienestar</strong> como referente en bienestar emocional en España</div>
+  <div class="rec-item"><span class="rec-dot"></span> Una de las <strong>6 mejores psicólogas de Madrid</strong> · Psicología y Mente</div>
+  <div class="rec-item"><span class="rec-dot"></span> Formación en <strong>Nueva York</strong> · Metropolitan Center for Mental Health</div>
+  <div class="rec-item"><span class="rec-dot"></span> <strong>22.000+ seguidores</strong> en Instagram</div>
+</div>
+
+<!-- ─── SOBRE MÍ ─── -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p class="section-label">Sobre Lara</p>
+        <h2 class="section-title">Psicóloga especialista<br>en el mundo emocional</h2>
+        <p>Soy Lara Ferreiro, psicóloga con formación en el <strong>Metropolitan Center for Mental Health de Nueva York</strong>, donde fui número 1 de mi promoción. Mi consulta está en el corazón de Madrid, en la <strong>Calle Núñez de Balboa, 99</strong>, y también ofrezco terapia 100% online para que puedas trabajar tu bienestar desde cualquier lugar.</p>
+        <p>Combino terapia cognitivo-conductual, ACT y enfoques psicodinámicos para crear un espacio seguro, sin juicios, donde tú eres el protagonista de tu propio cambio. Soy además <strong>profesora universitaria de Psicopatología</strong> y colaboro regularmente en medios nacionales como Antena 3, Telecinco y Telemadrid.</p>
+        <p>Mi misión es acompañarte con honestidad, empatía y herramientas concretas hacia una vida más plena.</p>
+      </div>
+      <div class="about-visual">
+        <div class="stat-item">
+          <span class="stat-num">+15</span>
+          <span class="stat-label">años de experiencia clínica</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">Nº1</span>
+          <span class="stat-label">de su promoción en Nueva York</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">22K</span>
+          <span class="stat-label">seguidores en Instagram</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">terapia personalizada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ESPECIALIDADES ─── -->
+<section class="specialties">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">En qué te ayudo</p>
+      <h2 class="section-title">Especialidades</h2>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal">
+        <div class="card-emoji">💔</div>
+        <h3>Adicción Emocional</h3>
+        <p>Rompe el patrón de relaciones tóxicas y dependencias afectivas que te impiden ser libre.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-emoji">🌸</div>
+        <h3>Autoestima</h3>
+        <p>Construye una relación sana contigo misma/o: quiérete sin condiciones y desde la autenticidad.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-emoji">🌀</div>
+        <h3>Ansiedad y Estrés</h3>
+        <p>Aprende a gestionar la ansiedad y el estrés con técnicas basadas en la evidencia científica.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-emoji">💜</div>
+        <h3>Terapia de Pareja</h3>
+        <p>Comunicación, conflictos, crisis y sexualidad: recupera la conexión o cierra con paz.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-emoji">🌑</div>
+        <h3>Depresión</h3>
+        <p>Acompañamiento especializado para salir de la oscuridad y reencontrar tu energía vital.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-emoji">🧒</div>
+        <h3>Terapia Infantojuvenil</h3>
+        <p>Atención psicológica adaptada para niños y adolescentes, con enfoque familiar integrado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MODALIDADES ─── -->
+<section class="modalities">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Cómo trabajamos</p>
+      <h2 class="section-title">Modalidades de terapia</h2>
+    </div>
+    <div class="mod-grid reveal">
+      <div class="mod-card">
+        <div class="mod-icon">🏙️</div>
+        <h3>Presencial en Madrid</h3>
+        <p>Consulta en la <strong>Calle Núñez de Balboa, 99</strong>, en pleno corazón de Madrid. Un espacio acogedor, confidencial y diseñado para que te sientas en calma desde el primer momento.</p>
+      </div>
+      <div class="mod-card">
+        <div class="mod-icon">💻</div>
+        <h3>Online · Desde cualquier lugar</h3>
+        <p>Sesiones de terapia con total comodidad y flexibilidad, manteniendo la misma calidad y profundidad que en la consulta. Ideal si tienes una agenda ajustada o vives fuera de Madrid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LIBRO ─── -->
+<section class="book">
+  <div class="container">
+    <div class="book-grid reveal">
+      <div class="book-cover">
+        <div>
+          <div class="book-cover-title">Adicta<br>a un<br>Gilipollas</div>
+          <div class="book-cover-sub">Lara Ferreiro<br>Grijalbo · 2023</div>
+        </div>
+      </div>
+      <div class="book-text">
+        <p class="section-label">Mi libro</p>
+        <h2 class="section-title">Superventas internacional</h2>
+        <p>«Adicta a un gilipollas» (Grijalbo, 2023) es el libro que arrasó en España y que se convirtió en referente para miles de mujeres que querían entender y superar sus relaciones tóxicas.</p>
+        <p>Un libro honesto, directo y lleno de herramientas prácticas para trabajar la autoestima, identificar patrones destructivos y construir la relación que de verdad mereces, contigo misma y en pareja.</p>
+        <span class="pill-tag">📚 Disponible en librerías y Amazon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MEDIA ─── -->
+<section class="media">
+  <div class="container reveal">
+    <p class="section-label">Medios & Colaboraciones</p>
+    <h2 class="section-title">Me han visto en…</h2>
+    <div class="media-logos">
+      <div class="media-pill">📺 Antena 3</div>
+      <div class="media-pill">📺 Telecinco</div>
+      <div class="media-pill">📺 Telemadrid</div>
+      <div class="media-pill">📰 ABC Bienestar</div>
+      <div class="media-pill">💅 Elle</div>
+      <div class="media-pill">💄 Cosmopolitan</div>
+      <div class="media-pill">✨ Uppers</div>
+      <div class="media-pill">🎓 Psicología y Mente</div>
+      <div class="media-pill">📖 Lecturas</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACTO ─── -->
+<section class="contact">
+  <div class="container reveal">
+    <p class="section-label">Empieza hoy</p>
+    <h2 class="section-title">¿Damos el primer paso juntos?</h2>
+    <p class="contact-sub">Primera consulta sin compromiso. Escríbeme o llama y hablamos.</p>
+
+    <div class="contact-info">
+      <a href="tel:+34611042621" class="contact-chip">📞 611 042 621</a>
+      <a href="mailto:laraferreiropergravitta@pergravitta.com" class="contact-chip">✉️ laraferreiropergravitta@pergravitta.com</a>
+      <a href="https://www.instagram.com/psicologa_laraferreiro/" target="_blank" rel="noopener" class="contact-chip">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @psicologa_laraferreiro
+      </a>
+    </div>
+
+    <div class="cta-group">
+      <a href="tel:+34611042621" class="btn-white">📞 Llamar ahora</a>
+      <a href="https://www.instagram.com/psicologa_laraferreiro/" target="_blank" rel="noopener" class="btn-ghost">Ver Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>© 2025 Lara Ferreiro · Psicóloga en Madrid y Online · <a href="https://www.instagram.com/psicologa_laraferreiro/" target="_blank">@psicologa_laraferreiro</a></p>
+  <p style="margin-top:8px;">Calle Núñez de Balboa, 99 · Madrid &nbsp;|&nbsp; <a href="tel:+34611042621">+34 611 042 621</a> &nbsp;|&nbsp; <a href="mailto:laraferreiropergravitta@pergravitta.com">laraferreiropergravitta@pergravitta.com</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
