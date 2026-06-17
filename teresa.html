@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teresa · La Psicóloga de Mamá</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --fucsia:   #F72585;
+    --lila:     #9B5DE5;
+    --naranja:  #FF9F1C;
+    --menta:    #06D6A0;
+    --azul:     #4CC9F0;
+    --crema:    #FFF8F0;
+    --texto:    #2D1B4E;
+    --blanco:   #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #F72585 0%, #9B5DE5 45%, #4CC9F0 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(255,159,28,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(6,214,160,0.2) 0%, transparent 50%);
+  }
+
+  .hero-badge {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    color: #fff;
+    line-height: 1.1;
+    position: relative;
+    max-width: 820px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: #FFEC6E;
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.92);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    max-width: 560px;
+    margin: 1.8rem auto 2.8rem;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+  .btn-blanco {
+    background: #fff;
+    color: var(--fucsia);
+  }
+
+  .btn-wa {
+    background: #25D366;
+    color: #fff;
+  }
+
+  .btn-ig {
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+  }
+
+  /* Burbujas decorativas */
+  .burbuja {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.18;
+    animation: flotar 6s ease-in-out infinite;
+  }
+  .b1 { width: 300px; height: 300px; background: #FFEC6E; top: -80px; right: -60px; animation-delay: 0s; }
+  .b2 { width: 200px; height: 200px; background: #06D6A0; bottom: 40px; left: -50px; animation-delay: 2s; }
+  .b3 { width: 140px; height: 140px; background: #fff; top: 60%; right: 8%; animation-delay: 4s; }
+
+  @keyframes flotar {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* ── SECCIÓN GENÉRICA ── */
+  section { padding: 5rem 1.5rem; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .etiqueta {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  h2 span { position: relative; display: inline; }
+
+  /* ── ¿TE IDENTIFICAS? ── */
+  .identificas {
+    background: var(--texto);
+    color: #fff;
+  }
+
+  .identificas .etiqueta { background: var(--fucsia); color: #fff; }
+  .identificas h2 { color: #fff; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 2rem 1.6rem;
+    transition: transform 0.25s, background 0.25s;
+  }
+
+  .card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.13); }
+
+  .card-icono {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #FFEC6E;
+  }
+
+  .card p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+  /* ── TERESA ── */
+  .sobre-teresa {
+    background: var(--crema);
+  }
+
+  .sobre-teresa .etiqueta { background: var(--lila); color: #fff; }
+
+  .teresa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 720px) {
+    .teresa-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .teresa-foto-wrap {
+    position: relative;
+  }
+
+  .teresa-foto-fondo {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 30px;
+    background: linear-gradient(135deg, var(--lila), var(--fucsia));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .teresa-foto-fondo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(247,37,133,0.6), transparent 60%);
+  }
+
+  .teresa-nombre {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    white-space: nowrap;
+    z-index: 2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+
+  .deco-burbuja {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--naranja);
+    top: -20px;
+    right: -20px;
+    z-index: -1;
+  }
+
+  .deco-burbuja2 {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--menta);
+    bottom: -15px;
+    left: -15px;
+    z-index: -1;
+  }
+
+  .teresa-texto p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--texto);
+    margin-bottom: 1.2rem;
+  }
+
+  .teresa-texto p strong { color: var(--fucsia); }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .chip {
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .chip-fucsia { background: #FDE8F0; color: var(--fucsia); }
+  .chip-lila   { background: #EDE8FF; color: var(--lila); }
+  .chip-menta  { background: #E0FAF4; color: #028A6C; }
+
+  /* ── MÉTODO ── */
+  .metodo {
+    background: linear-gradient(135deg, #F72585 0%, #9B5DE5 100%);
+    color: #fff;
+  }
+
+  .metodo .etiqueta { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4); }
+  .metodo h2 { color: #fff; }
+
+  .pasos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+    counter-reset: paso;
+  }
+
+  .paso {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    backdrop-filter: blur(8px);
+    transition: transform 0.25s;
+  }
+
+  .paso:hover { transform: translateY(-6px); }
+
+  .paso-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #FFEC6E;
+    color: var(--texto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.1rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .paso h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .paso p { font-size: 0.93rem; color: rgba(255,255,255,0.85); line-height: 1.6; }
+
+  /* ── LO QUE LOGRARÁS ── */
+  .logros {
+    background: var(--crema);
+  }
+
+  .logros .etiqueta { background: var(--naranja); color: #fff; }
+
+  .logros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.4rem;
+    margin-top: 3rem;
+  }
+
+  .logro-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(155,93,229,0.08);
+    transition: transform 0.2s;
+  }
+
+  .logro-item:hover { transform: translateY(-4px); }
+
+  .logro-icono {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .logro-item h4 { font-size: 1rem; font-weight: 800; margin-bottom: 0.3rem; color: var(--texto); }
+  .logro-item p { font-size: 0.88rem; color: #666; line-height: 1.5; }
+
+  /* ── FRASE DESTACADA ── */
+  .frase-central {
+    background: #FFEC6E;
+    text-align: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .frase-central blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+    font-style: italic;
+    color: var(--texto);
+    max-width: 780px;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+
+  .frase-central blockquote span { color: var(--fucsia); }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: linear-gradient(135deg, #06D6A0 0%, #4CC9F0 100%);
+    text-align: center;
+    padding: 6rem 1.5rem;
+  }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .cta-final p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-oscuro {
+    background: var(--texto);
+    color: #fff;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--texto);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  footer a { color: var(--fucsia); text-decoration: none; }
+
+  /* ── WhatsApp flotante ── */
+  .wa-float {
+    position: fixed;
+    bottom: 1.8rem;
+    right: 1.8rem;
+    z-index: 999;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+    text-decoration: none;
+    animation: pulsar 2.5s ease-in-out infinite;
+    transition: transform 0.2s;
+  }
+
+  .wa-float:hover { transform: scale(1.1); }
+
+  .wa-float svg { width: 32px; height: 32px; fill: #fff; }
+
+  @keyframes pulsar {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 6px 40px rgba(37,211,102,0.8); }
+  }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+    .burbuja { animation: none; }
+    .wa-float { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="burbuja b1"></div>
+  <div class="burbuja b2"></div>
+  <div class="burbuja b3"></div>
+
+  <div class="hero-badge">✨ Psicóloga · Maternidad Consciente</div>
+
+  <h1>
+    Mamá, tienes permiso para<br>
+    <em>soltar la exigencia</em>
+  </h1>
+
+  <p class="hero-sub">
+    Ayudo a mamás desbordadas a transformar la exigencia en paz y bienestar mental para vivir una maternidad más sencilla <strong style="color:#FFEC6E;">sin culpa</strong>.
+  </p>
+
+  <div class="hero-btns">
+    <a href="https://api.whatsapp.com/send?phone=34653351706" target="_blank" rel="noopener" class="btn btn-wa">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Escríbeme por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/teresalapsicologademama/" target="_blank" rel="noopener" class="btn btn-ig">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Sígueme en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ── ¿TE IDENTIFICAS? ── -->
+<section class="identificas">
+  <div class="container">
+    <div class="reveal">
+      <span class="etiqueta">¿Te suena esto?</span>
+      <h2>Eres una mamá increíble<br>que se siente <em style="font-style:italic; color:#FFEC6E;">agotada por dentro</em></h2>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal">
+        <div class="card-icono">😩</div>
+        <h3>Te exiges demasiado</h3>
+        <p>Sientes que nunca es suficiente y que deberías hacerlo todo mejor, sin margen para el error.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icono">💭</div>
+        <h3>La culpa no te suelta</h3>
+        <p>Cada decisión va acompañada de dudas: ¿estoy haciéndolo bien? ¿les estoy fallando?</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icono">🔥</div>
+        <h3>Llegas al límite</h3>
+        <p>El día termina y no queda nada para ti. Estás en modo supervivencia y eso te duele.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icono">🫥</div>
+        <h3>Perdiste tu identidad</h3>
+        <p>Antes de ser mamá eras tú. Ahora no sabes muy bien quién eres o qué necesitas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOBRE TERESA ── -->
+<section class="sobre-teresa">
+  <div class="container">
+    <div class="teresa-grid">
+      <div class="teresa-foto-wrap reveal">
+        <div class="teresa-foto-fondo">
+          🧡
+          <span class="teresa-nombre">Teresa · @teresalapsicologademama</span>
+        </div>
+        <div class="deco-burbuja"></div>
+        <div class="deco-burbuja2"></div>
+      </div>
+      <div class="teresa-texto reveal">
+        <span class="etiqueta">Hola, soy Teresa</span>
+        <h2>La psicóloga que entiende la maternidad <em style="font-style:italic; color:var(--fucsia);">desde dentro</em></h2>
+        <p>Soy psicóloga especializada en <strong>maternidad consciente y autocuidado emocional</strong>. Acompaño a mamás que se sienten desbordadas a encontrar un camino propio hacia el bienestar.</p>
+        <p>Mi trabajo no consiste en darte más pautas perfectas. Consiste en ayudarte a <strong>soltar lo que te pesa</strong> para que puedas disfrutar de tu maternidad sin tener que ser superheroína.</p>
+        <p>Porque mereces estar bien. No solo tus hijos.</p>
+        <div class="chips">
+          <span class="chip chip-fucsia">Psicóloga colegiada</span>
+          <span class="chip chip-lila">Maternidad consciente</span>
+          <span class="chip chip-menta">Autocuidado emocional</span>
+          <span class="chip chip-fucsia">Sin culpa</span>
+          <span class="chip chip-lila">Bienestar mental</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MÉTODO ── -->
+<section class="metodo">
+  <div class="container" style="text-align:center;">
+    <div class="reveal">
+      <span class="etiqueta">Mi método</span>
+      <h2>El camino hacia una maternidad<br>más sencilla y en paz</h2>
+      <p style="color:rgba(255,255,255,0.85); max-width:540px; margin:1rem auto 0; line-height:1.7;">Un proceso pensado para ti, a tu ritmo, desde la comprensión y sin juicio.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso reveal">
+        <div class="paso-num">1</div>
+        <h3>Identifica lo que te pesa</h3>
+        <p>Ponemos nombre a las exigencias, los miedos y las creencias que te están agotando sin que lo notes.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">2</div>
+        <h3>Comprende tu historia</h3>
+        <p>Exploramos de dónde vienen esos patrones para que dejen de mandarte sin pedirte permiso.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">3</div>
+        <h3>Transforma la exigencia</h3>
+        <p>Convertimos la autocrítica en autocompasión y aprendemos a establecer límites sanos sin culpa.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">4</div>
+        <h3>Construye tu bienestar</h3>
+        <p>Diseñamos juntas rutinas de autocuidado reales y sostenibles para tu vida tal como es.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOGROS ── -->
+<section class="logros">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom:0;">
+      <span class="etiqueta">Lo que vas a lograr</span>
+      <h2>Imagina levantarte sintiéndote<br><em style="font-style:italic; color:var(--lila);">tú misma de nuevo</em></h2>
+    </div>
+    <div class="logros-grid">
+      <div class="logro-item reveal">
+        <span class="logro-icono">🕊️</span>
+        <div>
+          <h4>Paz interior</h4>
+          <p>Dejar de vivir en alerta constante y encontrar momentos reales de calma en tu día a día.</p>
+        </div>
+      </div>
+      <div class="logro-item reveal">
+        <span class="logro-icono">💛</span>
+        <div>
+          <h4>Menos culpa</h4>
+          <p>Tomar decisiones desde tus valores, no desde el miedo o la comparación con otras mamás.</p>
+        </div>
+      </div>
+      <div class="logro-item reveal">
+        <span class="logro-icono">🌱</span>
+        <div>
+          <h4>Autocuidado real</h4>
+          <p>Cuidarte sin que suene a lujo: pequeños gestos diarios que te recarguen de verdad.</p>
+        </div>
+      </div>
+      <div class="logro-item reveal">
+        <span class="logro-icono">🤝</span>
+        <div>
+          <h4>Mejor vínculo</h4>
+          <p>Cuando tú estás bien, tus hijos lo notan. La conexión familiar se vuelve más genuina.</p>
+        </div>
+      </div>
+      <div class="logro-item reveal">
+        <span class="logro-icono">✨</span>
+        <div>
+          <h4>Recuperar tu identidad</h4>
+          <p>Volverte a encontrar a ti misma más allá del rol de madre. Eres mucho más que eso.</p>
+        </div>
+      </div>
+      <div class="logro-item reveal">
+        <span class="logro-icono">💪</span>
+        <div>
+          <h4>Herramientas reales</h4>
+          <p>Estrategias psicológicas concretas que puedes usar en los momentos de mayor desbordamiento.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FRASE ── -->
+<section class="frase-central reveal">
+  <blockquote>
+    "No tienes que ser la mamá perfecta.<br>
+    Tienes que ser <span>tu mamá</span>."
+  </blockquote>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="cta-final">
+  <div class="container">
+    <div class="reveal">
+      <h2>¿Lista para empezar?</h2>
+      <p>Un primer mensaje puede cambiarlo todo. Estoy aquí para acompañarte.</p>
+      <div class="cta-btns">
+        <a href="https://api.whatsapp.com/send?phone=34653351706" target="_blank" rel="noopener" class="btn btn-wa" style="font-size:1.1rem; padding:1rem 2.2rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Hablemos por WhatsApp
+        </a>
+        <a href="https://www.instagram.com/teresalapsicologademama/" target="_blank" rel="noopener" class="btn btn-oscuro" style="font-size:1.1rem; padding:1rem 2.2rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Ver mi Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 Teresa · La Psicóloga de Mamá · 
+    <a href="https://www.instagram.com/teresalapsicologademama/" target="_blank" rel="noopener">@teresalapsicologademama</a>
+    · <a href="https://api.whatsapp.com/send?phone=34653351706" target="_blank" rel="noopener">WhatsApp</a>
+  </p>
+</footer>
+
+<!-- ── WhatsApp flotante ── -->
+<a href="https://api.whatsapp.com/send?phone=34653351706" target="_blank" rel="noopener" class="wa-float" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
