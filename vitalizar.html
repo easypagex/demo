@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitalizar Psicología</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde:   #2DBE7E;
+      --verde-oscuro: #1A8C59;
+      --lila:    #9B5DE5;
+      --coral:   #F15BB5;
+      --amarillo:#FEE440;
+      --azul:    #00BBF9;
+      --blanco:  #FAFFF7;
+      --oscuro:  #1A1A2E;
+      --texto:   #2C2C3E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--blanco);
+      color: var(--texto);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--oscuro);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 20% 30%, rgba(45,190,126,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(155,93,229,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 55% 10%, rgba(241,91,181,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.35;
+      animation: drift 9s ease-in-out infinite alternate;
+    }
+    .blob-1 { width: 380px; height: 380px; background: var(--verde); top: -100px; left: -80px; animation-duration: 11s; }
+    .blob-2 { width: 300px; height: 300px; background: var(--lila); bottom: -80px; right: -60px; animation-duration: 8s; animation-delay: -3s; }
+    .blob-3 { width: 220px; height: 220px; background: var(--coral); top: 40%; left: 60%; animation-duration: 13s; animation-delay: -6s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    .hero-emoji {
+      font-size: clamp(3rem, 8vw, 5rem);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    .hero h1 span.highlight {
+      color: var(--verde);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,0.75);
+      max-width: 560px;
+      margin: 22px auto 0;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 32px 0 0;
+      position: relative;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 30px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
+
+    .btn-verde  { background: var(--verde);   color: #fff; }
+    .btn-wa     { background: #25D366;         color: #fff; }
+    .btn-ig     { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: #fff; }
+
+    /* ── SERVICIOS ── */
+    .section {
+      padding: 80px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--verde-oscuro);
+      background: rgba(45,190,126,0.12);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--oscuro);
+      margin-bottom: 48px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s;
+    }
+    .card.visible { opacity: 1; transform: translateY(0); }
+    .card:hover   { box-shadow: 0 16px 40px rgba(0,0,0,0.12); transform: translateY(-4px); }
+
+    .card-c1 { background: #F0FDF8; border: 2px solid #A7F0D0; }
+    .card-c2 { background: #FEF3FF; border: 2px solid #DDA4F8; }
+    .card-c3 { background: #FFF0FA; border: 2px solid #F7A8D8; }
+    .card-c4 { background: #FFFBE6; border: 2px solid #FDE66A; }
+    .card-c5 { background: #EFF9FF; border: 2px solid #7FD9F8; }
+
+    .card-icon { font-size: 2.2rem; }
+    .card h3   { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; color: var(--oscuro); }
+    .card p    { font-size: 0.9rem; color: #555; line-height: 1.55; }
+
+    /* ── MODALIDADES ── */
+    .modalidades-wrap {
+      background: var(--oscuro);
+      padding: 80px 24px;
+    }
+
+    .modalidades-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .modalidades-inner .section-label { color: var(--verde); background: rgba(45,190,126,0.18); }
+    .modalidades-inner h2 { color: #fff; margin-bottom: 40px; }
+
+    .mod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .mod-card {
+      border-radius: 20px;
+      padding: 36px 28px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .mod-card.visible { opacity: 1; transform: translateY(0); }
+
+    .mod-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .mod-card h3 { font-family: 'Fraunces', serif; font-size: 1.35rem; color: #fff; margin-bottom: 10px; }
+    .mod-card p  { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    .mod-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 100px;
+    }
+    .tag-verde  { background: rgba(45,190,126,0.2);  color: var(--verde); }
+    .tag-lila   { background: rgba(155,93,229,0.2);  color: #C591F8; }
+
+    /* ── POR QUÉ ── */
+    .porque-wrap { padding: 80px 24px; background: var(--amarillo); }
+    .porque-inner { max-width: 1100px; margin: 0 auto; }
+    .porque-inner .section-label { color: #5A4000; background: rgba(0,0,0,0.08); }
+    .porque-inner h2 { color: var(--oscuro); }
+
+    .razones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 0;
+    }
+
+    .razon {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px 22px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .razon.visible { opacity: 1; transform: translateY(0); }
+    .razon-num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 900; color: var(--verde); line-height: 1; }
+    .razon h3  { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--oscuro); margin: 8px 0 8px; }
+    .razon p   { font-size: 0.88rem; color: #555; line-height: 1.55; }
+
+    /* ── CTA FINAL ── */
+    .cta-wrap {
+      padding: 100px 24px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--lila) 0%, var(--coral) 100%);
+    }
+
+    .cta-wrap h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      color: #fff;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      line-height: 1.1;
+    }
+
+    .cta-wrap p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .cta-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--oscuro);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--verde); text-decoration: none; }
+
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      background: #25D366;
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.12); }
+    .wa-float svg   { width: 30px; height: 30px; fill: #fff; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 3rem; }
+      .btn { padding: 13px 22px; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-emoji">💚</div>
+  <h1>Vitali<span class="highlight">zar</span></h1>
+  <p class="hero-sub">Psicología para crecer, sanar y florecer. Atención para niños, adolescentes, adultos, parejas y familias.</p>
+
+  <div class="hero-badges">
+    <span class="badge">📍 Mao, República Dominicana</span>
+    <span class="badge">🌐 Atención Virtual</span>
+    <span class="badge">🇩🇴 Español</span>
+  </div>
+
+  <div class="hero-ctas">
+    <a href="https://wa.me/18299022600" target="_blank" rel="noopener" class="btn btn-wa">
+      <svg viewBox="0 0 24 24" width="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.85L.057 23.447c-.097.38.241.733.625.637l5.716-1.503A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.015-1.373l-.36-.213-3.713.976 1.008-3.618-.234-.373A9.818 9.818 0 0 1 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+      Agendar cita por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/vitalizarpsicologia/" target="_blank" rel="noopener" class="btn btn-ig">
+      <svg viewBox="0 0 24 24" width="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Seguir en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ── SERVICIOS ── -->
+<section style="padding: 80px 24px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <span class="section-label">¿A quién atendemos?</span>
+    <h2>Psicología para cada etapa de la vida</h2>
+    <div class="cards">
+      <div class="card card-c1">
+        <div class="card-icon">🧒</div>
+        <h3>Niños</h3>
+        <p>Acompañamos el desarrollo emocional desde la infancia, ayudando a los más pequeños a expresarse y crecer con seguridad.</p>
+      </div>
+      <div class="card card-c2">
+        <div class="card-icon">🧑</div>
+        <h3>Adolescentes</h3>
+        <p>Un espacio seguro para navegar los cambios, la identidad y los desafíos propios de esta etapa tan intensa.</p>
+      </div>
+      <div class="card card-c3">
+        <div class="card-icon">🧑‍💼</div>
+        <h3>Adultos</h3>
+        <p>Trabajamos juntos en ansiedad, depresión, autoestima, duelo y cualquier situación que te esté pesando.</p>
+      </div>
+      <div class="card card-c4">
+        <div class="card-icon">💑</div>
+        <h3>Parejas</h3>
+        <p>Fortalecer el vínculo, mejorar la comunicación y sanar heridas en la relación para construir algo más sólido.</p>
+      </div>
+      <div class="card card-c5">
+        <div class="card-icon">👨‍👩‍👧</div>
+        <h3>Familias</h3>
+        <p>Acompañamiento familiar para mejorar las dinámicas, resolver conflictos y construir lazos más saludables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MODALIDADES ── -->
+<div class="modalidades-wrap">
+  <div class="modalidades-inner">
+    <span class="section-label">¿Cómo trabajamos?</span>
+    <h2>Modalidades de atención</h2>
+    <div class="mod-grid">
+      <div class="mod-card">
+        <div class="mod-icon">📍</div>
+        <h3>Presencial</h3>
+        <p>Consultas en persona en nuestra sede de Mao, República Dominicana. Un espacio cálido y confidencial para ti.</p>
+        <span class="mod-tag tag-verde">Mao, RD</span>
+      </div>
+      <div class="mod-card">
+        <div class="mod-icon">🌐</div>
+        <h3>Virtual</h3>
+        <p>Atención en línea para que puedas recibir apoyo psicológico desde cualquier lugar del mundo, con la misma calidad y calidez.</p>
+        <span class="mod-tag tag-lila">Desde cualquier lugar</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── POR QUÉ ── -->
+<div class="porque-wrap">
+  <div class="porque-inner">
+    <span class="section-label">¿Por qué elegirnos?</span>
+    <h2>Tu bienestar es nuestra prioridad</h2>
+    <div class="razones">
+      <div class="razon">
+        <div class="razon-num">01</div>
+        <h3>Escucha real</h3>
+        <p>Cada persona es única. Trabajamos desde la empatía y el respeto, sin juicios.</p>
+      </div>
+      <div class="razon">
+        <div class="razon-num">02</div>
+        <h3>Enfoque integral</h3>
+        <p>Atendemos el ser humano completo: mente, emociones y vínculos.</p>
+      </div>
+      <div class="razon">
+        <div class="razon-num">03</div>
+        <h3>Accesible</h3>
+        <p>Presencial y virtual para que la distancia no sea un obstáculo.</p>
+      </div>
+      <div class="razon">
+        <div class="razon-num">04</div>
+        <h3>Confidencialidad</h3>
+        <p>Tu privacidad está siempre protegida. Lo que compartes aquí, aquí se queda.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA FINAL ── -->
+<div class="cta-wrap">
+  <h2>Da el primer paso hacia tu bienestar</h2>
+  <p>Agendar una cita es sencillo y confidencial. Estamos aquí para acompañarte.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/18299022600" target="_blank" rel="noopener" class="btn" style="background:#fff; color:#5A00B0; font-weight:700;">
+      <svg viewBox="0 0 24 24" width="20" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.85L.057 23.447c-.097.38.241.733.625.637l5.716-1.503A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.015-1.373l-.36-.213-3.713.976 1.008-3.618-.234-.373A9.818 9.818 0 0 1 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+      Escribir por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/vitalizarpsicologia/" target="_blank" rel="noopener" class="btn" style="background:rgba(255,255,255,0.18); color:#fff; border: 2px solid rgba(255,255,255,0.4);">
+      <svg viewBox="0 0 24 24" width="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      Ver Instagram
+    </a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>💚 <strong>Vitalizar Psicología</strong> — Mao, República Dominicana &nbsp;|&nbsp; Atención Virtual</p>
+  <p style="margin-top: 8px;">
+    <a href="https://wa.me/18299022600" target="_blank">WhatsApp: +1 829 902 2600</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/vitalizarpsicologia/" target="_blank">@vitalizarpsicologia</a>
+  </p>
+  <p style="margin-top: 12px; font-size: 0.78rem;">© 2025 Vitalizar Psicología. Todos los derechos reservados.</p>
+</footer>
+
+<!-- ── WA FLOTANTE ── -->
+<a href="https://wa.me/18299022600" target="_blank" rel="noopener" class="wa-float" title="Agendar por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.85L.057 23.447c-.097.38.241.733.625.637l5.716-1.503A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.015-1.373l-.36-.213-3.713.976 1.008-3.618-.234-.373A9.818 9.818 0 0 1 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+</a>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.card, .mod-card, .razon').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
