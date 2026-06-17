@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eva Gutiérrez | Psicóloga Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lila:    #9B59B6;
+    --fucsia:  #E91E8C;
+    --coral:   #FF6B6B;
+    --oro:     #F5C842;
+    --crema:   #FFF5FB;
+    --blanco:  #FFFFFF;
+    --texto:   #2D1B3D;
+    --gris:    #7B6785;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2D1B3D 0%, #6A1B7A 40%, #C2185B 80%, #FF6B6B 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(233,30,140,0.25) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(245,200,66,0.15) 0%, transparent 70%);
+    bottom: -80px; left: -80px;
+    border-radius: 50%;
+    animation: pulse 5s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+
+  /* Heart animation */
+  .heart-container {
+    position: relative;
+    width: 120px; height: 120px;
+    margin: 0 auto 32px;
+  }
+  .heart-svg { width: 120px; height: 120px; }
+  .heart-broken { animation: heartBreak 3s ease-in-out infinite; }
+  .heart-glow {
+    filter: drop-shadow(0 0 20px rgba(233,30,140,0.8));
+  }
+
+  @keyframes heartBreak {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(0.9) rotate(-5deg); }
+    60%  { transform: scale(1.1) rotate(3deg); }
+    100% { transform: scale(1); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(245,200,66,0.2);
+    border: 1px solid var(--oro);
+    color: var(--oro);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 900;
+    color: var(--blanco);
+    line-height: 1.15;
+    max-width: 700px;
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--oro);
+  }
+
+  .hero p.sub {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    position: relative; z-index: 1;
+  }
+
+  .btn-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
+
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 16px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+  }
+  .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(37,211,102,0.5); }
+
+  .btn-ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 16px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 30px rgba(220,39,67,0.35);
+  }
+  .btn-ig:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(220,39,67,0.45); }
+
+  /* ── WAVE ── */
+  .wave { display: block; width: 100%; margin-bottom: -2px; }
+
+  /* ── DOLOR ── */
+  .dolor {
+    background: var(--blanco);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--texto);
+    max-width: 680px;
+    margin: 0 auto 20px;
+    line-height: 1.25;
+  }
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--gris);
+    max-width: 560px;
+    margin: 0 auto 52px;
+    line-height: 1.7;
+  }
+
+  .dolor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .dolor-card {
+    background: var(--crema);
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: left;
+    border-left: 4px solid var(--fucsia);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .dolor-card.visible { opacity: 1; transform: translateY(0); }
+  .dolor-card .emoji { font-size: 2rem; margin-bottom: 12px; }
+  .dolor-card h3 { font-size: 1rem; font-weight: 800; color: var(--texto); margin-bottom: 8px; }
+  .dolor-card p { font-size: 0.92rem; color: var(--gris); line-height: 1.6; }
+
+  /* ── EVA ── */
+  .eva {
+    background: linear-gradient(135deg, var(--lila) 0%, #C2185B 100%);
+    padding: 80px 24px;
+    text-align: center;
+    color: white;
+  }
+  .eva-inner { max-width: 800px; margin: 0 auto; }
+  .eva-avatar {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    margin: 0 auto 24px;
+    border: 3px solid rgba(255,255,255,0.4);
+  }
+  .eva h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .eva p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.9;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .eva-stats {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 24px 36px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--oro);
+  }
+  .stat .label { font-size: 0.85rem; opacity: 0.85; margin-top: 4px; }
+
+  /* ── PROCESO 12 SEMANAS ── */
+  .proceso {
+    background: var(--crema);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .semanas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .semana-card {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    box-shadow: 0 4px 24px rgba(155,89,182,0.1);
+  }
+  .semana-card.visible { opacity: 1; transform: translateY(0); }
+  .semana-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .semana-card:nth-child(1)::before { background: linear-gradient(90deg, var(--fucsia), var(--coral)); }
+  .semana-card:nth-child(2)::before { background: linear-gradient(90deg, var(--lila), var(--fucsia)); }
+  .semana-card:nth-child(3)::before { background: linear-gradient(90deg, var(--coral), var(--oro)); }
+
+  .semana-num {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .semana-card:nth-child(1) .semana-num { color: var(--fucsia); }
+  .semana-card:nth-child(2) .semana-num { color: var(--lila); }
+  .semana-card:nth-child(3) .semana-num { color: var(--coral); }
+
+  .semana-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; color: var(--texto); }
+  .semana-card p { font-size: 0.93rem; color: var(--gris); line-height: 1.65; }
+  .semana-icon { font-size: 2.2rem; margin-bottom: 16px; }
+
+  /* ── TESTIMONIOS ── */
+  .testimonios {
+    background: var(--blanco);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .test-card {
+    background: var(--crema);
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .test-card.visible { opacity: 1; transform: translateY(0); }
+  .stars { color: var(--oro); font-size: 1.1rem; margin-bottom: 14px; }
+  .test-card blockquote { font-size: 0.95rem; color: var(--gris); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+  .test-author { font-weight: 800; font-size: 0.88rem; color: var(--texto); }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: linear-gradient(135deg, #1A0A2E 0%, #6A1B7A 50%, #E91E8C 100%);
+    padding: 100px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: '💫';
+    position: absolute;
+    font-size: 200px;
+    opacity: 0.04;
+    top: -30px; right: -20px;
+    animation: spin 20s linear infinite;
+  }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: white;
+    font-weight: 900;
+    max-width: 650px;
+    margin: 0 auto 16px;
+    line-height: 1.2;
+  }
+  .cta-final p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+    margin-bottom: 48px;
+    max-width: 500px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.65;
+  }
+  .cta-phone {
+    display: inline-block;
+    color: var(--oro);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    margin-bottom: 40px;
+    text-decoration: none;
+  }
+  .cta-phone:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1A0A2E;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--fucsia); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── FLOATING WA ── */
+  .float-wa {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 62px; height: 62px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+    z-index: 999;
+    text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s;
+    animation: floatBounce 2.5s ease-in-out infinite;
+  }
+  .float-wa:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.65); }
+  @keyframes floatBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .float-wa svg { width: 32px; height: 32px; fill: white; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .btn-group { flex-direction: column; align-items: center; }
+    .eva-stats { gap: 16px; }
+    .stat { padding: 18px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/34656758816?text=Hola%20Eva%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20sobre%20tu%20terapia%20online" target="_blank" class="float-wa" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.882l6.197-1.461A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.495-5.178-1.362l-.371-.22-3.679.867.883-3.579-.242-.381A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="heart-container">
+    <svg class="heart-svg heart-glow" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+      <!-- Corazón roto izquierdo -->
+      <path class="heart-broken" d="M50 80 L18 50 C6 38 6 20 18 12 C28 5 40 8 50 18" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-linecap="round"/>
+      <!-- Corazón completo -->
+      <path d="M50 80 C50 80 10 55 10 30 C10 18 20 10 30 10 C38 10 45 15 50 22 C55 15 62 10 70 10 C80 10 90 18 90 30 C90 55 50 80 50 80 Z" fill="url(#hgrad)"/>
+      <defs>
+        <linearGradient id="hgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#E91E8C"/>
+          <stop offset="100%" style="stop-color:#FF6B6B"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="hero-badge">✨ Psicóloga Online · Terapia en Español</div>
+
+  <h1>Deja de sufrir por amor y <em>retoma el control</em> de tu vida</h1>
+
+  <p class="sub">
+    En solo 12 semanas, aprenderás a sanar tus heridas emocionales, recuperar tu autoestima y construir la vida que mereces — desde donde estés.
+  </p>
+
+  <div class="btn-group">
+    <a href="https://wa.me/34656758816?text=Hola%20Eva%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tu%20terapia%20online" target="_blank" class="btn-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.882l6.197-1.461A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.495-5.178-1.362l-.371-.22-3.679.867.883-3.579-.242-.381A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Pedir Cita Ahora
+    </a>
+    <a href="https://www.instagram.com/evapsicologia/" target="_blank" class="btn-ig">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Ver Instagram
+    </a>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+</svg>
+
+<!-- DOLOR -->
+<section class="dolor">
+  <p class="section-label">¿Te sientes así?</p>
+  <h2 class="section-title">Sabemos que el dolor emocional puede paralizarte</h2>
+  <p class="section-sub">Reconocer lo que sientes es el primer paso. No estás sola en esto.</p>
+
+  <div class="dolor-grid">
+    <div class="dolor-card">
+      <div class="emoji">💔</div>
+      <h3>No puedes dejar de pensar en él o en ella</h3>
+      <p>Tu mente da vueltas en bucle y no encuentras cómo parar ese sufrimiento constante.</p>
+    </div>
+    <div class="dolor-card">
+      <div class="emoji">😔</div>
+      <h3>Tu autoestima está por el suelo</h3>
+      <p>Sientes que no eres suficiente, que algo en ti está mal y que no mereces amor.</p>
+    </div>
+    <div class="dolor-card">
+      <div class="emoji">😰</div>
+      <h3>El miedo a la soledad te domina</h3>
+      <p>Evitas estar contigo misma porque no sabes cómo gestionar lo que sientes.</p>
+    </div>
+    <div class="dolor-card">
+      <div class="emoji">🔄</div>
+      <h3>Repites los mismos patrones</h3>
+      <p>Siempre acabas en relaciones que te hacen daño y no entiendes por qué.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVA -->
+<section class="eva">
+  <div class="eva-inner">
+    <div class="eva-avatar">🌸</div>
+    <h2>Hola, soy Eva Gutiérrez</h2>
+    <p>Psicóloga especializada en bienestar emocional y relaciones. Mi misión es acompañarte a salir del bucle del sufrimiento por amor y ayudarte a reconectar con quien eres de verdad — segura, plena y en paz consigo misma. Todo desde la comodidad de tu hogar, online y en español.</p>
+    <div class="eva-stats">
+      <div class="stat">
+        <div class="num">+200</div>
+        <div class="label">personas acompañadas</div>
+      </div>
+      <div class="stat">
+        <div class="num">12</div>
+        <div class="label">semanas de transformación</div>
+      </div>
+      <div class="stat">
+        <div class="num">100%</div>
+        <div class="label">terapia online</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="proceso">
+  <p class="section-label">El camino de 12 semanas</p>
+  <h2 class="section-title">Un proceso claro hacia tu bienestar emocional</h2>
+  <p class="section-sub">Sin magia, sin atajos. Un método estructurado que realmente funciona.</p>
+
+  <div class="semanas-grid">
+    <div class="semana-card">
+      <div class="semana-icon">🔍</div>
+      <div class="semana-num">Semanas 1 – 4</div>
+      <h3>Entender y soltar</h3>
+      <p>Identificamos los patrones emocionales que te atrapan, trabajamos el duelo y empezamos a soltar lo que ya no te sirve.</p>
+    </div>
+    <div class="semana-card">
+      <div class="semana-icon">💪</div>
+      <div class="semana-num">Semanas 5 – 8</div>
+      <h3>Sanar y fortalecer</h3>
+      <p>Reconstruimos tu autoestima desde dentro, gestionamos la ansiedad emocional y aprendes a cuidarte a ti misma.</p>
+    </div>
+    <div class="semana-card">
+      <div class="semana-icon">✨</div>
+      <div class="semana-num">Semanas 9 – 12</div>
+      <h3>Retomar el control</h3>
+      <p>Defines quién quieres ser, cómo quieres relacionarte y construyes un plan de vida que te ilusione de verdad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios">
+  <p class="section-label">Lo que dicen ellas</p>
+  <h2 class="section-title">Historias reales de transformación</h2>
+  <p class="section-sub">El cambio es posible. Estas personas ya lo vivieron.</p>
+
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Llegué completamente destrozada después de una ruptura que no entendía. Eva me ayudó a ver todo con claridad y a recuperar mi vida. No lo hubiera creído posible."</blockquote>
+      <div class="test-author">— Laura M., Madrid</div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Llevaba años repitiendo los mismos errores en mis relaciones. Gracias a la terapia con Eva por fin entiendo por qué y he podido romper ese ciclo."</blockquote>
+      <div class="test-author">— Ana R., Barcelona</div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Lo mejor que he hecho por mí misma. Las 12 semanas pasaron volando y la transformación que sentí fue real. Eva es increíble."</blockquote>
+      <div class="test-author">— Sofía D., Valencia</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>¿Lista para dejar de sufrir y empezar a vivir?</h2>
+  <p>Tu primera consulta es el primer paso. Escríbeme hoy y hablamos sin compromiso.</p>
+  <a href="tel:+34656758816" class="cta-phone">📞 (+34) 656 75 88 16</a>
+  <br>
+  <div class="btn-group" style="position:relative;z-index:1;">
+    <a href="https://wa.me/34656758816?text=Hola%20Eva%2C%20quiero%20empezar%20mi%20proceso%20de%20terapia%20online" target="_blank" class="btn-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.882l6.197-1.461A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.495-5.178-1.362l-.371-.22-3.679.867.883-3.579-.242-.381A9.938 9.938 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Escribirme por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/evapsicologia/" target="_blank" class="btn-ig">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Seguir en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Eva Gutiérrez · Psicóloga Online · <a href="https://www.instagram.com/evapsicologia/" target="_blank">@evapsicologia</a> · <a href="tel:+34656758816">(+34) 656 75 88 16</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.dolor-card, .semana-card, .test-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
