@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alana Bagaeva | Psicóloga & Psicoterapeuta</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --fuchsia:   #E8417A;
+    --lavender:  #7B5EA7;
+    --lavender-light: #A98FD0;
+    --peach:     #FFB088;
+    --cream:     #FFF8F0;
+    --cream2:    #FEF0E7;
+    --white:     #FFFFFF;
+    --text-dark: #2A1A35;
+    --text-mid:  #5A4560;
+    --text-soft: #9C8AA8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2A1A35 0%, #4A2060 45%, #7B3A8A 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Blobs decorativos */
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,65,122,0.25) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    animation: pulse-blob 6s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,176,136,0.2) 0%, transparent 70%);
+    bottom: -80px; left: -80px;
+    animation: pulse-blob 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse-blob {
+    0%, 100% { transform: scale(1) translate(0,0); }
+    50% { transform: scale(1.15) translate(20px, -20px); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--peach);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 50px;
+    margin-bottom: 28px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.05;
+    position: relative; z-index: 1;
+    margin-bottom: 8px;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--peach);
+  }
+
+  .hero-title {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+    position: relative; z-index: 1;
+  }
+
+  /* Corazón latiendo — firma del diseño */
+  .heart-beat {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 36px;
+    position: relative; z-index: 1;
+    animation: heartbeat 1.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 16px rgba(232,65,122,0.7));
+  }
+
+  @keyframes heartbeat {
+    0%   { transform: scale(1); }
+    14%  { transform: scale(1.18); }
+    28%  { transform: scale(1); }
+    42%  { transform: scale(1.12); }
+    70%  { transform: scale(1); }
+    100% { transform: scale(1); }
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 48px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--fuchsia);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 16px 32px;
+    border-radius: 50px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 30px rgba(232,65,122,0.45);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(232,65,122,0.55); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 15px 28px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.5;
+  }
+  .scroll-hint span {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+  }
+  .scroll-dot {
+    width: 2px;
+    height: 28px;
+    background: white;
+    border-radius: 2px;
+    animation: scroll-anim 1.8s ease-in-out infinite;
+  }
+  @keyframes scroll-anim {
+    0%, 100% { transform: scaleY(1); opacity: 0.4; }
+    50% { transform: scaleY(0.4); opacity: 1; }
+  }
+
+  /* ── SOBRE ── */
+  .sobre {
+    padding: 100px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .sobre-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fuchsia);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .sobre h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+  }
+
+  .sobre h2 em {
+    font-style: italic;
+    color: var(--lavender);
+  }
+
+  .sobre p {
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 1.02rem;
+  }
+
+  .lang-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .lang-chips span {
+    background: var(--cream2);
+    color: var(--lavender);
+    font-weight: 600;
+    font-size: 0.82rem;
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1.5px solid var(--lavender-light);
+  }
+
+  .sobre-visual {
+    position: relative;
+  }
+
+  .visual-card {
+    background: linear-gradient(135deg, #7B5EA7 0%, #E8417A 100%);
+    border-radius: 24px;
+    padding: 48px 36px;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .visual-card::before {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    top: -40px; right: -40px;
+  }
+
+  .visual-card .big-emoji { font-size: 4rem; margin-bottom: 20px; display: block; }
+
+  .visual-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .visual-card p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    line-height: 1.65;
+  }
+
+  .floating-pill {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    padding: 10px 18px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fp1 { bottom: -18px; left: -18px; }
+  .fp2 { top: -16px; right: -16px; }
+  .fp1 span, .fp2 span { font-size: 1.1rem; }
+
+  /* ── ESPECIALIDADES ── */
+  .especialidades {
+    background: linear-gradient(180deg, var(--cream) 0%, #F5E8FA 100%);
+    padding: 90px 24px;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px;
+  }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fuchsia);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    color: var(--text-dark);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 36px 28px;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .card:nth-child(1)::before { background: linear-gradient(90deg, var(--fuchsia), var(--peach)); }
+  .card:nth-child(2)::before { background: linear-gradient(90deg, var(--lavender), #C4A8E8); }
+  .card:nth-child(3)::before { background: linear-gradient(90deg, #FF8C69, var(--peach)); }
+  .card:nth-child(4)::before { background: linear-gradient(90deg, #E8417A, var(--lavender)); }
+  .card:nth-child(5)::before { background: linear-gradient(90deg, #7FBF8A, #A8D8B0); }
+  .card:nth-child(6)::before { background: linear-gradient(90deg, #5BA8CC, #90CBE8); }
+
+  .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(123,94,167,0.15); }
+
+  .card-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* ── ENFOQUE ── */
+  .enfoque {
+    padding: 90px 24px;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .enfoque blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-style: italic;
+    color: var(--lavender);
+    line-height: 1.45;
+    position: relative;
+    padding: 0 24px;
+    margin: 40px 0;
+  }
+
+  .enfoque blockquote::before {
+    content: '"';
+    font-size: 8rem;
+    color: var(--peach);
+    opacity: 0.3;
+    position: absolute;
+    top: -30px;
+    left: -10px;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+
+  .metodos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .metodo-chip {
+    background: var(--cream2);
+    border: 1.5px solid var(--lavender-light);
+    color: var(--lavender);
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+
+  /* ── MODALIDADES ── */
+  .modalidades {
+    background: var(--text-dark);
+    padding: 90px 24px;
+  }
+
+  .mod-grid {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .mod-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 40px 32px;
+    transition: background 0.25s;
+  }
+  .mod-card:hover { background: rgba(255,255,255,0.1); }
+
+  .mod-card .icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+
+  .mod-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .mod-card p { color: rgba(255,255,255,0.65); line-height: 1.7; font-size: 0.95rem; }
+
+  .mod-section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--peach);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--fuchsia) 0%, var(--lavender) 100%);
+    padding: 100px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '🫀';
+    position: absolute;
+    font-size: 18rem;
+    opacity: 0.06;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    color: white;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.82);
+    font-size: 1.05rem;
+    margin-bottom: 44px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.75;
+    position: relative;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: var(--fuchsia);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 16px 32px;
+    border-radius: 50px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+  }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 15px 28px;
+    border-radius: 50px;
+    border: 2px solid rgba(255,255,255,0.5);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 36px 24px;
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--peach); text-decoration: none; }
+  footer a:hover { color: white; }
+
+  /* ── STICKY WHATSAPP ── */
+  .sticky-wa {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: wa-pop 3s ease-in-out infinite;
+  }
+  .sticky-wa:hover { transform: scale(1.1); box-shadow: 0 10px 36px rgba(37,211,102,0.6); }
+
+  @keyframes wa-pop {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+    50% { box-shadow: 0 6px 28px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.15); }
+  }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .sobre { grid-template-columns: 1fr; gap: 40px; }
+    .mod-grid { grid-template-columns: 1fr; }
+    .fp1, .fp2 { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY WA -->
+<a class="sticky-wa" href="https://api.whatsapp.com/message/C2YAFAPNWC6TF1" target="_blank" rel="noopener" title="Escríbeme por WhatsApp">💬</a>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <span class="hero-badge">Psicóloga & Psicoterapeuta</span>
+  <span class="heart-beat">🫀</span>
+  <h1 class="hero-name">Alana <em>Bagaeva</em></h1>
+  <p class="hero-title">Psicoterapia online · Presencial en Barcelona</p>
+  <p class="hero-desc">
+    Acompaño procesos para <strong>atravesar dificultades</strong> y mejorar relaciones.<br/>
+    Un espacio donde tu experiencia tiene sentido y tu bienestar importa.
+  </p>
+  <div class="hero-ctas">
+    <a href="https://api.whatsapp.com/message/C2YAFAPNWC6TF1" target="_blank" class="btn-primary">
+      💬 Escríbeme por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/alanabagaeva/" target="_blank" class="btn-secondary">
+      📸 Sígueme en Instagram
+    </a>
+  </div>
+  <div class="scroll-hint">
+    <span>Descubre más</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- ── SOBRE ── -->
+<section class="sobre">
+  <div class="reveal">
+    <span class="sobre-tag">Sobre mí</span>
+    <h2>Psicología con <em>mirada humana</em></h2>
+    <p>
+      Soy Alana Bagaeva Kokoeva, psicóloga general sanitaria (col. nº&nbsp;27.659) especializada en acompañar a personas que atraviesan momentos difíciles, relaciones complejas o transiciones vitales que desorientan.
+    </p>
+    <p>
+      Trabajo desde un enfoque funcional-contextual, basado en la evidencia: herramientas concretas, una mirada compasiva y un espacio donde puedes ser exactamente quien eres.
+    </p>
+    <p>
+      También soy cofundadora de <strong>@sard_lab</strong> 🫂, un proyecto de comunidad y bienestar.
+    </p>
+    <div class="lang-chips">
+      <span>🇪🇸 Español</span>
+      <span>🏴󠁥󠁳󠁣󠁴󠁿 Catalán</span>
+      <span>🇷🇺 Ruso</span>
+    </div>
+  </div>
+  <div class="sobre-visual reveal">
+    <div class="visual-card">
+      <span class="big-emoji">👩🏻‍💻</span>
+      <h3>Presencia y calidez</h3>
+      <p>Cada proceso es único. Te acompañaré con respeto, sin juzgar, escuchándote de verdad.</p>
+    </div>
+    <div class="floating-pill fp1"><span>🌱</span> Basada en evidencia</div>
+    <div class="floating-pill fp2"><span>🔒</span> Espacio seguro</div>
+  </div>
+</section>
+
+<!-- ── ESPECIALIDADES ── -->
+<section class="especialidades">
+  <div class="section-header reveal">
+    <span class="section-tag">Especialidades</span>
+    <h2>Áreas en las que puedo ayudarte</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card reveal">
+      <span class="card-icon">😰</span>
+      <h3>Ansiedad y estrés</h3>
+      <p>Preocupación constante, rumiación, ataques de pánico. Te ayudo a entender qué pasa y recuperar calma.</p>
+    </div>
+    <div class="card reveal">
+      <span class="card-icon">🌧️</span>
+      <h3>Malestar emocional</h3>
+      <p>Tristeza, bloqueo, sensación de vacío. Juntas exploramos qué hay detrás y cómo avanzar.</p>
+    </div>
+    <div class="card reveal">
+      <span class="card-icon">💔</span>
+      <h3>Relaciones difíciles</h3>
+      <p>Vínculos que duelen, rupturas, patrones que se repiten. Trabajo contigo para construir relaciones más sanas.</p>
+    </div>
+    <div class="card reveal">
+      <span class="card-icon">🔄</span>
+      <h3>Crisis y cambios vitales</h3>
+      <p>Transiciones, pérdidas, momentos de desorientación. Acompañamiento en los momentos de mayor incertidumbre.</p>
+    </div>
+    <div class="card reveal">
+      <span class="card-icon">🪞</span>
+      <h3>Autoconocimiento</h3>
+      <p>Entender tus emociones, valores y formas de relacionarte contigo mismo y con el mundo.</p>
+    </div>
+    <div class="card reveal">
+      <span class="card-icon">🤝</span>
+      <h3>Habilidades sociales</h3>
+      <p>Comunicación, límites, dificultades en el entorno social o laboral. Aprendemos juntas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ENFOQUE ── -->
+<section class="enfoque">
+  <div class="reveal">
+    <span class="section-tag" style="color:var(--fuchsia); font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;">Mi enfoque</span>
+    <blockquote>
+      No basta con entender el problema: necesitas herramientas reales para vivir con más sentido.
+    </blockquote>
+    <p style="color:var(--text-mid); font-size:1rem; line-height:1.8; max-width:600px; margin:0 auto;">
+      Trabajo desde la <strong>Terapia de Aceptación y Compromiso (ACT)</strong> y la <strong>Psicoterapia Analítico-Funcional (FAP)</strong>, enfoques que combinan la comprensión profunda de tus patrones con pasos concretos hacia el cambio que realmente importa.
+    </p>
+    <div class="metodos">
+      <span class="metodo-chip">ACT</span>
+      <span class="metodo-chip">FAP</span>
+      <span class="metodo-chip">Enfoque contextual</span>
+      <span class="metodo-chip">Basado en evidencia</span>
+      <span class="metodo-chip">Personalizado</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── MODALIDADES ── -->
+<section class="modalidades">
+  <div class="section-header reveal" style="margin-bottom:48px;">
+    <span class="mod-section-tag">Cómo trabajamos</span>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3.5vw,2.4rem); color:white; line-height:1.2;">Elige tu modalidad</h2>
+  </div>
+  <div class="mod-grid">
+    <div class="mod-card reveal">
+      <span class="icon">💻</span>
+      <h3>Terapia Online</h3>
+      <p>Sesiones por videollamada desde donde estés. Misma calidad, mismo compromiso, mayor comodidad y accesibilidad.</p>
+    </div>
+    <div class="mod-card reveal">
+      <span class="icon">🏙️</span>
+      <h3>Presencial en Barcelona</h3>
+      <p>Sesiones en consulta en Barcelona. Un espacio físico donde el encuentro tiene otra dimensión.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="cta-section">
+  <h2 class="reveal">¿Empezamos juntas?</h2>
+  <p class="reveal">
+    Si sientes que ha llegado el momento de cuidarte, estoy aquí. Escríbeme sin compromiso y hablamos.
+  </p>
+  <div class="cta-btns reveal">
+    <a href="https://api.whatsapp.com/message/C2YAFAPNWC6TF1" target="_blank" class="btn-white">
+      💬 Escríbeme por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/alanabagaeva/" target="_blank" class="btn-outline-white">
+      📸 Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>
+    © 2025 Alana Bagaeva Kokoeva · Psicóloga General Sanitaria col.&nbsp;27.659 ·
+    <a href="https://www.instagram.com/alanabagaeva/" target="_blank">@alanabagaeva</a> ·
+    <a href="https://www.instagram.com/sard_lab/" target="_blank">@sard_lab</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
