@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claudia Pradas · Psicología & Salud Mental</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lila:    #C084FC;
+    --rosa:    #F472B6;
+    --coral:   #FB923C;
+    --amarillo:#FBBF24;
+    --verde:   #34D399;
+    --cian:    #22D3EE;
+    --azul:    #818CF8;
+    --negro:   #0F0A1E;
+    --blanco:  #FEFCE8;
+    --gris:    #4B3F72;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 30%, rgba(192,132,252,.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 70%, rgba(244,114,182,.3) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(34,211,238,.15) 0%, transparent 70%),
+      var(--negro);
+    z-index: 0;
+  }
+
+  .orbs {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  }
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .25;
+    animation: float 8s ease-in-out infinite alternate;
+  }
+  .orb-1 { width: 320px; height: 320px; background: var(--lila);  top: -80px;  left: -60px;  animation-delay: 0s; }
+  .orb-2 { width: 240px; height: 240px; background: var(--rosa);  bottom: 40px; right: -40px; animation-delay: -3s; }
+  .orb-3 { width: 180px; height: 180px; background: var(--cian);  top: 40%;    left: 60%;   animation-delay: -5s; }
+  .orb-4 { width: 140px; height: 140px; background: var(--verde); bottom: 20%; left: 10%;   animation-delay: -2s; }
+
+  @keyframes float {
+    from { transform: translateY(0) scale(1); }
+    to   { transform: translateY(-30px) scale(1.08); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 100px;
+    padding: .45rem 1.1rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(8px);
+    color: var(--cian);
+  }
+
+  .hero-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--lila) 0%, var(--rosa) 35%, var(--coral) 65%, var(--amarillo) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: .4rem;
+  }
+
+  .hero-apellido {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 6vw, 3.8rem);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--blanco);
+    margin-bottom: 1.8rem;
+    opacity: .9;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 400;
+    color: rgba(254,252,232,.75);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero-creds {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .cred-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: .7rem;
+    padding: .4rem .9rem;
+    border-radius: 100px;
+    border: 1.5px solid;
+    letter-spacing: .08em;
+  }
+  .cred-tag.lila  { border-color: var(--lila);  color: var(--lila); }
+  .cred-tag.verde { border-color: var(--verde); color: var(--verde); }
+  .cred-tag.cian  { border-color: var(--cian);  color: var(--cian); }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600; font-size: 1rem;
+    padding: .85rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover { transform: translateY(-3px); }
+
+  .btn-libro {
+    background: linear-gradient(135deg, var(--lila), var(--rosa), var(--coral));
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(244,114,182,.4);
+  }
+  .btn-libro:hover { box-shadow: 0 12px 40px rgba(244,114,182,.6); }
+
+  .btn-ig {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,.3);
+    color: var(--blanco);
+    backdrop-filter: blur(8px);
+  }
+  .btn-ig:hover { border-color: var(--lila); color: var(--lila); box-shadow: 0 0 20px rgba(192,132,252,.3); }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    color: rgba(255,255,255,.4); font-size: .7rem; letter-spacing: .1em;
+    text-transform: uppercase; font-family: 'Space Mono', monospace;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .scroll-hint svg { width: 20px; height: 20px; }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECCIÓN: SOBRE MÍ ── */
+  .section {
+    padding: 6rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 680px) { .sobre-grid { grid-template-columns: 1fr; } }
+
+  .sobre-text {
+    font-size: 1.05rem; line-height: 1.8;
+    color: rgba(254,252,232,.75);
+  }
+  .sobre-text p + p { margin-top: 1rem; }
+
+  .sobre-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-style: italic;
+    color: var(--lila);
+    line-height: 1.5;
+    border-left: 3px solid var(--lila);
+    padding-left: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* ── PILLARS ── */
+  .pillars-section {
+    background: linear-gradient(180deg, rgba(192,132,252,.07) 0%, rgba(244,114,182,.07) 100%);
+    border-top: 1px solid rgba(255,255,255,.06);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    padding: 6rem 1.5rem;
+  }
+
+  .pillars-inner { max-width: 1100px; margin: 0 auto; }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .pillar-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s, border-color .25s;
+  }
+  .pillar-card:hover { transform: translateY(-6px); border-color: rgba(192,132,252,.5); }
+  .pillar-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 20px 20px 0 0;
+  }
+  .pillar-card.lila::before  { background: linear-gradient(90deg, var(--lila), var(--azul)); }
+  .pillar-card.rosa::before  { background: linear-gradient(90deg, var(--rosa), var(--coral)); }
+  .pillar-card.verde::before { background: linear-gradient(90deg, var(--verde), var(--cian)); }
+
+  .pillar-emoji { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+  .pillar-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    margin-bottom: .7rem;
+  }
+  .pillar-card p { font-size: .93rem; line-height: 1.7; color: rgba(254,252,232,.7); }
+
+  /* ── LIBRO ── */
+  .libro-section {
+    padding: 7rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .libro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 760px) {
+    .libro-grid { grid-template-columns: 1fr; }
+    .libro-cover { max-width: 280px; margin: 0 auto; }
+  }
+
+  .libro-cover {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .libro-cover-inner {
+    background: linear-gradient(145deg, #1a0533, #2d0a4e);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(192,132,252,.3);
+    box-shadow:
+      0 0 60px rgba(192,132,252,.2),
+      0 0 120px rgba(244,114,182,.1);
+    position: relative;
+  }
+
+  .libro-cover-inner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(192,132,252,.2), transparent 60%);
+    border-radius: 16px;
+  }
+
+  .libro-titulo-visual {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #fff, var(--lila));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: .8rem;
+    position: relative;
+  }
+
+  .libro-autor-visual {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem;
+    color: var(--lila);
+    letter-spacing: .1em;
+    position: relative;
+  }
+
+  .libro-deco {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    position: relative;
+  }
+
+  .libro-info .section-eyebrow { color: var(--coral); }
+  .libro-info .section-title { margin-bottom: 1rem; }
+
+  .libro-desc {
+    font-size: 1.05rem; line-height: 1.8;
+    color: rgba(254,252,232,.75);
+    margin-bottom: 2rem;
+  }
+
+  .libro-pills {
+    display: flex; flex-wrap: wrap; gap: .6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .pill {
+    font-size: .78rem;
+    padding: .35rem .85rem;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  .pill.lila   { background: rgba(192,132,252,.15); color: var(--lila);  border: 1px solid rgba(192,132,252,.3); }
+  .pill.rosa   { background: rgba(244,114,182,.15); color: var(--rosa);  border: 1px solid rgba(244,114,182,.3); }
+  .pill.verde  { background: rgba(52,211,153,.15);  color: var(--verde); border: 1px solid rgba(52,211,153,.3); }
+  .pill.cian   { background: rgba(34,211,238,.15);  color: var(--cian);  border: 1px solid rgba(34,211,238,.3); }
+  .pill.amarillo { background: rgba(251,191,36,.15); color: var(--amarillo); border: 1px solid rgba(251,191,36,.3); }
+
+  /* ── INSTAGRAM CTA ── */
+  .ig-section {
+    padding: 6rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .ig-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(244,114,182,.12), transparent 70%);
+  }
+
+  .ig-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+
+  .ig-icon {
+    width: 80px; height: 80px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #F9CE34, #EE2A7B, #6228D7);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 8px 32px rgba(238,42,123,.4);
+  }
+  .ig-icon svg { width: 44px; height: 44px; fill: #fff; }
+
+  .ig-handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--rosa);
+    margin-bottom: .8rem;
+  }
+
+  .ig-desc {
+    font-size: 1rem;
+    color: rgba(254,252,232,.65);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: rgba(254,252,232,.35);
+    font-size: .82rem;
+    font-family: 'Space Mono', monospace;
+  }
+
+  footer span { color: var(--lila); }
+
+  /* ── RAINBOW DIVIDER ── */
+  .rainbow-bar {
+    height: 4px;
+    background: linear-gradient(90deg,
+      var(--lila) 0%, var(--azul) 16%,
+      var(--cian) 33%, var(--verde) 50%,
+      var(--amarillo) 67%, var(--coral) 83%,
+      var(--rosa) 100%);
+  }
+
+  /* ── FADE-IN ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { opacity: 1; transform: none; }
+    .orb { animation: none; }
+    .scroll-hint { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="badge">🏳️‍🌈 &nbsp;Psicología Sanitaria · G-06694</div>
+
+    <h1 class="hero-nombre">Claudia</h1>
+    <p class="hero-apellido">Pradas</p>
+
+    <p class="hero-tagline">
+      Divulgación de salud mental y neurodivergencias.<br>
+      Porque entenderte a ti mismo es el primer paso.
+    </p>
+
+    <div class="hero-creds">
+      <span class="cred-tag lila">🧠 Psicóloga Sanitaria</span>
+      <span class="cred-tag verde">📍 A Coruña</span>
+      <span class="cred-tag cian">✨ Neurodivergencias</span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="https://www.dashbook.es/book/no-todo-esta-en-tu-cabeza" target="_blank" rel="noopener" class="btn btn-libro">
+        📖 Comprar el libro
+      </a>
+      <a href="https://www.instagram.com/claudiap_psicologia/" target="_blank" rel="noopener" class="btn btn-ig">
+        Seguir en Instagram
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Descubre más
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- ── SOBRE MÍ ── -->
+<section class="section fade-up">
+  <p class="section-eyebrow" style="color: var(--lila)">👋 Quién soy</p>
+  <div class="sobre-grid">
+    <div>
+      <h2 class="section-title">Hablo de salud mental sin tabúes</h2>
+      <div class="sobre-text">
+        <p>Soy Claudia Pradas, psicóloga sanitaria colegiada (G-06694) con base en A Coruña. Me dedico a divulgar sobre salud mental y neurodivergencias de forma accesible, honesta y sin rodeos.</p>
+        <p>Creo firmemente que la información en psicología debe llegar a todas las personas, no solo a quienes ya están en consulta. Por eso comparto contenido que desmonta mitos, aclara conceptos y acompaña en el proceso de conocerse mejor.</p>
+      </div>
+    </div>
+    <div>
+      <blockquote class="sobre-highlight">
+        "La salud mental no es un lujo ni un tema de moda — es parte de quiénes somos."
+      </blockquote>
+      <div class="sobre-text" style="margin-top: 1.5rem;">
+        <p>Mi contenido está pensado para todas las personas que alguna vez se han preguntado por qué sienten lo que sienten, por qué funcionan como funcionan o por qué el mundo parece diseñado para otros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PILARES ── -->
+<div class="pillars-section">
+  <div class="pillars-inner fade-up">
+    <p class="section-eyebrow" style="color: var(--rosa)">🌈 De qué hablo</p>
+    <h2 class="section-title">Temáticas principales</h2>
+
+    <div class="pillars-grid">
+      <div class="pillar-card lila">
+        <span class="pillar-emoji">🧠</span>
+        <h3>Salud Mental</h3>
+        <p>Ansiedad, depresión, autoestima, relaciones tóxicas y todo lo que nos afecta internamente explicado de forma clara y sin estigma.</p>
+      </div>
+      <div class="pillar-card rosa">
+        <span class="pillar-emoji">⚡</span>
+        <h3>Neurodivergencias</h3>
+        <p>TDAH, autismo, dislexia y otras formas de procesar el mundo — porque los cerebros neurodivergentes merecen ser comprendidos.</p>
+      </div>
+      <div class="pillar-card verde">
+        <span class="pillar-emoji">🏳️‍🌈</span>
+        <h3>Identidad & Diversidad</h3>
+        <p>El bienestar psicológico de las personas LGTBIQ+ y cómo la sociedad impacta nuestra salud mental desde la infancia.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LIBRO ── -->
+<section class="libro-section fade-up">
+  <div class="libro-grid">
+    <div class="libro-cover">
+      <div class="libro-cover-inner">
+        <span class="libro-deco">📚</span>
+        <p class="libro-titulo-visual">No Todo Está En Tu Cabeza</p>
+        <p class="libro-autor-visual">Claudia Pradas</p>
+      </div>
+    </div>
+    <div class="libro-info">
+      <p class="section-eyebrow" style="color: var(--coral)">📖 Publicación</p>
+      <h2 class="section-title">No Todo Está<br><em>En Tu Cabeza</em></h2>
+      <p class="libro-desc">
+        El libro que valida lo que sientes. Porque muchas veces el problema no está "en tu cabeza" — está en el contexto, en la historia, en los sistemas que nos rodean. Una guía para entender tu mente con rigor, empatía y sin juicio.
+      </p>
+      <div class="libro-pills">
+        <span class="pill lila">Psicología</span>
+        <span class="pill rosa">Salud Mental</span>
+        <span class="pill verde">Divulgación</span>
+        <span class="pill cian">Neurodivergencias</span>
+        <span class="pill amarillo">Autoconocimiento</span>
+      </div>
+      <a href="https://www.dashbook.es/book/no-todo-esta-en-tu-cabeza" target="_blank" rel="noopener" class="btn btn-libro" style="font-size:.95rem;">
+        📖 Consigue tu ejemplar →
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- ── INSTAGRAM ── -->
+<section class="ig-section fade-up">
+  <div class="ig-inner">
+    <div class="ig-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+    </div>
+    <p class="ig-handle">@claudiap_psicologia</p>
+    <h2 class="section-title" style="font-size: 2rem; margin-bottom: 1rem;">Sígueme en Instagram</h2>
+    <p class="ig-desc">Divulgación de salud mental y neurodivergencias semana a semana. Contenido honesto, accesible y sin filtros sobre cómo funciona nuestra mente.</p>
+    <a href="https://www.instagram.com/claudiap_psicologia/" target="_blank" rel="noopener" class="btn" style="background: linear-gradient(135deg, #F9CE34, #EE2A7B, #6228D7); color:#fff; box-shadow: 0 8px 32px rgba(238,42,123,.4); font-size: 1rem;">
+      Ver perfil en Instagram ✨
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2024 <span>Claudia Pradas</span> · Psicóloga Sanitaria · Colegiada G-06694 · A Coruña</p>
+  <p style="margin-top:.5rem;">Este sitio es informativo y no sustituye atención psicológica profesional.</p>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
