@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dra. Julissa Ureña | Psicóloga Clínica Ph.D</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:   #6B3FA0;
+      --fuchsia:  #E91E8C;
+      --teal:     #00BCD4;
+      --yellow:   #FFD54F;
+      --coral:    #FF6B6B;
+      --mint:     #4CAF93;
+      --light:    #FAFAFA;
+      --dark:     #1A0A2E;
+      --gray:     #F3EFF8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── RAINBOW STRIPE ── */
+    .rainbow-stripe {
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--purple) 0%, var(--fuchsia) 20%,
+        var(--coral) 38%, var(--yellow) 55%,
+        var(--mint) 72%, var(--teal) 88%, var(--purple) 100%);
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #fff;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(107,63,160,.10);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--purple);
+      line-height: 1.2;
+    }
+    .nav-brand span { color: var(--fuchsia); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .92rem;
+      color: var(--purple);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--fuchsia); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, var(--purple) 0%, #3B1F73 55%, #0D0A2E 100%);
+      color: #fff;
+      padding: 80px 5vw 90px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 85% 40%, rgba(233,30,140,.25) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 10% 80%, rgba(0,188,212,.18) 0%, transparent 65%);
+    }
+    .hero-inner {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: .85rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--fuchsia);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.85);
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-bottom: 2.2rem;
+    }
+    .badge {
+      background: rgba(255,255,255,.13);
+      border: 1.5px solid rgba(255,255,255,.30);
+      border-radius: 50px;
+      padding: .35rem .9rem;
+      font-size: .82rem;
+      font-weight: 700;
+      color: #fff;
+      backdrop-filter: blur(4px);
+    }
+    .badge.highlight { background: var(--fuchsia); border-color: var(--fuchsia); }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.6rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+    .btn-wa {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,.5);
+      color: #fff;
+    }
+
+    /* Decorative circles */
+    .hero-deco {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .deco-circle {
+      border-radius: 50%;
+      opacity: .22;
+    }
+    .dc1 { width: 160px; height: 160px; background: var(--fuchsia); }
+    .dc2 { width: 100px; height: 100px; background: var(--teal); margin-left: 30px; }
+    .dc3 { width: 70px;  height: 70px;  background: var(--yellow); }
+
+    /* ── WAVE ── */
+    .wave { display: block; width: 100%; margin-bottom: -2px; }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 70px 5vw; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #444;
+      max-width: 640px;
+    }
+
+    /* ── ESPECIALIDADES ── */
+    .esp-section { background: var(--gray); }
+    .esp-section .section-label { color: var(--purple); }
+    .esp-section .section-title { color: var(--dark); }
+
+    .esp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .esp-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(107,63,160,.08);
+      transition: transform .25s, box-shadow .25s;
+      border-top: 4px solid transparent;
+    }
+    .esp-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(107,63,160,.14); }
+    .esp-card:nth-child(1) { border-color: var(--purple); }
+    .esp-card:nth-child(2) { border-color: var(--fuchsia); }
+    .esp-card:nth-child(3) { border-color: var(--teal); }
+    .esp-card:nth-child(4) { border-color: var(--coral); }
+    .esp-icon { font-size: 2.4rem; margin-bottom: .8rem; }
+    .esp-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: .4rem; }
+    .esp-card p  { font-size: .88rem; color: #666; line-height: 1.5; }
+
+    /* ── MODALIDADES ── */
+    .mod-section { background: #fff; }
+    .mod-section .section-label { color: var(--teal); }
+
+    .mod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+      margin-top: 2.5rem;
+    }
+    .mod-card {
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .mod-card::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+    }
+    .mod-card.online { background: linear-gradient(135deg, var(--purple), var(--fuchsia)); }
+    .mod-card.presencial { background: linear-gradient(135deg, var(--teal), var(--mint)); }
+    .mod-card.bilingue { background: linear-gradient(135deg, var(--coral), var(--yellow) 120%); color: var(--dark); }
+    .mod-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: .5rem; }
+    .mod-card p  { font-size: .92rem; line-height: 1.6; opacity: .92; }
+    .mod-icon { font-size: 2rem; margin-bottom: .8rem; }
+
+    /* ── TEST CTA ── */
+    .test-section {
+      background: linear-gradient(135deg, var(--fuchsia) 0%, #9C27B0 60%, var(--purple) 100%);
+      color: #fff;
+      text-align: center;
+    }
+    .test-section .section-title { color: #fff; }
+    .test-box {
+      background: rgba(255,255,255,.15);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,.3);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      margin-top: 2rem;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .test-box p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 1.8rem;
+      opacity: .92;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--fuchsia);
+      font-weight: 800;
+    }
+    .btn-white:hover { box-shadow: 0 8px 30px rgba(0,0,0,.2); }
+
+    /* ── CONTACTO ── */
+    .contact-section {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+    }
+    .contact-section .section-label { color: var(--yellow); }
+    .contact-section .section-title { color: #fff; }
+    .contact-desc { color: rgba(255,255,255,.75); margin: .8rem auto 2.5rem; max-width: 500px; font-size: 1rem; line-height: 1.7; }
+
+    .contact-btns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+    .btn-wa-big {
+      background: #25D366;
+      color: #fff;
+      font-size: 1.05rem;
+      padding: 1rem 2.2rem;
+    }
+    .btn-ig-big {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      font-size: 1.05rem;
+      padding: 1rem 2.2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0D0A1E;
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 1.4rem 5vw;
+      font-size: .82rem;
+    }
+    footer a { color: var(--fuchsia); text-decoration: none; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── FLOATING WA ── */
+    .float-wa {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 60px; height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      z-index: 999;
+      text-decoration: none;
+      transition: transform .2s;
+    }
+    .float-wa:hover { transform: scale(1.1); }
+    .float-wa svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-deco { display: none; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Rainbow stripe top -->
+<div class="rainbow-stripe"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Dra. Julissa<br><span>Ureña</span></div>
+  <div class="nav-links">
+    <a href="#especialidades">Especialidades</a>
+    <a href="#modalidades">Modalidades</a>
+    <a href="#test">Test gratuito</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">👩🏻‍⚕️ Psicóloga Clínica · Ph.D Internacional</p>
+      <h1>Tu bienestar<br>emocional <em>importa.</em></h1>
+      <p class="hero-sub">Soy la Dra. Julissa Ureña, psicóloga clínica con doctorado internacional. Ofrezco terapia bilingüe (español e inglés) para infantes, jóvenes, adultos, familias y parejas.</p>
+      <div class="hero-badges">
+        <span class="badge highlight">Ph.D Internacional 🌎</span>
+        <span class="badge">Bilingüe 🇺🇸🇪🇸</span>
+        <span class="badge">Online</span>
+        <span class="badge">Presencial · @crecerdiario</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://api.whatsapp.com/message/B2T2O6TIIYWGN1" target="_blank" rel="noopener" class="btn btn-wa">
+          <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.508 5.836L.057 23.999l6.304-1.635A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.365l-.359-.214-3.741.97.998-3.634-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+          Escríbeme por WhatsApp
+        </a>
+        <a href="https://www.instagram.com/drajulie.psicologa/" target="_blank" rel="noopener" class="btn btn-ig">
+          <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Ver Instagram
+        </a>
+      </div>
+    </div>
+    <div class="hero-deco" aria-hidden="true">
+      <div class="deco-circle dc1"></div>
+      <div class="deco-circle dc2"></div>
+      <div class="deco-circle dc3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- wave -->
+<svg class="wave" viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,32 C360,0 1080,64 1440,16 L1440,48 L0,48 Z" fill="#F3EFF8"/>
+</svg>
+
+<!-- ESPECIALIDADES -->
+<section class="esp-section" id="especialidades">
+  <div class="section-inner">
+    <p class="section-label reveal">Áreas de atención</p>
+    <h2 class="section-title reveal">¿A quién acompaño?</h2>
+    <p class="section-desc reveal">Trabajo con personas en distintas etapas de la vida, ofreciendo un espacio seguro, cálido y profesional para sanar y crecer.</p>
+    <div class="esp-grid">
+      <div class="esp-card reveal">
+        <div class="esp-icon">🧒🏻</div>
+        <h3>Infanto-juvenil</h3>
+        <p>Acompañamiento psicológico para niños, niñas y adolescentes en su desarrollo emocional.</p>
+      </div>
+      <div class="esp-card reveal">
+        <div class="esp-icon">🙋🏻</div>
+        <h3>Adultos</h3>
+        <p>Terapia individual para ansiedad, depresión, autoestima, trauma y bienestar mental en general.</p>
+      </div>
+      <div class="esp-card reveal">
+        <div class="esp-icon">👨‍👩‍👧</div>
+        <h3>Terapia familiar</h3>
+        <p>Mejora la comunicación y los vínculos dentro del sistema familiar, resolviendo conflictos con empatía.</p>
+      </div>
+      <div class="esp-card reveal">
+        <div class="esp-icon">💑</div>
+        <h3>Terapia de pareja</h3>
+        <p>Espacio para fortalecer la relación, resolver conflictos y sanar dinámicas dañinas, incluida la violencia psicológica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section class="mod-section" id="modalidades">
+  <div class="section-inner">
+    <p class="section-label reveal" style="color:var(--teal)">Cómo trabajo</p>
+    <h2 class="section-title reveal">Modalidades de consulta</h2>
+    <p class="section-desc reveal">Flexible, accesible y profesional. Elige la modalidad que mejor se adapte a tu vida.</p>
+    <div class="mod-grid">
+      <div class="mod-card online reveal">
+        <div class="mod-icon">💻</div>
+        <h3>Online</h3>
+        <p>Sesiones por videollamada desde cualquier lugar del mundo. Misma calidad, total privacidad.</p>
+      </div>
+      <div class="mod-card presencial reveal">
+        <div class="mod-icon">🏥</div>
+        <h3>Presencial</h3>
+        <p>Consultas en persona en <strong>@crecerdiario</strong>. Un espacio cálido y profesional para ti.</p>
+      </div>
+      <div class="mod-card bilingue reveal">
+        <div class="mod-icon">🌎</div>
+        <h3>Bilingüe</h3>
+        <p>Atención en <strong>español e inglés</strong>. Porque tu idioma es parte de tu historia y tu sanación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEST VIOLENCIA -->
+<section class="test-section" id="test">
+  <div class="section-inner">
+    <p class="section-label reveal" style="color:var(--yellow)">Recurso gratuito</p>
+    <h2 class="section-title reveal">Test de Violencia Psicológica en Pareja</h2>
+    <div class="test-box reveal">
+      <p>¿Sientes que algo no está bien en tu relación pero no sabes cómo identificarlo? Pregunta por mi <strong>Test de Violencia Psicológica en Pareja</strong>, una herramienta profesional que te ayuda a reconocer patrones dañinos y dar el primer paso hacia el cambio.</p>
+      <a href="https://api.whatsapp.com/message/B2T2O6TIIYWGN1" target="_blank" rel="noopener" class="btn btn-white">
+        💬 Pedir el test por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact-section" id="contacto">
+  <div class="section-inner">
+    <p class="section-label">Hablemos</p>
+    <h2 class="section-title">¿Lista/o para comenzar?</h2>
+    <p class="contact-desc">Da el primer paso. Escríbeme con confianza y con gusto te oriento. Tu proceso de sanación comienza con una sola decisión.</p>
+    <div class="contact-btns">
+      <a href="https://api.whatsapp.com/message/B2T2O6TIIYWGN1" target="_blank" rel="noopener" class="btn btn-wa-big">
+        <svg viewBox="0 0 24 24" width="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.508 5.836L.057 23.999l6.304-1.635A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.365l-.359-.214-3.741.97.998-3.634-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://www.instagram.com/drajulie.psicologa/" target="_blank" rel="noopener" class="btn btn-ig-big">
+        <svg viewBox="0 0 24 24" width="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Dra. Julissa Ureña · Psicóloga Clínica Ph.D ·
+    <a href="https://www.instagram.com/drajulie.psicologa/" target="_blank">@drajulie.psicologa</a>
+  </p>
+</footer>
+
+<!-- Rainbow stripe bottom -->
+<div class="rainbow-stripe"></div>
+
+<!-- Floating WhatsApp -->
+<a href="https://api.whatsapp.com/message/B2T2O6TIIYWGN1" class="float-wa" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.508 5.836L.057 23.999l6.304-1.635A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.365l-.359-.214-3.741.97.998-3.634-.234-.374A9.818 9.818 0 1112 21.818z"/>
+  </svg>
+</a>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
