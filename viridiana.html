@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mtra. Viridiana Chávez | Psicóloga Clínica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple-deep: #2D1B69;
+      --purple-mid: #5B3FA6;
+      --rose: #E8527A;
+      --mint: #4ECDC4;
+      --yellow: #FFD93D;
+      --lavender: #C4B5FD;
+      --cream: #FAF8FF;
+      --white: #ffffff;
+      --text-dark: #1a1035;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(45, 27, 105, 0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--lavender); letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--purple-deep) 0%, #4a2080 40%, #7c3d9e 70%, var(--rose) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; padding: 6rem 2rem 3rem;
+    }
+
+    /* Blob decorations */
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--mint); top: -150px; right: -100px; animation: drift 8s ease-in-out infinite; }
+    .blob-2 { width: 350px; height: 350px; background: var(--yellow); bottom: -80px; left: -80px; animation: drift 10s ease-in-out infinite reverse; }
+    .blob-3 { width: 250px; height: 250px; background: var(--rose); top: 50%; left: 30%; animation: drift 6s ease-in-out infinite 2s; }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(20px, -30px) scale(1.08); }
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center; max-width: 1100px; width: 100%;
+    }
+
+    .hero-text { color: var(--white); }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      color: var(--yellow); font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.1; font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title span { color: var(--yellow); }
+
+    .hero-subtitle {
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--lavender); margin-bottom: 1.2rem;
+    }
+
+    .hero-desc {
+      font-size: 1rem; line-height: 1.7;
+      color: rgba(255,255,255,0.85); margin-bottom: 2rem;
+    }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .tag {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white); padding: 0.35rem 0.9rem;
+      border-radius: 50px; font-size: 0.82rem; font-weight: 600;
+    }
+    .tag.mint { background: rgba(78,205,196,0.25); border-color: var(--mint); color: var(--mint); }
+    .tag.rose { background: rgba(232,82,122,0.25); border-color: var(--rose); color: #ffb3c6; }
+
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.8rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 800;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
+    .btn-primary {
+      background: var(--yellow); color: var(--purple-deep);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* Brain illustration */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .brain-wrap {
+      position: relative; width: 320px; height: 320px;
+    }
+    .brain-circle {
+      position: absolute; inset: 0; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+    }
+    .brain-circle:nth-child(2) {
+      inset: 20px; animation: spin-slow 20s linear infinite;
+      border: 1px dashed rgba(196, 181, 253, 0.4);
+      background: transparent;
+    }
+    .brain-circle:nth-child(3) {
+      inset: 50px; animation: spin-slow 15s linear infinite reverse;
+      border: 1px dashed rgba(78,205,196,0.4);
+      background: transparent;
+    }
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .brain-svg {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    }
+    .brain-svg svg { width: 180px; height: 180px; animation: pulse 3s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+    .floating-dot {
+      position: absolute; border-radius: 50%;
+      animation: orbit 4s ease-in-out infinite;
+    }
+    .dot-1 { width: 14px; height: 14px; background: var(--yellow); top: 30px; right: 60px; animation-delay: 0s; }
+    .dot-2 { width: 10px; height: 10px; background: var(--mint); bottom: 60px; left: 40px; animation-delay: 1s; }
+    .dot-3 { width: 18px; height: 18px; background: var(--rose); top: 120px; left: 10px; animation-delay: 2s; }
+    @keyframes orbit {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* ── SECTION WAVE ── */
+    .wave-divider { display: block; line-height: 0; }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--white); padding: 5rem 2rem;
+    }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--rose); margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+      color: var(--purple-deep); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-title span { color: var(--rose); }
+
+    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+    .about-text p {
+      font-size: 1.05rem; line-height: 1.8; color: #4a4468; margin-bottom: 1.2rem;
+    }
+
+    .about-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+    .about-card {
+      background: var(--cream); border-radius: 18px; padding: 1.4rem 1.6rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      border-left: 4px solid var(--mint);
+      transition: transform 0.2s;
+    }
+    .about-card:hover { transform: translateX(4px); }
+    .about-card:nth-child(2) { border-color: var(--rose); }
+    .about-card:nth-child(3) { border-color: var(--yellow); border-left-color: #e6c200; }
+    .card-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .card-label { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--purple-mid); margin-bottom: 0.2rem; }
+    .card-value { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); }
+
+    /* ── SERVICES ── */
+    .services {
+      background: linear-gradient(160deg, #f3f0ff 0%, #fff0f5 100%);
+      padding: 5rem 2rem;
+    }
+    .services-header { text-align: center; margin-bottom: 3rem; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+
+    .service-card {
+      background: var(--white); border-radius: 24px; padding: 2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      border-top: 4px solid transparent;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--grad); opacity: 0.06;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(91,63,166,0.12); }
+    .service-card:hover::before { opacity: 0.1; }
+
+    .service-card.c1 { border-color: var(--purple-mid); --grad: linear-gradient(135deg,#5B3FA6,#C4B5FD); }
+    .service-card.c2 { border-color: var(--rose); --grad: linear-gradient(135deg,#E8527A,#FFB3C6); }
+    .service-card.c3 { border-color: var(--mint); --grad: linear-gradient(135deg,#4ECDC4,#A8F0EC); }
+    .service-card.c4 { border-color: var(--yellow); --grad: linear-gradient(135deg,#FFD93D,#FFF3A0); }
+    .service-card.c5 { border-color: #FF6B6B; --grad: linear-gradient(135deg,#FF6B6B,#FFAAAA); }
+    .service-card.c6 { border-color: #A78BFA; --grad: linear-gradient(135deg,#A78BFA,#DDD6FE); }
+
+    .srv-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .srv-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--purple-deep); margin-bottom: 0.6rem; }
+    .srv-desc { font-size: 0.88rem; line-height: 1.65; color: #6b6488; }
+
+    /* ── APPROACH ── */
+    .approach { background: var(--purple-deep); padding: 5rem 2rem; }
+    .approach .section-title { color: var(--white); }
+    .approach .section-title span { color: var(--yellow); }
+    .approach .section-label { color: var(--lavender); }
+
+    .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .approach-item { text-align: center; padding: 2rem 1rem; }
+    .approach-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--yellow), var(--rose));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1;
+    }
+    .approach-title { color: var(--lavender); font-weight: 800; font-size: 1rem; margin: 0.8rem 0 0.5rem; }
+    .approach-desc { color: rgba(255,255,255,0.65); font-size: 0.88rem; line-height: 1.65; }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-section { background: var(--cream); padding: 5rem 2rem; }
+    .testimonial-section .section-inner { text-align: center; }
+
+    .quote-block {
+      background: var(--white); border-radius: 28px;
+      padding: 3rem; max-width: 700px; margin: 2.5rem auto;
+      box-shadow: 0 10px 40px rgba(91,63,166,0.08);
+      border: 1px solid rgba(196,181,253,0.3);
+      position: relative;
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif; font-size: 5rem;
+      color: var(--lavender); line-height: 0.5;
+      position: absolute; top: 2.2rem; left: 2rem; opacity: 0.5;
+    }
+    .quote-text {
+      font-size: 1.2rem; line-height: 1.8; color: var(--purple-deep);
+      font-style: italic; padding-top: 1rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: linear-gradient(135deg, var(--rose), var(--purple-mid), var(--purple-deep));
+      padding: 6rem 2rem; text-align: center;
+    }
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900;
+      color: var(--white); margin-bottom: 1rem;
+    }
+    .contact-sub { color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 3rem; max-width: 560px; margin-left: auto; margin-right: auto; margin-bottom: 3rem; }
+
+    .social-row { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 1.8rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 800;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .social-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .social-btn.ig { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); color: white; }
+    .social-btn.fb { background: #1877F2; color: white; }
+    .social-btn.wa { background: #25D366; color: white; }
+    .social-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+    .location-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.9); padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1035; color: rgba(255,255,255,0.5);
+      text-align: center; padding: 1.5rem;
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--lavender); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .approach-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .hero-cta { justify-content: center; }
+      .hero-tags { justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Mtra. Viridiana Chávez</div>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre mí</a></li>
+    <li><a href="#services">Servicios</a></li>
+    <li><a href="#approach">Enfoque</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">🧠 Psicóloga Clínica · Querétaro & Online</div>
+      <h1 class="hero-title">
+        Reconecta.<br>
+        <span>Reconstruye.</span><br>
+        Florece.
+      </h1>
+      <p class="hero-subtitle">Mtra. Viridiana Chávez</p>
+      <p class="hero-desc">
+        Te acompaño en el proceso de reconectarte contigo misma y reconstruirte desde adentro. 
+        Con herramientas basadas en evidencia, caminaremos juntos hacia tu bienestar emocional y mental.
+      </p>
+      <div class="hero-tags">
+        <span class="tag mint">🎯 DBT</span>
+        <span class="tag mint">💡 TCC</span>
+        <span class="tag rose">🌱 BTI</span>
+        <span class="tag">Hospital H+</span>
+        <span class="tag">📍 Querétaro</span>
+        <span class="tag">💻 Online</span>
+      </div>
+      <div class="hero-cta">
+        <a href="https://api.whatsapp.com/send/?phone=4421392347" target="_blank" rel="noopener" class="btn btn-primary">
+          💬 Agenda tu cita
+        </a>
+        <a href="#services" class="btn btn-outline">Ver servicios</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="brain-wrap">
+        <div class="brain-circle"></div>
+        <div class="brain-circle"></div>
+        <div class="brain-circle"></div>
+        <div class="floating-dot dot-1"></div>
+        <div class="floating-dot dot-2"></div>
+        <div class="floating-dot dot-3"></div>
+        <div class="brain-svg">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- Stylized brain illustration -->
+            <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+            <!-- Left hemisphere -->
+            <path d="M100 50 C70 50, 40 65, 35 90 C28 120, 45 150, 70 158 C82 162, 90 155, 95 145 C98 138, 99 125, 100 115" 
+                  stroke="#C4B5FD" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- Right hemisphere -->
+            <path d="M100 50 C130 50, 160 65, 165 90 C172 120, 155 150, 130 158 C118 162, 110 155, 105 145 C102 138, 101 125, 100 115"
+                  stroke="#4ECDC4" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- Brain stem -->
+            <path d="M95 145 Q100 165 100 175 Q100 165 105 145"
+                  stroke="#FFD93D" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- Corpus callosum -->
+            <path d="M60 100 Q80 88 100 90 Q120 88 140 100"
+                  stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Neural folds left -->
+            <path d="M50 80 Q60 75 72 82 Q64 90 55 88" stroke="#C4B5FD" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M40 105 Q52 98 65 106 Q58 118 46 113" stroke="#C4B5FD" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M47 130 Q60 122 73 130 Q68 142 55 139" stroke="#C4B5FD" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <!-- Neural folds right -->
+            <path d="M150 80 Q140 75 128 82 Q136 90 145 88" stroke="#4ECDC4" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M160 105 Q148 98 135 106 Q142 118 154 113" stroke="#4ECDC4" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M153 130 Q140 122 127 130 Q132 142 145 139" stroke="#4ECDC4" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <!-- Glowing dots -->
+            <circle cx="68" cy="85" r="3.5" fill="#FFD93D" opacity="0.9"/>
+            <circle cx="132" cy="85" r="3.5" fill="#E8527A" opacity="0.9"/>
+            <circle cx="60" cy="115" r="3" fill="#C4B5FD" opacity="0.9"/>
+            <circle cx="140" cy="115" r="3" fill="#4ECDC4" opacity="0.9"/>
+            <circle cx="100" cy="68" r="4" fill="white" opacity="0.7"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">✨ Sobre mí</p>
+        <h2 class="section-title">Psicología con <span>corazón</span> y evidencia</h2>
+        <p>Soy Viridiana Chávez, Maestra en Psicología Clínica. Me especializo en acompañar a personas que atraviesan momentos difíciles, ayudándoles a reconectarse con su esencia y reconstruirse con mayor fortaleza.</p>
+        <p>Mi práctica integra enfoques terapéuticos basados en evidencia como la Terapia Dialéctico Conductual (DBT) y la Terapia Cognitivo-Conductual (TCC), adaptados a las necesidades únicas de cada persona.</p>
+        <p>Creo profundamente en que el cambio es posible para todos. Mi rol es ser un espacio seguro, sin juicios, donde puedas explorar, sanar y crecer a tu propio ritmo. 💜</p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="card-icon">🎓</div>
+          <div>
+            <div class="card-label">Formación</div>
+            <div class="card-value">Maestra en Psicología Clínica · DBT / TCC / BTI</div>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">🏥</div>
+          <div>
+            <div class="card-label">Institución</div>
+            <div class="card-value">Hospital H+ · Práctica privada</div>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">📍</div>
+          <div>
+            <div class="card-label">Modalidad</div>
+            <div class="card-value">Presencial en Querétaro · Sesiones online</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <p class="section-label">💫 Lo que ofrezco</p>
+    <h2 class="section-title" style="color:var(--purple-deep)">Áreas de <span>atención</span></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card c1">
+      <div class="srv-icon">🧠</div>
+      <h3 class="srv-title">Salud Mental General</h3>
+      <p class="srv-desc">Atención integral a la ansiedad, depresión, estrés y otras dificultades emocionales con un enfoque personalizado y basado en evidencia.</p>
+    </div>
+    <div class="service-card c2">
+      <div class="srv-icon">💔</div>
+      <h3 class="srv-title">Regulación Emocional (DBT)</h3>
+      <p class="srv-desc">Con la Terapia Dialéctico Conductual aprendemos habilidades concretas para manejar emociones intensas y relaciones difíciles.</p>
+    </div>
+    <div class="service-card c3">
+      <div class="srv-icon">🔄</div>
+      <h3 class="srv-title">Terapia Cognitivo-Conductual</h3>
+      <p class="srv-desc">Identificamos y transformamos patrones de pensamiento que nos limitan, desarrollando estrategias prácticas para el día a día.</p>
+    </div>
+    <div class="service-card c4">
+      <div class="srv-icon">🌱</div>
+      <h3 class="srv-title">Identidad y Autoconocimiento</h3>
+      <p class="srv-desc">Un espacio para reconectarte contigo misma, explorar tus valores, necesidades y construir una vida más auténtica.</p>
+    </div>
+    <div class="service-card c5">
+      <div class="srv-icon">🤝</div>
+      <h3 class="srv-title">Relaciones y Vínculos</h3>
+      <p class="srv-desc">Trabajamos en los patrones relacionales, límites sanos y habilidades de comunicación para relaciones más plenas.</p>
+    </div>
+    <div class="service-card c6">
+      <div class="srv-icon">💻</div>
+      <h3 class="srv-title">Atención Online</h3>
+      <p class="srv-desc">Terapia en línea con la misma calidad y calidez que en persona, desde la comodidad y privacidad de tu espacio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach" id="approach">
+  <div class="section-inner" style="text-align:center">
+    <p class="section-label">🌟 Mi enfoque</p>
+    <h2 class="section-title">El camino hacia tu <span>bienestar</span></h2>
+    <div class="approach-grid">
+      <div class="approach-item">
+        <div class="approach-num">01</div>
+        <div class="approach-title">Reconocer</div>
+        <p class="approach-desc">Empezamos por nombrar y comprender lo que sientes, sin juzgar. Crear conciencia es el primer paso real hacia el cambio.</p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-num">02</div>
+        <div class="approach-title">Reconectar</div>
+        <p class="approach-desc">Volvemos a las partes de ti que se perdieron en el camino: tus recursos, tu fortaleza, tu esencia más auténtica.</p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-num">03</div>
+        <div class="approach-title">Reconstruir</div>
+        <p class="approach-desc">Con herramientas concretas y acompañamiento continuo, construimos la versión de ti que quieres ser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="section-inner">
+    <p class="section-label" style="text-align:center">💜 Una reflexión</p>
+    <h2 class="section-title" style="text-align:center">No estás <span>sola</span></h2>
+    <div class="quote-block">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">
+        Pedir ayuda no es una señal de debilidad, es un acto de valentía y de amor propio. 
+        Cada persona merece un espacio seguro para sanar, crecer y redescubrirse.
+      </p>
+    </div>
+    <p style="text-align:center; color:#9b8ab8; font-size:0.9rem; margin-top:1rem;">— Mtra. Viridiana Chávez</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-title">¿Lista para comenzar? 🌸</div>
+  <p class="contact-sub">
+    Da el primer paso. Estoy aquí para acompañarte en Querétaro o en línea desde donde estés.
+  </p>
+  <div class="social-row">
+    <a href="https://api.whatsapp.com/send/?phone=4421392347" target="_blank" rel="noopener" class="social-btn wa">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp · 442 139 2347
+    </a>
+    <a href="https://www.instagram.com/psic.viridianachavez/" target="_blank" rel="noopener" class="social-btn ig">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100077903792100" target="_blank" rel="noopener" class="social-btn fb">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
+  <div class="location-badge">📍 Querétaro, México &nbsp;·&nbsp; 💻 Sesiones online disponibles</div>
+</section>
+
+<footer>
+  <p>© 2025 Mtra. Viridiana Chávez &nbsp;·&nbsp; Psicóloga Clínica &nbsp;·&nbsp; 
+    <a href="https://www.instagram.com/psic.viridianachavez/" target="_blank">@psic.viridianachavez</a>
+  </p>
+</footer>
+
+</body>
+</html>
