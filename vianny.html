@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vianny Zambrano | Psicóloga en Valencia 🇻🇪</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral:    #FF6B6B;
+      --magenta:  #D94EAF;
+      --lavender: #9B72CF;
+      --sky:      #5BB8E8;
+      --mint:     #4ECDC4;
+      --cream:    #FFF8F0;
+      --warm:     #FFF0E6;
+      --ink:      #2A1A2E;
+      --muted:    #7A6080;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FFD6E7 0%, #E8C5FF 35%, #C5DEFF 65%, #C5FFF6 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(255,107,107,.25) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(91,184,232,.25) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(155,114,207,.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .18;
+      animation: float 7s ease-in-out infinite;
+    }
+    .bubble:nth-child(1){ width:180px; height:180px; background:var(--coral);   top:5%;  left:3%;  animation-delay:0s; }
+    .bubble:nth-child(2){ width:110px; height:110px; background:var(--magenta); top:60%; left:88%; animation-delay:2s; }
+    .bubble:nth-child(3){ width:80px;  height:80px;  background:var(--sky);     top:80%; left:8%;  animation-delay:4s; }
+    .bubble:nth-child(4){ width:140px; height:140px; background:var(--mint);    top:10%; left:82%; animation-delay:1s; }
+    .bubble:nth-child(5){ width:60px;  height:60px;  background:var(--lavender);top:45%; left:50%; animation-delay:3s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-22px) scale(1.05); }
+    }
+
+    .flag-badge {
+      background: white;
+      border-radius: 40px;
+      padding: 8px 20px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--magenta);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(217,78,175,.18);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-weight: 900;
+      line-height: 1.08;
+      max-width: 820px;
+      position: relative;
+    }
+
+    .hero h1 .name-gradient {
+      background: linear-gradient(90deg, var(--coral), var(--magenta), var(--lavender));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+      color: var(--muted);
+      margin-top: 18px;
+      max-width: 560px;
+      position: relative;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 36px;
+      position: relative;
+    }
+
+    .tag {
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: .03em;
+    }
+    .tag:nth-child(1){ background: linear-gradient(135deg,var(--coral),#FF8E53); }
+    .tag:nth-child(2){ background: linear-gradient(135deg,var(--magenta),#B03090); }
+    .tag:nth-child(3){ background: linear-gradient(135deg,var(--lavender),#7B52AF); }
+    .tag:nth-child(4){ background: linear-gradient(135deg,var(--sky),#3A8FC8); }
+    .tag:nth-child(5){ background: linear-gradient(135deg,var(--mint),#3AADA5); }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 44px;
+      position: relative;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 30px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+    }
+    .btn-instagram {
+      background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF);
+      color: white;
+    }
+
+    .heart-decor {
+      font-size: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.2);} }
+
+    /* ── SECTION BASE ── */
+    section { padding: 90px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-family: 'Caveat', cursive;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--magenta);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.9rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    /* ── SOBRE MÍ ── */
+    .about {
+      background: var(--warm);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .about-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar-ring {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--coral), var(--magenta), var(--lavender), var(--sky), var(--mint));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(155,114,207,.35);
+    }
+
+    .avatar-inner {
+      width: 256px;
+      height: 256px;
+      border-radius: 50%;
+      background: linear-gradient(160deg, #FFE8F5 0%, #EDE0FF 50%, #E0F4FF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      overflow: hidden;
+    }
+
+    .about-floating {
+      position: absolute;
+      background: white;
+      border-radius: 16px;
+      padding: 12px 16px;
+      font-size: .82rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      white-space: nowrap;
+    }
+    .af-1 { top: 5%;  right: -10%; background: linear-gradient(135deg, #FF6B6B, #FF8E53); color: white; border-radius: 30px; }
+    .af-2 { bottom: 10%; left: -8%; background: linear-gradient(135deg, #4ECDC4, #5BB8E8); color: white; border-radius: 30px; }
+
+    .about-text p {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: #4A3A50;
+      margin-bottom: 18px;
+    }
+
+    .about-text .highlight {
+      background: linear-gradient(135deg, var(--coral), var(--magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* ── SERVICIOS ── */
+    .services { background: var(--cream); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .service-card {
+      border-radius: 24px;
+      padding: 36px 26px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.2); }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+    }
+
+    .sc-1 { background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
+    .sc-2 { background: linear-gradient(135deg, #D94EAF, #8134AF); }
+    .sc-3 { background: linear-gradient(135deg, #9B72CF, #5BB8E8); }
+    .sc-4 { background: linear-gradient(135deg, #5BB8E8, #4ECDC4); }
+    .sc-5 { background: linear-gradient(135deg, #4ECDC4, #6BCB77); }
+
+    .service-icon { font-size: 2.6rem; margin-bottom: 16px; display: block; }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+    .service-card p  { font-size: .9rem; line-height: 1.7; opacity: .9; }
+
+    /* ── CÓMO FUNCIONA ── */
+    .how { background: linear-gradient(135deg, #F8E8FF 0%, #E8F4FF 50%, #E8FFF8 100%); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .step {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 24px;
+      text-align: center;
+      box-shadow: 0 6px 24px rgba(155,114,207,.1);
+      transition: transform .2s;
+    }
+    .step:hover { transform: translateY(-4px); }
+
+    .step-num {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 900; color: white;
+    }
+    .sn-1 { background: linear-gradient(135deg, var(--coral), #FF8E53); }
+    .sn-2 { background: linear-gradient(135deg, var(--magenta), var(--lavender)); }
+    .sn-3 { background: linear-gradient(135deg, var(--lavender), var(--sky)); }
+    .sn-4 { background: linear-gradient(135deg, var(--sky), var(--mint)); }
+
+    .step h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
+    .step p  { font-size: .9rem; line-height: 1.7; color: var(--muted); }
+
+    /* ── FRASE ── */
+    .quote-section {
+      background: linear-gradient(135deg, var(--coral), var(--magenta), var(--lavender), var(--sky));
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .quote-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .quote-section blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      font-style: italic;
+      font-weight: 700;
+      color: white;
+      line-height: 1.4;
+    }
+
+    .quote-section cite {
+      display: block;
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      font-style: normal;
+      color: rgba(255,255,255,.8);
+      margin-top: 24px;
+    }
+
+    /* ── CONTACTO ── */
+    .contact {
+      background: var(--warm);
+      text-align: center;
+    }
+
+    .contact-text {
+      max-width: 600px;
+      margin: 20px auto 44px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .contact-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn-lg {
+      padding: 18px 38px;
+      font-size: 1.05rem;
+      border-radius: 50px;
+    }
+
+    .info-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .chip {
+      background: white;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--muted);
+      box-shadow: 0 4px 14px rgba(0,0,0,.07);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: .88rem;
+    }
+
+    footer .footer-name {
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    footer a { color: rgba(255,255,255,.6); text-decoration: none; }
+    footer a:hover { color: white; }
+
+    /* ── WHATSAPP FAB ── */
+    .fab-wa {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 28px rgba(37,211,102,.45);
+      text-decoration: none;
+      z-index: 999;
+      transition: transform .2s;
+    }
+    .fab-wa:hover { transform: scale(1.1); }
+    .fab-wa svg { width: 32px; height: 32px; fill: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .hero h1 { font-size: 2.4rem; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- FLOATING WA BUTTON -->
+<a href="https://api.whatsapp.com/send/?phone=584243594510" target="_blank" rel="noopener" class="fab-wa" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ════ HERO ════ -->
+<header class="hero">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="flag-badge">🇻🇪 Valencia, Venezuela</div>
+
+  <h1>
+    Hola, soy<br>
+    <span class="name-gradient">Vianny Zambrano</span>
+  </h1>
+
+  <p class="hero-sub">Psicóloga · Acompañamiento terapéutico con corazón ❤️‍🩹</p>
+
+  <div class="hero-tags">
+    <span class="tag">😰 Ansiedad</span>
+    <span class="tag">💜 Autoestima</span>
+    <span class="tag">🌿 Duelos</span>
+    <span class="tag">🌊 Gestión emocional</span>
+    <span class="tag">🎯 Metas</span>
+  </div>
+
+  <div class="hero-ctas">
+    <a href="https://api.whatsapp.com/send/?phone=584243594510" target="_blank" rel="noopener" class="btn btn-whatsapp">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agendar cita por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/unapsicologav/" target="_blank" rel="noopener" class="btn btn-instagram">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Seguir en Instagram
+    </a>
+  </div>
+</header>
+
+<!-- ════ SOBRE MÍ ════ -->
+<section class="about">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">✨ Quién soy</p>
+      <h2 class="section-title">Un espacio seguro<br>para sanar y crecer</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="avatar-ring">
+          <div class="avatar-inner">🧠</div>
+        </div>
+        <div class="about-floating af-1">❤️‍🩹 Acompañamiento real</div>
+        <div class="about-floating af-2">💬 Sesiones online</div>
+      </div>
+      <div class="about-text reveal">
+        <p>Soy <span class="highlight">Vianny Zambrano</span>, psicóloga venezolana con sede en Valencia. Mi misión es caminar junto a ti en tus procesos más difíciles, sin juzgarte y con toda la empatía del mundo.</p>
+        <p>Creo que cada persona tiene dentro de sí la fortaleza necesaria para superar los momentos de crisis. Mi rol es ayudarte a encontrar esa fortaleza, darte herramientas prácticas y acompañarte cada paso del camino.</p>
+        <p>Trabajo con personas que están atravesando <span class="highlight">ansiedad, baja autoestima, procesos de duelo, dificultades emocionales</span> o que simplemente desean alcanzar sus metas con más claridad y confianza.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SERVICIOS ════ -->
+<section class="services">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom:0;">
+      <p class="section-eyebrow">💜 Áreas de trabajo</p>
+      <h2 class="section-title">¿En qué puedo ayudarte?</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card sc-1 reveal">
+        <span class="service-icon">😰</span>
+        <h3>Ansiedad</h3>
+        <p>Aprende a reconocer, entender y gestionar la ansiedad para que no te paralice ni controle tu vida cotidiana.</p>
+      </div>
+      <div class="service-card sc-2 reveal">
+        <span class="service-icon">💜</span>
+        <h3>Autoestima</h3>
+        <p>Reconecta con tu valor como persona, desarrolla una relación más amable contigo mismo y construye confianza genuina.</p>
+      </div>
+      <div class="service-card sc-3 reveal">
+        <span class="service-icon">🌿</span>
+        <h3>Duelos</h3>
+        <p>Atravesar una pérdida —de personas, relaciones o etapas de vida— merece un acompañamiento cuidadoso y sin prisa.</p>
+      </div>
+      <div class="service-card sc-4 reveal">
+        <span class="service-icon">🌊</span>
+        <h3>Gestión emocional</h3>
+        <p>Identifica tus emociones, comprende su origen y desarrolla herramientas para responder en lugar de reaccionar.</p>
+      </div>
+      <div class="service-card sc-5 reveal">
+        <span class="service-icon">🎯</span>
+        <h3>Metas</h3>
+        <p>Supera los bloqueos internos que te impiden avanzar y traza un camino claro hacia donde quieres llegar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CÓMO FUNCIONA ════ -->
+<section class="how">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <p class="section-eyebrow">🗺️ El proceso</p>
+      <h2 class="section-title">¿Cómo empezamos?</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num sn-1">1</div>
+        <h3>Contáctame</h3>
+        <p>Escríbeme por WhatsApp o Instagram. Cuéntame brevemente cómo te sientes o qué te trae por aquí.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num sn-2">2</div>
+        <h3>Primera sesión</h3>
+        <p>Nos conocemos, hablo contigo sin juicios y entendemos juntos qué necesitas trabajar.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num sn-3">3</div>
+        <h3>Tu plan personalizado</h3>
+        <p>Diseñamos un proceso terapéutico adaptado a ti, a tus tiempos y a tus objetivos reales.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num sn-4">4</div>
+        <h3>Acompañamiento continuo</h3>
+        <p>Sesión a sesión, avanzamos juntos. Yo estoy aquí para que nunca te sientas solo/a en el camino.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CITA ════ -->
+<section class="quote-section">
+  <div class="quote-inner">
+    <span class="heart-decor">❤️‍🩹</span>
+    <blockquote>
+      "Pedir ayuda no es una señal de debilidad.<br>Es el primer paso más valiente que puedes dar."
+    </blockquote>
+    <cite>— Vianny Zambrano, Psicóloga</cite>
+  </div>
+</section>
+
+<!-- ════ CONTACTO ════ -->
+<section class="contact">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">📩 Agenda tu sesión</p>
+      <h2 class="section-title">¿Lista/o para dar el primer paso?</h2>
+    </div>
+    <p class="contact-text reveal">
+      Estoy aquí para escucharte. Escríbeme cuando quieras —sin presión— y encontramos juntos el espacio que necesitas para sanar y crecer.
+    </p>
+    <div class="contact-ctas reveal">
+      <a href="https://api.whatsapp.com/send/?phone=584243594510" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escríbeme por WhatsApp
+      </a>
+      <a href="https://www.instagram.com/unapsicologav/" target="_blank" rel="noopener" class="btn btn-instagram btn-lg">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Ver Instagram
+      </a>
+    </div>
+    <div class="info-chips reveal">
+      <span class="chip">🇻🇪 Valencia, Venezuela</span>
+      <span class="chip">💻 Sesiones online disponibles</span>
+      <span class="chip">🕐 Horarios flexibles</span>
+      <span class="chip">🔒 Confidencialidad garantizada</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <p class="footer-name">Vianny Zambrano | Psicóloga 🇻🇪</p>
+  <p>
+    <a href="https://www.instagram.com/unapsicologav/" target="_blank" rel="noopener">@unapsicologav</a>
+    &nbsp;·&nbsp;
+    <a href="https://api.whatsapp.com/send/?phone=584243594510" target="_blank" rel="noopener">WhatsApp</a>
+  </p>
+  <p style="margin-top:12px; font-size:.78rem; opacity:.5;">❤️‍🩹 Hecho con amor · Todos los derechos reservados 2025</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
