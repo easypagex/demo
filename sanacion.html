@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanación Bella — Tatiana | Terapeuta Holística, Reiki & Tarot</title>
+<meta name="description" content="Tatiana, terapeuta holística y bruji de corazón. Reiki, Tarot, Bio-Decodificación y Coaching espiritual. Conducción del programa Sintonía Holística por FM Fénix 100.3.">
+<meta name="theme-color" content="#1B0E2E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%231B0E2E'/%3E%3Ccircle cx='34' cy='50' r='40' fill='%23F2B705'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noche:#1B0E2E;
+    --panel:#2A1245;
+    --panel-2:#341a57;
+    --violeta:#9B5CF6;
+    --magenta:#E0218A;
+    --dorado:#F2B705;
+    --turquesa:#1FD3BE;
+    --crema:#FAF3E8;
+    --crema-dim:#C9B8E0;
+
+    --font-display:'Cinzel',serif;
+    --font-accent:'Cormorant Garamond',serif;
+    --font-body:'DM Sans',sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:84px;}
+  body{
+    background:var(--noche);
+    color:var(--crema);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  section{position:relative;padding:120px 24px;}
+  .container{max-width:1100px;margin:0 auto;position:relative;z-index:2;}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--dorado);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- Atmosphere: stars + floating orbs ---------- */
+  .stars-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+  .star{position:absolute;background:var(--crema);border-radius:50%;opacity:.5;animation:twinkle 4s ease-in-out infinite;}
+  @keyframes twinkle{0%,100%{opacity:.15;}50%{opacity:.85;}}
+
+  .orb{position:fixed;border-radius:50%;filter:blur(70px);opacity:.35;z-index:0;pointer-events:none;animation:float 22s ease-in-out infinite;}
+  .orb-1{width:380px;height:380px;background:var(--violeta);top:-120px;left:-100px;animation-duration:26s;}
+  .orb-2{width:320px;height:320px;background:var(--magenta);top:40%;right:-140px;animation-duration:30s;animation-delay:-6s;}
+  .orb-3{width:340px;height:340px;background:var(--turquesa);bottom:-150px;left:10%;animation-duration:24s;animation-delay:-12s;}
+  .orb-4{width:260px;height:260px;background:var(--dorado);top:10%;right:20%;opacity:.18;animation-duration:34s;animation-delay:-4s;}
+  @keyframes float{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(40px,-30px) scale(1.08);}
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* ---------- Header / nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(27,14,46,.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(242,183,5,.18);
+  }
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;}
+  .logo{font-family:var(--font-display);font-size:1.15rem;font-weight:600;letter-spacing:.06em;display:flex;align-items:center;gap:8px;}
+  .logo svg{width:18px;height:18px;color:var(--dorado);}
+  .nav-links{display:flex;gap:30px;font-size:.92rem;letter-spacing:.02em;}
+  .nav-links a{position:relative;opacity:.88;transition:opacity .25s, color .25s;}
+  .nav-links a:hover{opacity:1;color:var(--dorado);}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--magenta),var(--violeta));
+    color:var(--crema);padding:9px 18px;border-radius:30px;font-size:.85rem;font-weight:500;
+    box-shadow:0 0 0 rgba(224,33,138,0);transition:box-shadow .3s, transform .3s;
+  }
+  .nav-cta:hover{box-shadow:0 0 22px rgba(224,33,138,.55);transform:translateY(-1px);}
+  .nav-cta svg{width:14px;height:14px;}
+
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:30px;height:24px;background:none;border:none;cursor:pointer;}
+  .nav-toggle span{display:block;width:100%;height:2px;background:var(--crema);transition:transform .3s, opacity .3s;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    position:fixed;inset:0;top:64px;background:rgba(27,14,46,.98);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+    z-index:49;transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .3s, transform .3s;
+  }
+  .mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .mobile-menu a{font-family:var(--font-display);font-size:1.2rem;letter-spacing:.04em;}
+
+  /* ---------- Eyebrow / titles ---------- */
+  .eyebrow{
+    font-family:var(--font-display);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dorado);text-align:center;margin-bottom:14px;
+  }
+  .section-title{
+    font-family:var(--font-display);font-weight:600;text-align:center;
+    font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:14px;letter-spacing:.01em;
+  }
+  .section-sub{
+    text-align:center;color:var(--crema-dim);max-width:560px;margin:0 auto 56px;
+    font-size:1.02rem;
+  }
+
+  .divider{display:flex;justify-content:center;gap:14px;margin:8px auto 0;color:var(--dorado);opacity:.7;}
+  .divider svg{width:14px;height:14px;animation:twinkle 3s ease-in-out infinite;}
+  .divider svg:nth-child(2){width:20px;height:20px;animation-delay:.4s;}
+  .divider svg:nth-child(3){animation-delay:.8s;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    padding:160px 24px 100px;
+  }
+  .hero-orbits{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:0;}
+  .hero-orbits svg{width:min(640px,92vw);height:min(640px,92vw);}
+  .orbit{fill:none;stroke-width:1;}
+  .orbit-1{stroke:var(--dorado);opacity:.35;stroke-dasharray:2 12;transform-origin:300px 300px;animation:spin 70s linear infinite;}
+  .orbit-2{stroke:var(--turquesa);opacity:.3;stroke-dasharray:3 9;transform-origin:300px 300px;animation:spin 95s linear infinite reverse;}
+  .orbit-3{stroke:var(--magenta);opacity:.28;stroke-dasharray:1 8;transform-origin:300px 300px;animation:spin 50s linear infinite;}
+  .star-dot{fill:var(--crema);animation:twinkle 3.5s ease-in-out infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
+  .emblem{
+    width:108px;height:108px;border-radius:50%;
+    background:linear-gradient(150deg,var(--violeta),var(--magenta));
+    display:flex;align-items:center;justify-content:center;margin-bottom:30px;
+    box-shadow:0 0 50px rgba(155,92,246,.55);
+    animation:breathe 5s ease-in-out infinite;
+  }
+  .emblem svg{width:46px;height:46px;color:var(--crema);}
+  @keyframes breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+
+  .hero h1{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2.6rem,7vw,5rem);letter-spacing:.04em;
+    background:linear-gradient(135deg,var(--dorado),var(--magenta) 55%,var(--violeta));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:14px;
+  }
+  .hero h2{
+    font-family:var(--font-display);font-weight:500;font-size:clamp(1.1rem,2.6vw,1.5rem);
+    letter-spacing:.06em;color:var(--crema-dim);margin-bottom:22px;
+  }
+  .hero .tagline{
+    font-family:var(--font-accent);font-style:italic;font-weight:500;
+    font-size:clamp(1.1rem,2.4vw,1.4rem);max-width:560px;color:var(--crema);margin-bottom:42px;
+  }
+  .hero-ctas{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;border-radius:40px;font-weight:500;font-size:.96rem;
+    transition:transform .3s, box-shadow .3s, background .3s;cursor:pointer;border:none;
+  }
+  .btn svg{width:17px;height:17px;}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--magenta),var(--violeta));color:var(--crema);
+    box-shadow:0 0 0 rgba(224,33,138,0);
+  }
+  .btn-primary:hover{box-shadow:0 0 30px rgba(224,33,138,.55);transform:translateY(-2px);}
+  .btn-outline{
+    border:1.5px solid var(--dorado);color:var(--dorado);background:transparent;
+  }
+  .btn-outline:hover{background:rgba(242,183,5,.12);transform:translateY(-2px);}
+  .btn-teal{border:1.5px solid var(--turquesa);color:var(--turquesa);background:transparent;}
+  .btn-teal:hover{background:rgba(31,211,190,.12);transform:translateY(-2px);}
+
+  /* ---------- Sobre mí ---------- */
+  .sobre{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto;position:relative;z-index:2;}
+  .sobre-orb-wrap{display:flex;justify-content:center;}
+  .sobre-orb{
+    width:240px;height:240px;border-radius:50%;position:relative;
+    background:radial-gradient(circle at 35% 30%, var(--panel-2), var(--noche) 70%);
+    border:1px solid rgba(242,183,5,.3);
+    box-shadow:0 0 60px rgba(155,92,246,.35), inset 0 0 40px rgba(31,211,190,.1);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .sobre-orb svg{width:90px;height:90px;color:var(--dorado);}
+  .sobre-text .eyebrow{text-align:left;}
+  .sobre-text h3{
+    font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;margin-bottom:20px;
+  }
+  .sobre-text p{color:var(--crema-dim);margin-bottom:16px;font-size:1.02rem;}
+  .sobre-text strong{color:var(--crema);font-weight:700;}
+
+  /* ---------- Filosofía ---------- */
+  .filosofia{text-align:center;padding:90px 24px;}
+  .filosofia blockquote{
+    font-family:var(--font-accent);font-style:italic;font-weight:500;
+    font-size:clamp(1.4rem,3.4vw,2.1rem);max-width:740px;margin:0 auto 18px;
+    color:var(--crema);
+  }
+  .filosofia cite{font-size:.85rem;color:var(--crema-dim);font-style:normal;letter-spacing:.05em;}
+
+  /* ---------- Servicios ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .service-card{
+    background:var(--panel);border-radius:18px;padding:34px 24px;text-align:center;
+    border-top:3px solid var(--accent);
+  }
+  .service-card:nth-child(1){--accent:var(--violeta);transition-delay:.05s;}
+  .service-card:nth-child(2){--accent:var(--turquesa);transition-delay:.15s;}
+  .service-card:nth-child(3){--accent:var(--dorado);transition-delay:.25s;}
+  .service-card:nth-child(4){--accent:var(--magenta);transition-delay:.35s;}
+
+  .moon{width:64px;height:64px;border-radius:50%;margin:0 auto 22px;position:relative;color:var(--accent);}
+  .moon.new{background:transparent;border:2px solid currentColor;box-shadow:0 0 16px currentColor;}
+  .moon.waxing,.moon.waning,.moon.full{background:currentColor;box-shadow:0 0 26px currentColor;overflow:hidden;}
+  .moon.waxing::after,.moon.waning::after{
+    content:'';position:absolute;top:3px;width:58px;height:58px;border-radius:50%;background:var(--panel);
+  }
+  .moon.waxing::after{left:-16px;}
+  .moon.waning::after{left:24px;}
+
+  .service-card .phase-label{
+    font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:700;
+  }
+  .service-card h4{font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin-bottom:12px;}
+  .service-card p{color:var(--crema-dim);font-size:.94rem;}
+
+  .disclaimer{
+    text-align:center;margin-top:50px;color:var(--crema-dim);font-size:.82rem;max-width:640px;
+    margin-left:auto;margin-right:auto;opacity:.8;
+  }
+
+  /* ---------- Radio ---------- */
+  .radio-panel{
+    background:linear-gradient(135deg, rgba(31,211,190,.14), rgba(155,92,246,.1));
+    border:1px solid rgba(31,211,190,.3);
+    border-radius:24px;padding:60px 40px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;
+  }
+  .radio-icon{
+    width:90px;height:90px;border-radius:50%;background:var(--turquesa);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 36px rgba(31,211,190,.55);flex-shrink:0;
+  }
+  .radio-icon svg{width:40px;height:40px;color:var(--noche);}
+  .radio-text h3{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);margin-bottom:6px;}
+  .radio-text .schedule{
+    display:inline-block;font-size:.85rem;letter-spacing:.06em;color:var(--turquesa);font-weight:700;margin-bottom:16px;
+  }
+  .radio-text p{color:var(--crema-dim);margin-bottom:24px;max-width:560px;}
+  .radio-links{display:flex;gap:16px;flex-wrap:wrap;}
+
+  /* ---------- Redes ---------- */
+  .redes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .red-card{
+    background:var(--panel);border:1px solid rgba(250,243,232,.08);border-radius:16px;
+    padding:28px 20px;text-align:center;transition:transform .3s, border-color .3s, background .3s;
+  }
+  .red-card:hover{transform:translateY(-6px);border-color:var(--dorado);background:var(--panel-2);}
+  .red-card svg{width:30px;height:30px;color:var(--dorado);margin:0 auto 14px;}
+  .red-card .handle{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:6px;word-break:break-word;}
+  .red-card .desc{font-size:.82rem;color:var(--crema-dim);}
+
+  /* ---------- Contacto final ---------- */
+  .contacto{text-align:center;}
+  .contacto h3{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:18px;}
+  .contacto p{color:var(--crema-dim);max-width:540px;margin:0 auto 38px;font-size:1.04rem;}
+  .contacto-ctas{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:60px 24px 40px;text-align:center;border-top:1px solid rgba(242,183,5,.15);}
+  footer .logo{justify-content:center;margin-bottom:16px;}
+  footer .foot-tags{color:var(--crema-dim);font-size:.88rem;margin-bottom:20px;letter-spacing:.03em;}
+  footer .foot-social{display:flex;justify-content:center;margin-bottom:24px;}
+  footer .foot-social a{
+    width:42px;height:42px;border-radius:50%;border:1px solid rgba(242,183,5,.3);
+    display:flex;align-items:center;justify-content:center;transition:background .3s,transform .3s;
+  }
+  footer .foot-social a:hover{background:rgba(224,33,138,.25);transform:translateY(-2px);}
+  footer .foot-social svg{width:18px;height:18px;color:var(--dorado);}
+  footer .copyright{font-size:.78rem;color:var(--crema-dim);opacity:.7;margin-bottom:8px;}
+  footer .foot-disclaimer{font-size:.74rem;color:var(--crema-dim);opacity:.55;max-width:520px;margin:0 auto;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .redes-grid{grid-template-columns:repeat(2,1fr);}
+    .sobre{grid-template-columns:1fr;text-align:center;}
+    .sobre-text .eyebrow{text-align:center;}
+    .radio-panel{grid-template-columns:1fr;text-align:center;justify-items:center;}
+    .radio-links{justify-content:center;}
+  }
+  @media (max-width:760px){
+    .nav-links{display:none;}
+    .nav-cta{display:none;}
+    .nav-toggle{display:flex;}
+    section{padding:90px 20px;}
+  }
+  @media (max-width:520px){
+    .services-grid{grid-template-columns:1fr;}
+    .redes-grid{grid-template-columns:1fr;}
+    .hero{padding-top:140px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="stars-bg" id="starsBg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="orb orb-4"></div>
+
+<header>
+  <div class="nav-inner">
+    <a href="#inicio" class="logo">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.2 9.8L24 12l-9.8 2.2L12 24l-2.2-9.8L0 12l9.8-2.2z"/></svg>
+      Sanación Bella
+    </a>
+    <nav class="nav-links">
+      <a href="#sobre">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#radio">Radio</a>
+      <a href="#redes">Redes</a>
+      <a href="#contacto">Conectemos</a>
+    </nav>
+    <a class="nav-cta" href="https://www.instagram.com/terapeuta__reiki/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+      Seguime
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#sobre">Sobre mí</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#radio">Radio</a>
+  <a href="#redes">Redes</a>
+  <a href="#contacto">Conectemos</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio">
+  <div class="hero-orbits" aria-hidden="true">
+    <svg viewBox="0 0 600 600">
+      <circle class="orbit orbit-1" cx="300" cy="300" r="270"/>
+      <circle class="orbit orbit-2" cx="300" cy="300" r="205"/>
+      <circle class="orbit orbit-3" cx="300" cy="300" r="140"/>
+      <circle class="star-dot" cx="300" cy="30" r="4.5"/>
+      <circle class="star-dot" cx="565" cy="300" r="3.5"/>
+      <circle class="star-dot" cx="120" cy="470" r="3.5"/>
+      <circle class="star-dot" cx="465" cy="120" r="3"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="emblem" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2c-2.2 4-6 6.2-6 11a6 6 0 0 0 12 0c0-2.1-1-3.3-2.1-4.3.4 2.1-1 3.1-2 2.1-1-1 .6-2 .6-4.1 0-2-1-3.1-2.5-4.7z"/>
+      </svg>
+    </div>
+    <h1>Sanación Bella</h1>
+    <h2>Tatiana · Terapeuta Holística</h2>
+    <p class="tagline">Un espacio de luz, energía y autoconocimiento para sanar desde adentro.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://www.instagram.com/terapeuta__reiki/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2.5-7.5L3 11z"/></svg>
+        Escribime por Instagram
+      </a>
+      <a class="btn btn-outline" href="https://linktr.ee/sanacionbella" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 15l6-6"/><path d="M10 7l1-1a3.5 3.5 0 0 1 5 5l-1 1"/><path d="M14 17l-1 1a3.5 3.5 0 0 1-5-5l1-1"/></svg>
+        Todos mis links
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOBRE MÍ ===================== -->
+<section class="sobre" id="sobre">
+  <div class="sobre-orb-wrap reveal">
+    <div class="sobre-orb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3.4"/>
+        <path d="M2.5 12C5 7 8.3 4.7 12 4.7S19 7 21.5 12C19 17 15.7 19.3 12 19.3S5 17 2.5 12z"/>
+      </svg>
+    </div>
+  </div>
+  <div class="sobre-text reveal">
+    <div class="eyebrow">✦ Sobre Tatiana ✦</div>
+    <h3>Bruji de corazón, guía de energía</h3>
+    <p>Soy <strong>Tatiana</strong>, terapeuta holística y bruji de corazón. Combino <strong>Reiki</strong>, <strong>Tarot</strong>, <strong>Bio-Decodificación</strong> y <strong>Coaching</strong> espiritual para acompañarte a reconectar con tu energía, soltar lo que ya no te sirve y florecer en cada etapa de tu vida.</p>
+    <p>También soy community manager y creadora de contenido, llevando estas herramientas de sanación a cada rincón de las redes — y conduzco <strong>Sintonía Holística</strong>, un espacio radial dedicado al bienestar, todos los miércoles.</p>
+  </div>
+</section>
+
+<!-- ===================== FILOSOFÍA ===================== -->
+<section class="filosofia">
+  <div class="container reveal">
+    <div class="eyebrow">✦ Filosofía ✦</div>
+    <blockquote>"La sanación no es un destino, es un ciclo — como la luna, atravesamos fases de oscuridad, crecimiento, plenitud y entrega, para volver a empezar cada vez con más luz."</blockquote>
+    <cite>— Tatiana</cite>
+  </div>
+</section>
+
+<!-- ===================== SERVICIOS ===================== -->
+<section id="servicios">
+  <div class="container">
+    <div class="eyebrow reveal">✦ Servicios ✦</div>
+    <h2 class="section-title reveal">Las fases de tu sanación</h2>
+    <p class="section-sub reveal">Cuatro caminos, una misma energía: la tuya.</p>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="moon new"></div>
+        <div class="phase-label">Luna Nueva</div>
+        <h4>Tarot</h4>
+        <p>Una lectura para mirar hacia adentro, poner intención y encontrar claridad sobre el camino que estás transitando.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="moon waxing"></div>
+        <div class="phase-label">Luna Creciente</div>
+        <h4>Reiki</h4>
+        <p>Sesiones para canalizar energía universal, liberar bloqueos y potenciar tu crecimiento físico, emocional y espiritual.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="moon full"></div>
+        <div class="phase-label">Luna Llena</div>
+        <h4>Bio-Decodificación</h4>
+        <p>Un encuentro con plena conciencia para descifrar qué te está diciendo tu cuerpo y transformar esa información en sanación.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="moon waning"></div>
+        <div class="phase-label">Luna Menguante</div>
+        <h4>Coaching Espiritual</h4>
+        <p>Acompañamiento para soltar patrones, integrar aprendizajes y avanzar con propósito hacia tu mejor versión.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer reveal">✦ Estas prácticas son un acompañamiento espiritual y energético; no remplazan tratamientos médicos o psicológicos profesionales.</p>
+  </div>
+</section>
+
+<!-- ===================== RADIO ===================== -->
+<section id="radio">
+  <div class="container">
+    <div class="eyebrow reveal">✦ En el aire ✦</div>
+    <h2 class="section-title reveal">Sintonía Holística</h2>
+    <p class="section-sub reveal">Energía, sanación y bienestar, en vivo por la radio.</p>
+
+    <div class="radio-panel reveal">
+      <div class="radio-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="16" r="2.3"/><path d="M12 13.5V8"/><path d="M8.3 9.6a5.2 5.2 0 0 1 7.4 0"/><path d="M5.8 7a8.8 8.8 0 0 1 12.4 0"/></svg>
+      </div>
+      <div class="radio-text">
+        <h3>Sintonía Holística</h3>
+        <span class="schedule">📻 Miércoles · 15:00 hs · FM Fénix 100.3</span>
+        <p>Todos los miércoles abrimos un espacio para hablar de energía, sanación, tarot y bienestar en la radio alternativa de la zona norte del Gran Buenos Aires. Conducción: Tatiana.</p>
+        <div class="radio-links">
+          <a class="btn btn-teal" href="https://www.instagram.com/fmfenix1003/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+            @fmfenix1003
+          </a>
+          <a class="btn btn-outline" href="https://www.instagram.com/sintonia.holistica.fm/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+            @sintonia.holistica.fm
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REDES ===================== -->
+<section id="redes">
+  <div class="container">
+    <div class="eyebrow reveal">✦ Conectemos ✦</div>
+    <h2 class="section-title reveal">Mi constelación</h2>
+    <p class="section-sub reveal">Encontrame en cada uno de estos espacios.</p>
+
+    <div class="redes-grid">
+      <a class="red-card reveal" href="https://www.instagram.com/terapeuta__reiki/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+        <div class="handle">@terapeuta__reiki</div>
+        <div class="desc">Cuenta principal · Sanación Bella</div>
+      </a>
+      <a class="red-card reveal" href="https://www.instagram.com/sintonia.holistica.fm/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+        <div class="handle">@sintonia.holistica.fm</div>
+        <div class="desc">Programa de radio holística</div>
+      </a>
+      <a class="red-card reveal" href="https://www.instagram.com/fmfenix1003/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+        <div class="handle">@fmfenix1003</div>
+        <div class="desc">FM Fénix 100.3</div>
+      </a>
+      <a class="red-card reveal" href="https://www.instagram.com/community.tatu/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+        <div class="handle">@community.tatu</div>
+        <div class="desc">Comunidad</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO FINAL ===================== -->
+<section id="contacto">
+  <div class="container contacto reveal">
+    <div class="eyebrow">✦ Tu momento es ahora ✦</div>
+    <h3>¿Lista para tu sanación?</h3>
+    <p>Escribime por Instagram para conocer disponibilidad de turnos, o mirá todos mis enlaces en un solo lugar.</p>
+    <div class="contacto-ctas">
+      <a class="btn btn-primary" href="https://www.instagram.com/terapeuta__reiki/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2.5-7.5L3 11z"/></svg>
+        Escribime por Instagram
+      </a>
+      <a class="btn btn-outline" href="https://linktr.ee/sanacionbella" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 15l6-6"/><path d="M10 7l1-1a3.5 3.5 0 0 1 5 5l-1 1"/><path d="M14 17l-1 1a3.5 3.5 0 0 1-5-5l1-1"/></svg>
+        Linktree
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#inicio" class="logo">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.2 9.8L24 12l-9.8 2.2L12 24l-2.2-9.8L0 12l9.8-2.2z"/></svg>
+    Sanación Bella
+  </a>
+  <p class="foot-tags">Reiki · Tarot · Bio-Decodificación · Coaching · Sintonía Holística</p>
+  <div class="foot-social">
+    <a href="https://www.instagram.com/terapeuta__reiki/" target="_blank" rel="noopener" aria-label="Instagram de Sanación Bella">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+    </a>
+  </div>
+  <p class="copyright">© <span id="year"></span> Sanación Bella — Tatiana, Terapeuta Holística</p>
+  <p class="foot-disclaimer">Acompañamiento espiritual y energético. No sustituye atención médica o psicológica profesional.</p>
+</footer>
+
+<script>
+  // Año dinámico
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Menú móvil
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Revelado al hacer scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Campo de estrellas
+  const starsBg = document.getElementById('starsBg');
+  const starCount = 70;
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2.5 + 1;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.animationDelay = (Math.random() * 4) + 's';
+    star.style.animationDuration = (3 + Math.random() * 3) + 's';
+    starsBg.appendChild(star);
+  }
+</script>
+
+</body>
+</html>
