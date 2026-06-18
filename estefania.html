@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estefania Beltran · Wellness Advisor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --emerald:    #1a6b52;
+    --emerald-lt: #2a9070;
+    --gold:       #c8a96e;
+    --gold-lt:    #e8cfa0;
+    --coral:      #e07a5f;
+    --mint:       #a8d5c2;
+    --cream:      #faf8f4;
+    --dark:       #1c2922;
+    --text:       #3a4a42;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(250,248,244,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--emerald);
+    letter-spacing: 0.03em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text); text-decoration: none; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--emerald); }
+  .nav-cta {
+    background: var(--emerald); color: #fff !important;
+    padding: 0.55rem 1.3rem; border-radius: 50px;
+  }
+  .nav-cta:hover { background: var(--emerald-lt) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 7rem 5% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated orb — the signature element */
+  .orb {
+    position: absolute;
+    width: 680px; height: 680px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      #1a6b52 0%, #2a9070 18%, #c8a96e 35%,
+      #a8d5c2 52%, #e07a5f 68%, #1a6b52 85%, #2a9070 100%
+    );
+    filter: blur(72px);
+    opacity: 0.28;
+    right: -8%;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: orbSpin 18s linear infinite;
+  }
+  @keyframes orbSpin {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to   { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  /* Small accent orb */
+  .orb-sm {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #c8a96e 0%, #e07a5f 60%, transparent 100%);
+    filter: blur(60px);
+    opacity: 0.18;
+    left: -4%; bottom: 10%;
+    animation: orbFloat 10s ease-in-out infinite alternate;
+  }
+  @keyframes orbFloat {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-40px); }
+  }
+
+  .hero-content {
+    max-width: 640px;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+    margin-bottom: 1.4rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    line-height: 1.08;
+    color: var(--dark);
+    margin-bottom: 1.6rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--emerald);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75;
+    color: #5a7060;
+    max-width: 500px;
+    margin-bottom: 2.4rem;
+  }
+
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-bottom: 2.8rem;
+  }
+  .badge {
+    font-size: 0.75rem; letter-spacing: 0.06em;
+    padding: 0.4rem 0.9rem; border-radius: 50px;
+    font-weight: 500;
+  }
+  .badge-green { background: rgba(26,107,82,0.1); color: var(--emerald); border: 1px solid rgba(26,107,82,0.25); }
+  .badge-gold  { background: rgba(200,169,110,0.15); color: #8a6e3a; border: 1px solid rgba(200,169,110,0.3); }
+  .badge-coral { background: rgba(224,122,95,0.1); color: var(--coral); border: 1px solid rgba(224,122,95,0.25); }
+
+  .cta-row {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    align-items: center;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 2rem; border-radius: 50px;
+    font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; transition: all 0.25s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-lt));
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(26,107,82,0.28);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(26,107,82,0.38);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1.5px solid rgba(200,169,110,0.5);
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--emerald);
+    background: rgba(200,169,110,0.08);
+  }
+
+  /* whatsapp icon */
+  .icon-wa { width: 18px; height: 18px; fill: currentColor; }
+  .icon-ig { width: 18px; height: 18px; fill: currentColor; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--dark);
+    padding: 2.2rem 5%;
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 3rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--gold-lt);
+    display: block; line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); margin-top: 0.4rem; display: block;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5%; }
+
+  .section-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .section-eyebrow::after {
+    content: ''; flex: 1; max-width: 36px; height: 1px; background: var(--gold);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--dark); line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .lead {
+    font-size: 1.05rem; line-height: 1.75; color: #5a7060;
+    max-width: 560px; margin-bottom: 3rem;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: #fff; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    padding: 2.2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(200,169,110,0.18);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(26,107,82,0.1);
+  }
+
+  .sc-1 { background: linear-gradient(145deg, #f0f9f5, #fff); }
+  .sc-1::before { background: linear-gradient(90deg, var(--emerald), var(--mint)); }
+
+  .sc-2 { background: linear-gradient(145deg, #fdf8ef, #fff); }
+  .sc-2::before { background: linear-gradient(90deg, var(--gold), #f0c97a); }
+
+  .sc-3 { background: linear-gradient(145deg, #fdf3f0, #fff); }
+  .sc-3::before { background: linear-gradient(90deg, var(--coral), #f0a090); }
+
+  .sc-4 { background: linear-gradient(145deg, #f0f4ff, #fff); }
+  .sc-4::before { background: linear-gradient(90deg, #7b9edb, #a8c4f5); }
+
+  .service-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--dark);
+    margin-bottom: 0.6rem;
+  }
+  .service-card p {
+    font-size: 0.9rem; line-height: 1.7; color: #6a8070;
+  }
+
+  /* ── SHA WELLNESS ── */
+  #sha {
+    background: linear-gradient(160deg, #0f3d2c 0%, #1a6b52 60%, #2a9070 100%);
+    color: #fff;
+    position: relative; overflow: hidden;
+  }
+  #sha::before {
+    content: 'SHA';
+    position: absolute; right: -2%;top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 20vw; font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  #sha .section-eyebrow { color: var(--gold-lt); }
+  #sha .section-eyebrow::after { background: var(--gold-lt); }
+  #sha h2 { color: #fff; }
+  #sha .lead { color: rgba(255,255,255,0.72); max-width: 600px; }
+
+  .sha-pill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem; color: rgba(255,255,255,0.85);
+    margin: 0.3rem;
+    backdrop-filter: blur(8px);
+  }
+  .sha-pills { margin: 2rem 0; }
+
+  /* ── PHILOSOPHY ── */
+  #philosophy {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .philosophy-visual {
+    position: relative; height: 420px;
+  }
+
+  /* Layered circles visual */
+  .circle-stack {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .cs1 {
+    width: 340px; height: 340px;
+    background: conic-gradient(
+      var(--emerald) 0%, var(--mint) 25%,
+      var(--gold) 50%, var(--coral) 75%, var(--emerald) 100%
+    );
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    opacity: 0.15;
+    animation: csRotate 20s linear infinite;
+  }
+  @keyframes csRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  .cs2 {
+    width: 240px; height: 240px;
+    background: radial-gradient(circle at 40% 40%, var(--emerald-lt), var(--emerald) 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    box-shadow: 0 24px 80px rgba(26,107,82,0.3);
+  }
+  .cs3 {
+    width: 100px; height: 100px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+    top: 20%; left: 60%;
+    box-shadow: 0 12px 40px rgba(200,169,110,0.4);
+  }
+  .cs4 {
+    width: 70px; height: 70px;
+    background: linear-gradient(135deg, var(--coral), #f0a090);
+    bottom: 22%; left: 20%;
+    box-shadow: 0 8px 30px rgba(224,122,95,0.4);
+  }
+
+  .center-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; z-index: 2;
+  }
+  .center-label span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: #fff;
+    font-style: italic;
+  }
+  .center-label small {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .pillars { list-style: none; margin-top: 2rem; }
+  .pillars li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(200,169,110,0.15);
+  }
+  .pillars li:last-child { border-bottom: none; }
+  .pillar-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    flex-shrink: 0; margin-top: 5px;
+  }
+  .pd-g { background: var(--emerald); }
+  .pd-a { background: var(--gold); }
+  .pd-c { background: var(--coral); }
+  .pd-m { background: #7b9edb; }
+  .pillars li strong { font-weight: 600; color: var(--dark); display: block; margin-bottom: 0.2rem; }
+  .pillars li span { font-size: 0.88rem; color: #6a8070; line-height: 1.6; }
+
+  /* ── CONTACT / CTA ── */
+  #contact {
+    background: var(--dark);
+    text-align: center;
+    padding: 7rem 5%;
+    position: relative; overflow: hidden;
+  }
+  #contact::after {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--emerald-lt), transparent 70%);
+    opacity: 0.15;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  #contact h2 { color: #fff; }
+  #contact .lead { color: rgba(255,255,255,0.6); margin: 0 auto 3rem; }
+
+  .contact-btns {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+    position: relative; z-index: 2;
+  }
+
+  .btn-wa {
+    background: linear-gradient(135deg, #25d366, #128c5c);
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(37,211,102,0.35);
+  }
+  .btn-wa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(37,211,102,0.45);
+    color: #fff;
+  }
+  .btn-ig {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(253,29,29,0.25);
+  }
+  .btn-ig:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(253,29,29,0.35);
+    color: #fff;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111;
+    padding: 2rem 5%;
+    text-align: center;
+    font-size: 0.78rem; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.04em;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    #philosophy { grid-template-columns: 1fr; }
+    .philosophy-visual { height: 300px; }
+    .orb { width: 420px; height: 420px; right: -30%; }
+    .nav-links { display: none; }
+    .stats-bar { gap: 1.5rem; }
+    .cs1 { width: 250px; height: 250px; }
+    .cs2 { width: 170px; height: 170px; }
+    .cs3 { width: 70px; height: 70px; }
+    .cs4 { width: 50px; height: 50px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orb, .orb-sm, .cs1 { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Estefania <span>Beltran</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#sha">SHA Wellness</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="https://api.whatsapp.com/send?phone=34671522851" target="_blank" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb"></div>
+  <div class="orb-sm"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Wellness Advisor · Certified Nutritionist</div>
+    <h1>Live a life of <em>vibrant</em> health &amp; longevity.</h1>
+    <p class="hero-desc">Personalized nutrition, luxury wellness programs, and longevity strategies — crafted for those who refuse to compromise on how they feel.</p>
+    <div class="hero-badges">
+      <span class="badge badge-green">✦ Certified Nutritionist</span>
+      <span class="badge badge-gold">✦ Luxury Hospitality &amp; Health</span>
+      <span class="badge badge-coral">✦ Longevity Partner</span>
+    </div>
+    <div class="cta-row">
+      <a href="https://api.whatsapp.com/send?phone=34671522851" target="_blank" class="btn btn-primary">
+        <svg class="icon-wa" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Me
+      </a>
+      <a href="https://www.instagram.com/totalhealthylife/" target="_blank" class="btn btn-secondary">
+        <svg class="icon-ig" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">600+</span><span class="stat-label">Posts & Insights</span></div>
+  <div class="stat"><span class="stat-num">4K+</span><span class="stat-label">Community Members</span></div>
+  <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Personalized Approach</span></div>
+  <div class="stat"><span class="stat-num">SHA</span><span class="stat-label">Certified Partner</span></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-eyebrow">What I Offer</div>
+  <h2>Wellness services<br>built around <em style="font-style:italic;color:var(--emerald)">you</em>.</h2>
+  <p class="lead">Every body is different. My approach combines clinical nutrition science with the luxury wellness traditions of SHA — creating protocols that are both rigorous and deeply human.</p>
+  <div class="services-grid">
+    <div class="service-card sc-1">
+      <div class="service-icon">🌿</div>
+      <h3>Nutritional Consulting</h3>
+      <p>In-depth nutritional assessment and personalized meal planning based on your body's unique needs, goals, and lifestyle rhythms.</p>
+    </div>
+    <div class="service-card sc-2">
+      <div class="service-icon">✨</div>
+      <h3>Luxury Wellness Programs</h3>
+      <p>Curated health programs designed for high-performance environments, hospitality settings, and discerning individuals.</p>
+    </div>
+    <div class="service-card sc-3">
+      <div class="service-icon">🔬</div>
+      <h3>Longevity Strategy</h3>
+      <p>Science-backed longevity protocols — nutrient optimization, metabolic health, and age-defying lifestyle interventions.</p>
+    </div>
+    <div class="service-card sc-4">
+      <div class="service-icon">🏨</div>
+      <h3>InCompany Health</h3>
+      <p>Workplace wellness programs for hospitality brands and corporate teams — nutrition coaching that travels with your culture.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SHA WELLNESS -->
+<section id="sha">
+  <div class="section-eyebrow">Partnership</div>
+  <h2>Longevity Partner at<br>SHA Wellness</h2>
+  <p class="lead">As an official longevity partner of SHA Wellness Spain — one of Europe's most prestigious health destinations — I bring world-class expertise directly to you, wherever you are.</p>
+  <div class="sha-pills">
+    <span class="sha-pill">🌍 SHA Wellness Clinic Spain</span>
+    <span class="sha-pill">🧬 Integrative Medicine</span>
+    <span class="sha-pill">🍃 Macrobiotic Nutrition</span>
+    <span class="sha-pill">💎 Luxury Health Programs</span>
+    <span class="sha-pill">📍 @shawellness_spain</span>
+  </div>
+  <a href="https://api.whatsapp.com/send?phone=34671522851" target="_blank" class="btn btn-primary">
+    <svg class="icon-wa" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Ask About SHA Programs
+  </a>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div>
+    <div class="section-eyebrow">My Approach</div>
+    <h2>Whole-body wellness, rooted in science.</h2>
+    <p class="lead">True health isn't just the absence of disease — it's energy, clarity, and joy. My work sits at the intersection of clinical nutrition and the art of living well.</p>
+    <ul class="pillars">
+      <li>
+        <div class="pillar-dot pd-g"></div>
+        <div>
+          <strong>Personalized Nutrition</strong>
+          <span>No generic plans. Every recommendation is grounded in your biology, goals, and daily reality.</span>
+        </div>
+      </li>
+      <li>
+        <div class="pillar-dot pd-a"></div>
+        <div>
+          <strong>Quality & Health Management</strong>
+          <span>Integrating quality standards from luxury hospitality into everyday wellness decisions.</span>
+        </div>
+      </li>
+      <li>
+        <div class="pillar-dot pd-c"></div>
+        <div>
+          <strong>Longevity Mindset</strong>
+          <span>Short-term results matter, but the goal is a lifetime of energy, mobility, and vitality.</span>
+        </div>
+      </li>
+      <li>
+        <div class="pillar-dot pd-m"></div>
+        <div>
+          <strong>Well-being as a Lifestyle</strong>
+          <span>Sustainable habits woven into your life — not a temporary diet, but a permanent upgrade.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="philosophy-visual">
+    <div class="circle-stack cs1"></div>
+    <div class="circle-stack cs2"></div>
+    <div class="circle-stack cs3"></div>
+    <div class="circle-stack cs4"></div>
+    <div class="center-label">
+      <span>Total Healthy</span>
+      <small>Life</small>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact">
+  <h2>Ready to start your wellness journey?</h2>
+  <p class="lead">Let's talk about where you are and where you want to be. Reach out via WhatsApp or follow along on Instagram for daily inspiration.</p>
+  <div class="contact-btns">
+    <a href="https://api.whatsapp.com/send?phone=34671522851" target="_blank" class="btn btn-wa">
+      <svg class="icon-wa" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Message on WhatsApp
+    </a>
+    <a href="https://www.instagram.com/totalhealthylife/" target="_blank" class="btn btn-ig">
+      <svg class="icon-ig" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Follow @totalhealthylife
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Estefania Beltran · Wellness Advisor · <a href="https://www.instagram.com/totalhealthylife/" target="_blank">@totalhealthylife</a> · Partner <a href="https://www.instagram.com/shawellness_spain/" target="_blank">@shawellness_spain</a></p>
+</footer>
+
+</body>
+</html>
