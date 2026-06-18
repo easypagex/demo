@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oliva Yoga Madrid — Yoga, Somatic Movement & Sacred Ceremony</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron:    #F97316;
+    --turmeric:   #FBBF24;
+    --rose:       #EC4899;
+    --jade:       #10B981;
+    --violet:     #7C3AED;
+    --night:      #1A0A2E;
+    --cream:      #FFF8F0;
+    --warm-white: #FFFAF4;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--night);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem 4rem;
+    position: relative;
+    background: linear-gradient(160deg, #1A0A2E 0%, #3B0764 35%, #6D28D9 65%, #7C3AED 80%, #A855F7 100%);
+    overflow: hidden;
+  }
+
+  /* Floating mandalic circles */
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(251,191,36,.18);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: breathe 7s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(236,72,153,.22);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: breathe 7s ease-in-out infinite reverse;
+  }
+
+  @keyframes breathe {
+    0%,100% { transform: translate(-50%,-50%) scale(1); opacity: .5; }
+    50%      { transform: translate(-50%,-50%) scale(1.08); opacity: 1; }
+  }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .35;
+    pointer-events: none;
+  }
+  .blob-1 { width: 400px; height: 400px; background: var(--saffron); top: -100px; right: -100px; }
+  .blob-2 { width: 350px; height: 350px; background: var(--rose);    bottom: -80px; left: -80px; }
+  .blob-3 { width: 250px; height: 250px; background: var(--jade);    bottom: 20%; right: 5%; }
+
+  .om {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--turmeric);
+    letter-spacing: .3em;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+    animation: glow 3s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%,100% { text-shadow: 0 0 20px rgba(251,191,36,.4); }
+    50%      { text-shadow: 0 0 50px rgba(251,191,36,.9), 0 0 80px rgba(251,191,36,.4); }
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 10vw, 7.5rem);
+    font-weight: 300;
+    line-height: 1;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -.01em;
+  }
+
+  .hero-name span {
+    display: block;
+    font-style: italic;
+    background: linear-gradient(90deg, var(--turmeric), var(--saffron), var(--rose));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    margin-top: 1.8rem;
+    font-size: clamp(.95rem, 2.2vw, 1.2rem);
+    color: rgba(255,255,255,.75);
+    font-weight: 300;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    position: relative; z-index: 2;
+  }
+
+  .hero-location {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-top: 1rem;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: .45rem 1.2rem;
+    color: rgba(255,255,255,.85);
+    font-size: .9rem;
+    position: relative; z-index: 2;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
+    position: relative; z-index: 2;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .9rem 2.2rem;
+    background: linear-gradient(135deg, var(--saffron), var(--rose));
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .25s, box-shadow .25s;
+    box-shadow: 0 8px 30px rgba(249,115,22,.4);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(249,115,22,.55); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .9rem 2.2rem;
+    background: rgba(255,255,255,.1);
+    border: 1.5px solid rgba(255,255,255,.4);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 50px;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: background .25s, transform .25s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.2); transform: translateY(-3px); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,.5);
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .6rem;
+    z-index: 2;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+    animation: scrollline 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollline {
+    0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+    50%  { opacity: 1; }
+    100% { opacity: 0; transform: scaleY(1); transform-origin: top; }
+  }
+
+  /* ── WHAT I OFFER ── */
+  .section {
+    padding: 6rem 1.5rem;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--night);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--saffron);
+  }
+
+  /* Offer cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .card {
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s;
+  }
+  .card:hover { transform: translateY(-6px); }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: .07;
+    background: radial-gradient(circle at 20% 20%, #fff, transparent 60%);
+  }
+
+  .card-1 { background: linear-gradient(135deg, #7C3AED, #A855F7); color: #fff; }
+  .card-2 { background: linear-gradient(135deg, #F97316, #FBBF24); color: #fff; }
+  .card-3 { background: linear-gradient(135deg, #EC4899, #F472B6); color: #fff; }
+  .card-4 { background: linear-gradient(135deg, #10B981, #34D399); color: #fff; }
+
+  .card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: .7rem;
+    line-height: 1.2;
+  }
+
+  .card p {
+    font-size: .95rem;
+    line-height: 1.6;
+    opacity: .88;
+    font-weight: 300;
+  }
+
+  /* ── RETREAT ── */
+  .retreat-section {
+    background: linear-gradient(135deg, var(--night) 0%, #3B0764 50%, #1E3A5F 100%);
+    padding: 6rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .retreat-section::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16,185,129,.15), transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  .retreat-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .retreat-text { color: #fff; }
+
+  .retreat-text .eyebrow { color: var(--jade); }
+
+  .retreat-text .section-title { color: #fff; }
+  .retreat-text .section-title em { color: var(--turmeric); }
+
+  .retreat-text p {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,.75);
+    font-weight: 300;
+  }
+
+  .retreat-text .btn-primary {
+    margin-top: 2.2rem;
+    display: inline-flex;
+  }
+
+  .retreat-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .rcard {
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .rcard-big {
+    grid-row: 1 / 3;
+    background: linear-gradient(180deg, rgba(16,185,129,.2), rgba(16,185,129,.5));
+    border: 1px solid rgba(16,185,129,.3);
+    min-height: 240px;
+  }
+  .rcard-sm-1 {
+    background: linear-gradient(135deg, rgba(251,191,36,.15), rgba(249,115,22,.25));
+    border: 1px solid rgba(251,191,36,.2);
+  }
+  .rcard-sm-2 {
+    background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(168,85,247,.3));
+    border: 1px solid rgba(124,58,237,.3);
+  }
+
+  .rcard-emoji { font-size: 2rem; margin-bottom: .5rem; display: block; }
+  .rcard h4 { color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; }
+  .rcard p { color: rgba(255,255,255,.65); font-size: .82rem; margin-top: .2rem; }
+
+  /* ── ABOUT ── */
+  .about-section {
+    background: var(--cream);
+    padding: 6rem 1.5rem;
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-portrait {
+    position: relative;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 120px 120px 60px 60px;
+    background: linear-gradient(135deg, var(--violet), var(--rose), var(--saffron));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portrait-frame::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #f3e8ff, #fce7f3, #fff7ed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portrait-emoji {
+    position: relative;
+    z-index: 1;
+  }
+
+  .portrait-badge {
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+    background: linear-gradient(135deg, var(--saffron), var(--rose));
+    color: #fff;
+    border-radius: 50%;
+    width: 90px; height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: .65rem;
+    font-weight: 500;
+    letter-spacing: .05em;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 8px 30px rgba(249,115,22,.4);
+  }
+  .portrait-badge span { font-size: 1.4rem; margin-bottom: 2px; }
+
+  .about-text .eyebrow { color: var(--rose); }
+
+  .about-text p {
+    margin-top: 1.2rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #4B3A6A;
+    font-weight: 300;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-top: 2rem;
+  }
+
+  .tag {
+    padding: .4rem 1rem;
+    border-radius: 50px;
+    font-size: .82rem;
+    font-weight: 400;
+    letter-spacing: .04em;
+  }
+  .tag-violet  { background: #EDE9FE; color: #5B21B6; }
+  .tag-orange  { background: #FFF7ED; color: #C2410C; border: 1px solid #FED7AA; }
+  .tag-pink    { background: #FDF2F8; color: #9D174D; border: 1px solid #FBCFE8; }
+  .tag-green   { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
+
+  /* ── COMMUNITY LINKS ── */
+  .links-section {
+    background: linear-gradient(160deg, #FFF7ED 0%, #FDF2F8 50%, #F5F3FF 100%);
+    padding: 5rem 1.5rem;
+    text-align: center;
+  }
+
+  .links-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .links-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .link-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.3rem 1.8rem;
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--night);
+    font-weight: 400;
+    font-size: 1rem;
+    transition: transform .25s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .link-row:hover { transform: translateX(6px); box-shadow: 0 8px 30px rgba(0,0,0,.1); }
+
+  .link-r1 { background: linear-gradient(90deg, #F3E8FF, #FDF2F8); border: 1px solid #E9D5FF; }
+  .link-r2 { background: linear-gradient(90deg, #FFF7ED, #FEF3C7); border: 1px solid #FED7AA; }
+  .link-r3 { background: linear-gradient(90deg, #FDF2F8, #FCE7F3); border: 1px solid #FBCFE8; }
+  .link-r4 { background: linear-gradient(90deg, #ECFDF5, #D1FAE5); border: 1px solid #A7F3D0; }
+
+  .link-icon { font-size: 1.5rem; min-width: 2rem; }
+  .link-label { flex: 1; text-align: left; }
+  .link-label strong { display: block; font-weight: 500; }
+  .link-label small { font-size: .82rem; color: #6B7280; font-weight: 300; }
+  .link-arrow { color: #9CA3AF; font-size: 1.1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--night);
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+
+  .footer-om {
+    font-size: 2rem;
+    color: var(--turmeric);
+    letter-spacing: .3em;
+    margin-bottom: 1rem;
+    animation: glow 4s ease-in-out infinite;
+  }
+
+  footer p {
+    color: rgba(255,255,255,.45);
+    font-size: .85rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  footer a { color: var(--rose); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .retreat-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-inner    { grid-template-columns: 1fr; gap: 2rem; }
+    .retreat-visual { display: none; }
+    .about-portrait { max-width: 240px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+  <div class="hero-blob blob-3"></div>
+
+  <div class="om">ॐ</div>
+
+  <h1 class="hero-name">
+    Oliva
+    <span>Yoga</span>
+  </h1>
+
+  <p class="hero-tagline">Yoga · Somatic Movement · Sacred Ceremony</p>
+
+  <div class="hero-location">
+    <span>📍</span> Madrid & Around the World
+  </div>
+
+  <div class="hero-ctas">
+    <a href="https://linktr.ee/olivayogamadrid" target="_blank" rel="noopener" class="btn-primary">
+      ✨ Explore Links
+    </a>
+    <a href="https://www.instagram.com/olivayogamadrid/" target="_blank" rel="noopener" class="btn-ghost">
+      📸 Follow on Instagram
+    </a>
+  </div>
+
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<!-- ══ WHAT I OFFER ══ -->
+<section class="section">
+  <div class="section-inner">
+    <p class="eyebrow">What I Offer</p>
+    <h2 class="section-title">A space to breathe,<br>move, and <em>reconnect</em></h2>
+
+    <div class="cards">
+      <div class="card card-1">
+        <span class="card-icon">🧘‍♀️</span>
+        <h3>Yoga Classes</h3>
+        <p>Whether you are a first-timer or a seasoned practitioner, each class is an invitation to arrive fully in your body — breath by breath.</p>
+      </div>
+
+      <div class="card card-2">
+        <span class="card-icon">🌊</span>
+        <h3>Somatic Movement</h3>
+        <p>Beyond postures — exploring how the body stores experience and how conscious movement can unlock freedom from deep within.</p>
+      </div>
+
+      <div class="card card-3">
+        <span class="card-icon">🍫</span>
+        <h3>Cacao Ceremony</h3>
+        <p>Sacred heart-opening gatherings rooted in ancestral tradition. Come with intention, leave transformed. Medicine for the soul.</p>
+      </div>
+
+      <div class="card card-4">
+        <span class="card-icon">⭕</span>
+        <h3>Sacred Circles</h3>
+        <p>Community-centered spaces for women and seekers to share, witness, and be witnessed. Where vulnerability becomes power.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RETREAT ══ -->
+<section class="retreat-section">
+  <div class="retreat-inner">
+    <div class="retreat-text">
+      <p class="eyebrow">Roots Within Retreat</p>
+      <h2 class="section-title">A Journey into the <em>Heart of the Earth</em></h2>
+      <p>
+        Deep in the Sierra Nevada of Palomino, Colombia, at One Sanctuary — a transformative immersion with daily yoga, cacao ceremony, temazcal, rappé, ecstatic dance, and emotional consciousness release work.
+      </p>
+      <p>
+        Co-created with <strong style="color: rgba(255,255,255,.9);">@rootswithinretreat</strong> and hosted at <strong style="color: rgba(255,255,255,.9);">@onesantuario</strong>.
+      </p>
+      <a href="https://www.olivayoga.com/rootswithinretreat" target="_blank" rel="noopener" class="btn-primary">
+        🌿 Learn About the Retreat
+      </a>
+    </div>
+
+    <div class="retreat-visual">
+      <div class="rcard rcard-big">
+        <span class="rcard-emoji">🌿</span>
+        <h4>Sierra Nevada</h4>
+        <p>Palomino, Colombia</p>
+      </div>
+      <div class="rcard rcard-sm-1">
+        <span class="rcard-emoji">🥁</span>
+        <h4>Temazcal</h4>
+        <p>Purification ceremony</p>
+      </div>
+      <div class="rcard rcard-sm-2">
+        <span class="rcard-emoji">💃</span>
+        <h4>Ecstatic Dance</h4>
+        <p>Liberation through movement</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORKSHOPS ══ -->
+<section class="section">
+  <div class="section-inner">
+    <p class="eyebrow">Upcoming Workshops</p>
+    <h2 class="section-title">Workshops &amp; <em>Intensives</em></h2>
+
+    <div class="cards" style="margin-top:2.5rem;">
+      <div class="card" style="background: linear-gradient(135deg,#F5F3FF,#EDE9FE); color: var(--night); border: 1px solid #DDD6FE;">
+        <span class="card-icon">☯️</span>
+        <h3 style="color: var(--violet);">YAN Searching for YIN</h3>
+        <p style="color:#4B3A6A;">An exploration of the dynamic balance between masculine and feminine energies through movement and breath.<br><br><strong>📍 YogaOne Alcorcón</strong></p>
+      </div>
+
+      <div class="card" style="background: linear-gradient(135deg,#FFF7ED,#FEF3C7); color: var(--night); border: 1px solid #FED7AA;">
+        <span class="card-icon">🌀</span>
+        <h3 style="color: #C2410C;">The Power of Chakras</h3>
+        <p style="color:#78350F;">A deep dive into the energetic body, aligning your seven chakra centers for vitality and clarity.<br><br><strong>📍 YogaOne Lavapiés</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about-section">
+  <div class="about-inner">
+    <div class="about-portrait">
+      <div class="portrait-frame">
+        <span class="portrait-emoji">🪷</span>
+      </div>
+      <div class="portrait-badge">
+        <span>🌍</span>
+        Madrid<br>&amp; World
+      </div>
+    </div>
+
+    <div class="about-text">
+      <p class="eyebrow">About Oliva</p>
+      <h2 class="section-title">Moving, <em>feeling</em>, becoming</h2>
+
+      <p>
+        I am a yoga teacher, somatic movement guide, and ceremony host based in Madrid — available wherever life calls me. My practice bridges ancient wisdom and embodied science: helping people arrive in their bodies, not just their minds.
+      </p>
+      <p>
+        Each session, workshop, and retreat is an invitation to slow down, tune in, and remember what you already know — deep in your cells.
+      </p>
+
+      <div class="tags">
+        <span class="tag tag-violet">Yoga Teacher</span>
+        <span class="tag tag-orange">Somatic Movement</span>
+        <span class="tag tag-pink">Cacao Ceremony Host</span>
+        <span class="tag tag-green">Retreat Facilitator</span>
+        <span class="tag tag-violet">Sacred Circles</span>
+        <span class="tag tag-orange">Madrid · Colombia · World</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LINKS ══ -->
+<section class="links-section">
+  <div class="links-inner">
+    <p class="eyebrow" style="text-align:center;">Find Me Everywhere</p>
+    <h2 class="section-title">Let's <em>connect</em></h2>
+
+    <div class="links-grid">
+      <a href="https://www.instagram.com/olivayogamadrid/" target="_blank" rel="noopener" class="link-row link-r1">
+        <span class="link-icon">📸</span>
+        <span class="link-label">
+          <strong>Instagram</strong>
+          <small>@olivayogamadrid — daily practice, ceremonies &amp; inspiration</small>
+        </span>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://linktr.ee/olivayogamadrid" target="_blank" rel="noopener" class="link-row link-r2">
+        <span class="link-icon">🌿</span>
+        <span class="link-label">
+          <strong>Linktree</strong>
+          <small>All workshops, retreats &amp; class bookings in one place</small>
+        </span>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://www.olivayoga.com/rootswithinretreat" target="_blank" rel="noopener" class="link-row link-r3">
+        <span class="link-icon">🌍</span>
+        <span class="link-label">
+          <strong>Roots Within Retreat</strong>
+          <small>Transformative immersion in Colombia — join the journey</small>
+        </span>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://www.olivayoga.com/sobre-mi" target="_blank" rel="noopener" class="link-row link-r4">
+        <span class="link-icon">🪷</span>
+        <span class="link-label">
+          <strong>Official Website</strong>
+          <small>Full story, offerings &amp; contact</small>
+        </span>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-om">ॐ</div>
+  <p>
+    <strong style="color:rgba(255,255,255,.7);">Oliva Yoga Madrid</strong><br>
+    Yoga · Somatic Movement · Sacred Ceremony<br>
+    📍 Madrid &amp; Around the World<br><br>
+    <a href="https://www.instagram.com/olivayogamadrid/" target="_blank" rel="noopener">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="https://linktr.ee/olivayogamadrid" target="_blank" rel="noopener">Linktree</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.olivayoga.com/" target="_blank" rel="noopener">Website</a>
+    <br><br>
+    <span style="font-size:.78rem; opacity:.5;">Made with love &amp; light ✨</span>
+  </p>
+</footer>
+
+</body>
+</html>
