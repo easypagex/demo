@@ -1,622 +1,703 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catsitting by Inês — Cuidamos do teu gato em tua casa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inés Bononato | Nutricionista Online No Pesocentrista</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lila:   #B57BEE;
+    --rosa:   #F07EAA;
+    --durazno:#FFA07A;
+    --sol:    #FFD166;
+    --menta:  #72D5A3;
+    --azul:   #7EC8E3;
+    --blanco: #FFFDF8;
+    --gris:   #4A4458;
+    --negro:  #1E1A2E;
+  }
 
-    :root {
-      --coral:   #FF6B6B;
-      --lilac:   #C084FC;
-      --gold:    #FBBF24;
-      --mint:    #34D399;
-      --sky:     #60A5FA;
-      --cream:   #FFFBF5;
-      --dark:    #1E1B2E;
-      --mid:     #4B4569;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanco);
+    color: var(--gris);
+    overflow-x: hidden;
+  }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(255,253,248,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(181,123,238,0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--negro);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--lila); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gris);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--lila); }
+  .nav-cta {
+    background: var(--lila);
+    color: #fff !important;
+    padding: 9px 22px;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: background .2s, transform .15s !important;
+  }
+  .nav-cta:hover { background: #9a5cd9 !important; transform: translateY(-1px); }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      padding: 1rem 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,251,245,0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 2px solid rgba(192,132,252,0.15);
-    }
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem; font-weight: 800;
-      color: var(--dark);
-      letter-spacing: -0.02em;
-    }
-    .nav-logo span { color: var(--coral); }
-    .nav-cta {
-      background: var(--coral);
-      color: #fff;
-      border: none; border-radius: 100px;
-      padding: 0.6rem 1.4rem;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600; font-size: 0.9rem;
-      cursor: pointer; text-decoration: none;
-      transition: transform 0.2s, background 0.2s;
-    }
-    .nav-cta:hover { background: #e05555; transform: scale(1.04); }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg,
+      #f9eeff 0%, #fde8f2 30%, #fff5e0 60%, #e8faf3 100%);
+    z-index: 0;
+  }
+  /* blobs decorativos */
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(70px);
+    opacity: 0.45; z-index: 0; pointer-events: none;
+  }
+  .blob-1 { width: 420px; height: 420px; background: var(--lila);   top: -80px;  left: -100px; }
+  .blob-2 { width: 360px; height: 360px; background: var(--rosa);   bottom: -60px; right: 5%;   }
+  .blob-3 { width: 280px; height: 280px; background: var(--sol);    top: 40%;    right: 28%;  opacity: .3;}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 7rem 1.5rem 4rem;
-      background: linear-gradient(145deg, #fff0f0 0%, #f5e8ff 40%, #e8f4ff 100%);
-      position: relative; overflow: hidden;
-    }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center; position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(181,123,238,.15);
+    color: var(--lila); font-size: 0.82rem; font-weight: 600;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 22px;
+    border: 1px solid rgba(181,123,238,.3);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.15;
+    color: var(--negro);
+    margin-bottom: 22px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--lila), var(--rosa));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.75;
+    margin-bottom: 36px; max-width: 480px;
+    color: #5a5270;
+  }
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px;
+  }
+  .pill {
+    font-size: 0.82rem; font-weight: 500;
+    padding: 6px 14px; border-radius: 50px;
+    border: 1.5px solid;
+  }
+  .pill-lila  { border-color: var(--lila);   color: var(--lila);   background: rgba(181,123,238,.08); }
+  .pill-rosa  { border-color: var(--rosa);   color: var(--rosa);   background: rgba(240,126,170,.08); }
+  .pill-menta { border-color: var(--menta);  color: #3aaa79;       background: rgba(114,213,163,.08); }
 
-    /* floating blobs */
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(60px); opacity: 0.35; pointer-events: none;
-    }
-    .blob-1 { width: 400px; height: 400px; background: var(--coral); top: -100px; left: -120px; }
-    .blob-2 { width: 350px; height: 350px; background: var(--lilac); bottom: -80px; right: -100px; }
-    .blob-3 { width: 250px; height: 250px; background: var(--gold); top: 40%; left: 60%; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #fff; text-decoration: none;
+    padding: 15px 30px; border-radius: 50px;
+    font-weight: 600; font-size: 1rem;
+    box-shadow: 0 8px 24px rgba(37,211,102,.35);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(37,211,102,.45); }
+  .btn-wa svg { width: 22px; height: 22px; flex-shrink: 0; }
 
-    .badge {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      background: #fff;
-      border: 2px solid var(--lilac);
-      border-radius: 100px;
-      padding: 0.4rem 1rem;
-      font-size: 0.85rem; font-weight: 600;
-      color: var(--mid);
-      margin-bottom: 1.8rem;
-      animation: fadeDown 0.7s ease both;
-    }
-    .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); display: inline-block; }
+  .btn-sec {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; color: var(--lila);
+    text-decoration: none;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 600; font-size: 0.96rem;
+    border: 2px solid var(--lila);
+    transition: background .2s, color .2s, transform .2s;
+  }
+  .btn-sec:hover { background: var(--lila); color: white; transform: translateY(-2px); }
 
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.6rem, 7vw, 5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--dark);
-      animation: fadeUp 0.8s 0.1s ease both;
-      max-width: 760px;
-    }
-    .hero h1 .highlight-coral { color: var(--coral); }
-    .hero h1 .highlight-lilac { color: var(--lilac); }
+  /* hero visual */
+  .hero-visual {
+    position: relative; display: flex;
+    justify-content: center; align-items: center;
+  }
+  .hero-card {
+    background: white;
+    border-radius: 28px;
+    padding: 36px 32px;
+    box-shadow: 0 20px 60px rgba(181,123,238,.25);
+    max-width: 340px; width: 100%;
+    position: relative;
+  }
+  .hero-card-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--lila), var(--rosa));
+    color: white; font-size: 0.75rem; font-weight: 700;
+    padding: 4px 14px; border-radius: 50px;
+    margin-bottom: 20px; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .hero-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; color: var(--negro); margin-bottom: 16px;
+  }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .check-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.93rem; color: var(--gris); line-height: 1.4;
+  }
+  .check-list li::before {
+    content: '✓';
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 22px; height: 22px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--lila), var(--rosa));
+    color: white; font-size: 0.75rem; font-weight: 700; margin-top: 1px;
+  }
+  .float-badge {
+    position: absolute;
+    background: white; border-radius: 16px;
+    padding: 10px 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    font-size: 0.82rem; font-weight: 600; color: var(--negro);
+    display: flex; align-items: center; gap: 8px;
+    white-space: nowrap;
+  }
+  .fb-1 { top: -20px; right: -30px; }
+  .fb-2 { bottom: -15px; left: -30px; }
+  .fb-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-    .hero-sub {
-      margin-top: 1.4rem;
-      font-size: 1.15rem;
-      color: var(--mid);
-      line-height: 1.65;
-      max-width: 500px;
-      animation: fadeUp 0.8s 0.25s ease both;
-    }
+  /* SECCIÓN COMÚN */
+  section { padding: 100px 40px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--negro); line-height: 1.25;
+    margin-bottom: 18px;
+  }
+  .section-body {
+    font-size: 1.02rem; line-height: 1.8; max-width: 560px; color: #5a5270;
+  }
 
-    .hero-btns {
-      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-      margin-top: 2.4rem;
-      animation: fadeUp 0.8s 0.38s ease both;
-    }
-    .btn-primary {
-      background: var(--coral); color: #fff;
-      padding: 0.9rem 2rem; border-radius: 100px;
-      font-weight: 700; font-size: 1rem;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 6px 24px rgba(255,107,107,0.4);
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(255,107,107,0.5); }
-    .btn-secondary {
-      background: #fff; color: var(--dark);
-      padding: 0.9rem 2rem; border-radius: 100px;
-      font-weight: 600; font-size: 1rem;
-      text-decoration: none; border: 2px solid rgba(75,69,105,0.2);
-      transition: border-color 0.2s, transform 0.2s;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .btn-secondary:hover { border-color: var(--lilac); transform: translateY(-3px); }
+  /* ¿ES PARA MÍ? */
+  .para-mi { background: linear-gradient(160deg, #fdf4ff 0%, #fff0f7 50%, #fffbf0 100%); }
+  .para-mi-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 60px;
+  }
+  .pain-cards { display: flex; flex-direction: column; gap: 14px; }
+  .pain-card {
+    background: white; border-radius: 18px;
+    padding: 20px 24px;
+    border-left: 4px solid;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    font-size: 0.94rem; line-height: 1.65; color: var(--gris);
+    transition: transform .2s;
+  }
+  .pain-card:hover { transform: translateX(4px); }
+  .pain-card.c1 { border-color: var(--lila); }
+  .pain-card.c2 { border-color: var(--rosa); }
+  .pain-card.c3 { border-color: var(--durazno); }
+  .pain-card.c4 { border-color: var(--sol); }
+  .pain-card.c5 { border-color: var(--menta); }
 
-    .hero-img-wrap {
-      position: relative;
-      margin-top: 3.5rem;
-      animation: fadeUp 0.9s 0.5s ease both;
-    }
-    .hero-img-inner {
-      width: 220px; height: 220px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 5px solid #fff;
-      box-shadow: 0 12px 40px rgba(192,132,252,0.35);
-      background: linear-gradient(135deg, var(--lilac), var(--coral));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 6rem;
-    }
-    .paw-ring {
-      position: absolute; inset: -18px;
-      border-radius: 50%;
-      border: 3px dashed rgba(192,132,252,0.4);
-      animation: spin 18s linear infinite;
-    }
+  .para-mi-text .section-body { max-width: 100%; }
+  .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; line-height: 1.4;
+    color: var(--negro); margin: 28px 0;
+    padding: 24px 28px;
+    background: white; border-radius: 18px;
+    border-left: 5px solid var(--lila);
+    box-shadow: 0 8px 24px rgba(181,123,238,.15);
+  }
 
-    /* ── PAW DIVIDER ── */
-    .paw-divider {
-      text-align: center; font-size: 1.5rem;
-      letter-spacing: 0.5rem;
-      padding: 1.2rem 0;
-      color: var(--lilac);
-      opacity: 0.6;
-    }
+  /* SERVICIOS */
+  .servicios { background: var(--blanco); }
+  .servicios-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px;
+  }
+  .servicio-card {
+    border-radius: 24px; padding: 32px 28px;
+    position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .servicio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.12); }
+  .sc-1 { background: linear-gradient(135deg, #f0e6ff, #f9d9f0); }
+  .sc-2 { background: linear-gradient(135deg, #fde8cc, #fff4cc); }
+  .sc-3 { background: linear-gradient(135deg, #d6f5e8, #c8f0ff); }
+  .servicio-icon {
+    font-size: 2.4rem; margin-bottom: 18px;
+    display: inline-block;
+  }
+  .servicio-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: var(--negro); margin-bottom: 12px;
+  }
+  .servicio-card p { font-size: 0.93rem; line-height: 1.7; color: #5a5270; }
 
-    /* ── SECTION COMMON ── */
-    section { padding: 5rem 1.5rem; }
-    .section-label {
-      display: inline-block;
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--coral);
-      margin-bottom: 0.8rem;
-    }
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 4.5vw, 3rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      color: var(--dark);
-    }
-    .section-title em { color: var(--lilac); font-style: normal; }
+  /* MÉTODO */
+  .metodo { background: linear-gradient(160deg, #1E1A2E 0%, #2d1f4a 100%); }
+  .metodo .section-title { color: white; }
+  .metodo .section-eyebrow { color: var(--lila); }
+  .metodo-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px;
+  }
+  .step {
+    text-align: center; padding: 32px 20px;
+    background: rgba(255,255,255,.06); border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.1);
+    transition: background .2s;
+  }
+  .step:hover { background: rgba(255,255,255,.1); }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--lila), var(--rosa));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+  }
+  .step h4 { color: white; font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+  .step p { color: rgba(255,255,255,.65); font-size: 0.88rem; line-height: 1.65; }
 
-    /* ── TRUST STRIP ── */
-    .trust-strip {
-      background: var(--dark);
-      padding: 1.6rem 1.5rem;
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 2.5rem;
-    }
-    .trust-item {
-      display: flex; align-items: center; gap: 0.6rem;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.9rem; font-weight: 500;
-    }
-    .trust-item span.icon { font-size: 1.2rem; }
+  /* PARA QUIÉN */
+  .quien { background: linear-gradient(160deg, #fff8ee 0%, #fdf0ff 100%); }
+  .quien-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px;
+  }
+  .quien-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: white; border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.05);
+    transition: transform .2s;
+  }
+  .quien-item:hover { transform: translateY(-3px); }
+  .quien-emoji { font-size: 1.8rem; flex-shrink: 0; }
+  .quien-item h4 { font-size: 0.98rem; font-weight: 600; color: var(--negro); margin-bottom: 4px; }
+  .quien-item p { font-size: 0.88rem; color: #6b6080; line-height: 1.55; }
 
-    /* ── SERVICES ── */
-    .services { background: #fff; }
-    .services-inner { max-width: 1000px; margin: 0 auto; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem; margin-top: 3rem;
-    }
-    .service-card {
-      border-radius: 20px; padding: 2rem 1.6rem;
-      border: 2px solid transparent;
-      transition: transform 0.25s, box-shadow 0.25s;
-      position: relative; overflow: hidden;
-    }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
-    .sc-1 { background: #FFF3F3; border-color: #FFCECE; }
-    .sc-2 { background: #F5EEFF; border-color: #DDB6FF; }
-    .sc-3 { background: #EEFFF7; border-color: #A7F3D0; }
-    .sc-4 { background: #FFF8E7; border-color: #FDE68A; }
-    .service-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
-    .service-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem; font-weight: 800; color: var(--dark);
-      margin-bottom: 0.6rem;
-    }
-    .service-card p { font-size: 0.95rem; color: var(--mid); line-height: 1.6; }
+  /* SOBRE MÍ */
+  .sobre-mi { background: var(--blanco); }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 70px; align-items: center; }
+  .sobre-visual {
+    position: relative; display: flex; justify-content: center;
+  }
+  .sobre-circle {
+    width: 300px; height: 300px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--lila), var(--rosa), var(--durazno));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem;
+  }
+  .sobre-badge {
+    position: absolute; bottom: -10px; right: -10px;
+    background: white; border-radius: 16px;
+    padding: 14px 20px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.12);
+    text-align: center;
+  }
+  .sobre-badge strong { display: block; font-size: 1.4rem; color: var(--lila); font-family: 'Playfair Display', serif; }
+  .sobre-badge span { font-size: 0.8rem; color: #888; font-weight: 500; }
+  .sobre-text .section-body { max-width: 100%; margin-bottom: 20px; }
+  .tags-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .tag {
+    font-size: 0.82rem; font-weight: 600;
+    padding: 7px 16px; border-radius: 50px;
+    background: linear-gradient(135deg, rgba(181,123,238,.15), rgba(240,126,170,.15));
+    color: var(--lila); border: 1px solid rgba(181,123,238,.25);
+  }
 
-    /* ── HOW IT WORKS ── */
-    .how { background: linear-gradient(135deg, #F5EEFF 0%, #EEFBFF 100%); }
-    .how-inner { max-width: 800px; margin: 0 auto; }
-    .steps { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.8rem; }
-    .step {
-      display: flex; gap: 1.4rem; align-items: flex-start;
-      background: #fff; border-radius: 16px; padding: 1.6rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-      opacity: 0; transform: translateX(-30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .step.visible { opacity: 1; transform: translateX(0); }
-    .step-num {
-      min-width: 48px; height: 48px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
-      color: #fff; flex-shrink: 0;
-    }
-    .sn-1 { background: var(--coral); }
-    .sn-2 { background: var(--lilac); }
-    .sn-3 { background: var(--mint); }
-    .sn-4 { background: var(--gold); }
-    .step h4 { font-weight: 700; color: var(--dark); margin-bottom: 0.3rem; font-size: 1.05rem; }
-    .step p { color: var(--mid); font-size: 0.95rem; line-height: 1.6; }
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--lila) 0%, var(--rosa) 50%, var(--durazno) 100%);
+    text-align: center; padding: 100px 40px;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white; margin-bottom: 18px; line-height: 1.2;
+  }
+  .cta-section p {
+    color: rgba(255,255,255,.88); font-size: 1.08rem;
+    margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta-wa {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: white; color: var(--negro);
+    text-decoration: none;
+    padding: 16px 36px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,.2);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-cta-wa:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,.28); }
+  .btn-cta-ig {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.2); color: white;
+    text-decoration: none;
+    padding: 15px 32px; border-radius: 50px;
+    font-weight: 600; font-size: 0.96rem;
+    border: 2px solid rgba(255,255,255,.5);
+    transition: background .2s, transform .2s;
+  }
+  .btn-cta-ig:hover { background: rgba(255,255,255,.35); transform: translateY(-2px); }
 
-    /* ── AREA ── */
-    .area { background: #fff; }
-    .area-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .area-map-box {
-      background: linear-gradient(135deg, #F5EEFF, #FFE8F0);
-      border-radius: 24px; padding: 3rem 2rem;
-      text-align: center;
-      border: 2px solid rgba(192,132,252,0.25);
-    }
-    .area-map-box .map-emoji { font-size: 5rem; margin-bottom: 1rem; }
-    .area-map-box h3 {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 1.4rem; color: var(--dark); margin-bottom: 0.4rem;
-    }
-    .area-map-box p { color: var(--mid); font-size: 0.95rem; }
-    .area-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; justify-content: center; }
-    .area-tag {
-      background: #fff; border: 2px solid var(--lilac);
-      border-radius: 100px; padding: 0.35rem 0.9rem;
-      font-size: 0.85rem; font-weight: 600; color: var(--mid);
-    }
-    @media(max-width: 680px) {
-      .area-inner { grid-template-columns: 1fr; gap: 2rem; }
-    }
+  /* FOOTER */
+  footer {
+    background: var(--negro); color: rgba(255,255,255,.6);
+    text-align: center; padding: 40px;
+    font-size: 0.9rem; line-height: 1.8;
+  }
+  footer strong { color: white; }
+  footer a { color: var(--lila); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 
-    /* ── WHY ── */
-    .why { background: var(--dark); color: #fff; }
-    .why-inner { max-width: 960px; margin: 0 auto; }
-    .why .section-label { color: var(--gold); }
-    .why .section-title { color: #fff; }
-    .why .section-title em { color: var(--gold); }
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-    .why-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px; padding: 1.6rem;
-      transition: background 0.2s;
-    }
-    .why-card:hover { background: rgba(255,255,255,0.12); }
-    .why-card .wi { font-size: 2rem; margin-bottom: 0.8rem; }
-    .why-card h4 { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: #fff; }
-    .why-card p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+  /* FLOTANTE WA */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 200;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,.5);
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,.6); }
+  .wa-float svg { width: 30px; height: 30px; }
 
-    /* ── CERT ── */
-    .cert {
-      background: linear-gradient(135deg, var(--coral) 0%, var(--lilac) 100%);
-      padding: 4rem 1.5rem; text-align: center; color: #fff;
-    }
-    .cert-box {
-      display: inline-flex; flex-direction: column; align-items: center;
-      background: rgba(255,255,255,0.15); border-radius: 24px;
-      padding: 2.5rem 3rem; border: 2px solid rgba(255,255,255,0.3);
-      max-width: 480px;
-    }
-    .cert-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .cert h2 {
-      font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800;
-      margin-bottom: 0.7rem;
-    }
-    .cert p { font-size: 0.95rem; line-height: 1.65; opacity: 0.9; }
-
-    /* ── CTA ── */
-    .cta-section {
-      background: var(--cream); padding: 6rem 1.5rem;
-      text-align: center;
-    }
-    .cta-section .section-title { margin-bottom: 0.8rem; }
-    .cta-sub { color: var(--mid); font-size: 1.05rem; margin-bottom: 2.5rem; max-width: 440px; margin-left: auto; margin-right: auto; }
-    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-green {
-      background: #25D366; color: #fff;
-      padding: 0.9rem 2rem; border-radius: 100px;
-      font-weight: 700; font-size: 1rem; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      box-shadow: 0 6px 20px rgba(37,211,102,0.35);
-      transition: transform 0.2s;
-    }
-    .btn-green:hover { transform: translateY(-3px); }
-    .btn-inst {
-      background: linear-gradient(135deg, #E1306C, #833AB4);
-      color: #fff;
-      padding: 0.9rem 2rem; border-radius: 100px;
-      font-weight: 700; font-size: 1rem; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      box-shadow: 0 6px 20px rgba(131,58,180,0.35);
-      transition: transform 0.2s;
-    }
-    .btn-inst:hover { transform: translateY(-3px); }
-    .btn-price {
-      background: var(--gold); color: var(--dark);
-      padding: 0.9rem 2rem; border-radius: 100px;
-      font-weight: 700; font-size: 1rem; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      box-shadow: 0 6px 20px rgba(251,191,36,0.35);
-      transition: transform 0.2s;
-    }
-    .btn-price:hover { transform: translateY(-3px); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--dark); color: rgba(255,255,255,0.55);
-      text-align: center; padding: 2rem 1.5rem;
-      font-size: 0.85rem;
-    }
-    footer a { color: var(--lilac); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, .paw-ring { animation: none !important; transition: none !important; }
-      .step, .reveal { opacity: 1 !important; transform: none !important; }
-    }
-  </style>
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .para-mi-grid { grid-template-columns: 1fr; }
+    .servicios-grid { grid-template-columns: 1fr; }
+    .metodo-steps { grid-template-columns: 1fr 1fr; }
+    .quien-grid { grid-template-columns: 1fr; }
+    .sobre-grid { grid-template-columns: 1fr; }
+    .sobre-visual { margin-bottom: 20px; }
+    section { padding: 70px 20px; }
+  }
+  @media (max-width: 600px) {
+    .metodo-steps { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">🐈‍⬛ Catsitting <span>by Inês</span></div>
-    <a href="https://forms.gle/zCxkQhZQmR1VvNgt9" target="_blank" class="nav-cta">Reservar agora</a>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-
-    <div class="badge"><span class="dot"></span> Certificada &amp; com experiência em Porto</div>
-
-    <h1>O teu gato <span class="highlight-coral">feliz e seguro</span><br/>na <span class="highlight-lilac">sua própria casa</span></h1>
-
-    <p class="hero-sub">
-      Cuidamos do teu gato no conforto e na tranquilidade do lar que ele conhece e adora — sem stress de transportes nem ambientes desconhecidos.
-    </p>
-
-    <div class="hero-btns">
-      <a href="https://forms.gle/zCxkQhZQmR1VvNgt9" target="_blank" class="btn-primary">🐾 Reservar — novos clientes</a>
-      <a href="https://forms.gle/2znavWAThvKxWoLf7" target="_blank" class="btn-secondary">🔁 Já sou cliente</a>
-    </div>
-
-    <div class="hero-img-wrap">
-      <div class="paw-ring"></div>
-      <div class="hero-img-inner">🐈‍⬛</div>
-    </div>
-  </section>
-
-  <!-- TRUST STRIP -->
-  <div class="trust-strip">
-    <div class="trust-item"><span class="icon">🎓</span> Catsitter certificada</div>
-    <div class="trust-item"><span class="icon">🏡</span> Cuidado em tua casa</div>
-    <div class="trust-item"><span class="icon">📍</span> Porto e arredores</div>
-    <div class="trust-item"><span class="icon">📸</span> Atualizações com fotos</div>
-    <div class="trust-item"><span class="icon">❤️</span> Amor garantido</div>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Inés <span>Bononato</span></div>
+  <div class="nav-links">
+    <a href="#para-mi">¿Es para mí?</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="https://api.whatsapp.com/send/?phone=34686706662" target="_blank" class="nav-cta">Reservar sesión</a>
   </div>
+</nav>
 
-  <!-- SERVICES -->
-  <section class="services">
-    <div class="services-inner">
-      <div class="reveal">
-        <span class="section-label">O que faço</span>
-        <h2 class="section-title">Serviços <em>com carinho</em></h2>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">🌼 Nutricionista online</div>
+      <h1>Comer bien sin<br><em>castigarte</em> ni<br>hacer dietas.</h1>
+      <p class="hero-sub">Ayudo a mujeres cansadas de dietas a mejorar su relación con la comida desde un enfoque no pesocentrista, con perspectiva de género y mucho respeto por tu proceso.</p>
+      <div class="hero-pills">
+        <span class="pill pill-lila">💜 TCA</span>
+        <span class="pill pill-rosa">🩺 Resistencia a la insulina</span>
+        <span class="pill pill-menta">🥝 Colesterol</span>
+        <span class="pill pill-lila">♀️ Perspectiva de género</span>
       </div>
-      <div class="services-grid">
-        <div class="service-card sc-1 reveal">
-          <div class="service-emoji">🏠</div>
-          <h3>Visitas domiciliárias</h3>
-          <p>Visito o teu gato em casa, na hora combinada. Alimentação, brincadeira, miminhos e limpeza da caixa de areia incluídos.</p>
+      <div class="hero-btns">
+        <a href="https://api.whatsapp.com/send/?phone=34686706662" target="_blank" class="btn-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Reservar sesión
+        </a>
+        <a href="https://inesbononato.wixsite.com/s-bononato---dietist" target="_blank" class="btn-sec">Ver mi web →</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <span class="hero-card-tag">Mi promesa</span>
+        <h3>Un enfoque diferente</h3>
+        <ul class="check-list">
+          <li>Sin contar calorías ni restricciones</li>
+          <li>Respeto por todos los cuerpos</li>
+          <li>Relación amable con la comida</li>
+          <li>Herramientas reales y sostenibles</li>
+          <li>Acompañamiento con perspectiva de género</li>
+          <li>Atención al bienestar físico y emocional</li>
+        </ul>
+        <div class="float-badge fb-1">
+          <div class="fb-dot" style="background:var(--menta)"></div>
+          Nutricionista colegiada
         </div>
-        <div class="service-card sc-2 reveal">
-          <div class="service-emoji">🌙</div>
-          <h3>Pernoita em tua casa</h3>
-          <p>Fico a dormir em tua casa para que o teu gato nunca esteja sozinho durante a noite. Máximo conforto para ele.</p>
-        </div>
-        <div class="service-card sc-3 reveal">
-          <div class="service-emoji">💊</div>
-          <h3>Administração de medicação</h3>
-          <p>Experiência com gatos que precisam de medicação diária. Cuidado e atenção redobrada para gatinhos com necessidades especiais.</p>
-        </div>
-        <div class="service-card sc-4 reveal">
-          <div class="service-emoji">📱</div>
-          <h3>Relatórios com fotos</h3>
-          <p>Recebes atualizações com fotos e vídeos para ficares descansado onde quer que estejas. O teu gatinho em direto!</p>
+        <div class="float-badge fb-2">
+          🌍 Consulta 100% online
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="paw-divider">🐾 🐾 🐾 🐾 🐾</div>
+<!-- ¿ES PARA MÍ? -->
+<section class="para-mi" id="para-mi">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--rosa)">¿Esto te resuena?</div>
+    <h2 class="section-title">Quizás ya te <em style="font-style:normal;color:var(--lila)">reconoces</em> aquí</h2>
 
-  <!-- HOW IT WORKS -->
-  <section class="how">
-    <div class="how-inner">
-      <div class="reveal">
-        <span class="section-label">Como funciona</span>
-        <h2 class="section-title">Simples e <em>sem complicações</em></h2>
+    <div class="para-mi-grid">
+      <div class="pain-cards">
+        <div class="pain-card c1">Has probado mil dietas, planes y retos… y sigues sintiéndote perdida con la comida.</div>
+        <div class="pain-card c2">Comes con culpa y a veces sientes que no puedes parar.</div>
+        <div class="pain-card c3">No sabes distinguir el hambre física del hambre emocional.</div>
+        <div class="pain-card c4">Te han dicho que tienes que perder peso "por salud" pero nadie te acompañó de verdad.</div>
+        <div class="pain-card c5">Tienes resistencia a la insulina o prediabetes y no sabes cómo comer sin angustia.</div>
       </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num sn-1">1</div>
-          <div>
-            <h4>Preenche o formulário</h4>
-            <p>Clica em "Reservar agora" e preenche os teus dados e os do teu gatinho. Rápido e fácil.</p>
-          </div>
+      <div class="para-mi-text">
+        <p class="section-body">Si alguna de estas frases resuena contigo, has llegado al lugar correcto. No hay nada malo en ti — el problema son los sistemas que te han obligado a relacionarte con tu cuerpo desde el miedo y el control.</p>
+        <div class="big-quote">
+          "Quieres aprender a comer desde otro lugar. Un lugar de calma, respeto y bienestar real."
         </div>
-        <div class="step">
-          <div class="step-num sn-2">2</div>
-          <div>
-            <h4>Visita de apresentação</h4>
-            <p>Marcamos uma visita prévia (gratuita) para eu conhecer o teu gato no ambiente dele e perceber todas as suas rotinas.</p>
-          </div>
+        <p class="section-body">Mi trabajo es acompañarte a soltar la guerra con la comida y construir una relación amable con tu cuerpo — sin dietas, sin culpa, con herramientas reales.</p>
+        <br>
+        <a href="https://api.whatsapp.com/send/?phone=34686706662" target="_blank" class="btn-wa" style="display:inline-flex;width:fit-content">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Hablemos por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--lila)">Lo que hago</div>
+    <h2 class="section-title">Mis <em style="font-style:normal;color:var(--rosa)">servicios</em></h2>
+    <p class="section-body">Trabajo de forma personalizada adaptándome a tu historia, tu contexto y tu cuerpo. Nada de protocolos genéricos.</p>
+
+    <div class="servicios-grid">
+      <div class="servicio-card sc-1">
+        <div class="servicio-icon">💜</div>
+        <h3>Nutrición no pesocentrista</h3>
+        <p>Mejora tu relación con la comida y tu cuerpo sin obsesionarte con la báscula. Un enfoque centrado en el bienestar real, no en los kilos.</p>
+      </div>
+      <div class="servicio-card sc-2">
+        <div class="servicio-icon">🩺</div>
+        <h3>TCA · Resistencia a la insulina · Colesterol</h3>
+        <p>Acompañamiento especializado para mujeres con diagnósticos específicos que quieren cuidarse sin renunciar a su paz mental.</p>
+      </div>
+      <div class="servicio-card sc-3">
+        <div class="servicio-icon">♀️</div>
+        <h3>Perspectiva de género</h3>
+        <p>La alimentación no es neutral. Trabajo entendiendo cómo el género, la cultura y el contexto social moldean nuestra relación con la comida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section class="metodo">
+  <div class="section-inner">
+    <div class="section-eyebrow">Mi enfoque</div>
+    <h2 class="section-title">Cómo trabajamos juntas</h2>
+    <div class="metodo-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Te escucho</h4>
+        <p>Empezamos con una sesión donde entiendo tu historia, tu contexto y lo que necesitas de verdad.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Sin juicios</h4>
+        <p>Un espacio seguro, sin culpa ni vergüenza. Tu cuerpo y tu experiencia son válidos tal como son.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Estrategia real</h4>
+        <p>Diseñamos juntas un plan personalizado, sostenible y adaptado a tu vida (no al revés).</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Acompañamiento</h4>
+        <p>No estás sola. Te acompaño durante todo el proceso para que los cambios sean duraderos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="quien">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--durazno)">Mi especialidad</div>
+    <h2 class="section-title">Trabajo especialmente con mujeres que…</h2>
+    <div class="quien-grid">
+      <div class="quien-item">
+        <div class="quien-emoji">😔</div>
+        <div>
+          <h4>Están cansadas de las dietas</h4>
+          <p>Han probado de todo y sienten que el problema es con ellas. No lo es.</p>
         </div>
-        <div class="step">
-          <div class="step-num sn-3">3</div>
-          <div>
-            <h4>Tudo alinhado, partes descansado</h4>
-            <p>Combinamos horários, entregas de chave e instruções especiais. Podes viajar com total tranquilidade.</p>
-          </div>
+      </div>
+      <div class="quien-item">
+        <div class="quien-emoji">🔄</div>
+        <div>
+          <h4>Viven en el ciclo control–descontrol</h4>
+          <p>Un día muy "bien" y al siguiente sienten que todo se desmorona.</p>
         </div>
-        <div class="step">
-          <div class="step-num sn-4">4</div>
-          <div>
-            <h4>Atualizações em tempo real</h4>
-            <p>Durante a tua ausência recebes fotos e mensagens para veres como o teu gatinho está. Nunca mais te preocupes!</p>
-          </div>
+      </div>
+      <div class="quien-item">
+        <div class="quien-emoji">🍽️</div>
+        <div>
+          <h4>Tienen una relación difícil con la comida</h4>
+          <p>Culpa, restricción, atracones, miedo a ciertos alimentos… Todo eso tiene solución.</p>
+        </div>
+      </div>
+      <div class="quien-item">
+        <div class="quien-emoji">🩺</div>
+        <div>
+          <h4>Tienen diagnósticos como RI, TCA o colesterol</h4>
+          <p>Necesitan apoyo nutricional especializado que tenga en cuenta toda su persona.</p>
+        </div>
+      </div>
+      <div class="quien-item">
+        <div class="quien-emoji">🌱</div>
+        <div>
+          <h4>Quieren aprender a comer intuitivamente</h4>
+          <p>Sin apps de calorías, sin prohibiciones, desde el respeto y la escucha del propio cuerpo.</p>
+        </div>
+      </div>
+      <div class="quien-item">
+        <div class="quien-emoji">💪</div>
+        <div>
+          <h4>Buscan bienestar, no solo un número</h4>
+          <p>Entienden que la salud es mucho más que el peso y quieren vivir bien, de verdad.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- AREA -->
-  <section class="area">
-    <div class="area-inner">
-      <div class="reveal">
-        <span class="section-label">Zona de cobertura</span>
-        <h2 class="section-title">Porto e <em>arredores</em></h2>
-        <p style="color: var(--mid); margin-top: 1rem; line-height: 1.7; font-size: 0.97rem;">
-          Presto serviço no Porto e em vários concelhos limítrofes. Tens dúvidas se a tua zona está coberta? Envia-me uma mensagem e verificamos juntos!
-        </p>
-      </div>
-      <div class="area-map-box reveal">
-        <div class="map-emoji">🗺️</div>
-        <h3>📍 Porto e arredores</h3>
-        <p>Zona metropolitana do Porto</p>
-        <div class="area-tags">
-          <span class="area-tag">Porto</span>
-          <span class="area-tag">Matosinhos</span>
-          <span class="area-tag">Gaia</span>
-          <span class="area-tag">Maia</span>
-          <span class="area-tag">Gondomar</span>
-          <span class="area-tag">Ermesinde</span>
+<!-- SOBRE MÍ -->
+<section class="sobre-mi" id="sobre-mi">
+  <div class="section-inner">
+    <div class="sobre-grid">
+      <div class="sobre-visual">
+        <div class="sobre-circle">🌼</div>
+        <div class="sobre-badge">
+          <strong>MAD001202</strong>
+          <span>Nº colegiada</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- WHY -->
-  <section class="why">
-    <div class="why-inner">
-      <div class="reveal">
-        <span class="section-label">Porquê escolher-me</span>
-        <h2 class="section-title">Porque o teu gato <em>merece o melhor</em></h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-card reveal">
-          <div class="wi">🎓</div>
-          <h4>Certificada</h4>
-          <p>Formação profissional em catsitting. Não é só amor pelos gatos — é também conhecimento e responsabilidade.</p>
+      <div class="sobre-text">
+        <div class="section-eyebrow" style="color:var(--lila)">Hola, soy</div>
+        <h2 class="section-title">Inés Bononato</h2>
+        <p class="section-body">Soy nutricionista colegiada y te acompaño a soltar las dietas, hacer las paces con la comida y recuperar el bienestar desde un enfoque <strong>no pesocentrista</strong> y respetuoso.</p>
+        <br>
+        <p class="section-body">Creo firmemente que mejorar la alimentación no debería costar tu salud mental. Por eso trabajo desde la educación nutricional, la intuición y el respeto por cada cuerpo y cada historia.</p>
+        <br>
+        <p class="section-body">Mi objetivo es que aprendas a escuchar a tu cuerpo y a tomar decisiones conscientes desde un lugar de calma y de amor propio — no de miedo.</p>
+        <div class="tags-row">
+          <span class="tag">🎓 Nutricionista colegiada</span>
+          <span class="tag">💜 Enfoque no pesocentrista</span>
+          <span class="tag">♀️ Perspectiva de género</span>
+          <span class="tag">🌍 Consulta online</span>
+          <span class="tag">🧠 TCA</span>
+          <span class="tag">🩺 Resistencia a la insulina</span>
         </div>
-        <div class="why-card reveal">
-          <div class="wi">🏡</div>
-          <h4>Em casa dele</h4>
-          <p>Os gatos são animais territoriais. Ficarem no seu espaço elimina o stress causado por transportes e ambientes novos.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="wi">📸</div>
-          <h4>Total transparência</h4>
-          <p>Fotos e vídeos todos os dias. Sabes sempre como o teu companheiro está, onde quer que estejas.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="wi">💛</div>
-          <h4>Paixão genuína</h4>
-          <p>Adoro gatos de verdade. O teu felino vai receber atenção, miminhos e brincadeiras como se fosse meu.</p>
-        </div>
+        <br><br>
+        <a href="https://inesbononato.wixsite.com/s-bononato---dietist" target="_blank" class="btn-sec">Conoce más sobre mí →</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CERT -->
-  <section class="cert">
-    <div class="cert-box reveal">
-      <div class="cert-icon">🎓</div>
-      <h2>Catsitter certificada</h2>
-      <p>Tenho formação certificada em cuidados e comportamento felino. O teu gato está em mãos de quem sabe o que faz — e ama cada momento com eles.</p>
-    </div>
-  </section>
-
-  <!-- PREÇÁRIO -->
-  <section style="background: #fff; padding: 4rem 1.5rem; text-align: center;">
-    <div class="reveal">
-      <span class="section-label">Preços</span>
-      <h2 class="section-title" style="margin-bottom: 1rem;">Consulta o <em>preçário 2026</em></h2>
-      <p style="color: var(--mid); max-width: 420px; margin: 0 auto 2rem; line-height: 1.65;">
-        Preços transparentes e acessíveis. Consulta o nosso preçário atualizado para 2026.
-      </p>
-      <a href="https://drive.google.com/file/d/1LbiAd-cbEp4jmX27y-axr5m10fAJ2PzG/view?usp=sharing" target="_blank" class="btn-price">📄 Ver preçário 2026</a>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section">
-    <span class="section-label reveal">Vamos lá!</span>
-    <h2 class="section-title reveal">Pronto para <em>reservar</em>?</h2>
-    <p class="cta-sub reveal">Escolhe a opção que se aplica a ti e vamos tratar de tudo para que o teu gato fique em óptimas mãos.</p>
-    <div class="cta-btns reveal">
-      <a href="https://forms.gle/zCxkQhZQmR1VvNgt9" target="_blank" class="btn-primary">🐾 Sou novo cliente</a>
-      <a href="https://forms.gle/2znavWAThvKxWoLf7" target="_blank" class="btn-secondary">🔁 Já sou cliente</a>
-    </div>
-    <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" class="reveal">
-      <a href="https://www.instagram.com/catsittingbyines/" target="_blank" class="btn-inst">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Instagram
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="section-inner" style="text-align:center">
+    <h2>¿Lista para hacer las paces<br>con la comida?</h2>
+    <p>Da el primer paso hoy. Una sesión puede cambiarlo todo. Sin dietas, sin culpa — solo bienestar real.</p>
+    <div class="cta-btns">
+      <a href="https://api.whatsapp.com/send/?phone=34686706662" target="_blank" class="btn-cta-wa">
+        <svg viewBox="0 0 24 24" fill="#25D366" style="width:22px;height:22px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Reservar por WhatsApp
       </a>
-      <a href="https://linktr.ee/catsittingbyines" target="_blank" class="btn-secondary">🔗 Todos os links</a>
+      <a href="https://www.instagram.com/nutricionconines/" target="_blank" class="btn-cta-ig">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Seguirme en Instagram
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>🐈‍⬛ <strong>Catsitting by Inês</strong> — Porto e arredores</p>
-    <p style="margin-top: 0.5rem;">
-      <a href="https://www.instagram.com/catsittingbyines/" target="_blank">Instagram</a> &nbsp;·&nbsp;
-      <a href="https://linktr.ee/catsittingbyines" target="_blank">Linktree</a> &nbsp;·&nbsp;
-      <a href="https://drive.google.com/file/d/1LbiAd-cbEp4jmX27y-axr5m10fAJ2PzG/view?usp=sharing" target="_blank">Preçário 2026</a>
-    </p>
-    <p style="margin-top: 1rem; font-size: 0.78rem; opacity: 0.5;">© 2026 Catsitting by Inês · Feito com 🐾 e muito amor</p>
-  </footer>
+<!-- FOOTER -->
+<footer>
+  <p><strong>Inés Bononato</strong> — Nutricionista online no pesocentrista</p>
+  <p>Nº colegiada: MAD001202</p>
+  <p style="margin-top:10px">
+    <a href="https://www.instagram.com/nutricionconines/" target="_blank">Instagram</a> &nbsp;·&nbsp;
+    <a href="https://inesbononato.wixsite.com/s-bononato---dietist" target="_blank">Web oficial</a> &nbsp;·&nbsp;
+    <a href="https://api.whatsapp.com/send/?phone=34686706662" target="_blank">WhatsApp</a>
+  </p>
+  <p style="margin-top:14px;font-size:0.8rem;opacity:.5">© 2025 Inés Bononato. Todos los derechos reservados.</p>
+</footer>
 
-  <script>
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
+<!-- Botón flotante WhatsApp -->
+<a href="https://api.whatsapp.com/send/?phone=34686706662" target="_blank" class="wa-float" title="Escríbeme por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-    document.querySelectorAll('.reveal, .step').forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>
