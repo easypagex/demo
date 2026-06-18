@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anna Lysak — Makeup Artist Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:    #1A0A0F;
+    --gold:   #D4A853;
+    --gold2:  #F0CB7A;
+    --blush:  #F2B5C5;
+    --coral:  #E8614A;
+    --cream:  #FFF8F0;
+    --muted:  #9E7A8A;
+    --card:   #2A1218;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(26,10,15,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,168,83,.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; letter-spacing: .12em;
+    color: var(--gold); text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--cream); text-decoration: none;
+    font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+    opacity: .75; transition: opacity .3s, color .3s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 24px 80px;
+  }
+
+  /* gradient mesh background */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 20% 40%, rgba(232,97,74,.22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 80% 30%, rgba(242,181,197,.18) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 50% at 55% 80%, rgba(212,168,83,.18) 0%, transparent 55%);
+  }
+
+  /* sparkle particles */
+  .sparkle {
+    position: absolute; width: 4px; height: 4px;
+    border-radius: 50%; background: var(--gold2);
+    animation: twinkle var(--dur, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    opacity: 0;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(.5); }
+    50%       { opacity: 1; transform: scale(1.4); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 760px; }
+
+  .hero-eyebrow {
+    font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 36px; height: 1px; background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1.05;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  h1 em {
+    font-style: italic; color: var(--blush);
+    display: block;
+  }
+
+  /* animated brush-stroke underline */
+  .brush-wrap { position: relative; display: inline-block; }
+  .brush-wrap svg {
+    position: absolute; bottom: -10px; left: 0; width: 100%; height: 18px;
+    overflow: visible;
+  }
+  .brush-wrap svg path {
+    stroke: var(--gold); stroke-width: 3; fill: none;
+    stroke-dasharray: 600; stroke-dashoffset: 600;
+    animation: drawStroke 1.4s ease forwards .8s;
+  }
+  @keyframes drawStroke {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .hero-sub {
+    margin: 36px auto 48px;
+    max-width: 520px;
+    font-size: 1.05rem; line-height: 1.75;
+    color: rgba(255,248,240,.75);
+    font-weight: 300;
+  }
+
+  .hero-badges {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+    margin-bottom: 44px;
+  }
+  .badge {
+    background: rgba(212,168,83,.12);
+    border: 1px solid rgba(212,168,83,.35);
+    color: var(--gold2);
+    padding: 7px 18px; border-radius: 100px;
+    font-size: .78rem; letter-spacing: .08em;
+  }
+
+  .cta-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 15px 36px; border-radius: 100px;
+    font-size: .88rem; letter-spacing: .1em; text-transform: uppercase;
+    font-weight: 700; text-decoration: none;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .btn:hover { transform: translateY(-3px); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--coral), #C44030);
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(232,97,74,.4);
+  }
+  .btn-primary:hover { box-shadow: 0 12px 36px rgba(232,97,74,.55); }
+  .btn-outline {
+    background: transparent;
+    border: 1px.5px solid var(--gold);
+    color: var(--gold);
+  }
+  .btn-outline:hover { background: rgba(212,168,83,.1); }
+
+  /* ── STATS STRIP ── */
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(212,168,83,.2);
+    border-bottom: 1px solid rgba(212,168,83,.2);
+  }
+  .stat {
+    text-align: center; padding: 48px 24px;
+    border-right: 1px solid rgba(212,168,83,.15);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    margin-top: 8px; font-size: .78rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 40px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--coral); margin-bottom: 14px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .section-lead {
+    max-width: 560px;
+    color: rgba(255,248,240,.65); line-height: 1.75;
+    font-weight: 300; font-size: 1rem;
+  }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; margin-top: 52px;
+  }
+  .service-card {
+    background: var(--card);
+    border: 1px solid rgba(212,168,83,.12);
+    border-radius: 16px; padding: 36px 32px;
+    position: relative; overflow: hidden;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    opacity: 0; transform: translateY(40px);
+  }
+  .service-card.visible {
+    opacity: 1; transform: translateY(0);
+    transition: opacity .6s ease, transform .6s ease, border-color .3s, box-shadow .3s;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--coral), var(--gold));
+    opacity: 0; transition: opacity .3s;
+  }
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(212,168,83,.35); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    font-size: 2.4rem; margin-bottom: 18px; display: block;
+  }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 12px; color: var(--cream);
+  }
+  .service-desc {
+    font-size: .9rem; line-height: 1.7;
+    color: rgba(255,248,240,.6); font-weight: 300;
+  }
+  .service-tag {
+    display: inline-block; margin-top: 20px;
+    background: rgba(232,97,74,.15); border: 1px solid rgba(232,97,74,.3);
+    color: var(--coral); padding: 5px 14px; border-radius: 100px;
+    font-size: .72rem; letter-spacing: .08em;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 72px; align-items: center; margin-top: 20px;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-frame {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(145deg, var(--card), #3A1822);
+    border-radius: 20px;
+    border: 1px solid rgba(212,168,83,.2);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px; color: rgba(255,248,240,.25);
+    font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+    overflow: hidden; position: relative;
+  }
+  .about-frame-deco {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 40% 60%, rgba(232,97,74,.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 70% 20%, rgba(212,168,83,.1) 0%, transparent 60%);
+  }
+  .about-frame-icon { font-size: 4rem; position: relative; z-index: 1; }
+  .about-frame-text { position: relative; z-index: 1; }
+
+  .about-accent {
+    position: absolute; bottom: -18px; right: -18px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--ink); border-radius: 14px;
+    padding: 18px 22px; text-align: center;
+    font-weight: 700; box-shadow: 0 12px 32px rgba(212,168,83,.35);
+  }
+  .about-accent strong {
+    display: block; font-family: 'Playfair Display', serif;
+    font-size: 2rem; line-height: 1;
+  }
+  .about-accent span { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+
+  .about-text h2 { margin-bottom: 20px; }
+  .about-text p {
+    color: rgba(255,248,240,.65); line-height: 1.8; font-weight: 300;
+    margin-bottom: 18px;
+  }
+  .credentials { list-style: none; margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+  .credentials li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: .9rem;
+  }
+  .cred-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+
+  /* ── PROCESS ── */
+  .process-bg { background: #130609; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0; margin-top: 56px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 42px; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .process-step {
+    padding: 0 28px 0 0; text-align: center;
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .process-step.visible { opacity: 1; transform: translateY(0); }
+  .step-num {
+    width: 84px; height: 84px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--coral), #B83020);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900;
+    color: #fff; margin: 0 auto 24px;
+    position: relative; z-index: 1;
+    box-shadow: 0 8px 24px rgba(232,97,74,.4);
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;
+  }
+  .step-desc { font-size: .85rem; color: rgba(255,248,240,.55); line-height: 1.65; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px; margin-top: 52px;
+  }
+  .testi-card {
+    background: var(--card);
+    border: 1px solid rgba(242,181,197,.12);
+    border-radius: 16px; padding: 32px;
+    opacity: 0; transform: translateY(30px);
+  }
+  .testi-card.visible {
+    opacity: 1; transform: translateY(0);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .testi-stars { color: var(--gold); letter-spacing: 3px; font-size: 1rem; margin-bottom: 16px; }
+  .testi-text {
+    font-size: .92rem; line-height: 1.75;
+    color: rgba(255,248,240,.7); font-style: italic;
+    margin-bottom: 20px; font-family: 'Playfair Display', serif; font-weight: 400;
+  }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blush), var(--coral));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .85rem; color: #fff;
+  }
+  .testi-name { font-weight: 700; font-size: .88rem; }
+  .testi-detail { font-size: .75rem; color: var(--muted); }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, #2A0D16, #1A0A0F, #200C18);
+    border-top: 1px solid rgba(212,168,83,.2);
+  }
+  .cta-section h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 16px;
+  }
+  .cta-section .section-lead {
+    margin: 0 auto 44px; max-width: 460px; text-align: center;
+  }
+
+  /* ── CONTACT CHIPS ── */
+  .contact-chips {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;
+    margin-top: 12px;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 26px; border-radius: 100px;
+    font-size: .85rem; font-weight: 700; text-decoration: none;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .chip:hover { transform: translateY(-3px); }
+  .chip-wa {
+    background: #25D366; color: #fff;
+    box-shadow: 0 6px 22px rgba(37,211,102,.35);
+  }
+  .chip-wa:hover { box-shadow: 0 10px 32px rgba(37,211,102,.5); }
+  .chip-ig {
+    background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45);
+    color: #fff;
+    box-shadow: 0 6px 22px rgba(253,29,29,.3);
+  }
+  .chip-ig:hover { box-shadow: 0 10px 32px rgba(253,29,29,.45); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(212,168,83,.12);
+    padding: 32px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); font-size: .95rem; letter-spacing: .1em;
+  }
+  .footer-note { font-size: .75rem; color: var(--muted); }
+
+  /* ── FLOATING WA ── */
+  .floating-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 200;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,.5);
+    text-decoration: none;
+    animation: pulse-wa 2.5s infinite;
+    transition: transform .25s;
+  }
+  .floating-wa:hover { transform: scale(1.12); }
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.5); }
+    50%       { box-shadow: 0 6px 36px rgba(37,211,102,.8), 0 0 0 10px rgba(37,211,102,.1); }
+  }
+  .floating-wa svg { width: 30px; height: 30px; fill: #fff; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    section { padding: 64px 20px; }
+    .stats { grid-template-columns: repeat(3, 1fr); }
+    .stat { padding: 32px 12px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .process-steps::before { display: none; }
+    footer { flex-direction: column; text-align: center; padding: 24px 20px; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Anna Lysak · MUA</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#process">Process</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#book">Book Now</a>
+  </div>
+</nav>
+
+<!-- SPARKLES -->
+<script>
+  (function(){
+    const positions = [
+      [8,15],[92,10],[15,70],[85,60],[50,20],[30,85],[70,40],[20,45],[80,75],[60,10],
+      [40,60],[10,35],[90,80],[55,50],[25,90],[75,25],[45,72],[65,18],[35,55],[5,88]
+    ];
+    positions.forEach(([x,y], i) => {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.cssText = `left:${x}%;top:${y}%;--dur:${2.5+Math.random()*2}s;--delay:${Math.random()*3}s`;
+      document.querySelector('.hero')?.appendChild(s);
+    });
+  })();
+</script>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Madrid's Trusted Makeup Artist</div>
+
+    <h1>
+      Beauty crafted<br>
+      <em>with intention</em><br>
+      <span class="brush-wrap">
+        for every occasion
+        <svg viewBox="0 0 400 18" preserveAspectRatio="none">
+          <path d="M4,14 Q100,4 200,12 Q300,20 396,9"/>
+        </svg>
+      </span>
+    </h1>
+
+    <p class="hero-sub">
+      Anna Lysak blends academic artistry with 8 years of real-world expertise to create looks that feel effortlessly, unmistakably <em>you</em> — from intimate weddings to editorial shoots across Madrid.
+    </p>
+
+    <div class="hero-badges">
+      <span class="badge">🎓 Art Academy Degree</span>
+      <span class="badge">💍 Bridal Specialist</span>
+      <span class="badge">🎭 Events &amp; Editorial</span>
+      <span class="badge">📚 Makeup Classes</span>
+      <span class="badge">✨ 600+ Clients</span>
+    </div>
+
+    <div class="cta-group">
+      <a href="https://wa.me/34671372896?text=Hi%20Anna!%20I'd%20love%20to%20book%20a%20makeup%20session%20with%20you." class="btn btn-primary" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.938 0C5.369 0 0 5.369 0 11.938c0 2.1.55 4.07 1.504 5.781L0 24l6.444-1.689A11.876 11.876 0 0011.938 23.876C18.507 23.876 24 18.507 24 11.938 24 5.37 18.507 0 11.938 0zm0 21.818a9.873 9.873 0 01-5.04-1.381l-.36-.214-3.726.977.994-3.635-.236-.375a9.857 9.857 0 01-1.514-5.27c0-5.448 4.432-9.88 9.882-9.88 5.449 0 9.88 4.432 9.88 9.88 0 5.449-4.431 9.898-9.88 9.898z"/></svg>
+        Book via WhatsApp
+      </a>
+      <a href="https://www.instagram.com/alternivska_makeup/" class="btn btn-outline" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        View Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal">
+    <div class="stat-number">600+</div>
+    <div class="stat-label">Clients in Madrid</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-number">8</div>
+    <div class="stat-label">Years of Expertise</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-number">🏆</div>
+    <div class="stat-label">Art Academy Degree</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">What I Offer</p>
+    <h2 class="reveal">Services designed<br><em style="font-style:italic;color:var(--blush)">for every milestone</em></h2>
+    <p class="section-lead reveal">Whether you're walking down the aisle, stepping onto a stage, or simply wanting to learn the craft — every session is tailored entirely to you.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-icon">💍</span>
+        <div class="service-title">Bridal Makeup</div>
+        <p class="service-desc">Your wedding day is one-of-a-kind. I create timeless looks that photograph beautifully and last from ceremony to dance floor — with a trial session included.</p>
+        <span class="service-tag">Most Popular</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🎭</span>
+        <div class="service-title">Events &amp; Occasions</div>
+        <p class="service-desc">Galas, graduations, corporate events, quinceañeras — I bring professional artistry to every special occasion so you look and feel your absolute best.</p>
+        <span class="service-tag">All Occasions</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">📸</span>
+        <div class="service-title">Editorial &amp; Photo Shoots</div>
+        <p class="service-desc">Camera-ready looks for commercial, editorial, and creative projects. Makeup that reads perfectly under studio lights and on location.</p>
+        <span class="service-tag">Professional</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">✏️</span>
+        <div class="service-title">Makeup Classes</div>
+        <p class="service-desc">Private or small-group lessons tailored to your skill level. Learn professional techniques you can recreate at home — from everyday glam to full face artistry.</p>
+        <span class="service-tag">Learn the Art</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🌟</span>
+        <div class="service-title">Makeover Sessions</div>
+        <p class="service-desc">A full transformation experience — skin prep, colour analysis, complete makeup application, and a personalised guide to recreate your look.</p>
+        <span class="service-tag">Transformative</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">👥</span>
+        <div class="service-title">Group &amp; Bridal Party</div>
+        <p class="service-desc">Bride plus bridesmaids, family, or friends — I coordinate seamlessly to make every member of your party feel gorgeous and ready on time.</p>
+        <span class="service-tag">Groups Welcome</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#130609;">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-frame">
+          <div class="about-frame-deco"></div>
+          <div class="about-frame-icon">🎨</div>
+          <div class="about-frame-text">Anna Lysak · MUA</div>
+        </div>
+        <div class="about-accent">
+          <strong>8</strong>
+          <span>Years in<br>Artistry</span>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <p class="section-eyebrow">My Story</p>
+        <h2>Where fine art meets <em style="color:var(--blush);font-style:italic">beauty</em></h2>
+        <p>I'm Anna Lysak — a Madrid-based makeup artist with an Art Academy degree and over eight years of hands-on experience transforming clients across Europe.</p>
+        <p>My academic background in fine arts means I approach every face as a canvas: studying structure, light, and proportion before a single brush touches the skin. That foundation, combined with hundreds of real-world weddings and events, is what sets my work apart.</p>
+        <p>Based in Madrid, I work across the city and travel for weddings and editorial projects throughout Spain and beyond.</p>
+        <ul class="credentials">
+          <li><span class="cred-icon">🏆</span><span>Degree in Fine Arts — specialisation in makeup artistry</span></li>
+          <li><span class="cred-icon">💍</span><span>Bridal specialist — hundreds of weddings across Spain</span></li>
+          <li><span class="cred-icon">✨</span><span>600+ satisfied clients and counting in Madrid</span></li>
+          <li><span class="cred-icon">📚</span><span>Private and group makeup classes for all skill levels</span></li>
+          <li><span class="cred-icon">🌍</span><span>Available for destination events and travel shoots</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process-bg">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal" style="text-align:center;">How It Works</p>
+    <h2 class="reveal" style="text-align:center;">From first message<br>to <em style="color:var(--blush);font-style:italic">flawless finish</em></h2>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div class="step-title">Reach Out</div>
+        <p class="step-desc">Send a WhatsApp message or DM on Instagram with your date, occasion, and any inspiration photos.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div class="step-title">Consultation</div>
+        <p class="step-desc">We discuss your vision, skin type, preferences and I recommend the perfect look for your event.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div class="step-title">Trial (Bridal)</div>
+        <p class="step-desc">For brides, a dedicated trial session ensures your look is exactly right before the big day.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div class="step-title">Glow Up</div>
+        <p class="step-desc">On the day, you sit back, relax, and leave looking and feeling your absolute best — guaranteed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="reviews">
+  <div class="section-inner">
+    <p class="section-eyebrow reveal">Client Love</p>
+    <h2 class="reveal">Real words from<br><em style="color:var(--blush);font-style:italic">real clients</em></h2>
+
+    <div class="testimonials-grid">
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Anna made me feel like the most beautiful version of myself on my wedding day. She listened to everything I wanted and delivered something even better than I imagined."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sofía M.</div>
+            <div class="testi-detail">Bride · Madrid</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The makeup class was incredible — I learned more in two hours with Anna than in years of YouTube tutorials. She's patient, passionate, and truly talented."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">L</div>
+          <div>
+            <div class="testi-name">Laura G.</div>
+            <div class="testi-detail">Makeup Class Student</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I booked Anna for a corporate event and every colleague asked who did my makeup. She's professional, punctual, and her results are simply stunning."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">C</div>
+          <div>
+            <div class="testi-name">Carmen R.</div>
+            <div class="testi-detail">Event Client · Madrid</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA / BOOK -->
+<section class="cta-section" id="book">
+  <div class="section-inner">
+    <p class="section-eyebrow" style="text-align:center;">Ready to Glow?</p>
+    <h2>Let's create something <em style="color:var(--blush);font-style:italic">beautiful</em> together</h2>
+    <p class="section-lead">Send a WhatsApp message or find me on Instagram — I'd love to hear about your occasion and bring your vision to life.</p>
+
+    <div class="contact-chips">
+      <a href="https://wa.me/34671372896?text=Hi%20Anna!%20I'd%20love%20to%20book%20a%20makeup%20session%20with%20you." class="chip chip-wa" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.938 0C5.369 0 0 5.369 0 11.938c0 2.1.55 4.07 1.504 5.781L0 24l6.444-1.689A11.876 11.876 0 0011.938 23.876C18.507 23.876 24 18.507 24 11.938 24 5.37 18.507 0 11.938 0zm0 21.818a9.873 9.873 0 01-5.04-1.381l-.36-.214-3.726.977.994-3.635-.236-.375a9.857 9.857 0 01-1.514-5.27c0-5.448 4.432-9.88 9.882-9.88 5.449 0 9.88 4.432 9.88 9.88 0 5.449-4.431 9.898-9.88 9.898z"/></svg>
+        WhatsApp · +34 671 37 28 96
+      </a>
+      <a href="https://www.instagram.com/alternivska_makeup/" class="chip chip-ig" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @alternivska_makeup
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Anna Lysak · Makeup Artist Madrid</div>
+  <div class="footer-note">© 2025 Anna Lysak · Madrid, Spain</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/34671372896?text=Hi%20Anna!%20I'd%20love%20to%20book%20a%20makeup%20session%20with%20you." class="floating-wa" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.938 0C5.369 0 0 5.369 0 11.938c0 2.1.55 4.07 1.504 5.781L0 24l6.444-1.689A11.876 11.876 0 0011.938 23.876C18.507 23.876 24 18.507 24 11.938 24 5.37 18.507 0 11.938 0zm0 21.818a9.873 9.873 0 01-5.04-1.381l-.36-.214-3.726.977.994-3.635-.236-.375a9.857 9.857 0 01-1.514-5.27c0-5.448 4.432-9.88 9.882-9.88 5.449 0 9.88 4.432 9.88 9.88 0 5.449-4.431 9.898-9.88 9.898z"/></svg>
+</a>
+
+<!-- SCROLL ANIMATIONS -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // stagger siblings
+        const siblings = e.target.parentElement?.querySelectorAll('.service-card, .process-step, .testi-card');
+        if (siblings) {
+          siblings.forEach((s, i) => {
+            setTimeout(() => s.classList.add('visible'), i * 120);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(
+    '.reveal, .service-card, .process-step, .testi-card'
+  ).forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
