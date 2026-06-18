@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eve Ballini | Nutricionista Deportiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:    #C8F135;
+      --coral:   #FF5F5F;
+      --violet:  #7B4FE0;
+      --sky:     #3BD4F0;
+      --dark:    #111318;
+      --offwhite:#FAFAF6;
+      --mid:     #3A3D48;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--offwhite);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* animated blobs */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .45;
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+    .hero::before {
+      width: 520px; height: 520px;
+      background: var(--violet);
+      top: -120px; left: -120px;
+    }
+    .hero::after {
+      width: 420px; height: 420px;
+      background: var(--coral);
+      bottom: -80px; right: -80px;
+      animation-delay: 2s;
+    }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(30px,30px) scale(1.08); }
+    }
+
+    /* nav */
+    nav {
+      position: relative; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--lime);
+      font-size: 1.25rem;
+      letter-spacing: .04em;
+    }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      font-size: .9rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--lime); }
+
+    /* hero content */
+    .hero-body {
+      position: relative; z-index: 5;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--dark);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .35rem .85rem;
+      border-radius: 999px;
+      margin-bottom: 1.4rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -.02em;
+      margin-bottom: 1rem;
+    }
+    .hero-title span { color: var(--lime); }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255,255,255,.65);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 2.4rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 999px;
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+    .btn-primary   { background: var(--lime); color: var(--dark); }
+    .btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.4); }
+
+    /* hero footer badge strip */
+    .hero-badges {
+      position: relative; z-index: 5;
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+      justify-content: center;
+      padding: 1.5rem 2rem 2.5rem;
+    }
+    .badge {
+      display: flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: .45rem 1.1rem;
+      color: rgba(255,255,255,.8);
+      font-size: .82rem;
+    }
+    .badge-icon { font-size: 1rem; }
+
+    /* ── ABOUT ────────────────────────────────────────── */
+    .about {
+      background: var(--lime);
+      padding: 6rem 2rem;
+    }
+    .about-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .about-tag {
+      display: inline-block;
+      background: var(--dark);
+      color: var(--lime);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+    .about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--dark);
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+    }
+    .about p {
+      color: rgba(17,19,24,.7);
+      line-height: 1.75;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .stat-card {
+      background: var(--dark);
+      border-radius: 1.2rem;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--lime);
+      font-weight: 900;
+      line-height: 1;
+      display: block;
+      margin-bottom: .3rem;
+    }
+    .stat-label { color: rgba(255,255,255,.65); font-size: .85rem; line-height: 1.3; }
+
+    /* ── SERVICES ─────────────────────────────────────── */
+    .services { padding: 6rem 2rem; background: var(--offwhite); }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-eyebrow {
+      display: inline-block;
+      background: var(--violet);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .35rem .85rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--dark);
+      line-height: 1.1;
+    }
+
+    .cards {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;
+    }
+    .card {
+      border-radius: 1.5rem;
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .22s;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card-1 { background: var(--violet); color: #fff; }
+    .card-2 { background: var(--coral);  color: #fff; }
+    .card-3 { background: var(--sky);    color: var(--dark); }
+    .card-4 { background: var(--dark);   color: #fff; }
+
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: .7rem;
+    }
+    .card p { font-size: .92rem; line-height: 1.65; opacity: .85; }
+
+    /* ── PROCESS ──────────────────────────────────────── */
+    .process {
+      background: var(--dark);
+      padding: 6rem 2rem;
+    }
+    .process .section-eyebrow { background: var(--coral); }
+    .process .section-title { color: #fff; }
+    .steps {
+      max-width: 860px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .step {
+      display: grid; grid-template-columns: 72px 1fr;
+      gap: 1.5rem; align-items: start;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .step:nth-child(1) .step-num { background: var(--lime);   color: var(--dark); }
+    .step:nth-child(2) .step-num { background: var(--coral);  color: #fff; }
+    .step:nth-child(3) .step-num { background: var(--violet); color: #fff; }
+    .step:nth-child(4) .step-num { background: var(--sky);    color: var(--dark); }
+    .step-body {}
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: .45rem;
+    }
+    .step-desc { color: rgba(255,255,255,.6); font-size: .93rem; line-height: 1.7; }
+
+    /* ── TESTIMONIALS ─────────────────────────────────── */
+    .testimonials { padding: 6rem 2rem; background: var(--offwhite); }
+    .testimonials .section-eyebrow { background: var(--sky); color: var(--dark); }
+    .testi-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;
+    }
+    .testi-card {
+      background: #fff;
+      border-radius: 1.4rem;
+      padding: 1.8rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      position: relative;
+    }
+    .testi-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -10px; left: 1.4rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--lime);
+    }
+    .testi-text { font-size: .95rem; line-height: 1.7; color: var(--mid); margin-bottom: 1.2rem; padding-top: 1rem; }
+    .testi-author { font-weight: 600; font-size: .88rem; color: var(--dark); }
+    .testi-role   { font-size: .8rem; color: rgba(58,61,72,.55); }
+    .stars { color: #FFBD00; font-size: .9rem; margin-bottom: .6rem; }
+
+    /* ── CTA STRIP ────────────────────────────────────── */
+    .cta-strip {
+      background: var(--coral);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .cta-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .cta-strip p { color: rgba(255,255,255,.8); font-size: 1.1rem; margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-strip .btn-primary { background: #fff; color: var(--coral); }
+    .cta-strip .btn-secondary { border-color: rgba(255,255,255,.6); color: #fff; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    footer p { color: rgba(255,255,255,.35); font-size: .82rem; }
+    footer a { color: var(--lime); text-decoration: none; }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 640px) {
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      nav { padding: 1.2rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .step { grid-template-columns: 56px 1fr; }
+      .step-num { width: 56px; height: 56px; font-size: 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero::before, .hero::after { animation: none; }
+      .card, .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <nav>
+    <span class="nav-logo">Eve Ballini</span>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <div class="hero-body">
+    <span class="hero-eyebrow">👩🏼‍⚕️ Nutricionista Deportiva</span>
+    <h1 class="hero-title">
+      Rinde más,<br><span>vive mejor.</span>
+    </h1>
+    <p class="hero-sub">
+      Planes de alimentación personalizados para que mejores tu rendimiento deportivo y construyas hábitos saludables que duran toda la vida.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://api.whatsapp.com/send?phone=541176339320" target="_blank" class="btn btn-primary">
+        💬 Agendar consulta
+      </a>
+      <a href="https://www.instagram.com/nutri.eveballini/" target="_blank" class="btn btn-secondary">
+        📸 Ver en Instagram
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-badges">
+    <span class="badge"><span class="badge-icon">📏</span> Antropometrista ISAK II</span>
+    <span class="badge"><span class="badge-icon">📍</span> Ramos Mejía</span>
+    <span class="badge"><span class="badge-icon">🌎</span> Presencial & Online</span>
+    <span class="badge"><span class="badge-icon">📊</span> Análisis corporal</span>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══════════════════════════════════════════════ -->
+<section class="about" id="sobre-mi">
+  <div class="about-inner">
+    <div>
+      <span class="about-tag">Sobre Eve</span>
+      <h2>Nutrición que se adapta a tu deporte y a tu vida</h2>
+      <p>Soy Eve Ballini, nutricionista especializada en deporte y certificada como Antropometrista ISAK Nivel II. Trabajo con deportistas, activos y cualquier persona que quiera mejorar su relación con la comida.</p>
+      <p>Combino ciencia con un enfoque humano: no hay dietas genéricas, sino planes diseñados para <em>vos</em>.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <span class="stat-number">ISAK</span>
+        <span class="stat-label">Antropometrista nivel II certificada</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">🌎</span>
+        <span class="stat-label">Consultas online para todo el mundo</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">📍</span>
+        <span class="stat-label">Consultorio en Ramos Mejía</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">💪</span>
+        <span class="stat-label">Deportiva, fuerza, running, y más</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ═══════════════════════════════════════════ -->
+<section class="services" id="servicios">
+  <div class="section-header">
+    <span class="section-eyebrow">¿Qué hago?</span>
+    <h2 class="section-title">Servicios</h2>
+  </div>
+  <div class="cards">
+    <div class="card card-1">
+      <span class="card-icon">🏋️</span>
+      <h3>Nutrición Deportiva</h3>
+      <p>Planes de alimentación orientados a mejorar el rendimiento, la recuperación y la composición corporal según tu deporte.</p>
+    </div>
+    <div class="card card-2">
+      <span class="card-icon">📏</span>
+      <h3>Antropometría ISAK</h3>
+      <p>Evaluación precisa de composición corporal con protocolo internacional ISAK II para monitorear tu progreso real.</p>
+    </div>
+    <div class="card card-3">
+      <span class="card-icon">🥗</span>
+      <h3>Hábitos Saludables</h3>
+      <p>Trabajo contigo para construir una relación sana con la comida, sin restricciones extremas ni dietas de moda.</p>
+    </div>
+    <div class="card card-4">
+      <span class="card-icon">💻</span>
+      <h3>Consulta Online</h3>
+      <p>Seguimiento personalizado desde donde estés en el mundo. Videollamada, plan de alimentación y soporte continuo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ════════════════════════════════════════════ -->
+<section class="process" id="proceso">
+  <div class="section-header">
+    <span class="section-eyebrow">¿Cómo trabajamos?</span>
+    <h2 class="section-title">El proceso</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3 class="step-title">Primera consulta</h3>
+        <p class="step-desc">Nos conocemos, hablo de tu historial, objetivos, rutina y hábitos actuales. Todo sin juicios, con escucha real.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3 class="step-title">Evaluación antropométrica</h3>
+        <p class="step-desc">Si estás en Buenos Aires, realizamos la medición ISAK II para conocer tu composición corporal con precisión clínica.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3 class="step-title">Plan personalizado</h3>
+        <p class="step-desc">Diseño tu plan nutricional adaptado a tu deporte, horarios, preferencias y objetivos. Nada genérico.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3 class="step-title">Seguimiento continuo</h3>
+        <p class="step-desc">Ajustamos el plan según tu evolución. Estoy disponible para responder dudas y acompañarte en el proceso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ═══════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="section-header">
+    <span class="section-eyebrow">Lo que dicen</span>
+    <h2 class="section-title">Resultados reales</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Gracias a Eve entendí cómo comer para rendir mejor en mis entrenamientos de running. ¡Bajé mis tiempos y me siento con más energía!</p>
+      <div class="testi-author">Lucía M.</div>
+      <div class="testi-role">Corredora amateur</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">La medición ISAK fue increíble, ver los números reales me motivó muchísimo. Eve explica todo con paciencia y sin hacerte sentir mal.</p>
+      <div class="testi-author">Matías R.</div>
+      <div class="testi-role">CrossFitter</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Hago la consulta online desde España y funciona perfectamente. El plan es súper flexible y adaptado a mis horarios de trabajo.</p>
+      <div class="testi-author">Valentina G.</div>
+      <div class="testi-role">Triatleta, Madrid</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════════════ -->
+<section class="cta-strip" id="contacto">
+  <h2>¿Lista/o para empezar?</h2>
+  <p>Agendá tu primera consulta hoy. Presencial en Ramos Mejía u online desde donde estés.</p>
+  <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+    <a href="https://api.whatsapp.com/send?phone=541176339320" target="_blank" class="btn btn-primary">
+      💬 WhatsApp
+    </a>
+    <a href="https://www.instagram.com/nutri.eveballini/" target="_blank" class="btn btn-secondary">
+      📸 Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  <p>© 2025 Eve Ballini — Nutricionista Deportiva &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/nutri.eveballini/" target="_blank">@nutri.eveballini</a>
+    &nbsp;·&nbsp;
+    <a href="https://api.whatsapp.com/send?phone=541176339320" target="_blank">WhatsApp</a>
+  </p>
+</footer>
+
+</body>
+</html>
