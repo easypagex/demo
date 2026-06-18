@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Susana Saguma · Nutricionista</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --avocado:   #4A7C59;
+      --lime:      #BADF3A;
+      --coral:     #FF6B5B;
+      --amber:     #FFCC02;
+      --sky:       #7EC8E3;
+      --cream:     #FFF8EE;
+      --dark:      #1A1A1A;
+      --mid:       #444;
+      --light:     #F2F0EA;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: var(--avocado);
+    }
+    nav .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem; font-weight: 900;
+      color: var(--lime); letter-spacing: -.02em;
+    }
+    nav .logo span { color: #fff; }
+    nav a.cta-nav {
+      background: var(--lime); color: var(--dark);
+      padding: .5rem 1.25rem; border-radius: 999px;
+      font-weight: 700; font-size: .85rem;
+      text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+    }
+    nav a.cta-nav:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.2); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+      background: linear-gradient(135deg, var(--avocado) 0%, #2e5c3a 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 70% 40%, rgba(186,223,58,.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem 3rem 4rem 5vw; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      color: var(--lime); font-size: .8rem; font-weight: 600;
+      padding: .35rem .85rem; border-radius: 999px;
+      width: fit-content; margin-bottom: 1.5rem; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 900; color: #fff;
+      line-height: 1.05; margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--lime); }
+    .hero-sub {
+      color: rgba(255,255,255,.78); font-size: 1.1rem;
+      line-height: 1.65; max-width: 440px; margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--lime); color: var(--dark);
+      padding: .9rem 2rem; border-radius: 999px;
+      font-weight: 700; text-decoration: none; font-size: 1rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(186,223,58,.4); }
+    .btn-secondary {
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,.5);
+      padding: .9rem 2rem; border-radius: 999px;
+      font-weight: 600; text-decoration: none; font-size: 1rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 3rem;
+      position: relative;
+    }
+    .big-emoji {
+      font-size: clamp(7rem, 14vw, 13rem);
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,.3));
+      animation: float 4s ease-in-out infinite;
+      line-height: 1;
+      z-index: 1;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+
+    /* bubbles */
+    .bubble {
+      position: absolute; border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .8rem; text-align: center;
+      line-height: 1.2; padding: .75rem 1rem;
+    }
+    .b1 { width:110px;height:110px; background:var(--coral); color:#fff; top:18%; left:5%; animation:float 3.5s ease-in-out infinite .4s; }
+    .b2 { width:130px;height:130px; background:var(--amber); color:var(--dark); top:60%; right:8%; animation:float 5s ease-in-out infinite .8s; }
+    .b3 { width:95px;height:95px; background:var(--sky); color:var(--dark); bottom:15%; left:15%; animation:float 4.2s ease-in-out infinite 1.2s; }
+
+    /* ── BADGES ── */
+    .badges {
+      background: var(--lime);
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      padding: 1.25rem 2rem;
+    }
+    .badge { font-weight: 700; font-size: .9rem; color: var(--dark); display: flex; align-items: center; gap: .4rem; }
+
+    /* ── SECTIONS COMMONS ── */
+    section { padding: 5rem 5vw; }
+    .section-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--avocado); margin-bottom: .75rem;
+    }
+    h2 {
+      font-family: 'Fraunces', serif; font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem;
+    }
+    .sub { color: var(--mid); font-size: 1.05rem; line-height: 1.7; max-width: 560px; }
+
+    /* ── SOBRE MÍ ── */
+    .sobre {
+      background: #fff;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .sobre-emoji-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    }
+    .sobre-avatar {
+      width: 220px; height: 220px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--lime), var(--avocado));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem; box-shadow: 0 20px 60px rgba(74,124,89,.3);
+    }
+    .sobre-pills { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
+    .pill {
+      padding: .45rem 1rem; border-radius: 999px; font-size: .8rem; font-weight: 700;
+    }
+    .pill-g { background: #E8F5E9; color: var(--avocado); }
+    .pill-y { background: #FFF9C4; color: #7A6000; }
+    .pill-r { background: #FFE5E2; color: #C0392B; }
+    .pill-b { background: #E3F2FD; color: #1565C0; }
+
+    /* ── SERVICIOS ── */
+    .servicios { background: var(--light); }
+    .servicios h2 { margin-bottom: 2.5rem; }
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;
+    }
+    .card {
+      background: #fff; border-radius: 20px; padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      transition: transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .card::after {
+      content: ''; position: absolute; inset: 0;
+      border-radius: 20px; opacity: 0;
+      transition: opacity .2s;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+    .card-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem; margin-bottom: 1.25rem;
+    }
+    .card h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: .6rem; }
+    .card p { color: var(--mid); font-size: .92rem; line-height: 1.65; }
+
+    .ci-g { background: #D4EDDA; }
+    .ci-y { background: #FFF3CD; }
+    .ci-b { background: #CCE5FF; }
+    .ci-p { background: #F3E5F5; }
+
+    /* ── PILARES ── */
+    .pilares {
+      background: var(--avocado);
+      color: #fff;
+    }
+    .pilares h2 { color: var(--lime); }
+    .pilares .sub { color: rgba(255,255,255,.75); }
+    .pilares-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .pilar {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 16px; padding: 2rem;
+      transition: background .2s;
+    }
+    .pilar:hover { background: rgba(255,255,255,.18); }
+    .pilar-num {
+      font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 900;
+      color: var(--lime); line-height: 1; margin-bottom: .75rem;
+    }
+    .pilar h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .pilar p { font-size: .9rem; color: rgba(255,255,255,.72); line-height: 1.6; }
+
+    /* ── CONTACTO ── */
+    .contacto { background: var(--cream); text-align: center; }
+    .contacto h2 { margin-bottom: .75rem; }
+    .contacto .sub { margin: 0 auto 2.5rem; }
+    .contact-btns {
+      display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;
+    }
+    .btn-wa {
+      background: #25D366; color: #fff;
+      padding: 1rem 2rem; border-radius: 999px;
+      font-weight: 700; text-decoration: none; font-size: 1rem;
+      display: inline-flex; align-items: center; gap: .6rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(37,211,102,.4); }
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+      color: #fff; padding: 1rem 2rem; border-radius: 999px;
+      font-weight: 700; text-decoration: none; font-size: 1rem;
+      display: inline-flex; align-items: center; gap: .6rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-ig:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(220,39,67,.4); }
+    .btn-lt {
+      background: var(--amber); color: var(--dark);
+      padding: 1rem 2rem; border-radius: 999px;
+      font-weight: 700; text-decoration: none; font-size: 1rem;
+      display: inline-flex; align-items: center; gap: .6rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-lt:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(255,204,2,.45); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.5);
+      text-align: center; padding: 2rem; font-size: .85rem;
+    }
+    footer a { color: var(--lime); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 780px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero-text { padding: 3rem 1.5rem 3rem; text-align: center; }
+      .hero-btns { justify-content: center; }
+      .hero-eyebrow { margin: 0 auto 1.5rem; }
+      .sobre { grid-template-columns: 1fr; }
+      .badges { gap: 1.25rem; }
+      section { padding: 3.5rem 1.5rem; }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      .big-emoji, .bubble, .b1, .b2, .b3 { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">SU<span>SAGUMA</span> 🥑</div>
+    <a class="cta-nav" href="https://api.whatsapp.com/send/?phone=51906909041" target="_blank" rel="noopener">📲 Reservar sesión</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">🥑 Nutricionista certificada</div>
+      <h1>Nutrición<br><em>simple</em> y real</h1>
+      <p class="hero-sub">Hábitos sostenibles que transforman tu relación con la comida. Sin dietas extremas, sin restricciones absurdas — solo bienestar que dura.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://api.whatsapp.com/send/?phone=51906909041" target="_blank" rel="noopener">💬 Reserva tu sesión</a>
+        <a class="btn-secondary" href="https://linktr.ee/su_nutricionista" target="_blank" rel="noopener">🔗 Mis recursos</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="bubble b1">¡Sin dietas<br>imposibles!</div>
+      <div class="big-emoji">🥑</div>
+      <div class="bubble b2">Hábitos<br>reales ✅</div>
+      <div class="bubble b3">100%<br>personalizado</div>
+    </div>
+  </section>
+
+  <!-- BADGES -->
+  <div class="badges">
+    <div class="badge">🎓 Mg. Gestión en Salud</div>
+    <div class="badge">📊 Certificación ISAK I</div>
+    <div class="badge">🌿 Nutrición basada en evidencia</div>
+    <div class="badge">🤝 Acompañamiento personalizado</div>
+  </div>
+
+  <!-- SOBRE MÍ -->
+  <section class="sobre">
+    <div class="sobre-emoji-wrap">
+      <div class="sobre-avatar">👩‍⚕️</div>
+      <div class="sobre-pills">
+        <span class="pill pill-g">Nutricionista</span>
+        <span class="pill pill-y">Mg. Gestión Salud</span>
+        <span class="pill pill-r">ISAK I</span>
+        <span class="pill pill-b">Hábitos sostenibles</span>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">Sobre mí</div>
+      <h2>Hola, soy<br>Susana Saguma 👋</h2>
+      <p class="sub" style="margin-bottom:1rem;">
+        Soy nutricionista con Maestría en Gestión de la Salud y certificación ISAK I en composición corporal. Mi misión es ayudarte a construir una relación sana y duradera con la comida, sin complicaciones.
+      </p>
+      <p class="sub">
+        Creo que la nutrición debe adaptarse a tu vida — no al revés. Comparto contenido educativo en <a href="https://www.instagram.com/su_vidanutritiva/" target="_blank" rel="noopener" style="color:var(--avocado);font-weight:700;">@su_vidanutritiva</a> para que puedas tomar mejores decisiones cada día.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios">
+    <div class="section-label">Lo que ofrezco</div>
+    <h2>¿Cómo puedo ayudarte?</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon ci-g">🥗</div>
+        <h3>Plan nutricional personalizado</h3>
+        <p>Diseñado específicamente para ti, tu estilo de vida, tus gustos y tus metas — sin copiar y pegar plantillas genéricas.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon ci-y">📏</div>
+        <h3>Evaluación de composición corporal</h3>
+        <p>Análisis ISAK I para conocer tu cuerpo más allá del peso en la balanza y tomar decisiones informadas.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon ci-b">🔄</div>
+        <h3>Educación en hábitos</h3>
+        <p>Te enseño a comer bien para toda la vida, no solo para una temporada. Hábitos simples que realmente se mantienen.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon ci-p">💬</div>
+        <h3>Seguimiento y acompañamiento</h3>
+        <p>Estoy contigo en el proceso. Ajustes, dudas, motivación — todo lo que necesitas para no rendirte en el camino.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES -->
+  <section class="pilares">
+    <div class="section-label" style="color:var(--lime);">Mi filosofía</div>
+    <h2>Los pilares de mi trabajo</h2>
+    <p class="sub">Una nutrición que funciona de verdad tiene que ser sencilla, flexible y conectada con tu vida real.</p>
+    <div class="pilares-grid">
+      <div class="pilar">
+        <div class="pilar-num">01</div>
+        <h3>Simplicidad</h3>
+        <p>La buena alimentación no tiene que ser complicada. Si es simple, es sostenible.</p>
+      </div>
+      <div class="pilar">
+        <div class="pilar-num">02</div>
+        <h3>Realidad</h3>
+        <p>Trabajo con tu vida cotidiana, no con un escenario ideal que nadie cumple.</p>
+      </div>
+      <div class="pilar">
+        <div class="pilar-num">03</div>
+        <h3>Evidencia</h3>
+        <p>Sin mitos, sin tendencias sin respaldo. Solo ciencia aplicada a tu caso concreto.</p>
+      </div>
+      <div class="pilar">
+        <div class="pilar-num">04</div>
+        <h3>Empoderamiento</h3>
+        <p>Mi objetivo es que aprendas a cuidarte tú solo/a — no depender de mí para siempre.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto">
+    <div class="section-label">¡Hablemos!</div>
+    <h2>¿Lista/o para empezar? 🌱</h2>
+    <p class="sub">Reserva una sesión o sígueme en redes para recibir consejos de nutrición gratuitos cada semana.</p>
+    <div class="contact-btns">
+      <a class="btn-wa" href="https://api.whatsapp.com/send/?phone=51906909041" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a class="btn-ig" href="https://www.instagram.com/su_nutricionista/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a class="btn-lt" href="https://linktr.ee/su_nutricionista" target="_blank" rel="noopener">
+        🌿 Linktree
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Susana Saguma · Nutricionista &nbsp;|&nbsp;
+      <a href="https://www.instagram.com/su_nutricionista/" target="_blank" rel="noopener">@su_nutricionista</a> &nbsp;|&nbsp;
+      <a href="https://linktr.ee/su_nutricionista" target="_blank" rel="noopener">Linktree</a>
+    </p>
+  </footer>
+
+</body>
+</html>
