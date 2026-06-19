@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kath • Maquillaje y Peinado • Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:     #C7396A;
+      --gold:     #F0B429;
+      --plum:     #3D1535;
+      --blush:    #FADADD;
+      --champagne:#FFF5E4;
+      --coral:    #FF6B6B;
+      --lilac:    #D8B4FE;
+      --mint:     #A7F3D0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--champagne);
+      color: var(--plum);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(61,21,53,.85);
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--gold); letter-spacing: .05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--blush); text-decoration: none;
+      font-size: .9rem; letter-spacing: .08em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 7rem 2rem 4rem;
+      background: linear-gradient(135deg,
+        var(--plum) 0%,
+        #6B1A4B 35%,
+        var(--rose) 65%,
+        #FF9A76 100%);
+      overflow: hidden;
+    }
+
+    /* floating blobs */
+    .blob {
+      position: absolute; border-radius: 50%;
+      opacity: .18; filter: blur(60px);
+      pointer-events: none; animation: float 8s ease-in-out infinite alternate;
+    }
+    .blob1 { width: 400px; height: 400px; background: var(--gold);  top: -80px;  left: -80px; }
+    .blob2 { width: 320px; height: 320px; background: var(--lilac); bottom: 40px; right: -60px; animation-delay: -3s; }
+    .blob3 { width: 200px; height: 200px; background: var(--coral); top: 50%;   left: 50%;    animation-delay: -5s; }
+    @keyframes float {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(30px,20px) scale(1.08); }
+    }
+
+    /* sparkles */
+    .sparkle {
+      position: absolute; width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%;
+      opacity: 0; animation: sparkle 4s ease-in-out infinite;
+    }
+    @keyframes sparkle {
+      0%,100% { opacity:0; transform:scale(0); }
+      50%      { opacity:1; transform:scale(1.5); }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--gold); color: var(--plum);
+      font-size: .75rem; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; padding: .35rem 1rem;
+      border-radius: 999px; margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 900; line-height: 1.05;
+      color: #fff;
+      position: relative; display: inline-block;
+    }
+    .hero-title .accent { color: var(--gold); font-style: italic; }
+
+    /* lipstick-stroke underline */
+    .stroke-wrap { position: relative; display: inline-block; }
+    .stroke-wrap::after {
+      content: '';
+      position: absolute; left: 0; bottom: -8px;
+      height: 6px; width: 0;
+      background: linear-gradient(90deg, var(--coral), var(--gold));
+      border-radius: 3px;
+      animation: drawStroke 1.2s .6s cubic-bezier(.77,0,.18,1) forwards;
+    }
+    @keyframes drawStroke { to { width: 100%; } }
+
+    .hero-sub {
+      margin-top: 1.8rem;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--blush); font-weight: 300; letter-spacing: .04em;
+    }
+    .hero-sub strong { color: var(--gold); font-weight: 700; }
+
+    .hero-location {
+      margin-top: .6rem;
+      font-size: 1rem; color: rgba(255,255,255,.7);
+      letter-spacing: .1em;
+    }
+
+    .hero-ctas {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      justify-content: center; margin-top: 2.5rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .9rem 2rem; border-radius: 999px;
+      font-family: 'Lato', sans-serif; font-size: .95rem;
+      font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+    .btn-primary { background: var(--gold); color: var(--plum); }
+    .btn-outline  { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.6); }
+    .btn-outline:hover { background: rgba(255,255,255,.1); }
+
+    /* ── SERVICES ── */
+    #servicios {
+      padding: 5rem 2rem;
+      background: var(--blush);
+    }
+    .section-label {
+      text-align: center;
+      font-size: .75rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;
+      color: var(--plum); margin-bottom: 3rem;
+    }
+    .section-title em { color: var(--rose); font-style: italic; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    .service-card {
+      border-radius: 1.5rem; padding: 2.2rem 1.8rem;
+      position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(61,21,53,.2); }
+    .service-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 700; margin-bottom: .6rem;
+    }
+    .service-card p { font-size: .95rem; line-height: 1.6; opacity: .85; }
+
+    .card-boda    { background: linear-gradient(135deg, #FFE4F0, #FADADD); color: var(--plum); }
+    .card-evento  { background: linear-gradient(135deg, #FFF3CD, #FFE4A0); color: var(--plum); }
+    .card-editorial { background: linear-gradient(135deg, #E9D5FF, #D8B4FE); color: #3B0764; }
+    .card-invitada { background: linear-gradient(135deg, #CCFBF1, #A7F3D0); color: #065F46; }
+
+    /* ── ABOUT ── */
+    #sobre-kath {
+      padding: 5rem 2rem;
+      background: var(--plum);
+      color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .about-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .about-text .section-label { color: var(--gold); text-align: left; }
+    .about-text .section-title { text-align: left; color: #fff; margin-bottom: 1.5rem; }
+    .about-text .section-title em { color: var(--gold); }
+    .about-text p { font-size: 1.05rem; line-height: 1.8; color: rgba(255,255,255,.8); margin-bottom: 1rem; }
+    .about-text p strong { color: var(--gold); }
+
+    .about-visual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .stat-box {
+      border-radius: 1.2rem; padding: 1.5rem 1rem; text-align: center;
+    }
+    .stat-box:nth-child(1) { background: var(--rose); }
+    .stat-box:nth-child(2) { background: var(--gold); color: var(--plum); }
+    .stat-box:nth-child(3) { background: #6B1A4B; }
+    .stat-box:nth-child(4) { background: var(--coral); }
+    .stat-box .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 900; display: block;
+    }
+    .stat-box .lbl { font-size: .8rem; letter-spacing: .08em; opacity: .9; }
+
+    /* ── TAGS / HASHTAGS ── */
+    #etiquetas {
+      padding: 4rem 2rem;
+      background: var(--champagne);
+      text-align: center;
+    }
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; margin-top: 2rem; }
+    .tag {
+      padding: .5rem 1.3rem; border-radius: 999px;
+      font-size: .9rem; font-weight: 700;
+      letter-spacing: .04em; text-transform: lowercase;
+    }
+    .tag-rose    { background: var(--rose);  color: #fff; }
+    .tag-gold    { background: var(--gold);  color: var(--plum); }
+    .tag-plum    { background: var(--plum);  color: #fff; }
+    .tag-lilac   { background: var(--lilac); color: #3B0764; }
+    .tag-coral   { background: var(--coral); color: #fff; }
+    .tag-mint    { background: var(--mint);  color: #065F46; }
+
+    /* ── CONTACT ── */
+    #contacto {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--rose), var(--plum));
+      text-align: center;
+      color: #fff;
+      position: relative; overflow: hidden;
+    }
+    #contacto .section-label { color: var(--gold); }
+    #contacto .section-title { color: #fff; margin-bottom: 1rem; }
+    #contacto .section-title em { color: var(--gold); }
+    #contacto .sub {
+      font-size: 1.1rem; color: rgba(255,255,255,.8);
+      max-width: 500px; margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* email pill */
+    .email-pill {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.35);
+      color: #fff; padding: .9rem 2rem; border-radius: 999px;
+      font-size: 1rem; text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .email-pill:hover { background: rgba(255,255,255,.28); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1A0B17;
+      color: rgba(255,255,255,.5);
+      text-align: center; padding: 2rem 1rem;
+      font-size: .85rem; letter-spacing: .05em;
+    }
+    footer strong { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: .8rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-visual { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s, transform .7s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">✦ Kath</div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#sobre-kath">Sobre mí</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <!-- sparkles -->
+    <div class="sparkle" style="top:15%;left:10%;animation-delay:0s"></div>
+    <div class="sparkle" style="top:25%;right:12%;animation-delay:1s"></div>
+    <div class="sparkle" style="top:70%;left:20%;animation-delay:2s"></div>
+    <div class="sparkle" style="top:60%;right:18%;animation-delay:.5s"></div>
+    <div class="sparkle" style="top:40%;left:5%;animation-delay:3s"></div>
+    <div class="sparkle" style="top:80%;right:8%;animation-delay:1.5s"></div>
+
+    <div class="hero-tag">💄 Maquillaje &amp; Peinado · Madrid</div>
+    <h1 class="hero-title">
+      <span class="stroke-wrap">Kath</span><br>
+      <span class="accent">te hace brillar</span>
+    </h1>
+    <p class="hero-sub">
+      <strong>Bodas · Eventos · Editorial</strong><br>
+      Maquillaje y peinado profesional para tu momento más especial
+    </p>
+    <p class="hero-location">📍 Madrid, España</p>
+
+    <div class="hero-ctas">
+      <a href="https://www.instagram.com/kath.makeup.hair/" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+      <a href="https://linktr.ee/kathmakeuphair" target="_blank" rel="noopener" class="btn btn-outline">
+        🔗 Todos mis enlaces
+      </a>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <p class="section-label reveal">✨ Lo que ofrezco</p>
+    <h2 class="section-title reveal">Servicios <em>con alma</em></h2>
+    <div class="services-grid">
+      <div class="service-card card-boda reveal">
+        <div class="icon">👰</div>
+        <h3>Novia</h3>
+        <p>Tu boda es única e irrepetible. Te acompaño desde la prueba hasta el gran día para que luzcas exactamente como siempre soñaste.</p>
+      </div>
+      <div class="service-card card-evento reveal">
+        <div class="icon">🥂</div>
+        <h3>Eventos &amp; Celebraciones</h3>
+        <p>Bautizos, comuniones, galas y todo aquello que merece un look impecable. Llega a cualquier evento sintiéndote la más guapa de la sala.</p>
+      </div>
+      <div class="service-card card-editorial reveal">
+        <div class="icon">📸</div>
+        <h3>Editorial &amp; Fotografía</h3>
+        <p>Maquillaje artístico pensado para la cámara. Trabajamos juntas para que cada imagen cuente una historia y el resultado sea extraordinario.</p>
+      </div>
+      <div class="service-card card-invitada reveal">
+        <div class="icon">💃</div>
+        <h3>#InvitadaIdeal</h3>
+        <p>¿Vas de invitada y quieres arrasar? Peinado y maquillaje coordinados para que tu look sea perfecto de la cabeza a los pies.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE KATH -->
+  <section id="sobre-kath">
+    <div class="about-inner">
+      <div class="about-text reveal">
+        <p class="section-label">💋 Sobre mí</p>
+        <h2 class="section-title">Hola, soy <em>Kath</em></h2>
+        <p>Soy maquilladora y estilista de cabello con base en <strong>Madrid</strong>. Mi pasión es hacer que cada persona se sienta increíblemente bien en su piel el día más importante de su vida.</p>
+        <p>Trabajo con novias, invitadas e influencers para crear looks que van <strong>desde lo atemporal hasta lo más editorial y atrevido</strong>. Cada rostro es un lienzo diferente y lo trato como tal.</p>
+        <p>¿Hablamos? Estoy deseando conocer tu visión y hacerla realidad. ✨</p>
+        <div style="margin-top:1.8rem;">
+          <a href="https://linktr.ee/kathmakeuphair" target="_blank" rel="noopener" class="btn btn-primary">Ver todos mis enlaces 🔗</a>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="stat-box">
+          <span class="num">💍</span>
+          <span class="lbl">Novias 2026</span>
+        </div>
+        <div class="stat-box">
+          <span class="num">📸</span>
+          <span class="lbl">Editorial</span>
+        </div>
+        <div class="stat-box">
+          <span class="num">✨</span>
+          <span class="lbl">Invitada Ideal</span>
+        </div>
+        <div class="stat-box">
+          <span class="num">💄</span>
+          <span class="lbl">Madrid</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HASHTAGS / VIBE -->
+  <section id="etiquetas">
+    <p class="section-label reveal">🏷️ Mi mundo</p>
+    <h2 class="section-title reveal">El universo <em>Kath</em></h2>
+    <div class="tags-wrap reveal">
+      <span class="tag tag-rose">#novias2026</span>
+      <span class="tag tag-plum">#novias2027</span>
+      <span class="tag tag-gold">#invitadaideal</span>
+      <span class="tag tag-coral">#maquillajemadrid</span>
+      <span class="tag tag-lilac">#editorial</span>
+      <span class="tag tag-mint">#bridetobe</span>
+      <span class="tag tag-rose">#peinadomadrid</span>
+      <span class="tag tag-plum">#bodas2026</span>
+      <span class="tag tag-gold">#makeupbride</span>
+      <span class="tag tag-coral">#makeupwedding</span>
+      <span class="tag tag-lilac">#belleza</span>
+      <span class="tag tag-mint">#kathmakeuphair</span>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="blob blob1" style="opacity:.12;filter:blur(80px);top:-100px;right:-80px;left:auto;"></div>
+    <p class="section-label reveal">📩 Contacto</p>
+    <h2 class="section-title reveal"><em>¡Hablemos!</em></h2>
+    <p class="sub reveal">¿Tienes una boda o evento próximo? Escríbeme y cuéntame tu sueño. Estoy aquí para hacerlo realidad.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:kathmakeuphair@gmail.com" class="email-pill">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        kathmakeuphair@gmail.com
+      </a>
+      <a href="https://www.instagram.com/kath.makeup.hair/" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        @kath.makeup.hair
+      </a>
+      <a href="https://linktr.ee/kathmakeuphair" target="_blank" rel="noopener" class="btn btn-primary">
+        🔗 Linktree
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Hecho con 💋 y mucho amor · <strong>Kath Makeup &amp; Hair</strong> · Madrid · 2026</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
