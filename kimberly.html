@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kimberly González Makeup – Maquilladora en Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa:    #F472B6;
+    --fucsia:  #DB2777;
+    --coral:   #FB7185;
+    --dorado:  #F59E0B;
+    --lila:    #A855F7;
+    --crema:   #FFF7ED;
+    --blanco:  #FFFFFF;
+    --oscuro:  #1E1B2E;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--crema);
+    color: var(--oscuro);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1E1B2E 0%, #3B1F5E 40%, #7C2D7E 70%, #DB2777 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(244,114,182,0.25) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(168,85,247,0.2) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(245,158,11,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* floating sparkles */
+  .sparkles span {
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .sparkles span:nth-child(1)  { top:10%; left:8%;  background:var(--rosa);   animation-delay:0s; }
+  .sparkles span:nth-child(2)  { top:20%; left:85%; background:var(--dorado); animation-delay:1s; width:8px; height:8px; }
+  .sparkles span:nth-child(3)  { top:60%; left:5%;  background:var(--lila);   animation-delay:2s; width:5px; height:5px; }
+  .sparkles span:nth-child(4)  { top:75%; left:90%; background:var(--coral);  animation-delay:0.5s; }
+  .sparkles span:nth-child(5)  { top:45%; left:95%; background:var(--rosa);   animation-delay:3s; width:4px; height:4px; }
+  .sparkles span:nth-child(6)  { top:85%; left:20%; background:var(--dorado); animation-delay:1.5s; width:7px; height:7px; }
+  @keyframes float {
+    0%,100% { transform: translateY(0) scale(1); opacity:.7; }
+    50%      { transform: translateY(-18px) scale(1.3); opacity:1; }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--dorado), var(--coral));
+    color: #1E1B2E;
+    font-weight: 700;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .4rem 1.2rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    color: var(--blanco);
+    line-height: 1.1;
+    margin-bottom: .5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    background: linear-gradient(90deg, var(--rosa), var(--dorado));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,.8);
+    margin-bottom: 2.5rem;
+    letter-spacing: .02em;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .85rem 2rem;
+    border-radius: 999px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+
+  .btn-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: var(--blanco);
+  }
+  .btn-instagram {
+    background: linear-gradient(135deg, #f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+    color: var(--blanco);
+  }
+
+  /* ── SECCIÓN GENÉRICA ── */
+  section { padding: 5rem 1.5rem; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    display: block;
+    font-size: .78rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--fucsia);
+    margin-bottom: .6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    color: var(--oscuro);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--fucsia);
+  }
+
+  /* ── SERVICIOS ── */
+  .servicios { background: var(--blanco); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .card {
+    border-radius: 20px;
+    padding: 2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+
+  .card.novias   { background: linear-gradient(145deg, #FFF0F7, #FFE4F0); border: 2px solid #F9A8D4; }
+  .card.social   { background: linear-gradient(145deg, #F5F0FF, #EDE4FF); border: 2px solid #C4B5FD; }
+  .card.cursos   { background: linear-gradient(145deg, #FFF8EC, #FEF3C7); border: 2px solid #FCD34D; }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: .6rem;
+    color: var(--oscuro);
+  }
+
+  .card p { font-size: .95rem; color: #555; line-height: 1.6; }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .3rem .8rem;
+    border-radius: 999px;
+    background: rgba(0,0,0,.07);
+    color: var(--oscuro);
+  }
+
+  /* ── SOBRE KIM ── */
+  .sobre { background: linear-gradient(135deg, #1E1B2E 0%, #3B1F5E 100%); }
+
+  .sobre-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .sobre-img-wrap {
+    position: relative;
+  }
+
+  .sobre-blob {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    background: linear-gradient(135deg, var(--fucsia), var(--lila));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7rem;
+    box-shadow: 0 0 60px rgba(219,39,119,.4);
+    animation: blobmorph 8s ease-in-out infinite;
+  }
+  @keyframes blobmorph {
+    0%,100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+    50%      { border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%; }
+  }
+
+  .sobre-content .section-label { color: var(--rosa); }
+  .sobre-content .section-title { color: var(--blanco); }
+
+  .sobre-content p {
+    color: rgba(255,255,255,.75);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--rosa), var(--dorado));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+  }
+  .stat-label { font-size: .8rem; color: rgba(255,255,255,.6); letter-spacing: .06em; }
+
+  /* ── PROCESO ── */
+  .proceso { background: var(--crema); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .step {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    background: var(--blanco);
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    transition: transform .3s;
+    position: relative;
+  }
+  .step:hover { transform: translateY(-5px); }
+
+  .step-num {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--blanco);
+  }
+  .step:nth-child(1) .step-num { background: linear-gradient(135deg, var(--rosa), var(--fucsia)); }
+  .step:nth-child(2) .step-num { background: linear-gradient(135deg, var(--lila), #7C3AED); }
+  .step:nth-child(3) .step-num { background: linear-gradient(135deg, var(--dorado), var(--coral)); }
+  .step:nth-child(4) .step-num { background: linear-gradient(135deg, var(--coral), var(--fucsia)); }
+
+  .step h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+    color: var(--oscuro);
+  }
+  .step p { font-size: .9rem; color: #666; line-height: 1.5; }
+
+  /* ── TESTIMONIOS ── */
+  .testimonios { background: linear-gradient(135deg, #FFF0F7, #F5F0FF); }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .testi {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 4px 20px rgba(219,39,119,.08);
+    border-left: 4px solid;
+    transition: transform .3s;
+  }
+  .testi:hover { transform: translateY(-4px); }
+  .testi:nth-child(1) { border-color: var(--fucsia); }
+  .testi:nth-child(2) { border-color: var(--lila); }
+  .testi:nth-child(3) { border-color: var(--dorado); }
+
+  .stars { color: var(--dorado); font-size: 1.1rem; margin-bottom: .8rem; }
+
+  .testi p { font-size: .95rem; color: #444; line-height: 1.65; font-style: italic; margin-bottom: 1rem; }
+
+  .testi-author { font-weight: 700; font-size: .85rem; color: var(--fucsia); }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: linear-gradient(135deg, var(--fucsia) 0%, var(--lila) 50%, var(--coral) 100%);
+    text-align: center;
+    padding: 5rem 1.5rem;
+  }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--blanco);
+    margin-bottom: 1rem;
+  }
+  .cta-final p {
+    color: rgba(255,255,255,.85);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+  .cta-final .ctas { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--oscuro);
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: .85rem;
+  }
+  footer a { color: var(--rosa); text-decoration: none; }
+
+  /* ── STICKY BUTTONS ── */
+  .sticky-btns {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    z-index: 999;
+  }
+
+  .sticky-btn {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .sticky-btn:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(0,0,0,.4); }
+
+  .sticky-wa  { background: linear-gradient(135deg, #25D366, #128C7E); }
+  .sticky-ig  { background: linear-gradient(135deg, #f09433,#dc2743,#bc1888); }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .sobre-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .sobre-blob  { width: 60%; margin: 0 auto; font-size: 5rem; }
+    .stats { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sticky buttons -->
+<div class="sticky-btns">
+  <a class="sticky-btn sticky-wa" href="https://api.whatsapp.com/send/?phone=%2B34674909476" target="_blank" rel="noopener" title="WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="white"><path d="M16 1C7.716 1 1 7.716 1 16c0 2.639.683 5.119 1.878 7.271L1 31l7.938-1.857A14.944 14.944 0 0016 31c8.284 0 15-6.716 15-15S24.284 1 16 1zm0 27.2a12.148 12.148 0 01-6.186-1.686l-.444-.263-4.714 1.104 1.126-4.6-.29-.472A12.198 12.198 0 013.8 16 12.2 12.2 0 0116 3.8 12.2 12.2 0 0128.2 16 12.2 12.2 0 0116 28.2zm6.695-9.132c-.366-.183-2.168-1.07-2.503-1.19-.336-.122-.58-.183-.825.183-.244.366-.946 1.19-1.159 1.435-.213.244-.427.275-.793.092-.366-.183-1.545-.57-2.942-1.815-1.088-.97-1.822-2.167-2.035-2.533-.213-.366-.023-.563.16-.746.164-.164.366-.427.549-.64.183-.213.244-.366.366-.61.122-.244.061-.458-.031-.64-.091-.183-.824-1.99-1.13-2.726-.297-.716-.6-.617-.824-.63l-.702-.012c-.244 0-.64.092-.976.458-.335.366-1.281 1.251-1.281 3.05s1.311 3.537 1.494 3.78c.183.244 2.582 3.94 6.255 5.525.874.378 1.556.603 2.087.772.877.28 1.676.24 2.308.146.703-.105 2.168-.885 2.473-1.74.305-.854.305-1.587.213-1.74-.091-.152-.335-.244-.702-.427z"/></svg>
+  </a>
+  <a class="sticky-btn sticky-ig" href="https://www.instagram.com/kimberlygonzalezmakeup/" target="_blank" rel="noopener" title="Instagram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+  </a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="sparkles">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-badge">✨ Maquilladora Profesional · Madrid, España ✨</div>
+  <h1>Kimberly<br><em>González Makeup</em></h1>
+  <p class="hero-sub">Especialista en novias · Maquillaje social · Cursos personalizados</p>
+  <div class="hero-ctas">
+    <a class="btn btn-whatsapp" href="https://api.whatsapp.com/send/?phone=%2B34674909476" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="white"><path d="M16 1C7.716 1 1 7.716 1 16c0 2.639.683 5.119 1.878 7.271L1 31l7.938-1.857A14.944 14.944 0 0016 31c8.284 0 15-6.716 15-15S24.284 1 16 1zm0 27.2a12.148 12.148 0 01-6.186-1.686l-.444-.263-4.714 1.104 1.126-4.6-.29-.472A12.198 12.198 0 013.8 16 12.2 12.2 0 0116 3.8 12.2 12.2 0 0128.2 16 12.2 12.2 0 0116 28.2zm6.695-9.132c-.366-.183-2.168-1.07-2.503-1.19-.336-.122-.58-.183-.825.183-.244.366-.946 1.19-1.159 1.435-.213.244-.427.275-.793.092-.366-.183-1.545-.57-2.942-1.815-1.088-.97-1.822-2.167-2.035-2.533-.213-.366-.023-.563.16-.746.164-.164.366-.427.549-.64.183-.213.244-.366.366-.61.122-.244.061-.458-.031-.64-.091-.183-.824-1.99-1.13-2.726-.297-.716-.6-.617-.824-.63l-.702-.012c-.244 0-.64.092-.976.458-.335.366-1.281 1.251-1.281 3.05s1.311 3.537 1.494 3.78c.183.244 2.582 3.94 6.255 5.525.874.378 1.556.603 2.087.772.877.28 1.676.24 2.308.146.703-.105 2.168-.885 2.473-1.74.305-.854.305-1.587.213-1.74-.091-.152-.335-.244-.702-.427z"/></svg>
+      Escríbeme por WhatsApp
+    </a>
+    <a class="btn btn-instagram" href="https://www.instagram.com/kimberlygonzalezmakeup/" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Ver mi trabajo en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ── SERVICIOS ── -->
+<section class="servicios">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Lo que hago por ti</span>
+      <h2 class="section-title">Mis <em>Servicios</em></h2>
+      <p style="color:#666; max-width:550px; line-height:1.7;">Cada rostro es único y merece un maquillaje que lo realce. Aquí encontrarás todo lo que necesitas para brillar.</p>
+    </div>
+    <div class="cards">
+      <div class="card novias reveal">
+        <span class="card-icon">👰🏻‍♀️</span>
+        <h3>Maquillaje de Novia</h3>
+        <p>Tu día más especial merece un maquillaje impecable. Incluye prueba previa, asesoría personalizada y acompañamiento hasta el último detalle.</p>
+        <span class="card-tag">💍 Especialidad principal</span>
+      </div>
+      <div class="card social reveal">
+        <span class="card-icon">✨</span>
+        <h3>Maquillaje Social</h3>
+        <p>Para eventos, comuniones, galas, fiestas y cualquier ocasión en la que quieras lucir espectacular y sentirte segura de tu imagen.</p>
+        <span class="card-tag">🎉 Eventos especiales</span>
+      </div>
+      <div class="card cursos reveal">
+        <span class="card-icon">🎓</span>
+        <h3>Cursos Personalizados</h3>
+        <p>Aprende las técnicas profesionales adaptadas a tus rasgos y tu tipo de piel. Clases individuales para que puedas maquillarte tú misma con confianza.</p>
+        <span class="card-tag">📩 Info al DM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOBRE KIM ── -->
+<section class="sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-img-wrap reveal">
+        <div class="sobre-blob">💄</div>
+      </div>
+      <div class="sobre-content reveal">
+        <span class="section-label">Sobre mí</span>
+        <h2 class="section-title">Hola, soy <em style="color:var(--rosa)">Kimberly</em></h2>
+        <p>Soy maquilladora profesional con base en Madrid, apasionada por realzar la belleza natural de cada persona. Me especializo en novias y maquillaje social, creando looks únicos, duraderos y adaptados a cada cliente.</p>
+        <p>Trabajo con las mejores marcas del mercado y pongo todo mi cuidado en cada detalle, desde la prueba hasta el gran día. Para mí, no hay nada más bonito que ver cómo te sientes cuando te miras al espejo y te encanta lo que ves.</p>
+        <p style="font-weight:700; color:rgba(255,255,255,.9);">📍 Madrid, España · Información al DM 📩</p>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Dedicación</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">💍</span>
+            <span class="stat-label">Especialista Novias</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">✨</span>
+            <span class="stat-label">Madrid & Alrededores</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESO ── -->
+<section class="proceso">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">¿Cómo funciona?</span>
+      <h2 class="section-title">El proceso <em>paso a paso</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h4>Contáctame</h4>
+        <p>Escríbeme por WhatsApp o Instagram con tu fecha y cuéntame sobre tu evento o boda.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h4>Asesoría previa</h4>
+        <p>Hablamos de tu estilo, tipo de piel y el look que imaginas. Sin compromiso y con total confianza.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h4>Prueba de maquillaje</h4>
+        <p>Para novias, realizamos una prueba para encontrar tu look perfecto antes del gran día.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <h4>¡A brillar!</h4>
+        <p>El día de tu evento te maquillo con mimo y profesionalidad. Te vas a sentir increíble.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIOS ── -->
+<section class="testimonios">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Lo que dicen ellas</span>
+      <h2 class="section-title">Novias <em>felices</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Ha cumplido con todas las expectativas. Desde la entrevista, la prueba, sus aportaciones y cuidados para la piel semanas antes de la boda. Atención al cliente 10/10 y logró encontrar el maquillaje perfecto a mis gustos."</p>
+        <span class="testi-author">— Cliente satisfecha, Madrid</span>
+      </div>
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Me sentí guapísima y segura todo el día. Kimberly tiene una sensibilidad especial para escucharte y entender exactamente qué quieres. ¡El maquillaje duró toda la noche!"</p>
+        <span class="testi-author">— Novia, Comunidad de Madrid</span>
+      </div>
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Gracias al curso personalizado ahora me maquillo sola con confianza. Aprендí técnicas que nunca creí que podría dominar. ¡Totalmente recomendable!"</p>
+        <span class="testi-author">— Alumna de curso, Madrid</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="cta-final">
+  <div class="container reveal">
+    <h2>¿Lista para brillar? ✨</h2>
+    <p>Escríbeme y reserva tu fecha. Tengo disponibilidad limitada para novias, ¡no te quedes sin la tuya!</p>
+    <div class="ctas">
+      <a class="btn" style="background:white; color:#DB2777;" href="https://api.whatsapp.com/send/?phone=%2B34674909476" target="_blank" rel="noopener">
+        💬 WhatsApp — Reservar ahora
+      </a>
+      <a class="btn" style="background:rgba(255,255,255,.15); color:white; border:2px solid rgba(255,255,255,.6);" href="https://www.instagram.com/kimberlygonzalezmakeup/" target="_blank" rel="noopener">
+        📸 Ver mi portfolio en Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>📍 Madrid, España &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/kimberlygonzalezmakeup/" target="_blank" rel="noopener">@kimberlygonzalezmakeup</a>
+    &nbsp;·&nbsp;
+    <a href="https://api.whatsapp.com/send/?phone=%2B34674909476" target="_blank" rel="noopener">+34 674 909 476</a>
+  </p>
+  <p style="margin-top:.5rem;">© 2025 Kimberly González Makeup. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
