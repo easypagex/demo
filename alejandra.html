@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alejandra Astudillo Beauty | Maquilladora en Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --fuchsia: #E91E8C;
+      --coral: #FF6B9D;
+      --gold: #F5C842;
+      --black: #0D0D0D;
+      --cream: #FFF8F0;
+      --white: #ffffff;
+      --pink-light: #FFE4F0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--coral); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 60px;
+    }
+
+    /* animated gradient blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--fuchsia); top: -100px; left: -120px; animation-delay: 0s; }
+    .blob-2 { width: 400px; height: 400px; background: var(--gold); bottom: -80px; right: -80px; animation-delay: -3s; }
+    .blob-3 { width: 300px; height: 300px; background: var(--coral); top: 50%; left: 60%; animation-delay: -5s; }
+
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 6px 18px;
+      border-radius: 30px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, var(--fuchsia), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      margin: 20px 0 40px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--fuchsia), var(--coral));
+      color: var(--white);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── SCROLL BADGE ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollpulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollpulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+    /* ── SECTION BASE ── */
+    section { padding: 90px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fuchsia);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ── SOBRE MÍ ── */
+    .about {
+      background: var(--white);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card {
+      background: linear-gradient(135deg, var(--fuchsia) 0%, var(--coral) 50%, var(--gold) 100%);
+      border-radius: 24px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.2)'/%3E%3C/svg%3E");
+    }
+    .about-card-emoji { font-size: 4rem; margin-bottom: 16px; position: relative; z-index: 1; }
+    .about-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      position: relative; z-index: 1;
+    }
+    .about-card p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-top: 8px;
+      position: relative; z-index: 1;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 100px; height: 100px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-align: center;
+      line-height: 1.3;
+      color: var(--black);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .about-badge span { font-size: 1.4rem; font-weight: 900; }
+
+    /* ── SERVICIOS ── */
+    .services {
+      background: var(--cream);
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .services-header .section-desc { margin: 0 auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 28px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--fuchsia), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(233,30,140,0.12); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon { font-size: 2.6rem; margin-bottom: 20px; display: block; }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ── LOOKS / PORTFOLIO ── */
+    .portfolio {
+      background: var(--black);
+      color: var(--white);
+    }
+    .portfolio .section-title { color: var(--white); }
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .portfolio-desc { color: rgba(255,255,255,0.6); max-width: 400px; line-height: 1.7; font-size: 0.95rem; }
+    .looks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .look-item {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      position: relative;
+      cursor: pointer;
+    }
+    .look-item:first-child { grid-row: span 2; aspect-ratio: auto; }
+    .look-bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      transition: transform 0.4s;
+      position: relative;
+    }
+    .look-item:hover .look-bg { transform: scale(1.05); }
+    .look-bg-1 { background: linear-gradient(135deg, #E91E8C, #FF6B9D); }
+    .look-bg-2 { background: linear-gradient(135deg, #F5C842, #FF8C42); }
+    .look-bg-3 { background: linear-gradient(135deg, #9B59B6, #E91E8C); }
+    .look-bg-4 { background: linear-gradient(135deg, #1ABC9C, #3498DB); }
+    .look-bg-5 { background: linear-gradient(135deg, #E74C3C, #F5C842); }
+    .look-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── FX BANNER ── */
+    .fx-banner {
+      background: linear-gradient(135deg, var(--fuchsia) 0%, #9B59B6 50%, var(--black) 100%);
+      padding: 70px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .fx-banner::before {
+      content: '✨ 💄 ✨ 💄 ✨ 💄 ✨ 💄 ✨ 💄 ✨ 💄 ✨';
+      position: absolute;
+      top: 16px; left: 0; right: 0;
+      font-size: 1.2rem;
+      opacity: 0.2;
+      letter-spacing: 8px;
+    }
+    .fx-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--white);
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .fx-banner p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1rem;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    /* ── AGENDA / CTA ── */
+    .agenda {
+      background: var(--pink-light);
+      text-align: center;
+    }
+    .agenda .section-desc { margin: 0 auto 40px; }
+    .agenda-features {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+    .agenda-feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .agenda-feature span:first-child { font-size: 2rem; }
+    .agenda-feature span:last-child { font-size: 0.82rem; font-weight: 600; color: var(--fuchsia); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── REDES SOCIALES ── */
+    .social {
+      background: var(--white);
+      text-align: center;
+    }
+    .social-cards {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .social-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 40px 48px;
+      border-radius: 24px;
+      text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+      min-width: 200px;
+    }
+    .social-card:hover { transform: translateY(-6px); }
+    .social-card.ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      box-shadow: 0 8px 30px rgba(220,39,67,0.3);
+    }
+    .social-card.tt {
+      background: var(--black);
+      color: white;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .social-icon { font-size: 3rem; }
+    .social-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+    }
+    .social-card p { font-size: 0.82rem; opacity: 0.85; }
+
+    /* ── CONTACTO ── */
+    .contact {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+    }
+    .contact .section-title { color: var(--white); margin-bottom: 12px; }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      color: var(--gold);
+      font-size: 1.05rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245,200,66,0.3);
+      padding-bottom: 4px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-email:hover { color: var(--coral); border-color: var(--coral); }
+    .location-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808;
+      padding: 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+    /* ── FLOATING WHATSAPP ── */
+    .float-cta {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    .float-btn {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      transition: transform 0.2s;
+    }
+    .float-btn:hover { transform: scale(1.12); }
+    .float-ig { background: linear-gradient(135deg, #f09433, #dc2743, #bc1888); }
+    .float-tt { background: #000; }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .looks-grid { grid-template-columns: repeat(2, 1fr); }
+      .look-item:first-child { grid-row: span 1; aspect-ratio: 3/4; }
+      section { padding: 64px 20px; }
+      .portfolio-header { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .looks-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Alejandra Astudillo Beauty</div>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portfolio">Looks</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">✦ Maquilladora Profesional en Madrid ✦</span>
+    <h1>El arte de <em>realzar</em><br>tu belleza</h1>
+    <p class="hero-sub">Makeup · Hair · FX Artist<br>Estudio en Madrid y servicio a domicilio</p>
+    <div class="hero-ctas">
+      <a href="#agenda" class="btn btn-primary">📅 Reserva tu cita</a>
+      <a href="https://www.instagram.com/alejandraastudillobeauty/" target="_blank" class="btn btn-outline">Ver mi trabajo ↗</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="about" id="sobre-mi">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-card">
+          <div class="about-card-emoji">💄</div>
+          <h3>Alejandra Astudillo</h3>
+          <p>Makeup · Hair · FX Artist</p>
+        </div>
+        <div class="about-badge">
+          <span>📍</span>
+          Madrid<br>&amp;<br>domicilio
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Sobre mí</span>
+        <h2 class="section-title">Más que maquillaje,<br>una transformación</h2>
+        <p class="section-desc">
+          Soy Alejandra Astudillo, artista de maquillaje, cabello y efectos especiales (FX) con base en Madrid. Mi pasión es crear looks únicos que potencien tu belleza natural, ya sea para el día a día, eventos especiales, bodas, producciones audiovisuales o proyectos artísticos.
+        </p>
+        <p class="section-desc" style="margin-top:16px;">
+          Trabajo en mi estudio de Madrid o me desplazo hasta donde estés. ¿Lista para brillar?
+        </p>
+        <a href="mailto:alejandraastudillobeauty@gmail.com" class="btn btn-primary" style="margin-top:32px; display:inline-flex;">
+          ✉️ Escríbeme
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="services-header">
+      <span class="section-label">Lo que hago</span>
+      <h2 class="section-title">Servicios</h2>
+      <p class="section-desc">Cada servicio está diseñado para que te sientas increíble y con un look que dure todo el día.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">💅</span>
+        <h3>Maquillaje Social</h3>
+        <p>Para eventos, reuniones, citas especiales o simplemente para sentirte espectacular cualquier día.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">💍</span>
+        <h3>Maquillaje de Novia</h3>
+        <p>Un look romántico y duradero para el día más importante de tu vida. Prueba incluida.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🎬</span>
+        <h3>Maquillaje FX & Artístico</h3>
+        <p>Efectos especiales, body paint, caracterización para producciones, teatro, cine y videoclips.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">💇‍♀️</span>
+        <h3>Hair Styling</h3>
+        <p>Peinados para cualquier ocasión: recogidos, ondas, trenzas y estilos contemporáneos.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">📸</span>
+        <h3>Sesiones de Foto & Vídeo</h3>
+        <p>Maquillaje adaptado a cámara para que luzcas perfecta en cada toma, editorial o campaña.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🏠</span>
+        <h3>Servicio a Domicilio</h3>
+        <p>Me desplazo hasta donde estés en Madrid. Comodidad total para ti y tus acompañantes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO / LOOKS -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="portfolio-header">
+      <div>
+        <span class="section-label">Portfolio</span>
+        <h2 class="section-title">Mis Looks</h2>
+      </div>
+      <div>
+        <p class="portfolio-desc">Desde looks naturales hasta maquillaje artístico y FX. Cada cara es un lienzo diferente.</p>
+        <a href="https://www.instagram.com/alejandraastudillobeauty/" target="_blank" class="btn btn-outline" style="margin-top:16px;">Ver galería completa en IG ↗</a>
+      </div>
+    </div>
+    <div class="looks-grid">
+      <div class="look-item reveal">
+        <div class="look-bg look-bg-1">
+          <span style="font-size:4rem">💄</span>
+          <span style="color:white;font-size:0.85rem;margin-top:12px;opacity:0.8">Bridal Look</span>
+        </div>
+        <div class="look-overlay">Look Novia · Glam Natural</div>
+      </div>
+      <div class="look-item reveal">
+        <div class="look-bg look-bg-2">
+          <span style="font-size:3rem">✨</span>
+        </div>
+        <div class="look-overlay">Editorial · Dorado</div>
+      </div>
+      <div class="look-item reveal">
+        <div class="look-bg look-bg-3">
+          <span style="font-size:3rem">🎭</span>
+        </div>
+        <div class="look-overlay">FX · Artístico</div>
+      </div>
+      <div class="look-item reveal">
+        <div class="look-bg look-bg-4">
+          <span style="font-size:3rem">💅</span>
+        </div>
+        <div class="look-overlay">Evento · Social</div>
+      </div>
+      <div class="look-item reveal">
+        <div class="look-bg look-bg-5">
+          <span style="font-size:3rem">🎬</span>
+        </div>
+        <div class="look-overlay">Producción · Vídeo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FX BANNER -->
+<div class="fx-banner reveal">
+  <h2>¿Buscas algo especial? Hago FX ✨</h2>
+  <p>Caracterización, heridas, fantasía, halloween, producciones... Lo que imagines, lo creo.</p>
+  <a href="#contacto" class="btn btn-primary" style="display:inline-flex;">Hablemos de tu proyecto</a>
+</div>
+
+<!-- AGENDA -->
+<section class="agenda" id="agenda">
+  <div class="container">
+    <span class="section-label">¿Lista?</span>
+    <h2 class="section-title">Reserva tu cita</h2>
+    <p class="section-desc">Reserva fácil y rápida. Disponibilidad en mi estudio de Madrid o a domicilio.</p>
+    <div class="agenda-features">
+      <div class="agenda-feature">
+        <span>🗓️</span>
+        <span>Agenda online</span>
+      </div>
+      <div class="agenda-feature">
+        <span>📍</span>
+        <span>Madrid &amp; domicilio</span>
+      </div>
+      <div class="agenda-feature">
+        <span>💬</span>
+        <span>Asesoramiento</span>
+      </div>
+      <div class="agenda-feature">
+        <span>✨</span>
+        <span>Resultado garantizado</span>
+      </div>
+    </div>
+    <a href="https://www.instagram.com/alejandraastudillobeauty/" target="_blank" class="btn btn-primary" style="font-size:1rem; padding:18px 48px;">
+      📅 &nbsp;AGENDA AQUÍ
+    </a>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section class="social">
+  <div class="container">
+    <span class="section-label">Sígueme</span>
+    <h2 class="section-title">Encuéntrame en redes</h2>
+    <p class="section-desc" style="margin:0 auto;">Looks del día a día, behind the scenes, consejos de belleza y mucho más.</p>
+    <div class="social-cards">
+      <a href="https://www.instagram.com/alejandraastudillobeauty/" target="_blank" class="social-card ig reveal">
+        <div class="social-icon">📸</div>
+        <h3>Instagram</h3>
+        <p>@alejandraastudillobeauty</p>
+      </a>
+      <a href="https://www.tiktok.com/@alejandrastudillo" target="_blank" class="social-card tt reveal">
+        <div class="social-icon">🎵</div>
+        <h3>TikTok</h3>
+        <p>@alejandrastudillo</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <span class="section-label" style="color:var(--coral)">Contacto</span>
+    <h2 class="section-title">¿Hablamos?</h2>
+    <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; margin-top:8px;">Para presupuestos, colaboraciones y PR</p>
+    <div>
+      <a href="mailto:alejandraastudillobeauty@gmail.com" class="contact-email">
+        ✉️ alejandraastudillobeauty@gmail.com
+      </a>
+    </div>
+    <div>
+      <span class="location-tag">📍 Estudio en Madrid · Servicio a domicilio</span>
+    </div>
+    <div style="margin-top:40px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="https://www.instagram.com/alejandraastudillobeauty/" target="_blank" class="btn btn-primary">Instagram ↗</a>
+      <a href="https://www.tiktok.com/@alejandrastudillo" target="_blank" class="btn btn-outline">TikTok ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Alejandra Astudillo Beauty · Madrid &nbsp;|&nbsp;
+    <a href="https://www.instagram.com/alejandraastudillobeauty/" target="_blank">@alejandraastudillobeauty</a>
+  </p>
+</footer>
+
+<!-- FLOATING BTNS -->
+<div class="float-cta">
+  <a href="https://www.tiktok.com/@alejandrastudillo" target="_blank" class="float-btn float-tt" title="TikTok">🎵</a>
+  <a href="https://www.instagram.com/alejandraastudillobeauty/" target="_blank" class="float-btn float-ig" title="Instagram">📸</a>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger service cards
+  document.querySelectorAll('.service-card.reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+</script>
+</body>
+</html>
