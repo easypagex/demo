@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmanutriByPaula · Paula Martín Clares</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --verde:     #2DBE7A;
+      --verde-osc: #1A9A5C;
+      --morado:    #7C3AED;
+      --morado-cl: #C4B5FD;
+      --naranja:   #F97316;
+      --amarillo:  #FACC15;
+      --rosa:      #EC4899;
+      --azul:      #38BDF8;
+      --crema:     #FFFBF0;
+      --negro:     #1A1A2E;
+      --gris:      #6B7280;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--negro);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #7C3AED 0%, #2DBE7A 50%, #F97316 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* floating blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.18;
+      animation: float 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .blob-1 { width: 340px; height: 340px; background: var(--amarillo); top: -80px; left: -80px; animation-delay: 0s; }
+    .blob-2 { width: 220px; height: 220px; background: var(--rosa);    bottom: 40px; right: -40px; animation-delay: 2s; }
+    .blob-3 { width: 160px; height: 160px; background: var(--azul);    top: 50%;    right: 10%;   animation-delay: 4s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-22px) scale(1.04); }
+    }
+
+    .avatar-wrap {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 6px solid white;
+      box-shadow: 0 0 0 10px rgba(255,255,255,0.2);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      animation: pop .6s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      color: white;
+      font-weight: 800;
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.35);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      color: white;
+      line-height: 1.1;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      margin-bottom: .6rem;
+    }
+    .hero h1 span { color: var(--amarillo); }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .pill-row {
+      display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center;
+      margin-bottom: 2.4rem;
+    }
+    .pill {
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.45);
+      color: white;
+      font-weight: 700;
+      font-size: .9rem;
+      padding: .4rem 1.1rem;
+      border-radius: 999px;
+      display: flex; align-items: center; gap: .4rem;
+    }
+
+    .btn-group { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      box-shadow: 0 6px 20px rgba(220,39,67,0.4);
+    }
+    .btn-linktree {
+      background: white;
+      color: var(--morado);
+      box-shadow: 0 6px 20px rgba(124,58,237,0.25);
+    }
+
+    /* ── WAVE ── */
+    .wave { display: block; width: 100%; height: 80px; margin-top: -1px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; }
+
+    .section-label {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .3rem .9rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-body { font-size: 1.05rem; color: var(--gris); line-height: 1.75; max-width: 640px; }
+
+    /* ── SOBRE MÍ ── */
+    #sobre {
+      background: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 2rem;
+      padding: 5rem 3rem;
+    }
+    @media (max-width: 700px) {
+      #sobre { grid-template-columns: 1fr; text-align: center; padding: 3rem 1.5rem; }
+      #sobre .section-body { margin: 0 auto; }
+    }
+
+    .sobre-visual {
+      display: flex; flex-direction: column; gap: 1rem; align-items: center;
+    }
+    .sobre-card {
+      background: linear-gradient(135deg, var(--morado), var(--verde));
+      color: white;
+      border-radius: 1.4rem;
+      padding: 1.4rem 1.8rem;
+      width: 100%;
+      max-width: 320px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex; align-items: center; gap: .8rem;
+      box-shadow: 0 8px 24px rgba(124,58,237,0.2);
+    }
+    .sobre-card .icon { font-size: 2rem; flex-shrink: 0; }
+
+    .highlight {
+      color: var(--morado);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    /* ── SERVICIOS ── */
+    #servicios-wrap {
+      background: linear-gradient(160deg, #f0fdf4, #faf5ff);
+      padding: 5rem 1.5rem;
+    }
+    .servicios-header { text-align: center; margin-bottom: 3rem; }
+    .servicios-header .section-label { background: #d1fae5; color: var(--verde-osc); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      border-radius: 1.4rem;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform .2s, box-shadow .2s;
+      border-top: 5px solid;
+      text-align: center;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+    .card:nth-child(1) { border-color: var(--verde); }
+    .card:nth-child(2) { border-color: var(--morado); }
+    .card:nth-child(3) { border-color: var(--naranja); }
+    .card:nth-child(4) { border-color: var(--rosa); }
+    .card:nth-child(5) { border-color: var(--azul); }
+
+    .card-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: .5rem; }
+    .card p { font-size: .92rem; color: var(--gris); line-height: 1.6; }
+
+    /* ── LIBRO ── */
+    #libro {
+      background: linear-gradient(135deg, var(--negro) 0%, #2c1654 100%);
+      padding: 6rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #libro::before {
+      content: '📖';
+      font-size: 18rem;
+      position: absolute;
+      opacity: 0.05;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #libro .section-label { background: rgba(196,181,253,0.2); color: var(--morado-cl); }
+    #libro .section-title { color: white; margin: 0 auto 1rem; }
+    #libro .section-body  { color: rgba(255,255,255,0.7); margin: 0 auto 2rem; }
+    #libro .highlight { color: var(--amarillo); font-style: normal; }
+
+    .libro-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--amarillo), var(--naranja));
+      color: var(--negro);
+      font-weight: 900;
+      font-size: 1rem;
+      padding: .6rem 1.6rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(249,115,22,0.4);
+    }
+
+    /* ── INAMI ── */
+    #inami {
+      background: linear-gradient(135deg, #f0f9ff, #ecfdf5);
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+    #inami .section-label { background: #bae6fd; color: #0369a1; }
+    #inami .section-title { margin: 0 auto 1rem; }
+    #inami .section-body  { margin: 0 auto 2rem; }
+
+    .inami-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: white;
+      border-radius: 1.4rem;
+      padding: 1.4rem 2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--azul);
+      margin-top: 1rem;
+    }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      background: white;
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+    #contacto .section-label { background: #fce7f3; color: var(--rosa); }
+    #contacto .section-title { margin: 0 auto 1rem; }
+    #contacto .section-body  { margin: 0 auto 2.5rem; }
+
+    .contact-row {
+      display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: center;
+    }
+    .contact-chip {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .contact-chip:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .chip-mail { background: #fce7f3; color: var(--rosa); border: 2px solid var(--rosa); }
+    .chip-ig   { background: linear-gradient(135deg,#fde68a,#fca5a5); color: #7c2d12; border: none; }
+    .chip-tree { background: #d1fae5; color: var(--verde-osc); border: 2px solid var(--verde); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--negro);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: .85rem;
+    }
+    footer strong { color: white; }
+    footer a { color: var(--morado-cl); text-decoration: none; }
+
+    /* ── EMOJI BAND ── */
+    .emoji-band {
+      background: linear-gradient(90deg, var(--verde), var(--morado), var(--naranja), var(--rosa), var(--azul), var(--amarillo));
+      padding: .8rem;
+      text-align: center;
+      font-size: 1.6rem;
+      letter-spacing: .4rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .btn { padding: .75rem 1.4rem; font-size: .9rem; }
+      .pill { font-size: .8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ░░ HERO ░░ -->
+<div class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="avatar-wrap" aria-hidden="true">🥕</div>
+  <div class="hero-badge">✨ Farmacéutica &amp; Nutricionista</div>
+
+  <h1>Paula <span>Martín</span><br>Clares</h1>
+  <p class="hero-sub">Tu aliada en salud, nutrición y bienestar 🥦💚</p>
+
+  <div class="pill-row">
+    <span class="pill">👩🏼‍🔬 Farmacéutica</span>
+    <span class="pill">🥗 Nutricionista</span>
+    <span class="pill">📖 Autora</span>
+    <span class="pill">💡 Divulgadora</span>
+  </div>
+
+  <div class="btn-group">
+    <a href="https://www.instagram.com/farmanutribypaula/" target="_blank" rel="noopener" class="btn btn-ig">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://linktr.ee/farmanutribypaula" target="_blank" rel="noopener" class="btn btn-linktree">
+      🌿 Todos mis links
+    </a>
+  </div>
+</div>
+
+<!-- wave -->
+<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#FFFBF0"/>
+</svg>
+
+<!-- emoji band -->
+<div class="emoji-band" aria-hidden="true">🥕 🥦 💊 🧬 🫐 🥑 🍋 🫚 🧠 🥝 🍇 🌿 🥕 🥦 💊 🧬 🫐 🥑</div>
+
+<!-- ░░ SOBRE MÍ ░░ -->
+<section>
+  <div id="sobre">
+    <div>
+      <div class="section-label" style="background:#ede9fe;color:var(--morado);">👋 Sobre mí</div>
+      <h2 class="section-title">Farmacéutica que <span class="highlight">ama la nutrición</span></h2>
+      <p class="section-body">
+        Soy Paula Martín Clares, farmacéutica y nutricionista con una misión clara: ayudarte a entender
+        cómo la alimentación impacta tu cuerpo y tu mente. Creo en la ciencia, en la divulgación accesible
+        y en que comer bien no tiene que ser aburrido ni complicado.
+      </p>
+      <br>
+      <p class="section-body">
+        A través de mis redes, mi libro y mis proyectos, comparto todo lo que necesitas saber para
+        tomar decisiones inteligentes sobre tu salud. <strong>Porque tu cerebro también come.</strong>
+      </p>
+    </div>
+    <div class="sobre-visual">
+      <div class="sobre-card">
+        <span class="icon">👩🏼‍🔬</span>
+        <span>Farmacéutica titulada &amp; colegiada</span>
+      </div>
+      <div class="sobre-card" style="background:linear-gradient(135deg,var(--naranja),var(--rosa));">
+        <span class="icon">🥗</span>
+        <span>Nutricionista clínica y deportiva</span>
+      </div>
+      <div class="sobre-card" style="background:linear-gradient(135deg,var(--azul),var(--verde));">
+        <span class="icon">📖</span>
+        <span>Autora: «Tu cerebro también come»</span>
+      </div>
+      <div class="sobre-card" style="background:linear-gradient(135deg,var(--amarillo),var(--naranja));">
+        <span class="icon">💡</span>
+        <span>Divulgación científica en redes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ SERVICIOS ░░ -->
+<div id="servicios-wrap">
+  <div class="servicios-header">
+    <div class="section-label">🌟 Qué hago</div>
+    <h2 class="section-title">Mis áreas de expertise</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h3>Neuronutrición</h3>
+      <p>La conexión entre lo que comes y cómo piensas, sientes y rindes cada día.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💊</div>
+      <h3>Farmacología nutricional</h3>
+      <p>Interacciones entre medicamentos y alimentos. La perspectiva que solo una farmacéutica puede dar.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🥗</div>
+      <h3>Nutrición clínica</h3>
+      <p>Alimentación adaptada a tus objetivos y a tu situación de salud, sin mitos ni modas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>Divulgación digital</h3>
+      <p>Contenido riguroso y cercano en Instagram para que la ciencia llegue a todos.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎙️</div>
+      <h3>Formación &amp; talleres</h3>
+      <p>Charlas, webinars y formaciones para profesionales y público general.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ LIBRO ░░ -->
+<section id="libro">
+  <div class="section-label">📖 Mi libro</div>
+  <h2 class="section-title">Tu cerebro <span class="highlight">también come</span></h2>
+  <p class="section-body">
+    Descubre cómo la alimentación moldea tu estado de ánimo, tu concentración y tu salud mental.
+    Una guía práctica y científica para alimentar tu mente además de tu cuerpo.
+  </p>
+  <br>
+  <a href="https://linktr.ee/farmanutribypaula" target="_blank" rel="noopener" class="libro-badge">
+    🛒 Consigue el libro →
+  </a>
+</section>
+
+<!-- ░░ INAMI ░░ -->
+<section id="inami">
+  <div class="section-label">🌿 Proyecto</div>
+  <h2 class="section-title">Fundadora de <span style="color:var(--verde-osc);">@inaminutrition</span></h2>
+  <p class="section-body">
+    Inami Nutrition es el proyecto que nació de mi pasión por democratizar la nutrición de calidad.
+    Un espacio donde la ciencia y el bienestar se unen para transformar vidas a través de la alimentación.
+  </p>
+  <div class="inami-box">
+    <span style="font-size:2rem">🌱</span>
+    <div>
+      <div style="font-size:.8rem;font-weight:700;color:var(--gris);letter-spacing:.08em;text-transform:uppercase;">Síguenos</div>
+      <a href="https://www.instagram.com/inaminutrition/" target="_blank" rel="noopener" style="color:var(--verde-osc);text-decoration:none;">@inaminutrition</a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ CONTACTO ░░ -->
+<section id="contacto">
+  <div class="section-label">💌 Contacto</div>
+  <h2 class="section-title">¡Hablemos!</h2>
+  <p class="section-body">
+    ¿Tienes una pregunta, una colaboración o quieres trabajar conmigo?
+    Encuéntrame en cualquiera de estos canales. ¡Estaré encantada de leer tu mensaje! 🤗
+  </p>
+  <div class="contact-row">
+    <a href="mailto:farmanutriconsejopmc@gmail.com" class="contact-chip chip-mail">
+      ✉️ farmanutriconsejopmc@gmail.com
+    </a>
+    <a href="https://www.instagram.com/farmanutribypaula/" target="_blank" rel="noopener" class="contact-chip chip-ig">
+      📸 @farmanutribypaula
+    </a>
+    <a href="https://linktr.ee/farmanutribypaula" target="_blank" rel="noopener" class="contact-chip chip-tree">
+      🌿 linktr.ee/farmanutribypaula
+    </a>
+  </div>
+</section>
+
+<!-- ░░ FOOTER ░░ -->
+<footer>
+  <p>Hecho con 💚 para <strong>Paula Martín Clares · FarmanutriByPaula</strong></p>
+  <p style="margin-top:.5rem">
+    <a href="https://www.instagram.com/farmanutribypaula/" target="_blank" rel="noopener">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="https://linktr.ee/farmanutribypaula" target="_blank" rel="noopener">Linktree</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/inaminutrition/" target="_blank" rel="noopener">@inaminutrition</a>
+  </p>
+</footer>
+
+</body>
+</html>
