@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carmen Castaño · @carmenn.cs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rosa:    #FF4FA0;
+    --fucsia:  #E8007A;
+    --lila:    #BF5FFF;
+    --lavanda: #EAD4FF;
+    --amarillo:#FFE040;
+    --menta:   #00E5B4;
+    --blanco:  #FFFAF8;
+    --oscuro:  #1A0A2E;
+    --gris:    #6B5F7A;
+    --font-d:  'Syne', sans-serif;
+    --font-b:  'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--blanco);
+    color: var(--oscuro);
+    font-family: var(--font-b);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    backdrop-filter: blur(14px);
+    background: rgba(255,250,248,.82);
+    border-bottom: 1.5px solid rgba(255,79,160,.15);
+  }
+  .nav-logo {
+    font-family: var(--font-d);
+    font-weight: 800; font-size: 1.15rem;
+    color: var(--fucsia);
+    letter-spacing: -.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-d); font-weight: 600; font-size: .85rem;
+    color: var(--oscuro); text-decoration: none; letter-spacing: .04em;
+    text-transform: uppercase; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--rosa); }
+
+  /* hamburger */
+  .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .ham span { display: block; width: 24px; height: 2px; background: var(--oscuro); border-radius: 2px; transition: .3s; }
+  #menu-toggle { display: none; }
+  @media (max-width: 640px) {
+    .nav-links { display: none; flex-direction: column; gap: 1.2rem; position: absolute; top: 100%; left: 0; width: 100%; background: var(--blanco); padding: 1.5rem 2rem; border-bottom: 2px solid var(--lavanda); }
+    .ham { display: flex; }
+    #menu-toggle:checked ~ .nav-links { display: flex; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 7rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #fff0f8 0%, #f8edff 50%, #e8fff9 100%);
+  }
+
+  /* confetti blobs */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,79,160,.18) 0%, transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(191,95,255,.16) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(0,229,180,.14) 0%, transparent 35%),
+      radial-gradient(circle at 20% 85%, rgba(232,0,122,.12) 0%, transparent 35%);
+    pointer-events: none;
+  }
+
+  .hero-blossom {
+    font-size: 3rem; margin-bottom: 1rem; display: block;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--oscuro);
+    font-family: var(--font-d); font-weight: 700; font-size: .78rem;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: .35rem .9rem; border-radius: 100px;
+    margin-bottom: 1.4rem;
+  }
+
+  h1 {
+    font-family: var(--font-d); font-weight: 800;
+    font-size: clamp(2.8rem, 8vw, 6.5rem);
+    line-height: 1.0; letter-spacing: -.04em;
+    background: linear-gradient(120deg, var(--fucsia) 0%, var(--lila) 60%, var(--menta) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: .5rem;
+  }
+  .hero-handle {
+    font-family: var(--font-d); font-weight: 600; font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--gris); letter-spacing: .02em; margin-bottom: 1.8rem;
+  }
+  .hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--oscuro); font-weight: 300; max-width: 520px;
+    line-height: 1.6; margin: 0 auto 2.4rem;
+  }
+  .hero-tagline strong { color: var(--fucsia); font-weight: 600; }
+
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: var(--font-d); font-weight: 700; font-size: .9rem; letter-spacing: .02em;
+    padding: .85rem 1.8rem; border-radius: 100px;
+    text-decoration: none; transition: transform .2s, box-shadow .2s;
+    border: none; cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.15); }
+  .btn-ig { background: linear-gradient(135deg, var(--fucsia), var(--lila)); color: #fff; }
+  .btn-yt { background: #FF0000; color: #fff; }
+  .btn-tt { background: var(--oscuro); color: #fff; }
+
+  /* stats strip */
+  .stats {
+    margin-top: 3.5rem;
+    display: flex; gap: 0; flex-wrap: wrap; justify-content: center;
+    background: rgba(255,255,255,.7); backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,79,160,.2);
+    border-radius: 20px; padding: .6rem 0;
+    max-width: 600px; width: 100%;
+  }
+  .stat-item {
+    flex: 1; min-width: 120px;
+    display: flex; flex-direction: column; align-items: center;
+    padding: .8rem 1.2rem;
+    border-right: 1px solid rgba(191,95,255,.2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-d); font-weight: 800; font-size: 1.7rem; letter-spacing: -.03em;
+    background: linear-gradient(120deg, var(--fucsia), var(--lila));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .stat-lbl { font-size: .72rem; color: var(--gris); text-transform: uppercase; letter-spacing: .08em; margin-top: .15rem; }
+
+  /* ── SECCIONES GENERALES ── */
+  section { padding: 5rem 1.5rem; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .eyebrow {
+    font-family: var(--font-d); font-weight: 700; font-size: .72rem;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--rosa); margin-bottom: .8rem;
+  }
+  h2 {
+    font-family: var(--font-d); font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.03em; line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+  p.lead { font-size: 1.1rem; color: var(--gris); line-height: 1.7; max-width: 600px; }
+
+  /* ── SOBRE MÍ ── */
+  .sobre {
+    background: linear-gradient(135deg, #fff0fb 0%, #f5eeff 100%);
+    border-radius: 0;
+  }
+  .sobre-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+  @media (max-width: 700px) { .sobre-grid { grid-template-columns: 1fr; } }
+
+  .sobre-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sobre-circle {
+    width: 260px; height: 260px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rosa) 0%, var(--lila) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+    box-shadow: 0 30px 60px rgba(255,79,160,.3);
+    animation: float 4s ease-in-out infinite;
+  }
+  .badge {
+    position: absolute; background: var(--amarillo); border-radius: 100px;
+    font-family: var(--font-d); font-weight: 700; font-size: .8rem;
+    padding: .45rem 1rem; white-space: nowrap; color: var(--oscuro);
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  }
+  .badge-1 { top: 10px; right: 0; }
+  .badge-2 { bottom: 20px; left: 0; background: var(--menta); }
+
+  .sobre-text h2 { color: var(--oscuro); }
+  .sobre-text p { font-size: 1rem; color: var(--gris); line-height: 1.8; margin-top: .8rem; }
+  .sobre-text p + p { margin-top: .6rem; }
+
+  /* ── CONTENIDO / TIPS ── */
+  .contenido { background: var(--blanco); }
+  .tips-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .tip-card {
+    border-radius: 20px; padding: 2rem 1.5rem;
+    position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .tip-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.12); }
+  .tip-card:nth-child(1) { background: linear-gradient(135deg, #ffebf6, #ffd6ee); }
+  .tip-card:nth-child(2) { background: linear-gradient(135deg, #f3e8ff, #e2c9ff); }
+  .tip-card:nth-child(3) { background: linear-gradient(135deg, #e0fff7, #c0ffed); }
+  .tip-card:nth-child(4) { background: linear-gradient(135deg, #fff8cc, #ffe680); }
+  .tip-icon { font-size: 2.5rem; margin-bottom: .9rem; display: block; }
+  .tip-card h3 { font-family: var(--font-d); font-weight: 700; font-size: 1.05rem; margin-bottom: .5rem; }
+  .tip-card p { font-size: .9rem; color: var(--gris); line-height: 1.6; }
+
+  /* ── PLATAFORMAS ── */
+  .plataformas { background: var(--oscuro); }
+  .plataformas .eyebrow { color: var(--menta); }
+  .plataformas h2 { color: #fff; }
+  .plataformas p.lead { color: rgba(255,255,255,.6); }
+
+  .plat-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .plat-card {
+    border-radius: 20px; padding: 2rem 1.5rem;
+    border: 1.5px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.05);
+    display: flex; flex-direction: column; gap: .5rem;
+    transition: transform .25s, border-color .25s;
+  }
+  .plat-card:hover { transform: translateY(-5px); border-color: var(--rosa); }
+  .plat-icon { font-size: 2.4rem; }
+  .plat-name { font-family: var(--font-d); font-weight: 700; font-size: 1.1rem; color: #fff; }
+  .plat-handle { font-size: .85rem; color: rgba(255,255,255,.5); }
+  .plat-num {
+    font-family: var(--font-d); font-weight: 800; font-size: 2rem; letter-spacing: -.04em;
+    background: linear-gradient(120deg, var(--rosa), var(--lila));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-top: auto;
+  }
+  .plat-card a.btn { margin-top: .8rem; font-size: .82rem; padding: .65rem 1.2rem; border-radius: 100px; }
+
+  /* ── FRASE ── */
+  .frase {
+    background: linear-gradient(135deg, var(--fucsia) 0%, var(--lila) 100%);
+    text-align: center;
+  }
+  .frase blockquote {
+    font-family: var(--font-d); font-weight: 800;
+    font-size: clamp(1.5rem, 4vw, 2.8rem); letter-spacing: -.03em; line-height: 1.2;
+    color: #fff; max-width: 750px; margin: 0 auto;
+  }
+  .frase cite { display: block; margin-top: 1.2rem; font-style: normal; font-size: .9rem; color: rgba(255,255,255,.65); font-family: var(--font-b); font-weight: 400; }
+
+  /* ── CONTACTO ── */
+  .contacto { background: var(--blanco); text-align: center; }
+  .contacto h2 { color: var(--oscuro); }
+  .contacto p { margin: .8rem auto 2rem; max-width: 480px; font-size: 1rem; color: var(--gris); line-height: 1.7; }
+  .contacto-email {
+    display: inline-block;
+    font-family: var(--font-d); font-weight: 700; font-size: 1.1rem;
+    color: var(--fucsia); text-decoration: none;
+    padding: .7rem 1.8rem;
+    border: 2px solid var(--fucsia); border-radius: 100px;
+    transition: background .2s, color .2s;
+  }
+  .contacto-email:hover { background: var(--fucsia); color: #fff; }
+
+  .social-strip {
+    display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--oscuro); color: rgba(255,255,255,.4);
+    text-align: center; padding: 2rem 1.5rem;
+    font-size: .8rem; letter-spacing: .04em;
+  }
+  footer a { color: var(--rosa); text-decoration: none; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+    .hero-blossom, .sobre-circle { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">🌸 Carmen CS</span>
+  <input type="checkbox" id="menu-toggle">
+  <label class="ham" for="menu-toggle" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#contenido">Contenido</a></li>
+    <li><a href="#plataformas">Redes</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <span class="hero-blossom">🌸</span>
+  <span class="hero-tag">Creadora de contenido · Murcia 🇪🇸</span>
+  <h1>Carmen<br>Castaño</h1>
+  <p class="hero-handle">@carmenn.cs</p>
+  <p class="hero-tagline">Los mejores <strong>"3 tips"</strong> vienen de aquí. Lifestyle, belleza y consejos que de verdad funcionan.</p>
+  <div class="hero-ctas">
+    <a href="https://www.instagram.com/carmenn.cs/" target="_blank" rel="noopener" class="btn btn-ig">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.youtube.com/@Carmenn_cs" target="_blank" rel="noopener" class="btn btn-yt">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      YouTube
+    </a>
+    <a href="https://www.tiktok.com/@carmenn.cs" target="_blank" rel="noopener" class="btn btn-tt">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 3a4 4 0 0 1-4-4h-3.2v10.7a2 2 0 1 1-2.8-1.8V4.6a5.2 5.2 0 1 0 5.2 5.2V8.5a7.2 7.2 0 0 0 4.8 1.8V7.1a4 4 0 0 1-.8-4.1H19.6z"/></svg>
+      TikTok
+    </a>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">
+      <span class="stat-num">891K</span>
+      <span class="stat-lbl">seguidores IG</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">+2.2M</span>
+      <span class="stat-lbl">seguidores TikTok</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">78M</span>
+      <span class="stat-lbl">likes TikTok</span>
+    </div>
+  </div>
+</header>
+
+<!-- SOBRE MÍ -->
+<section class="sobre" id="sobre">
+  <div class="section-inner sobre-grid">
+    <div class="sobre-visual">
+      <div class="sobre-circle">🌸</div>
+      <span class="badge badge-1">Murcia, España 🇪🇸</span>
+      <span class="badge badge-2">+3 millones de seguidores</span>
+    </div>
+    <div class="sobre-text reveal">
+      <p class="eyebrow">Quién es Carmen</p>
+      <h2>La chica de los mejores tips</h2>
+      <p>Carmen Castaño es una creadora de contenido murciana que ha conquistado millones de corazones con sus populares "3 tips": pequeños consejos de lifestyle, belleza y bienestar que caben en un reel y cambian el día a día.</p>
+      <p>Su estilo cercano y auténtico ha convertido cada vídeo en un must. En TikTok supera los 2.2 millones de seguidores y en Instagram roza el millón, con una comunidad que crece sin parar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENIDO -->
+<section class="contenido" id="contenido">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Lo que encontrarás</p>
+    <h2 class="reveal">Contenido que de verdad<br>te ayuda</h2>
+    <p class="lead reveal">Desde belleza y organización hasta rutinas y viajes, Carmen comparte lo que funciona — sin filtros, sin complicaciones.</p>
+    <div class="tips-grid">
+      <div class="tip-card reveal">
+        <span class="tip-icon">💄</span>
+        <h3>Belleza &amp; Makeup</h3>
+        <p>Trucos de maquillaje y cuidado de la piel que puedes aplicar en minutos y notar al instante.</p>
+      </div>
+      <div class="tip-card reveal">
+        <span class="tip-icon">✨</span>
+        <h3>Lifestyle</h3>
+        <p>Hábitos, organización y pequeñas rutinas que transforman tu día sin complicarte la vida.</p>
+      </div>
+      <div class="tip-card reveal">
+        <span class="tip-icon">🌍</span>
+        <h3>Viajes &amp; Planes</h3>
+        <p>Recomendaciones de destinos, restaurantes y experiencias para aprovechar cada escapada.</p>
+      </div>
+      <div class="tip-card reveal">
+        <span class="tip-icon">🎯</span>
+        <h3>Los mejores "3 tips"</h3>
+        <p>El formato que la hizo viral: tres consejos concretos, útiles y aplicables ya mismo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRASE -->
+<section class="frase">
+  <div class="section-inner">
+    <blockquote class="reveal">
+      "Los mejores '3 tips'<br>vienen de aquí 🌸"
+      <cite>— Carmen Castaño, @carmenn.cs</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- PLATAFORMAS -->
+<section class="plataformas" id="plataformas">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Síguela en todas partes</p>
+    <h2 class="reveal">Una voz,<br>tres mundos</h2>
+    <p class="lead reveal">Elige tu plataforma favorita y únete a la comunidad de Carmen.</p>
+    <div class="plat-cards">
+      <div class="plat-card reveal">
+        <span class="plat-icon">📸</span>
+        <span class="plat-name">Instagram</span>
+        <span class="plat-handle">@carmenn.cs</span>
+        <span class="plat-num">891K</span>
+        <a href="https://www.instagram.com/carmenn.cs/" target="_blank" rel="noopener" class="btn btn-ig">Ver perfil →</a>
+      </div>
+      <div class="plat-card reveal">
+        <span class="plat-icon">▶️</span>
+        <span class="plat-name">YouTube</span>
+        <span class="plat-handle">@Carmenn_cs</span>
+        <span class="plat-num">Videos</span>
+        <a href="https://www.youtube.com/@Carmenn_cs" target="_blank" rel="noopener" class="btn btn-yt">Ver canal →</a>
+      </div>
+      <div class="plat-card reveal">
+        <span class="plat-icon">🎵</span>
+        <span class="plat-name">TikTok</span>
+        <span class="plat-handle">@carmenn.cs</span>
+        <span class="plat-num">+2.2M</span>
+        <a href="https://www.tiktok.com/@carmenn.cs" target="_blank" rel="noopener" class="btn btn-tt">Ver TikTok →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Colaboraciones</p>
+    <h2 class="reveal">¿Trabajamos juntos? 🌸</h2>
+    <p class="reveal">Si tienes una propuesta de colaboración, campaña o proyecto, escríbele directamente. Carmen trabaja con marcas que se alinean con su comunidad auténtica.</p>
+    <a href="mailto:carmen@letsbeinfluenced.com" class="contacto-email reveal">carmen@letsbeinfluenced.com</a>
+    <div class="social-strip reveal">
+      <a href="https://www.instagram.com/carmenn.cs/" target="_blank" rel="noopener" class="btn btn-ig">Instagram</a>
+      <a href="https://www.youtube.com/@Carmenn_cs" target="_blank" rel="noopener" class="btn btn-yt">YouTube</a>
+      <a href="https://www.tiktok.com/@carmenn.cs" target="_blank" rel="noopener" class="btn btn-tt">TikTok</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Carmen Castaño · <a href="https://www.instagram.com/carmenn.cs/" target="_blank">@carmenn.cs</a> · Murcia, España 🇪🇸</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
