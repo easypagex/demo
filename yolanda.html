@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yolanda De Miguel · Peluquera & Maquilladora a Domicilio · Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa:    #FF5FA0;
+    --lila:    #C45FE0;
+    --dorado:  #F5C842;
+    --coral:   #FF7A5C;
+    --verde:   #3ED9A0;
+    --oscuro:  #1A0B2E;
+    --blanco:  #FFFAF6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanco);
+    color: var(--oscuro);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    background: linear-gradient(135deg, var(--oscuro) 0%, #3D1060 50%, #1A0B2E 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Floating orbs */
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,95,160,0.35) 0%, transparent 70%);
+    top: -100px; left: -150px;
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(196,95,224,0.3) 0%, transparent 70%);
+    bottom: -80px; right: -100px;
+    border-radius: 50%;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%      { transform: translate(30px,-30px) scale(1.05); }
+  }
+
+  .badge {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--rosa), var(--lila));
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .4rem 1.2rem;
+    border-radius: 999px;
+    margin-bottom: 1.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 9vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    background: linear-gradient(90deg, var(--rosa), var(--dorado));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .85rem 2rem;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--rosa), var(--coral));
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(255,95,160,.4);
+  }
+
+  .btn-ig {
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(220,39,67,.35);
+  }
+
+  .btn-wa {
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(37,211,102,.35);
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── STRIP ── */
+  .strip {
+    background: linear-gradient(90deg, var(--rosa), var(--lila), var(--dorado), var(--coral), var(--verde));
+    background-size: 300% 100%;
+    animation: shimmer 6s linear infinite;
+    padding: .7rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  @keyframes shimmer { to { background-position: 300% 0; } }
+  .strip-inner {
+    display: inline-block;
+    animation: marquee 18s linear infinite;
+    color: #fff;
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .05em;
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SERVICIOS ── */
+  .section { padding: 5rem 1.5rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--lila);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 3rem;
+    color: var(--oscuro);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s;
+  }
+  .card:hover { transform: translateY(-6px); }
+
+  .card-1 { background: linear-gradient(135deg, #FFE0EF, #F8CFFF); }
+  .card-2 { background: linear-gradient(135deg, #FFF3C4, #FFE0C4); }
+  .card-3 { background: linear-gradient(135deg, #C4F0FF, #C4DFFF); }
+  .card-4 { background: linear-gradient(135deg, #D4FFE8, #C4FFF0); }
+
+  .card-icon { font-size: 2.5rem; }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+  .card p { font-size: .95rem; line-height: 1.6; color: #444; }
+
+  /* ── POR QUÉ ── */
+  .why { background: var(--oscuro); }
+  .why .section-label { color: var(--dorado); }
+  .why .section-title { color: #fff; }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pillar {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    padding: 1.8rem;
+    text-align: center;
+    transition: background .3s;
+  }
+  .pillar:hover { background: rgba(255,95,160,.15); }
+
+  .pillar .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--rosa), var(--dorado));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+    margin-bottom: .3rem;
+  }
+
+  .pillar h4 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: .4rem;
+  }
+  .pillar p { color: rgba(255,255,255,.6); font-size: .875rem; line-height: 1.5; }
+
+  /* ── BODAS ── */
+  .bodas-block {
+    background: linear-gradient(135deg, #FFF0F7, #F5E8FF);
+    border-radius: 32px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media(max-width:680px) {
+    .bodas-block { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem; }
+  }
+
+  .bodas-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .bodas-block p { color: #555; line-height: 1.7; margin-bottom: 1.5rem; }
+
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .check-list li {
+    display: flex; align-items: flex-start; gap: .6rem;
+    font-size: .95rem; color: #333;
+  }
+  .check-list li::before {
+    content: '✓';
+    color: var(--rosa);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .emoji-big {
+    font-size: 8rem;
+    text-align: center;
+    animation: float 5s ease-in-out infinite;
+  }
+
+  /* ── ZONA ── */
+  .zona {
+    background: linear-gradient(135deg, #1A0B2E, #3D1060);
+    color: #fff;
+    text-align: center;
+  }
+  .zona .section-title { color: #fff; }
+  .zona .section-label { color: var(--verde); }
+
+  .zona-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .zona-tag {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    border-radius: 999px;
+    padding: .5rem 1.2rem;
+    font-size: .9rem;
+    font-weight: 500;
+    transition: background .25s;
+  }
+  .zona-tag:hover { background: rgba(255,95,160,.3); }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: linear-gradient(135deg, var(--rosa), var(--lila));
+    padding: 5rem 1.5rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .cta-final p {
+    font-size: 1.1rem;
+    opacity: .9;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--oscuro);
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: .85rem;
+  }
+  footer a { color: var(--rosa); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── FLOATING SOCIALS ── */
+  .floating-ig {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  .float-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.4rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    transition: transform .2s;
+  }
+  .float-btn:hover { transform: scale(1.12); }
+
+  .float-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .float-wa { background: #25D366; }
+
+  @media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .strip-inner { animation: none; }
+  }
+
+  @media(max-width:480px) {
+    .cta-group { flex-direction: column; align-items: center; }
+    .btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-ig" aria-label="Redes sociales">
+  <a class="float-btn float-ig" href="https://www.instagram.com/yolanda_demiguel/" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+  <a class="float-btn float-wa" href="https://wa.me/34600000000" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">✨ Peluquera & Maquilladora · Madrid</div>
+  <h1>Belleza<br><em>a domicilio.</em></h1>
+  <p class="hero-sub">
+    Cortes, colores, mechas y maquillaje profesional —
+    sin que tengas que moverte de casa. Madrid y alrededores.
+  </p>
+  <div class="cta-group">
+    <a class="btn btn-primary" href="#servicios">Ver servicios 💇🏽‍♀️</a>
+    <a class="btn btn-ig" href="https://www.instagram.com/yolanda_demiguel/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="strip" aria-hidden="true">
+  <span class="strip-inner">
+    &nbsp; 💇🏽‍♀️ Cortes · 🎨 Colores · ✨ Mechas · 💍 Bodas · 💄 Maquillaje · 🏡 A domicilio · Madrid · 💇🏽‍♀️ Cortes · 🎨 Colores · ✨ Mechas · 💍 Bodas · 💄 Maquillaje · 🏡 A domicilio · Madrid · &nbsp;
+    &nbsp; 💇🏽‍♀️ Cortes · 🎨 Colores · ✨ Mechas · 💍 Bodas · 💄 Maquillaje · 🏡 A domicilio · Madrid · 💇🏽‍♀️ Cortes · 🎨 Colores · ✨ Mechas · 💍 Bodas · 💄 Maquillaje · 🏡 A domicilio · Madrid · &nbsp;
+  </span>
+</div>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="section-inner">
+    <span class="section-label reveal">— Servicios</span>
+    <h2 class="section-title reveal">Todo lo que necesitas,<br>en tu propio hogar.</h2>
+    <div class="cards">
+      <div class="card card-1 reveal">
+        <div class="card-icon">💇🏽‍♀️</div>
+        <h3>Cortes</h3>
+        <p>Cortes de pelo personalizados, adaptados a tu cara, estilo de vida y tendencias actuales. Resultado de peluquería en tu sofá.</p>
+      </div>
+      <div class="card card-2 reveal">
+        <div class="card-icon">🎨</div>
+        <h3>Colores & Mechas</h3>
+        <p>Tintes, mechas californianas, balayage, iluminaciones y color fantasía. Con productos de alta calidad que cuidan el cabello.</p>
+      </div>
+      <div class="card card-3 reveal">
+        <div class="card-icon">💄</div>
+        <h3>Maquillaje</h3>
+        <p>Maquillaje de día, noche o evento especial. Natural o atrevido, siempre con acabado profesional y duradero.</p>
+      </div>
+      <div class="card card-4 reveal">
+        <div class="card-icon">💍</div>
+        <h3>Bodas & Eventos</h3>
+        <p>Peino, maquillo y, sobre todo, calmo los nervios. Experiencia en bodas para que luzas perfecta — y relajada — en tu gran día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section class="section why">
+  <div class="section-inner">
+    <span class="section-label reveal">— Por qué elegirme</span>
+    <h2 class="section-title reveal">Profesionalidad<br>en cada visita.</h2>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="num">🏡</span>
+        <h4>En tu casa</h4>
+        <p>Sin desplazamientos, sin esperas, sin estrés. Tu comodidad es la prioridad.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="num">✂️</span>
+        <h4>Experta</h4>
+        <p>Años de experiencia en peluquería y maquillaje, al más alto nivel profesional.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="num">💛</span>
+        <h4>De confianza</h4>
+        <p>Trato cercano y honesto. Te digo lo que mejor te sienta, no lo que es más fácil.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="num">📱</span>
+        <h4>Fácil de reservar</h4>
+        <p>Cita rápida por Instagram o WhatsApp. Sin formularios complicados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BODAS -->
+<section class="section" id="bodas">
+  <div class="section-inner">
+    <div class="bodas-block reveal">
+      <div>
+        <span class="section-label">— Bodas & Eventos Especiales</span>
+        <h2>Tu día más bonito,<br><em>sin nervios.</em></h2>
+        <p>Sé lo que significa ese día. Por eso mi trabajo no es solo peinarte y maquillarte — es también estar ahí para que te sientas tranquila y preciosa.</p>
+        <ul class="check-list">
+          <li>Prueba previa de peinado y maquillaje</li>
+          <li>Puntualidad y discreción garantizadas</li>
+          <li>Productos de larga duración</li>
+          <li>Adaptado a tu estilo, no al mío</li>
+          <li>Me desplazo al lugar que necesites</li>
+        </ul>
+        <br>
+        <a class="btn btn-primary" href="https://www.instagram.com/yolanda_demiguel/" target="_blank" rel="noopener" style="display:inline-flex;">Consultar fecha 💍</a>
+      </div>
+      <div class="emoji-big">👰🏽</div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONA DE COBERTURA -->
+<section class="section zona">
+  <div class="section-inner">
+    <span class="section-label reveal">— Zona de cobertura</span>
+    <h2 class="section-title reveal">Voy a tu barrio,<br>en Madrid y alrededores.</h2>
+    <div class="zona-tags reveal">
+      <span class="zona-tag">Centro</span>
+      <span class="zona-tag">Salamanca</span>
+      <span class="zona-tag">Chamberí</span>
+      <span class="zona-tag">Retiro</span>
+      <span class="zona-tag">Moncloa</span>
+      <span class="zona-tag">Latina</span>
+      <span class="zona-tag">Carabanchel</span>
+      <span class="zona-tag">Vallecas</span>
+      <span class="zona-tag">Ciudad Lineal</span>
+      <span class="zona-tag">Hortaleza</span>
+      <span class="zona-tag">Fuencarral</span>
+      <span class="zona-tag">Tetuán</span>
+      <span class="zona-tag">Pozuelo</span>
+      <span class="zona-tag">Majadahonda</span>
+      <span class="zona-tag">Alcobendas</span>
+      <span class="zona-tag">Y más…</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>¿Lista para brillar<br>desde casa?</h2>
+  <p>Mándame un mensaje y concretamos tu cita. Rápido, fácil y sin complicaciones.</p>
+  <div class="cta-group">
+    <a class="btn" style="background:#fff;color:var(--lila);" href="https://www.instagram.com/yolanda_demiguel/" target="_blank" rel="noopener">
+      📸 Instagram
+    </a>
+    <a class="btn btn-wa" href="https://wa.me/34600000000" target="_blank" rel="noopener">
+      💬 WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Yolanda De Miguel · Peluquera y Maquilladora a Domicilio · Madrid</p>
+  <p style="margin-top:.5rem;">
+    <a href="https://www.instagram.com/yolanda_demiguel/" target="_blank" rel="noopener">@yolanda_demiguel</a>
+    · Citas e info por Instagram o WhatsApp
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
