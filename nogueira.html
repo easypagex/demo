@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuria Nogueira · Salud Integral</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde-oscuro: #1E6B42;
+      --verde-medio: #2D9D60;
+      --verde-menta: #7EC8A4;
+      --amarillo: #F5C842;
+      --coral: #F4826A;
+      --lavanda: #C3A8E1;
+      --azul-agua: #7BC8D8;
+      --crema: #FDFAF3;
+      --blanco: #ffffff;
+      --gris-suave: #F2F2F2;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: #2c2c2c;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1E6B42 0%, #2D9D60 40%, #7EC8A4 75%, #C3E8D5 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* hojas decorativas */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50% 50% 0 50%;
+      opacity: 0.18;
+    }
+    .hero::before {
+      width: 500px; height: 500px;
+      background: var(--amarillo);
+      top: -120px; right: -100px;
+      transform: rotate(30deg);
+    }
+    .hero::after {
+      width: 380px; height: 380px;
+      background: var(--coral);
+      bottom: -80px; left: -80px;
+      transform: rotate(-20deg);
+    }
+
+    .leaf-deco {
+      position: absolute;
+      font-size: 5rem;
+      opacity: 0.15;
+      animation: float 6s ease-in-out infinite;
+    }
+    .leaf-deco:nth-child(1) { top: 12%; left: 8%; animation-delay: 0s; }
+    .leaf-deco:nth-child(2) { top: 20%; right: 10%; font-size: 3.5rem; animation-delay: 2s; }
+    .leaf-deco:nth-child(3) { bottom: 18%; left: 15%; font-size: 4rem; animation-delay: 1s; }
+    .leaf-deco:nth-child(4) { bottom: 25%; right: 8%; font-size: 6rem; animation-delay: 3s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-18px) rotate(8deg); }
+    }
+
+    .hero-badge {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(6px);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50px;
+      padding: 0.4rem 1.4rem;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: white;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+
+    .hero h1 span {
+      color: var(--amarillo);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,0.92);
+      max-width: 560px;
+      margin: 1.2rem auto 2.5rem;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.22);
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: white;
+      border-radius: 50px;
+      padding: 0.4rem 1.1rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: white;
+      color: var(--verde-oscuro);
+      font-weight: 900;
+      font-size: 1rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-ig:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.25); }
+
+    .btn-ig svg { width: 22px; height: 22px; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .scroll-hint::after {
+      content: '';
+      width: 2px;
+      height: 36px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 2px;
+      animation: scrollLine 1.6s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ─── SECCIÓN GENÉRICA ─── */
+    section { padding: 5rem 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #555;
+      max-width: 640px;
+    }
+
+    /* ─── SOBRE MÍ ─── */
+    .sobre-mi {
+      background: white;
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      position: relative;
+    }
+
+    .avatar-circle {
+      width: 320px;
+      height: 320px;
+      border-radius: 50% 50% 50% 20%;
+      background: linear-gradient(135deg, var(--verde-menta), var(--verde-medio));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(45,157,96,0.25);
+    }
+
+    .float-badge {
+      position: absolute;
+      background: var(--amarillo);
+      border-radius: 16px;
+      padding: 0.7rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #2c2c2c;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .float-badge:nth-child(2) { bottom: 20px; right: -10px; }
+    .float-badge:nth-child(3) { top: 10px; right: -20px; background: var(--coral); color: white; }
+
+    .sobre-mi .section-label { color: var(--verde-medio); }
+    .sobre-mi .section-title { color: var(--verde-oscuro); }
+
+    .sobre-puntos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 1.8rem;
+    }
+
+    .punto {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .punto-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ─── SERVICIOS ─── */
+    .servicios { background: var(--crema); }
+
+    .servicios .section-label { color: var(--coral); }
+    .servicios .section-title { color: #2c2c2c; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.6rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      border-radius: 24px;
+      padding: 2rem 1.6rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      top: -30px; right: -30px;
+      opacity: 0.18;
+      background: white;
+    }
+
+    .card-1 { background: linear-gradient(135deg, #2D9D60, #1E6B42); color: white; }
+    .card-2 { background: linear-gradient(135deg, #F4826A, #E05A42); color: white; }
+    .card-3 { background: linear-gradient(135deg, #F5C842, #E8A800); color: #2c2c2c; }
+    .card-4 { background: linear-gradient(135deg, #7BC8D8, #4AAFC2); color: white; }
+    .card-5 { background: linear-gradient(135deg, #C3A8E1, #9B74CC); color: white; }
+    .card-6 { background: linear-gradient(135deg, #7EC8A4, #4DAB82); color: white; }
+
+    .card-icon { font-size: 2.8rem; margin-bottom: 1rem; display: block; }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p { font-size: 0.9rem; line-height: 1.6; opacity: 0.92; }
+
+    /* ─── DIAGNÓSTICO / BEMER ─── */
+    .terapias {
+      background: linear-gradient(180deg, #1E6B42 0%, #0d4a2d 100%);
+      color: white;
+    }
+
+    .terapias .section-label { color: var(--amarillo); }
+    .terapias .section-title { color: white; }
+    .terapias .section-desc { color: rgba(255,255,255,0.8); }
+
+    .terapias-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .terapia-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: background 0.25s;
+    }
+    .terapia-card:hover { background: rgba(255,255,255,0.16); }
+
+    .terapia-icon { font-size: 3.5rem; margin-bottom: 1.2rem; display: block; }
+    .terapia-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: var(--amarillo);
+    }
+    .terapia-card p { font-size: 0.95rem; line-height: 1.7; opacity: 0.9; }
+
+    /* ─── PROCESO ─── */
+    .proceso { background: white; }
+    .proceso .section-label { color: var(--lavanda); }
+    .proceso .section-title { color: #2c2c2c; }
+
+    .pasos {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .pasos::before {
+      content: '';
+      position: absolute;
+      left: 34px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--verde-menta), var(--lavanda));
+    }
+
+    .paso {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .paso-num {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      color: white;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .paso:nth-child(1) .paso-num { background: var(--verde-medio); }
+    .paso:nth-child(2) .paso-num { background: var(--coral); }
+    .paso:nth-child(3) .paso-num { background: var(--amarillo); color: #2c2c2c; }
+    .paso:nth-child(4) .paso-num { background: var(--lavanda); }
+
+    .paso-content h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+    .paso-content p { font-size: 0.95rem; color: #666; line-height: 1.65; }
+
+    /* ─── UBICACIÓN ─── */
+    .ubicacion {
+      background: linear-gradient(135deg, #F5C842 0%, #F4826A 60%, #E05A42 100%);
+    }
+
+    .ubicacion .section-label { color: rgba(255,255,255,0.8); }
+    .ubicacion .section-title { color: white; }
+
+    .ubicacion-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .ubi-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .ubi-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .ubi-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #2c2c2c; margin-bottom: 0.6rem; }
+    .ubi-card p { font-size: 0.95rem; color: #666; line-height: 1.65; }
+
+    /* ─── CTA INSTAGRAM ─── */
+    .cta-instagram {
+      background: var(--crema);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    .cta-instagram .section-title { color: var(--verde-oscuro); margin-bottom: 0.8rem; }
+    .cta-instagram .section-desc { margin: 0 auto 2.5rem; text-align: center; }
+
+    .ig-btn-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 1.1rem 2.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 10px 40px rgba(220,39,67,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .ig-btn-big:hover { transform: translateY(-4px); box-shadow: 0 18px 50px rgba(220,39,67,0.4); }
+    .ig-btn-big svg { width: 26px; height: 26px; }
+
+    .ig-handle {
+      display: block;
+      margin-top: 1rem;
+      color: #999;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0d4a2d;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--verde-menta); text-decoration: none; }
+    footer strong { color: white; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .avatar-circle { width: 240px; height: 240px; font-size: 5rem; }
+      .terapias-grid { grid-template-columns: 1fr; }
+      .ubicacion-cards { grid-template-columns: 1fr; }
+      .sobre-puntos { grid-template-columns: 1fr; }
+      .pasos::before { left: 28px; }
+      .paso-num { width: 56px; height: 56px; font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ HERO ══════════ -->
+  <header class="hero">
+    <span class="leaf-deco">🌿</span>
+    <span class="leaf-deco">🍃</span>
+    <span class="leaf-deco">🌱</span>
+    <span class="leaf-deco">✨</span>
+
+    <div class="hero-badge">🌿 Salud Integral</div>
+
+    <h1>Nuria <span>Nogueira</span></h1>
+    <p class="hero-subtitle">Nutrición Integrativa &amp; Naturopatía para recuperar tu energía, calmar la inflamación y cuidar tu digestión desde adentro.</p>
+
+    <div class="hero-tags">
+      <span class="tag">🥗 Nutrición Integrativa</span>
+      <span class="tag">🌿 Naturopatía</span>
+      <span class="tag">⚡ Energía</span>
+      <span class="tag">🔥 Inflamación</span>
+      <span class="tag">🫁 Digestión</span>
+      <span class="tag">📊 InBody</span>
+    </div>
+
+    <a href="https://www.instagram.com/nurianogueirasaludintegral/" target="_blank" rel="noopener" class="btn-ig">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+      Sígueme en Instagram
+    </a>
+
+    <div class="scroll-hint">Descubre más</div>
+  </header>
+
+  <!-- ══════════ SOBRE MÍ ══════════ -->
+  <section class="sobre-mi">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-visual">
+          <div class="avatar-circle">
+            🌿
+            <div class="float-badge">📊 InBody</div>
+            <div class="float-badge">⚡ BEMER</div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">¿Quién soy?</div>
+          <h2 class="section-title">Tu guía hacia el bienestar verdadero</h2>
+          <p class="section-desc">Soy Nuria Nogueira, especialista en Nutrición Integrativa y Naturopatía. Acompaño a personas que buscan recuperar su salud de forma natural, trabajando desde la raíz de los problemas digestivos, inflamatorios y de energía.</p>
+
+          <div class="sobre-puntos">
+            <div class="punto"><span class="punto-icon">🥗</span><span>Nutrición personalizada e integrativa</span></div>
+            <div class="punto"><span class="punto-icon">🌿</span><span>Enfoque naturopático y natural</span></div>
+            <div class="punto"><span class="punto-icon">🔬</span><span>Diagnóstico InBody de composición corporal</span></div>
+            <div class="punto"><span class="punto-icon">⚡</span><span>Terapia BEMER de bienestar energético</span></div>
+            <div class="punto"><span class="punto-icon">📍</span><span>Consulta presencial en Baiona</span></div>
+            <div class="punto"><span class="punto-icon">💻</span><span>Sesiones online disponibles</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SERVICIOS ══════════ -->
+  <section class="servicios">
+    <div class="container">
+      <div class="section-label">Lo que ofrezco</div>
+      <h2 class="section-title">Mis servicios</h2>
+      <p class="section-desc">Un acompañamiento completo e individualizado para transformar tu salud desde adentro hacia afuera.</p>
+
+      <div class="cards-grid">
+        <div class="card card-1">
+          <span class="card-icon">🥗</span>
+          <h3>Nutrición Integrativa</h3>
+          <p>Planes nutricionales personalizados que van más allá de las calorías, integrando cuerpo, mente y hábitos de vida.</p>
+        </div>
+        <div class="card card-2">
+          <span class="card-icon">🔥</span>
+          <h3>Control de la Inflamación</h3>
+          <p>Protocolos específicos para reducir la inflamación crónica que afecta tu calidad de vida y energía diaria.</p>
+        </div>
+        <div class="card card-3">
+          <span class="card-icon">🫁</span>
+          <h3>Salud Digestiva</h3>
+          <p>Abordaje integral de problemas digestivos: SII, hinchazón, estreñimiento, disbiosis y permeabilidad intestinal.</p>
+        </div>
+        <div class="card card-4">
+          <span class="card-icon">⚡</span>
+          <h3>Recuperación de Energía</h3>
+          <p>Protocolos para combatir el cansancio crónico, la fatiga adrenal y recuperar la vitalidad natural de tu cuerpo.</p>
+        </div>
+        <div class="card card-5">
+          <span class="card-icon">🌿</span>
+          <h3>Naturopatía</h3>
+          <p>Uso de plantas medicinales, suplementación natural y técnicas naturópatas para reforzar tu salud integral.</p>
+        </div>
+        <div class="card card-6">
+          <span class="card-icon">🤝</span>
+          <h3>Seguimiento Continuo</h3>
+          <p>Acompañamiento cercano y revisiones periódicas para asegurar tu progreso y adaptar el plan a tus necesidades.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ BEMER & INBODY ══════════ -->
+  <section class="terapias">
+    <div class="container">
+      <div class="section-label">Tecnología al servicio de tu salud</div>
+      <h2 class="section-title">Diagnóstico &amp; Terapia Avanzada</h2>
+      <p class="section-desc">Combino lo mejor de la naturaleza con herramientas tecnológicas de vanguardia para darte resultados reales y medibles.</p>
+
+      <div class="terapias-grid">
+        <div class="terapia-card">
+          <span class="terapia-icon">⚡</span>
+          <h3>Terapia BEMER</h3>
+          <p>La terapia BEMER mejora la microcirculación sanguínea mediante campos electromagnéticos de baja intensidad. Potencia la oxigenación celular, acelera la recuperación y aumenta tu nivel de energía de forma natural y segura.</p>
+        </div>
+        <div class="terapia-card">
+          <span class="terapia-icon">📊</span>
+          <h3>Diagnóstico InBody</h3>
+          <p>Análisis de composición corporal de alta precisión que mide masa muscular, grasa corporal, agua intracelular y extracelular, índice metabólico basal y mucho más. La base objetiva para diseñar tu plan personalizado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PROCESO ══════════ -->
+  <section class="proceso">
+    <div class="container">
+      <div style="max-width: 600px;">
+        <div class="section-label" style="color: var(--lavanda);">¿Cómo trabajamos juntos?</div>
+        <h2 class="section-title">Tu camino hacia la salud integral</h2>
+      </div>
+
+      <div class="pasos">
+        <div class="paso">
+          <div class="paso-num">01</div>
+          <div class="paso-content">
+            <h4>Primera consulta y escucha profunda</h4>
+            <p>Hablamos de tu historia de salud, tus síntomas, tus objetivos y tu estilo de vida para entender tu situación de forma completa y personalizada.</p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">02</div>
+          <div class="paso-content">
+            <h4>Diagnóstico con InBody</h4>
+            <p>Analizamos tu composición corporal para tener datos objetivos que complementen la historia clínica y orienten el protocolo de trabajo.</p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">03</div>
+          <div class="paso-content">
+            <h4>Plan personalizado integrativo</h4>
+            <p>Diseño un protocolo nutricional y naturopático completamente adaptado a ti, con recomendaciones de alimentación, suplementación y estilo de vida.</p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">04</div>
+          <div class="paso-content">
+            <h4>Seguimiento y ajuste continuo</h4>
+            <p>Revisiones periódicas para evaluar tu evolución, ajustar el plan y asegurar que cada paso te acerca más a tu salud óptima.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ UBICACIÓN ══════════ -->
+  <section class="ubicacion">
+    <div class="container">
+      <div class="section-label">¿Dónde estoy?</div>
+      <h2 class="section-title">Consulta presencial y online</h2>
+
+      <div class="ubicacion-cards">
+        <div class="ubi-card">
+          <span class="ubi-icon">📍</span>
+          <h3>Presencial en Baiona</h3>
+          <p>Visítame en mi consulta de Baiona (Galicia) para una atención completamente personalizada, incluyendo diagnóstico InBody y terapia BEMER.</p>
+        </div>
+        <div class="ubi-card">
+          <span class="ubi-icon">💻</span>
+          <h3>Online – Donde estés</h3>
+          <p>Las consultas online me permiten acompañarte desde cualquier lugar. Misma calidad de atención, sin barreras geográficas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA INSTAGRAM ══════════ -->
+  <section class="cta-instagram">
+    <div class="container">
+      <div class="section-label" style="color: var(--coral); text-align:center;">Sígueme</div>
+      <h2 class="section-title" style="text-align:center;">Únete a nuestra comunidad de salud</h2>
+      <p class="section-desc" style="text-align:center;">En mi Instagram comparto consejos de nutrición, recetas saludables, información sobre naturopatía y todo lo que necesitas para cuidarte de forma integral.</p>
+
+      <a href="https://www.instagram.com/nurianogueirasaludintegral/" target="_blank" rel="noopener" class="ig-btn-big">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        Ver mi Instagram
+      </a>
+      <span class="ig-handle">@nurianogueirasaludintegral</span>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <p><strong>Nuria Nogueira · Salud Integral</strong></p>
+    <p style="margin-top:0.5rem;">🌿 Nutrición Integrativa &amp; Naturopatía · Baiona, Galicia &amp; Online</p>
+    <p style="margin-top:0.5rem;">
+      <a href="https://www.instagram.com/nurianogueirasaludintegral/" target="_blank" rel="noopener">@nurianogueirasaludintegral</a>
+    </p>
+    <p style="margin-top:1.2rem; font-size:0.8rem; opacity:0.6;">© 2025 Nuria Nogueira · Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
