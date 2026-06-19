@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniela Puello – Makeup Artist Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --fuchsia:   #E91E8C;
+      --gold:      #F5C518;
+      --violet:    #7B2FBE;
+      --coral:     #FF5E5B;
+      --mint:      #00C49A;
+      --ink:       #0D0D0D;
+      --cream:     #FFF8F0;
+      --white:     #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ink);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background: linear-gradient(135deg, #0D0D0D 0%, #1a0030 40%, #0D0D0D 100%);
+      overflow: hidden;
+    }
+
+    /* animated blobs */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      animation: pulse 6s ease-in-out infinite alternate;
+    }
+    .hero::before {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--fuchsia), transparent 70%);
+      top: -100px; left: -100px;
+    }
+    .hero::after {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--violet), transparent 70%);
+      bottom: -80px; right: -80px;
+      animation-delay: 2s;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1) translate(0,0); }
+      to   { transform: scale(1.15) translate(20px, 20px); }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      position: relative; z-index: 1;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      position: relative; z-index: 1;
+      background: linear-gradient(90deg, var(--white) 0%, var(--fuchsia) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: rgba(255,255,255,0.75);
+      margin-top: 1.5rem;
+      letter-spacing: 0.04em;
+      position: relative; z-index: 1;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-top: 2rem;
+      position: relative; z-index: 1;
+    }
+
+    .tag {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1.5px solid;
+    }
+    .tag-fuchsia { color: var(--fuchsia); border-color: var(--fuchsia); }
+    .tag-gold    { color: var(--gold);    border-color: var(--gold); }
+    .tag-mint    { color: var(--mint);    border-color: var(--mint); }
+    .tag-violet  { color: #c07ef5;        border-color: #c07ef5; }
+    .tag-coral   { color: var(--coral);   border-color: var(--coral); }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: var(--white);
+    }
+    .btn-wa {
+      background: #25D366;
+      color: var(--white);
+    }
+
+    /* ── DIVIDER ── */
+    .stripe {
+      height: 6px;
+      background: linear-gradient(90deg, var(--fuchsia), var(--gold), var(--mint), var(--violet), var(--coral));
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; }
+
+    .section-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: linear-gradient(160deg, #0d0d0d 0%, #1a0030 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .about .section-label { color: var(--fuchsia); }
+
+    .about-body {
+      max-width: 680px;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.82);
+      font-weight: 300;
+    }
+
+    .about-body strong {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: #0a0a0a;
+    }
+
+    .services-header { text-align: center; margin-bottom: 3rem; }
+    .services-header .section-label { color: var(--mint); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      border-radius: 20px;
+      padding: 2.2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s;
+    }
+    .service-card:hover { transform: translateY(-6px); }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover::before { opacity: 0.22; }
+
+    .card-makeup   { background: linear-gradient(145deg, #2a0030, #1a0018); border: 1px solid rgba(233,30,140,0.3); }
+    .card-makeup::before { background: var(--fuchsia); }
+
+    .card-hair     { background: linear-gradient(145deg, #001a2a, #000f1a); border: 1px solid rgba(0,196,154,0.3); }
+    .card-hair::before { background: var(--mint); }
+
+    .card-fashion  { background: linear-gradient(145deg, #1a1200, #0d0800); border: 1px solid rgba(245,197,24,0.3); }
+    .card-fashion::before { background: var(--gold); }
+
+    .card-celebrity{ background: linear-gradient(145deg, #1a0a00, #0d0500); border: 1px solid rgba(255,94,91,0.3); }
+    .card-celebrity::before { background: var(--coral); }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      margin-bottom: 0.6rem;
+    }
+    .card-makeup h3    { color: var(--fuchsia); }
+    .card-hair h3      { color: var(--mint); }
+    .card-fashion h3   { color: var(--gold); }
+    .card-celebrity h3 { color: var(--coral); }
+
+    .service-card p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+    }
+
+    /* ── PRESS / MEDIA ── */
+    .press {
+      background: linear-gradient(160deg, #0d0030 0%, #000d1a 100%);
+      text-align: center;
+    }
+    .press .section-label { color: var(--violet); }
+    .press .section-title { color: var(--white); margin-bottom: 2.5rem; }
+
+    .press-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .press-badge {
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .press-badge:hover { transform: scale(1.06); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+
+    .badge-vogue   { background: #0D0D0D; color: var(--white);   border: 1.5px solid var(--gold);    box-shadow: 0 0 20px rgba(245,197,24,0.15); }
+    .badge-gq      { background: #0D0D0D; color: var(--white);   border: 1.5px solid var(--mint);    box-shadow: 0 0 20px rgba(0,196,154,0.15); }
+    .badge-vanity  { background: #0D0D0D; color: var(--white);   border: 1.5px solid var(--fuchsia); box-shadow: 0 0 20px rgba(233,30,140,0.15); }
+    .badge-master  { background: linear-gradient(135deg, var(--fuchsia), var(--violet)); color: var(--white); border: none; }
+
+    .press-caption {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--ink);
+      text-align: center;
+    }
+
+    .contact .section-label { color: var(--coral); }
+    .contact .section-title { margin-bottom: 0.8rem; }
+    .contact-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-ig-lg {
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: var(--white);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-ig-lg:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(220,39,67,0.4); }
+
+    .btn-wa-lg {
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      background: #25D366;
+      color: var(--white);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-wa-lg:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(37,211,102,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.3);
+      font-weight: 300;
+    }
+
+    footer span {
+      color: var(--fuchsia);
+    }
+
+    /* ── FLOATING SOCIAL BAR ── */
+    .float-bar {
+      position: fixed;
+      right: 1.2rem;
+      bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      z-index: 100;
+    }
+
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.4rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .float-btn:hover { transform: scale(1.12); }
+
+    .float-ig { background: linear-gradient(135deg, #f09433, #dc2743, #bc1888); }
+    .float-wa { background: #25D366; }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .press-badge { font-size: 1.1rem; padding: 0.7rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">✦ Madrid · Moda · Belleza · Arte ✦</p>
+    <h1 class="hero-title">Daniela<br>Puello</h1>
+    <p class="hero-subtitle">Makeup Artist · Fashion Stylist · Hairstylist</p>
+
+    <div class="hero-tags">
+      <span class="tag tag-fuchsia">Maquilladora</span>
+      <span class="tag tag-gold">Fashion Stylist</span>
+      <span class="tag tag-mint">Hairstylist</span>
+      <span class="tag tag-violet">Celebrity Stylist</span>
+      <span class="tag tag-coral">Beauty Expert</span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="https://www.instagram.com/danielapuellomakeup/" target="_blank" rel="noopener" class="btn btn-ig">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a href="https://api.whatsapp.com/message/AD47OEDBFQJ4L1" target="_blank" rel="noopener" class="btn btn-wa">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <div class="stripe"></div>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <p class="section-label">✦ Sobre Daniela</p>
+    <h2 class="section-title">Arte en cada<br><em>pincelada</em></h2>
+    <p class="about-body">
+      Daniela Puello es una de las <strong>artistas de maquillaje más reconocidas de Madrid</strong>,
+      con una visión única que fusiona moda, belleza y estilismo. Su talento la ha llevado a colaborar
+      con las publicaciones más prestigiosas del mundo fashion: <strong>Vogue España, GQ España y Vanity Fair España</strong>.
+      Con base en <strong>Madrid</strong>, Daniela transforma cada rostro en una obra de arte,
+      trabajando con celebrities, editoriales y eventos de alto perfil en toda España y Europa.
+    </p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="services-header">
+      <p class="section-label">✦ Especialidades</p>
+      <h2 class="section-title">Lo que hago</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card card-makeup">
+        <span class="service-icon">💄</span>
+        <h3>Makeup Artist</h3>
+        <p>Maquillaje artístico, editorial, nupcial y de pasarela. Técnicas avanzadas para bodas, sesiones fotográficas y eventos especiales.</p>
+      </div>
+      <div class="service-card card-hair">
+        <span class="service-icon">💇‍♀️</span>
+        <h3>Hairstylist</h3>
+        <p>Peinados creativos y personalizados para editoriales de moda, celebrities y eventos de alto nivel en Madrid y toda España.</p>
+      </div>
+      <div class="service-card card-fashion">
+        <span class="service-icon">👗</span>
+        <h3>Fashion Stylist</h3>
+        <p>Estilismo integral para shootings editoriales, campañas de marca y alfombras rojas. Look completo de principio a fin.</p>
+      </div>
+      <div class="service-card card-celebrity">
+        <span class="service-icon">⭐</span>
+        <h3>Celebrity Stylist</h3>
+        <p>Trabajo continuo con artistas, influencers y figuras públicas para revistas como Vogue, GQ y Vanity Fair España.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS -->
+  <section class="press">
+    <p class="section-label">✦ Apariciones en Prensa</p>
+    <h2 class="section-title">Donde me han visto</h2>
+    <div class="press-logos">
+      <div class="press-badge badge-vogue">VOGUE España</div>
+      <div class="press-badge badge-gq">GQ España</div>
+      <div class="press-badge badge-vanity">Vanity Fair España</div>
+      <div class="press-badge badge-master">Master Madrid</div>
+    </div>
+    <p class="press-caption">Beauty & Fashion Stylist Master · Madrid, España</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <p class="section-label">✦ Contacto</p>
+    <h2 class="section-title">¿Hablamos?</h2>
+    <p class="contact-sub">Reservas, colaboraciones y proyectos editoriales</p>
+    <div class="contact-btns">
+      <a href="https://www.instagram.com/danielapuellomakeup/" target="_blank" rel="noopener" class="btn-ig-lg">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @danielapuellomakeup
+      </a>
+      <a href="https://api.whatsapp.com/message/AD47OEDBFQJ4L1" target="_blank" rel="noopener" class="btn-wa-lg">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Escríbeme por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <div class="stripe"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>Daniela Puello</span> · Makeup Artist Madrid · Todos los derechos reservados</p>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="float-bar">
+    <a href="https://www.instagram.com/danielapuellomakeup/" target="_blank" rel="noopener" class="float-btn float-ig" title="Instagram">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://api.whatsapp.com/message/AD47OEDBFQJ4L1" target="_blank" rel="noopener" class="float-btn float-wa" title="WhatsApp">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+  </div>
+
+</body>
+</html>
