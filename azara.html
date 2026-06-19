@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azara Aceves · Maquillaje & Peinado a Domicilio · Tarragona | Barcelona</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose:       #E8B4B8;
+    --blush:      #F5DDE0;
+    --gold:       #C9A84C;
+    --gold-light: #F0D080;
+    --cream:      #FDF8F3;
+    --burgundy:   #7D3448;
+    --plum:       #4A1C2E;
+    --text:       #2E1A22;
+    --muted:      #8B6070;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 4rem;
+    background: linear-gradient(160deg, #4A1C2E 0%, #7D3448 40%, #C9A84C 100%);
+    overflow: hidden;
+  }
+
+  /* sparkle canvas */
+  #sparkleCanvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.35rem);
+    color: rgba(255,255,255,0.85);
+    margin-top: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.75s forwards;
+  }
+
+  .hero-since {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 1s forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 1.2s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--plum);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    border-radius: 3rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,0.5); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.5);
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    border-radius: 3rem;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+  .hero-locations {
+    margin-top: 2rem;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 1.4s forwards;
+  }
+
+  /* scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  .scroll-indicator .line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.8), transparent);
+    animation: linePulse 2s ease infinite;
+  }
+  @keyframes linePulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+
+  /* ── SECTION SHARED ──────────────────────────── */
+  section { padding: 5rem 1.5rem; }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--plum);
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--burgundy);
+  }
+
+  /* ── INTRO ───────────────────────────────────── */
+  .intro {
+    background: var(--cream);
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media(max-width:680px){
+    .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .intro-visual {
+    position: relative;
+  }
+
+  .intro-card {
+    background: linear-gradient(145deg, var(--plum), var(--burgundy));
+    border-radius: 2rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, rgba(201,168,76,0.3), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .intro-card .big-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .intro-card .big-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.7);
+    margin-top: 0.3rem;
+  }
+
+  .intro-card .divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(201,168,76,0.4);
+    margin: 1.5rem auto;
+  }
+
+  .intro-card .tagline-small {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.5;
+  }
+
+  .intro-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-top: 1.5rem;
+  }
+
+  .intro-text p strong {
+    color: var(--burgundy);
+    font-weight: 700;
+  }
+
+  /* ── SERVICES ────────────────────────────────── */
+  .services {
+    background: linear-gradient(170deg, var(--blush) 0%, var(--cream) 100%);
+  }
+
+  .services-header { text-align: center; margin-bottom: 3rem; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(232,180,184,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rose), var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(74,28,46,0.1); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--plum);
+    margin-bottom: 0.6rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* ── ABOUT ───────────────────────────────────── */
+  .about {
+    background: var(--cream);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media(max-width:680px){ .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-top: 1.5rem;
+  }
+
+  .about-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .pill {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    background: var(--blush);
+    color: var(--burgundy);
+    border: 1px solid rgba(232,180,184,0.6);
+  }
+
+  .about-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .stat-box {
+    background: linear-gradient(145deg, var(--plum), var(--burgundy));
+    color: #fff;
+    border-radius: 1.2rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .stat-box:first-child {
+    grid-column: span 2;
+    background: linear-gradient(135deg, var(--gold) 0%, #D4A040 100%);
+    color: var(--plum);
+  }
+
+  .stat-box .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .stat-box .lbl {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    margin-top: 0.3rem;
+    opacity: 0.8;
+  }
+
+  /* ── TESTIMONIALS ────────────────────────────── */
+  .testimonials {
+    background: linear-gradient(160deg, var(--plum) 0%, var(--burgundy) 100%);
+    color: #fff;
+  }
+
+  .testimonials .section-label { color: var(--gold-light); }
+  .testimonials .section-title { color: #fff; }
+  .testimonials .section-title em { color: var(--gold-light); }
+
+  .testimonials-header { text-align: center; margin-bottom: 3rem; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    backdrop-filter: blur(6px);
+    position: relative;
+  }
+
+  .testimonial-card .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    line-height: 0.5;
+    color: var(--gold-light);
+    opacity: 0.4;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .testimonial-card p {
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .testimonial-card .author {
+    margin-top: 1.2rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .stars {
+    color: var(--gold-light);
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* ── PROCESS ─────────────────────────────────── */
+  .process {
+    background: var(--cream);
+  }
+
+  .process-header { text-align: center; margin-bottom: 3.5rem; }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    position: relative;
+  }
+
+  .step {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .step-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--burgundy));
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    box-shadow: 0 6px 20px rgba(125,52,72,0.3);
+  }
+
+  .step h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--plum);
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CTA FINAL ───────────────────────────────── */
+  .cta-final {
+    background: linear-gradient(135deg, var(--gold) 0%, #D4A040 50%, var(--gold-light) 100%);
+    text-align: center;
+    padding: 5rem 1.5rem;
+  }
+
+  .cta-final .section-label { color: var(--plum); opacity: 0.7; }
+
+  .cta-final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--plum);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-final h2 em {
+    font-style: italic;
+    color: var(--burgundy);
+  }
+
+  .cta-final p {
+    font-size: 1rem;
+    color: rgba(74,28,46,0.7);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--plum);
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    border-radius: 3rem;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .btn-dark:hover { transform: translateY(-2px); background: var(--burgundy); }
+
+  .btn-ghost-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    border: 2px solid var(--plum);
+    color: var(--plum);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    border-radius: 3rem;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .btn-ghost-dark:hover { transform: translateY(-2px); background: rgba(74,28,46,0.08); }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    background: var(--plum);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  footer a {
+    color: var(--gold-light);
+    text-decoration: none;
+    margin: 0 0.6rem;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  .footer-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  /* ── FLOATING WHATSAPP ───────────────────────── */
+  .float-wa {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: waPulse 3s ease infinite;
+  }
+  .float-wa:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.6); }
+  @keyframes waPulse {
+    0%,100%{ box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+    50%{ box-shadow: 0 6px 32px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.12); }
+  }
+
+  .float-wa svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* ── SCROLL REVEAL ───────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── KEYFRAMES ───────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: transparent;
+    transition: background 0.3s, backdrop-filter 0.3s;
+  }
+
+  nav.scrolled {
+    background: rgba(74,28,46,0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  @media(max-width:600px){ .nav-links { display: none; } }
+
+  /* decorative petal */
+  .petal-divider {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--rose);
+    letter-spacing: 0.4rem;
+    margin: 0.5rem 0;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#">Azara Aceves</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contactar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="sparkleCanvas"></canvas>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">✨ Maquillaje & Peinado a Domicilio</p>
+    <h1>Azara <em>sin h</em></h1>
+    <p class="hero-tagline">Porque tu día especial merece una artista en tu hogar</p>
+    <span class="hero-since">Especialista en novias desde 2014</span>
+
+    <div class="hero-ctas">
+      <a href="https://api.whatsapp.com/send?phone=34676354634" target="_blank" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.849L0 24l6.304-1.503A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.851 0-3.587-.5-5.083-1.374l-.362-.215-3.745.893.924-3.654-.236-.375A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Reservar cita
+      </a>
+      <a href="https://www.instagram.com/azara_sin_h/" target="_blank" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Ver Instagram
+      </a>
+    </div>
+    <p class="hero-locations">📍 Tarragona · Barcelona · Desplazamiento a domicilio</p>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="servicios">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-visual reveal">
+        <div class="intro-card">
+          <div class="big-number">+10</div>
+          <div class="big-label">AÑOS DE EXPERIENCIA</div>
+          <div class="divider"></div>
+          <div class="tagline-small">"Cada novia merece sentirse<br>absolutamente radiante"</div>
+        </div>
+      </div>
+      <div class="intro-text reveal">
+        <p class="section-label">¿Quién es Azara?</p>
+        <h2 class="section-title">El toque de magia<br>que te faltaba <em>✨</em></h2>
+        <p>Soy <strong>Azara Aceves</strong>, peluquera y maquilladora profesional con más de una década dedicada a hacer brillar a las mujeres en los momentos más importantes de su vida.</p>
+        <p>Me desplazo hasta tu domicilio para que tú solo tengas que preocuparte de disfrutar. Sin prisas, sin atascos, sin estrés — solo tú, yo y el espejo.</p>
+        <p>Desde Tarragona hasta Barcelona, llevo <strong>la magia del salón a tu casa</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <p class="section-label">Lo que hago</p>
+      <h2 class="section-title">Servicios <em>a domicilio</em></h2>
+      <div class="petal-divider">✦ ✦ ✦</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">👰</span>
+        <h3>Maquillaje de Novia</h3>
+        <p>Tu look nupcial diseñado para durar todo el día y brillar en cada foto. Prueba incluida para que llegues al altar con total confianza.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">💍</span>
+        <h3>Peinado de Novia</h3>
+        <p>Recogidos elegantes, ondas románticas, semirrecogidos... Adapto el estilo a tu vestido, tu personalidad y el tipo de boda.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🌸</span>
+        <h3>Maquillaje de Evento</h3>
+        <p>Comuniones, bautizos, galas, fiestas de cumpleaños... Para cualquier ocasión en la que quieras lucir espectacular.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">✨</span>
+        <h3>Peinado de Evento</h3>
+        <p>Que el pelo no sea un problema el día de tu evento. Me encargo de todo para que tú solo tengas que aparecer y triunfar.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">💐</span>
+        <h3>Pack Novia Completo</h3>
+        <p>Maquillaje + peinado para ti y tu equipo. Madres, madrinas, damas de honor... Hacemos que todas brilléis a la par.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🪞</span>
+        <h3>Prueba Previa</h3>
+        <p>Nos reunimos antes del gran día para probar looks, hacer ajustes y que llegues al altar sabiendo exactamente cómo vas a lucir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre-mi">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="section-label">Mi historia</p>
+        <h2 class="section-title">Especialista en<br><em>novias</em> desde 2014</h2>
+        <p>Llevo más de diez años acompañando a novias en uno de los días más importantes de su vida. He aprendido que lo que una novia necesita no es solo un buen maquillaje — necesita sentirse escuchada, tranquila y hermosa.</p>
+        <p>Por eso trabajo a domicilio: para que tu preparación sea un momento de calma y disfrute con las personas que amas, en tu propio espacio.</p>
+        <p>Cada rostro es único, cada boda es diferente, y yo me adapto a ti — no al revés.</p>
+        <div class="about-pills">
+          <span class="pill">Maquillaje Nupcial</span>
+          <span class="pill">Peinados de Novia</span>
+          <span class="pill">Tarragona</span>
+          <span class="pill">Barcelona</span>
+          <span class="pill">A domicilio</span>
+          <span class="pill">Desde 2014</span>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="stat-box">
+          <div class="num">100%</div>
+          <div class="lbl">Novias satisfechas</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">+10</div>
+          <div class="lbl">Años de experiencia</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">2</div>
+          <div class="lbl">Provincias (y contando)</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">∞</div>
+          <div class="lbl">Cariño y dedicación</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <p class="section-label">Lo que dicen ellas</p>
+      <h2 class="section-title">Novias que<br><em>brillaron</em> ✨</h2>
+      <div class="petal-divider" style="color:rgba(240,208,128,0.5)">✦ ✦ ✦</div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <span class="quote-mark">"</span>
+        <p>Azara es un cielo. Vino a casa el día de mi boda y la tranquilidad que me transmitió no tiene precio. El maquillaje duró todo el día, hasta las lágrimas de emoción.</p>
+        <div class="author">— Laura M., novia 2023</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <span class="quote-mark">"</span>
+        <p>Llevaba años soñando con mi peinado de novia y Azara lo hizo realidad. Escucha, aconseja y trabaja con una precisión increíble. ¡Totalmente recomendable!</p>
+        <div class="author">— Sara G., novia 2024</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <span class="quote-mark">"</span>
+        <p>Me maquilló a mí y a mis tres damas de honor. Fue un momento precioso de preparación juntas. Todos los invitados nos preguntaron quién nos había maquillado.</p>
+        <div class="author">— Cristina R., novia 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="proceso">
+  <div class="container">
+    <div class="process-header reveal">
+      <p class="section-label">Cómo funciona</p>
+      <h2 class="section-title">Tu experiencia<br><em>paso a paso</em></h2>
+      <div class="petal-divider">✦ ✦ ✦</div>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-circle">1</div>
+        <h4>Contacta conmigo</h4>
+        <p>Escríbeme por WhatsApp o Instagram con tu fecha y los detalles de tu evento.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">2</div>
+        <h4>Prueba previa</h4>
+        <p>Nos reunimos para diseñar juntas tu look y hacer los ajustes perfectos.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">3</div>
+        <h4>El gran día</h4>
+        <p>Me presento en tu domicilio con todo lo necesario para que solo te preocupes de brillar.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">4</div>
+        <h4>¡A disfrutar!</div>
+        <p>Sales radiante, con un look que aguantará toda la noche y te encantará en las fotos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="contacto">
+  <div class="container reveal">
+    <p class="section-label">¿Lista para brillar?</p>
+    <h2>Tu boda se merece<br>a la <em>mejor artista</em></h2>
+    <p>Fechas con disponibilidad limitada. Reserva con antelación para asegurar tu día.</p>
+    <div class="cta-btns">
+      <a href="https://api.whatsapp.com/send?phone=34676354634" target="_blank" class="btn-dark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.849L0 24l6.304-1.503A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.851 0-3.587-.5-5.083-1.374l-.362-.215-3.745.893.924-3.654-.236-.375A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a href="https://www.instagram.com/azara_sin_h/" target="_blank" class="btn-ghost-dark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Ver en Instagram
+      </a>
+      <a href="https://www.atom.bio/azaraaceves" target="_blank" class="btn-ghost-dark">
+        🔗 Todos mis links
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/azara_sin_h/" target="_blank">@azara_sin_h</a>
+    <a href="https://api.whatsapp.com/send?phone=34676354634" target="_blank">WhatsApp</a>
+    <a href="https://www.atom.bio/azaraaceves" target="_blank">atom.bio/azaraaceves</a>
+  </div>
+  <p>📍 Tarragona · Barcelona &nbsp;|&nbsp; Peluquería & Maquillaje a Domicilio</p>
+  <p style="margin-top:0.5rem">© 2025 Azara Aceves · Todos los derechos reservados</p>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://api.whatsapp.com/send?phone=34676354634" class="float-wa" target="_blank" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.524 5.849L0 24l6.304-1.503A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.851 0-3.587-.5-5.083-1.374l-.362-.215-3.745.893.924-3.654-.236-.375A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+// ── SPARKLE CANVAS
+const canvas = document.getElementById('sparkleCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+function randomRange(a, b) { return a + Math.random() * (b - a); }
+
+function createParticle() {
+  return {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: randomRange(1, 3.5),
+    opacity: randomRange(0.2, 0.9),
+    speed: randomRange(0.2, 0.6),
+    drift: randomRange(-0.3, 0.3),
+    color: Math.random() > 0.5 ? '#F0D080' : '#E8B4B8',
+    life: 0,
+    maxLife: randomRange(80, 200)
+  };
+}
+
+for (let i = 0; i < 120; i++) {
+  const p = createParticle();
+  p.life = Math.random() * p.maxLife;
+  particles.push(p);
+}
+
+function drawStar(x, y, r, opacity, color) {
+  ctx.save();
+  ctx.globalAlpha = opacity;
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  for (let i = 0; i < 4; i++) {
+    const angle = (i / 4) * Math.PI * 2;
+    const outerX = x + Math.cos(angle) * r;
+    const outerY = y + Math.sin(angle) * r;
+    const innerX = x + Math.cos(angle + Math.PI / 4) * (r * 0.3);
+    const innerY = y + Math.sin(angle + Math.PI / 4) * (r * 0.3);
+    if (i === 0) ctx.moveTo(outerX, outerY);
+    else ctx.lineTo(outerX, outerY);
+    ctx.lineTo(innerX, innerY);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach((p, i) => {
+    p.life++;
+    const progress = p.life / p.maxLife;
+    const fade = progress < 0.2 ? progress / 0.2 : progress > 0.8 ? (1 - progress) / 0.2 : 1;
+    p.y -= p.speed;
+    p.x += p.drift;
+    drawStar(p.x, p.y, p.size, p.opacity * fade, p.color);
+    if (p.life >= p.maxLife) {
+      particles[i] = createParticle();
+      particles[i].y = canvas.height + 10;
+    }
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ── NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// ── SCROLL REVEAL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
