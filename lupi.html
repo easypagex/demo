@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lupi Domínguez · Nutrición & Bienestar Integral</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --coral:   #FF6B6B;
+      --mango:   #FFB347;
+      --lime:    #A8E063;
+      --sky:     #56CCF2;
+      --orchid:  #C77DFF;
+      --cream:   #FFF8F0;
+      --dark:    #1A1A2E;
+      --text:    #2D2D2D;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FF6B6B 0%, #FFB347 35%, #A8E063 65%, #56CCF2 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='white' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E") repeat;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 999px;
+      padding: 0.45rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--dark);
+    }
+
+    .hero-sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: rgba(255,255,255,0.93);
+      max-width: 600px;
+      line-height: 1.6;
+      margin: 1.2rem auto 2.4rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+    .btn-primary {
+      background: var(--dark);
+      color: #fff;
+    }
+    .btn-instagram {
+      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+      color: #fff;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint svg { width: 22px; height: 22px; }
+    @keyframes bounce { 0%,100%{ transform: translateX(-50%) translateY(0); } 50%{ transform: translateX(-50%) translateY(6px); } }
+
+    /* ── STRIP ── */
+    .strip {
+      background: var(--dark);
+      color: #fff;
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .strip-inner {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    .strip-inner span { margin: 0 2rem; color: var(--mango); }
+    @keyframes marquee { from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    p.lead {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      max-width: 640px;
+      color: #555;
+    }
+
+    /* ── SOBRE MÍ ── */
+    .sobre {
+      background: #fff;
+    }
+    .sobre .inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .sobre-visual {
+      position: relative;
+    }
+    .sobre-blob {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+      background: linear-gradient(135deg, var(--orchid), var(--coral));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      animation: morph 8s ease-in-out infinite;
+    }
+    @keyframes morph {
+      0%,100%{ border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%; }
+      50%{ border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; }
+    }
+    .sobre-tag {
+      position: absolute;
+      background: var(--mango);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+    }
+    .sobre-tag-1 { top: 10%; right: -1rem; }
+    .sobre-tag-2 { bottom: 12%; left: -1rem; }
+
+    @media(max-width: 700px) {
+      .sobre .inner { grid-template-columns: 1fr; }
+      .sobre-tag-1 { right: 0; }
+      .sobre-tag-2 { left: 0; }
+    }
+
+    /* ── SERVICIOS ── */
+    .servicios { background: var(--cream); }
+    .servicios h2 { text-align: center; }
+    .servicios .section-label { text-align: center; color: var(--coral); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .card {
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; margin-bottom: 0.6rem; }
+    .card p { font-size: 0.95rem; line-height: 1.65; opacity: 0.85; }
+
+    .card-1 { background: linear-gradient(135deg, #FF6B6B22, #FFB34722); border: 2px solid #FF6B6B44; }
+    .card-2 { background: linear-gradient(135deg, #A8E06322, #56CCF222); border: 2px solid #A8E06344; }
+    .card-3 { background: linear-gradient(135deg, #C77DFF22, #FF6B6B22); border: 2px solid #C77DFF44; }
+    .card-4 { background: linear-gradient(135deg, #56CCF222, #C77DFF22); border: 2px solid #56CCF244; }
+
+    /* ── PILARES ── */
+    .pilares { background: var(--dark); color: #fff; }
+    .pilares .section-label { color: var(--lime); }
+    .pilares .lead { color: rgba(255,255,255,0.7); }
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .pilar {
+      background: var(--dark);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .pilar:hover { background: #2a2a4a; }
+    .pilar-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--coral), var(--orchid));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+    .pilar h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .pilar p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    @media(max-width: 600px) {
+      .pilares-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FRASE ── */
+    .frase {
+      background: linear-gradient(135deg, var(--coral), var(--mango));
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .frase blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      font-weight: 700;
+      font-style: italic;
+      color: #fff;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.35;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.15);
+    }
+    .frase cite {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      margin-top: 1.5rem;
+    }
+
+    /* ── CONTACTO ── */
+    .contacto { background: #fff; text-align: center; }
+    .contacto .section-label { color: var(--orchid); }
+    .contacto .lead { margin: 0 auto 2.5rem; }
+    .contact-cards {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 2rem 2.5rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.18s, box-shadow 0.18s;
+      min-width: 180px;
+    }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
+    .contact-card span.icon { font-size: 2rem; }
+    .contact-card.ig {
+      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+      color: #fff;
+    }
+    .contact-card.wa {
+      background: #25D366;
+      color: #fff;
+    }
+    .contact-card.mail {
+      background: var(--sky);
+      color: var(--dark);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.88rem;
+    }
+    footer strong { color: var(--mango); }
+    footer .heart { color: var(--coral); }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">✨ Nutrición · Salud · Bienestar Integral</div>
+    <h1>Lupi<br/><em>Domínguez</em></h1>
+    <p class="hero-sub">Te ayudo a potenciar tu mejor versión y a transformar tu relación con la comida desde un lugar de amor y cuidado real. 💫</p>
+    <div class="cta-group">
+      <a href="#contacto" class="btn btn-primary">Invertí en tu bienestar 🫶</a>
+      <a href="https://www.instagram.com/lupidb.nutricion/" target="_blank" rel="noopener" class="btn btn-instagram">
+        <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @lupidb.nutricion
+      </a>
+    </div>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      Seguí explorando
+    </div>
+  </section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="strip" aria-hidden="true">
+    <div class="strip-inner">
+      Nutrición Consciente <span>✦</span> Salud Integral <span>✦</span> Bienestar Real <span>✦</span> Amor Propio <span>✦</span> Tu Mejor Versión <span>✦</span> Sin Restricciones <span>✦</span> Relación Sana con la Comida <span>✦</span> Nutrición Consciente <span>✦</span> Salud Integral <span>✦</span> Bienestar Real <span>✦</span> Amor Propio <span>✦</span> Tu Mejor Versión <span>✦</span> Sin Restricciones <span>✦</span> Relación Sana con la Comida <span>✦</span>
+    </div>
+  </div>
+
+  <!-- SOBRE MÍ -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="inner">
+        <div class="sobre-visual">
+          <div class="sobre-blob">🥗</div>
+          <div class="sobre-tag sobre-tag-1">🌱 Nutricionista</div>
+          <div class="sobre-tag sobre-tag-2">💛 Bienestar Integral</div>
+        </div>
+        <div>
+          <p class="section-label" style="color:var(--orchid)">Hola, soy Lupi 🫂</p>
+          <h2>Tu aliada en el camino hacia el bienestar</h2>
+          <p class="lead">
+            Soy Lupi Domínguez, nutricionista especializada en salud y bienestar integral. Creo que comer bien no es solo una cuestión de calorías: es cuidarte, escucharte y construir una relación de paz con tu cuerpo y tu plato.
+          </p>
+          <br/>
+          <p class="lead">
+            Mi enfoque va más allá de la dieta. Trabajo contigo de manera personalizada para que alcances tu mejor versión de forma sostenible y desde el amor propio. ❤️‍🩹
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="container">
+      <p class="section-label">Lo que ofrezco</p>
+      <h2>Servicios pensados<br/>para vos</h2>
+      <div class="cards">
+        <div class="card card-1">
+          <div class="card-icon">🥑</div>
+          <h3>Consulta Nutricional</h3>
+          <p>Plan alimentario personalizado según tus objetivos, estilo de vida y necesidades únicas.</p>
+        </div>
+        <div class="card card-2">
+          <div class="card-icon">🧠</div>
+          <h3>Relación con la Comida</h3>
+          <p>Trabajamos tu vínculo emocional con la alimentación para liberarte de dietas restrictivas.</p>
+        </div>
+        <div class="card card-3">
+          <div class="card-icon">🌿</div>
+          <h3>Salud Integral</h3>
+          <p>Incorporamos hábitos de sueño, movimiento y bienestar mental junto a la nutrición.</p>
+        </div>
+        <div class="card card-4">
+          <div class="card-icon">📲</div>
+          <h3>Seguimiento Online</h3>
+          <p>Acompañamiento continuo a través de consultas virtuales para que nunca estés sola en el proceso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES -->
+  <section class="pilares" id="pilares">
+    <div class="container">
+      <p class="section-label">Mi enfoque</p>
+      <h2>Tres pilares<br/>del cambio real</h2>
+      <p class="lead">Todo lo que hacemos juntas se sostiene sobre estas bases. Sin atajos, sin milagros: solo un proceso honesto y personalizado.</p>
+      <div class="pilares-grid">
+        <div class="pilar">
+          <div class="pilar-num">01</div>
+          <h3>Escucha activa</h3>
+          <p>Tu historia, tu cuerpo y tus emociones son el punto de partida. Nunca una plantilla genérica.</p>
+        </div>
+        <div class="pilar">
+          <div class="pilar-num">02</div>
+          <h3>Ciencia + humanidad</h3>
+          <p>Evidencia científica aplicada con calidez humana. Rigurosa y empática a la vez.</p>
+        </div>
+        <div class="pilar">
+          <div class="pilar-num">03</div>
+          <h3>Sostenibilidad real</h3>
+          <p>Cambios que puedas mantener en el tiempo y que se integren naturalmente a tu vida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRASE -->
+  <section class="frase">
+    <blockquote>
+      "No se trata de comer perfecto, sino de aprender a escuchar a tu cuerpo y tratarlo con el amor que merece."
+    </blockquote>
+    <cite>— Lupi Domínguez</cite>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="container">
+      <p class="section-label">¿Empezamos?</p>
+      <h2>Invertí en tu bienestar 🫶🏽</h2>
+      <p class="lead">Dar el primer paso es lo más difícil. Acá estoy para acompañarte desde el minuto uno. Contáctame y empecemos juntas.</p>
+      <div class="contact-cards">
+        <a href="https://www.instagram.com/lupidb.nutricion/" target="_blank" rel="noopener" class="contact-card ig">
+          <span class="icon">📸</span>
+          Instagram
+          <small style="opacity:.8;font-weight:400">@lupidb.nutricion</small>
+        </a>
+        <a href="https://wa.me/?text=Hola%20Lupi%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20tus%20servicios%20de%20nutrici%C3%B3n%20%F0%9F%8C%BF" target="_blank" rel="noopener" class="contact-card wa">
+          <span class="icon">💬</span>
+          WhatsApp
+          <small style="opacity:.8;font-weight:400">Escribime directo</small>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Hecho con <span class="heart">❤️</span> para <strong>Lupi Domínguez · Nutrición & Bienestar Integral</strong></p>
+    <p style="margin-top:.5rem">
+      <a href="https://www.instagram.com/lupidb.nutricion/" target="_blank" rel="noopener" style="color:var(--orchid);text-decoration:none;font-weight:600">@lupidb.nutricion</a>
+    </p>
+  </footer>
+
+</body>
+</html>
