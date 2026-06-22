@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caninadores MX – Educadores Caninos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amarillo:  #FFD336;
+      --naranja:   #FF6B2B;
+      --rosa:      #FF3F80;
+      --morado:    #7B2FBE;
+      --azul:      #1A9BF4;
+      --verde:     #27C97A;
+      --crema:     #FFF8EC;
+      --oscuro:    #1C1130;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--oscuro);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--oscuro);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 32px;
+      box-shadow: 0 4px 0 var(--amarillo);
+    }
+    .nav-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--amarillo);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--amarillo); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      background: linear-gradient(135deg, var(--morado) 0%, var(--rosa) 45%, var(--naranja) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle fill='rgba(255,255,255,.06)' cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+    .hero-paw {
+      font-size: 5rem;
+      animation: bounce 1.8s infinite ease-in-out;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.25));
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-18px); }
+    }
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      color: #fff;
+      line-height: 1.05;
+      margin: 18px 0 10px;
+      text-shadow: 4px 4px 0 rgba(0,0,0,.25);
+    }
+    .hero h1 span { color: var(--amarillo); }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: rgba(255,255,255,.92);
+      max-width: 560px;
+      line-height: 1.55;
+      font-weight: 600;
+      margin-bottom: 36px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--amarillo);
+      color: var(--oscuro);
+      font-weight: 900;
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      letter-spacing: .5px;
+      margin-bottom: 36px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,.2);
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 4px 4px 0 rgba(0,0,0,.25);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 6px 6px 0 rgba(0,0,0,.3); }
+    .btn-ig  { background: #fff; color: var(--rosa); }
+    .btn-fb  { background: var(--azul); color: #fff; }
+
+    /* ── WAVE ── */
+    .wave {
+      display: block;
+      width: 100%;
+      line-height: 0;
+      margin-top: -2px;
+    }
+
+    /* ── SECTION GENERIC ── */
+    section { padding: 80px 24px; }
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .section-intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 52px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #4a3b6b;
+    }
+
+    /* ── ENFOQUE ── */
+    .enfoque-bg { background: #fff; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.08);
+      transition: transform .2s;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card-1 { background: linear-gradient(135deg, #FFD336, #FF6B2B); }
+    .card-2 { background: linear-gradient(135deg, #7B2FBE, #FF3F80); }
+    .card-3 { background: linear-gradient(135deg, #1A9BF4, #27C97A); }
+    .card-icon { font-size: 3.2rem; margin-bottom: 16px; }
+    .card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .card p { color: rgba(255,255,255,.92); font-size: 0.97rem; line-height: 1.6; }
+
+    /* ── FILOSOFÍA ── */
+    .filosofia-bg {
+      background: linear-gradient(160deg, var(--morado) 0%, #2d0a5e 100%);
+    }
+    .filosofia-bg .section-title { color: var(--amarillo); }
+    .filosofia-bg .section-intro { color: rgba(255,255,255,.8); }
+    .pilares {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .pilar {
+      background: rgba(255,255,255,.12);
+      border: 2px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: 28px 24px;
+      width: clamp(200px, 28%, 260px);
+      text-align: center;
+      color: #fff;
+    }
+    .pilar-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.4rem;
+      color: var(--amarillo);
+    }
+    .pilar h4 {
+      font-size: 1.1rem;
+      font-weight: 900;
+      margin: 6px 0 8px;
+    }
+    .pilar p { font-size: 0.9rem; opacity: .85; line-height: 1.5; }
+
+    /* ── UBICACIÓN ── */
+    .ubicacion-bg { background: var(--crema); }
+    .ubi-card {
+      background: var(--oscuro);
+      border-radius: 28px;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 52px 40px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 16px 56px rgba(123,47,190,.25);
+    }
+    .ubi-card .big { font-size: 4rem; margin-bottom: 16px; }
+    .ubi-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      color: var(--amarillo);
+      margin-bottom: 10px;
+    }
+    .ubi-card p { opacity: .8; line-height: 1.6; font-size: 1.05rem; }
+
+    /* ── REDES ── */
+    .redes-bg {
+      background: linear-gradient(135deg, var(--naranja) 0%, var(--rosa) 50%, var(--morado) 100%);
+    }
+    .redes-bg .section-title { color: #fff; }
+    .redes-grid {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .red-card {
+      background: #fff;
+      border-radius: 28px;
+      padding: 44px 40px;
+      text-align: center;
+      flex: 1;
+      min-width: 240px;
+      max-width: 340px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.2);
+      transition: transform .2s;
+    }
+    .red-card:hover { transform: scale(1.04); }
+    .red-icon { font-size: 3.5rem; margin-bottom: 14px; }
+    .red-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+    .red-card.ig h3 { color: var(--rosa); }
+    .red-card.fb h3 { color: var(--azul); }
+    .red-card p { color: #666; font-size: 0.95rem; margin-bottom: 22px; line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--oscuro);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    footer span { color: var(--amarillo); font-weight: 700; }
+    footer .paws { font-size: 1.4rem; letter-spacing: 4px; margin-top: 8px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 12px 18px; }
+      .nav-links { gap: 14px; }
+      .pilar { width: 100%; max-width: 320px; }
+      .ubi-card { padding: 40px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">🐾 Caninadores MX</a>
+  <div class="nav-links">
+    <a href="#enfoque">Enfoque</a>
+    <a href="#filosofia">Filosofía</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-paw">🐶</div>
+  <h1>Caninadores <span>MX</span></h1>
+  <div class="hero-badge">📍 Estado de México 🇲🇽</div>
+  <p class="hero-sub">
+    Educadores caninos con enfoque integral:<br>
+    <strong>Cognitivo Conductual + Sistémico Familiar</strong>.<br>
+    Priorizamos el manejo respetuoso y amoroso de tu peludo.
+  </p>
+  <div class="hero-ctas">
+    <a class="btn btn-ig" href="https://www.instagram.com/caninadores_mx/" target="_blank" rel="noopener">
+      📸 Instagram
+    </a>
+    <a class="btn btn-fb" href="https://www.facebook.com/caninadoresmx" target="_blank" rel="noopener">
+      👍 Facebook
+    </a>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,40 C360,90 1080,-10 1440,40 L1440,80 L0,80 Z" fill="#fff"/>
+</svg>
+
+<!-- ENFOQUE -->
+<section class="enfoque-bg" id="enfoque">
+  <h2 class="section-title" style="color:var(--morado)">Nuestro Enfoque 🎯</h2>
+  <p class="section-intro">
+    Combinamos dos poderosas metodologías para entender a tu perro desde adentro y desde su contexto familiar.
+  </p>
+  <div class="cards">
+    <div class="card card-1">
+      <div class="card-icon">🧠</div>
+      <h3>Cognitivo Conductual</h3>
+      <p>Entendemos cómo piensa y siente tu perro para modificar conductas de manera positiva, sin miedo ni castigo.</p>
+    </div>
+    <div class="card card-2">
+      <div class="card-icon">🏡</div>
+      <h3>Sistémico Familiar</h3>
+      <p>Tu perro es parte del sistema familiar. Trabajamos con toda la familia para lograr una convivencia armónica y duradera.</p>
+    </div>
+    <div class="card card-3">
+      <div class="card-icon">💚</div>
+      <h3>Manejo Respetuoso</h3>
+      <p>Cero castigos físicos ni emocionales. Usamos técnicas basadas en el bienestar animal y el vínculo afectivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FILOSOFÍA -->
+<section class="filosofia-bg" id="filosofia">
+  <h2 class="section-title">¿Por qué somos diferentes? ✨</h2>
+  <p class="section-intro">
+    No se trata solo de que tu perro obedezca. Se trata de que ambos disfruten la relación.
+  </p>
+  <div class="pilares">
+    <div class="pilar">
+      <div class="pilar-num">01</div>
+      <h4>Educación Integral</h4>
+      <p>Consideramos el contexto emocional, histórico y familiar de cada can.</p>
+    </div>
+    <div class="pilar">
+      <div class="pilar-num">02</div>
+      <h4>Sin Violencia</h4>
+      <p>Nunca usamos collares de castigo, gritos ni métodos aversivos.</p>
+    </div>
+    <div class="pilar">
+      <div class="pilar-num">03</div>
+      <h4>Vínculo Afectivo</h4>
+      <p>Fortalecemos la conexión entre tú y tu perro en cada sesión.</p>
+    </div>
+    <div class="pilar">
+      <div class="pilar-num">04</div>
+      <h4>Resultados Reales</h4>
+      <p>Cambios sostenibles que perduran porque se basan en comprensión.</p>
+    </div>
+    <div class="pilar">
+      <div class="pilar-num">05</div>
+      <h4>Familia Incluida</h4>
+      <p>Integramos a todos los miembros del hogar en el proceso educativo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:linear-gradient(135deg, var(--morado),#2d0a5e)">
+  <path d="M0,40 C360,-10 1080,90 1440,40 L1440,80 L0,80 Z" fill="#FFF8EC"/>
+</svg>
+
+<!-- UBICACIÓN -->
+<section class="ubicacion-bg">
+  <h2 class="section-title" style="color:var(--naranja)">¿Dónde estamos? 📍</h2>
+  <div class="ubi-card">
+    <div class="big">🗺️</div>
+    <h3>Estado de México 🇲🇽</h3>
+    <p>
+      Atendemos en el <strong>Estado de México</strong> y sus alrededores.<br>
+      Sesiones a domicilio para que tu perro aprenda en su propio ambiente.<br><br>
+      ¡Contáctanos por nuestras redes sociales para agendar una consulta!
+    </p>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section class="redes-bg" id="contacto">
+  <h2 class="section-title">¡Síguenos y contáctanos! 🐾</h2>
+  <div class="redes-grid">
+    <div class="red-card ig">
+      <div class="red-icon">📸</div>
+      <h3>Instagram</h3>
+      <p>Tips, videos, casos de éxito y mucho contenido sobre educación canina respetuosa.</p>
+      <a class="btn btn-ig" href="https://www.instagram.com/caninadores_mx/" target="_blank" rel="noopener">
+        @caninadores_mx
+      </a>
+    </div>
+    <div class="red-card fb">
+      <div class="red-icon">👍</div>
+      <h3>Facebook</h3>
+      <p>Comunidad, artículos, eventos y todo lo que necesitas saber para convivir mejor con tu can.</p>
+      <a class="btn btn-fb" href="https://www.facebook.com/caninadoresmx" target="_blank" rel="noopener">
+        caninadoresmx
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><span>Caninadores MX</span> — Educadores Caninos con Enfoque Integral</p>
+  <p>Cognitivo Conductual + Sistémico Familiar · Estado de México 🇲🇽</p>
+  <div class="paws">🐾🐾🐾🐾🐾</div>
+</footer>
+
+</body>
+</html>
