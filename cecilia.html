@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lic. Cecilia Rosa – Psicóloga Positiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --fucsia:   #E91E8C;
+      --violeta:  #7C3AED;
+      --amarillo: #F59E0B;
+      --turquesa: #06B6D4;
+      --coral:    #FF6B6B;
+      --verde:    #10B981;
+      --blanco:   #FFFFFF;
+      --gris:     #F3F4F6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #1a1a2e;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #7C3AED 0%, #E91E8C 40%, #FF6B6B 70%, #F59E0B 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* floating hearts */
+    .hearts-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      font-size: 1.6rem;
+      animation: floatUp linear infinite;
+      opacity: 0.35;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg); opacity: .35; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.22);
+      border: 2px solid rgba(255,255,255,.55);
+      color: var(--blanco);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .45rem 1.2rem;
+      border-radius: 999px;
+      margin-bottom: 1.4rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      font-weight: 900;
+      color: var(--blanco);
+      line-height: 1.08;
+      text-shadow: 0 4px 24px rgba(0,0,0,.25);
+      max-width: 820px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #fff 0%, #ffe066 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      margin-top: 1.4rem;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,255,.9);
+      max-width: 600px;
+      line-height: 1.65;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.2rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--blanco);
+      color: var(--violeta);
+      font-size: 1rem;
+      font-weight: 800;
+      padding: .9rem 2.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(0,0,0,.22);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,.3); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border: 2.5px solid rgba(255,255,255,.8);
+      color: var(--blanco);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: .9rem 2.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+      transition: background .2s, transform .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.18); transform: translateY(-3px); }
+
+    /* ── DAYS COUNTER ── */
+    .days-strip {
+      background: var(--blanco);
+      padding: 2.4rem 1.5rem;
+      text-align: center;
+    }
+    .days-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--fucsia);
+      margin-bottom: .5rem;
+    }
+    .days-headline {
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-weight: 900;
+      color: #1a1a2e;
+    }
+    .day-boxes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .9rem;
+      margin-top: 1.6rem;
+    }
+    .day-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--blanco);
+      box-shadow: 0 4px 14px rgba(0,0,0,.15);
+      animation: popIn .4s ease backwards;
+    }
+    @keyframes popIn {
+      from { transform: scale(.5); opacity: 0; }
+      to   { transform: scale(1);  opacity: 1; }
+    }
+
+    /* ── SECTION SHARED ── */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: #555;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ── BENEFITS ── */
+    .benefits-bg {
+      background: linear-gradient(160deg, #f0e6ff 0%, #ffe6f4 50%, #ffe8cc 100%);
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .benefit-card {
+      background: var(--blanco);
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 6px 28px rgba(0,0,0,.09);
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s;
+    }
+    .benefit-card:hover { transform: translateY(-6px); }
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+    }
+    .bc-1::before { background: linear-gradient(90deg, var(--fucsia), var(--violeta)); }
+    .bc-2::before { background: linear-gradient(90deg, var(--turquesa), var(--verde)); }
+    .bc-3::before { background: linear-gradient(90deg, var(--amarillo), var(--coral)); }
+    .bc-4::before { background: linear-gradient(90deg, var(--violeta), var(--turquesa)); }
+    .bc-5::before { background: linear-gradient(90deg, var(--coral), var(--fucsia)); }
+    .bc-6::before { background: linear-gradient(90deg, var(--verde), var(--amarillo)); }
+
+    .benefit-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .benefit-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: .55rem;
+      color: #1a1a2e;
+    }
+    .benefit-card p {
+      font-size: .92rem;
+      color: #555;
+      line-height: 1.65;
+    }
+
+    /* ── STEPS ── */
+    .steps-bg { background: var(--blanco); }
+    .steps-track {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin-top: 2.5rem;
+      max-width: 700px;
+    }
+    .step {
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--blanco);
+    }
+    .sn1 { background: linear-gradient(135deg, var(--fucsia), var(--violeta)); }
+    .sn2 { background: linear-gradient(135deg, var(--turquesa), var(--violeta)); }
+    .sn3 { background: linear-gradient(135deg, var(--amarillo), var(--coral)); }
+    .sn4 { background: linear-gradient(135deg, var(--verde), var(--turquesa)); }
+
+    .step-body h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .3rem; }
+    .step-body p  { font-size: .92rem; color: #555; line-height: 1.65; }
+
+    /* ── TESTIMONIALS ── */
+    .testi-bg {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 60%, #1e3a5f 100%);
+    }
+    .testi-bg .section-tag { background: rgba(255,255,255,.12); color: #ffe066; }
+    .testi-bg .section-title { color: var(--blanco); }
+    .testi-bg .section-sub  { color: rgba(255,255,255,.7); }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .testi-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(6px);
+    }
+    .stars { color: var(--amarillo); font-size: 1.1rem; margin-bottom: .8rem; }
+    .testi-card p { color: rgba(255,255,255,.85); font-size: .95rem; line-height: 1.7; margin-bottom: 1.1rem; }
+    .testi-name { color: var(--blanco); font-weight: 700; font-size: .9rem; }
+    .testi-sub  { color: rgba(255,255,255,.5); font-size: .8rem; }
+
+    /* ── FREE DIAGNOSIS ── */
+    .diag-bg {
+      background: linear-gradient(135deg, var(--fucsia) 0%, var(--amarillo) 100%);
+      text-align: center;
+    }
+    .diag-bg .section-title { color: var(--blanco); }
+    .diag-bg .section-sub   { color: rgba(255,255,255,.9); margin: 0 auto 2rem; }
+    .diag-pill {
+      display: inline-block;
+      background: rgba(255,255,255,.22);
+      border: 2px solid rgba(255,255,255,.5);
+      color: var(--blanco);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── SOCIAL ── */
+    .social-bg { background: var(--gris); }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    .social-card {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      text-decoration: none;
+      background: var(--blanco);
+      border-radius: 18px;
+      padding: 1.1rem 1.8rem;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 4px 18px rgba(0,0,0,.1);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .social-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,.16); }
+    .sc-ig  { color: #E1306C; }
+    .sc-fb  { color: #1877F2; }
+    .sc-cal { color: var(--violeta); }
+    .social-card span { font-size: 1.6rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2.2rem 1.5rem;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--blanco); }
+
+    /* ── STICKY HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 2rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,.08);
+    }
+    .header-logo {
+      font-size: 1rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--fucsia), var(--violeta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+    .header-nav { display: flex; gap: 1rem; }
+    .header-nav a {
+      font-size: .88rem;
+      font-weight: 700;
+      color: #333;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .header-nav a:hover { color: var(--fucsia); }
+    .header-btn {
+      background: linear-gradient(90deg, var(--fucsia), var(--violeta));
+      color: var(--blanco) !important;
+      padding: .5rem 1.3rem;
+      border-radius: 999px;
+      font-size: .85rem !important;
+    }
+
+    @media (max-width: 640px) {
+      .header-nav .hide-sm { display: none; }
+      .hero { padding-top: 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header>
+  <a href="#" class="header-logo">💗 Cecilia Rosa</a>
+  <nav class="header-nav">
+    <a href="#beneficios" class="hide-sm">Beneficios</a>
+    <a href="#proceso" class="hide-sm">Proceso</a>
+    <a href="#agenda" class="header-btn">Agendar</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hearts-bg" id="heartsContainer"></div>
+
+  <span class="hero-badge">✨ Psicología Positiva · Método 30 Días</span>
+  <h1>Construye tu camino<br/>a la <span>felicidad</span> en 30 días</h1>
+  <p>Soy la <strong style="color:#fff;">Lic. Cecilia Rosa</strong> — mamá, esposa 💗 y psicóloga positiva. Te acompaño a transformar tu vida con herramientas reales y un diagnóstico gratuito para empezar.</p>
+
+  <div class="hero-cta-group">
+    <a href="https://psicologos-bepositive.com/psicologo/ivana-beln-sarmiento-prez/agenda" target="_blank" rel="noopener" class="btn-primary">
+      🗓️ Diagnóstico Gratuito
+    </a>
+    <a href="https://www.facebook.com/ceciliarosa.psicologa" target="_blank" rel="noopener" class="btn-outline">
+      📘 Facebook
+    </a>
+  </div>
+</section>
+
+<!-- 30 DAYS COUNTER -->
+<section class="days-strip">
+  <p class="days-label">Tu transformación empieza hoy</p>
+  <h2 class="days-headline">30 días · 30 pasos · 1 nueva vida 🌟</h2>
+  <div class="day-boxes" id="dayBoxes"></div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section benefits-bg" id="beneficios">
+  <div class="container">
+    <span class="section-tag" style="background:#f0d6ff;color:var(--violeta);">¿Qué vas a lograr?</span>
+    <h2 class="section-title">Beneficios reales en 30 días 🚀</h2>
+    <p class="section-sub">Nuestro método de psicología positiva tiene resultados medibles desde la primera semana.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card bc-1">
+        <span class="benefit-icon">😌</span>
+        <h3>Paz mental duradera</h3>
+        <p>Aprende técnicas concretas para reducir el estrés y la ansiedad, y encontrar calma incluso en momentos difíciles.</p>
+      </div>
+      <div class="benefit-card bc-2">
+        <span class="benefit-icon">💪</span>
+        <h3>Confianza en vos misma</h3>
+        <p>Fortalecemos tu autoestima con ejercicios personalizados para que tomes decisiones desde la seguridad, no el miedo.</p>
+      </div>
+      <div class="benefit-card bc-3">
+        <span class="benefit-icon">💞</span>
+        <h3>Vínculos más sanos</h3>
+        <p>Mejora tus relaciones familiares y de pareja con comunicación empática y límites saludables.</p>
+      </div>
+      <div class="benefit-card bc-4">
+        <span class="benefit-icon">🎯</span>
+        <h3>Claridad de propósito</h3>
+        <p>Descubrí qué querés realmente y trazá un plan de vida alineado con tus valores más profundos.</p>
+      </div>
+      <div class="benefit-card bc-5">
+        <span class="benefit-icon">🌈</span>
+        <h3>Emociones en equilibrio</h3>
+        <p>Regulación emocional práctica: dejá de reaccionar y empezá a responder desde la consciencia.</p>
+      </div>
+      <div class="benefit-card bc-6">
+        <span class="benefit-icon">⚡</span>
+        <h3>Energía y motivación</h3>
+        <p>Reencontrá las ganas de vivir con plenitud, entusiasmo y propósito cada mañana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS STEPS -->
+<section class="section steps-bg" id="proceso">
+  <div class="container">
+    <span class="section-tag" style="background:#fff0f6;color:var(--fucsia);">¿Cómo funciona?</span>
+    <h2 class="section-title">El camino a tu felicidad 💫</h2>
+    <p class="section-sub">Un proceso simple, acompañado y con resultados visibles desde el inicio.</p>
+    <div class="steps-track">
+      <div class="step">
+        <div class="step-num sn1">1</div>
+        <div class="step-body">
+          <h3>Diagnóstico gratuito con el equipo</h3>
+          <p>Una conversación inicial donde evaluamos tu situación actual, tus bloqueos y tus objetivos personales. Sin compromiso.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num sn2">2</div>
+        <div class="step-body">
+          <h3>Plan personalizado de 30 días</h3>
+          <p>Diseñamos tu hoja de ruta única con sesiones, ejercicios y herramientas de psicología positiva adaptadas a vos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num sn3">3</div>
+        <div class="step-body">
+          <h3>Acompañamiento semanal</h3>
+          <p>Sesiones con la Lic. Cecilia Rosa y seguimiento constante para ajustar el proceso según tu avance real.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num sn4">4</div>
+        <div class="step-body">
+          <h3>Transformación sostenible</h3>
+          <p>Al día 30 contás con herramientas propias para mantener tu bienestar toda la vida. No es un parche, es un cambio real.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-bg">
+  <div class="container" style="text-align:center;">
+    <span class="section-tag">Historias reales ✨</span>
+    <h2 class="section-title">Lo que dicen quienes ya lo vivieron</h2>
+    <p class="section-sub" style="margin:0 auto;">Miles de personas transformaron su vida con el método de Cecilia Rosa.</p>
+    <div class="testi-grid" style="text-align:left;">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>«Llegué agotada, sin saber qué me pasaba. En 30 días no solo encontré respuestas, sino que volví a reconocerme. Cecilia tiene un don especial para acompañar.»</p>
+        <div class="testi-name">Laura M.</div>
+        <div class="testi-sub">Buenos Aires · 34 años</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>«Nunca pensé que la psicología positiva podría cambiar tanto mi relación conmigo misma. El diagnóstico gratuito fue el primer paso que necesitaba dar.»</p>
+        <div class="testi-name">Mariana G.</div>
+        <div class="testi-sub">Córdoba · 28 años</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>«El proceso de 30 días me devolvió la energía, las ganas y la esperanza. Cecilia y su equipo están siempre presentes. Lo recomiendo a toda mi familia.»</p>
+        <div class="testi-name">Sofía R.</div>
+        <div class="testi-sub">Rosario · 41 años</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE DIAGNOSIS CTA -->
+<section class="section diag-bg" id="agenda">
+  <div class="container">
+    <span class="diag-pill">🎁 Completamente gratuito</span>
+    <h2 class="section-title">Tu diagnóstico gratuito te espera</h2>
+    <p class="section-sub">No necesitás esperar más. En una sola conversación con mi equipo vas a saber exactamente qué necesitás para empezar a ser feliz de verdad.</p>
+    <a href="https://psicologos-bepositive.com/psicologo/ivana-beln-sarmiento-prez/agenda" target="_blank" rel="noopener" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.6rem;">
+      🗓️ Reservar mi diagnóstico gratuito ahora
+    </a>
+    <p style="margin-top:1.2rem;color:rgba(255,255,255,.75);font-size:.9rem;">Sin compromiso · 100% confidencial · Respondemos en menos de 24hs</p>
+  </div>
+</section>
+
+<!-- SOCIAL LINKS -->
+<section class="section social-bg">
+  <div class="container" style="text-align:center;">
+    <span class="section-tag" style="background:#e6f4ff;color:var(--turquesa);">Seguime en redes</span>
+    <h2 class="section-title">Conectemos en las redes 🌟</h2>
+    <p class="section-sub" style="margin:0 auto 2rem;">Contenido diario sobre psicología positiva, bienestar y felicidad real.</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="social-card sc-ig">
+        <span>📸</span> Instagram
+      </a>
+      <a href="https://www.facebook.com/ceciliarosa.psicologa" target="_blank" rel="noopener" class="social-card sc-fb">
+        <span>📘</span> Facebook
+      </a>
+      <a href="https://psicologos-bepositive.com/psicologo/ivana-beln-sarmiento-prez/agenda" target="_blank" rel="noopener" class="social-card sc-cal">
+        <span>🗓️</span> Agendar sesión
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>💗 <strong>Lic. Cecilia Rosa</strong> — Psicóloga Positiva</p>
+  <p style="margin-top:.5rem;">Mamá, esposa y guía en tu camino a la felicidad · Todos los derechos reservados © 2024</p>
+</footer>
+
+<script>
+  // --- Floating hearts ---
+  const container = document.getElementById('heartsContainer');
+  const emojis = ['💗','💕','💖','💓','✨','🌟','💫','🌈'];
+  for (let i = 0; i < 22; i++) {
+    const el = document.createElement('div');
+    el.className = 'heart';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.fontSize = (1.2 + Math.random() * 1.6) + 'rem';
+    el.style.animationDuration = (7 + Math.random() * 10) + 's';
+    el.style.animationDelay = (Math.random() * 8) + 's';
+    container.appendChild(el);
+  }
+
+  // --- 30-day colored boxes ---
+  const colors = [
+    '#E91E8C','#7C3AED','#06B6D4','#F59E0B','#FF6B6B','#10B981',
+    '#8B5CF6','#EC4899','#14B8A6','#EF4444','#F97316','#22C55E'
+  ];
+  const boxContainer = document.getElementById('dayBoxes');
+  for (let d = 1; d <= 30; d++) {
+    const box = document.createElement('div');
+    box.className = 'day-box';
+    box.style.background = `linear-gradient(135deg, ${colors[(d-1)%colors.length]}, ${colors[d%colors.length]})`;
+    box.style.animationDelay = (d * 0.06) + 's';
+    box.textContent = d;
+    boxContainer.appendChild(box);
+  }
+</script>
+</body>
+</html>
