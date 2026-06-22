@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paseos A Pata – Playa del Carmen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sol:    #FFCC00;
+      --mar:    #00C2D1;
+      --arena:  #FF8C42;
+      --selva:  #3DDC84;
+      --coral:  #FF4D6D;
+      --noche:  #1A1A2E;
+      --blanco: #FFFDF4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--blanco);
+      color: var(--noche);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      background: var(--noche);
+    }
+    .nav-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem; color: var(--sol);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--selva); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a {
+      color: #fff; text-decoration: none;
+      font-weight: 700; font-size: .9rem;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--sol); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--mar) 0%, var(--selva) 40%, var(--sol) 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='3' fill='white' fill-opacity='.08'/%3E%3C/svg%3E") repeat;
+    }
+    .paw-float {
+      font-size: 5rem;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.25));
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-18px); }
+    }
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(3rem, 9vw, 7rem);
+      color: #fff;
+      line-height: 1;
+      text-shadow: 4px 4px 0 rgba(0,0,0,.18);
+      margin: 16px 0 8px;
+    }
+    .hero h1 span { color: var(--sol); }
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: rgba(255,255,255,.92);
+      font-weight: 700;
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+    .cta-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      border-radius: 50px; font-size: 1rem; font-weight: 800;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.3); }
+    .btn-wa  { background: #25D366; color: #fff; }
+    .btn-ig  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .btn-sec { background: var(--coral); color: #fff; }
+
+    /* ── WAVE ────────────────────────────────────────────── */
+    .wave-wrap { line-height: 0; background: var(--blanco); }
+    .wave-wrap svg { display: block; width: 100%; }
+
+    /* ── SECTION HEADER ──────────────────────────────────── */
+    .section-tag {
+      display: inline-block;
+      background: var(--sol); color: var(--noche);
+      font-weight: 800; font-size: .78rem; letter-spacing: .1em;
+      text-transform: uppercase; padding: 4px 16px; border-radius: 50px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      font-size: 1rem; color: #555; max-width: 480px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* ── SERVICIOS ───────────────────────────────────────── */
+    #servicios {
+      padding: 72px 24px;
+      background: var(--blanco);
+      text-align: center;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px; max-width: 960px; margin: 0 auto;
+    }
+    .card {
+      border-radius: 24px; padding: 36px 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,.09);
+      transition: transform .25s;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card:nth-child(1) { background: linear-gradient(145deg,#FFE14D,#FFCC00); }
+    .card:nth-child(2) { background: linear-gradient(145deg,#5EEAFF,#00C2D1); }
+    .card:nth-child(3) { background: linear-gradient(145deg,#FFB380,#FF8C42); }
+    .card:nth-child(4) { background: linear-gradient(145deg,#80FFBE,#3DDC84); }
+    .card-icon { font-size: 3.2rem; margin-bottom: 16px; }
+    .card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.4rem; margin-bottom: 8px; color: var(--noche);
+    }
+    .card p { font-size: .92rem; color: rgba(0,0,0,.65); line-height: 1.6; }
+
+    /* ── PLAYA STRIP ─────────────────────────────────────── */
+    .playa-strip {
+      background: var(--noche);
+      padding: 56px 24px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .playa-strip::before {
+      content: '🌴🌊🌴🌊🌴🌊🌴🌊🌴🌊🌴🌊🌴🌊🌴🌊';
+      display: block;
+      font-size: 2rem; margin-bottom: 24px;
+      white-space: nowrap;
+      animation: scroll-emojis 12s linear infinite;
+    }
+    @keyframes scroll-emojis {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .playa-strip h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--sol);
+      margin-bottom: 12px;
+    }
+    .playa-strip p {
+      color: rgba(255,255,255,.8);
+      font-size: 1.1rem; max-width: 500px; margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── VALORES ─────────────────────────────────────────── */
+    #nosotros {
+      padding: 72px 24px;
+      background: linear-gradient(180deg, #f0fdfa 0%, var(--blanco) 100%);
+      text-align: center;
+    }
+    .valores {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      justify-content: center; max-width: 800px; margin: 0 auto;
+    }
+    .valor-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: #fff; border-radius: 50px;
+      padding: 14px 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      font-weight: 700; font-size: .95rem;
+    }
+    .valor-pill span:first-child { font-size: 1.5rem; }
+
+    /* ── CONTACTO ────────────────────────────────────────── */
+    #contacto {
+      padding: 72px 24px;
+      background: linear-gradient(135deg, var(--coral) 0%, var(--arena) 100%);
+      text-align: center;
+    }
+    #contacto .section-title { color: #fff; }
+    #contacto .section-sub   { color: rgba(255,255,255,.85); }
+    .contact-btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 12px; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      border: 3px solid #fff; border-radius: 50px;
+      color: #fff; font-size: 1rem; font-weight: 800;
+      text-decoration: none; background: rgba(255,255,255,.12);
+      transition: background .2s, transform .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.28); transform: translateY(-3px); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--noche);
+      padding: 32px 24px;
+      text-align: center;
+      color: rgba(255,255,255,.5);
+      font-size: .85rem;
+    }
+    footer strong { color: var(--sol); font-family: 'Fredoka One', cursive; font-size: 1rem; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Paseos<span>APata</span> 🐾</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="paw-float">🐾</div>
+  <h1>Paseos <span>A Pata</span></h1>
+  <p>Entrenamiento, paseos, hospedaje boutique y pet sitting para tu mejor amigo en Playa del Carmen 🌴🇲🇽</p>
+  <div class="cta-group">
+    <a href="https://api.whatsapp.com/message/VG3OJZPKPIWVE1" target="_blank" class="btn btn-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.121 1.523 5.85L0 24l6.336-1.495A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.506-5.077-1.385L3.5 21.5l.91-3.316A9.978 9.978 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Escríbenos por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/paseosapata/" target="_blank" class="btn btn-ig">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Ver Instagram
+    </a>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-wrap">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"
+          fill="var(--blanco)"
+          style="fill: #FFFDF4"/>
+  </svg>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <span class="section-tag">¿Qué hacemos?</span>
+  <h2 class="section-title">Nuestros servicios 🐶</h2>
+  <p class="section-sub">Todo lo que tu peludo necesita, con amor, experiencia y mucha diversión bajo el sol caribeño.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🏅</div>
+      <h3>Entrenamiento canino</h3>
+      <p>Técnicas positivas y efectivas para que tu perro aprenda con alegría y confianza.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🐾</div>
+      <h3>Paseos y aventuras</h3>
+      <p>Exploramos Playa del Carmen juntos: playas, parques y senderos para una vida activa.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💤</div>
+      <h3>Hospedaje boutique</h3>
+      <p>Tu perro descansa como en casa — con mimos, atención personalizada y mucho cariño.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <h3>Pet Sitting</h3>
+      <p>Cuidamos a tu mascota en su propio entorno para que no extrañe su rutina.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYA STRIP -->
+<div class="playa-strip">
+  <h2>Playa del Carmen, México 🌴</h2>
+  <p>Desde el corazón del Caribe mexicano, llevamos a tu mejor amigo a vivir las mejores aventuras junto al mar.</p>
+</div>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <span class="section-tag">Por qué elegirnos</span>
+  <h2 class="section-title">Amor perruno garantizado 💛</h2>
+  <p class="section-sub">Nos tomamos muy en serio el bienestar de cada perrito que nos confías.</p>
+  <div class="valores">
+    <div class="valor-pill"><span>❤️</span> <span>Trato con amor y respeto</span></div>
+    <div class="valor-pill"><span>✅</span> <span>Entrenamiento positivo</span></div>
+    <div class="valor-pill"><span>📍</span> <span>Playa del Carmen</span></div>
+    <div class="valor-pill"><span>📸</span> <span>Fotos y actualizaciones</span></div>
+    <div class="valor-pill"><span>🌊</span> <span>Aventuras al aire libre</span></div>
+    <div class="valor-pill"><span>🐾</span> <span>Atención personalizada</span></div>
+    <div class="valor-pill"><span>🌙</span> <span>Hospedaje boutique</span></div>
+    <div class="valor-pill"><span>🔒</span> <span>Seguridad y confianza</span></div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <span class="section-tag" style="background:#fff;color:var(--coral);">¡Hablemos!</span>
+  <h2 class="section-title">Contáctanos hoy 🐾</h2>
+  <p class="section-sub">¿Tienes preguntas o quieres reservar? Estamos a un mensaje de distancia.</p>
+  <div class="contact-btns">
+    <a href="https://api.whatsapp.com/message/VG3OJZPKPIWVE1" target="_blank" class="btn-outline">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.121 1.523 5.85L0 24l6.336-1.495A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.852 0-3.587-.506-5.077-1.385L3.5 21.5l.91-3.316A9.978 9.978 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://www.instagram.com/paseosapata/" target="_blank" class="btn-outline">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      @paseosapata
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Paseos A Pata 🐾</strong></p>
+  <p style="margin-top:6px">Entrenamiento · Paseos · Hospedaje Boutique · Pet Sitting</p>
+  <p style="margin-top:4px">🌴 Playa del Carmen, México 🇲🇽</p>
+</footer>
+
+</body>
+</html>
