@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wendy Ubilla · Maquillaje & Aerógrafo · Guayaquil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #F4527A;
+      --coral:   #FF8B6A;
+      --amber:   #FFD166;
+      --lilac:   #C9A7F5;
+      --mint:    #7CE8D4;
+      --cream:   #FFF8F5;
+      --dark:    #1A0A12;
+      --mid:     #6B3D55;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 5rem;
+      position: relative;
+      background: linear-gradient(160deg, #FFD6E0 0%, #FFF0FA 40%, #E8D5FF 70%, #D0F5EE 100%);
+      overflow: hidden;
+    }
+
+    /* floating blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.45;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    .blob-1 { width: 400px; height: 400px; background: var(--rose);   top: -100px; left: -120px; }
+    .blob-2 { width: 350px; height: 350px; background: var(--amber);  bottom: -80px; right: -80px; }
+    .blob-3 { width: 280px; height: 280px; background: var(--lilac);  top: 30%; right: 5%; }
+    .blob-4 { width: 220px; height: 220px; background: var(--mint);   bottom: 10%; left: 5%; }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--rose);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.4rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      line-height: 1.0;
+      position: relative;
+    }
+    .hero h1 .name { color: var(--rose); display: block; }
+    .hero h1 .sub  { color: var(--mid);  display: block; font-style: italic; font-size: .62em; }
+
+    .hero-desc {
+      margin-top: 1.6rem;
+      font-size: 1.15rem;
+      color: var(--mid);
+      max-width: 480px;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .hero-emoji { font-size: 2rem; display: block; margin-top: .5rem; letter-spacing: .3rem; }
+
+    .cta-row {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .85rem 1.8rem;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
+
+    .btn-wa   { background: #25D366; color: #fff; }
+    .btn-ig   { background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7); color: #fff; }
+    .btn-fb   { background: #1877F2; color: #fff; }
+
+    .btn svg  { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── SCROLL BADGE ── */
+    .scroll-hint {
+      margin-top: 3.5rem;
+      font-size: .8rem;
+      color: var(--mid);
+      opacity: .7;
+      animation: bounce 2s infinite;
+      position: relative;
+    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 5rem 1.5rem; }
+
+    .section-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: .6rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--dark);
+    }
+
+    /* ── SERVICIOS ── */
+    #servicios { background: #fff; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 2.2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      transition: transform .22s;
+    }
+    .card:hover { transform: scale(1.03); }
+
+    .card-1 { background: linear-gradient(135deg, var(--rose), var(--coral)); }
+    .card-2 { background: linear-gradient(135deg, var(--lilac), #8B5CF6); }
+    .card-3 { background: linear-gradient(135deg, var(--amber), #FF9A3C); }
+    .card-4 { background: linear-gradient(135deg, var(--mint), #22C5B0); }
+
+    .card-icon { font-size: 2.6rem; margin-bottom: 1rem; display: block; }
+    .card h3   { font-family: 'Playfair Display', serif; font-size: 1.35rem; margin-bottom: .5rem; }
+    .card p    { font-size: .9rem; opacity: .9; line-height: 1.6; }
+
+    /* ── SOBRE MÍ ── */
+    #sobre { background: linear-gradient(135deg, #FFF0FA 0%, #EEE6FF 100%); }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 640px) { .sobre-grid { grid-template-columns: 1fr; } }
+
+    .sobre-visual {
+      aspect-ratio: 4/5;
+      border-radius: 24px;
+      background: linear-gradient(160deg, var(--rose) 0%, var(--lilac) 60%, var(--mint) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+    }
+
+    .sobre-text p {
+      font-size: 1.05rem;
+      color: var(--mid);
+      line-height: 1.9;
+      margin-bottom: 1.1rem;
+    }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+    .pill {
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 500;
+    }
+    .pill-rose   { background: #FFD6E0; color: var(--rose); }
+    .pill-lilac  { background: #EDE6FF; color: #6228D7; }
+    .pill-mint   { background: #D0F5EE; color: #0F8C7A; }
+    .pill-amber  { background: #FFF3CD; color: #9A5B00; }
+
+    /* ── PROCESO ── */
+    #proceso { background: var(--dark); color: #fff; }
+
+    #proceso .section-label { color: var(--amber); }
+    #proceso .section-title { color: #fff; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .step {
+      text-align: center;
+      padding: 2rem 1.2rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      transition: background .2s;
+    }
+    .step:hover { background: rgba(255,255,255,.12); }
+
+    .step-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+    .s1 { background: var(--rose); }
+    .s2 { background: var(--lilac); }
+    .s3 { background: var(--amber); color: var(--dark); }
+    .s4 { background: var(--mint);  color: var(--dark); }
+
+    .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: .5rem; }
+    .step p  { font-size: .85rem; opacity: .7; line-height: 1.6; }
+
+    /* ── CONTACTO ── */
+    #contacto { background: linear-gradient(160deg, #FFD6E0 0%, #FFF8F5 50%, #E8D5FF 100%); text-align: center; }
+
+    #contacto .section-inner { max-width: 600px; }
+
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .contact-title span { color: var(--rose); font-style: italic; }
+
+    .contact-sub { font-size: 1.05rem; color: var(--mid); margin-bottom: 2.5rem; line-height: 1.7; }
+
+    .big-cta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-big {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1.1rem 2.2rem;
+      border-radius: 999px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      text-decoration: none;
+      width: 100%;
+      max-width: 360px;
+      justify-content: center;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn-big:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,.18); }
+    .btn-big svg { width: 24px; height: 24px; fill: currentColor; }
+
+    .btn-big-wa { background: #25D366; color: #fff; }
+    .btn-big-ig { background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7); color: #fff; }
+    .btn-big-fb { background: #1877F2; color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--rose); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,.6);
+      border-bottom: 1px solid rgba(255,255,255,.4);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--rose);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      font-size: .85rem;
+      color: var(--mid);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--rose); }
+
+    @media (max-width: 520px) { .nav-links { display: none; } }
+
+    /* ── SPARKLE ACCENT ── */
+    .sparkle {
+      display: inline-block;
+      animation: spin 4s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Wendy Ubilla ✨</a>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#sobre">Sobre mí</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+
+  <div class="hero-tag">🇪🇨 Guayaquil · Ecuador</div>
+
+  <h1>
+    <span class="name">Wendy Ubilla</span>
+    <span class="sub">Makeup Artist</span>
+  </h1>
+
+  <p class="hero-desc">
+    Experta en maquillaje de novia con aerógrafo ✨<br>
+    Obsesionada con las pieles bonitas y los acabados perfectos.
+    <span class="hero-emoji">💄💋🪄</span>
+  </p>
+
+  <div class="cta-row">
+    <a class="btn btn-wa" href="https://api.whatsapp.com/send?phone=593985375125" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a class="btn btn-ig" href="https://www.instagram.com/wendyubillamakeup/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a class="btn btn-fb" href="https://www.facebook.com/WendyUbillaB" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
+
+  <p class="scroll-hint">↓ conoce más ↓</p>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-inner">
+    <p class="section-label">Lo que hago</p>
+    <h2 class="section-title">Servicios de maquillaje<br>que te harán brillar ✨</h2>
+
+    <div class="cards">
+      <div class="card card-1">
+        <span class="card-icon">👰</span>
+        <h3>Novia con Aerógrafo</h3>
+        <p>Acabado perfecto, de larga duración y fotogénico. Tu día más importante merece el mejor maquillaje.</p>
+      </div>
+      <div class="card card-2">
+        <span class="card-icon">💜</span>
+        <h3>Maquillaje Social</h3>
+        <p>Para fiestas, graduaciones, eventos especiales o cualquier ocasión donde quieras lucir espectacular.</p>
+      </div>
+      <div class="card card-3">
+        <span class="card-icon">🌟</span>
+        <h3>Piel de Porcelana</h3>
+        <p>Técnica especializada en base perfecta, corrección y luminosidad. Obsesionada con las pieles bonitas.</p>
+      </div>
+      <div class="card card-4">
+        <span class="card-icon">📸</span>
+        <h3>Sesiones Fotográficas</h3>
+        <p>Maquillaje profesional pensado para cámara, que dure toda la sesión y luzca impecable en fotos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="sobre-grid">
+      <div class="sobre-visual" aria-hidden="true">💄</div>
+      <div class="sobre-text">
+        <p class="section-label">Sobre mí</p>
+        <h2 class="section-title" style="margin-bottom:1.2rem">Hola, soy Wendy 🪄</h2>
+        <p>
+          Soy maquilladora profesional con sede en Guayaquil, Ecuador 🇪🇨, especializada en novias y en la técnica de aerógrafo — la más avanzada para lograr un acabado uniforme, natural y duradero.
+        </p>
+        <p>
+          Mi pasión son las pieles bonitas: cuidar la base, iluminar los rasgos y hacer que cada persona se sienta su mejor versión. Ven, siéntate, que yo te maquillo.
+        </p>
+        <div class="pill-row">
+          <span class="pill pill-rose">Novias ✨</span>
+          <span class="pill pill-lilac">Aerógrafo</span>
+          <span class="pill pill-mint">Pieles bonitas</span>
+          <span class="pill pill-amber">Guayaquil 🇪🇨</span>
+          <span class="pill pill-rose">Eventos sociales</span>
+          <span class="pill pill-lilac">Fotos y videos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="section-inner">
+    <p class="section-label">¿Cómo trabajo?</p>
+    <h2 class="section-title">Tu experiencia,<br>paso a paso 💛</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num s1">1</div>
+        <h3>Contáctame</h3>
+        <p>Escríbeme por WhatsApp, Instagram o Facebook para consultar disponibilidad y precio.</p>
+      </div>
+      <div class="step">
+        <div class="step-num s2">2</div>
+        <h3>Prueba de maquillaje</h3>
+        <p>Hacemos una sesión previa para definir el look perfecto para tu gran día.</p>
+      </div>
+      <div class="step">
+        <div class="step-num s3">3</div>
+        <h3>El día especial</h3>
+        <p>Me encargo de todo: preparación de piel, base aerógrafo y detalles finales.</p>
+      </div>
+      <div class="step">
+        <div class="step-num s4">4</div>
+        <h3>¡A brillar! ✨</h3>
+        <p>Luzca increíble todo el día. Fotografías, videos y recuerdos perfectos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <h2 class="contact-title">¿Lista para <span>brillar</span>?</h2>
+    <p class="contact-sub">
+      Agenda tu cita ahora mismo 💕<br>Estoy en Guayaquil y con cita previa me desplazo a donde me necesites.
+    </p>
+    <div class="big-cta-row">
+      <a class="btn-big btn-big-wa" href="https://api.whatsapp.com/send?phone=593985375125" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a class="btn-big btn-big-ig" href="https://www.instagram.com/wendyubillamakeup/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Ver Instagram
+      </a>
+      <a class="btn-big btn-big-fb" href="https://www.facebook.com/WendyUbillaB" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Ver Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Wendy Ubilla Makeup</strong> · Guayaquil, Ecuador 🇪🇨 · Hecho con 💄 y mucho amor</p>
+</footer>
+
+</body>
+</html>
