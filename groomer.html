@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victor The Groomer 🐾</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --caribe: #00B4D8;
+    --sol: #FFD60A;
+    --coral: #FF6B6B;
+    --verde: #06D6A0;
+    --purp: #C77DFF;
+    --naranja: #FF9F1C;
+    --azul-oscuro: #023E8A;
+    --blanco: #FFFFFF;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #0A0A1A;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 20% 30%, #00B4D840 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 70%, #FF6B6B35 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 50%, #06D6A020 0%, transparent 70%),
+                linear-gradient(160deg, #020214 0%, #0A0A2A 50%, #0D0A1F 100%);
+  }
+
+  /* Burbujas animadas */
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0%   { transform: translateY(110vh) scale(1); opacity: 0; }
+    10%  { opacity: 0.15; }
+    90%  { opacity: 0.15; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+  }
+
+  .avatar-wrap {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 1.5rem;
+  }
+  .avatar-ring {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--sol), var(--coral), var(--purp), var(--caribe), var(--verde));
+    animation: spin-ring 6s linear infinite;
+    margin: 0 auto;
+  }
+  @keyframes spin-ring {
+    to { filter: hue-rotate(360deg); }
+  }
+  .avatar-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00B4D8 0%, #06D6A0 50%, #FFD60A 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+    border: 3px solid #0A0A1A;
+  }
+
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(90deg, var(--sol) 0%, var(--coral) 40%, var(--purp) 80%, var(--caribe) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative; z-index: 2;
+    margin-bottom: 0.3rem;
+  }
+
+  .banderas {
+    font-size: 2rem;
+    position: relative; z-index: 2;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .hero-bio {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    max-width: 480px;
+    line-height: 1.6;
+    position: relative; z-index: 2;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-bio span {
+    color: var(--sol);
+  }
+
+  .hero-tag {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--verde);
+    position: relative; z-index: 2;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== PATAS SEPARADOR ===== */
+  .patas {
+    display: flex; justify-content: center; gap: 0.5rem;
+    font-size: 1.4rem;
+    margin: 2.5rem 0;
+    opacity: 0.6;
+  }
+
+  /* ===== REDES SOCIALES ===== */
+  .section {
+    padding: 3rem 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blanco);
+  }
+
+  .redes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .red-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.6rem;
+    border-radius: 18px;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .red-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.08);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .red-btn:hover::before { opacity: 1; }
+  .red-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    filter: brightness(1.1);
+  }
+  .red-btn:active { transform: scale(0.98); }
+
+  .red-btn .icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 2.4rem;
+    text-align: center;
+  }
+
+  .red-btn .label {
+    flex: 1;
+  }
+
+  .red-btn .arrow {
+    font-size: 1.2rem;
+    opacity: 0.7;
+  }
+
+  /* colores individuales */
+  .btn-instagram {
+    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+    box-shadow: 0 4px 24px rgba(253,29,29,0.35);
+  }
+  .btn-youtube {
+    background: linear-gradient(135deg, #cc0000 0%, #ff0000 50%, #ff4444 100%);
+    box-shadow: 0 4px 24px rgba(255,0,0,0.35);
+  }
+  .btn-facebook {
+    background: linear-gradient(135deg, #0866FF 0%, #1877F2 60%, #42A5F5 100%);
+    box-shadow: 0 4px 24px rgba(24,119,242,0.35);
+  }
+  .btn-tiktok {
+    background: linear-gradient(135deg, #010101 0%, #1a1a2e 40%, #ff0050 80%, #00f2ea 100%);
+    box-shadow: 0 4px 24px rgba(255,0,80,0.35);
+    border-color: rgba(0,242,234,0.3);
+  }
+  .btn-beacons {
+    background: linear-gradient(135deg, var(--purp) 0%, var(--caribe) 50%, var(--verde) 100%);
+    box-shadow: 0 4px 24px rgba(199,125,255,0.35);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 2.5rem 1rem 3rem;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .footer a {
+    color: var(--sol);
+    text-decoration: none;
+  }
+
+  /* ===== WAVE BOTTOM ===== */
+  .wave-section {
+    position: relative;
+    background: linear-gradient(160deg, #0A0A1A 0%, #0D0523 100%);
+    padding: 0.5rem 0;
+  }
+
+  /* Halo decolorado detrás del avatar */
+  .avatar-glow {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.25) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    pointer-events: none;
+    z-index: 1;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { transform: translate(-50%, -60%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -60%) scale(1.15); opacity: 1; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Burbujas -->
+  <div class="bubble" style="width:80px;height:80px;background:var(--caribe);left:8%;animation-duration:12s;animation-delay:0s;"></div>
+  <div class="bubble" style="width:50px;height:50px;background:var(--sol);left:22%;animation-duration:9s;animation-delay:2s;"></div>
+  <div class="bubble" style="width:120px;height:120px;background:var(--coral);left:70%;animation-duration:15s;animation-delay:1s;"></div>
+  <div class="bubble" style="width:60px;height:60px;background:var(--verde);left:88%;animation-duration:11s;animation-delay:3.5s;"></div>
+  <div class="bubble" style="width:90px;height:90px;background:var(--purp);left:45%;animation-duration:13s;animation-delay:5s;"></div>
+  <div class="bubble" style="width:40px;height:40px;background:var(--naranja);left:60%;animation-duration:8s;animation-delay:0.5s;"></div>
+  <div class="bubble" style="width:70px;height:70px;background:var(--caribe);left:33%;animation-duration:10s;animation-delay:7s;"></div>
+
+  <div class="avatar-glow"></div>
+
+  <div class="avatar-wrap">
+    <div class="avatar-ring">
+      <div class="avatar-inner">🐕</div>
+    </div>
+  </div>
+
+  <h1>Victor The Groomer</h1>
+
+  <div class="banderas">🇻🇪 &nbsp; 🐾 &nbsp; 🇪🇸</div>
+
+  <p class="hero-bio">
+    <span>¡Del Caribe con amor!</span><br>
+    Groomer profesional dedicado a los perros y gatos.<br>
+    Consejos, tutoriales y mucho cariño peludo 🐶🐱
+  </p>
+
+  <p class="hero-tag">📧 victoralfmai@gmail.com</p>
+</section>
+
+<!-- REDES SOCIALES -->
+<div class="wave-section">
+  <section class="section reveal">
+    <p class="section-title">🌟 Encuéntrame aquí</p>
+    <div class="redes">
+
+      <a href="https://www.instagram.com/victorthegroomer/" target="_blank" rel="noopener" class="red-btn btn-instagram">
+        <span class="icon">📸</span>
+        <span class="label">Instagram<br><small style="font-weight:600;opacity:0.85;">@victorthegroomer</small></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://www.youtube.com/@victorthegroomeryt" target="_blank" rel="noopener" class="red-btn btn-youtube">
+        <span class="icon">▶️</span>
+        <span class="label">YouTube<br><small style="font-weight:600;opacity:0.85;">¡Suscríbete gratis!</small></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://www.facebook.com/thedogsboy" target="_blank" rel="noopener" class="red-btn btn-facebook">
+        <span class="icon">👥</span>
+        <span class="label">Facebook<br><small style="font-weight:600;opacity:0.85;">thedogsboy</small></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://www.tiktok.com/@victorthegroomertt" target="_blank" rel="noopener" class="red-btn btn-tiktok">
+        <span class="icon">🎵</span>
+        <span class="label">TikTok<br><small style="font-weight:600;opacity:0.85;">@victorthegroomertt</small></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://beacons.ai/victorthegroomer" target="_blank" rel="noopener" class="red-btn btn-beacons">
+        <span class="icon">✨</span>
+        <span class="label">Todos los links<br><small style="font-weight:600;opacity:0.85;">beacons.ai/victorthegroomer</small></span>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="patas">🐾🐾🐾🐾🐾🐾🐾</div>
+
+  <footer class="footer">
+    <p>Hecho con ❤️ para <strong>Victor The Groomer</strong></p>
+    <p style="margin-top:0.4rem">¡Por amor a los perros y gatos! 🐶🐱</p>
+    <p style="margin-top:0.8rem"><a href="mailto:victoralfmai@gmail.com">victoralfmai@gmail.com</a></p>
+  </footer>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
