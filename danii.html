@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peluquería Canina Daniela ✨ Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink:    #FF69B4;
+    --yellow:  #FFD93D;
+    --teal:    #00C9C8;
+    --coral:   #FF6B6B;
+    --purple:  #C77DFF;
+    --white:   #FFFFFF;
+    --dark:    #2D2D2D;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #fff8fd;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── PATITAS FLOTANTES ── */
+  .paws-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .paw {
+    position: absolute;
+    font-size: 1.6rem;
+    opacity: 0.12;
+    animation: floatPaw linear infinite;
+  }
+  @keyframes floatPaw {
+    0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
+    10%  { opacity: 0.12; }
+    90%  { opacity: 0.12; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--pink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 3px 0 #d45090;
+  }
+  .nav-logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: #fff;
+    letter-spacing: .5px;
+  }
+  .nav-links { display: flex; gap: 1.2rem; }
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: .95rem;
+    transition: opacity .2s;
+  }
+  .nav-links a:hover { opacity: .75; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1.5rem 3rem;
+    background: linear-gradient(145deg, #ffe4f5 0%, #fff8dc 50%, #e0fffe 100%);
+  }
+  .hero-badge {
+    background: var(--yellow);
+    color: var(--dark);
+    font-weight: 800;
+    font-size: .85rem;
+    border-radius: 50px;
+    padding: .35rem 1.1rem;
+    margin-bottom: 1.4rem;
+    letter-spacing: .5px;
+    box-shadow: 3px 3px 0 #d4a800;
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: .6rem;
+  }
+  .hero h1 span { color: var(--pink); }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: #555;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    font-weight: 600;
+  }
+  .hero-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  /* ── BOTONES ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    padding: .85rem 1.8rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-3px); }
+  .btn-wa  { background: #25D366; color: #fff; box-shadow: 0 5px 0 #1aa34a; }
+  .btn-wa:hover  { box-shadow: 0 3px 0 #1aa34a; transform: translateY(-1px); }
+  .btn-ig  { background: var(--pink); color: #fff; box-shadow: 0 5px 0 #c0397a; }
+  .btn-ig:hover  { box-shadow: 0 3px 0 #c0397a; transform: translateY(-1px); }
+  .btn-map { background: var(--teal); color: #fff; box-shadow: 0 5px 0 #008f8e; }
+  .btn-map:hover { box-shadow: 0 3px 0 #008f8e; transform: translateY(-1px); }
+
+  /* ── RAINBOW CIRCLE ── */
+  .hero-img-wrap {
+    margin: 2.5rem auto 0;
+    width: 220px;
+    height: 220px;
+    position: relative;
+  }
+  .rainbow-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #FF69B4, #FFD93D, #00C9C8, #C77DFF, #FF6B6B, #FF69B4
+    );
+    animation: spinRing 4s linear infinite;
+  }
+  @keyframes spinRing { to { transform: rotate(360deg); } }
+  .hero-img-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffe4f5, #fff0a0);
+    border: 6px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    overflow: hidden;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── SERVICIOS ── */
+  .servicios {
+    padding: 5rem 1.5rem;
+    background: var(--pink);
+  }
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #fff;
+  }
+  .section-title.dark { color: var(--dark); }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 5px 5px 0 rgba(0,0,0,.12);
+    transition: transform .2s;
+  }
+  .card:hover { transform: translateY(-6px); }
+  .card-icon { font-size: 2.8rem; margin-bottom: .9rem; }
+  .card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.25rem;
+    color: var(--pink);
+    margin-bottom: .5rem;
+  }
+  .card p { font-size: .95rem; color: #555; line-height: 1.5; }
+
+  /* ── POR QUÉ ── */
+  .porqué {
+    padding: 5rem 1.5rem;
+    background: var(--yellow);
+  }
+  .reasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.4rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .reason {
+    background: #fff;
+    border-radius: 18px;
+    padding: 1.6rem 1.3rem;
+    text-align: center;
+    box-shadow: 4px 4px 0 #c9a000;
+  }
+  .reason-icon { font-size: 2.4rem; margin-bottom: .6rem; }
+  .reason h4 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: .3rem;
+  }
+  .reason p { font-size: .9rem; color: #666; }
+
+  /* ── CTA CENTRAL ── */
+  .cta-band {
+    background: var(--teal);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+  .cta-band h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+  .cta-band p { color: #e0ffff; font-size: 1.05rem; margin-bottom: 2rem; }
+
+  /* ── UBICACIÓN ── */
+  .ubicacion {
+    padding: 5rem 1.5rem;
+    background: #fff8fd;
+  }
+  .ubicacion-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .address-card {
+    background: var(--purple);
+    color: #fff;
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    margin: 2rem auto;
+    max-width: 420px;
+    box-shadow: 5px 5px 0 #8e44c9;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .address-card .addr-icon { font-size: 2.5rem; margin-bottom: .6rem; }
+  .address-card p { opacity: .92; margin-top: .4rem; font-weight: 600; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: #fff;
+    text-align: center;
+    padding: 2.5rem 1rem;
+  }
+  footer .ft-logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    color: var(--pink);
+    margin-bottom: .6rem;
+  }
+  footer p { font-size: .9rem; opacity: .7; }
+  .ft-links { display: flex; justify-content: center; gap: 1.2rem; margin: 1rem 0; }
+  .ft-links a {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .ft-links a:hover { opacity: .65; }
+
+  /* ── FLOATING BTNS ── */
+  .float-btns {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.2rem;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+  }
+  .float-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25);
+    transition: transform .2s;
+  }
+  .float-btn:hover { transform: scale(1.12); }
+  .float-wa { background: #25D366; }
+  .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s, transform .6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: .6rem 1rem; }
+    .nav-links { gap: .7rem; }
+    .nav-links a { font-size: .82rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Patitas flotantes -->
+<div class="paws-bg" id="pawsBg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🐾 Danii Groomer</div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#ubicacion">Ubicación</a>
+    <a href="https://api.whatsapp.com/send/?phone=34603138395" target="_blank">Cita</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✨ Peluquería Canina en Madrid</div>
+  <h1>Tu peludo merece<br><span>lo mejor</span> 🐶</h1>
+  <p class="hero-sub">Cuidado profesional con amor y técnica experta para cada raza</p>
+  <div class="hero-btns">
+    <a href="https://api.whatsapp.com/send/?phone=34603138395" target="_blank" class="btn btn-wa">
+      💬 Pedir cita por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/danii.groomer/" target="_blank" class="btn btn-ig">
+      📸 Ver en Instagram
+    </a>
+  </div>
+  <div class="hero-img-wrap">
+    <div class="rainbow-ring"></div>
+    <div class="hero-img-inner">🐩</div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <h2 class="section-title">Nuestros Servicios 💅</h2>
+  <div class="cards">
+    <div class="card reveal">
+      <div class="card-icon">✂️</div>
+      <h3>Corte a Tijera</h3>
+      <p>Acabados precisos y naturales adaptados a la morfología de tu perro.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🧹</div>
+      <h3>Deslanado</h3>
+      <p>Eliminamos el pelo muerto de forma suave y eficaz para razas de doble capa.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🪮</div>
+      <h3>Stripping</h3>
+      <p>Técnica tradicional para terriers y razas de pelo duro. Renueva la capa y el brillo.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🛁</div>
+      <h3>Baño & Secado</h3>
+      <p>Productos de calidad, secado profesional y aromas suaves para pieles sensibles.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">💎</div>
+      <h3>Cuidado Premium</h3>
+      <p>Tu peludo sale perfecto: limpio, arreglado y feliz. ¡Garantizado!</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🐾</div>
+      <h3>Atención Personalizada</h3>
+      <p>Cada raza es única. Estudiamos las necesidades concretas de tu can.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="porqué">
+  <h2 class="section-title dark">¿Por qué elegirnos? 💛</h2>
+  <div class="reasons">
+    <div class="reason reveal">
+      <div class="reason-icon">🎓</div>
+      <h4>Técnica Profesional</h4>
+      <p>Formación especializada en razas y técnicas avanzadas de grooming.</p>
+    </div>
+    <div class="reason reveal">
+      <div class="reason-icon">❤️</div>
+      <h4>Trato con Amor</h4>
+      <p>Tu perro estará tranquilo y en buenas manos desde el primer momento.</p>
+    </div>
+    <div class="reason reveal">
+      <div class="reason-icon">📍</div>
+      <h4>Madrid · Zona Este</h4>
+      <p>Fácil acceso en Calle Virgen de la Roca 35, Madrid 28027.</p>
+    </div>
+    <div class="reason reveal">
+      <div class="reason-icon">📲</div>
+      <h4>Cita Fácil</h4>
+      <p>Reserva en segundos por WhatsApp. Sin esperas ni complicaciones.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>¿Listo para la transformación? 🌟</h2>
+  <p>Escríbenos y reserva la cita perfecta para tu peludo</p>
+  <a href="https://api.whatsapp.com/send/?phone=34603138395" target="_blank" class="btn btn-wa" style="font-size:1.1rem; padding:1rem 2.2rem;">
+    💬 Contactar por WhatsApp
+  </a>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="ubicacion" id="ubicacion">
+  <div class="ubicacion-inner">
+    <h2 class="section-title dark" style="color:var(--dark)">Encuéntranos 📍</h2>
+    <div class="address-card reveal">
+      <div class="addr-icon">🏠</div>
+      <strong>Peluquería Canina Daniela</strong>
+      <p>Calle Virgen de la Roca 35</p>
+      <p>Madrid, 28027</p>
+    </div>
+    <a href="https://maps.app.goo.gl/aZrQwNoKUVQN5NEJ7" target="_blank" class="btn btn-map" style="margin-top:.5rem;">
+      🗺️ Abrir en Google Maps
+    </a>
+    <p style="margin-top:2.5rem; color:#666; font-size:.95rem;">
+      También puedes seguirnos en Instagram para ver las últimas transformaciones ✨
+    </p>
+    <a href="https://www.instagram.com/danii.groomer/" target="_blank" class="btn btn-ig" style="margin-top:1rem;">
+      📸 @danii.groomer
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">🐾 Peluquería Canina Daniela</div>
+  <div class="ft-links">
+    <a href="https://www.instagram.com/danii.groomer/" target="_blank" title="Instagram">📸</a>
+    <a href="https://api.whatsapp.com/send/?phone=34603138395" target="_blank" title="WhatsApp">💬</a>
+    <a href="https://maps.app.goo.gl/aZrQwNoKUVQN5NEJ7" target="_blank" title="Maps">🗺️</a>
+  </div>
+  <p>Calle Virgen de la Roca 35 · Madrid 28027</p>
+  <p style="margin-top:.4rem;">Hecho con 💖 para los mejores peludos de Madrid</p>
+</footer>
+
+<!-- BOTONES FLOTANTES -->
+<div class="float-btns">
+  <a href="https://api.whatsapp.com/send/?phone=34603138395" target="_blank" class="float-btn float-wa" title="WhatsApp">💬</a>
+  <a href="https://www.instagram.com/danii.groomer/" target="_blank" class="float-btn float-ig" title="Instagram">📸</a>
+</div>
+
+<script>
+  // Patitas flotantes
+  const pawsBg = document.getElementById('pawsBg');
+  const emojis = ['🐾','🐶','✂️','🛁','💎','🌟','💅','🐩'];
+  for (let i = 0; i < 22; i++) {
+    const el = document.createElement('span');
+    el.className = 'paw';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (10 + Math.random() * 18) + 's';
+    el.style.animationDelay = (Math.random() * 12) + 's';
+    el.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+    pawsBg.appendChild(el);
+  }
+
+  // Reveal on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
