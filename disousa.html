@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Di Sousa Groomer – Peluquería Canina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --fucsia:   #FF2D78;
+      --amarillo: #FFD600;
+      --turquesa: #00C9B1;
+      --violeta:  #7B2FBE;
+      --azul:     #2563EB;
+      --negro:    #1A1A2E;
+      --blanco:   #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--negro);
+      color: var(--blanco);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--violeta) 0%, var(--fucsia) 40%, var(--amarillo) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Paw prints deco */
+    .paw-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .paw-bg span {
+      position: absolute;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      opacity: 0.10;
+      animation: float 6s ease-in-out infinite;
+    }
+    .paw-bg span:nth-child(1)  { top: 8%;  left: 5%;  animation-delay: 0s; }
+    .paw-bg span:nth-child(2)  { top: 20%; left: 85%; animation-delay: 1s; }
+    .paw-bg span:nth-child(3)  { top: 55%; left: 10%; animation-delay: 2s; }
+    .paw-bg span:nth-child(4)  { top: 75%; left: 80%; animation-delay: 0.5s; }
+    .paw-bg span:nth-child(5)  { top: 40%; left: 50%; animation-delay: 1.5s; }
+    .paw-bg span:nth-child(6)  { top: 90%; left: 30%; animation-delay: 3s; }
+    .paw-bg span:nth-child(7)  { top: 15%; left: 45%; animation-delay: 2.5s; }
+    .paw-bg span:nth-child(8)  { top: 65%; left: 60%; animation-delay: 0.8s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50%       { transform: translateY(-18px) rotate(5deg); }
+    }
+
+    /* Scissors animation */
+    .scissors {
+      font-size: clamp(3rem, 10vw, 6rem);
+      display: inline-block;
+      animation: snip 1.2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 20px rgba(255,214,0,0.6));
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes snip {
+      0%   { transform: rotate(-15deg) scale(1); }
+      100% { transform: rotate(15deg) scale(1.08); }
+    }
+
+    .hero-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(3rem, 12vw, 7rem);
+      line-height: 1;
+      color: var(--blanco);
+      text-shadow: 4px 4px 0 var(--negro), 6px 6px 0 rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-logo span { color: var(--amarillo); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+      margin: 1rem 0 2rem;
+      max-width: 540px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 50px;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px) scale(1.04); }
+
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(220,39,67,0.45);
+    }
+    .btn-tt {
+      background: var(--negro);
+      color: var(--blanco);
+      border: 2px solid var(--blanco);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ── WAVE DIVIDER ── */
+    .wave { line-height: 0; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ── SECTIONS ── */
+    section { padding: 4rem 1.5rem; }
+
+    .section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 6vw, 3rem);
+      text-align: center;
+      margin-bottom: 0.4rem;
+    }
+    .section-line {
+      width: 60px;
+      height: 5px;
+      border-radius: 99px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ── SERVICIOS ── */
+    .servicios { background: #12102A; }
+    .servicios .section-title { color: var(--amarillo); }
+    .servicios .section-line  { background: var(--fucsia); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.4rem;
+    }
+    .card {
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover { transform: translateY(-6px) scale(1.02); }
+
+    .card-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 0.8rem;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+    }
+    .card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+    }
+    .card p { font-size: 0.95rem; opacity: 0.9; line-height: 1.5; }
+
+    .card-1 { background: linear-gradient(135deg, var(--fucsia), #c4005d); color: #fff; box-shadow: 0 8px 32px rgba(255,45,120,0.35); }
+    .card-2 { background: linear-gradient(135deg, var(--turquesa), #009980); color: var(--negro); box-shadow: 0 8px 32px rgba(0,201,177,0.35); }
+    .card-3 { background: linear-gradient(135deg, var(--amarillo), #e6b800); color: var(--negro); box-shadow: 0 8px 32px rgba(255,214,0,0.35); }
+    .card-4 { background: linear-gradient(135deg, var(--violeta), #4f0fa0); color: #fff; box-shadow: 0 8px 32px rgba(123,47,190,0.35); }
+
+    /* ── SOBRE MÍ ── */
+    .sobre { background: linear-gradient(160deg, var(--violeta) 0%, #2A0A5A 100%); }
+    .sobre .section-title { color: var(--turquesa); }
+    .sobre .section-line  { background: var(--amarillo); }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    @media(max-width: 620px) { .sobre-grid { grid-template-columns: 1fr; } }
+
+    .sobre-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 1rem;
+    }
+
+    .sobre-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat {
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 1.4rem 1rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--amarillo);
+      display: block;
+    }
+    .stat-lbl { font-size: 0.88rem; color: rgba(255,255,255,0.75); font-weight: 700; }
+
+    /* ── FORMACIÓN ── */
+    .formacion { background: #0D1B2A; }
+    .formacion .section-title { color: var(--fucsia); }
+    .formacion .section-line  { background: var(--turquesa); }
+
+    .formacion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .formacion-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      background: rgba(255,255,255,0.05);
+      border-left: 5px solid var(--fucsia);
+      border-radius: 0 14px 14px 0;
+      padding: 1.2rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .formacion-item:nth-child(2n) { border-left-color: var(--turquesa); }
+    .formacion-item:nth-child(3n) { border-left-color: var(--amarillo); }
+    .formacion-item:hover { background: rgba(255,255,255,0.09); }
+    .fi-icon { font-size: 2rem; flex-shrink: 0; }
+    .fi-text strong { display: block; font-size: 1.05rem; color: var(--blanco); margin-bottom: 0.2rem; }
+    .fi-text span   { font-size: 0.9rem; color: rgba(255,255,255,0.65); }
+
+    /* ── REDES SOCIALES ── */
+    .redes { background: linear-gradient(135deg, var(--fucsia) 0%, var(--violeta) 100%); }
+    .redes .section-title { color: var(--amarillo); }
+    .redes .section-line  { background: var(--blanco); }
+
+    .redes-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+    .redes-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.1rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .redes-btn:hover { transform: scale(1.06) translateY(-4px); }
+    .redes-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      box-shadow: 0 8px 30px rgba(220,39,67,0.5);
+    }
+    .redes-tt {
+      background: #000;
+      color: #fff;
+      border: 2px solid #fff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .redes-icon { font-size: 1.6rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--negro);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-top: 3px solid var(--fucsia);
+    }
+    footer p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 0.4rem; }
+    footer strong { color: var(--amarillo); }
+
+    /* ── FLOATING SOCIAL BAR ── */
+    .float-bar {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      z-index: 100;
+    }
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+    .float-btn:hover { transform: scale(1.15); }
+    .float-ig { background: linear-gradient(135deg, #f09433, #dc2743, #bc1888); }
+    .float-tt { background: #000; border: 2px solid #fff; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width: 480px) {
+      .hero-cta { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING BAR -->
+  <div class="float-bar">
+    <a href="https://www.instagram.com/disousa_groomer/" target="_blank" rel="noopener" class="float-btn float-ig" title="Instagram">📸</a>
+    <a href="https://www.tiktok.com/@disousagroomer" target="_blank" rel="noopener" class="float-btn float-tt" title="TikTok">🎵</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="paw-bg" aria-hidden="true">
+      <span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span>
+      <span>✂️</span><span>🐾</span><span>✂️</span><span>🐾</span>
+    </div>
+
+    <div class="scissors" aria-hidden="true">🐶</div>
+
+    <h1 class="hero-logo">Di <span>Sousa</span><br>Groomer</h1>
+    <p class="hero-sub">La peluquería canina donde cada perro recibe el mejor cuidado, amor y estilo 🐩</p>
+
+    <div class="hero-badges">
+      <span class="badge">✂️ Peluquero Canino</span>
+      <span class="badge">🎓 Formador Profesional</span>
+      <span class="badge">🐾 Experiencia Real</span>
+      <span class="badge">💼 Seminarios & Clases Privadas</span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="https://www.instagram.com/disousa_groomer/" target="_blank" rel="noopener" class="btn btn-ig">
+        📸 Instagram
+      </a>
+      <a href="https://www.tiktok.com/@disousagroomer" target="_blank" rel="noopener" class="btn btn-tt">
+        🎵 TikTok
+      </a>
+    </div>
+  </section>
+
+  <!-- WAVE -->
+  <div class="wave" style="background: linear-gradient(135deg, var(--violeta), var(--amarillo));">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#12102A"/>
+    </svg>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section class="servicios">
+    <div class="section-inner">
+      <h2 class="section-title reveal">¿Qué ofrezco? 🌟</h2>
+      <div class="section-line reveal"></div>
+      <div class="cards">
+        <div class="card card-1 reveal">
+          <span class="card-icon">✂️</span>
+          <h3>Peluquería Canina</h3>
+          <p>Cortes, baños, peinados y todo lo que tu perro necesita para lucir impecable.</p>
+        </div>
+        <div class="card card-2 reveal">
+          <span class="card-icon">🎓</span>
+          <h3>Seminarios</h3>
+          <p>Formación profesional en grupos reducidos para aprender técnicas avanzadas de grooming.</p>
+        </div>
+        <div class="card card-3 reveal">
+          <span class="card-icon">👤</span>
+          <h3>Clases Privadas</h3>
+          <p>Atención personalizada para profesionales y aficionados que quieren dominar el arte del grooming.</p>
+        </div>
+        <div class="card card-4 reveal">
+          <span class="card-icon">🐾</span>
+          <h3>Adopta un Peluquero</h3>
+          <p>Un concepto único: experiencia real con perros y soluciones a los retos del día a día.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE -->
+  <div class="wave" style="background: #12102A;">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C480,60 960,0 1440,20 L1440,60 L0,60 Z" fill="#2A0A5A"/>
+    </svg>
+  </div>
+
+  <!-- SOBRE MÍ -->
+  <section class="sobre">
+    <div class="section-inner">
+      <h2 class="section-title reveal">Sobre Di Sousa 🐩</h2>
+      <div class="section-line reveal"></div>
+      <div class="sobre-grid">
+        <div class="sobre-text reveal">
+          <p>Soy peluquero canino con experiencia real en el manejo de perros de todas las razas, tamaños y caracteres. No solo me dedico a hacer que tu peludo esté guapísimo, sino que entiendo los retos que surgen en el día a día del grooming profesional.</p>
+          <p>Como formador, comparto todo lo que sé a través de <strong>seminarios grupales y clases privadas</strong>, para que otros profesionales y apasionados puedan alcanzar el máximo nivel.</p>
+          <p>Mi filosofía: <em>«Cada perro merece ser tratado con paciencia, respeto y amor.»</em> 💛</p>
+        </div>
+        <div class="sobre-stats reveal">
+          <div class="stat">
+            <span class="stat-num">🐕</span>
+            <span class="stat-lbl">Perros de todas las razas</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">✂️</span>
+            <span class="stat-lbl">Técnicas profesionales</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">🎓</span>
+            <span class="stat-lbl">Formación especializada</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">❤️</span>
+            <span class="stat-lbl">Amor por los animales</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE -->
+  <div class="wave" style="background: #2A0A5A;">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#0D1B2A"/>
+    </svg>
+  </div>
+
+  <!-- FORMACIÓN -->
+  <section class="formacion">
+    <div class="section-inner">
+      <h2 class="section-title reveal">Formación Profesional 🏆</h2>
+      <div class="section-line reveal"></div>
+      <div class="formacion-list">
+        <div class="formacion-item reveal">
+          <span class="fi-icon">🐩</span>
+          <div class="fi-text">
+            <strong>Grooming de razas con pelo largo</strong>
+            <span>Técnicas de corte, peinado y acabado para razas como Maltés, Yorkshire, Shih Tzu y más.</span>
+          </div>
+        </div>
+        <div class="formacion-item reveal">
+          <span class="fi-icon">🦮</span>
+          <div class="fi-text">
+            <strong>Manejo y bienestar canino</strong>
+            <span>Aprende a trabajar con perros nerviosos, agresivos o con movilidad reducida de forma segura y empática.</span>
+          </div>
+        </div>
+        <div class="formacion-item reveal">
+          <span class="fi-icon">✂️</span>
+          <div class="fi-text">
+            <strong>Técnicas de scissor y herramientas</strong>
+            <span>Uso profesional de tijeras, cortadoras y accesorios para un acabado perfecto.</span>
+          </div>
+        </div>
+        <div class="formacion-item reveal">
+          <span class="fi-icon">🛁</span>
+          <div class="fi-text">
+            <strong>Baño, secado y preparación de pelo</strong>
+            <span>Protocolos de higiene, productos adecuados para cada tipo de piel y pelaje.</span>
+          </div>
+        </div>
+        <div class="formacion-item reveal">
+          <span class="fi-icon">📋</span>
+          <div class="fi-text">
+            <strong>Gestión del salón canino</strong>
+            <span>Consejos prácticos para el día a día: clientes difíciles, tiempos, organización y más.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE -->
+  <div class="wave" style="background: #0D1B2A;">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,10 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="var(--fucsia)"/>
+    </svg>
+  </div>
+
+  <!-- REDES SOCIALES -->
+  <section class="redes">
+    <div class="section-inner" style="text-align:center;">
+      <h2 class="section-title reveal">¡Sígueme en redes! 📲</h2>
+      <div class="section-line reveal"></div>
+      <p class="reveal" style="font-size:1.1rem; margin-bottom:2rem; color:rgba(255,255,255,0.9);">
+        Comparto trucos, transformaciones increíbles, técnicas profesionales<br>
+        y el día a día de la peluquería canina. ¡No te lo pierdas! 🐾
+      </p>
+      <div class="redes-btns">
+        <a href="https://www.instagram.com/disousa_groomer/" target="_blank" rel="noopener" class="redes-btn redes-ig reveal">
+          <span class="redes-icon">📸</span> @disousa_groomer
+        </a>
+        <a href="https://www.tiktok.com/@disousagroomer" target="_blank" rel="noopener" class="redes-btn redes-tt reveal">
+          <span class="redes-icon">🎵</span> @disousagroomer
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Hecho con <strong>❤️</strong> para los amantes de los perros</p>
+    <p><strong>Di Sousa Groomer</strong> – Peluquería Canina &amp; Formación Profesional</p>
+    <p style="margin-top:0.8rem;">
+      <a href="https://www.instagram.com/disousa_groomer/" target="_blank" rel="noopener" style="color:var(--fucsia);text-decoration:none;font-weight:700;">Instagram</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.tiktok.com/@disousagroomer" target="_blank" rel="noopener" style="color:var(--turquesa);text-decoration:none;font-weight:700;">TikTok</a>
+    </p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
