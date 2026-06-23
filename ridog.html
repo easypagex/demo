@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridog Peluquería Canina 🐾 Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --yellow:   #FFD60A;
+    --coral:    #FF5C5C;
+    --mint:     #3DD9A4;
+    --sky:      #5BC8F5;
+    --purple:   #A855F7;
+    --cream:    #FFF8EF;
+    --dark:     #1A1A2E;
+    --white:    #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--yellow) 0%, var(--coral) 50%, var(--purple) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    top: -150px; left: -150px;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+    bottom: -100px; right: -80px;
+  }
+
+  .hero-badge {
+    background: var(--white);
+    color: var(--coral);
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.45rem 1.2rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    animation: bounceIn 0.8s ease;
+  }
+
+  .hero-logo {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+    animation: slideDown 0.7s ease;
+  }
+
+  .hero-paw {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    display: block;
+    margin-top: 0.2rem;
+    animation: wobble 2s infinite 1s;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 3vw, 1.35rem);
+    color: rgba(255,255,255,0.95);
+    font-weight: 600;
+    max-width: 480px;
+    margin: 1.4rem auto 2.2rem;
+    line-height: 1.5;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.9s ease 0.4s both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
+  .btn-white  { background: var(--white); color: var(--coral); }
+  .btn-green  { background: #25D366; color: var(--white); }
+  .btn-booksy { background: var(--yellow); color: var(--dark); }
+  .btn-insta  { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color: var(--white); }
+
+  /* ── WAVE ── */
+  .wave { display: block; width: 100%; line-height: 0; }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--white);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .section-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-line {
+    width: 60px; height: 5px;
+    border-radius: 3px;
+    margin: 0 auto 2rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .about-card {
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--dark);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s;
+  }
+  .about-card:hover { transform: translateY(-5px); }
+
+  .about-card .icon { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+  .card-yellow { background: var(--yellow); }
+  .card-mint   { background: var(--mint); }
+  .card-sky    { background: var(--sky); }
+  .card-purple { background: var(--purple); color: var(--white); }
+
+  /* ── SERVICES ── */
+  .services {
+    background: var(--dark);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+  .services .section-title { color: var(--white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .service-pill {
+    background: rgba(255,255,255,0.07);
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .service-pill:hover { background: rgba(255,255,255,0.15); transform: scale(1.04); }
+  .service-pill .s-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+  .service-pill.accent { background: var(--coral); border-color: var(--coral); }
+  .service-pill.accent2 { background: var(--mint); border-color: var(--mint); color: var(--dark); }
+  .service-pill.accent3 { background: var(--yellow); border-color: var(--yellow); color: var(--dark); }
+
+  /* ── CTA STRIP ── */
+  .cta-strip {
+    background: linear-gradient(90deg, var(--mint) 0%, var(--sky) 100%);
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+  .cta-strip h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+  .cta-strip .cta-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ── INFO ── */
+  .info {
+    background: var(--cream);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+  .info .section-title { color: var(--dark); }
+
+  .info-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .info-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 1.8rem 2rem;
+    min-width: 220px;
+    flex: 1;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    border-top: 5px solid var(--coral);
+    transition: transform 0.2s;
+  }
+  .info-card:nth-child(2) { border-top-color: var(--mint); }
+  .info-card:nth-child(3) { border-top-color: var(--yellow); }
+  .info-card:hover { transform: translateY(-4px); }
+  .info-card .i-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+  .info-card a { color: var(--coral); text-decoration: none; font-weight: 700; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  footer strong { color: var(--yellow); }
+  .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem; }
+  .footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    background: rgba(255,255,255,0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    transition: background 0.2s;
+  }
+  .footer-links a:hover { background: var(--coral); }
+
+  /* ── FLOATING BUTTONS ── */
+  .fab-group {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    z-index: 999;
+  }
+  .fab {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transition: transform 0.2s;
+  }
+  .fab:hover { transform: scale(1.12); }
+  .fab-wa  { background: #25D366; }
+  .fab-ig  { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); }
+  .fab-bk  { background: var(--yellow); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes bounceIn {
+    0%   { opacity: 0; transform: scale(0.5); }
+    70%  { transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes wobble {
+    0%,100% { transform: rotate(0deg); }
+    25%      { transform: rotate(-10deg); }
+    75%      { transform: rotate(10deg); }
+  }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 480px) {
+    .hero-btns { flex-direction: column; align-items: center; }
+    .fab-group { bottom: 1rem; right: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-badge">📍 Madrid · Calle San Mariano 17</div>
+  <h1 class="hero-logo">
+    Ridog
+    <span class="hero-paw">🐾</span>
+  </h1>
+  <p class="hero-tagline">Peluquería Canina con atención personalizada.<br>Porque cada perro merece sentirse increíble.</p>
+  <div class="hero-btns">
+    <a href="https://booksy.com/es-es/173664_ridog-peluqueria-canina_servicios-para-mascotas_53009_madrid" target="_blank" class="btn btn-booksy">📅 Reservar cita</a>
+    <a href="https://api.whatsapp.com/send/?phone=34614148607" target="_blank" class="btn btn-green">💬 WhatsApp</a>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#ffffff"/>
+</svg>
+
+<!-- ── ABOUT ── -->
+<section class="about reveal">
+  <h2 class="section-title">¿Por qué elegir Ridog?</h2>
+  <div class="section-line" style="background:var(--coral)"></div>
+  <div class="about-grid">
+    <div class="about-card card-yellow">
+      <span class="icon">🐶</span>
+      Atención personalizada adaptada a las necesidades de cada mascota
+    </div>
+    <div class="about-card card-mint">
+      <span class="icon">✂️</span>
+      Profesionales con experiencia en todas las razas y tamaños
+    </div>
+    <div class="about-card card-sky">
+      <span class="icon">🫧</span>
+      Baño, corte y acondicionamiento con productos de calidad
+    </div>
+    <div class="about-card card-purple">
+      <span class="icon">❤️</span>
+      Trato cariñoso para que tu perro se sienta seguro y feliz
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services reveal">
+  <h2 class="section-title">Nuestros Servicios</h2>
+  <div class="section-line" style="background:var(--mint); margin-bottom:2rem;"></div>
+  <div class="services-grid">
+    <div class="service-pill accent">
+      <span class="s-icon">🛁</span>
+      Baño & Secado
+    </div>
+    <div class="service-pill">
+      <span class="s-icon">✂️</span>
+      Corte de Pelo
+    </div>
+    <div class="service-pill accent2">
+      <span class="s-icon">💅</span>
+      Corte de Uñas
+    </div>
+    <div class="service-pill">
+      <span class="s-icon">👂</span>
+      Limpieza de Oídos
+    </div>
+    <div class="service-pill accent3">
+      <span class="s-icon">🐾</span>
+      Cepillado & Dematting
+    </div>
+    <div class="service-pill">
+      <span class="s-icon">🎀</span>
+      Acabados de Raza
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA STRIP ── -->
+<section class="cta-strip reveal">
+  <h2>¡Tu perro merece lo mejor!<br>Reserva su cita hoy 🐕</h2>
+  <div class="cta-btns">
+    <a href="https://booksy.com/es-es/173664_ridog-peluqueria-canina_servicios-para-mascotas_53009_madrid" target="_blank" class="btn btn-booksy">📅 Reservar en Booksy</a>
+    <a href="https://api.whatsapp.com/send/?phone=34614148607" target="_blank" class="btn btn-green">💬 Escribir por WhatsApp</a>
+    <a href="tel:+34614148607" class="btn btn-white">📞 614 148 607</a>
+  </div>
+</section>
+
+<!-- ── INFO ── -->
+<section class="info reveal">
+  <h2 class="section-title">Encuéntranos</h2>
+  <div class="section-line" style="background:var(--purple)"></div>
+  <div class="info-cards">
+    <div class="info-card">
+      <span class="i-icon">📍</span>
+      <strong>Dirección</strong><br>
+      Calle San Mariano 17<br>Madrid 28022
+    </div>
+    <div class="info-card">
+      <span class="i-icon">📞</span>
+      <strong>Teléfono</strong><br>
+      <a href="tel:+34614148607">614 148 607</a><br>
+      Solo con cita previa
+    </div>
+    <div class="info-card">
+      <span class="i-icon">📸</span>
+      <strong>Síguenos</strong><br>
+      <a href="https://www.instagram.com/ridogpeluqueria/" target="_blank">@ridogpeluqueria</a><br>
+      en Instagram
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/ridogpeluqueria/" target="_blank">📸 Instagram</a>
+    <a href="https://api.whatsapp.com/send/?phone=34614148607" target="_blank">💬 WhatsApp</a>
+    <a href="https://booksy.com/es-es/173664_ridog-peluqueria-canina_servicios-para-mascotas_53009_madrid" target="_blank">📅 Booksy</a>
+    <a href="tel:+34614148607">📞 Llamar</a>
+  </div>
+  <p>© 2025 <strong>Ridog Peluquería Canina</strong> · Madrid 🐾</p>
+</footer>
+
+<!-- ── FLOATING BUTTONS ── -->
+<div class="fab-group">
+  <a href="https://api.whatsapp.com/send/?phone=34614148607" target="_blank" class="fab fab-wa" title="WhatsApp">💬</a>
+  <a href="https://www.instagram.com/ridogpeluqueria/" target="_blank" class="fab fab-ig" title="Instagram">📸</a>
+  <a href="https://booksy.com/es-es/173664_ridog-peluqueria-canina_servicios-para-mascotas_53009_madrid" target="_blank" class="fab fab-bk" title="Reservar cita">📅</a>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => obs.observe(r));
+</script>
+</body>
+</html>
