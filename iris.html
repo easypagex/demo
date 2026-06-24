@@ -1,652 +1,1096 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IRIS BELLVE — Pause With Iris</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<title>IRIS Beauty Salón | Tres Cantos, Madrid</title>
+<meta name="description" content="Salón de belleza integral en Tres Cantos: peluquería, maquillaje, manicura, pedicura y estética avanzada. Productos veganos y 100% seguros.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --iris: #7B5EA7;
-    --rose: #E8617A;
-    --gold: #F2B945;
-    --teal: #2BBFB3;
-    --sky: #5EB4E8;
-    --cream: #FFF8F0;
-    --ink: #1A1025;
-    --lavender: #C9B8E8;
+  :root{
+    --iris-violet:#6B4E9B;
+    --iris-violet-dark:#4A3270;
+    --plum:#3D2952;
+    --lavender:#E8D9F5;
+    --lavender-soft:#F4ECFB;
+    --blush:#F8C8DC;
+    --gold:#D4A537;
+    --gold-light:#F0D789;
+    --cream:#FFFBF6;
+    --mint:#8FCB9B;
+    --ink:#3D2952;
+    --shadow: 0 20px 50px -15px rgba(74,50,112,0.35);
   }
 
-  html { scroll-behavior: smooth; }
+  *{margin:0;padding:0;box-sizing:border-box;}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
+  html{scroll-behavior:smooth;}
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 60px 24px 80px;
-    position: relative;
-    background: linear-gradient(160deg, #2d0e5c 0%, #7B5EA7 40%, #E8617A 75%, #F2B945 100%);
-    overflow: hidden;
+  body{
+    font-family:'Jost', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    line-height:1.6;
   }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 60%, rgba(43,191,179,0.25) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 20%, rgba(242,185,69,0.2) 0%, transparent 50%);
+  h1,h2,h3,h4{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    color:var(--plum);
   }
 
-  /* floating orbs */
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.18;
-    animation: float 8s ease-in-out infinite;
-  }
-  .orb-1 { width: 320px; height: 320px; background: var(--teal); top: -80px; left: -80px; animation-delay: 0s; }
-  .orb-2 { width: 200px; height: 200px; background: var(--gold); bottom: 40px; right: -40px; animation-delay: 3s; }
-  .orb-3 { width: 140px; height: 140px; background: var(--rose); top: 50%; left: 10%; animation-delay: 1.5s; }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img,svg{display:block;max-width:100%;}
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-24px) scale(1.04); }
+  .container{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
   }
 
-  .glyph {
-    font-size: 2.4rem;
-    margin-bottom: 16px;
-    position: relative;
-    z-index: 2;
-    animation: pulse 3s ease-in-out infinite;
+  /* ===== Floating petals background ===== */
+  #petal-canvas{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    pointer-events:none;
+    z-index:1;
+    overflow:hidden;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.75; transform: scale(1.1); }
+  .petal{
+    position:absolute;
+    top:-40px;
+    opacity:0.55;
+    animation:fall linear infinite;
   }
-
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3.5rem, 10vw, 7rem);
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: -1px;
-    line-height: 1;
-    position: relative;
-    z-index: 2;
+  @keyframes fall{
+    to{ transform: translateY(115vh) rotate(360deg); }
   }
-
-  .hero-name span {
-    display: block;
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    color: var(--gold);
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+  @media (prefers-reduced-motion: reduce){
+    .petal{animation:none; display:none;}
   }
 
-  .hero-tagline {
-    font-family: 'Space Mono', monospace;
-    font-size: clamp(0.75rem, 2vw, 0.95rem);
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-top: 20px;
-    position: relative;
-    z-index: 2;
+  /* ===== Header / Nav ===== */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(255,251,246,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(107,78,155,0.12);
+    transition:.3s;
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--iris-violet-dark);
+    letter-spacing:1px;
+  }
+  .logo svg{width:34px;height:34px;}
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-size:0.95rem;
+    font-weight:500;
+    letter-spacing:.5px;
+  }
+  .nav-links a{
+    position:relative;
+    color:var(--plum);
+    transition:.25s;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:-6px;
+    width:0%;height:2px;
+    background:var(--gold);
+    transition:.3s;
+  }
+  .nav-links a:hover{color:var(--iris-violet);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--iris-violet);
+    color:#fff !important;
+    padding:10px 22px;
+    border-radius:30px;
+    font-weight:600;
+    box-shadow:0 8px 20px -6px rgba(107,78,155,0.6);
+    transition:.25s;
+  }
+  .nav-cta:hover{background:var(--plum); transform:translateY(-2px);}
+  .burger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    z-index:120;
+  }
+  .burger span{
+    width:26px;height:2px;background:var(--plum);
+    transition:.3s;
   }
 
-  .hero-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 36px;
-    position: relative;
-    z-index: 2;
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:100px;
+    overflow:hidden;
+    z-index:5;
+  }
+  .hero-bg-blob{
+    position:absolute;
+    top:-15%; right:-10%;
+    width:700px;height:700px;
+    background:radial-gradient(circle at 30% 30%, var(--lavender) 0%, transparent 70%);
+    border-radius:50%;
+    filter:blur(10px);
+    z-index:-1;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:50px;
+    align-items:center;
+    width:100%;
+    position:relative;
+    z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    color:var(--iris-violet);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:24px;height:1px;
+    background:var(--gold);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.2vw, 4.4rem);
+    line-height:1.05;
+    margin-bottom:22px;
+    letter-spacing:.5px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--iris-violet);
+    position:relative;
+  }
+  .hero p.lead{
+    font-size:1.1rem;
+    color:#5b4a73;
+    max-width:480px;
+    margin-bottom:32px;
+  }
+  .hero-badges{
+    display:flex;
+    gap:14px;
+    margin-bottom:36px;
+    flex-wrap:wrap;
+  }
+  .badge{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:#fff;
+    border:1px solid var(--lavender);
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:0.85rem;
+    font-weight:500;
+    color:var(--plum);
+    box-shadow:0 6px 16px -8px rgba(107,78,155,0.25);
+  }
+  .hero-buttons{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 30px;
+    border-radius:50px;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:.3px;
+    transition:.3s;
+    cursor:pointer;
+    border:none;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--iris-violet), var(--plum));
+    color:#fff;
+    box-shadow:0 14px 30px -10px rgba(74,50,112,0.65);
+  }
+  .btn-primary:hover{transform:translateY(-3px) scale(1.02); box-shadow:0 18px 36px -10px rgba(74,50,112,0.75);}
+  .btn-outline{
+    background:transparent;
+    border:1.5px solid var(--iris-violet);
+    color:var(--iris-violet);
+  }
+  .btn-outline:hover{background:var(--iris-violet); color:#fff;}
+
+  .hero-flower{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .hero-flower svg{
+    width:100%;
+    max-width:420px;
+    animation:sway 7s ease-in-out infinite;
+    filter:drop-shadow(0 30px 40px rgba(74,50,112,0.25));
+  }
+  @keyframes sway{
+    0%,100%{ transform: rotate(-2deg) translateY(0); }
+    50%{ transform: rotate(2deg) translateY(-10px); }
   }
 
-  .pill {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: #fff;
-    padding: 8px 18px;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
+  .scroll-cue{
+    position:absolute;
+    bottom:28px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:.75rem;
+    letter-spacing:2px;
+    color:var(--iris-violet);
+    text-transform:uppercase;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+  .scroll-cue span{
+    width:1px;height:30px;
+    background:var(--iris-violet);
+    animation:scrolldown 1.8s infinite;
+  }
+  @keyframes scrolldown{
+    0%{transform:scaleY(0); opacity:0; transform-origin:top;}
+    50%{transform:scaleY(1); opacity:1; transform-origin:top;}
+    100%{transform:scaleY(1); opacity:0; transform-origin:bottom;}
   }
 
-  .hero-cta {
-    margin-top: 44px;
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
+  /* ===== Reveal on scroll ===== */
+  .reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
   }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 30px;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+  /* ===== Section generic ===== */
+  section{
+    position:relative;
+    z-index:5;
+    padding:100px 0;
   }
-  .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
-
-  .btn-primary {
-    background: #fff;
-    color: var(--iris);
+  .section-head{
+    text-align:center;
+    max-width:680px;
+    margin:0 auto 60px;
   }
-  .btn-ig {
-    background: linear-gradient(135deg, #E1306C, #833AB4, #F77737);
-    color: #fff;
+  .section-head .eyebrow{justify-content:center;}
+  .section-head .eyebrow::before{display:none;}
+  .section-head h2{
+    font-size:clamp(2.1rem,3.6vw,3rem);
   }
-
-  /* ── SECTION COMMONS ── */
-  section { padding: 80px 24px; }
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 20px;
-  }
-  .container { max-width: 900px; margin: 0 auto; }
-
-  /* ── WHO IS IRIS ── */
-  .about {
-    background: var(--ink);
-    color: #fff;
-  }
-  .about .section-label { color: var(--teal); }
-  .about .section-title { color: #fff; }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    margin-top: 40px;
-  }
-  .about-text p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 16px;
-  }
-  .about-text p strong { color: var(--gold); }
-
-  .about-roles {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .role-card {
-    border-left: 3px solid;
-    padding: 14px 20px;
-    border-radius: 0 12px 12px 0;
-    background: rgba(255,255,255,0.05);
-  }
-  .role-card:nth-child(1) { border-color: var(--rose); }
-  .role-card:nth-child(2) { border-color: var(--teal); }
-  .role-card:nth-child(3) { border-color: var(--gold); }
-  .role-card:nth-child(4) { border-color: var(--lavender); }
-  .role-card .role-title {
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    font-family: 'Space Mono', monospace;
-    margin-bottom: 4px;
-  }
-  .role-card .role-name {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
+  .section-head p{
+    color:#5b4a73;
+    margin-top:14px;
+    font-size:1.05rem;
   }
 
-  /* ── OFFERINGS ── */
-  .offerings { background: var(--cream); }
-  .offerings .section-label { color: var(--rose); }
+  /* ===== About ===== */
+  .about{
+    background:linear-gradient(180deg, var(--cream), var(--lavender-soft));
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:60px;
+    align-items:center;
+  }
+  .about-visual{
+    position:relative;
+    border-radius:28px;
+    background:linear-gradient(135deg, var(--iris-violet), var(--plum));
+    aspect-ratio:1/1.05;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .about-visual svg{width:60%;}
+  .about-visual::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 70% 20%, rgba(255,255,255,0.25), transparent 60%);
+  }
+  .about-text h2{font-size:clamp(1.9rem,3vw,2.6rem); margin-bottom:18px;}
+  .about-text p{color:#5b4a73; margin-bottom:16px; font-size:1.03rem;}
+  .about-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:26px;
+  }
+  .about-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:0.92rem;
+    color:var(--plum);
+    font-weight:500;
+  }
+  .about-list svg{width:18px;height:18px;flex-shrink:0;margin-top:2px;color:var(--gold);}
 
-  .offerings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
+  /* ===== Services ===== */
+  .services{background:var(--cream);}
+  .service-tabs{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:50px;
+  }
+  .tab-btn{
+    padding:10px 22px;
+    border-radius:30px;
+    border:1.5px solid var(--lavender);
+    background:#fff;
+    font-weight:500;
+    font-size:0.88rem;
+    cursor:pointer;
+    transition:.25s;
+    color:var(--plum);
+  }
+  .tab-btn.active, .tab-btn:hover{
+    background:var(--iris-violet);
+    border-color:var(--iris-violet);
+    color:#fff;
+  }
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .service-card{
+    background:#fff;
+    border-radius:22px;
+    padding:34px 28px;
+    border:1px solid var(--lavender);
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
+  }
+  .service-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;
+    width:100%;height:4px;
+    background:linear-gradient(90deg, var(--iris-violet), var(--blush), var(--gold));
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:.4s;
+  }
+  .service-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow);
+    border-color:transparent;
+  }
+  .service-card:hover::before{transform:scaleX(1);}
+  .service-icon{
+    width:56px;height:56px;
+    border-radius:16px;
+    background:var(--lavender-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:20px;
+    color:var(--iris-violet);
+  }
+  .service-icon svg{width:28px;height:28px;}
+  .service-card h3{font-size:1.35rem; margin-bottom:10px;}
+  .service-card p{color:#5b4a73; font-size:0.93rem;}
+  .service-card .tag-row{
+    display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;
+  }
+  .mini-tag{
+    background:var(--lavender-soft);
+    color:var(--iris-violet-dark);
+    font-size:0.72rem;
+    padding:4px 10px;
+    border-radius:20px;
+    font-weight:600;
   }
 
-  .offer-card {
-    border-radius: 20px;
-    padding: 32px 24px;
-    transition: transform 0.25s, box-shadow 0.25s;
-    cursor: default;
+  /* ===== Philosophy / vegano strip ===== */
+  .philosophy{
+    background:linear-gradient(135deg, var(--iris-violet), var(--plum));
+    color:#fff;
+    overflow:hidden;
+    position:relative;
   }
-  .offer-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.12); }
-
-  .offer-card:nth-child(1) { background: linear-gradient(135deg, #7B5EA7, #C9B8E8); color: #fff; }
-  .offer-card:nth-child(2) { background: linear-gradient(135deg, #2BBFB3, #5EB4E8); color: #fff; }
-  .offer-card:nth-child(3) { background: linear-gradient(135deg, #E8617A, #F2B945); color: #fff; }
-  .offer-card:nth-child(4) { background: linear-gradient(135deg, #1A1025, #7B5EA7); color: #fff; }
-
-  .offer-emoji { font-size: 2.4rem; margin-bottom: 16px; display: block; }
-  .offer-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+  .philosophy .container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
   }
-  .offer-desc { font-size: 0.9rem; line-height: 1.6; opacity: 0.9; }
-
-  /* ── CLASSES & SCHEDULE ── */
-  .classes { background: #f0ebff; }
-  .classes .section-label { color: var(--iris); }
-
-  .schedule-list {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .philosophy h2{color:#fff;}
+  .philosophy p{color:#e3d8f3; margin-top:16px; font-size:1.05rem;}
+  .pill-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:30px;}
+  .pill{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:10px 18px;
+    border-radius:30px;
+    font-size:0.88rem;
+    font-weight:500;
   }
-
-  .schedule-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    background: #fff;
-    border-radius: 16px;
-    padding: 20px 24px;
-    border-left: 4px solid;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    transition: transform 0.2s;
+  .philosophy-visual{
+    display:flex;
+    justify-content:center;
   }
-  .schedule-item:hover { transform: translateX(4px); }
+  .philosophy-visual svg{width:100%; max-width:320px;}
 
-  .schedule-item:nth-child(1) { border-color: var(--iris); }
-  .schedule-item:nth-child(2) { border-color: var(--teal); }
-  .schedule-item:nth-child(3) { border-color: var(--rose); }
-
-  .sched-time {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--iris);
-    min-width: 120px;
-    padding-top: 3px;
-    letter-spacing: 1px;
+  /* ===== Gallery strip marquee ===== */
+  .marquee-wrap{
+    background:var(--lavender-soft);
+    padding:30px 0;
+    overflow:hidden;
+    position:relative;
+    z-index:5;
   }
-  .sched-name {
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 4px;
+  .marquee{
+    display:flex;
+    gap:50px;
+    white-space:nowrap;
+    animation:scrollmarquee 26s linear infinite;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.6rem;
+    color:var(--iris-violet);
+    font-weight:600;
+    align-items:center;
   }
-  .sched-venue {
-    font-size: 0.82rem;
-    color: #888;
+  .marquee span{display:flex; align-items:center; gap:14px;}
+  .marquee svg{width:18px;height:18px; color:var(--gold);}
+  @keyframes scrollmarquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
   }
 
-  /* ── EVENTS ── */
-  .events { background: var(--ink); color: #fff; }
-  .events .section-label { color: var(--gold); }
-  .events .section-title { color: #fff; }
-
-  .events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
+  /* ===== Testimonials ===== */
+  .testimonials{background:var(--cream);}
+  .test-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .test-card{
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    border:1px solid var(--lavender);
+    position:relative;
+  }
+  .stars{color:var(--gold); margin-bottom:14px; font-size:1.1rem;}
+  .test-card p{color:#5b4a73; font-size:0.95rem; font-style:italic;}
+  .test-author{
+    margin-top:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    color:var(--plum);
+    font-size:0.9rem;
+  }
+  .avatar-dot{
+    width:36px;height:36px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--iris-violet), var(--blush));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
   }
 
-  .event-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 20px;
-    padding: 28px 24px;
-    transition: background 0.2s, transform 0.2s;
-    text-decoration: none;
-    display: block;
-    color: #fff;
+  /* ===== CTA Map / contact ===== */
+  .contact{
+    background:linear-gradient(180deg, var(--lavender-soft), var(--cream));
   }
-  .event-card:hover { background: rgba(255,255,255,0.13); transform: translateY(-4px); }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .contact-card{
+    background:#fff;
+    border-radius:26px;
+    padding:46px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--lavender);
+  }
+  .contact-card h3{font-size:1.7rem; margin-bottom:8px;}
+  .contact-card p.sub{color:#5b4a73; margin-bottom:30px;}
+  .contact-row{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid var(--lavender-soft);
+  }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .icon-box{
+    width:44px;height:44px;
+    border-radius:12px;
+    background:var(--lavender-soft);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--iris-violet);
+    flex-shrink:0;
+  }
+  .contact-row .icon-box svg{width:22px;height:22px;}
+  .contact-row a, .contact-row span.text{
+    font-weight:500;
+    color:var(--plum);
+  }
+  .contact-row .label{
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:var(--iris-violet);
+    display:block;
+    margin-bottom:4px;
+  }
+  .map-card{
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    min-height:380px;
+    border:1px solid var(--lavender);
+  }
+  .map-card iframe{width:100%;height:100%; min-height:380px; border:0;}
 
-  .event-date {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    color: var(--gold);
-    margin-bottom: 10px;
+  .social-row{display:flex; gap:12px; margin-top:30px;}
+  .social-btn{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:13px;
+    border-radius:14px;
+    font-weight:600;
+    font-size:0.88rem;
+    transition:.25s;
   }
-  .event-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-style: italic;
-    margin-bottom: 8px;
+  .social-btn.ig{background:linear-gradient(135deg,#feda75,#d62976,#962fbf,#4f5bd5); color:#fff;}
+  .social-btn.wa{background:#25D366; color:#fff;}
+  .social-btn:hover{transform:translateY(-3px); filter:brightness(1.06);}
+
+  /* ===== Footer ===== */
+  footer{
+    background:var(--plum);
+    color:#e3d8f3;
+    padding:60px 0 30px;
+    position:relative;
+    z-index:5;
   }
-  .event-venue {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.55);
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .footer-logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.5rem;color:#fff;font-weight:700;
+    margin-bottom:14px;
+  }
+  .footer-logo svg{width:30px;height:30px;}
+  footer h4{color:#fff; font-family:'Jost',sans-serif; font-size:0.95rem; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:16px; font-weight:600;}
+  footer ul li{margin-bottom:10px; font-size:0.92rem;}
+  footer a:hover{color:var(--gold-light);}
+  .footer-bottom{
+    padding-top:24px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:0.82rem;
+    color:#b9a8d1;
   }
 
-  /* ── MOON DIVIDER ── */
-  .moon-divider {
-    text-align: center;
-    padding: 48px 24px;
-    background: linear-gradient(135deg, var(--iris), var(--rose));
-    color: #fff;
+  /* ===== Floating WhatsApp button ===== */
+  .float-wa{
+    position:fixed;
+    bottom:26px;right:26px;
+    width:60px;height:60px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 12px 30px -8px rgba(37,211,102,0.7);
+    z-index:200;
+    animation:pulse 2.4s infinite;
   }
-  .moon-divider p {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    font-style: italic;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.5;
-  }
-  .moon-divider p::before { content: '𒌐 '; }
-  .moon-divider p::after { content: ' 𒌐'; }
-
-  /* ── BOOK ── */
-  .book { background: var(--cream); text-align: center; }
-  .book .section-label { color: var(--teal); }
-  .book .section-title { max-width: 560px; margin: 0 auto 28px; }
-
-  .book-grid {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 40px;
+  .float-wa svg{width:30px;height:30px;color:#fff;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(37,211,102,0.55);}
+    70%{box-shadow:0 0 0 16px rgba(37,211,102,0);}
+    100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
   }
 
-  .book-btn {
-    display: inline-block;
-    padding: 16px 32px;
-    border-radius: 100px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+  /* ===== Responsive ===== */
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin:0 auto 32px;}
+    .hero-badges, .hero-buttons{justify-content:center;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-visual{order:-1; max-width:340px; margin:0 auto;}
+    .service-grid{grid-template-columns:1fr 1fr;}
+    .philosophy .container{grid-template-columns:1fr; text-align:center;}
+    .philosophy-visual{order:-1;}
+    .test-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
   }
-  .book-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); }
-
-  .book-btn-a { background: var(--iris); color: #fff; }
-  .book-btn-b { background: var(--teal); color: #fff; }
-  .book-btn-c { background: var(--rose); color: #fff; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--ink);
-    color: rgba(255,255,255,0.6);
-    text-align: center;
-    padding: 48px 24px;
-    font-size: 0.85rem;
-    line-height: 2;
-  }
-  footer a { color: var(--lavender); text-decoration: none; }
-  footer a:hover { color: var(--gold); }
-  footer .footer-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 680px) {
-    .about-grid { grid-template-columns: 1fr; }
-    .schedule-item { flex-direction: column; gap: 6px; }
-    .sched-time { min-width: unset; }
-  }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
+  @media (max-width: 720px){
+    .nav-links{
+      position:fixed;
+      top:0; right:0;
+      height:100vh;
+      width:72%;
+      background:#fff;
+      flex-direction:column;
+      justify-content:center;
+      align-items:flex-start;
+      padding:40px;
+      gap:26px;
+      transform:translateX(100%);
+      transition:.4s;
+      box-shadow:-10px 0 40px rgba(0,0,0,0.1);
+    }
+    .nav-links.open{transform:translateX(0);}
+    .burger{display:flex;}
+    .nav-cta{order:10;}
+    .service-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body>
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+<div id="petal-canvas"></div>
 
-  <div class="glyph">𒌐</div>
-  <h1 class="hero-name">
-    <span>Pause With</span>
-    IRIS
-  </h1>
-  <p class="hero-tagline">Energy · Ritual · Movement</p>
-
-  <div class="hero-pills">
-    <span class="pill">Reiki Master</span>
-    <span class="pill">Sound Therapist</span>
-    <span class="pill">Tarot Reader</span>
-    <span class="pill">Yogic Guide</span>
-  </div>
-
-  <div class="hero-cta">
-    <a href="https://www.instagram.com/pausewithiris/" target="_blank" class="btn btn-ig">
-      ♡ Follow on Instagram
+<header>
+  <nav>
+    <a href="#inicio" class="logo">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M20 4C20 4 12 14 12 22C12 27 15.5 31 20 31C24.5 31 28 27 28 22C28 14 20 4 20 4Z" fill="#6B4E9B"/>
+        <path d="M20 31C20 31 22 35 26 36" stroke="#D4A537" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="3" fill="#D4A537"/>
+      </svg>
+      IRIS
     </a>
-    <a href="https://linktr.ee/pausewithiris" target="_blank" class="btn btn-primary">
-      All Links →
-    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#filosofia">Filosofía</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a class="nav-cta" href="https://api.whatsapp.com/send/?phone=34600432831" target="_blank" rel="noopener">Reservar cita</a></li>
+    </ul>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-blob"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Beauty Lounge · Tres Cantos</span>
+      <h1>Donde tu belleza <br><em>florece</em> con calidad premium</h1>
+      <p class="lead">Salón de belleza integral: peluquería, maquillaje, manicura, pedicura y estética avanzada bajo un mismo techo. Productos veganos, sin parabenos y 100% seguros.</p>
+      <div class="hero-badges">
+        <span class="badge">🐰 Vegano</span>
+        <span class="badge">🌎 100% seguro</span>
+        <span class="badge">✨ Calidad premium</span>
+      </div>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=34600432831" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.6-2.7-1.4-3.7-3.2-.2-.3 0-.5.1-.7.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.7-1.6-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 3.9 2.3.9 2.3.6 2.7.5.4 0 1.3-.5 1.5-1 .2-.5.2-.9.1-1zm-5.5 6.7c-1.6 0-3.1-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3a8.6 8.6 0 1 1 7.4 3.9zm0-18.4A10.3 10.3 0 0 0 1.7 12c0 1.9.5 3.7 1.5 5.3L1 23l5.9-1.5a10.2 10.2 0 0 0 5.1 1.4h0a10.4 10.4 0 0 0 0-20.7z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a class="btn btn-outline" href="https://www.treatwell.es/establecimiento/salon-de-belleza-iris" target="_blank" rel="noopener">Ver en Treatwell</a>
+      </div>
+    </div>
+    <div class="hero-flower reveal">
+      <svg viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="petalA" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#9B7BC9"/>
+            <stop offset="100%" stop-color="#4A3270"/>
+          </linearGradient>
+          <linearGradient id="petalB" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#F8C8DC"/>
+            <stop offset="100%" stop-color="#D89BB8"/>
+          </linearGradient>
+          <linearGradient id="petalC" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#6B4E9B"/>
+            <stop offset="100%" stop-color="#8FCB9B"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="200" cy="420" rx="70" ry="14" fill="#E8D9F5" opacity="0.5"/>
+        <path d="M200 230 C150 180 110 120 140 60 C170 100 195 160 200 230Z" fill="url(#petalA)"/>
+        <path d="M200 230 C250 180 290 120 260 60 C230 100 205 160 200 230Z" fill="url(#petalB)"/>
+        <path d="M200 230 C140 260 80 280 70 340 C130 330 180 290 200 230Z" fill="url(#petalA)" opacity="0.92"/>
+        <path d="M200 230 C260 260 320 280 330 340 C270 330 220 290 200 230Z" fill="url(#petalC)" opacity="0.92"/>
+        <path d="M200 230 C180 300 170 360 200 420 C230 360 220 300 200 230Z" fill="url(#petalB)"/>
+        <circle cx="200" cy="232" r="16" fill="#D4A537"/>
+        <path d="M200 232 C200 350 200 380 200 430" stroke="#6B4E9B" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+        <path d="M200 380 C170 390 150 400 140 420" stroke="#8FCB9B" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M200 360 C230 370 250 380 262 398" stroke="#8FCB9B" stroke-width="4" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
   </div>
+  <div class="scroll-cue"><span></span>Descubre más</div>
 </section>
 
-<!-- ── WHO IS IRIS ── -->
-<section class="about">
-  <div class="container">
-    <p class="section-label reveal">About</p>
-    <h2 class="section-title reveal">Who is Iris?</h2>
-
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>Iris Bellve is a <strong>healer, teacher, and ritual guide</strong> based in New Zealand. Her work lives at the intersection of ancient wisdom and embodied practice — weaving energy work, sacred ceremony, and mindful movement into experiences that invite you to pause, feel, and return to yourself.</p>
-        <p>Whether you're arriving to a one-on-one session, a candlelit sound bath, or a moon gathering, Iris creates spaces where transformation happens gently and deeply.</p>
-      </div>
-
-      <div class="about-roles reveal">
-        <div class="role-card">
-          <p class="role-title">Founder</p>
-          <p class="role-name">@PAUSERITUALS</p>
-        </div>
-        <div class="role-card">
-          <p class="role-title">Founder</p>
-          <p class="role-name">@THEHEALINGROOM.NZ</p>
-        </div>
-        <div class="role-card">
-          <p class="role-title">Teacher at</p>
-          <p class="role-name">@REDROOM.TAKAPUNA · @SALA_AKL</p>
-        </div>
-        <div class="role-card">
-          <p class="role-title">Events at</p>
-          <p class="role-name">@KENKO_STUDIOS</p>
-        </div>
-      </div>
+<!-- ===== ABOUT ===== -->
+<section class="about" id="nosotros">
+  <div class="container about-grid">
+    <div class="about-visual reveal">
+      <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" fill="rgba(255,255,255,0.08)"/>
+        <path d="M100 40c-25 30-40 55-40 80a40 40 0 0080 0c0-25-15-50-40-80z" fill="#fff" opacity="0.92"/>
+        <circle cx="100" cy="118" r="10" fill="#D4A537"/>
+      </svg>
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">Sobre nosotros</span>
+      <h2>Iris Salón de Belleza, Beauty Lounge en Tres Cantos</h2>
+      <p>Iris es un salón de belleza en Tres Cantos que reúne <strong>peluquería</strong>, <strong>estética</strong> y <strong>cuidado de uñas</strong> bajo un mismo techo. Nuestra filosofía se apoya en productos veganos y sin parabenos, y en un trato personalizado que adapta cada servicio a las necesidades y los gustos de cada cliente.</p>
+      <p>Tanto en el cuidado del cabello como en los tratamientos faciales y corporales, cuidamos cada detalle para que tu experiencia sea siempre premium, cómoda y segura.</p>
+      <ul class="about-list">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Trato 100% personalizado</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Productos veganos 🐰</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Sin parabenos</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Estética avanzada</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ── OFFERINGS ── -->
-<section class="offerings">
-  <div class="container">
-    <p class="section-label reveal">What I Offer</p>
-    <h2 class="section-title reveal">Ways to Work Together</h2>
-
-    <div class="offerings-grid">
-      <div class="offer-card reveal">
-        <span class="offer-emoji">✦</span>
-        <h3 class="offer-title">Reiki & Energy Healing</h3>
-        <p class="offer-desc">Channel universal life force through hands-on or distance sessions, restoring balance and releasing what no longer serves you.</p>
-      </div>
-      <div class="offer-card reveal">
-        <span class="offer-emoji">◎</span>
-        <h3 class="offer-title">Sound Therapy</h3>
-        <p class="offer-desc">Bowls, voice, and resonance carry you into deep stillness. Weekly Sound Baths open every Sunday at Sala — come as you are.</p>
-      </div>
-      <div class="offer-card reveal">
-        <span class="offer-emoji">☽</span>
-        <h3 class="offer-title">Tarot Reading</h3>
-        <p class="offer-desc">Cards as a mirror. Whether you're at a crossroads or seeking clarity, a reading offers symbols and story to navigate your path.</p>
-      </div>
-      <div class="offer-card reveal">
-        <span class="offer-emoji">◈</span>
-        <h3 class="offer-title">Yogic Movement</h3>
-        <p class="offer-desc">ThermoYin and Ashtanga classes that honour the body's intelligence — discipline, breath, and surrender in equal measure.</p>
-      </div>
-    </div>
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Peluquería</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Maquillaje</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Manicura</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Pedicura</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Estética avanzada</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Peluquería</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Maquillaje</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Manicura</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Pedicura</span>
+    <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>Estética avanzada</span>
   </div>
-</section>
-
-<!-- ── CLASSES ── -->
-<section class="classes">
-  <div class="container">
-    <p class="section-label reveal">Regular Classes</p>
-    <h2 class="section-title reveal">Find Your Practice</h2>
-
-    <div class="schedule-list">
-      <div class="schedule-item reveal">
-        <div class="sched-time">MON · 7:45 AM<br><em>(Coming Soon)</em></div>
-        <div>
-          <p class="sched-name">Ashtanga Community Classes</p>
-          <p class="sched-venue">Sala — @SALA_AKL</p>
-        </div>
-      </div>
-      <div class="schedule-item reveal">
-        <div class="sched-time">TUE & THU · 7:00 PM</div>
-        <div>
-          <p class="sched-name">ThermoYin Yoga</p>
-          <p class="sched-venue">Redroom Takapuna — @REDROOM.TAKAPUNA</p>
-        </div>
-      </div>
-      <div class="schedule-item reveal">
-        <div class="sched-time">SUN · 6:30 PM</div>
-        <div>
-          <p class="sched-name">Sound Bath</p>
-          <p class="sched-venue">Sala — @SALA_AKL</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── MOON DIVIDER ── -->
-<div class="moon-divider reveal">
-  <p>Every gathering is an invitation to come home to yourself</p>
 </div>
 
-<!-- ── EVENTS ── -->
-<section class="events">
+<!-- ===== SERVICES ===== -->
+<section class="services" id="servicios">
   <div class="container">
-    <p class="section-label reveal">Sacred Gatherings</p>
-    <h2 class="section-title reveal">Upcoming Events</h2>
+    <div class="section-head reveal">
+      <span class="eyebrow">Nuestros servicios</span>
+      <h2>Todo lo que tu belleza necesita</h2>
+      <p>Una propuesta integral que combina cabello, uñas y estética en un mismo centro.</p>
+    </div>
 
-    <div class="events-grid">
-      <a class="event-card reveal" href="https://www.kenko.studio/service-page/ostara-retreat" target="_blank">
-        <p class="event-date">SAT · 6 JUNE · 7:00 PM</p>
-        <p class="event-name">Ostara Gathering</p>
-        <p class="event-venue">Kenkō Studios</p>
-      </a>
-      <a class="event-card reveal" href="https://www.kenko.studio/service-page/solstice-retreat" target="_blank">
-        <p class="event-date">SAT · 20 JUNE · 6:00 PM</p>
-        <p class="event-name">Solstice Retreat</p>
-        <p class="event-venue">Kenkō Studios</p>
-      </a>
-      <a class="event-card reveal" href="https://momence.com/l/x9hBbGrd" target="_blank">
-        <p class="event-date">TUE · 14 JULY · 7:30 PM</p>
-        <p class="event-name">Cancer New Moon — Ocean Sound Ceremony</p>
-        <p class="event-venue">REVA Yoga</p>
-      </a>
-      <a class="event-card reveal" href="https://momence.com/l/rqh72Ob6" target="_blank">
-        <p class="event-date">TUE · 10 NOVEMBER · 7:30 PM</p>
-        <p class="event-name">Scorpio New Moon — Ocean Sound Ceremony</p>
-        <p class="event-venue">REVA Yoga</p>
-      </a>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4c4 0 6 3 6 7s-2 9-6 9M18 4c-4 0-6 3-6 7s2 9 6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Peluquería</h3>
+        <p>Cortes, color y tintes naturales, mechas, balayage y melting para transiciones de color suaves y resultados a medida. También realizamos alisados.</p>
+        <div class="tag-row"><span class="mini-tag">Balayage</span><span class="mini-tag">Melting</span><span class="mini-tag">Alisados</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 21v-7M4.2 8l3.4 2M19.8 8l-3.4 2M7 17l-3 2M17 17l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <h3>Maquillaje &amp; Peinados</h3>
+        <p>Maquillaje y peinados pensados para novias y eventos, con looks personalizados para cada celebración especial.</p>
+        <div class="tag-row"><span class="mini-tag">Novias</span><span class="mini-tag">Eventos</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M2 12a10 10 0 1020 0 10 10 0 00-20 0z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Manicura &amp; Pedicura</h3>
+        <p>Manicura rusa, una técnica que combina la estética con el cuidado integral de la cutícula y la uña, además de pedicura completa.</p>
+        <div class="tag-row"><span class="mini-tag">Manicura rusa</span><span class="mini-tag">Pedicura</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <h3>Bioluminiscencia láser</h3>
+        <p>Tratamientos de bioluminiscencia con láser atérmico orientados a reducir manchas y mejorar la luminosidad de la piel.</p>
+        <div class="tag-row"><span class="mini-tag">Manchas</span><span class="mini-tag">Luminosidad</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.4-9.5-9C1 8 3 4 7 4c2 0 4 1.2 5 3 1-1.8 3-3 5-3 4 0 6 4 4.5 8C19 16.6 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h3>Rejuvenecimiento facial y corporal</h3>
+        <p>Tratamientos de estética avanzada para el rejuvenecimiento facial y corporal, adaptados a las necesidades de cada piel.</p>
+        <div class="tag-row"><span class="mini-tag">Facial</span><span class="mini-tag">Corporal</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4l14 16M19 4L5 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Depilación láser SHR</h3>
+        <p>Depilación mediante láser atérmico SHR, un método cómodo y eficaz para una piel suave y libre de vello durante más tiempo.</p>
+        <div class="tag-row"><span class="mini-tag">Láser atérmico</span><span class="mini-tag">SHR</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── BOOK ── -->
-<section class="book">
+<!-- ===== PHILOSOPHY ===== -->
+<section class="philosophy" id="filosofia">
   <div class="container">
-    <p class="section-label reveal">Book a Session</p>
-    <h2 class="section-title reveal">Ready to Begin?</h2>
-    <p class="reveal" style="color:#666; max-width:480px; margin:0 auto; font-size:1.05rem; line-height:1.7;">Whether you're new to energy work or deepening an existing practice, there's a door open for you.</p>
-
-    <div class="book-grid reveal">
-      <a href="https://www.fresha.com/book-now/the-healing-room-m1xrbj7c/services?eid=4559971&share=true&pId=2508635" target="_blank" class="book-btn book-btn-a">1:1 Session</a>
-      <a href="https://www.fresha.com/book-now/the-healing-room-m1xrbj7c/services?lid=2589957&eid=4559751&share=true&pId=2508635" target="_blank" class="book-btn book-btn-b">2:1 Package</a>
-      <a href="https://www.thehealingroom.nz/practitioners/iris-bellve" target="_blank" class="book-btn book-btn-c">About at THR</a>
+    <div class="philosophy-copy reveal">
+      <span class="eyebrow" style="color:#F0D789;">Nuestra filosofía</span>
+      <h2>Calidad premium, vegana y 100% segura</h2>
+      <p>Creemos en una belleza consciente: productos veganos 🐰, libres de parabenos y formulados para el bienestar de tu piel, tu cabello y el planeta 🌎. Cada tratamiento se adapta a ti, sin excepciones.</p>
+      <div class="pill-row">
+        <span class="pill">🐰 100% vegano</span>
+        <span class="pill">🌎 Seguro y consciente</span>
+        <span class="pill">✨ Sin parabenos</span>
+        <span class="pill">💜 Trato personalizado</span>
+      </div>
+    </div>
+    <div class="philosophy-visual reveal">
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="160" cy="160" r="150" fill="rgba(255,255,255,0.07)"/>
+        <circle cx="160" cy="160" r="110" fill="rgba(255,255,255,0.07)"/>
+        <path d="M160 70c-35 40-55 75-55 110a55 55 0 00110 0c0-35-20-70-55-110z" fill="#F0D789"/>
+        <circle cx="160" cy="190" r="14" fill="#3D2952"/>
+      </svg>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="opiniones">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Opiniones</span>
+      <h2>Clientas que ya florecieron con nosotras</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"El balayage me quedó espectacular y el trato fue súper cercano desde el primer momento. Se nota la calidad de los productos."</p>
+        <div class="test-author"><span class="avatar-dot">M</span> Marta G. — Tres Cantos</div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Fui para mi maquillaje de novia y superó todas mis expectativas. Profesionales, detallistas y muy atentas a cada detalle."</p>
+        <div class="test-author"><span class="avatar-dot">L</span> Laura P. — Madrid</div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"La manicura rusa es otro nivel y me encanta que todos los productos sean veganos. Mi salón de confianza."</p>
+        <div class="test-author"><span class="avatar-dot">S</span> Sara R. — Tres Cantos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Visítanos</span>
+      <h2>Reserva tu cita en Iris</h2>
+      <p>Estamos en Sector Foresta, Tres Cantos. Escríbenos o llámanos, ¡te esperamos!</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <h3>Información de contacto</h3>
+        <p class="sub">Elige la vía que prefieras para reservar tu cita.</p>
+
+        <div class="contact-row">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1118 0z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div><span class="label">Dirección</span><span class="text">Sector Foresta 43, local 4, 28760 Tres Cantos, Madrid</span></div>
+        </div>
+
+        <div class="contact-row">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v2a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 1h2a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L7 8.7a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.7 2z" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div><span class="label">Teléfono</span><a href="tel:918035258">918 03 52 58</a></div>
+        </div>
+
+        <div class="contact-row">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.6-2.7-1.4-3.7-3.2-.2-.3 0-.5.1-.7.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.7-1.6-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 3.9 2.3.9 2.3.6 2.7.5.4 0 1.3-.5 1.5-1 .2-.5.2-.9.1-1z" fill="currentColor"/><path d="M12 22a10 10 0 100-20 10 10 0 000 20z" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div><span class="label">WhatsApp</span><a href="https://api.whatsapp.com/send/?phone=34600432831" target="_blank" rel="noopener">+34 600 43 28 31</a></div>
+        </div>
+
+        <div class="contact-row">
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></div>
+          <div><span class="label">Instagram</span><a href="https://www.instagram.com/irisalon_/" target="_blank" rel="noopener">@irisalon_</a></div>
+        </div>
+
+        <div class="social-row">
+          <a class="social-btn ig" href="https://www.instagram.com/irisalon_/" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-btn wa" href="https://api.whatsapp.com/send/?phone=34600432831" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="map-card reveal">
+        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Sector+Foresta+43,+Tres+Cantos,+Madrid,+Spain+28760&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
-  <p class="footer-name">Iris Bellve</p>
-  <p>𒌐 Energy · Ritual · Movement</p>
-  <p style="margin-top:16px;">
-    <a href="https://www.instagram.com/pausewithiris/" target="_blank">@pausewithiris</a>
-    &nbsp;·&nbsp;
-    <a href="https://linktr.ee/pausewithiris" target="_blank">All Links</a>
-    &nbsp;·&nbsp;
-    <a href="mailto:pausewithiris@gmail.com">pausewithiris@gmail.com</a>
-  </p>
-  <p style="margin-top:24px; font-size:0.75rem; opacity:0.4;">© 2025 Iris Bellve · Aotearoa New Zealand</p>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M20 4C20 4 12 14 12 22C12 27 15.5 31 20 31C24.5 31 28 27 28 22C28 14 20 4 20 4Z" fill="#F0D789"/><circle cx="20" cy="20" r="3" fill="#fff"/></svg>
+          IRIS
+        </div>
+        <p style="max-width:280px; font-size:0.9rem;">Salón de belleza integral en Tres Cantos. Peluquería, maquillaje, manicura, pedicura y estética avanzada. Calidad premium, vegana y 100% segura.</p>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#filosofia">Filosofía</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:918035258">918 03 52 58</a></li>
+          <li><a href="https://api.whatsapp.com/send/?phone=34600432831" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/irisalon_/" target="_blank" rel="noopener">@irisalon_</a></li>
+          <li><a href="https://www.treatwell.es/establecimiento/salon-de-belleza-iris" target="_blank" rel="noopener">Treatwell</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 IRIS Beauty Salón · Tres Cantos, Madrid</span>
+      <span>Sector Foresta 43, local 4, 28760</span>
+    </div>
+  </div>
 </footer>
 
+<a class="float-wa" href="https://api.whatsapp.com/send/?phone=34600432831" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.6-2.7-1.4-3.7-3.2-.2-.3 0-.5.1-.7.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.7-1.6-.9-2.1-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 3.9 2.3.9 2.3.6 2.7.5.4 0 1.3-.5 1.5-1 .2-.5.2-.9.1-1zm-5.5 6.7c-1.6 0-3.1-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3a8.6 8.6 0 1 1 7.4 3.9zm0-18.4A10.3 10.3 0 0 0 1.7 12c0 1.9.5 3.7 1.5 5.3L1 23l5.9-1.5a10.2 10.2 0 0 0 5.1 1.4h0a10.4 10.4 0 0 0 0-20.7z"/></svg>
+</a>
+
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
+  // ===== Mobile nav toggle =====
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ===== Scroll reveal =====
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ===== Falling petals background =====
+  const canvas = document.getElementById('petal-canvas');
+  const petalColors = ['#9B7BC9', '#F8C8DC', '#D4A537', '#8FCB9B'];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function createPetal(){
+    if (reduceMotion) return;
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    const size = 8 + Math.random() * 10;
+    const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.width = size + 'px';
+    petal.style.height = size * 1.3 + 'px';
+    petal.style.background = color;
+    petal.style.borderRadius = '60% 0 60% 0';
+    petal.style.animationDuration = (10 + Math.random() * 10) + 's';
+    petal.style.animationDelay = (Math.random() * 2) + 's';
+    canvas.appendChild(petal);
+    setTimeout(() => petal.remove(), 22000);
+  }
+
+  if (!reduceMotion){
+    for (let i = 0; i < 12; i++) setTimeout(createPetal, i * 500);
+    setInterval(createPetal, 1800);
+  }
+
+  // ===== Header shadow on scroll =====
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 20 ? '0 6px 24px -10px rgba(74,50,112,0.25)' : 'none';
+  });
 </script>
+
 </body>
 </html>
