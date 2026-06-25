@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EmiVet – Etología Clínica Felina | Dra. Valentina Iglesias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral:    #FF6B6B;
+    --violet:   #7B4FD4;
+    --mint:     #3ECFAA;
+    --gold:     #FFD166;
+    --lilac:    #C9B8FF;
+    --peach:    #FFB4A2;
+    --dark:     #1A1035;
+    --offwhite: #FFF9F4;
+    --text:     #2D2250;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--offwhite);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(255,249,244,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--lilac);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900;
+    color: var(--violet);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--coral); }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    color: var(--text);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--violet); }
+  .nav-cta {
+    background: var(--violet); color: #fff !important;
+    padding: .45rem 1.1rem; border-radius: 2rem;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--coral) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 2rem 4rem;
+    background: linear-gradient(135deg, #1A1035 0%, #3A1D6E 50%, #7B4FD4 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero-blobs {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: .35;
+  }
+  .blob-1 { width: 500px; height: 500px; background: var(--coral); top: -100px; right: -100px; }
+  .blob-2 { width: 400px; height: 400px; background: var(--mint);  bottom: -80px; left: -80px; }
+  .blob-3 { width: 300px; height: 300px; background: var(--gold);  top: 30%; left: 40%; }
+
+  .hero-inner {
+    max-width: 900px; margin: 0 auto; text-align: center;
+    position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(255,215,102,0.4);
+    padding: .35rem 1rem; border-radius: 2rem;
+    font-size: .85rem; font-weight: 600; letter-spacing: .05em;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(4px);
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900; line-height: 1;
+    color: #fff; margin-bottom: .5rem;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    color: var(--lilac);
+    margin-bottom: 1.8rem;
+    font-weight: 700;
+  }
+  .hero-desc {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem; line-height: 1.7;
+    max-width: 620px; margin: 0 auto 2.5rem;
+  }
+  .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .8rem 2rem; border-radius: 3rem; font-weight: 600;
+    text-decoration: none; font-size: 1rem; transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .btn-primary { background: var(--coral); color: #fff; }
+  .btn-secondary { background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.4); backdrop-filter: blur(4px); }
+  .btn-mint { background: var(--mint); color: var(--dark); }
+
+  .cat-paws { font-size: 2rem; margin: 2rem 0 0; opacity: .5; letter-spacing: .3rem; color: #fff; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    font-size: .78rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--violet);
+    margin-bottom: .6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900; line-height: 1.15;
+    color: var(--dark); margin-bottom: 1.2rem;
+  }
+  .section-title span { color: var(--coral); }
+  .divider {
+    width: 60px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--coral), var(--violet));
+    margin-bottom: 2rem;
+  }
+
+  /* ── ABOUT ── */
+  #sobre-mi { background: #fff; }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+  .about-card {
+    background: linear-gradient(135deg, var(--violet) 0%, #3A1D6E 100%);
+    border-radius: 2rem; padding: 3rem 2.5rem;
+    color: #fff; position: relative; overflow: hidden;
+  }
+  .about-card::before {
+    content: '🐈‍⬛';
+    position: absolute; font-size: 10rem;
+    bottom: -2rem; right: -1rem; opacity: .15;
+    line-height: 1;
+  }
+  .about-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; margin-bottom: .3rem;
+  }
+  .about-card-role { color: var(--gold); font-weight: 600; font-size: .95rem; margin-bottom: 1.5rem; }
+  .about-badges { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .badge {
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+    color: #fff; font-size: .8rem; font-weight: 600;
+    padding: .3rem .8rem; border-radius: 1rem;
+  }
+  .about-text p { margin-bottom: 1rem; line-height: 1.75; color: #444; }
+  .about-text p:last-child { margin-bottom: 0; }
+
+  /* ── EMIVET STORY ── */
+  #historia {
+    background: linear-gradient(160deg, #FFF9F4 0%, #F0E8FF 100%);
+  }
+  .story-box {
+    background: #fff;
+    border-radius: 2rem;
+    padding: 3rem;
+    border-left: 8px solid var(--coral);
+    box-shadow: 0 8px 40px rgba(123,79,212,.1);
+    position: relative;
+  }
+  .story-box::after {
+    content: '🐾';
+    position: absolute; top: 1.5rem; right: 2rem;
+    font-size: 3rem; opacity: .15;
+  }
+  .story-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; font-style: italic;
+    color: var(--violet); margin-bottom: 1.2rem;
+  }
+  .story-box p { line-height: 1.75; color: #555; margin-bottom: 1rem; }
+
+  /* ── SERVICIOS ── */
+  #servicios { background: var(--dark); }
+  #servicios .section-label { color: var(--mint); }
+  #servicios .section-title { color: #fff; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .service-card {
+    border-radius: 1.5rem; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+  .service-card.coral  { background: var(--coral); }
+  .service-card.violet { background: var(--violet); }
+  .service-card.mint   { background: var(--mint); }
+  .service-card.gold   { background: var(--gold); }
+  .service-card.coral  .service-text, .service-card.violet .service-text { color: #fff; }
+  .service-card.mint   .service-text, .service-card.gold   .service-text { color: var(--dark); }
+  .service-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: .6rem; }
+  .service-text p { font-size: .95rem; line-height: 1.65; opacity: .9; }
+
+  /* ── FORMACIÓN ── */
+  #formacion { background: #fff; }
+  .formation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .formation-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--offwhite); border-radius: 1.2rem; padding: 1.4rem;
+    border: 2px solid transparent;
+    transition: border-color .2s;
+  }
+  .formation-item:hover { border-color: var(--lilac); }
+  .formation-icon {
+    font-size: 2rem; flex-shrink: 0;
+    background: var(--lilac); width: 50px; height: 50px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  .formation-info h4 { font-weight: 700; margin-bottom: .2rem; color: var(--dark); }
+  .formation-info p { font-size: .9rem; color: #666; }
+
+  /* ── POR QUÉ YO ── */
+  #por-que {
+    background: linear-gradient(135deg, var(--coral) 0%, #FF4D7D 100%);
+    color: #fff;
+  }
+  #por-que .section-label { color: rgba(255,255,255,.7); }
+  #por-que .section-title { color: #fff; }
+  #por-que .section-title span { color: var(--gold); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 2rem;
+  }
+  .why-item {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 1.4rem; padding: 2rem 1.5rem;
+    backdrop-filter: blur(6px);
+    text-align: center;
+  }
+  .why-item .icon { font-size: 2.5rem; margin-bottom: .8rem; display: block; }
+  .why-item h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; }
+  .why-item p { font-size: .9rem; opacity: .9; line-height: 1.6; }
+
+  /* ── CONTACTO ── */
+  #contacto { background: var(--offwhite); }
+  .contact-cards {
+    display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .contact-card {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.4rem 2rem; border-radius: 1.5rem;
+    text-decoration: none; font-weight: 600; font-size: 1rem;
+    transition: transform .2s, box-shadow .2s;
+    min-width: 230px; justify-content: center;
+  }
+  .contact-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.15); }
+  .contact-card.ig  { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); color: #fff; }
+  .contact-card.wa  { background: #25D366; color: #fff; }
+  .contact-card.web { background: var(--violet); color: #fff; }
+  .contact-card svg { width: 28px; height: 28px; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,.6);
+    text-align: center; padding: 2.5rem 1rem;
+    font-size: .9rem;
+  }
+  footer strong { color: var(--gold); }
+  footer .paws { letter-spacing: .3rem; font-size: 1.2rem; margin-bottom: .5rem; display: block; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .about-grid, .formation-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-title { font-size: clamp(2.4rem, 12vw, 4rem); }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Emi<span>Vet</span> 🐾</div>
+  <div class="nav-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#historia">Historia</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#formacion">Formación</a>
+    <a href="#contacto" class="nav-cta">Consultar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge">🐈‍⬛ Etología Clínica Felina · Consultas Online</div>
+    <h1 class="hero-title">Dra. <em>Valentina</em><br>Iglesias</h1>
+    <p class="hero-subtitle">Médica Veterinaria · Etóloga Felina</p>
+    <p class="hero-desc">
+      Transformamos la relación con tu gato a través del amor y el profesionalismo,
+      garantizando que su bienestar y felicidad serán siempre mi máxima prioridad.
+    </p>
+    <div class="hero-buttons">
+      <a href="https://api.whatsapp.com/message/P2C3ZH2BKC5YB1" target="_blank" class="btn btn-primary">📅 Agendar consulta</a>
+      <a href="https://contactoemivet.wixsite.com/etologiafelina" target="_blank" class="btn btn-secondary">🌐 Ver sitio web</a>
+    </div>
+    <div class="cat-paws">🐾 🐾 🐾</div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="container">
+    <div class="about-grid fade-in">
+      <div class="about-card">
+        <div class="about-card-name">Dra. Valentina Iglesias</div>
+        <div class="about-card-role">👩🏻‍⚕️ Etóloga Clínica Felina · Médica Veterinaria</div>
+        <div class="about-badges">
+          <span class="badge">🇦🇷 Argentina</span>
+          <span class="badge">🇪🇸 España</span>
+          <span class="badge">🇬🇧 Reino Unido</span>
+          <span class="badge">📚 Posgrados Int'l</span>
+          <span class="badge">🌐 Consultas Online</span>
+          <span class="badge">🐱 Solo Felinos</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">Sobre mí</div>
+        <h2 class="section-title">Especialista <span>exclusiva</span> en comportamiento felino</h2>
+        <div class="divider"></div>
+        <p>
+          Soy médica veterinaria con exclusiva dedicación al área de etología clínica felina.
+          Desde pequeña, los gatos han sido parte de mi vida, y mi pasión por comprenderlos
+          me llevó a leer desde los libros más sencillos hasta las obras de grandes referentes
+          como <strong>John Bradshaw</strong>.
+        </p>
+        <p>
+          Comencé con consultas domiciliarias para ofrecer atención libre de estrés y
+          ansiedad para los gatos, con la calidad y el respeto que los tutores y sus
+          compañeros felinos merecen.
+        </p>
+        <p>
+          Hoy mi misión es ayudar a <em>catlovers</em> a entender el comportamiento felino y
+          mejorar la convivencia entre gatos y sus familias, con soluciones basadas en
+          <strong>ciencia y empatía</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA EMIVET -->
+<section id="historia">
+  <div class="container fade-in">
+    <div class="section-label">La historia detrás</div>
+    <h2 class="section-title">¿Por qué <span>EmiVet</span>? 🐾</h2>
+    <div class="divider"></div>
+    <div class="story-box">
+      <p class="story-highlight">
+        "Emilia + Veterinaria = EmiVet · Un proyecto nacido del amor más puro"
+      </p>
+      <p>
+        EmiVet es un proyecto inspirado en mi querida gatita <strong>Emilia</strong>, que actualmente
+        está en el cielo de los michis. Su nombre vive en cada consulta, en cada familia que
+        ayudo y en cada gato que logra vivir más feliz. 🌈
+      </p>
+      <p>
+        Elegí especializarme <strong>exclusivamente en felinos</strong> porque su comportamiento es
+        completamente distinto y único al de otras especies. La mayoría de los posgrados
+        abarcan varias especies, pero yo busqué formación enfocada únicamente en gatos,
+        accediendo a posgrados especializados en distintos países del mundo.
+      </p>
+      <p>
+        El resultado es una profesional que conoce en profundidad la naturaleza felina,
+        sus necesidades, sus códigos y sus formas de comunicarse, para ayudarte a
+        construir el vínculo que tú y tu gato merecen.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-label">Lo que hago</div>
+    <h2 class="section-title" style="color:#fff;">Servicios <span style="color:var(--gold);">especializados</span></h2>
+    <div class="divider" style="background: linear-gradient(90deg, var(--gold), var(--mint));"></div>
+    <div class="services-grid">
+      <div class="service-card coral fade-in">
+        <span class="service-icon">🧠</span>
+        <div class="service-text">
+          <h3>Problemas de comportamiento</h3>
+          <p>Diagnóstico y tratamiento de trastornos conductuales como agresividad, ansiedad, miedo y fobias en gatos.</p>
+        </div>
+      </div>
+      <div class="service-card violet fade-in">
+        <span class="service-icon">🏠</span>
+        <div class="service-text">
+          <h3>Convivencia felina</h3>
+          <p>Estrategias para mejorar la convivencia entre varios gatos en el hogar y la relación con personas.</p>
+        </div>
+      </div>
+      <div class="service-card mint fade-in">
+        <span class="service-icon">💬</span>
+        <div class="service-text">
+          <h3>Consultas online</h3>
+          <p>Asesoramiento profesional desde la comodidad de tu hogar, en un entorno libre de estrés para tu gato.</p>
+        </div>
+      </div>
+      <div class="service-card gold fade-in">
+        <span class="service-icon">📚</span>
+        <div class="service-text">
+          <h3>Educación a tutores</h3>
+          <p>Te enseño a entender el lenguaje corporal, las necesidades y el mundo interior de tu gato.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMACIÓN -->
+<section id="formacion">
+  <div class="container fade-in">
+    <div class="section-label">Credenciales</div>
+    <h2 class="section-title">Formación <span>internacional</span></h2>
+    <div class="divider"></div>
+    <div class="formation-grid">
+      <div class="formation-item">
+        <div class="formation-icon">🇦🇷</div>
+        <div class="formation-info">
+          <h4>Médica Veterinaria</h4>
+          <p>Formación base en ciencias veterinarias en Argentina</p>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-icon">🐱</div>
+        <div class="formation-info">
+          <h4>Etología Clínica Felina</h4>
+          <p>Posgrado especializado exclusivamente en comportamiento felino</p>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-icon">🇬🇧</div>
+        <div class="formation-info">
+          <h4>Posgrado · Reino Unido</h4>
+          <p>Formación internacional en comportamiento felino avanzado</p>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-icon">🇪🇸</div>
+        <div class="formation-info">
+          <h4>Posgrado · España</h4>
+          <p>Especialización en medicina del comportamiento en felinos</p>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-icon">📖</div>
+        <div class="formation-info">
+          <h4>Estudio continuo</h4>
+          <p>Referencias como John Bradshaw y los más grandes expertos en etología felina</p>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-icon">💻</div>
+        <div class="formation-info">
+          <h4>Consultas domiciliarias</h4>
+          <p>Experiencia en atención libre de estrés, miedo y ansiedad para felinos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ YO -->
+<section id="por-que">
+  <div class="container fade-in">
+    <div class="section-label">Mi diferencial</div>
+    <h2 class="section-title">¿Por qué elegirme <span>a mí</span>?</h2>
+    <div class="divider" style="background: linear-gradient(90deg, var(--gold), #fff);"></div>
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="icon">🎯</span>
+        <h3>100% felinos</h3>
+        <p>Me dedico exclusivamente a gatos. No perros, no conejos. Solo felinos, con toda mi atención y expertise.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">🌍</span>
+        <h3>Formación global</h3>
+        <p>Posgrados en Argentina, España y Reino Unido. Accedo al conocimiento más actualizado del mundo.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">❤️</span>
+        <h3>Ciencia + empatía</h3>
+        <p>Mis soluciones se basan en evidencia científica y en un profundo respeto y amor por los gatos.</p>
+      </div>
+      <div class="why-item">
+        <span class="icon">🌿</span>
+        <h3>Sin estrés</h3>
+        <p>Consultas online diseñadas para que tu gato esté cómodo en su propio entorno, sin viajes al veterinario.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container fade-in" style="text-align:center;">
+    <div class="section-label">¡Hablemos!</div>
+    <h2 class="section-title">Agenda tu <span>consulta</span></h2>
+    <div class="divider" style="margin: 0 auto 1.5rem;"></div>
+    <p style="font-size:1.1rem; color:#555; max-width:520px; margin: 0 auto 1rem; line-height:1.7;">
+      ¿Tu gato tiene algún problema de comportamiento? ¿Quieres mejorar vuestra convivencia?
+      Estoy aquí para ayudarte. 🐾
+    </p>
+    <div class="contact-cards">
+      <!-- WhatsApp -->
+      <a href="https://api.whatsapp.com/message/P2C3ZH2BKC5YB1" target="_blank" class="contact-card wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.107.548 4.088 1.504 5.815L0 24l6.335-1.482A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.52-5.153-1.416l-.369-.222-3.822.894.946-3.736-.242-.389A9.937 9.937 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/etologiafelina.emivet/" target="_blank" class="contact-card ig">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <!-- Web -->
+      <a href="https://contactoemivet.wixsite.com/etologiafelina" target="_blank" class="contact-card web">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Sitio web
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="paws">🐾 🐾 🐾</span>
+  <p>Hecho con amor en honor a <strong>Emilia</strong> ❤️ · <strong>EmiVet</strong> – Etología Clínica Felina</p>
+  <p style="margin-top:.4rem;">Dra. Valentina Iglesias · Médica Veterinaria &amp; Etóloga Felina</p>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
