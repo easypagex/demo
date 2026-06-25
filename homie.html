@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Homie 🐱 Bienestar, Etología y Nutrición Felina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --naranja:    #FF6B35;
+      --amarillo:   #FFD166;
+      --rosa:       #FF85A1;
+      --lila:       #C77DFF;
+      --turquesa:   #06D6A0;
+      --azul:       #4CC9F0;
+      --crema:      #FFF8F0;
+      --oscuro:     #1A1A2E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--oscuro);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF85A1 35%, #C77DFF 65%, #4CC9F0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .paws {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      animation: float 3s ease-in-out infinite;
+      display: block;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      color: #fff;
+      text-shadow: 4px 4px 0 rgba(0,0,0,0.12);
+      letter-spacing: -1px;
+      line-height: 1.05;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 span {
+      color: var(--amarillo);
+      -webkit-text-stroke: 2px rgba(0,0,0,0.08);
+    }
+
+    .hero-sub {
+      margin-top: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: rgba(255,255,255,0.92);
+      max-width: 560px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      margin-top: 1.5rem;
+      display: inline-block;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50px;
+      padding: 0.5rem 1.4rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-group {
+      margin-top: 2.2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.45);
+    }
+
+    .btn-insta {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(220,39,67,0.45);
+    }
+
+    /* ── BUBBLES DECORATION ── */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .b1 { width: 260px; height: 260px; background: var(--amarillo); top: -60px; left: -80px; }
+    .b2 { width: 180px; height: 180px; background: var(--turquesa); bottom: 40px; right: -40px; }
+    .b3 { width: 120px; height: 120px; background: #fff; bottom: 120px; left: 60px; }
+    .b4 { width: 80px;  height: 80px;  background: var(--rosa);    top: 100px; right: 80px; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 1.5rem; }
+
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    /* ── SOBRE MÍ ── */
+    .sobre {
+      background: #fff;
+    }
+
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .sobre-emoji-box {
+      background: linear-gradient(135deg, var(--naranja), var(--rosa));
+      border-radius: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+      aspect-ratio: 1;
+      box-shadow: 8px 8px 0 var(--amarillo);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .tag-naranja { background: #FFE8DC; color: var(--naranja); }
+    .tag-lila    { background: #EFD6FF; color: #8a2be2; }
+    .tag-turq    { background: #D0FFF3; color: #0a8f6e; }
+    .tag-rosa    { background: #FFD6E3; color: #cc1a4a; }
+    .tag-azul    { background: #D6F2FF; color: #0077aa; }
+
+    /* ── SERVICIOS ── */
+    .servicios {
+      background: linear-gradient(160deg, #FFF8F0 0%, #F0F0FF 100%);
+    }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .card {
+      border-radius: 1.5rem;
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+
+    .card-icon { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+
+    .card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p { font-size: 0.95rem; line-height: 1.6; opacity: 0.85; }
+
+    .card-1 { background: linear-gradient(135deg, #FF6B35, #FF85A1); color: #fff; }
+    .card-2 { background: linear-gradient(135deg, #C77DFF, #4CC9F0); color: #fff; }
+    .card-3 { background: linear-gradient(135deg, #06D6A0, #4CC9F0); color: #fff; }
+    .card-4 { background: linear-gradient(135deg, #FFD166, #FF6B35); color: #fff; }
+
+    /* ── POR QUÉ HOMIE ── */
+    .porque { background: var(--oscuro); color: #fff; }
+
+    .porque .section-title { color: var(--amarillo); }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s;
+    }
+
+    .pill:hover { background: rgba(255,255,255,0.18); }
+
+    /* ── CONTACTO ── */
+    .contacto {
+      background: linear-gradient(135deg, #C77DFF 0%, #FF85A1 50%, #FF6B35 100%);
+      text-align: center;
+      color: #fff;
+    }
+
+    .contacto .section-title { color: #fff; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
+    .contacto p { color: rgba(255,255,255,0.9); font-size: 1.1rem; max-width: 500px; margin: 0.8rem auto 2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--oscuro);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    footer strong { color: var(--amarillo); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .sobre-inner { grid-template-columns: 1fr; }
+      .sobre-emoji-box { max-width: 220px; margin: 0 auto; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="bubble b1"></div>
+  <div class="bubble b2"></div>
+  <div class="bubble b3"></div>
+  <div class="bubble b4"></div>
+
+  <span class="paws">🐾</span>
+  <h1>Homie<br/><span>Bienestar Felino</span></h1>
+  <p class="hero-sub">Etología, bienestar y nutrición para tu gato con la mirada científica y el amor de quien entiende a los felinos de verdad.</p>
+  <div class="hero-badge">👩🏻‍⚕️ Vet. Johana G. — Esp. en Etología, Bienestar y Nutrición Animal</div>
+
+  <div class="cta-group">
+    <a class="btn btn-whatsapp" href="https://api.whatsapp.com/send?phone=573013899446" target="_blank" rel="noopener">
+      <!-- WhatsApp SVG icon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a class="btn btn-insta" href="https://www.instagram.com/homiebienestarfelino/" target="_blank" rel="noopener">
+      <!-- Instagram SVG icon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ── SOBRE MÍ ── -->
+<section class="sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-emoji-box">😻</div>
+      <div class="reveal">
+        <span class="section-tag tag-naranja">¿Quién soy?</span>
+        <h2 class="section-title">Hola, soy la Vet. Johana G. 👩🏻‍⚕️</h2>
+        <p class="section-body">
+          Soy médica veterinaria especializada en <strong>etología, bienestar animal y nutrición</strong>, con énfasis en felinos. Mi pasión es acompañarte a entender el mundo interior de tu gato — su comportamiento, sus emociones y sus necesidades nutricionales — para que tenga la vida plena que merece.
+        </p>
+        <p class="section-body" style="margin-top:1rem;">
+          En <strong>Homie</strong> creemos que cada gato es único, y que un felino bien entendido es un felino feliz. 🧡
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICIOS ── -->
+<section class="servicios">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag tag-lila">Servicios</span>
+      <h2 class="section-title">¿En qué te puedo ayudar? 🐱</h2>
+    </div>
+    <div class="servicios-grid">
+      <div class="card card-1 reveal">
+        <span class="card-icon">🧠</span>
+        <h3>Consulta Etológica</h3>
+        <p>Evaluación del comportamiento felino: agresividad, ansiedad, marcaje, problemas de socialización y más.</p>
+      </div>
+      <div class="card card-2 reveal">
+        <span class="card-icon">🥗</span>
+        <h3>Consulta Nutricional</h3>
+        <p>Planes de alimentación personalizados según la edad, peso, condición de salud y estilo de vida de tu gato.</p>
+      </div>
+      <div class="card card-3 reveal">
+        <span class="card-icon">🏡</span>
+        <h3>Enriquecimiento Ambiental</h3>
+        <p>Recomendaciones para crear un entorno que estimule, relaje y haga feliz a tu felino en casa.</p>
+      </div>
+      <div class="card card-4 reveal">
+        <span class="card-icon">📱</span>
+        <h3>Seguimiento Online</h3>
+        <p>Acompañamiento continuo por WhatsApp e Instagram para resolver dudas y monitorear la evolución de tu michi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── POR QUÉ HOMIE ── -->
+<section class="porque">
+  <div class="container reveal">
+    <span class="section-tag tag-azul">¿Por qué Homie?</span>
+    <h2 class="section-title">Tu gato se merece lo mejor 🌟</h2>
+    <p class="section-body" style="color:rgba(255,255,255,0.75); margin-top:0.5rem;">
+      No somos una consulta genérica. Cada gato llega con su historia, su personalidad y sus necesidades. Aquí encontrarás ciencia, empatía y amor felino en cada sesión.
+    </p>
+    <div class="pills">
+      <div class="pill">🎓 Formación especializada en etología</div>
+      <div class="pill">🔬 Enfoque científico y basado en evidencia</div>
+      <div class="pill">🧡 Trato cálido y sin juicios</div>
+      <div class="pill">📍 Énfasis en felinos de compañía</div>
+      <div class="pill">💬 Comunicación directa y cercana</div>
+      <div class="pill">🌱 Bienestar integral del animal</div>
+      <div class="pill">🐾 Pasión genuina por los gatos</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section class="contacto">
+  <div class="container reveal">
+    <span class="section-tag" style="background:rgba(255,255,255,0.25);color:#fff;">Contáctame</span>
+    <h2 class="section-title">¿Lista/o para empezar? 🐾</h2>
+    <p>Escríbeme por WhatsApp o sígueme en Instagram para más tips, contenido felino y para agendar tu consulta.</p>
+    <div class="cta-group" style="justify-content:center;">
+      <a class="btn btn-whatsapp" href="https://api.whatsapp.com/send?phone=573013899446" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a class="btn btn-insta" href="https://www.instagram.com/homiebienestarfelino/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Ver en Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 <strong>Homie – Bienestar Felino</strong> · Vet. Johana G. · Etología, Bienestar y Nutrición Animal 🐾</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
