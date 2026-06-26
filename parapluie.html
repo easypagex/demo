@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sofia Parapluie · Enamórate de tu Casa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose:    #F4768A;
+    --peach:   #F9A875;
+    --butter:  #F7E07A;
+    --sage:    #8DC99E;
+    --sky:     #7EC8D8;
+    --lavender:#B9A4E3;
+    --cream:   #FDF6EE;
+    --dark:    #2E2A26;
+    --mid:     #7A6F65;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    background:
+      radial-gradient(circle at 10% 20%,  #F4768A33 0%, transparent 45%),
+      radial-gradient(circle at 90% 10%,  #B9A4E355 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%,  #7EC8D844 0%, transparent 45%),
+      radial-gradient(circle at 15% 85%,  #F9A87544 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%,  #F7E07A22 0%, transparent 60%),
+      var(--cream);
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .35;
+    pointer-events: none;
+  }
+  .blob-1 { width: 380px; height: 380px; background: var(--rose);    top: -80px;  left: -100px; animation: float 9s ease-in-out infinite; }
+  .blob-2 { width: 300px; height: 300px; background: var(--lavender);top: -40px;  right: -80px; animation: float 11s ease-in-out infinite reverse; }
+  .blob-3 { width: 260px; height: 260px; background: var(--sky);     bottom: 0;   left: 10%;    animation: float 8s ease-in-out infinite 2s; }
+  .blob-4 { width: 220px; height: 220px; background: var(--peach);   bottom: -60px;right: 5%;   animation: float 10s ease-in-out infinite 1s; }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-25px) scale(1.04); }
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--rose);
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .35rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 1.4rem;
+    animation: fadeUp .6s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(3rem, 10vw, 6.5rem);
+    color: var(--dark);
+    line-height: 1;
+    animation: fadeUp .7s ease .1s both;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.7rem);
+    color: var(--rose);
+    margin: .6rem 0 1.4rem;
+    animation: fadeUp .7s ease .2s both;
+  }
+
+  .hero-desc {
+    max-width: 500px;
+    font-size: .95rem;
+    color: var(--mid);
+    line-height: 1.7;
+    animation: fadeUp .7s ease .3s both;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    justify-content: center;
+    margin: 1.6rem 0 2rem;
+    animation: fadeUp .7s ease .4s both;
+  }
+
+  .pill {
+    padding: .4rem 1rem;
+    border-radius: 2rem;
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--dark);
+  }
+  .pill-1 { background: #F4768A33; }
+  .pill-2 { background: #F9A87544; }
+  .pill-3 { background: #F7E07A66; }
+  .pill-4 { background: #8DC99E44; }
+  .pill-5 { background: #B9A4E344; }
+  .pill-6 { background: #7EC8D844; }
+
+  .hero-location {
+    font-size: .82rem;
+    color: var(--mid);
+    margin-bottom: 2.5rem;
+    animation: fadeUp .7s ease .45s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── LINKS GRID ── */
+  .links {
+    padding: 5rem 1.5rem 3rem;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--dark);
+  }
+  .section-title span { color: var(--rose); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.3rem;
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1.3rem 1.4rem;
+    border-radius: 1.4rem;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    font-size: .95rem;
+    transition: transform .22s, box-shadow .22s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.55);
+    border-radius: inherit;
+    backdrop-filter: blur(2px);
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+
+  .card-c1 { background: linear-gradient(135deg, #F4768A55, #F9A87555); }
+  .card-c2 { background: linear-gradient(135deg, #B9A4E355, #7EC8D855); }
+  .card-c3 { background: linear-gradient(135deg, #F7E07A66, #8DC99E55); }
+  .card-c4 { background: linear-gradient(135deg, #7EC8D855, #B9A4E355); }
+  .card-c5 { background: linear-gradient(135deg, #8DC99E55, #F7E07A55); }
+
+  .card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-text {
+    position: relative;
+    z-index: 1;
+  }
+  .card-label {
+    font-size: .72rem;
+    font-weight: 400;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    display: block;
+    margin-bottom: .15rem;
+  }
+  .card-name { font-size: 1rem; font-weight: 600; }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 4rem 1.5rem 5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #F9A87522, #F4768A11, #B9A4E322);
+  }
+
+  .about-inner {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .about-emoji { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
+
+  .about h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    margin-bottom: 1rem;
+    color: var(--dark);
+  }
+
+  .about p {
+    color: var(--mid);
+    line-height: 1.8;
+    font-size: .95rem;
+    margin-bottom: .7rem;
+  }
+
+  .about-contact {
+    display: inline-block;
+    margin-top: 1.4rem;
+    color: var(--rose);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 2px dashed var(--rose);
+    padding-bottom: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: .78rem;
+    color: var(--mid);
+  }
+
+  footer a { color: var(--rose); text-decoration: none; }
+
+  /* ── DECO STRIPES ── */
+  .stripe-bar {
+    height: 8px;
+    background: linear-gradient(90deg,
+      var(--rose) 0%, var(--peach) 20%, var(--butter) 40%,
+      var(--sage) 60%, var(--sky) 80%, var(--lavender) 100%);
+  }
+</style>
+</head>
+<body>
+
+<div class="stripe-bar"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+
+  <span class="hero-tag">🌷 Confort creator</span>
+  <h1 class="hero-name">Sofia Parapluie</h1>
+  <p class="hero-tagline">Enamórate de tu casa ✨</p>
+  <p class="hero-desc">Decoración · Interiorismo · DIY · Slow living<br>Organizar y simplificar para vivir mejor en casa.</p>
+
+  <div class="hero-pills">
+    <span class="pill pill-1">🌷 Decoración</span>
+    <span class="pill pill-2">🪴 Interiorismo</span>
+    <span class="pill pill-3">🔨 DIY</span>
+    <span class="pill pill-4">🧺 Organizar</span>
+    <span class="pill pill-5">🌿 Slow living</span>
+    <span class="pill pill-6">✨ Simplificar</span>
+  </div>
+
+  <p class="hero-location">📍 Valencia</p>
+</section>
+
+<!-- LINKS -->
+<section class="links">
+  <h2 class="section-title">Mis <span>rincones</span></h2>
+  <div class="cards">
+
+    <a class="card card-c1" href="https://www.instagram.com/sofiaparapluie/" target="_blank" rel="noopener">
+      <span class="card-icon">📸</span>
+      <div class="card-text">
+        <span class="card-label">Sígueme en</span>
+        <span class="card-name">Instagram · @sofiaparapluie</span>
+      </div>
+    </a>
+
+    <a class="card card-c2" href="https://bio.site/Sofiaparapluie" target="_blank" rel="noopener">
+      <span class="card-icon">🔗</span>
+      <div class="card-text">
+        <span class="card-label">Todos mis links</span>
+        <span class="card-name">bio.site / Sofiaparapluie</span>
+      </div>
+    </a>
+
+    <a class="card card-c3" href="https://dashbook.fr/book/enamorate-de-tu-casa" target="_blank" rel="noopener">
+      <span class="card-icon">📖</span>
+      <div class="card-text">
+        <span class="card-label">Mi libro</span>
+        <span class="card-name">Enamórate de tu Casa</span>
+      </div>
+    </a>
+
+    <a class="card card-c4" href="https://www.amazon.es/shop/sofiaparapluie" target="_blank" rel="noopener">
+      <span class="card-icon">🛍️</span>
+      <div class="card-text">
+        <span class="card-label">Mis favoritos en</span>
+        <span class="card-name">Amazon · Sofia Parapluie</span>
+      </div>
+    </a>
+
+    <a class="card card-c5" href="https://parapluieatelier.sumupstore.com/" target="_blank" rel="noopener">
+      <span class="card-icon">🏪</span>
+      <div class="card-text">
+        <span class="card-label">Mi tienda</span>
+        <span class="card-name">Parapluie Atelier</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner">
+    <span class="about-emoji">🌿</span>
+    <h2>¿Quién es Sofia?</h2>
+    <p>Creo contenido sobre decoración, interiorismo y DIY para ayudarte a enamorarte de tu hogar cada día. Creo que una casa bonita no tiene que ser perfecta ni cara — solo tiene que sentirse tuya.</p>
+    <p>Mi filosofía es el <strong>slow living</strong>: organizar, simplificar y rodearte de lo que te hace bien.</p>
+    <a class="about-contact" href="mailto:sofiaparapluie@gmail.com">✉️ sofiaparapluie@gmail.com</a>
+  </div>
+</section>
+
+<div class="stripe-bar"></div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Sofia Parapluie · Valencia 🌷 ·
+    <a href="https://www.instagram.com/sofiaparapluie/" target="_blank" rel="noopener">@sofiaparapluie</a>
+  </p>
+</footer>
+
+</body>
+</html>
