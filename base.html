@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BÄSE INTERIORISMO — Bärbara Serra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral:   #FF5F4B;
+      --saffron: #F5A623;
+      --jade:    #1DB87A;
+      --cobalt:  #2347D9;
+      --lilac:   #C084FC;
+      --cream:   #FFF8F0;
+      --ink:     #1A1118;
+      --sand:    #F2E8D9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 20%, #F5A62355 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 10% 80%, #C084FC44 0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 50% 50%, #FF5F4B22 0%, transparent 60%),
+        #FFF8F0;
+      z-index: 0;
+    }
+
+    /* floating colour blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .18;
+      filter: blur(60px);
+      z-index: 0;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .blob-1 { width: 420px; height: 420px; background: var(--coral);   top: -80px;  right: -60px; animation-delay: 0s; }
+    .blob-2 { width: 300px; height: 300px; background: var(--cobalt);  bottom: 60px; left: -80px;  animation-delay: 2s; }
+    .blob-3 { width: 250px; height: 250px; background: var(--jade);    top: 40%;   right: 15%;   animation-delay: 4s; }
+    .blob-4 { width: 200px; height: 200px; background: var(--saffron); bottom: 15%; right: 5%;   animation-delay: 1s; }
+
+    @keyframes float {
+      from { transform: translateY(0)   scale(1); }
+      to   { transform: translateY(30px) scale(1.08); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: relative; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 2rem 3rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .logo span {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--coral), var(--cobalt), var(--jade));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .ig-pill {
+      display: flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      text-decoration: none;
+      padding: .5rem 1.1rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .ig-pill:hover { transform: scale(1.06); box-shadow: 0 6px 24px #dc274355; }
+    .ig-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── HERO BODY ── */
+    .hero-body {
+      position: relative; z-index: 10;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 3rem;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      font-size: .75rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--coral);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -.02em;
+      color: var(--ink);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      background: linear-gradient(120deg, var(--coral) 0%, var(--saffron) 50%, var(--jade) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      margin-top: 1.8rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #4a3a44;
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      margin-top: 2.4rem;
+      display: inline-flex; align-items: center; gap: .75rem;
+      background: var(--cobalt);
+      color: #fff;
+      text-decoration: none;
+      padding: .85rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: .95rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .hero-cta:hover { background: var(--coral); transform: translateY(-2px); box-shadow: 0 8px 28px #FF5F4B55; }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      position: relative; z-index: 10;
+      overflow: hidden;
+      background: var(--ink);
+      padding: .7rem 0;
+      margin-top: 3rem;
+    }
+    .ticker {
+      display: flex; gap: 4rem;
+      white-space: nowrap;
+      animation: ticker 22s linear infinite;
+      width: max-content;
+    }
+    .ticker span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #fff;
+      opacity: .7;
+    }
+    .ticker span.dot { font-style: normal; color: var(--saffron); opacity: 1; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 6rem 3rem; }
+
+    .section-label {
+      font-size: .7rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--ink); color: #fff; }
+    .services .section-label { color: var(--saffron); }
+    .services h2.section-title { color: #fff; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5px;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      padding: 2.5rem;
+      border: 1px solid #ffffff11;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover { color: #fff; }
+
+    .sc-1::before { background: var(--coral); }
+    .sc-2::before { background: var(--cobalt); }
+    .sc-3::before { background: var(--jade); }
+    .sc-4::before { background: var(--lilac); }
+
+    .service-card > * { position: relative; z-index: 1; }
+
+    .service-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      opacity: .18;
+      line-height: 1;
+      margin-bottom: .8rem;
+    }
+    .service-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: .6rem;
+    }
+    .service-desc {
+      font-size: .88rem;
+      opacity: .7;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--sand);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) { .about { grid-template-columns: 1fr; } }
+
+    .about .section-label { color: var(--cobalt); }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-block {
+      width: 100%;
+      padding-bottom: 130%;
+      background: linear-gradient(135deg, var(--lilac) 0%, var(--coral) 50%, var(--saffron) 100%);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-block::after {
+      content: 'BÄ';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 10rem;
+      font-weight: 900;
+      color: rgba(255,255,255,.18);
+      letter-spacing: -.04em;
+    }
+
+    .about-accent {
+      position: absolute;
+      bottom: -1.5rem; right: -1.5rem;
+      width: 5rem; height: 5rem;
+      background: var(--cobalt);
+      border-radius: 50%;
+    }
+
+    .about p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #3a2e38;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .about p strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* ── VALUES ── */
+    .values { background: var(--cream); }
+    .values .section-label { color: var(--jade); }
+
+    .values-row {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .value-pill {
+      padding: .8rem 1.8rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+    }
+    .vp-1 { background: var(--coral);   color: #fff; }
+    .vp-2 { background: var(--saffron); color: var(--ink); }
+    .vp-3 { background: var(--jade);    color: #fff; }
+    .vp-4 { background: var(--cobalt);  color: #fff; }
+    .vp-5 { background: var(--lilac);   color: #fff; }
+
+    .values p {
+      margin-top: 2.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 640px;
+      font-weight: 300;
+      color: #3a2e38;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--cobalt);
+      color: #fff;
+      text-align: center;
+    }
+    .contact .section-label { color: var(--saffron); text-align: center; }
+    .contact h2.section-title { color: #fff; text-align: center; }
+
+    .contact-info {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-line {
+      font-size: 1.05rem;
+      opacity: .85;
+      font-weight: 300;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .contact-line svg { width: 18px; height: 18px; opacity: .7; flex-shrink: 0; }
+
+    .contact-line a {
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.3);
+      transition: border-color .2s;
+    }
+    .contact-line a:hover { border-color: var(--saffron); }
+
+    .ig-big {
+      margin-top: 3rem;
+      display: inline-flex; align-items: center; gap: .75rem;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .ig-big:hover { transform: scale(1.05); box-shadow: 0 10px 36px #dc274366; }
+    .ig-big svg { width: 26px; height: 26px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      letter-spacing: .06em;
+    }
+    footer span { color: var(--coral); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 1.4rem 1.4rem; }
+      .hero-body { padding: 0 1.4rem; }
+      section { padding: 4rem 1.4rem; }
+      .logo { font-size: 1.1rem; }
+      .values-row { gap: .8rem; }
+      .value-pill { font-size: .85rem; padding: .65rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+
+  <nav>
+    <a href="#" class="logo"><span>BÄSE</span></a>
+    <a href="https://www.instagram.com/baseinteriorismo/" target="_blank" rel="noopener" class="ig-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      @baseinteriorismo
+    </a>
+  </nav>
+
+  <div class="hero-body">
+    <p class="eyebrow">Estudio de Interiorismo · Barcelona</p>
+    <h1 class="hero-title">
+      Espacios<br>que te<br><em>enamoran.</em>
+    </h1>
+    <p class="hero-sub">
+      Diseñamos interiores con alma. Cada proyecto es una historia única narrada a través del color, la forma y el detalle.
+    </p>
+    <a href="#contacto" class="hero-cta">
+      Cuéntanos tu proyecto
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker" aria-hidden="true">
+      <span>Interiorismo</span><span class="dot">✦</span>
+      <span>Diseño de espacios</span><span class="dot">✦</span>
+      <span>Barcelona</span><span class="dot">✦</span>
+      <span>Bärbara Serra</span><span class="dot">✦</span>
+      <span>BÄSE Studio</span><span class="dot">✦</span>
+      <span>Proyectos con alma</span><span class="dot">✦</span>
+      <span>Interiorismo</span><span class="dot">✦</span>
+      <span>Diseño de espacios</span><span class="dot">✦</span>
+      <span>Barcelona</span><span class="dot">✦</span>
+      <span>Bärbara Serra</span><span class="dot">✦</span>
+      <span>BÄSE Studio</span><span class="dot">✦</span>
+      <span>Proyectos con alma</span><span class="dot">✦</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ SERVICIOS ══════════ -->
+<section class="services" id="servicios">
+  <p class="section-label">Servicios</p>
+  <h2 class="section-title">Lo que hacemos</h2>
+  <div class="services-grid">
+    <div class="service-card sc-1">
+      <div class="service-num">01</div>
+      <div class="service-name">Interiorismo residencial</div>
+      <p class="service-desc">Transformamos tu hogar en el espacio que siempre imaginaste. Desde un dormitorio hasta una vivienda completa.</p>
+    </div>
+    <div class="service-card sc-2">
+      <div class="service-num">02</div>
+      <div class="service-name">Interiorismo comercial</div>
+      <p class="service-desc">Locales, oficinas y restaurantes con identidad propia. Tu marca en cada rincón.</p>
+    </div>
+    <div class="service-card sc-3">
+      <div class="service-num">03</div>
+      <div class="service-name">Dirección de obra</div>
+      <p class="service-desc">Coordinamos cada fase de la reforma para que el resultado sea exactamente lo que soñaste.</p>
+    </div>
+    <div class="service-card sc-4">
+      <div class="service-num">04</div>
+      <div class="service-name">Consultoría de color</div>
+      <p class="service-desc">Definimos la paleta perfecta para que cada espacio transmita la emoción que buscas.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ ABOUT ══════════ -->
+<section class="about" id="estudio">
+  <div class="about-visual">
+    <div class="about-block"></div>
+    <div class="about-accent"></div>
+  </div>
+  <div>
+    <p class="section-label">El estudio</p>
+    <h2 class="section-title">Hola, soy<br>Bärbara Serra</h2>
+    <p>
+      Diseñadora de interiores con base en Barcelona, al frente de <strong>BÄSE Interiorismo</strong>. Mi trabajo nace del convencimiento de que los espacios influyen profundamente en cómo nos sentimos y vivimos.
+    </p>
+    <p>
+      Cada proyecto lo abordo con escucha activa: entender quién habita el espacio es el primer paso para diseñarlo bien. El resultado son interiores con carácter, coherentes y muy personales.
+    </p>
+    <p>
+      Sígueme en Instagram para descubrir procesos, detalles y proyectos terminados.
+    </p>
+    <a href="https://www.instagram.com/baseinteriorismo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;color:var(--cobalt);font-weight:600;text-decoration:none;border-bottom:2px solid var(--cobalt);padding-bottom:.2rem;">
+      @baseinteriorismo
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- ══════════ VALORES ══════════ -->
+<section class="values" id="valores">
+  <p class="section-label">Filosofía</p>
+  <h2 class="section-title">Lo que nos mueve</h2>
+  <div class="values-row">
+    <span class="value-pill vp-1">Escucha activa</span>
+    <span class="value-pill vp-2">Diseño con carácter</span>
+    <span class="value-pill vp-3">Sostenibilidad</span>
+    <span class="value-pill vp-4">Atención al detalle</span>
+    <span class="value-pill vp-5">Creatividad libre</span>
+  </div>
+  <p>
+    Creemos que el buen diseño no es un lujo, sino una necesidad. Un espacio bien diseñado mejora tu bienestar, refleja tu personalidad y perdura en el tiempo. Trabajamos con materiales, colores y texturas seleccionados con criterio, siempre en sintonía con tus valores y tu forma de vivir.
+  </p>
+</section>
+
+
+<!-- ══════════ CONTACTO ══════════ -->
+<section class="contact" id="contacto">
+  <p class="section-label">Contacto</p>
+  <h2 class="section-title">¿Empezamos tu proyecto?</h2>
+
+  <div class="contact-info">
+    <p class="contact-line">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+      C/ Ciutat de Balaguer, 69 Local 2 — 08022 Barcelona
+    </p>
+    <p class="contact-line">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      <a href="https://www.instagram.com/baseinteriorismo/" target="_blank" rel="noopener">@baseinteriorismo</a>
+    </p>
+  </div>
+
+  <a href="https://www.instagram.com/baseinteriorismo/" target="_blank" rel="noopener" class="ig-big">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+    Síguenos en Instagram
+  </a>
+</section>
+
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  © 2024 <span>BÄSE Interiorismo</span> — Bärbara Serra · Barcelona
+</footer>
+
+</body>
+</html>
