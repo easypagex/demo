@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javier de Vera · Adiestramiento Canino</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amarillo:   #FFD93D;
+    --naranja:    #FF6B35;
+    --rosa:       #FF3E80;
+    --azul:       #1E90FF;
+    --verde:      #06D6A0;
+    --morado:     #7B2FBE;
+    --negro:      #111111;
+    --blanco:     #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 30%, #7B2FBE55 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 70%, #FF3E8044 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 50% 10%, #1E90FF33 0%, transparent 50%),
+      var(--negro);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle 2px at 15% 20%, #FFD93D 1px, transparent 0),
+      radial-gradient(circle 2px at 85% 15%, #FF6B35 1px, transparent 0),
+      radial-gradient(circle 2px at 10% 80%, #06D6A0 1px, transparent 0),
+      radial-gradient(circle 2px at 90% 75%, #FF3E80 1px, transparent 0),
+      radial-gradient(circle 1.5px at 45% 5%,  #1E90FF 1px, transparent 0),
+      radial-gradient(circle 1.5px at 60% 90%, #7B2FBE 1px, transparent 0),
+      radial-gradient(circle 1.5px at 5% 50%,  #FFD93D 1px, transparent 0),
+      radial-gradient(circle 1.5px at 95% 50%, #06D6A0 1px, transparent 0);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .paw-bg {
+    position: absolute;
+    font-size: 9rem;
+    opacity: 0.04;
+    user-select: none;
+    pointer-events: none;
+  }
+  .paw-bg:nth-child(1) { top: 5%;  left: 3%;  transform: rotate(-20deg); }
+  .paw-bg:nth-child(2) { top: 60%; left: 80%; transform: rotate(15deg); }
+  .paw-bg:nth-child(3) { top: 30%; left: 70%; transform: rotate(35deg); }
+  .paw-bg:nth-child(4) { top: 75%; left: 5%;  transform: rotate(-10deg); }
+
+  .badge {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--negro);
+    font-weight: 900;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    line-height: .95;
+    letter-spacing: .02em;
+    margin-bottom: .4rem;
+    position: relative;
+  }
+
+  .hero h1 .line1 { color: var(--blanco); }
+  .hero h1 .line2 {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--naranja);
+  }
+  .hero h1 .line3 {
+    color: var(--amarillo);
+    display: block;
+    font-size: .55em;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ccc;
+    max-width: 480px;
+    margin: 1.5rem auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-sub span {
+    color: var(--verde);
+    font-weight: 900;
+  }
+
+  .pill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .pill {
+    padding: .45rem 1.1rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: .9rem;
+    letter-spacing: .04em;
+  }
+  .pill-1 { background: var(--rosa);   color: #fff; }
+  .pill-2 { background: var(--azul);   color: #fff; }
+  .pill-3 { background: var(--verde);  color: #111; }
+  .pill-4 { background: var(--morado); color: #fff; }
+
+  .cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .85rem 2rem;
+    border-radius: 999px;
+    font-weight: 900;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .18s, box-shadow .18s;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-3px); }
+
+  .btn-wa {
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 6px 24px #25D36655;
+  }
+  .btn-ig {
+    background: linear-gradient(135deg, #f58529, #dd2a7b, #515bd4);
+    color: #fff;
+    box-shadow: 0 6px 24px #dd2a7b44;
+  }
+
+  /* ── SERVICES STRIP ── */
+  .strip {
+    background: var(--amarillo);
+    overflow: hidden;
+    padding: .9rem 0;
+    white-space: nowrap;
+  }
+  .strip-inner {
+    display: inline-flex;
+    gap: 3rem;
+    animation: marquee 18s linear infinite;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: .08em;
+    color: var(--negro);
+  }
+  .strip-inner span::before { content: '🐾 '; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 5rem 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: .04em;
+    margin-bottom: 2.5rem;
+    line-height: 1;
+  }
+
+  /* ── CARDS ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    border-radius: 1.5rem;
+    padding: 2rem 1.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: attr(data-emoji);
+    position: absolute;
+    bottom: -1rem;
+    right: .5rem;
+    font-size: 5rem;
+    opacity: .18;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .card-1 { background: var(--naranja); }
+  .card-2 { background: var(--azul); }
+  .card-3 { background: var(--rosa); }
+  .card-4 { background: var(--verde); color: var(--negro); }
+
+  .card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: .05em;
+    margin-bottom: .6rem;
+  }
+  .card p { font-size: .95rem; line-height: 1.6; opacity: .9; }
+
+  /* ── MODALITY ── */
+  .modality-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .mod-box {
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  .mod-box .icon { font-size: 3.5rem; margin-bottom: 1rem; }
+  .mod-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: .06em;
+    margin-bottom: .5rem;
+  }
+  .mod-box p { font-size: .95rem; opacity: .9; line-height: 1.6; }
+
+  .mod-presencial { background: linear-gradient(135deg, var(--morado), #4B0082); }
+  .mod-online    { background: linear-gradient(135deg, var(--azul), #0052cc); }
+
+  /* ── LOCATION ── */
+  .location-bar {
+    background: linear-gradient(135deg, var(--morado), var(--rosa));
+    border-radius: 1.5rem;
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .location-bar .loc-icon { font-size: 3rem; }
+  .location-bar h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: .05em;
+  }
+  .location-bar p { opacity: .9; font-size: .95rem; }
+
+  /* ── SOCIAL ── */
+  .social-section { padding: 4rem 1.5rem; text-align: center; }
+  .social-section .section-title { color: var(--amarillo); }
+
+  .social-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 900;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .18s, box-shadow .18s, filter .18s;
+    flex: 1 1 170px;
+    justify-content: center;
+    min-width: 160px;
+  }
+  .social-btn:hover { transform: translateY(-4px) scale(1.03); filter: brightness(1.1); }
+  .social-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
+
+  .s-wa      { background: #25D366; color: #fff; box-shadow: 0 4px 20px #25D36650; }
+  .s-ig      { background: linear-gradient(135deg,#f58529,#dd2a7b,#515bd4); color:#fff; box-shadow: 0 4px 20px #dd2a7b44; }
+  .s-tiktok  { background: #010101; color: #fff; border: 2px solid #ff0050; box-shadow: 0 4px 20px #ff005044; }
+  .s-fb      { background: #1877F2; color: #fff; box-shadow: 0 4px 20px #1877F244; }
+  .s-patreon { background: #FF424D; color: #fff; box-shadow: 0 4px 20px #FF424D44; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0a0a;
+    border-top: 3px solid var(--amarillo);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    color: #666;
+    font-size: .9rem;
+  }
+  footer span { color: var(--naranja); font-weight: 700; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .modality-grid { grid-template-columns: 1fr; }
+    .hero h1 .line2 { -webkit-text-stroke-width: 1.5px; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="paw-bg">🐾</span>
+  <span class="paw-bg">🐾</span>
+  <span class="paw-bg">🐾</span>
+  <span class="paw-bg">🐾</span>
+
+  <div class="badge">Adiestramiento Canino · Perito Judicial</div>
+
+  <h1>
+    <span class="line1">JAVIER</span><br>
+    <span class="line2">DE VERA</span><br>
+    <span class="line3">Adiestramiento</span>
+  </h1>
+
+  <p class="hero-sub">
+    Reactividad, conducta y obediencia.<br>
+    Con <span>resultados reales</span> para ti y tu perro.
+  </p>
+
+  <div class="pill-tags">
+    <span class="pill pill-1">Reactividad</span>
+    <span class="pill pill-2">Obediencia</span>
+    <span class="pill pill-3">Conducta</span>
+    <span class="pill pill-4">Perito Judicial</span>
+  </div>
+
+  <div class="cta-group">
+    <a href="https://api.whatsapp.com/send/?phone=34639231598" class="btn btn-wa" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Contactar por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/javierdevera_adiestramiento/" class="btn btn-ig" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Ver Instagram
+    </a>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="strip">
+  <div class="strip-inner" aria-hidden="true">
+    <span>Reactividad</span>
+    <span>Obediencia</span>
+    <span>Conducta</span>
+    <span>Perito Judicial</span>
+    <span>Presencial</span>
+    <span>Online</span>
+    <span>Zaragoza</span>
+    <span>Reactividad</span>
+    <span>Obediencia</span>
+    <span>Conducta</span>
+    <span>Perito Judicial</span>
+    <span>Presencial</span>
+    <span>Online</span>
+    <span>Zaragoza</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section reveal">
+  <h2 class="section-title">¿En qué <span style="color:var(--naranja)">te ayudo?</span></h2>
+  <div class="cards">
+    <div class="card card-1" data-emoji="😤">
+      <h3>Reactividad</h3>
+      <p>Perros que ladran, tiran de la correa o se bloquean ante otros perros, personas u objetos. Trabajamos la raíz del problema.</p>
+    </div>
+    <div class="card card-2" data-emoji="🧠">
+      <h3>Conducta</h3>
+      <p>Miedos, ansiedad por separación, agresividad… Abordamos los problemas de comportamiento con un enfoque profesional y humano.</p>
+    </div>
+    <div class="card card-3" data-emoji="🏅">
+      <h3>Obediencia</h3>
+      <p>Órdenes básicas y avanzadas para una convivencia tranquila y una relación sólida entre tú y tu perro.</p>
+    </div>
+    <div class="card card-4" data-emoji="⚖️">
+      <h3>Perito Judicial</h3>
+      <p>Dictámenes periciales caninos para procedimientos legales. Experiencia y rigor técnico cuando más se necesita.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODALITY -->
+<div class="section reveal">
+  <h2 class="section-title">Cómo <span style="color:var(--verde)">trabajamos</span></h2>
+  <div class="modality-grid">
+    <div class="mod-box mod-presencial">
+      <div class="icon">📍</div>
+      <h3>Presencial</h3>
+      <p>Sesiones en Zaragoza y alrededores, directamente contigo y tu perro en su entorno real.</p>
+    </div>
+    <div class="mod-box mod-online">
+      <div class="icon">💻</div>
+      <h3>Online</h3>
+      <p>Consultas y seguimiento por videollamada desde cualquier lugar de España.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<div class="section reveal" style="padding-top:0">
+  <div class="location-bar">
+    <div class="loc-icon">🗺️</div>
+    <div>
+      <h3>Zaragoza</h3>
+      <p>Servicio presencial en Zaragoza · Atención online para toda España</p>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL -->
+<section class="social-section reveal">
+  <h2 class="section-title">Sígueme &amp; contáctame</h2>
+  <p style="color:#aaa; margin-bottom:2rem; font-size:1rem;">Elige tu plataforma favorita:</p>
+  <div class="social-grid">
+
+    <a href="https://api.whatsapp.com/send/?phone=34639231598" class="social-btn s-wa" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+
+    <a href="https://www.instagram.com/javierdevera_adiestramiento/" class="social-btn s-ig" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+
+    <a href="https://www.tiktok.com/@javidevera" class="social-btn s-tiktok" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      TikTok
+    </a>
+
+    <a href="https://www.facebook.com/JavierDeVera.Adiestramiento" class="social-btn s-fb" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+
+    <a href="https://www.patreon.com/cw/javierdevera_adiestramiento" class="social-btn s-patreon" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z"/></svg>
+      Patreon
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>📍 Zaragoza · Presencial &amp; Online &nbsp;|&nbsp; <span>Javier de Vera Adiestramiento</span></p>
+  <p style="margin-top:.5rem">Adiestrador canino certificado &amp; perito judicial · 639 231 598</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
