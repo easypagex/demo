@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Rincón Esencial | Karen Yrigoyen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:    #7BAE7F;
+      --blush:   #F2A7A0;
+      --cream:   #FDF6EC;
+      --lemon:   #F7E07A;
+      --sky:     #A8D8EA;
+      --coral:   #E8735A;
+      --brown:   #5C3D2E;
+      --white:   #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* ── CONFETTI STRIP ── */
+    .confetti-strip {
+      display: flex;
+      height: 10px;
+    }
+    .confetti-strip span {
+      flex: 1;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 70px 24px 60px;
+      background: linear-gradient(160deg, #FFF5DC 0%, #FFE4E1 40%, #D4EDDA 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(242,167,160,0.35) 0%, transparent 70%);
+      top: -120px; right: -100px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168,216,234,0.4) 0%, transparent 70%);
+      bottom: -100px; left: -80px;
+      pointer-events: none;
+    }
+
+    .avatar-ring {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(var(--sage), var(--blush), var(--lemon), var(--sky), var(--coral), var(--sage));
+      z-index: 0;
+      animation: spin 6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .avatar {
+      position: relative;
+      z-index: 1;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sage) 0%, var(--sky) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 60px;
+      border: 4px solid var(--white);
+    }
+
+    .hero h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      color: var(--brown);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .hero .handle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--coral);
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+
+    .hero .tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      color: #7a5c4e;
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .pill {
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .pill-green  { background: #D4EDDA; color: #2E6B3A; }
+    .pill-pink   { background: #FFE0DC; color: #B84D3C; }
+    .pill-yellow { background: #FFF3B0; color: #7A6200; }
+    .pill-blue   { background: #D6EEF8; color: #1A5D7A; }
+
+    /* ── LINKS SECTION ── */
+    .links-section {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      text-align: center;
+      color: var(--brown);
+      margin-bottom: 8px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      border-radius: 18px;
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 500;
+      font-size: 1rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .link-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .link-card .card-icon {
+      font-size: 1.7rem;
+      flex-shrink: 0;
+    }
+    .link-card .card-text { flex: 1; }
+    .link-card .card-label { font-size: 0.75rem; opacity: 0.85; }
+    .link-card .card-name  { font-size: 1rem; font-weight: 600; }
+    .link-card .arrow { font-size: 1.1rem; opacity: 0.8; }
+
+    .card-ig       { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .card-amazon   { background: linear-gradient(135deg, #FF9900, #FF6B00); }
+    .card-facebook { background: linear-gradient(135deg, #1877F2, #0C5FD6); }
+    .card-email    { background: linear-gradient(135deg, var(--sage), #4A8F5A); }
+
+    /* ── VIBES SECTION ── */
+    .vibes {
+      background: linear-gradient(135deg, #FFF0F5 0%, #E8F5E9 50%, #E3F3FC 100%);
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .vibes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      max-width: 680px;
+      margin: 32px auto 0;
+    }
+
+    .vibe-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.2s;
+    }
+    .vibe-card:hover { transform: translateY(-4px); }
+    .vibe-card .vibe-emoji { font-size: 2.4rem; margin-bottom: 10px; }
+    .vibe-card .vibe-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--brown);
+    }
+
+    /* ── COLLAB BANNER ── */
+    .collab-banner {
+      background: linear-gradient(120deg, var(--coral) 0%, var(--blush) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .collab-banner h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      margin-bottom: 10px;
+    }
+    .collab-banner p {
+      font-size: 1rem;
+      opacity: 0.92;
+      margin-bottom: 24px;
+    }
+    .collab-btn {
+      display: inline-block;
+      background: var(--white);
+      color: var(--coral);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .collab-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 0.85rem;
+    }
+    footer strong {
+      display: block;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 480px) {
+      .vibes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Rainbow strip -->
+<div class="confetti-strip" aria-hidden="true">
+  <span style="background:#F2A7A0"></span>
+  <span style="background:#F7E07A"></span>
+  <span style="background:#7BAE7F"></span>
+  <span style="background:#A8D8EA"></span>
+  <span style="background:#E8735A"></span>
+  <span style="background:#F2A7A0"></span>
+  <span style="background:#F7E07A"></span>
+  <span style="background:#7BAE7F"></span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="avatar-ring">
+    <div class="avatar">🌿</div>
+  </div>
+
+  <h1>Mi Rincón Esencial</h1>
+  <p class="handle">@mirinconesencial_</p>
+
+  <p class="tagline">
+    Limpieza consciente · hogar bonito · cafecito diario y cuidado personal desde Florida 🌞
+  </p>
+
+  <div class="pill-row">
+    <span class="pill pill-green">🌱 Limpieza consciente</span>
+    <span class="pill pill-pink">🏡 Hogar bonito</span>
+    <span class="pill pill-yellow">☕ Cafecito diario</span>
+    <span class="pill pill-blue">🧖‍♀️ Cuidado personal</span>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section class="links-section">
+  <h2 class="section-title">Encuéntrame aquí ✨</h2>
+
+  <a class="link-card card-ig" href="https://www.instagram.com/mirinconesencial_/" target="_blank" rel="noopener">
+    <span class="card-icon">📸</span>
+    <span class="card-text">
+      <span class="card-label">Sígueme en</span>
+      <span class="card-name">Instagram</span>
+    </span>
+    <span class="arrow">→</span>
+  </a>
+
+  <a class="link-card card-amazon" href="https://www.amazon.com/shop/mirinconesencial_" target="_blank" rel="noopener">
+    <span class="card-icon">🛍️</span>
+    <span class="card-text">
+      <span class="card-label">Mis favoritos en</span>
+      <span class="card-name">Amazon Storefront</span>
+    </span>
+    <span class="arrow">→</span>
+  </a>
+
+  <a class="link-card card-facebook" href="https://www.facebook.com/profile.php?id=100090497951647" target="_blank" rel="noopener">
+    <span class="card-icon">💙</span>
+    <span class="card-text">
+      <span class="card-label">Únete en</span>
+      <span class="card-name">Facebook</span>
+    </span>
+    <span class="arrow">→</span>
+  </a>
+
+  <a class="link-card card-email" href="mailto:mirinconesencial5@gmail.com">
+    <span class="card-icon">📩</span>
+    <span class="card-text">
+      <span class="card-label">Escríbeme</span>
+      <span class="card-name">mirinconesencial5@gmail.com</span>
+    </span>
+    <span class="arrow">→</span>
+  </a>
+</section>
+
+<!-- VIBES -->
+<section class="vibes">
+  <h2 class="section-title">Un espacio para ti 💛</h2>
+  <p style="color:#7a5c4e; max-width:400px; margin:0 auto; font-size:0.95rem; line-height:1.7">
+    Aquí comparto todo lo que hace mi hogar un lugar más bonito, limpio y lleno de amor.
+  </p>
+  <div class="vibes-grid">
+    <div class="vibe-card">
+      <div class="vibe-emoji">🌿</div>
+      <div class="vibe-label">Productos naturales</div>
+    </div>
+    <div class="vibe-card">
+      <div class="vibe-emoji">🏡</div>
+      <div class="vibe-label">Organización del hogar</div>
+    </div>
+    <div class="vibe-card">
+      <div class="vibe-emoji">☕</div>
+      <div class="vibe-label">Momentos de calma</div>
+    </div>
+    <div class="vibe-card">
+      <div class="vibe-emoji">🧖‍♀️</div>
+      <div class="vibe-label">Bienestar personal</div>
+    </div>
+    <div class="vibe-card">
+      <div class="vibe-emoji">✨</div>
+      <div class="vibe-label">Tips & rutinas</div>
+    </div>
+    <div class="vibe-card">
+      <div class="vibe-emoji">🌸</div>
+      <div class="vibe-label">At home vibes</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLAB BANNER -->
+<section class="collab-banner">
+  <h2>¿Colaboramos? 🤝</h2>
+  <p>Estoy abierta a colaboraciones con marcas que compartan mis valores.<br>¡Hablemos por DM o escríbeme!</p>
+  <a class="collab-btn" href="mailto:mirinconesencial5@gmail.com">✉️ Contáctame</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Mi Rincón Esencial</strong>
+  Karen Yrigoyen · Florida, USA 🇺🇸<br>
+  <a href="mailto:mirinconesencial5@gmail.com" style="color:var(--blush);text-decoration:none;">mirinconesencial5@gmail.com</a>
+</footer>
+
+</body>
+</html>
