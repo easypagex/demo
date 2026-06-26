@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organizo Tu Hogar · Ana Elena Simionescu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:    #7BBE8A;
+      --blush:   #F2A7C3;
+      --lemon:   #F7E07A;
+      --sky:     #88CBEE;
+      --coral:   #F4876A;
+      --lavender:#C8A8E9;
+      --cream:   #FDF8F2;
+      --ink:     #1E1B18;
+      --white:   #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 4rem 1.5rem 5rem;
+      position: relative;
+      background: linear-gradient(145deg, #FDE8F5 0%, #E8F5FD 40%, #F5FDE8 100%);
+      overflow: hidden;
+    }
+
+    /* floating blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .35;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    .blob-1 { width:520px; height:520px; background:var(--blush);  top:-160px; left:-180px; }
+    .blob-2 { width:420px; height:420px; background:var(--sky);    bottom:-140px; right:-120px; }
+    .blob-3 { width:300px; height:300px; background:var(--lemon);  top:55%; left:60%; }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 680px; }
+
+    .avatar-wrap {
+      width: 130px; height: 130px;
+      margin: 0 auto 1.6rem;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--blush), var(--lavender), var(--sky));
+      box-shadow: 0 8px 32px rgba(200,168,233,.45);
+    }
+    .avatar-wrap img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--white);
+    }
+
+    /* emoji avatar fallback */
+    .avatar-emoji {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 3px solid var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+    }
+
+    .h1-accent { color: var(--coral); }
+
+    .tagline {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #6B6460;
+      margin-bottom: 1.8rem;
+      letter-spacing: .03em;
+    }
+
+    .pill-row {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem;
+      margin-bottom: 2.4rem;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: .35rem;
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .pill-sage    { background: var(--sage);    color: #1a3320; }
+    .pill-blush   { background: var(--blush);   color: #5a1a35; }
+    .pill-lemon   { background: var(--lemon);   color: #4a3a00; }
+    .pill-sky     { background: var(--sky);     color: #0d2d45; }
+    .pill-lavender{ background: var(--lavender);color: #2d1450; }
+    .pill-coral   { background: var(--coral);   color: #4a1000; }
+
+    .cta-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+
+    .btn-ig {
+      background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+      color: var(--white);
+    }
+    .btn-linktree {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 5rem 1.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 1rem;
+    }
+    .about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .about p {
+      font-size: 1.07rem;
+      line-height: 1.8;
+      color: #4a4540;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 4rem 1.5rem 5rem;
+      background: var(--ink);
+    }
+    .services-inner { max-width: 1080px; margin: 0 auto; }
+    .services .section-label { color: var(--lemon); }
+    .services h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 2rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s;
+    }
+    .card:hover { transform: translateY(-6px); }
+
+    .card-sage    { background: var(--sage);    }
+    .card-blush   { background: var(--blush);   }
+    .card-lemon   { background: var(--lemon);   }
+    .card-sky     { background: var(--sky);     }
+    .card-lavender{ background: var(--lavender);}
+    .card-coral   { background: var(--coral);   }
+
+    .card-emoji { font-size: 2.6rem; margin-bottom: 1rem; display: block; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+      color: var(--ink);
+    }
+    .card p { font-size: .9rem; line-height: 1.6; color: rgba(0,0,0,.65); }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(135deg, #FFF0FA, #F0F9FF, #FFFFF0);
+      text-align: center;
+    }
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 900;
+      margin-bottom: .6rem;
+    }
+    .contact p { font-size: 1rem; color: #555; margin-bottom: 1rem; }
+    .email-link {
+      display: inline-block;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--coral);
+      text-decoration: none;
+      border-bottom: 2px solid currentColor;
+      margin-bottom: 2.4rem;
+      transition: color .15s;
+    }
+    .email-link:hover { color: var(--lavender); }
+
+    .location-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .5rem 1.2rem;
+      border-radius: 999px;
+      background: var(--sage);
+      font-size: .9rem;
+      font-weight: 600;
+      color: #1a3320;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .8rem;
+      color: #aaa;
+      background: var(--ink);
+    }
+    footer a { color: var(--blush); text-decoration: none; }
+
+    /* ── HASHTAGS ── */
+    .hashtags {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: .5rem;
+      padding: 3rem 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hashtag {
+      padding: .35rem .9rem;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      cursor: default;
+    }
+
+    /* responsive */
+    @media (max-width: 500px) {
+      .btn { padding: .75rem 1.4rem; font-size: .92rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="hero-inner">
+      <div class="avatar-wrap">
+        <div class="avatar-emoji">🏡</div>
+      </div>
+
+      <h1>Organizo<br><span class="h1-accent">Tu Hogar</span></h1>
+      <p class="tagline">Ana Elena Simionescu · Organizadora Profesional · Madrid</p>
+
+      <div class="pill-row">
+        <span class="pill pill-sage">✨ Orden</span>
+        <span class="pill pill-blush">🏠 Hogar</span>
+        <span class="pill pill-lemon">🌿 Deco</span>
+        <span class="pill pill-sky">🧽 Limpieza</span>
+        <span class="pill pill-lavender">📷 UGC</span>
+        <span class="pill pill-coral">💼 Asesorías</span>
+      </div>
+
+      <div class="cta-group">
+        <a class="btn btn-ig" href="https://www.instagram.com/organizo_tu_hogar/" target="_blank" rel="noopener">
+          <!-- Instagram icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          Ver en Instagram
+        </a>
+        <a class="btn btn-linktree" href="https://linktr.ee/organizo_tu_hogar" target="_blank" rel="noopener">
+          <!-- Link icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          Todos mis links
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <span class="section-label">Quién soy</span>
+    <h2>Un hogar ordenado<br>es un hogar feliz</h2>
+    <p>Soy Ana Elena, organizadora profesional con base en Madrid. Me apasiona transformar espacios caóticos en hogares funcionales, bonitos y fáciles de mantener. A través de mis asesorías personalizadas y mi contenido en redes, ayudo a familias a crear ambientes donde cada cosa tiene su lugar.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="services-inner">
+      <div style="text-align:center; margin-bottom:.5rem;">
+        <span class="section-label">Lo que hago</span>
+      </div>
+      <h2>Mis servicios</h2>
+      <div class="cards">
+        <div class="card card-blush">
+          <span class="card-emoji">🗂️</span>
+          <h3>Organización del hogar</h3>
+          <p>Transformamos juntas cualquier rincón de tu casa: armarios, cocina, salón, oficina y mucho más.</p>
+        </div>
+        <div class="card card-sage">
+          <span class="card-emoji">🧹</span>
+          <h3>Limpieza profunda</h3>
+          <p>Rutinas y técnicas para mantener tu hogar siempre impecable sin agotarte en el intento.</p>
+        </div>
+        <div class="card card-lemon">
+          <span class="card-emoji">🌸</span>
+          <h3>Decoración funcional</h3>
+          <p>Espacios que no solo se ven bien, sino que realmente funcionan para tu vida diaria.</p>
+        </div>
+        <div class="card card-sky">
+          <span class="card-emoji">📱</span>
+          <h3>Asesorías online</h3>
+          <p>Sesiones personalizadas por videollamada para organizar tu hogar desde donde estés.</p>
+        </div>
+        <div class="card card-lavender">
+          <span class="card-emoji">🤝</span>
+          <h3>Colaboraciones UGC</h3>
+          <p>Creación de contenido auténtico para marcas de organización, limpieza y hogar.</p>
+        </div>
+        <div class="card card-coral">
+          <span class="card-emoji">✨</span>
+          <h3>Contenido educativo</h3>
+          <p>Tips, tutoriales y reels con ideas prácticas para que empieces a organizar hoy mismo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HASHTAGS -->
+  <div class="hashtags">
+    <span class="hashtag" style="background:#F2A7C3;color:#5a1a35">#orden</span>
+    <span class="hashtag" style="background:#88CBEE;color:#0d2d45">#limpieza</span>
+    <span class="hashtag" style="background:#7BBE8A;color:#1a3320">#hogar</span>
+    <span class="hashtag" style="background:#F7E07A;color:#4a3a00">#organizacion</span>
+    <span class="hashtag" style="background:#C8A8E9;color:#2d1450">#decoracion</span>
+    <span class="hashtag" style="background:#F4876A;color:#4a1000">#organizadoraprofesional</span>
+    <span class="hashtag" style="background:#7BBE8A;color:#1a3320">#ugc</span>
+    <span class="hashtag" style="background:#F2A7C3;color:#5a1a35">#minimalismo</span>
+    <span class="hashtag" style="background:#88CBEE;color:#0d2d45">#vidaordenada</span>
+    <span class="hashtag" style="background:#F7E07A;color:#4a3a00">#madrid</span>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <span class="section-label">Colaboraciones & contacto</span>
+    <h2>¡Hablemos!</h2>
+    <p>¿Tienes un proyecto o quieres organizar tu hogar?</p>
+    <a class="email-link" href="mailto:organizo_tu_hogar@icloud.com">organizo_tu_hogar@icloud.com</a>
+    <br/>
+    <span class="location-badge">📍 Madrid, España</span>
+
+    <div style="margin-top: 2.5rem; display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+      <a class="btn btn-ig" href="https://www.instagram.com/organizo_tu_hogar/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        @organizo_tu_hogar
+      </a>
+      <a class="btn btn-linktree" href="https://linktr.ee/organizo_tu_hogar" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+        </svg>
+        Linktree
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <a href="https://www.instagram.com/organizo_tu_hogar/" target="_blank">@organizo_tu_hogar</a> · Ana Elena Simionescu · Madrid 🇪🇸</p>
+  </footer>
+
+</body>
+</html>
