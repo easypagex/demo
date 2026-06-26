@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Jardinero · Vergel Vernacular · España</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde-musgo:   #3d6b3c;
+      --verde-bosque:  #1e4620;
+      --lima-electrico:#8dc63f;
+      --amarillo-sol:  #f5d800;
+      --naranja-barro: #e8652a;
+      --terracota:     #c04a1e;
+      --rosa-bugambilia:#d94f8e;
+      --azul-cielo:    #5bbcd6;
+      --crema:         #fdf6ec;
+      --blanco:        #ffffff;
+      --negro:         #1a1a1a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--crema);
+      color: var(--negro);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--verde-bosque);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 4rem 5rem;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--lima-electrico);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      line-height: 1;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--amarillo-sol);
+    }
+
+    .hero-subtitle {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--azul-cielo);
+      margin: 1.5rem 0 2.5rem;
+      line-height: 1.5;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .tag {
+      background: transparent;
+      border: 1.5px solid;
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      cursor: default;
+      transition: transform 0.2s;
+    }
+    .tag:hover { transform: scale(1.05); }
+    .tag-green  { color: var(--lima-electrico);  border-color: var(--lima-electrico); }
+    .tag-yellow { color: var(--amarillo-sol);    border-color: var(--amarillo-sol); }
+    .tag-orange { color: var(--naranja-barro);   border-color: var(--naranja-barro); }
+    .tag-blue   { color: var(--azul-cielo);      border-color: var(--azul-cielo); }
+    .tag-pink   { color: var(--rosa-bugambilia); border-color: var(--rosa-bugambilia); }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+    .btn-primary {
+      background: var(--amarillo-sol);
+      color: var(--negro);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1.5px solid var(--crema);
+      color: var(--crema);
+    }
+
+    /* Instagram SVG icon */
+    .ig-icon { width: 18px; height: 18px; }
+
+    /* Hero right - mosaic of colored plant emoji blocks */
+    .hero-right {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    .mosaic-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(2rem, 4vw, 4rem);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .mosaic-cell:hover { transform: scale(1.05); z-index: 5; }
+
+    .mc1 { background: #3d6b3c; }
+    .mc2 { background: #8dc63f; }
+    .mc3 { background: #e8652a; }
+    .mc4 { background: #f5d800; }
+    .mc5 { background: #d94f8e; }
+    .mc6 { background: #5bbcd6; }
+    .mc7 { background: #c04a1e; }
+    .mc8 { background: #1e4620; }
+
+    /* big cell spanning */
+    .mc-big { grid-row: span 2; font-size: clamp(3rem, 5vw, 5.5rem); }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--amarillo-sol);
+      color: var(--negro);
+      padding: 0.75rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-inner span {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0 2rem;
+    }
+    .marquee-dot {
+      color: var(--naranja-barro);
+      margin: 0 0.5rem;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+
+    .about-left {
+      background: var(--naranja-barro);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .about-left .section-label { color: var(--amarillo-sol); }
+
+    .about-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+      line-height: 1.35;
+      color: var(--crema);
+    }
+
+    .about-quote strong {
+      color: var(--amarillo-sol);
+      font-style: normal;
+    }
+
+    .about-right {
+      background: var(--crema);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-right .section-label { color: var(--verde-musgo); }
+
+    .about-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .ad100-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--verde-musgo);
+      color: var(--crema);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s;
+      align-self: flex-start;
+    }
+    .ad100-badge:hover { transform: translateY(-2px); }
+    .ad100-badge strong { color: var(--amarillo-sol); }
+
+    /* ── WORLD / SERVICIOS ── */
+    .services {
+      background: var(--verde-bosque);
+      padding: 5rem 5rem;
+    }
+
+    .services .section-label { color: var(--lima-electrico); margin-bottom: 1rem; }
+
+    .services-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: var(--crema);
+      margin-bottom: 3.5rem;
+      max-width: 600px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sc-jardines   { background: var(--verde-musgo); }
+    .sc-macetas    { background: var(--naranja-barro); }
+    .sc-paisajismo { background: var(--rosa-bugambilia); }
+    .sc-objetos    { background: var(--azul-cielo); color: var(--negro) !important; }
+
+    .service-card .emoji { font-size: 2.5rem; }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--crema);
+    }
+    .sc-objetos h3 { color: var(--negro); }
+
+    .service-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+    }
+    .sc-objetos p { color: rgba(0,0,0,0.75); }
+
+    /* ── GALLERY STRIP ── */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      height: 280px;
+    }
+
+    .gallery-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      transition: transform 0.3s;
+      cursor: default;
+      position: relative;
+    }
+    .gallery-cell:hover { transform: scale(1.08); z-index: 2; }
+
+    .gc1 { background: #8dc63f; }
+    .gc2 { background: #d94f8e; }
+    .gc3 { background: #f5d800; }
+    .gc4 { background: #5bbcd6; }
+    .gc5 { background: #e8652a; }
+    .gc6 { background: #3d6b3c; }
+
+    /* ── SPAIN ── */
+    .spain {
+      background: var(--terracota);
+      padding: 5rem;
+      text-align: center;
+    }
+
+    .spain .section-label { color: var(--amarillo-sol); margin-bottom: 1.5rem; }
+
+    .spain-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      color: var(--crema);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .spain-title em { color: var(--amarillo-sol); font-style: italic; }
+
+    .spain-body {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.85);
+      max-width: 640px;
+      margin: 0 auto 3rem;
+    }
+
+    .flags { font-size: 2rem; letter-spacing: 0.5rem; margin-bottom: 2.5rem; }
+
+    /* ── INSTAGRAM CTA ── */
+    .ig-cta {
+      background: var(--crema);
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .ig-cta .section-label { color: var(--rosa-bugambilia); }
+
+    .ig-cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--verde-bosque);
+    }
+
+    .ig-big-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      padding: 1.1rem 2.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(220,39,67,0.35);
+    }
+    .ig-big-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(220,39,67,0.45);
+    }
+    .ig-big-btn svg { width: 24px; height: 24px; }
+
+    .ig-handle {
+      font-size: 1rem;
+      color: #777;
+    }
+    .ig-handle strong { color: var(--verde-musgo); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--negro);
+      color: rgba(255,255,255,0.5);
+      padding: 2.5rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer a { color: var(--lima-electrico); text-decoration: none; }
+    footer strong { color: var(--crema); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); height: 200px; }
+      .hero-left { padding: 4rem 2rem 2rem; }
+      .about { grid-template-columns: 1fr; }
+      .about-left, .about-right { padding: 3rem 2rem; }
+      .services { padding: 3rem 2rem; }
+      .gallery-strip { grid-template-columns: repeat(3, 1fr); height: 180px; }
+      .spain { padding: 3rem 2rem; }
+      .ig-cta { padding: 3rem 2rem; }
+      footer { padding: 2rem; flex-direction: column; text-align: center; }
+      .mc-big { grid-row: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">🌿 Sevilla · España · Since 1964</p>
+    <h1 class="hero-title">El<br><em>Jardinero</em></h1>
+    <p class="hero-subtitle">Vergel vernacular.<br>Donde la tierra se convierte en arte.</p>
+    <div class="hero-tags">
+      <span class="tag tag-green">🌱 Jardines</span>
+      <span class="tag tag-orange">🪴 Macetas</span>
+      <span class="tag tag-yellow">🌻 Paisajismo</span>
+      <span class="tag tag-blue">💧 Complementos</span>
+      <span class="tag tag-pink">✨ Objetos Artealizados</span>
+    </div>
+    <div class="cta-row">
+      <a href="https://www.instagram.com/eljardinero/" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg class="ig-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        @eljardinero
+      </a>
+      <a href="https://www.revistaad.es/decoracion/ad100/articulos/ad100-jesus-gomez-jardinero-vergel-vernacular" target="_blank" rel="noopener" class="btn btn-secondary">
+        Ver en AD100 →
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="mosaic-cell mc1 mc-big">🌳</div>
+    <div class="mosaic-cell mc2">🌺</div>
+    <div class="mosaic-cell mc3">🪴</div>
+    <div class="mosaic-cell mc4">🌻</div>
+    <div class="mosaic-cell mc5">🌸</div>
+    <div class="mosaic-cell mc6 mc-big">🍃</div>
+    <div class="mosaic-cell mc7">🌿</div>
+    <div class="mosaic-cell mc8">🌼</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>Jardines</span><span class="marquee-dot">✦</span>
+    <span>Macetas</span><span class="marquee-dot">✦</span>
+    <span>Paisajismo</span><span class="marquee-dot">✦</span>
+    <span>Complementos Jardín</span><span class="marquee-dot">✦</span>
+    <span>Objetos Artealizados</span><span class="marquee-dot">✦</span>
+    <span>España · Spain</span><span class="marquee-dot">✦</span>
+    <span>Vergel Vernacular</span><span class="marquee-dot">✦</span>
+    <span>AD100</span><span class="marquee-dot">✦</span>
+    <span>The Gardener</span><span class="marquee-dot">✦</span>
+    <span>Jardines</span><span class="marquee-dot">✦</span>
+    <span>Macetas</span><span class="marquee-dot">✦</span>
+    <span>Paisajismo</span><span class="marquee-dot">✦</span>
+    <span>Complementos Jardín</span><span class="marquee-dot">✦</span>
+    <span>Objetos Artealizados</span><span class="marquee-dot">✦</span>
+    <span>España · Spain</span><span class="marquee-dot">✦</span>
+    <span>Vergel Vernacular</span><span class="marquee-dot">✦</span>
+    <span>AD100</span><span class="marquee-dot">✦</span>
+    <span>The Gardener</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-left">
+    <p class="section-label">El artista</p>
+    <blockquote class="about-quote">
+      "Cuando me piden colaboración para un proyecto,<br>
+      lo primero que hago es <strong>escuchar a la tierra</strong>."
+    </blockquote>
+  </div>
+  <div class="about-right">
+    <p class="section-label">Jesús Gómez · Sevilla, 1964</p>
+    <p class="about-body">
+      Jesús Gómez es <strong>El Jardinero</strong>, uno de los grandes nombres del paisajismo contemporáneo en España. Su estilo, definido por la revista <em>Architectural Digest</em> como <strong>Vergel Vernacular</strong>, bebe de la tradición botánica andaluza y la transforma en espacios vivos, sensoriales y únicos.
+    </p>
+    <p class="about-body">
+      Con más de tres décadas de experiencia, crea jardines, diseña macetas, selecciona complementos y produce objetos artealizados que convierten cada rincón en una obra de arte natural. Incluido en el prestigioso <strong>AD100</strong> de Revista AD España.
+    </p>
+    <a href="https://www.revistaad.es/decoracion/ad100/articulos/ad100-jesus-gomez-jardinero-vergel-vernacular" target="_blank" rel="noopener" class="ad100-badge">
+      🏆 <strong>AD100</strong> · Revista Architectural Digest España →
+    </a>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="services">
+  <p class="section-label">Lo que hacemos</p>
+  <h2 class="services-title">Un universo vegetal hecho a mano</h2>
+  <div class="services-grid">
+    <div class="service-card sc-jardines">
+      <div class="emoji">🌳</div>
+      <h3>Jardines</h3>
+      <p>Diseño y creación de jardines únicos que respetan el carácter del lugar y el espíritu de sus habitantes.</p>
+    </div>
+    <div class="service-card sc-macetas">
+      <div class="emoji">🪴</div>
+      <h3>Macetas</h3>
+      <p>Selección y diseño de macetas que son esculturas vivas, piezas que dialogan con las plantas que acogen.</p>
+    </div>
+    <div class="service-card sc-paisajismo">
+      <div class="emoji">🌄</div>
+      <h3>Paisajismo</h3>
+      <p>Transformación de espacios exteriores en paisajes de belleza atemporal, desde terrazas hasta fincas.</p>
+    </div>
+    <div class="service-card sc-objetos">
+      <div class="emoji">✨</div>
+      <h3>Objetos Artealizados</h3>
+      <p>Complementos y piezas de jardín concebidas como arte, objetos que elevan el espacio más allá de lo funcional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY STRIP -->
+<div class="gallery-strip">
+  <div class="gallery-cell gc1" title="Jardines">🌿</div>
+  <div class="gallery-cell gc2" title="Flores">🌸</div>
+  <div class="gallery-cell gc3" title="Sol">☀️</div>
+  <div class="gallery-cell gc4" title="Agua">💧</div>
+  <div class="gallery-cell gc5" title="Tierra">🍂</div>
+  <div class="gallery-cell gc6" title="Naturaleza">🌱</div>
+</div>
+
+<!-- SPAIN -->
+<section class="spain">
+  <p class="section-label">Raíces</p>
+  <h2 class="spain-title">España,<br><em>tierra fértil</em></h2>
+  <div class="flags">🇪🇸 🌺 🇪🇸</div>
+  <p class="spain-body">
+    Desde Sevilla al mundo. El Jardinero lleva la esencia del jardín andaluz — la luz, el color, el perfume — a cada proyecto. Un lenguaje vegetal profundamente español que viaja, florece y sorprende.
+  </p>
+</section>
+
+<!-- INSTAGRAM CTA -->
+<section class="ig-cta">
+  <p class="section-label">Síguenos</p>
+  <h2 class="ig-cta-title">El jardín vive en Instagram</h2>
+  <p style="color:#555; font-size:1rem; max-width:480px; line-height:1.7;">
+    Más de 3.200 publicaciones de jardines, macetas, objetos y naturaleza artealizadas. Cada post, un mundo verde.
+  </p>
+  <a href="https://www.instagram.com/eljardinero/" target="_blank" rel="noopener" class="ig-big-btn">
+    <svg viewBox="0 0 24 24" fill="white">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+    Ver @eljardinero en Instagram
+  </a>
+  <p class="ig-handle">Únete a <strong>+6.500 seguidores</strong> del vergel vernacular</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 <strong>El Jardinero</strong> · Jesús Gómez · Sevilla, España</span>
+  <span>
+    <a href="https://www.instagram.com/eljardinero/" target="_blank" rel="noopener">@eljardinero</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.revistaad.es/decoracion/ad100/articulos/ad100-jesus-gomez-jardinero-vergel-vernacular" target="_blank" rel="noopener">AD100 Revista AD</a>
+  </span>
+  <span>🌿 Vergel Vernacular · España</span>
+</footer>
+
+</body>
+</html>
