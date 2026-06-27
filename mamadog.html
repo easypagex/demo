@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MamaDog Grooming & Pet Shop | Tres Cantos, Madrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #FF5C5C;
+    --yellow: #FFD93D;
+    --mint: #4ECDC4;
+    --purple: #9B5DE5;
+    --dark: #1A1A2E;
+    --white: #FFFDF7;
+    --light-bg: #FFF8F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FF5C5C 0%, #FFD93D 50%, #4ECDC4 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-paw {
+    font-size: 80px;
+    line-height: 1;
+    margin-bottom: 20px;
+    animation: bounce 2s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    text-shadow: 4px 4px 0px rgba(0,0,0,0.12);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 span {
+    display: block;
+    color: var(--dark);
+  }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: rgba(255,255,255,0.95);
+    margin: 20px 0 36px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-wa {
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(37,211,102,0.5); }
+
+  .btn-ig {
+    background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45);
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 24px rgba(131,58,180,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-ig:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(131,58,180,0.5); }
+
+  /* ─── WAVE ──────────────────────────────────────────── */
+  .wave {
+    display: block;
+    width: 100%;
+    margin-bottom: -2px;
+  }
+
+  /* ─── ABOUT ──────────────────────────────────────────── */
+  .about {
+    background: var(--light-bg);
+    padding: 80px 24px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .about p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 16px;
+  }
+
+  .about-visual {
+    background: linear-gradient(135deg, var(--coral), var(--purple));
+    border-radius: 32px;
+    padding: 60px 40px;
+    text-align: center;
+    color: white;
+  }
+
+  .about-visual .big-emoji {
+    font-size: 80px;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .about-visual h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .about-visual p {
+    color: rgba(255,255,255,0.85);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* ─── SERVICES ──────────────────────────────────────── */
+  .services {
+    background: var(--dark);
+    padding: 90px 24px;
+  }
+
+  .services .section-title { color: var(--white); }
+  .services .section-eyebrow { color: var(--yellow); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .service-card {
+    border-radius: 24px;
+    padding: 36px 28px;
+    transition: transform 0.25s;
+  }
+
+  .service-card:hover { transform: translateY(-6px); }
+
+  .service-card:nth-child(1) { background: var(--coral); }
+  .service-card:nth-child(2) { background: var(--mint); }
+  .service-card:nth-child(3) { background: var(--yellow); }
+  .service-card:nth-child(4) { background: var(--purple); }
+  .service-card:nth-child(5) { background: #FF8B00; }
+  .service-card:nth-child(6) { background: #00B4D8; }
+
+  .service-card:nth-child(3) .service-title,
+  .service-card:nth-child(3) .service-desc { color: var(--dark); }
+
+  .service-icon { font-size: 48px; margin-bottom: 16px; display: block; }
+
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .service-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.6;
+  }
+
+  /* ─── REVIEWS ────────────────────────────────────────── */
+  .reviews {
+    background: var(--white);
+    padding: 90px 24px;
+  }
+
+  .reviews .section-eyebrow { color: var(--purple); }
+
+  .stars {
+    color: #FFD93D;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .review-card {
+    border-radius: 24px;
+    padding: 32px 28px;
+    border: 2.5px solid transparent;
+    position: relative;
+    background: var(--white);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .review-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+
+  .review-card:nth-child(1) { border-color: var(--coral); background: #FFF5F5; }
+  .review-card:nth-child(2) { border-color: var(--mint); background: #F0FFFE; }
+  .review-card:nth-child(3) { border-color: var(--purple); background: #F8F3FF; }
+  .review-card:nth-child(4) { border-color: var(--yellow); background: #FFFBE8; }
+  .review-card:nth-child(5) { border-color: #FF8B00; background: #FFF6EC; }
+
+  .review-quote {
+    font-size: 3rem;
+    line-height: 0.5;
+    margin-bottom: 16px;
+    opacity: 0.3;
+  }
+
+  .review-card:nth-child(1) .review-quote { color: var(--coral); }
+  .review-card:nth-child(2) .review-quote { color: var(--mint); }
+  .review-card:nth-child(3) .review-quote { color: var(--purple); }
+  .review-card:nth-child(4) .review-quote { color: #D4A000; }
+  .review-card:nth-child(5) .review-quote { color: #FF8B00; }
+
+  .review-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .review-author {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--dark);
+  }
+
+  .rating-banner {
+    background: linear-gradient(135deg, var(--yellow), #FF8B00);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .rating-banner .big-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .rating-banner p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-top: 8px;
+  }
+
+  /* ─── INFO ────────────────────────────────────────────── */
+  .info {
+    background: var(--light-bg);
+    padding: 90px 24px;
+  }
+
+  .info .section-eyebrow { color: var(--mint); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .info-card {
+    background: white;
+    border-radius: 24px;
+    padding: 36px 28px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  }
+
+  .info-card .icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .info-card:nth-child(1) .icon { background: #FFE8E8; }
+  .info-card:nth-child(2) .icon { background: #E8FFF8; }
+  .info-card:nth-child(3) .icon { background: #F3EEFF; }
+
+  .info-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+
+  .info-card p, .info-card address {
+    font-style: normal;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+  }
+
+  .horario-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+  }
+
+  .horario-row:last-child { border-bottom: none; }
+  .horario-row .day { font-weight: 600; color: var(--dark); }
+  .horario-row .time { color: #666; }
+
+  /* ─── CTA SECTION ────────────────────────────────────── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--coral) 100%);
+    padding: 90px 24px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: white;
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-phone {
+    background: white;
+    color: var(--purple);
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+  }
+
+  .btn-phone:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+  /* ─── FOOTER ─────────────────────────────────────────── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 36px 24px;
+    font-size: 0.9rem;
+  }
+
+  footer strong { color: white; }
+
+  /* ─── FLOATING WA ─────────────────────────────────────── */
+  .float-wa {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    width: 62px;
+    height: 62px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  .float-wa:hover { transform: scale(1.1); box-shadow: 0 10px 36px rgba(37,211,102,0.6); }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 6px 36px rgba(37,211,102,0.8), 0 0 0 10px rgba(37,211,102,0.1); }
+  }
+
+  /* ─── SCROLL REVEAL ──────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────────────────── */
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .hero h1 { letter-spacing: -1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-paw">🐾</div>
+  <h1>MamaDog<span>Grooming</span></h1>
+  <p class="hero-sub">🐩 Peluquería canina y felina · Tres Cantos, Madrid 🐈‍⬛</p>
+  <div class="hero-badges">
+    <span class="badge">⭐ 4,6 / 5 en Google</span>
+    <span class="badge">🏆 Nº1 en Tres Cantos</span>
+    <span class="badge">🚗 Recogida a domicilio</span>
+    <span class="badge">Desde 2014</span>
+  </div>
+  <div class="hero-cta">
+    <a href="https://wa.me/34677548308" target="_blank" class="btn-wa">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Reservar cita por WhatsApp
+    </a>
+    <a href="https://www.instagram.com/mamadogtc/" target="_blank" class="btn-ig">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Ver en Instagram
+    </a>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:linear-gradient(135deg,#FF5C5C,#FFD93D,#4ECDC4)">
+  <path d="M0,80 C360,0 1080,80 1440,0 L1440,80 Z" fill="#FFF8F0"/>
+</svg>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="section-eyebrow">Quiénes somos</p>
+        <h2 class="section-title">Pasión perruna desde 2014 🐕</h2>
+        <p>Soy Mar, y junto a Mara llevamos más de 10 años cuidando a los peludos de Tres Cantos con todo el amor del mundo. En MamaDog no somos solo tijeras y champú, ¡somos pura pasión por los animales!</p>
+        <p>Cada mascota recibe un trato único y personalizado. Nos adaptamos a las necesidades de cada peludito, priorizando siempre su bienestar y comodidad. ¡Aquí tu compañero se siente como en casa!</p>
+        <p>También atendemos a <strong>gatos</strong> 🐈‍⬛ con el mismo cuidado y dedicación.</p>
+      </div>
+      <div class="about-visual reveal">
+        <span class="big-emoji">🐩</span>
+        <h3>Trato personalizado para cada mascota</h3>
+        <p>Adaptamos cada corte y tratamiento a las necesidades individuales de tu peludito, cuidando su piel, pelaje y bienestar general.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <p class="section-eyebrow reveal">Nuestros servicios</p>
+    <h2 class="section-title reveal">Todo lo que tu mascota necesita</h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">✂️</span>
+        <div class="service-title">Peluquería Canina</div>
+        <p class="service-desc">Cortes personalizados para todas las razas y tamaños. Desde los más básicos hasta estilos avanzados y de concurso.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🐈‍⬛</span>
+        <div class="service-title">Peluquería Felina</div>
+        <p class="service-desc">Cuidado y peluquería especializada para gatos, con toda la paciencia y el mimo que merecen.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🛁</span>
+        <div class="service-title">Baño & Spa</div>
+        <p class="service-desc">Baños relajantes con productos de calidad. Tratamientos especiales para pieles sensibles e irritadas.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🏆</span>
+        <div class="service-title">Peluquería de Concurso</div>
+        <p class="service-desc">Realzamos la elegancia natural de tu mascota con estilos y acabados impecables para destacar en la pasarela.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">📚</span>
+        <div class="service-title">Cursos de Formación</div>
+        <p class="service-desc">Aprende todo sobre el cuidado y la belleza canina. Conviértete en un experto en el peluquería de mascotas.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🚗</span>
+        <div class="service-title">Recogida a Domicilio</div>
+        <p class="service-desc">¿No puedes venir? Recogemos y entregamos a tu mascota en casa. ¡Toda la comodidad para ti y tu peludito!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <p class="section-eyebrow reveal">Lo que dicen nuestros clientes</p>
+    <h2 class="section-title reveal">Reseñas de clientes reales ❤️</h2>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Muy muy muy recomendable. Llevamos años llevando a nuestra perrita de aguas a MamaDog y estamos encantados. Mar y Mara son magníficas, no solo por el resultado y su profesionalidad, sino por el cariño con que nos tratan. Kala tiene displasia y siempre tienen mucho cuidado al levantarle las patitas. ¡Un millón de gracias!</p>
+        <div class="review-author">— Raquel E. H. · Google</div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Siempre llevo a Gus a que Mar le corte el pelo desde hace años y siempre le deja muy guapo. ¡Además sale tan contento! Se nota que realmente ama su trabajo y a los animales. Muy recomendable.</p>
+        <div class="review-author">— Ana D. · Google</div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Súper recomendable esta peluquería canina. Han tratado muy bien a mi perra y sobre todo han tenido mucha paciencia con ella, que es muy nerviosa y no se queda quieta. Calidad, precio y trato impecables.</p>
+        <div class="review-author">— Guillermo L. · Google</div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Llevé a mi perrita Mia por primera vez y Mara se hizo con ella enseguida. ¡La dejó monísima con lo revoltosa que es! Mara como si nos conociéramos de toda la vida. Muy agradecida.</p>
+        <div class="review-author">— Inma S. · Google</div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Atención profesional muy especializada. También ofrecen cursos, asesoramiento nutricional, accesorios y pienso 100% natural. Servicio de recogida y entrega a domicilio. ¡Una gran idea para los que tengan perros!</p>
+        <div class="review-author">— Michael E. · Google</div>
+      </div>
+    </div>
+
+    <div class="rating-banner reveal">
+      <div class="big-num">4,6 ⭐</div>
+      <p>Valoración media basada en más de 70 reseñas verificadas en Google · <strong>Nº 1 en Tres Cantos</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info">
+  <div class="container">
+    <p class="section-eyebrow reveal">Dónde encontrarnos</p>
+    <h2 class="section-title reveal">Ven a vernos 📍</h2>
+
+    <div class="info-grid">
+      <div class="info-card reveal">
+        <div class="icon">📍</div>
+        <h3>Dirección</h3>
+        <address>
+          Sector Islas nº 10<br>
+          28760 Tres Cantos, Madrid<br><br>
+          <a href="https://maps.google.com/?q=Sector+Islas+10+Tres+Cantos+Madrid" target="_blank" style="color: var(--coral); font-weight: 600; text-decoration: none;">Ver en Google Maps →</a>
+        </address>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="icon">🕐</div>
+        <h3>Horario</h3>
+        <div class="horario-row"><span class="day">Lunes – Viernes</span><span class="time">10:00–14:00 / 17:00–19:00</span></div>
+        <div class="horario-row"><span class="day">Sábado</span><span class="time">11:00–14:00</span></div>
+        <div class="horario-row"><span class="day">Domingo</span><span class="time">Cerrado</span></div>
+        <br>
+        <p style="font-size:0.85rem; color: var(--coral); font-weight:600;">✅ Siempre con cita previa</p>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="icon">📞</div>
+        <h3>Contacto</h3>
+        <p>
+          <a href="tel:+34677548308" style="color: var(--dark); text-decoration:none; font-weight:600;">📞 677 548 308</a><br><br>
+          <a href="https://wa.me/34677548308" target="_blank" style="color: #25D366; text-decoration:none; font-weight:600;">💬 WhatsApp 677 54 83 08</a><br><br>
+          <a href="https://www.instagram.com/mamadogtc/" target="_blank" style="color: #E1306C; text-decoration:none; font-weight:600;">📸 @mamadogtc en Instagram</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="reveal">¿Tu peludito necesita un cambio de look? 🐾</h2>
+    <p class="reveal">Reserva tu cita ahora y dale el cuidado que merece</p>
+    <div class="cta-buttons reveal">
+      <a href="https://wa.me/34677548308" target="_blank" class="btn-wa" style="font-size:1.15rem; padding: 18px 36px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir cita por WhatsApp
+      </a>
+      <a href="tel:+34677548308" class="btn-phone">
+        📞 Llamar ahora
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>MamaDog Grooming & Pet Shop</strong> · Sector Islas nº 10, 28760 Tres Cantos, Madrid</p>
+  <p style="margin-top:8px;">© 2026 MamaDog Grooming · 🐾 Con todo el amor del mundo para tu mascota</p>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/34677548308" target="_blank" class="float-wa" title="Contactar por WhatsApp">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
