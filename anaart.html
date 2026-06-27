@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana@rt · Colorista Especialista Balayage · Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:    #D4A847;
+    --blush:   #E8A0A0;
+    --copper:  #C06840;
+    --cream:   #FDF6EE;
+    --espresso:#2A1A10;
+    --lilac:   #C9A8D4;
+    --teal:    #5BBCB0;
+    --warm-white: #FFFBF5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--espresso);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2A1A10 0%, #3D2415 40%, #5C3420 70%, #7A4530 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(212,168,71,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 80% 80%, rgba(192,104,64,0.22) 0%, transparent 60%),
+                radial-gradient(ellipse 30% 40% at 10% 70%, rgba(201,168,212,0.15) 0%, transparent 60%);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--espresso);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 99px;
+    margin-bottom: 1.6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 7.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 .at {
+    color: var(--gold);
+  }
+
+  .hero h1 .rt {
+    color: var(--blush);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    color: rgba(255,255,255,0.75);
+    margin-top: 1.4rem;
+    max-width: 520px;
+    line-height: 1.55;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-sub strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .hero-stat {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.25rem;
+  }
+
+  .hero-cta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--espresso);
+  }
+
+  .btn-white {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(6px);
+  }
+
+  .btn-wa {
+    background: #25D366;
+    color: #fff;
+  }
+
+  .btn-ig {
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+  }
+
+  /* ── FLOATING BUTTONS ── */
+  .float-btns {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 999;
+  }
+
+  .float-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    transition: transform 0.18s;
+    font-size: 1.4rem;
+  }
+
+  .float-btn:hover { transform: scale(1.1); }
+  .float-wa { background: #25D366; }
+  .float-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 1.5rem; }
+
+  .container { max-width: 960px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--espresso);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: #6B4E3A;
+    max-width: 560px;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── SPECIALTIES ── */
+  .specialties { background: var(--cream); }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(42,26,16,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card:nth-child(2) { transition-delay: 0.1s; }
+  .card:nth-child(3) { transition-delay: 0.2s; }
+  .card:nth-child(4) { transition-delay: 0.3s; }
+
+  .card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--espresso);
+    margin-bottom: 0.6rem;
+  }
+
+  .card p {
+    font-size: 0.88rem;
+    color: #7A5A4A;
+    line-height: 1.6;
+  }
+
+  .card-accent {
+    width: 40px;
+    height: 4px;
+    border-radius: 99px;
+    margin: 1rem auto 0;
+  }
+
+  /* ── WHY ANA ── */
+  .why {
+    background: linear-gradient(135deg, var(--espresso) 0%, #3D2415 100%);
+    color: #fff;
+    text-align: center;
+  }
+
+  .why .section-title { color: #fff; }
+  .why .section-eyebrow { color: var(--gold); }
+  .why .section-lead { color: rgba(255,255,255,0.7); max-width: 640px; margin: 0 auto 3rem; }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  .pill {
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(212,168,71,0.4);
+    color: var(--gold);
+    padding: 0.55rem 1.2rem;
+    border-radius: 99px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .big-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .big-label {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── BOOKING ── */
+  .booking { background: var(--warm-white); text-align: center; }
+
+  .booking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+
+  .booking-card {
+    border-radius: 20px;
+    padding: 2rem 1.4rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .booking-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .booking-card:nth-child(2) { transition-delay: 0.1s; }
+  .booking-card:nth-child(3) { transition-delay: 0.2s; }
+  .booking-card:nth-child(4) { transition-delay: 0.3s; }
+
+  .booking-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+
+  .bc-treatwell { background: #4D9E7A; color: #fff; }
+  .bc-iconencasa { background: var(--copper); color: #fff; }
+  .bc-whatsapp { background: #25D366; color: #fff; }
+  .bc-facebook { background: #1877F2; color: #fff; }
+  .bc-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+
+  .booking-card .bc-icon { font-size: 2rem; }
+
+  .booking-card .bc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .booking-card .bc-desc {
+    font-size: 0.78rem;
+    opacity: 0.85;
+    line-height: 1.4;
+  }
+
+  /* ── LOCATION ── */
+  .location {
+    background: var(--cream);
+    text-align: center;
+  }
+
+  .location-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--espresso);
+    color: var(--gold);
+    padding: 0.75rem 1.8rem;
+    border-radius: 99px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-top: 2rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--espresso);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    font-size: 0.82rem;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  footer .footer-logo span { color: var(--gold); }
+
+  /* ── RIBBON ── */
+  .ribbon {
+    background: var(--gold);
+    color: var(--espresso);
+    text-align: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── SCROLLING TICKER ── */
+  .ticker-wrap {
+    overflow: hidden;
+    background: var(--copper);
+    padding: 0.7rem 0;
+    white-space: nowrap;
+  }
+
+  .ticker {
+    display: inline-block;
+    animation: ticker 22s linear infinite;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 640px) {
+    .hero-stat { gap: 1.5rem; }
+    .hero-cta  { flex-direction: column; align-items: center; }
+    .booking-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating buttons -->
+<div class="float-btns">
+  <a href="https://wa.me/34614277479" target="_blank" class="float-btn float-wa" title="WhatsApp">📱</a>
+  <a href="https://www.instagram.com/anaart.belleza/" target="_blank" class="float-btn float-ig" title="Instagram">📸</a>
+</div>
+
+<!-- Ribbon -->
+<div class="ribbon">✨ Especialista en Balayage · Madrid · Más de 1000 cambios reales ✨</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <span class="hero-badge">Colorista · Madrid</span>
+  <h1>An<span class="at">@</span><span class="rt">rt</span></h1>
+  <p class="hero-sub">
+    Transforma tu cabello <strong>sin dañarlo</strong>.<br>
+    Rubios que iluminan tu rostro, con técnica artesanal.
+  </p>
+  <div class="hero-stat">
+    <div class="stat-item">
+      <span class="stat-num">+1000</span>
+      <span class="stat-label">Cambios reales</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">✨</span>
+      <span class="stat-label">Sin daño capilar</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">📍</span>
+      <span class="stat-label">Madrid</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="https://widget.treatwell.es/establecimiento/salon-ana-art-1" target="_blank" class="btn btn-gold">Reservar cita</a>
+    <a href="https://wa.me/34614277479" target="_blank" class="btn btn-wa">WhatsApp</a>
+    <a href="https://www.instagram.com/anaart.belleza/" target="_blank" class="btn btn-white">Ver Instagram</a>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker-wrap">
+  <span class="ticker">
+    ✦ Balayage &nbsp; ✦ Rubios naturales &nbsp; ✦ Coloración sin daño &nbsp; ✦ Iluminación facial &nbsp; ✦ +1000 cambios reales &nbsp; ✦ Madrid &nbsp; ✦ Balayage &nbsp; ✦ Rubios naturales &nbsp; ✦ Coloración sin daño &nbsp; ✦ Iluminación facial &nbsp; ✦ +1000 cambios reales &nbsp; ✦ Madrid &nbsp; ✦ Balayage &nbsp; ✦ Rubios naturales &nbsp; ✦ Coloración sin daño &nbsp; ✦ Iluminación facial &nbsp; ✦ +1000 cambios reales &nbsp; ✦ Madrid &nbsp;
+  </span>
+</div>
+
+<!-- ── SPECIALTIES ── -->
+<section class="specialties">
+  <div class="container">
+    <p class="section-eyebrow reveal">Especialidades</p>
+    <h2 class="section-title reveal">El arte del color<br>que cuida tu cabello</h2>
+    <p class="section-lead reveal">Cada técnica está pensada para realzar tu belleza natural y cuidar la salud de tu cabello al mismo tiempo.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🌟</span>
+        <h3>Balayage</h3>
+        <p>Mechas pintadas a mano para un efecto luz natural y degradado que nunca parece artificial.</p>
+        <div class="card-accent" style="background: var(--gold);"></div>
+      </div>
+      <div class="card">
+        <span class="card-icon">☀️</span>
+        <h3>Rubios que iluminan</h3>
+        <p>Tonos dorados y beige seleccionados para que la luz enmarque tu rostro perfectamente.</p>
+        <div class="card-accent" style="background: var(--blush);"></div>
+      </div>
+      <div class="card">
+        <span class="card-icon">💆‍♀️</span>
+        <h3>Sin dañar tu cabello</h3>
+        <p>Técnicas y productos de última generación que protegen la fibra capilar desde la raíz hasta las puntas.</p>
+        <div class="card-accent" style="background: var(--teal);"></div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎨</span>
+        <h3>Color personalizado</h3>
+        <p>Cada coloración es única. Ana estudia tu tipo de cabello y piel para crear la fórmula perfecta para ti.</p>
+        <div class="card-accent" style="background: var(--lilac);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ── -->
+<section class="why">
+  <div class="container">
+    <p class="section-eyebrow">¿Por qué Ana@rt?</p>
+    <div style="margin-bottom:2rem">
+      <span class="big-number">+1000</span>
+      <span class="big-label">cambios reales · resultados que hablan por sí solos</span>
+    </div>
+    <p class="section-lead">
+      Ana no solo aplica color — diseña tu transformación con criterio artístico y técnica profesional.
+      Cada cliente es una obra única.
+    </p>
+    <div class="pills">
+      <span class="pill">✦ Colorista especialista</span>
+      <span class="pill">✦ Balayage artesanal</span>
+      <span class="pill">✦ Tratamientos sin daño</span>
+      <span class="pill">✦ Resultados duraderos</span>
+      <span class="pill">✦ Atención personalizada</span>
+      <span class="pill">✦ +1000 transformaciones</span>
+      <span class="pill">✦ Madrid capital</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOKING ── -->
+<section class="booking">
+  <div class="container">
+    <p class="section-eyebrow reveal">Reserva tu cita</p>
+    <h2 class="section-title reveal">Tu transformación<br>empieza aquí</h2>
+    <p class="section-lead reveal" style="margin: 0 auto;">
+      Elige la plataforma que prefieras para reservar o contactar con Ana directamente.
+    </p>
+
+    <div class="booking-grid">
+      <a href="https://widget.treatwell.es/establecimiento/salon-ana-art-1" target="_blank" class="booking-card bc-treatwell">
+        <span class="bc-icon">📅</span>
+        <span class="bc-title">Reservar en Treatwell</span>
+        <span class="bc-desc">Cita online · Confirma al instante</span>
+      </a>
+      <a href="https://iconencasa.com/?ref=48158" target="_blank" class="booking-card bc-iconencasa">
+        <span class="bc-icon">🏠</span>
+        <span class="bc-title">Icon en Casa</span>
+        <span class="bc-desc">Servicio a domicilio disponible</span>
+      </a>
+      <a href="https://wa.me/34614277479" target="_blank" class="booking-card bc-whatsapp">
+        <span class="bc-icon">💬</span>
+        <span class="bc-title">WhatsApp</span>
+        <span class="bc-desc">614 27 74 79 · Respuesta rápida</span>
+      </a>
+      <a href="https://www.instagram.com/anaart.belleza/" target="_blank" class="booking-card bc-instagram">
+        <span class="bc-icon">📸</span>
+        <span class="bc-title">Instagram</span>
+        <span class="bc-desc">@anaart.belleza · Ver trabajos reales</span>
+      </a>
+      <a href="https://www.facebook.com/peinadosrecogidoseventos" target="_blank" class="booking-card bc-facebook">
+        <span class="bc-icon">📘</span>
+        <span class="bc-title">Facebook</span>
+        <span class="bc-desc">Peinados y recogidos para eventos</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOCATION ── -->
+<section class="location">
+  <div class="container">
+    <p class="section-eyebrow reveal">Ubicación</p>
+    <h2 class="section-title reveal">Estamos en Madrid</h2>
+    <p class="section-lead reveal" style="margin: 0 auto 1rem;">
+      Reserva tu cita y te enviamos la dirección exacta del salón en Madrid capital.
+    </p>
+    <div class="location-chip">📍 Madrid, España</div>
+    <br><br>
+    <a href="https://wa.me/34614277479?text=Hola%20Ana!%20Me%20gustar%C3%ADa%20reservar%20una%20cita%20%F0%9F%98%8A" target="_blank" class="btn btn-gold" style="font-size:1rem; padding: 1rem 2.5rem; margin-top:1rem;">
+      💬 Pedir dirección por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">An<span>@</span>rt</div>
+  <p style="margin-bottom:1rem;">Colorista especialista en Balayage · Madrid</p>
+  <div style="display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.2rem;">
+    <a href="https://www.instagram.com/anaart.belleza/" target="_blank">📸 Instagram</a>
+    <a href="https://wa.me/34614277479" target="_blank">💬 WhatsApp</a>
+    <a href="https://widget.treatwell.es/establecimiento/salon-ana-art-1" target="_blank">📅 Treatwell</a>
+    <a href="https://iconencasa.com/?ref=48158" target="_blank">🏠 Icon en Casa</a>
+    <a href="https://www.facebook.com/peinadosrecogidoseventos" target="_blank">📘 Facebook</a>
+  </div>
+  <p>© 2026 Ana@rt · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .card, .booking-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
