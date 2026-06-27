@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holzen Peluquería & Estética · Colmenar Viejo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:    #E8507A;
+    --gold:    #D4A847;
+    --lavender:#9B6FC8;
+    --mint:    #3BBFA4;
+    --coral:   #F4734E;
+    --cream:   #FDF8F2;
+    --dark:    #1A1014;
+    --text:    #3B2535;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── STICKY FLOATING BUTTONS ─── */
+  .fab-group {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+  }
+  .fab {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,.25);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .fab:hover { transform: scale(1.12); box-shadow: 0 6px 24px rgba(0,0,0,.32); }
+  .fab-wa  { background: #25D366; }
+  .fab-ig  { background: radial-gradient(circle at 30% 107%, #fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+  .fab-fb  { background: #1877F2; }
+  .fab svg { width: 26px; height: 26px; fill: #fff; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A1014 0%, #2D1428 40%, #4A1942 70%, #6B2255 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* decorative blobs */
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .35;
+    pointer-events: none;
+  }
+  .hero::before {
+    width: 500px; height: 500px;
+    background: var(--rose);
+    top: -120px; left: -120px;
+  }
+  .hero::after {
+    width: 420px; height: 420px;
+    background: var(--gold);
+    bottom: -100px; right: -100px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.25);
+    color: #fff;
+    font-size: .75rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 8vw, 5.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span {
+    display: block;
+    background: linear-gradient(90deg, var(--gold), var(--rose), var(--lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255,255,255,.7);
+    margin-bottom: 40px;
+    font-weight: 300;
+    max-width: 480px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-size: .95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.3); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--rose), var(--coral));
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(232,80,122,.5);
+  }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,.4);
+    color: #fff;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(6px);
+  }
+
+  /* ─── DECORATIVE STRIP ─── */
+  .color-strip {
+    height: 6px;
+    background: linear-gradient(90deg, var(--rose), var(--gold), var(--lavender), var(--mint), var(--coral), var(--rose));
+    background-size: 200%;
+    animation: stripMove 4s linear infinite;
+  }
+  @keyframes stripMove { 0%{background-position:0%} 100%{background-position:200%} }
+
+  /* ─── SECTIONS COMMON ─── */
+  section { padding: 80px 24px; }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-label {
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--rose);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+  .section-intro {
+    font-size: 1.05rem;
+    color: #6B4E60;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ─── SERVICIOS ─── */
+  .servicios { background: #fff; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .service-card {
+    border-radius: 20px;
+    padding: 32px 26px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+    opacity: 0; transform: translateY(30px);
+  }
+  .service-card.visible { animation: riseUp .55s forwards; }
+  @keyframes riseUp { to { opacity:1; transform:translateY(0); } }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.15); }
+
+  .service-card:nth-child(1) { background: linear-gradient(135deg, #FFE8F0, #FFCDE0); }
+  .service-card:nth-child(2) { background: linear-gradient(135deg, #FFF5D6, #FFE4A0); }
+  .service-card:nth-child(3) { background: linear-gradient(135deg, #EDE0FF, #D4B8FF); }
+  .service-card:nth-child(4) { background: linear-gradient(135deg, #D6F5EE, #A8E8D8); }
+  .service-card:nth-child(5) { background: linear-gradient(135deg, #FFE8D9, #FFCBAA); }
+  .service-card:nth-child(6) { background: linear-gradient(135deg, #E0EEFF, #BEDAD8); }
+
+  .service-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .service-card p {
+    font-size: .9rem;
+    color: #4A3545;
+    line-height: 1.6;
+  }
+
+  /* ─── BIENESTAR BANNER ─── */
+  .bienestar {
+    background: linear-gradient(135deg, var(--lavender), #6B3FA0);
+    color: #fff;
+    text-align: center;
+    padding: 80px 24px;
+  }
+  .bienestar .section-label { color: rgba(255,255,255,.7); }
+  .bienestar .section-title { color: #fff; margin: 0 auto 16px; }
+  .bienestar p { color: rgba(255,255,255,.82); max-width: 520px; margin: 0 auto 36px; font-size: 1.05rem; line-height: 1.7; }
+
+  /* ─── CONTACTO ─── */
+  .contacto { background: var(--cream); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+    margin-top: 48px;
+  }
+  @media(max-width: 640px){ .contact-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+  .contact-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 2px 24px rgba(0,0,0,.06);
+  }
+  .contact-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .contact-item-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .ci-phone  { background: #FFE8F0; }
+  .ci-map    { background: #FFF5D6; }
+  .ci-clock  { background: #EDE0FF; }
+  .contact-item p { font-size: .92rem; color: #5A3F52; line-height: 1.55; }
+  .contact-item strong { display: block; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
+
+  .social-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .social-btn:hover { opacity: .88; transform: translateY(-2px); }
+  .social-btn svg { width: 18px; height: 18px; fill: #fff; }
+  .sb-wa  { background: #25D366; color: #fff; }
+  .sb-ig  { background: radial-gradient(circle at 30% 107%, #fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%); color: #fff; }
+  .sb-fb  { background: #1877F2; color: #fff; }
+
+  /* ─── MAP PLACEHOLDER ─── */
+  .map-frame {
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    min-height: 320px;
+    position: relative;
+    background: linear-gradient(135deg, #FFE8F0, #EDE0FF);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 32px;
+  }
+  .map-frame .map-icon { font-size: 3.5rem; }
+  .map-frame p { font-size: .95rem; color: var(--text); line-height: 1.6; }
+  .map-frame a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    background: var(--rose);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: .9rem;
+    transition: transform .2s;
+  }
+  .map-frame a:hover { transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,.6);
+    text-align: center;
+    padding: 40px 24px;
+    font-size: .85rem;
+  }
+  footer strong { color: #fff; }
+  footer a { color: var(--rose); text-decoration: none; }
+
+</style>
+</head>
+<body>
+
+<!-- Floating action buttons -->
+<div class="fab-group">
+  <a class="fab fab-wa" href="https://api.whatsapp.com/send?phone=34689788182&text=Quiero+reservar+una+cita" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <a class="fab fab-ig" href="https://www.instagram.com/holzensalon/" target="_blank" aria-label="Instagram">
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+  </a>
+  <a class="fab fab-fb" href="https://www.facebook.com/holzensalon" target="_blank" aria-label="Facebook">
+    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  </a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">✨ Salón de belleza & bienestar · Colmenar Viejo</span>
+  <h1>Holzen<span>Peluquería<br>& Estética</span></h1>
+  <p class="hero-sub">Tu espacio de transformación y cuidado personal en el corazón de Colmenar Viejo, Madrid.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=34689788182&text=Quiero+reservar+una+cita" target="_blank">📅 Reservar cita</a>
+    <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+  </div>
+</section>
+
+<div class="color-strip"></div>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <span class="section-label">Lo que hacemos</span>
+    <h2 class="section-title">Nuestros servicios</h2>
+    <p class="section-intro">Desde el corte más moderno hasta los tratamientos más relajantes, en Holzen cuidamos cada detalle para que salgas sintiéndote increíble.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">✂️</span>
+        <h3>Corte & Peinado</h3>
+        <p>Cortes personalizados adaptados a tu estilo y tipo de cabello, con técnicas actuales para un resultado impecable.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎨</span>
+        <h3>Color & Mechas</h3>
+        <p>Coloración profesional, balayage, mechas y técnicas de decoloración para un color vibrante y duradero.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💆‍♀️</span>
+        <h3>Tratamientos Capilares</h3>
+        <p>Hidratación profunda, keratina, botox capilar y tratamientos de nutrición para cabello sano y brillante.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💅</span>
+        <h3>Manicura & Pedicura</h3>
+        <p>Cuidado completo de manos y pies, esmaltado semipermanente y nail art para lucir unas manos perfectas.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">✨</span>
+        <h3>Tratamientos Faciales</h3>
+        <p>Limpiezas faciales, hidratación y tratamientos personalizados para una piel luminosa y cuidada.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌸</span>
+        <h3>Depilación & Estética</h3>
+        <p>Depilación con cera, diseño de cejas y servicios de estética corporal para un cuidado integral.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIENESTAR BANNER -->
+<section class="bienestar">
+  <div class="container">
+    <span class="section-label">Nuestra filosofía</span>
+    <h2 class="section-title" style="text-align:center;">Belleza que nace del bienestar</h2>
+    <p>En Holzen creemos que sentirte bien por dentro se refleja por fuera. Cada visita es una experiencia de cuidado, relax y transformación personal pensada solo para ti.</p>
+    <a class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.4);" href="https://api.whatsapp.com/send?phone=34689788182&text=Quiero+reservar+una+cita" target="_blank">📲 Escríbenos por WhatsApp</a>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <span class="section-label">Encuéntranos</span>
+    <h2 class="section-title">Visítanos en Colmenar Viejo</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Información de contacto</h3>
+
+        <div class="contact-item">
+          <div class="contact-item-icon ci-phone">📞</div>
+          <p><strong>Teléfono</strong>689 78 81 82</p>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon ci-map">📍</div>
+          <p><strong>Dirección</strong>C/ Alto de la Camorcha nº2, Local 13<br>Colmenar Viejo, Madrid</p>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon ci-clock">🕐</div>
+          <p><strong>Reservas</strong>Contacta con nosotros por WhatsApp o llámanos para reservar tu cita</p>
+        </div>
+
+        <h3 style="margin-top:28px; margin-bottom:16px;">Síguenos</h3>
+        <div class="social-row">
+          <a class="social-btn sb-wa" href="https://api.whatsapp.com/send?phone=34689788182&text=Quiero+reservar+una+cita" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a class="social-btn sb-ig" href="https://www.instagram.com/holzensalon/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
+          </a>
+          <a class="social-btn sb-fb" href="https://www.facebook.com/holzensalon" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+
+      <div class="map-frame">
+        <span class="map-icon">🗺️</span>
+        <p><strong>C/ Alto de la Camorcha nº2, Local 13</strong><br>Colmenar Viejo, Madrid</p>
+        <a href="https://maps.google.com/?q=C%2F+Alto+de+la+Camorcha+2+Local+13+Colmenar+Viejo+Madrid" target="_blank">📍 Cómo llegar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Holzen Peluquería & Estética</strong> · C/ Alto de la Camorcha nº2 Local 13, Colmenar Viejo (Madrid)</p>
+  <p style="margin-top:8px;">📞 <a href="tel:+34689788182">689 78 81 82</a> · <a href="https://www.instagram.com/holzensalon/" target="_blank">@holzensalon</a></p>
+  <p style="margin-top:12px; font-size:.78rem; opacity:.5;">© 2026 Holzen Salón. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  // Scroll reveal for service cards
+  const cards = document.querySelectorAll('.service-card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(c => observer.observe(c));
+</script>
+</body>
+</html>
